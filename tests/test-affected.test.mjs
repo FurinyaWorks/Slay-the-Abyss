@@ -472,6 +472,21 @@ test('real generated node layout changes retain actual host Lua regressions and 
   assert.ok(!plan.integration.includes('tests/reward-upgrades.test.mjs'));
 });
 
+test('conditional low-cost UI preparation retains its actual layout dependency without tainting rule wrappers',()=>{
+  const plan=selectTests(['scripts/node-ui-layout.mjs'],{
+    'scripts/node-ui-layout.mjs':'export const layout={}',
+    'scripts/build-ui.mjs':"import {layout} from './node-ui-layout.mjs'",
+    'scripts/test-lua.mjs':"import {buildUI} from './build-ui.mjs'; export function runLua(){}",
+    'tests/lua/lowcost_art.lua':'return true',
+    'tests/lua/reward_upgrades.lua':'return true',
+    'tests/lowcost.test.mjs':"import {runLua} from '../scripts/test-lua.mjs';runLua('tests/lua/lowcost_art.lua')",
+    'tests/reward-upgrades.test.mjs':"import {runLua} from '../scripts/test-lua.mjs';runLua('tests/lua/reward_upgrades.lua')",
+  });
+  assert.equal(plan.full,false);
+  assert.deepEqual(plan.lua,['tests/lua/lowcost_art.lua']);
+  assert.deepEqual(plan.integration,['tests/lowcost.test.mjs']);
+});
+
 test('the conditional historical replay helper selects its fixture without tainting ordinary Lua wrappers',()=>{
   const plan=selectTests(['tests/helpers/historical-presentation-runner.mjs'],repositorySources);
   assert.equal(plan.full,false);

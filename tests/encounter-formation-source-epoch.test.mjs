@@ -211,15 +211,15 @@ test('pre-feedback UI facade retains all 104 frozen owners and their original au
  }
 });
 
-test('current UI facade authenticates all 112 disk owners once in order and rejects every warm drift or removal',()=>{
+test('current UI facade authenticates all 114 disk owners once in order and rejects every warm drift or removal',()=>{
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
  const pad=files=>Object.fromEntries(Object.keys(current.current).map(path=>[path,files[path]??null]));
  assert.deepEqual(current.targets.stsFeedbackPrior.files,pad(stsStyleEpoch.proof.current),'complete 104-owner predecessor remains available, new modules have no invented source');
  assert.deepEqual(menuRedEpoch.proof.owners,[...stsStyleEpoch.proof.owners,'src/lua/abyss_monster_power_view.lua'].sort());
  assert.equal(menuRedEpoch.proof.owners.length,105);
- const additions=['lowcost_art','merchant_pages','node_ui_reward_detail','node_ui_shop','node_ui_treasure','node_ui_treasure_list','treasure_ui'].map(name=>'src/lua/abyss_'+name+'.lua');
+ const additions=['character_select','lowcost_art','merchant_pages','node_ui_reward_detail','node_ui_shop','node_ui_treasure','node_ui_treasure_list','prologue','treasure_ui'].map(name=>'src/lua/abyss_'+name+'.lua');
  assert.deepEqual(current.owners,[...menuRedEpoch.proof.owners,...additions].sort());
- assert.equal(current.owners.length,112);
+ assert.equal(current.owners.length,114);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;

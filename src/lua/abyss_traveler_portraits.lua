@@ -208,6 +208,13 @@ local function controller(host, data, display, templates, options)
         local function channel(value)return math.floor((luminance+(value-luminance)*tint.saturation)*tint.brightness+.5)end
         return Color.FromRGBA(channel(r[15]),channel(r[16]),channel(r[17]),math.floor(r[18]*tint.opacity+.5))
     end
+    local function imageMask(token,c,r)
+        if #r==21 then
+            c.enableMask=r[21]==1;check(token)
+            if r[21]==1 then call(token,c,'SetFillHorizontal',Enum.ImageFillHorizontalType.Right,.5)
+            else call(token,c,'SetFillUnused')end
+        end
+    end
     local function image(token,c,r)
         local tri=data.renderProfile=='lowpoly-v1'
         assert(tri and (#r==20 or #r==21) and integer(r[1]) or #r==18 and r[1]==100001,'unexpected portrait image row')
@@ -227,11 +234,7 @@ local function controller(host, data, display, templates, options)
         call(token,c,'SetSizeDelta',r[4],r[5]);call(token,c,'SetLocalScale',r[12],r[13],1)
         call(token,c,'SetLocalRotation',tri and r[19] or 0,tri and r[20] or 0,r[14]);call(token,c,'SetAnchoredPosition',r[2],r[3])
         c.imageColor=rowColour(r);check(token)
-        if #r==21 then
-            c.enableMask=r[21]==1;check(token)
-            if r[21]==1 then call(token,c,'SetFillHorizontal',Enum.ImageFillHorizontalType.Right,.5)
-            else call(token,c,'SetFillUnused')end
-        end
+        imageMask(token,c,r)
         call(token,c,'SetAsLastSibling');call(token,c,'SetActive',true);call(token,c,'SetVisible',true)
     end
     function self.status(_)
@@ -400,11 +403,21 @@ local function portraitReadiness(row,mode,resultOutcome)
     if not row.active or state.phase~='ready' or row.name=='result' and resultOutcome~=mode then return false end
     return true
 end
+local function enabled(flags,key)
+    return type(flags)=='table' and flags[key]==true
+end
+local function selectionFallback(panel,details,official)
+    return official and {panel:GetChild('v25Background'),details:GetChild('portraits')}
+        or {details:GetChild('portraits'):GetChild('traveler_ironclad')}
+end
+local function fallbackControls(row)
+    return (row.name~='selection' or row.active or row.restoreOnPause)and row.fallback or {}
+end
 function M.new(stage,report,flags,cardTemplates)
-    local selecting=type(flags)=='table' and flags.selectionAvatar==true
-    local fighting=type(flags)=='table' and flags.battlePortrait==true
-    local carding=type(flags)=='table' and flags.cards==true
-    local landing=type(flags)=='table' and flags.menuBackground==true
+    local selecting=enabled(flags,'selectionAvatar')
+    local fighting=enabled(flags,'battlePortrait')
+    local carding=enabled(flags,'cards')
+    local landing=enabled(flags,'menuBackground')
     if not selecting and not fighting and not carding and not landing then return nil end
     if owners[stage]then return owners[stage]end
     local Asset=require('abyss_traveler_portrait_assets')
@@ -449,7 +462,7 @@ function M.new(stage,report,flags,cardTemplates)
             local display=official and 1280 or profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
             selection=controller(host,figure,display,Asset,profile and {position=profile.selectionPosition,
                 nativeLifecycle=true,ownerEpoch=function()return epoch end})
-            local fallback=official and {panel:GetChild('v25Background'),details:GetChild('portraits')} or {details:GetChild('portraits'):GetChild('traveler_ironclad')}
+            local fallback=selectionFallback(panel,details,official)
             rows[#rows+1]={name='selection',adapter=selection,fallback=fallback,active=false,restoreOnPause=official}
         end
         local row={name='avatar',adapter=avatar,fallback={},active=false,visibleOwner=traveler}
@@ -522,7 +535,7 @@ function M.new(stage,report,flags,cardTemplates)
         for _,row in ipairs(rows)do
             local s=row.adapter:status();local ready=row.active and s.phase=='ready'
             local fallbackVisible=(row.name~='selection' or row.restoreOnPause) and row.fallbackVisible~=false
-            for _,c in ipairs((row.name~='selection' or row.active or row.restoreOnPause)and row.fallback or {})do
+            for _,c in ipairs(fallbackControls(row))do
                 if destroyed then painting=false;return end
                 if c and c.alive~=false then
                     paintFallback(c,not ready and fallbackVisible,s.phase)
