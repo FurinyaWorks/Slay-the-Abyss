@@ -14,6 +14,22 @@ function execute(f,query=admissionQuery(f),options){
   return main(f.env,query,options);
  }finally{rmSync(dir,{recursive:true,force:true});}
 }
+test('renamed native queue uses only its current canonical routes and pinned repository ID',()=>{
+ const repo='FurinyaWorks/Slay-the-Heavens',f=admissionFixture(repo),writes=[],query=admissionQuery(f,writes);
+ assert.equal(execute(f,(...args)=>{
+  for(const value of args)if(typeof value==='string'&&value.startsWith('repos/'))assert(value.startsWith('repos/'+repo+'/'));
+  if(args[1]==='graphql')assert(args.some(arg=>arg.includes('name:"Slay-the-Heavens"')));
+  for(const value of args)if(typeof value==='string'&&value.startsWith('target_url='))assert(value.includes('/'+repo+'/'));
+  return query(...args);
+ }).state,'success');
+ assert.equal(writes.filter(row=>row.state==='success').length,3);
+ for(const mutate of [f=>f.event.repository.id=1,f=>f.env.GITHUB_REPOSITORY='FurinyaWorks/Slay-the-Abyss',
+  f=>f.repository.databaseId=1,f=>f.pr.head.repo.id=1]){
+  const invalid=admissionFixture(repo),writes=[];mutate(invalid);
+  assert.throws(()=>execute(invalid,admissionQuery(invalid,writes)));
+  assert.deepEqual(writes,[]);
+ }
+});
 test('real checkout loader accepts only the effective receipt execution attempt',()=>{
  const valid=admissionFixture();assert.equal(execute(valid).state,'success');
  for(const attempt of [undefined,0,99]){
