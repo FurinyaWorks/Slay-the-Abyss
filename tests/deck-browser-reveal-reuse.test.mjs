@@ -183,6 +183,15 @@ fill(grid,1,1);turns(update);assert(not deck.pendingGrid and not host.pageReveal
 grow(17);fill(grid,1,15);F.monsterActors().destroy(grid.items[0])
 turns(update);assert(deck.pendingGrid and host.pageReveal:covered(),'destroyed cell without a refresh callback bypassed final readiness')
 grid.destroyOnRecycle=true;fill(grid,1,1);grid.destroyOnRecycle=false;turns(update);assert(not host.pageReveal:covered())
+local oldReady=deck.gridReady;assert(host:closeDeck());turns(update);host.run.deck={}
+assert(host:openDeck());turns(update);assert(not deck.pendingGrid and not host.pageReveal:covered() and not deck.gridReady,'nonempty to empty reused old preparation')
+assert(oldReady() and not deck.pendingGrid,'retired readiness closure polluted the empty generation')
+grow(17);local listReady=deck.gridReady;assert(deck.pendingGrid)
+assert(deck:showText('详情','只读详情'));turns(update)
+assert(not deck.gridReady and not deck.pendingGrid and not host.pageReveal:covered(),'details retained list preparation')
+assert(listReady() and not deck.pendingGrid,'retired list closure polluted detail mode')
+assert(host:closeDeck());turns(update);assert(deck:inspectText(host.run,'检查','只读检查'));turns(update)
+assert(not deck.pendingGrid and not deck.gridReady and not host.pageReveal:covered(),'inspectText inherited old readiness')
 print('DECK_REUSE_PASS')`);
 });
 

@@ -245,7 +245,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
             local page={};for j=i,math.min(i+rows-1,#lines) do page[#page+1]=lines[j] end
             self.detailPages[#self.detailPages+1]=table.concat(page,'\n')
         end
-        self.generation=self.generation+1;self.pending=false
+        self.generation=self.generation+1;self.pending=false;self.pendingGrid=false;self.gridReady=nil
         liveFaces(CardDisplay.clearNativeArt)
         self.detailTitle=title
         self.detailPage=1;grid:SetVisible(false);details:SetVisible(true);detailHit:SetVisible(true)
@@ -388,6 +388,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         self.listTitle=browserHeading(self.pileKind)..' · '..amount..' 张'
     end
     local function refreshGrid()
+        self.gridReady=nil
         self.generation=self.generation+1
         local generation=self.generation
         local cards,catalog=self.cards,self.catalog
@@ -560,6 +561,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local complete=first>last
         self.pendingGrid=not complete
         self.gridReady=function()
+            if not self.visible or self.generation~=generation or self.detailPages then return true end
             local currentFirst,currentLast=visibleCardWindow(grid,#cards,gridColumns())
             complete=visibleCardsReady(cells,currentFirst,currentLast)
             self.pendingGrid=not complete
@@ -630,7 +632,7 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         self.previewInfo,self.previousPresentation,self.previewMasterSort=nil,nil,nil
         self.generation = self.generation + 1
         self.visible, self.pending, self.calibrating, self.run, self.cards, self.catalog = false, false, false, nil, nil, nil
-        self.pendingGrid=false
+        self.pendingGrid=false;self.gridReady=nil
         self.allCards,self.browseEnabled,self.typeFilter,self.sortMode=nil,nil,nil,nil
         self.choiceToken,self.onPick,self.battle=nil,nil,nil
         self.pileKind,self.listTitle=nil,nil
