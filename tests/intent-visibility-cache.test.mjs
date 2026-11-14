@@ -40,7 +40,19 @@ test('complete Host route retains final run/native graph while idle intent write
  assert.equal(samples[1].graph,samples[0].graph,'complete final Host/run/native graph changed');
  const idle=samples.map(s=>s.counts.find(row=>row.phase==='idle-300'));
  assert.deepEqual(idle.map(row=>row.counts),[[900,0,3600,7200,0],[900,0,1800,5400,0]]);
- for(let i=0;i<samples[0].counts.length;i++)for(const index of [0,1,4])assert.equal(samples[0].counts[i].counts[index],samples[1].counts[i].counts[index],'require/load/snapshot workload changed');
+ // The immutable pre-cache actor fixture predates LowCostArt. The current actor
+ // module imports that already-loaded module once at cold construction; this is
+ // one require lookup, not a module load or a per-frame workload allowance.
+ const actorSource=readFileSync('src/lua/abyss_battle_render_actors.lua','utf8');
+ assert.equal((actorSource.match(/local LowCostArt=require\('abyss_lowcost_art'\)/g)??[]).length,1);
+ assert.ok(!readFileSync('tests/fixtures/intent-visibility/before.lua','utf8').includes('abyss_lowcost_art'));
+ assert.equal(samples[0].counts.filter(row=>row.phase==='cold-host').length,1);
+ assert.deepEqual(samples[1].counts.map(row=>row.phase),samples[0].counts.map(row=>row.phase),'phase alignment changed');
+ for(let i=0;i<samples[0].counts.length;i++)for(const index of [0,1,4]){
+  const before=samples[0].counts[i],after=samples[1].counts[i];
+  const importLookup=index===0&&before.phase==='cold-host'?1:0;
+  assert.equal(after.counts[index],before.counts[index]+importLookup,'require/load/snapshot workload changed');
+ }
  mkdirSync('build/intent-visibility',{recursive:true});
  writeFileSync('build/intent-visibility/equivalence.json',JSON.stringify({
   beforeSource:createHash('sha256').update(readFileSync('tests/fixtures/intent-visibility/before.lua')).digest('hex'),

@@ -1,0 +1,28 @@
+✔ intent visibility retains native owner, lifecycle, failure and reentry semantics (630.116057ms)
+✔ visibility negative control (LF): owner (448.492146ms)
+✔ visibility negative control (CRLF): owner (727.761316ms)
+✔ visibility negative control (LF): alive (520.848883ms)
+✔ visibility negative control (CRLF): alive (519.45342ms)
+✔ visibility negative control (LF): rejected write (688.985983ms)
+✔ visibility negative control (CRLF): rejected write (868.341065ms)
+✔ visibility negative control (LF): overlap (528.093058ms)
+✔ visibility negative control (CRLF): overlap (524.703411ms)
+✔ visibility negative control (LF): escape post-clear (1072.198398ms)
+✔ visibility negative control (CRLF): escape post-clear (601.226612ms)
+✔ visibility negative control (LF): no cache (478.289304ms)
+✔ visibility negative control (CRLF): no cache (531.896455ms)
+✔ complete Host route retains final run/native graph while idle intent writes fall (18429.426083ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26706.25355
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 check:architecture
+> node scripts/check-architecture.mjs
+
+Architecture passed: 349 modules, 1978 edges; build/architecture.json

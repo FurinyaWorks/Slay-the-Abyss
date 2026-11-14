@@ -1,0 +1,41 @@
+✔ intent visibility retains native owner, lifecycle, failure and reentry semantics (763.471548ms)
+✔ visibility negative control (LF): owner (851.623162ms)
+✔ visibility negative control (CRLF): owner (552.929283ms)
+✔ visibility negative control (LF): alive (505.792692ms)
+✔ visibility negative control (CRLF): alive (608.920716ms)
+✔ visibility negative control (LF): rejected write (570.910355ms)
+✔ visibility negative control (CRLF): rejected write (565.946255ms)
+✔ visibility negative control (LF): overlap (488.755732ms)
+✔ visibility negative control (CRLF): overlap (822.72456ms)
+✔ visibility negative control (LF): escape post-clear (501.163094ms)
+✔ visibility negative control (CRLF): escape post-clear (568.900888ms)
+✔ visibility negative control (LF): no cache (513.136057ms)
+✔ visibility negative control (CRLF): no cache (993.022603ms)
+✖ complete Host route retains final run/native graph while idle intent writes fall (18735.761566ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27176.652786
+
+✖ failing tests:
+
+test at tests/intent-visibility-cache.test.mjs:28:1
+✖ complete Host route retains final run/native graph while idle intent writes fall (18735.761566ms)
+  AssertionError [ERR_ASSERTION]: require/load/snapshot workload changed
+
+  867 !== 868
+
+      at TestContext.<anonymous> (file://<checkout>/tests/intent-visibility-cache.test.mjs:43:79)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 867,
+    expected: 868,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,22 @@
+✔ intent visibility retains native owner, lifecycle, failure and reentry semantics (663.854461ms)
+✔ visibility negative control (LF): owner (873.591411ms)
+✔ visibility negative control (CRLF): owner (600.817331ms)
+✔ visibility negative control (LF): alive (542.372382ms)
+✔ visibility negative control (CRLF): alive (967.580475ms)
+✔ visibility negative control (LF): rejected write (609.875799ms)
+✔ visibility negative control (CRLF): rejected write (652.64709ms)
+✔ visibility negative control (LF): overlap (1139.843606ms)
+✔ visibility negative control (CRLF): overlap (531.303538ms)
+✔ visibility negative control (LF): escape post-clear (627.328565ms)
+✔ visibility negative control (CRLF): escape post-clear (787.952329ms)
+✔ visibility negative control (LF): no cache (631.940034ms)
+✔ visibility negative control (CRLF): no cache (541.338973ms)
+✔ complete Host route retains final run/native graph while idle intent writes fall (19085.401283ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28407.839638

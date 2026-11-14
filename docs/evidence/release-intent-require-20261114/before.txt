@@ -1,0 +1,57 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 build:data
+> node scripts/build-lua-data.mjs
+
+Validated Lua data module built.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 build:ui
+> node scripts/build-ui.mjs
+
+Native battle UI and Traveler display module built.
+✖ complete Host route retains final run/native graph while idle intent writes fall (19825.143347ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19953.814161
+
+✖ failing tests:
+
+test at tests/intent-visibility-cache.test.mjs:28:1
+✖ complete Host route retains final run/native graph while idle intent writes fall (19825.143347ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      [
+  +     1500,
+  -     900,
+        0,
+        3600,
+        7200,
+        0
+      ],
+      [
+  +     1500,
+  -     900,
+        0,
+        1800,
+        5400,
+        0
+      ]
+
+      at TestContext.<anonymous> (file://<checkout>/tests/intent-visibility-cache.test.mjs:42:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ [ 1500, 0, 3600, 7200, 0 ], [ 1500, 0, 1800, 5400, 0 ] ],
+    expected: [ [ 900, 0, 3600, 7200, 0 ], [ 900, 0, 1800, 5400, 0 ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
