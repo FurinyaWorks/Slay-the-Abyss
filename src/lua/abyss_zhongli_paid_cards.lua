@@ -8,6 +8,7 @@ local M={}
 local starterNative={}
 for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
 for _,d in ipairs(require('abyss_zhongli_native_definitions').definitions())do starterNative[d.id]=d end
+for _,d in ipairs(require('abyss_zhongli_control_definitions').definitions())do starterNative[d.id]=d end
 local specs={zl32={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',counter=6,upCounter=8,retain=false,exactExhaust=false},
  zl40={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',block=12,upBlock=16,retain=true,exactExhaust=true},
  zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
@@ -33,6 +34,9 @@ local function same(a,b)
 end
 local function nativeUse(state,instance,card,targetIndex)
  local d=instance and starterNative[instance.cardId]
+ if instance and (instance.cardId=='zl09'or instance.cardId=='zl34'or instance.cardId=='zl37'or instance.cardId=='zl45')then
+  if not same(state.catalog.cards[instance.cardId],d)then return false,'zhongli_control_source_drift'end
+ end
  if not d or instance.upgraded~=nil and type(instance.upgraded)~='boolean'
   or card.zhongliCandidate~=true or state.characterCandidate~='zhongli'or state.experimentalMechanics~=true
   or state.originalV4 or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard

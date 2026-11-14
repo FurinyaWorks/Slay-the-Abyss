@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Zhongli control native boundary',()=>{buildLuaData();const r=runLua('experiments/characters/lifecycle/zhongli-control-boundary.test.lua',{timeout:120000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/ZHONGLI_CONTROL_BOUNDARY_PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);});
