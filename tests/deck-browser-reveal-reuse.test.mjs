@@ -125,7 +125,12 @@ local function boot(amount,origin)
  G.new=function(root,data,presentation,event,platform)p=platform;host=create(root,data,presentation,event,platform);return host end
  dofile('src/lua/abyss_ui.lua');OnStart();G.new=create;local update=OnUpdate
  for i=1,5 do update(1/60)end;assert(host and not host.pageReveal:covered());assert(host:start())
- for i=1,5 do update(1/60)end;assert(F.confirmStart(host));for i=1,5 do update(1/60)end
+ for i=1,5 do update(1/60)end;assert(F.confirmStart(host))
+ for i=1,80 do
+  if host.run and host.map and not(host.prologue and host.prologue:covering()) and not host.pageReveal:covered()then break end
+  update(.05)
+ end
+ assert(host.run and host.map and not(host.prologue and host.prologue:covering()) and not host.pageReveal:covered(),'actual native opening did not publish the run and destination')
  local original=C.copy(host.run.deck);host.run.deck={}
  for i=1,amount do local card=C.copy(original[(i-1)%#original+1]);card.uid=1000+i;host.run.deck[i]=card end
  local grid=host.root:GetChild('deckPanel'):GetChild('pileGrid');grid.indexBase=origin;grid.deferRefresh=true

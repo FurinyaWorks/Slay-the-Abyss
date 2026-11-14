@@ -1,0 +1,115 @@
+✔ post-paint fast publication is limited to existing deck content and Neow text, and never trusts pre-paint readiness (189.057844ms)
+✔ real Host reuses each grid base and native metadata through 100 sorts, preserves stale input, and waits for deferred cells (32191.694393ms)
+✔ real Neow transactions keep their stable room identity through Host text updates but prepare different rooms and card pickers (8599.673284ms)
+✖ real native entry lazily opens victory artwork, pauses its cache and retires it with the engine world (1493.306673ms)
+✖ real native entry keeps fallback interactive on template/create errors and retires callbacks on engine teardown (1960.071513ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44820.695609
+
+✖ failing tests:
+
+test at tests/official-background-flow.test.mjs:20:1
+✖ real native entry lazily opens victory artwork, pauses its cache and retires it with the engine world (1493.306673ms)
+  AssertionError [ERR_ASSERTION]: ./src/lua/abyss_battle_ui.lua:4: module 'abyss_theme' not found:
+    no field package.preload['abyss_theme']
+    no file './build/lua/abyss_theme.lua'
+    no file './src/lua/abyss_theme.lua'
+    no file '/usr/local/share/lua/5.3/abyss_theme.lua'
+    no file '/usr/local/share/lua/5.3/abyss_theme/init.lua'
+    no file '/usr/share/lua/5.3/abyss_theme.lua'
+    no file '/usr/share/lua/5.3/abyss_theme/init.lua'
+    no file './abyss_theme.lua'
+    no file './abyss_theme/init.lua'
+    no file '/usr/local/share/lua/5.3/abyss_theme.js'
+    no file '/usr/local/share/lua/5.3/loadall.js'
+    no file '/usr/share/lua/5.3/abyss_theme.js'
+    no file '/usr/share/lua/5.3/loadall.js'
+    no file './abyss_theme.js'
+  stack traceback:
+    [JS]: in function 'require'
+    ./src/lua/abyss_battle_ui.lua:4: in main chunk
+    [JS]: in function 'require'
+    ./src/lua/abyss_game_ui.lua:5: in main chunk
+    [JS]: in function 'require'
+    tests/lua/support/game_ui_fixture.lua:2: in main chunk
+    [JS]: in function 'dofile'
+    tests/lua/support/official_background_native_fixture.lua:2: in main chunk
+    [JS]: in function 'dofile'
+    tests/lua/support/official_background_flow.lua:2: in main chunk
+    [JS]: in function 'dofile'
+    /tmp/background-enabled-flow-ZAgiDw/entry.lua:5: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-adjacent-opening/tests/official-background-flow.test.mjs:21:88)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/official-background-flow.test.mjs:24:1
+✖ real native entry keeps fallback interactive on template/create errors and retires callbacks on engine teardown (1960.071513ms)
+  AssertionError [ERR_ASSERTION]: ./src/lua/abyss_battle_ui.lua:4: module 'abyss_theme' not found:
+    no field package.preload['abyss_theme']
+    no file './build/lua/abyss_theme.lua'
+    no file './src/lua/abyss_theme.lua'
+    no file '/usr/local/share/lua/5.3/abyss_theme.lua'
+    no file '/usr/local/share/lua/5.3/abyss_theme/init.lua'
+    no file '/usr/share/lua/5.3/abyss_theme.lua'
+    no file '/usr/share/lua/5.3/abyss_theme/init.lua'
+    no file './abyss_theme.lua'
+    no file './abyss_theme/init.lua'
+    no file '/usr/local/share/lua/5.3/abyss_theme.js'
+    no file '/usr/local/share/lua/5.3/loadall.js'
+    no file '/usr/share/lua/5.3/abyss_theme.js'
+    no file '/usr/share/lua/5.3/loadall.js'
+    no file './abyss_theme.js'
+  stack traceback:
+    [JS]: in function 'require'
+    ./src/lua/abyss_battle_ui.lua:4: in main chunk
+    [JS]: in function 'require'
+    ./src/lua/abyss_game_ui.lua:5: in main chunk
+    [JS]: in function 'require'
+    tests/lua/support/game_ui_fixture.lua:2: in main chunk
+    [JS]: in function 'dofile'
+    tests/lua/support/official_background_native_fixture.lua:2: in main chunk
+    [JS]: in function 'dofile'
+    tests/lua/support/official_background_errors.lua:2: in main chunk
+    [JS]: in function 'dofile'
+    /tmp/background-enabled-flow-7pjwZk/entry.lua:5: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-adjacent-opening/tests/official-background-flow.test.mjs:25:90)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

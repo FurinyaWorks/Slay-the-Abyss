@@ -5,7 +5,7 @@ status: Done
 assignee:
   - Furinya
 created_date: '2026-11-14 07:06'
-updated_date: '2026-11-14 09:55'
+updated_date: '2026-11-14 13:20'
 labels: []
 milestone: m-8
 dependencies: []
@@ -63,6 +63,10 @@ R3 最终独立复审通过：reviewId=/root/review_liyue_transition；head=cca6
 用户本轮明确确认视觉效果通过，要求移除过吵音效并授权挂入自动合并队列，无需等待CI。R4仅删除转场音效调用、注入与专用配置；静音进入/完成/取消回归通过，12项定向Node检查（内含13项Lua转场场景）通过，语法/素材清单/Backlog检查通过，独立R4差异复审无问题。截图沿用视觉时序相同的R3实际模拟器采集并保留证据边界；手机/正式RC仍未验证。
 
 自动合并准入遇到明确CI失败：rules12 hosted checkout包134782769字节超过128MiB。仅归档已否定R1的PNG/GIF到本地并保留cca6ee15历史链接、原收据，保留R2/R3完整衔接和最终视觉证据；不改运行时及门禁。使用已复审的95256013改名兼容协调器，避免将仓库改名工具改动混入本PR。待新HEAD精确复审后重新授权。
+
+发版 #661@fdfca5bf 接续：限定修正 deck-browser-reveal-reuse 与 official_background_native_fixture 的异步开场等待，沿真实公共 OnUpdate 有界就绪，保留全部原断言和历史来源。本轮不新认领已完成产品任务、不改变原 PR；独立任务分支测试/评审后交集成线。
+
+本轮仅交deck native boot等待修复，3项定向通过且原fixture nil run负控复现。背景等待后仍requested art owner unavailable，试验改动已撤回；不得视为已修复。来源接续与正常Full仍待。
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

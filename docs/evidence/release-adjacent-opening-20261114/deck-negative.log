@@ -1,0 +1,43 @@
+✖ real Host reuses each grid base and native metadata through 100 sorts, preserves stale input, and waits for deferred cells (20552.702044ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20777.670557
+
+✖ failing tests:
+
+test at tests/deck-browser-reveal-reuse.test.mjs:39:1
+✖ real Host reuses each grid base and native metadata through 100 sorts, preserves stale input, and waits for deferred cells (20552.702044ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_UI init Color=table
+  ABYSS_UI viewport_ready
+  ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+  ABYSS_UI ready
+  ABYSS_PAGE_REVEAL visible page=menuPanel epoch=1
+  ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+  ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+  ABYSS_TRANSITION begin
+  (command line):36: attempt to index a nil value (field 'run')
+  stack traceback:
+    (command line):36: in local 'boot'
+    (command line):44: in main chunk
+
+
+  1 !== 0
+
+      at lua (file:///workspace/scratch/c1a4970a76e0/release-adjacent-opening/tests/deck-browser-reveal-reuse.test.mjs:13:38)
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-adjacent-opening/tests/deck-browser-reveal-reuse.test.mjs:112:2)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

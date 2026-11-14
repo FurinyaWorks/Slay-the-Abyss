@@ -1,0 +1,98 @@
+✖ real native entry lazily opens victory artwork, pauses its cache and retires it with the engine world (3589.886663ms)
+✖ real native entry keeps fallback interactive on template/create errors and retires callbacks on engine teardown (4278.392907ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8070.917986
+
+✖ failing tests:
+
+test at tests/official-background-flow.test.mjs:20:1
+✖ real native entry lazily opens victory artwork, pauses its cache and retires it with the engine world (3589.886663ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_UI init Color=table
+  ABYSS_UI viewport_ready
+  ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+  ABYSS_UI ready
+  ABYSS_PAGE_REVEAL failed page=menuPanel epoch=1 reason=requested art owner unavailable
+  ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+  ABYSS_TRANSITION begin
+  ABYSS_PAGE_REVEAL failed page=characterPanel epoch=2 reason=requested art owner unavailable
+  ABYSS_RUN seed=11979 source=clock
+  ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+  ABYSS_PAGE_REVEAL failed page=nodePanel epoch=3 reason=requested art owner unavailable
+  ABYSS_TRANSITION ready elapsed=0.35
+  ABYSS_TRANSITION complete elapsed=1.15
+  ABYSS_TRANSITION end elapsed=1.75
+  tests/lua/support/official_background_native_fixture.lua:55: actual native opening did not publish the run and destination
+  stack traceback:
+    [JS]: in function 'assert'
+    tests/lua/support/official_background_native_fixture.lua:55: in method 'openVictory'
+    tests/lua/support/official_background_flow.lua:8: in main chunk
+    [JS]: in function 'dofile'
+    /tmp/background-enabled-flow-5xUOcT/entry.lua:5: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-adjacent-opening/tests/official-background-flow.test.mjs:21:88)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/official-background-flow.test.mjs:24:1
+✖ real native entry keeps fallback interactive on template/create errors and retires callbacks on engine teardown (4278.392907ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_UI init Color=table
+  ABYSS_UI viewport_ready
+  ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+  ABYSS_UI ready
+  ABYSS_PAGE_REVEAL failed page=menuPanel epoch=1 reason=requested art owner unavailable
+  ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+  ABYSS_TRANSITION begin
+  ABYSS_PAGE_REVEAL failed page=characterPanel epoch=2 reason=requested art owner unavailable
+  ABYSS_RUN seed=20553 source=clock
+  ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+  ABYSS_PAGE_REVEAL failed page=nodePanel epoch=3 reason=requested art owner unavailable
+  ABYSS_TRANSITION ready elapsed=0.35
+  ABYSS_TRANSITION complete elapsed=1.15
+  ABYSS_TRANSITION end elapsed=1.75
+  tests/lua/support/official_background_native_fixture.lua:55: actual native opening did not publish the run and destination
+  stack traceback:
+    [JS]: in function 'assert'
+    tests/lua/support/official_background_native_fixture.lua:55: in method 'openVictory'
+    tests/lua/support/official_background_errors.lua:17: in main chunk
+    [JS]: in function 'dofile'
+    /tmp/background-enabled-flow-1q61rC/entry.lua:5: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-adjacent-opening/tests/official-background-flow.test.mjs:25:90)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
