@@ -8,6 +8,19 @@ import {deckCardTemplate} from '../scripts/deck-ui-layout.mjs';
 const children=n=>n.controls??n.children??[];
 const child=(n,key)=>children(n).find(c=>c.name===key);
 const all=n=>[n,...children(n).flatMap(all)];
+
+test('treasure details and room backdrop retain authored materials with room for full reward text',()=>{
+ const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);
+ const rooms=child(layout,'nodePanel'),treasure=child(rooms,'treasureView');
+ assert.equal(child(rooms,'backdrop').image,theme.image.rect,'room background must not use a catalog landscape');
+ const detail=child(treasure,'details');
+ assert.equal(child(detail,'panel').image,theme.image.rect,'generic panel skin must not overwrite readable details');
+ assert(all(treasure).every(n=>n.image!==theme.image.officialBackdrops.act1_3));
+ const description=child(child(treasure,'rewardItem2'),'description');
+ assert(description.size[1]>=2*(description.text.fontSize*1.45+2),'long reward effects need two full native lines');
+ assert(child(detail,'relatedDescription').size[1]>=3*(20*1.45+2),'related status explanation needs three native lines');
+ assert.equal(child(treasure,'bossDescription').text.colour,theme.color.text);
+});
 test('official battle HUD can render at least one full native text line without hiding its values',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);
  const battle=child(layout,'battlePanel');
