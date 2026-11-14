@@ -47,4 +47,3 @@ assert len(shapes) <= 600, 'Static title budget exceeded'
 with open(destination, 'w', encoding='utf8') as out:
     json.dump({'referenceSha256': hashlib.sha256(raw).hexdigest(), 'shapes': shapes}, out, separators=(',', ':'))
 print('Static title triangles:', len(shapes))
-

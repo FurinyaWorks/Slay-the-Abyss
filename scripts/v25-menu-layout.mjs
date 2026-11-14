@@ -86,4 +86,3 @@ export function applyV25MenuLayout(layout,theme){
  quit.position=theme.menuPresentation.quit.slice(0,2);
  return layout;
 }
-
