@@ -1,0 +1,516 @@
+{
+  "scope": "Full-game Simulator/Fengari input; see adapter receipt for GIL identity. Software renderer, not official client or GPU FPS",
+  "saveSha256": "4868b52a2740f910463fc0d1979b17503cf40b6119625b98692cd6a7589c2ef7",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "rendererSha256": "b629f6272110b757a0e946529370ae431cafd56c00b19357677e804efbe7b6c7",
+  "status": "pass",
+  "inputs": [
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 121.77129999999306
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 36.73979999998119
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 42.67459999999846
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 41.724400000006426
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 35.06950000001234
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 32.771999999997206
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 47.404899999994086
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 35.31469999998808
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 184.63379999998142
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 29.471099999995204
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 38.80100000000675
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 28.565499999996973
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 25.473999999987427
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 22.441200000001118
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 26.77929999999469
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 22.59350000001723
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 28.413799999980256
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 26.875599999999395
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 45.10670000000391
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 31.57149999999092
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 26.487699999997858
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 20.095000000001164
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 25.044699999998556
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 24.435599999997066
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 37.60370000000694
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 28.660800000012387
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 31.97500000000582
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 20.113000000012107
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 30.889600000024075
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 20.561699999991106
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 24.957200000004377
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 23.630999999993946
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 25.0908000000054
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 24.416800000006333
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 30.284100000018952
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 27.389199999975972
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 28.0853000000061
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 23.60759999998845
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 36.46349999998347
+    },
+    {
+      "trail": "stage/characterPanel/cancel/hit",
+      "wallMs": 29.644100000004983
+    },
+    {
+      "trail": "stage/menuPanel/start/hit",
+      "wallMs": 26.866399999998976
+    },
+    {
+      "trail": "stage/characterPanel/details/deckOpen/hit",
+      "wallMs": 72.66250000000582
+    }
+  ],
+  "steps": [
+    10.804199999984121,
+    19.2668999999878,
+    20.35820000001695,
+    21.728000000002794,
+    20.842499999998836,
+    18.785999999992782,
+    16.687100000010105,
+    13.934500000003027,
+    13.28159999998752,
+    13.162199999991572,
+    16.493100000021514,
+    15.055799999972805,
+    12.480999999999767,
+    14.361000000004424,
+    19.19069999997737,
+    12.602899999998044,
+    13.593199999973876,
+    11.502199999988079,
+    13.161799999972573,
+    11.842800000013085,
+    14.785100000008242,
+    12.675100000022212,
+    15.274499999999534,
+    13.255000000004657,
+    13.585900000005495,
+    11.96129999999539,
+    13.994799999985844,
+    12.95140000001993,
+    11.989000000001397,
+    13.448799999983748,
+    14.443699999974342,
+    17.551899999991292,
+    13.528699999995297,
+    13.535499999998137,
+    13.264500000019325,
+    12.962400000018533,
+    13.00580000001355,
+    13.644300000014482,
+    12.903400000010151,
+    12.499800000019604,
+    12.629000000015367,
+    12.731399999989662,
+    14.19430000000284,
+    13.267300000006799,
+    14.402700000006007,
+    16.02919999998994,
+    15.347799999988638,
+    12.297000000020489,
+    9.591999999975087,
+    4.649100000009639,
+    3.267699999996694,
+    6.556099999987055,
+    6.487899999978254,
+    5.135599999979604,
+    4.913499999995111,
+    5.058900000003632,
+    8.015199999994365,
+    3.467800000013085,
+    6.19550000000163,
+    6.057499999995343,
+    6.651100000017323,
+    5.3470999999844935,
+    6.432299999985844,
+    5.127399999997579,
+    5.728600000002189,
+    6.993000000016764,
+    5.240499999985332,
+    6.274399999994785,
+    6.805700000026263,
+    12.521000000007916,
+    6.239600000000792,
+    6.692099999985658,
+    3.3285000000032596,
+    7.003899999981513,
+    5.413500000024214,
+    6.327700000023469,
+    4.873200000001816,
+    4.799200000008568,
+    3.2210999999952037,
+    3.7413999999989755,
+    3.9869999999937136,
+    3.371899999998277,
+    4.6692999999795575,
+    6.820199999987381,
+    3.153500000014901,
+    4.528699999995297,
+    3.157999999995809,
+    3.916800000006333,
+    5.480500000005122,
+    4.620100000000093,
+    5.845000000001164,
+    6.637799999996787,
+    6.14879999999539,
+    3.4261999999871477,
+    3.5170000000216532,
+    3.28780000002007,
+    4.589799999987008,
+    6.215200000006007,
+    3.485499999980675,
+    4.734700000000885,
+    4.288299999985611,
+    5.102200000023004,
+    4.7044000000169035,
+    6.066399999981513,
+    4.507700000016484,
+    5.527100000006612,
+    4.236999999993714,
+    4.4192999999795575,
+    3.240699999994831,
+    5.035599999973783,
+    3.31160000001546,
+    3.909799999993993,
+    3.6616999999969266,
+    3.525900000007823,
+    3.1446999999752734,
+    4.743699999991804,
+    4.86699999999837,
+    4.824700000026496,
+    3.460800000000745,
+    6.344700000016019,
+    3.270300000003772,
+    3.9196999999985565,
+    6.266999999992549,
+    6.217399999994086,
+    5.830499999981839,
+    5.7620999999926426,
+    3.165899999992689,
+    3.3597000000008848,
+    5.7956000000122,
+    6.100500000000466,
+    4.642000000021653,
+    6.026099999988219,
+    4.268600000010338,
+    5.319000000017695,
+    3.2163000000000466,
+    6.264100000000326,
+    6.846699999994598
+  ],
+  "roundtrips": [
+    {
+      "modelMs": 69.37249999999767,
+      "controls": 23956
+    },
+    {
+      "modelMs": 62.30580000000191,
+      "controls": 23956
+    },
+    {
+      "modelMs": 75.65219999998226,
+      "controls": 23956
+    },
+    {
+      "modelMs": 220.69370000000345,
+      "controls": 23956
+    },
+    {
+      "modelMs": 66.0853000000061,
+      "controls": 23956
+    },
+    {
+      "modelMs": 45.961100000014994,
+      "controls": 23956
+    },
+    {
+      "modelMs": 45.79319999998552,
+      "controls": 23956
+    },
+    {
+      "modelMs": 48.51819999999134,
+      "controls": 23956
+    },
+    {
+      "modelMs": 128.78729999999632,
+      "controls": 23956
+    },
+    {
+      "modelMs": 47.18859999999404,
+      "controls": 23956
+    },
+    {
+      "modelMs": 42.35250000000815,
+      "controls": 23956
+    },
+    {
+      "modelMs": 62.62040000001434,
+      "controls": 23956
+    },
+    {
+      "modelMs": 53.17470000000321,
+      "controls": 23956
+    },
+    {
+      "modelMs": 54.3183999999892,
+      "controls": 23956
+    },
+    {
+      "modelMs": 49.90110000001732,
+      "controls": 23956
+    },
+    {
+      "modelMs": 49.51459999999497,
+      "controls": 23956
+    },
+    {
+      "modelMs": 52.243900000001304,
+      "controls": 23956
+    },
+    {
+      "modelMs": 51.69789999999921,
+      "controls": 23956
+    },
+    {
+      "modelMs": 65.59070000000065,
+      "controls": 23956
+    },
+    {
+      "modelMs": 52.54790000000503,
+      "controls": 23956
+    }
+  ],
+  "initializeMs": 2034.0237000000052,
+  "firstSelectionMs": 872.187099999981,
+  "prepareFrames": 53,
+  "firstState": {
+    "mode": "menu",
+    "open": true,
+    "selected": "ironclad",
+    "portraits": {
+      "avatar": {
+        "phase": "idle",
+        "generation": 0,
+        "nextIndex": 1,
+        "total": 457,
+        "owned": 0,
+        "retained": 0,
+        "cleanupFailures": 0
+      },
+      "battle": {
+        "phase": "idle",
+        "generation": 0,
+        "nextIndex": 1,
+        "total": 7303,
+        "owned": 0,
+        "retained": 0,
+        "cleanupFailures": 0
+      },
+      "selection": {
+        "phase": "ready",
+        "generation": 1,
+        "nextIndex": 1601,
+        "total": 1600,
+        "owned": 1628,
+        "retained": 0,
+        "cleanupFailures": 0
+      },
+      "batchSize": 64
+    }
+  },
+  "halfTriangles": 224,
+  "softwarePngMs": 1797.107399999979,
+  "primitives": {
+    "constellation": 93,
+    "background": 1600,
+    "backgroundOwned": 1628
+  },
+  "visualStatus": "Simulator horizontal masks rendered; aesthetic review and official game screenshot remain separate",
+  "residentControls": 23956,
+  "faults": [],
+  "warmModelMs": {
+    "n": 20,
+    "p50": 52.54790000000503,
+    "p95": 128.78729999999632,
+    "max": 220.69370000000345
+  },
+  "sdkStepMs": {
+    "n": 137,
+    "p50": 6.217399999994086,
+    "p95": 17.551899999991292,
+    "max": 21.728000000002794
+  },
+  "logs": [
+    {
+      "level": "info",
+      "text": "ABYSS_BUILD 72a73a22-de89-492b-acc6-263983527b0e",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0.016666666666666666
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=revealing owned=1628 reason=nil",
+      "time": 0.8166666666666675
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=ready owned=1628 reason=nil",
+      "time": 0.9166666666666679
+    }
+  ],
+  "remainingControls": 0
+}

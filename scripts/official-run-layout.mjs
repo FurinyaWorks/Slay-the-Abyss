@@ -12,7 +12,7 @@ const child=(node,name)=>parts(node).find(part=>part.name===name);
 const stage=tree=>child(tree,'stage')??tree;
 const walk=(node,visit)=>{visit(node);for(const part of parts(node))walk(part,visit);};
 const templates=new Set(['AbyssDeckCard','AbyssBattlePileCard','AbyssReadyCardGroup',
- 'AbyssReadyCardImage','AbyssMonsterActor','AbyssMonsterPower']);
+ 'AbyssReadyCardImage','AbyssMonsterActor','AbyssMonsterPower','AbyssSelectionHalfTriangle']);
 const composed=new WeakSet();
 const runRoles=['menuPanel','characterPanel','mapPanel','nodePanel','battlePanel',
  'deckPanel','potionEntry','relicBar','relicPanel'];

@@ -35,6 +35,16 @@ function fixture(action, cli = false) {
   } finally { rmSync(root, { recursive: true, force: true }); }
 }
 const cliFixture = action => fixture(action, true);
+for(const mode of ['hardlink','symlink'])test(`UI CLI rejects constellation geometry alias ${mode} before any write`,t=>cliFixture(root=>{
+  const input=join(root,'data/presentation/constellation-geometry.json'),target=join(root,'out/abyss_theme.lua'),before=readFileSync(input);
+  try{if(mode==='hardlink')linkSync(input,target);else symlinkSync(input,target,'file');}
+  catch(error){if(mode==='symlink'&&['EPERM','EACCES','ENOSYS'].includes(error.code)){t.skip(`Symlink unavailable: ${error.code}`);return;}throw error;}
+  const result=spawnSync(process.execPath,['scripts/build-ui.mjs','out'],{cwd:root,encoding:'utf8'});
+  assert.notEqual(result.status,0,'constellation input alias was accepted');
+  assert.match(result.stderr,/Output must not overwrite an input file/);
+  assert.deepEqual(readFileSync(input),before);
+  assert.deepEqual(readdirSync(join(root,'out')),['abyss_theme.lua']);
+}));
 for(const mode of ['hardlink','symlink'])test(`UI CLI rejects profile generator alias ${mode} before any write`,t=>cliFixture(root=>{
   const input=join(root,'scripts/ui-profile.mjs'),target=join(root,'out/abyss_ui_profile.lua'),before=readFileSync(input);
   try{if(mode==='hardlink')linkSync(input,target);else symlinkSync(input,target,'file');}

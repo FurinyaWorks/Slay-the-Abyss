@@ -11,6 +11,14 @@ import {queueRulesFingerprint} from '../scripts/merge-queue-policy.mjs';
 const sha=c=>c.repeat(40);
 const armAutoMerge=(repo,number,review,query,options={})=>activate(repo,number,review,query,{loadCheckout:query.loadCheckout,...options});
 const repo='CHNISam/Slay-the-Abyss';
+test('renamed repository retains its immutable identity and rejects impostors',()=>{
+ const canonical='FurinyaWorks/Slay-the-Heavens';
+ const read=value=>()=>JSON.stringify(value);
+ assert.equal(currentProjectRepository(read({id:projectRepositoryId,full_name:canonical})).full_name,canonical);
+ for(const value of [{id:1,full_name:canonical},{id:projectRepositoryId,full_name:'someone/Slay-the-Heavens'}])
+  assert.throws(()=>currentProjectRepository(read(value)),/identity/);
+ assert.deepEqual(autoMergeErrors(fixture(canonical)),[]);
+});
 function fixture(repoName=repo) {
   const pr={number:510,node_id:'PR_reviewed_510',state:'open',merged:false,draft:false,mergeable:true,changed_files:1,
     head:{sha:sha('a'),ref:'feat/reviewed',repo:{id:projectRepositoryId,full_name:repoName}},base:{ref:'develop',sha:sha('b'),repo:{id:projectRepositoryId,full_name:repoName}},merge_commit_sha:sha('d'),body:'Summary\n\nDepends-on: none',

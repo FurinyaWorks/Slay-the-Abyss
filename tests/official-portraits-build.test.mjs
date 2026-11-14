@@ -22,22 +22,22 @@ test('official shared selection inventory requires the explicit producer schema 
  const {writePortraitModule,portraitRuntimeInventory,portraitModule}=await import(modulePath);
  const dir=mkdtempSync(join(tmpdir(),'abyss-official-selection-schema-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
  const source=writePortraitModule(dir,{officialAssets:true});
- assert.match(source,/^selectionUses='battleApprovedIdle',?$/m,'new producer declares the same approved battle source');
+ assert.throws(()=>writePortraitModule(dir,{officialAssets:true,imageTemplateIndex:77,containerTemplateIndex:88}),/distinct half-triangle/);
+ assert.throws(()=>writePortraitModule(dir,{officialAssets:true,imageTemplateIndex:77,containerTemplateIndex:88,selectionHalfImageTemplateIndex:77}),/distinct half-triangle/);
+ assert.match(source,/^selectionUses='lowpolyLumine',?$/m,'new producer must declare its selection source');
  const actual=portraitRuntimeInventory(dir);
- assert.equal(actual.selectionUses,'battleApprovedIdle');
- assert.equal(actual.assets.find(row=>row.asset==='traveler-geo/idle-approved-v1-selection-crop').images,7303);
- assert.equal(actual.assets.some(row=>row.asset.includes('temporary-pixel')),false);
+ assert.equal(actual.selectionUses,'lowpolyLumine');
+ assert.equal(actual.assets.find(row=>row.asset==='lowpolyLumine').images,1600);
  const file=join(dir,portraitModule+'.lua');
- for(const [invalid,error] of [
-  [source.replace(/^selectionUses='battleApprovedIdle',?\r?\n/m,''),/selection schema.*pinned producer/i],
-  [source.replace("selectionUses='battleApprovedIdle'","selectionUses='battle133'"),/selection schema.*pinned producer/i],
-  [source.replace(/^battleApprovedIdle=.*\r?\n/m,''),/battle idle differs/],
-  [source.replace("selectionUses='battleApprovedIdle'","selectionUses='battleApprovedIdle',\nselectionUses='battleApprovedIdle'"),/selection schema.*pinned producer/i],
-  [source.replace(/^selectionProfile=.*\r?\n/m,''),/selection crop schema.*pinned producer/i],
+ for(const invalid of [
+  source.replace(/^selectionUses='lowpolyLumine',?\r?\n/m,''),
+  source.replace("selectionUses='lowpolyLumine'","selectionUses='battle133'"),
+  source.replace(/^lowpolyLumine=.*\r?\n/m,''),
+  source.replace("selectionUses='lowpolyLumine'","selectionUses='lowpolyLumine',\nselectionUses='lowpolyLumine'"),
  ]){
   writeFileSync(file,invalid);
-  assert.throws(()=>portraitRuntimeInventory(dir),error,
-   'historical or ambiguous source must not be relabelled as the shared approved idle');
+  assert.throws(()=>portraitRuntimeInventory(dir),/selection schema.*pinned producer/i,
+   'historical or ambiguous source must not be relabelled as 57 primitives');
  }
  writePortraitModule(dir);assert.doesNotThrow(()=>portraitRuntimeInventory(dir),'legacy remains independently readable');
  writePortraitModule(dir,{v25BattleChrome:true});

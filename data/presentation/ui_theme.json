@@ -175,7 +175,7 @@
       "gold": [-337, 338.5, 44, 36],
       "numberSize": 18,
       "heading": [-556, 338.5, 120, 36],
-      "headingText": "旅行者·荧 · 岩",
+      "headingText": "旅行者",
       "headingSize": 16,
       "potionX": -297.734375,
       "potionStep": 49,
@@ -3610,7 +3610,7 @@
       "flag": {"hover": "#A0524C", "pressed": "#5C2828"},
       "choice": {"hover": "#427D81", "pressed": "#183B40"}
     },
-    "referenceIdentity": {"ironclad": "旅行者·荧·岩", "silent": "旅行者·荧·风", "defect": "旅行者·荧·雷", "watcher": "旅行者·荧·草", "hutao": "胡桃", "arlecchino": "阿蕾奇诺", "furina": "芙宁娜", "raiden": "雷电将军"},
+    "referenceIdentity": {"ironclad": "旅行者", "silent": "旅行者", "defect": "旅行者", "watcher": "旅行者", "hutao": "胡桃", "arlecchino": "阿蕾奇诺", "furina": "芙宁娜", "raiden": "雷电将军"},
     "shop": {"referenceRemovalName": "卡牌移除\n服务！", "referenceRemovalInk": "#EED689", "referenceRemovalBorder": "#7D7C81"},
     "camp": {"reference": {"restEdge": "#85AA68", "forgeEdge": "#96646A", "restHover": "#619E58", "forgeHover": "#B77980"}},
     "cardReference": {

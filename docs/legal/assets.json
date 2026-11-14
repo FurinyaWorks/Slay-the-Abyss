@@ -9805,6 +9805,26 @@
     "docs/evidence/liyue-transition/readiness-audio/transition.gif": {
       "category": "liyue-transition-evidence",
       "sha256": "df0b602824161ba5698d39c76a297a9a9e6365a3b803ac94ee23b142b15005a0"
+    },
+    "docs/evidence/constellation-gold/comparison.png": {
+      "sha256": "edd480d0b2ad4f3518e87c441605eaedbd1a9257c0462b0052d835edf52aa132",
+      "category": "reference-ui-user-source-unresolved",
+      "lfsBytes": 147240
+    },
+    "docs/evidence/constellation-gold/simplified.png": {
+      "sha256": "41f163dee54801a1208c3adf3f27b0630c814bfb74e5d12ce9ededb7d7c146bf",
+      "category": "reference-ui-user-source-unresolved",
+      "lfsBytes": 72130
+    },
+    "docs/evidence/constellation-gold/selection-simulator.png": {
+      "sha256": "7a7f09cc91b0b798505d557cf9b3e048ac2a4c73144132a4c3bde896970d6fd6",
+      "category": "platform-evidence",
+      "lfsBytes": 428573
+    },
+    "docs/evidence/constellation-gold/starter-deck-simulator.png": {
+      "sha256": "b8eda5453309e94d319e69d3e915aa0d1128c53c35f21aca624787e6dba82499",
+      "category": "platform-evidence",
+      "lfsBytes": 206617
     }
   }
 }
