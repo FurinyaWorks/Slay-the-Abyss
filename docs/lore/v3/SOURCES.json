@@ -18,6 +18,11 @@
     "project-title": {
       "path": "README.md",
       "usage": "Owner-selected title Slay the Heavens"
+    },
+    "pre-v3-runtime": {
+      "path": "data/presentation/narrative.zh-CN.json",
+      "commit": "9f2f44e4c79789fbcb64a515938765dbc240f830",
+      "usage": "Living Wall intro and event identity preserved exactly from the prior develop runtime, not from the v2 packet"
     }
   },
   "fields": {
@@ -34,8 +39,8 @@
       "decision": "accepted-minimal"
     },
     "eventCopy.living_wall.intro": {
-      "ref": "lore-v2",
-      "decision": "preserved-extension"
+      "ref": "pre-v3-runtime",
+      "decision": "preserved-existing-full-pool-copy"
     },
     "eventCopy.purifier.intro": {
       "ref": "owner-review",

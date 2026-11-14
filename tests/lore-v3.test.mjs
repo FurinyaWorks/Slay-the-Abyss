@@ -28,6 +28,7 @@ function verify(copy,approved,ledger){
   }
   for(const ref of Object.values(ledger.references)){
     if(ref.path)assert.ok(existsSync(ref.path),ref.path+' does not exist');
+    if(ref.commit)assert.match(ref.commit,/^[0-9a-f]{40}$/,'source commit identity must be pinned');
     if(ref.url)assert.match(ref.url,/^https:\/\/(ys\.mihoyo\.com|genshin\.hoyoverse\.com)\//);
   }
   assert.equal(approved.source,'docs/lore/v3/README.md');
