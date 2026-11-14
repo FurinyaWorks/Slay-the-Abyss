@@ -8825,6 +8825,16 @@
       "sha256": "a315f0d7032c35ec46db687e37d66e858f99afe6c64bfd5208753311e1b2b534",
       "category": "lumine-native-fit-20261113",
       "lfsBytes": 378523
+    },
+    "docs/evidence/constellation-gold/comparison.png": {
+      "sha256": "edd480d0b2ad4f3518e87c441605eaedbd1a9257c0462b0052d835edf52aa132",
+      "category": "reference-ui-user-source-unresolved",
+      "lfsBytes": 147240
+    },
+    "docs/evidence/constellation-gold/simplified.png": {
+      "sha256": "41f163dee54801a1208c3adf3f27b0630c814bfb74e5d12ce9ededb7d7c146bf",
+      "category": "reference-ui-user-source-unresolved",
+      "lfsBytes": 72130
     }
   }
 }

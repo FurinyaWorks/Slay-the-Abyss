@@ -22,16 +22,18 @@ test('official shared selection inventory requires the explicit producer schema 
  const {writePortraitModule,portraitRuntimeInventory,portraitModule}=await import(modulePath);
  const dir=mkdtempSync(join(tmpdir(),'abyss-official-selection-schema-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
  const source=writePortraitModule(dir,{officialAssets:true});
- assert.match(source,/^selectionUses='battlePixel',?$/m,'new producer must declare its selection source');
+ assert.throws(()=>writePortraitModule(dir,{officialAssets:true,imageTemplateIndex:77,containerTemplateIndex:88}),/distinct half-triangle/);
+ assert.throws(()=>writePortraitModule(dir,{officialAssets:true,imageTemplateIndex:77,containerTemplateIndex:88,selectionHalfImageTemplateIndex:77}),/distinct half-triangle/);
+ assert.match(source,/^selectionUses='lowpolyLumine',?$/m,'new producer must declare its selection source');
  const actual=portraitRuntimeInventory(dir);
- assert.equal(actual.selectionUses,'battlePixel');
- assert.equal(actual.assets.find(row=>row.asset==='temporary-pixel-traveler-selection').images,57);
+ assert.equal(actual.selectionUses,'lowpolyLumine');
+ assert.equal(actual.assets.find(row=>row.asset==='lowpolyLumine').images,1600);
  const file=join(dir,portraitModule+'.lua');
  for(const invalid of [
-  source.replace(/^selectionUses='battlePixel',?\r?\n/m,''),
-  source.replace("selectionUses='battlePixel'","selectionUses='battle133'"),
-  source.replace(/^battlePixel=.*\r?\n/m,''),
-  source.replace("selectionUses='battlePixel'","selectionUses='battlePixel',\nselectionUses='battlePixel'"),
+  source.replace(/^selectionUses='lowpolyLumine',?\r?\n/m,''),
+  source.replace("selectionUses='lowpolyLumine'","selectionUses='battle133'"),
+  source.replace(/^lowpolyLumine=.*\r?\n/m,''),
+  source.replace("selectionUses='lowpolyLumine'","selectionUses='lowpolyLumine',\nselectionUses='lowpolyLumine'"),
  ]){
   writeFileSync(file,invalid);
   assert.throws(()=>portraitRuntimeInventory(dir),/selection schema.*pinned producer/i,

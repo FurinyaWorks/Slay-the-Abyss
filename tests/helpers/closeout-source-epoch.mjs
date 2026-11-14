@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
+import {selectionCiProof} from './selection-ci-source.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-source-epoch.json.gz',import.meta.url));
 assert.equal(hash(bytes),'36aba7fc07f732a191a750d437eefd27e9b9567221811747abf13c97a9ac237a');
@@ -34,9 +35,14 @@ for(const [path,binding]of Object.entries(shopDeckBeforeCiRepairPrior.targets.pr
 const targets={...priorProof.targets,shopDeckPrior:{commit:outer.targets.prior.commit,files:priorProof.current},
  shopDeckFourPrior:{commit:four.currentCommit,files:{...priorProof.current,...four.current}},
  shopDeckBeforeCiRepairPrior:{commit:shopDeckBeforeCiRepairPrior.currentCommit,files:{...priorProof.current,...shopDeckBeforeCiRepairPrior.current}}};
+const beforeSelection={...current};
+for(const path of ['src/lua/abyss_character_select_view.lua','src/lua/abyss_traveler_portraits.lua']){
+ const row=selectionCiProof.files[path];assert.deepEqual(row.before,current[path],path+' exact selection predecessor');current[path]=row.after;
+}
+targets.selectionPrior={commit:selectionCiProof.base,files:beforeSelection};
 const owners=Object.keys(current).filter(path=>Object.values(targets).some(target=>target.files[path]?.sha256!==current[path]?.sha256));
 export const sourceEpoch=createSourceEpochProjector(freeze({...priorProof,currentTreeCommitted:false,
- currentCommit:outer.currentCommit,currentCommitRole:outer.currentCommitRole,current,targets,owners}),{allowConfigLayout:true,reuseFrozenInput:true});
+ currentCommit:selectionCiProof.base,currentCommitRole:'selection continuation base; working tree checked by full source identities',current,targets,owners}),{allowConfigLayout:true,reuseFrozenInput:true});
 const proof=sourceEpoch.proof;
 // Snapshot consumers must first authenticate every live current owner. This is
 // per invocation; neither live reads nor authorization are cached.

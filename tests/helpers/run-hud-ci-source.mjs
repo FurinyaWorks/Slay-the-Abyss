@@ -1,6 +1,7 @@
 // Exact outer continuation into the immutable 903bf closeout CI corpus.
 // New files remain unmeasured raw Full work; no historical archive is rewritten.
 import assert from 'node:assert/strict';
+import {selectionUpdatedProof} from './selection-ci-source.mjs';
 import {preNativePreviewCiSource} from './native-preview-ci-source.mjs';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
@@ -12,22 +13,23 @@ assert.equal(hash(beforeRepairBytes),'fa385b20797f37ca5a8c0a406d6ecdad6b4c0539c2
 export const runHudBeforeCiRepairProof=JSON.parse(gunzipSync(beforeRepairBytes));
 const bytes=readFileSync(new URL('./run-hud-ci-source.json.gz',import.meta.url));
 assert.equal(hash(bytes),'685bddcc6bed77545eadc456f82ed4de10a75402cfcf597533190eb1732cbe3b','complete run HUD CI continuation');
-export const runHudCiProof=JSON.parse(gunzipSync(bytes));
-assert.equal(runHudCiProof.schemaVersion,1);
-assert.equal(runHudCiProof.normalization,'LF');
-assert.equal(runHudCiProof.base,'903bf2a31e91f10fb24763ab4cea23d586d0bb83');
-for(const [path,row]of Object.entries(runHudCiProof.files))for(const side of ['before','after']){
+const priorRunHudCiProof=JSON.parse(gunzipSync(bytes));
+assert.equal(priorRunHudCiProof.schemaVersion,1);
+assert.equal(priorRunHudCiProof.normalization,'LF');
+assert.equal(priorRunHudCiProof.base,'903bf2a31e91f10fb24763ab4cea23d586d0bb83');
+for(const [path,row]of Object.entries(priorRunHudCiProof.files))for(const side of ['before','after']){
  const binding=row[side];if(binding===null)continue;
  assert.equal(hash(binding.source),binding.sha256,path+'/'+side);
  assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.source)}\0`).update(binding.source).digest('hex'),binding.gitBlob);
  Object.freeze(binding);
 }
 const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
-freeze(runHudCiProof);
+freeze(priorRunHudCiProof);
+export const runHudCiProof=selectionUpdatedProof(priorRunHudCiProof);
 freeze(runHudBeforeCiRepairProof);
 export function preRunHudCiSource(path,source){
  source=preNativePreviewCiSource(path,source);
- const row=Object.hasOwn(runHudCiProof.files,path)?runHudCiProof.files[path]:null;
+ const row=Object.hasOwn(priorRunHudCiProof.files,path)?priorRunHudCiProof.files[path]:null;
  if(!row||!row.before||typeof source!=='string'||hash(normalize(source))!==row.after.sha256)return source;
  return row.before.source;
 }

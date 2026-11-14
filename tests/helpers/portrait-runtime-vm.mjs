@@ -19,10 +19,11 @@ export function withPortraitVm(code,{before='',themePlayer={id:1,status:'native'
  let state;const old=lauxlib.luaL_newstate;lauxlib.luaL_newstate=()=>state=old();
  try {
   if(runtimeV2)writeFileSync(join(dir,'art-render-v2.json'),JSON.stringify({profile:'native-v2',hiddenBuild:true,cache:true,revealGroupsPerFrame:4}));
-  const asset=writePortraitModule(dir,{selectionAvatar:true,battlePortrait:true,imageTemplateIndex:1234,containerTemplateIndex:5678,officialAssets});
+  const asset=writePortraitModule(dir,{selectionAvatar:true,battlePortrait:true,imageTemplateIndex:1234,containerTemplateIndex:5678,selectionHalfImageTemplateIndex:4321,officialAssets});
   const run=exactVm(`Asset=(function()\n${asset}\nend)()`);
   run(`
 local instantiate=game.InstantiateClientUIControl
+Enum.ImageFillHorizontalType={Right='Right'}
 local watch={SetImage=true,imageType=true,SetAnchorMin=true,SetAnchorMax=true,SetPivot=true,SetSizeDelta=true,SetLocalScale=true,SetLocalRotation=true,SetAnchoredPosition=true,imageColor=true,SetAsLastSibling=true}
 function watchControl(c)
  rawset(c,'trace',{})
@@ -34,9 +35,16 @@ function watchControl(c)
  return c
 end
 game.InstantiateClientUIControl=function(id,parent)
- assert(id==1234 or id==5678,'real bound template index required')
- local old=script.object;script.object=parent;local c=instantiate(id,parent);script.object=old
- if c then watchControl(c);rawset(c,'isGroup',id==5678)end
+ assert(id==1234 or id==4321 or id==5678,'real bound template index required')
+ local old=script.object;script.object=parent;local c=instantiate(id==4321 and 1234 or id,parent);script.object=old
+ if c then rawset(c,'id',id)end
+ if c then
+  if id==4321 then rawset(c,'SetFillHorizontal',function(self,direction,amount)
+   assert(direction=='Right' and amount==.5 and self.enableMask==true,'native half-triangle mask must be explicitly enabled')
+   self.trace[#self.trace+1]={'SetFillHorizontal',direction,amount}
+  end)end
+  watchControl(c);rawset(c,'isGroup',id==5678)
+ end
  return c
 end
 function tree(children)

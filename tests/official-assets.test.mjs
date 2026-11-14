@@ -264,11 +264,11 @@ test('official battle adopts approved idle while selection and opt-out retain th
  const inventory=portraitInventory(officialAssetFlags,{officialAssets:true});
  assert.equal(inventory.assets.some(a=>a.asset==='temporary-pixel-traveler'),false);
  assert.match(portrait,/battleApprovedIdle=/);
- const selected=inventory.assets.find(a=>a.asset==='temporary-pixel-traveler-selection');
+ const selected=inventory.assets.find(a=>a.asset==='lowpolyLumine');
  const fighting=inventory.assets.find(a=>a.asset==='traveler-geo/idle-approved-v1');
  assert.equal(fighting?.images,7303);
  assert.equal(fighting.motion,'approved-source-field-native-band-approximation');
- assert.equal(inventory.selectionUses,'battlePixel');assert.equal(selected?.images,57);
+ assert.equal(inventory.selectionUses,'lowpolyLumine');assert.equal(selected?.images,1600);
  assert.notEqual(selected.sourceSha256,fighting.sourceSha256,'selection and approved combat have explicit independent source identities');
  assert.equal(inventory.assets.some(a=>a.asset==='traveler-geo/portraits/battle133-selection'),false);
  assert.equal(inventory.assets.find(a=>a.asset==='traveler-geo/portraits/avatar96').images,457);

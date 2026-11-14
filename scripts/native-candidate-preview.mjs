@@ -29,6 +29,7 @@ if(scripts.length!==Object.keys(candidate.moduleDigests).length||scripts.some(s=
 fs.writeFileSync(path.join(pinned,'ui.json'),JSON.stringify(ui));
 fs.writeFileSync(path.join(pinned,'scripts.json'),JSON.stringify({scripts}));
 const requiredTemplates=new Set(['AbyssDeckCard','AbyssMonsterActor','AbyssMonsterPower','AbyssReadyCardGroup','AbyssReadyCardImage']);
+if(candidate.officialPortraits?.selectionHalfImageTemplateIndex)requiredTemplates.add('AbyssSelectionHalfTriangle');
 // Explicit experiment manifests may instantiate native templates from Lua IDs.
 // Read their actual GIL trees too; never synthesize them from preview geometry.
 for(const name of candidate.experiment?.nativeTemplateNames??[])requiredTemplates.add(name);

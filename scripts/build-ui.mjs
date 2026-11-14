@@ -3,6 +3,7 @@ import {applyOfficialAssets,officialAssetsTheme} from './official-assets-layout.
 import {assertOfficialRunContracts} from './official-run-layout.mjs';
 import {resolveArtFeatures,artFeatureArgs,writeArtFeatures,artFeatureModule} from './art-features.mjs';
 import {portraitRuntimeInputs,portraitSources,attachOfficialPortraits,attachLowpolyScenes,writePortraitModule} from './official-portraits.mjs';
+import {selectionHalfImage} from './lumine-selection-background.mjs';
 import {attachReadyCardHosts,readyArtTemplates,writeReadyCardAssets,prepareReadyCardAssets,readyArtGroupTemplate,readyArtImageTemplate,writeReadyArtBinding,readyArtSourceInputs} from './art/ready-card-runtime.mjs';
 import { backgroundInputs, backgroundSources, backgroundModule, attachOfficialBackground, writeBackgroundModule } from './official-background.mjs';
 import {prepareMonsterArt,attachMonsterArt,monsterActorTemplate,writeMonsterActorBinding} from './monster-art.mjs';
@@ -87,6 +88,8 @@ function rejectInputOutputAliases(outputDirectory, extraInputs = []) {
   const inputs = [...extraInputs,...optionalInputs, ...contentFiles.map(file => resolve('data', `${file}.json`)),
     resolve('data/presentation/ui_theme.json'), ...(existsSync('data/presentation/native-monster-art.json')?[resolve('data/presentation/native-monster-art.json')]:[]), resolve('data/presentation/traveler.zh-CN.json'),
     resolve('data/presentation/narrative.zh-CN.json'),
+    resolve('data/presentation/constellation-geometry.json'),
+    fileURLToPath(new URL('../data/presentation/constellation-geometry.json', import.meta.url)),
     // Imported battle/native layout modules read this theme relative to their source.
     fileURLToPath(new URL('../data/presentation/ui_theme.json', import.meta.url)),
     fileURLToPath(new URL('./ui-profile.mjs', import.meta.url)),
@@ -148,6 +151,7 @@ export function buildUI(outputDirectory = 'build/lua', python = process.env.ABYS
   const theme=officialAssets?officialAssetsTheme(sourceTheme):v25BattleChrome?v25Theme(sourceTheme):sourceTheme;
   const battle = battleLayout(), layout = withViewport(gameLayout(undefined, options), theme);
   const templates = [deckCardTemplate()];
+  if(officialAssets&&flags.selectionAvatar)templates.push(selectionHalfImage());
   if(v25Cards)templates.push(...v25Cards.templates);
   if(v25Masks)templates.push(...v25Masks.templates);
   if(v25BattleChrome){

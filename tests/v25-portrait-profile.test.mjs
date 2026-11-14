@@ -79,7 +79,7 @@ assert(figure.SetAnchoredPositionValue[1]==Asset.v25PortraitProfile.battlePositi
 test('V25 selection uses the same frozen full-body drawing even when legacy lowpoly and budget assets exist',()=>{
  withPortraitVm(`
 Asset.v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(nativeTheme))}
-local selectionHost=tree();local frame=tree();frame:SetSizeDelta(440,440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();frame:SetSizeDelta(440,440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
@@ -94,7 +94,7 @@ assert(math.abs(selectionHost.SetLocalScaleValue[1]-1380/133)<.000001,'legacy po
 test('V25 title never preloads hidden selection figures even when the legacy host requests warming',()=>{
  withPortraitVm(`
 Asset.v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(nativeTheme))}
-local selectionHost=tree();local frame=tree();frame:SetSizeDelta(440,440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();frame:SetSizeDelta(440,440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
@@ -113,7 +113,7 @@ test('official title uses on-demand selection while partial cancellation and rea
 Theme.presentationProfile='official-assets-first'
 local originalClock=os.clock;local tickClock=0;os.clock=function()tickClock=tickClock+.009;return tickClock end
 traveler:SetVisible(true) -- Full-source roster is visible; competition hides this parent.
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
@@ -124,7 +124,7 @@ assert(a:status().selection.owned==0 and a:status().avatar.owned==0 and LiveCoun
  'official title eagerly built hidden selection')
 assert(a:sync('menu',true,false,'ironclad',true));a:tick()
 local partial=a:status().selection;local allocated=LiveCount()
-assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.battlePixel.rows)
+assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.lowpolyLumine.rows)
 assert(not selectionHost.visible,'partial official selection was exposed')
 assert(a:sync('menu',false,false,'ironclad',true))
 for _=1,20 do a:tick()end
@@ -151,7 +151,7 @@ os.clock=originalClock
 test('official hidden roster does not build its avatar and visible roster can prepare cancel and resume',()=>{
  withPortraitVm(`
 Theme.presentationProfile='official-assets-first'
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
@@ -186,7 +186,7 @@ assert(a:release() and LiveCount()==0)
 
 test('official selection retains its bounded cache while battle uses the approved idle and full-body literals remain available',()=>{
  withPortraitVm(`
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
@@ -200,9 +200,9 @@ assert(idle.sourceSha256=='32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c
 local a=Portraits.new(stage,nil,{selectionAvatar=true,battlePortrait=true})
 assert(a:sync('menu',true,false,'ironclad'))
 for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
-assert(a:status().selection.total==57 and a:status().selection.owned<=60,
+assert(a:status().selection.total==1600 and a:status().selection.owned==1628,
  'official selection did not retain its explicit bounded source')
-assert(#Images()==57 and a:status().avatar.owned==0)
+assert(#Images()==1600 and a:status().avatar.owned==0)
 local selected=Images();local selectedTraces={}
 for i,image in ipairs(selected)do
  selectedTraces[i]={};for j,record in ipairs(image.trace)do selectedTraces[i][j]={table.unpack(record)}end
@@ -211,8 +211,8 @@ assert(a:sync('battle',false,false,'ironclad'))
 for _=1,1000 do a:tick();if a:status().battle.phase=='ready' then break end end
 local both=Images();local battle=a:status().battle
 assert(battle.phase=='ready' and battle.total==7303 and battle.owned==7459,'approved source did not reach its measured native cache')
-assert(#both==57+7303,'selection and approved combat did not keep their exact independent image counts')
-for i=1,57 do assert(both[i]==selected[i],'battle replaced the selection cache');Equal(selectedTraces[i],selected[i].trace)end
+assert(#both==1600+7303,'selection and approved combat did not keep their exact independent image counts')
+for i=1,1600 do assert(both[i]==selected[i],'battle replaced the selection cache');Equal(selectedTraces[i],selected[i].trace)end
 local generation=battle.generation;local complete=LiveCount()
 assert(a:sync('menu',true,false,'ironclad'));a:tick()
 assert(a:sync('battle',false,false,'ironclad'));a:tick()
@@ -225,13 +225,13 @@ assert(a:release() and LiveCount()==0)
 
 test('official selection rejects missing shared pixel source instead of silently building the old full-body drawing',()=>{
  withPortraitVm(`
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
-Asset.battlePixel=nil
+Asset.lowpolyLumine=nil
 local ok,reason=pcall(Portraits.new,stage,nil,{selectionAvatar=true})
-assert(not ok and tostring(reason):find('shared battle pixel',1,true),
+assert(not ok and tostring(reason):find('approved 1600 background',1,true),
  'official selection silently fell back to 4315 primitives')
 assert(LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
@@ -240,14 +240,14 @@ assert(LiveCount()==0)
 test('official selection rejects unmarked or foreign source schema without building a fallback',()=>{
  for(const marker of ['nil',"'battle133'"]){
   withPortraitVm(`
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
 Asset.selectionUses=${marker}
 assert(Asset.battlePixel and Asset.battlePixel.count==57)
 local ok,reason=pcall(Portraits.new,stage,nil,{selectionAvatar=true})
-assert(not ok and tostring(reason):find('shared battle pixel schema',1,true),'unmarked official source was accepted')
+assert(not ok and tostring(reason):find('approved background schema',1,true),'unmarked official source was accepted')
 assert(LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
  }
@@ -256,7 +256,7 @@ assert(LiveCount()==0)
 test('legacy explicit title warming remains available without the official or V25 profile',()=>{
  withPortraitVm(`
 Theme.presentationProfile='legacy'
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
@@ -277,7 +277,7 @@ test('invalid V25 reference identity and bounded replacement fail before host al
 test('V25 decorative hosts report actual native activity and retain cached allocations across pause',()=>{
  withPortraitVm(`
 Asset.v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(nativeTheme))}
-local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost;local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
