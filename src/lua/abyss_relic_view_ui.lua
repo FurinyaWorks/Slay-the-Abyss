@@ -6,6 +6,7 @@ local Controller=require('abyss_controller')
 local Hooks=require('abyss_relic_hooks')
 local Rewards=require('abyss_relic_rewards')
 local M={}
+local Art=require('abyss_lowcost_art')
 local rarityNames={starter='初始遗物',common='普通遗物',uncommon='罕见遗物',rare='稀有遗物',
     boss='首领遗物',shop='商店遗物',special='特殊遗物'}
 local function iconId(value)if type(value)=='table'then value=value.id end return type(value)=='number' and value or nil end
@@ -65,7 +66,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
     local function child(name)return assert(root:GetChild(name),'missing relic control '..name)end
     local function picture(control,id)if platform.imageSource then control:SetImage(platform.imageSource,id)end end
     function self.resetBarHover(_)
-        if self.hoverIndex then bar:GetChild('slot'..self.hoverIndex):GetChild('icon'):SetLocalScale(1,1,1)end
+        if self.hoverIndex then local icon=bar:GetChild('slot'..self.hoverIndex):GetChild('icon');icon:SetLocalScale(1,1,1);Art.scale(icon,1)end
         self.hoverIndex=nil
     end
     local function paintCounter(slot,run,id,battle)
@@ -111,6 +112,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             local e=self:entry(run,self.selectedIndex);self.selected=e
             local view=child('single')
             picture(view:GetChild('icon'),e.icon)
+            Art.paint(view:GetChild('icon'),'relic',Hooks.localId(e.id),Theme.layout.relicView.disc*2,platform)
             for _,name in ipairs({'name','rarity','description'})do view:GetChild(name).text=e[name]end
             view:GetChild('status').text=e.status or ''
         end
@@ -121,6 +123,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             if not single and i<=#run.relics then
                 local e=self:entry(run,i);self.rows[slot]=e
                 picture(row:GetChild('slot'):GetChild('icon'),e.icon)
+                Art.paint(row:GetChild('slot'):GetChild('icon'),'relic',Hooks.localId(e.id),Theme.layout.relicView.icon,platform)
                 row:GetChild('name').text=e.name
                 row:GetChild('description').text=e.description
                 row:GetChild('chip'):SetVisible(e.status~=nil)
@@ -165,6 +168,9 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
     end
     -- Owned-only tray like the prototype topBar(). Beyond count the last disc
     -- becomes a +N overflow chip that opens the paginated overlay there.
+    local function hideEmptyArt(icon,cell,more)
+        if not cell or more then Art.hide(icon)end
+    end
     function self.refreshBar(_,run,visible)
         local relics=run and run.relics or {}
         local style=official and battleBar or baseBar
@@ -183,10 +189,11 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             hit:SetSizeDelta(style.hit or style.step,style.hit or 44)
             for _,name in ipairs({'rim','face'})do slot:GetChild(name):SetVisible(not official)end
             local more=type(cell)=='string'
+            hideEmptyArt(icon,cell,more)
             icon:SetVisible(not more)
             slot:GetChild('more'):SetVisible(more)
             slot:GetChild('more').text=more and cell or ''
-            if cell and not more then picture(icon,M.icon(relics[i],official))end
+            if cell and not more then picture(icon,M.icon(relics[i],official));Art.paint(icon,'relic',Hooks.localId(relics[i]),style.icon,platform)end
             paintCounter(slot,run,cell and not more and relics[i] or nil,official)
         end
     end
@@ -221,6 +228,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
                 if slot.visible==false or slot:GetChild('more').visible then return false end
                 self:resetBarHover();self.hoverIndex=i
                 slot:GetChild('icon'):SetLocalScale(1.25,1.25,1)
+                Art.scale(slot:GetChild('icon'),1.25)
                 return true
             end)
             hit:AddCursorEventListener(cursor.CursorExit,function()

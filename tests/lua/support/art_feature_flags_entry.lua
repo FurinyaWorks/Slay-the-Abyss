@@ -36,7 +36,18 @@ game={InstantiateClientUIControl=function()creates=creates+1;error('disabled cus
  GetDevice=function()return 'desktop'end,GetCursorUIPos=function()return 0,0 end}
 script={object=canvas,GetParam=function(_,name)assert(name=='nativeBgmEnabled');return false end,
  EnableUpdate=function(_,v)updates=v end}
-dofile('src/lua/abyss_ui.lua');OnStart();assert(updates,'all-off native entry did not start')
+local GameUI=require('abyss_game_ui');local create=GameUI.new;local host
+GameUI.new=function(...)host=create(...);return host end
+dofile('src/lua/abyss_ui.lua');OnStart();GameUI.new=create
+assert(updates and host,'all-off native entry did not start')
+local function ready()
+ for _=1,256 do
+  OnUpdate(0)
+  if not host.pageReveal:covered() then return end
+ end
+ error('native entry did not publish its prepared page')
+end
+ready()
 local Skin=require('abyss_card_skin')
 assert(Skin.premium(),'premium card chrome must survive cards=false without loading illustrations')
 assert(Runtime.status().livePools==0,'default-off startup stranded a prior world pool')
@@ -62,12 +73,14 @@ end
 assert(not root:GetChild('officialBattleBackdrop').visible,'battle scenery must stay hidden on the title')
 assert(not root:GetChild('victoryEasterEgg').visible,'all-off entry exposed the optional egg')
 assert(not menu:GetChild('result'):GetChild('viewEasterEgg').visible,'all-off entry exposed the optional egg button')
-OnUpdate(.01);assert(F.click(root,'menuPanel','start'))
+OnUpdate(.01);assert(F.click(root,'menuPanel','start'));ready()
 assert(root:GetChild('characterPanel').visible,'official selection remains interactive')
 local select=root:GetChild('characterPanel')
 assert(select:GetChild('details'):GetChild('deckOpen'):GetChild('hit').click(),'starter deck remains accessible with illustrations disabled')
-local deck=select:GetChild('deckView')
-assert(deck.visible and deck:GetChild('deckCard10').visible and not deck:GetChild('deckCard11').visible)
+ready()
+local deck=root:GetChild('deckPanel');local grid=deck:GetChild(host.deckUI.browserShell and 'pileGrid' or 'grid')
+assert(deck.visible and host.deckUI.previewInfo and host.deckUI.run.readOnlyPreview)
+assert(grid.itemCount==10 and not select:GetChild('deckView').visible,'starter deck must use the shared browser')
 local preview=require('abyss_character_select').preview(F.Data,F.Presentation,'ironclad')
 local byName,seen={},{}
 for _,card in ipairs(preview.deck)do byName[card.name]=card end
@@ -75,33 +88,35 @@ local function sameColour(actual,expected,message)
  assert(actual and actual.r==expected.r and actual.g==expected.g and actual.b==expected.b,message)
 end
 for i=1,10 do
- local face=deck:GetChild('deckCard'..i):GetChild('face')
+ local face=grid:recycle(0,i-1+grid.indexBase):GetChild('face')
  assert(face:GetChild('name').text~='' and face:GetChild('cost').text~='' and face:GetChild('label').text~='','starter card semantics missing')
  local card=assert(byName[face:GetChild('name').text],'unexpected starter card identity')
  seen[card.id]=(seen[card.id] or 0)+1
  local definition=card.definition
- local rarity=assert(F.Theme.cardSkin.rarities[definition.rarity])
- sameColour(face:GetChild('border').imageColor,rarity[1],'starter frame lost its own rarity')
- sameColour(face:GetChild('roundFrame'):GetChild('vertical').imageColor,rarity[1],'visible rounded frame lost rarity')
- sameColour(face:GetChild('nameRule').imageColor,rarity[4],'starter name rule lost rarity')
- sameColour(face:GetChild('skin'):GetChild('band1').imageColor,rarity[2],'starter banner lost rarity')
- local accent=F.Theme.cardSkin.roles.traveler.accent
- sameColour(face:GetChild('costDisc').imageColor,accent,'traveler cost decoration lost')
- assert(face:GetChild('roleMark'):GetChild('traveler').visible,'traveler emblem lost')
- assert(face:GetChild('art').visible and face:GetChild('art').imageId==Display.art(definition),'official starter art fallback lost')
- local well=face:GetChild('skin'):GetChild(definition.type):GetChild('well')
- local part=({attack='upper',skill='vertical',power='base'})[definition.type]
- local tone=well:GetChild(part).imageColor
- assert(tone.r<100 and tone.g<100 and tone.b<100,'official icon needs its dark aperture')
- -- Premium still owns the selected highlight, but never erases rarity in the title band.
- Skin.apply(face,definition,{color=Color},{cost=definition.cost,baseCost=definition.cost,selected=true})
- sameColour(face:GetChild('roundFrame'):GetChild('vertical').imageColor,F.Theme.cardSkin.premium.selected,'premium selection highlight lost')
- sameColour(face:GetChild('nameRule').imageColor,rarity[4],'selection erased rarity')
- Skin.apply(face,definition,{color=Color},{cost=definition.cost,baseCost=definition.cost})
- sameColour(face:GetChild('roundFrame'):GetChild('vertical').imageColor,rarity[1],'deselection did not restore rarity')
+  -- This default-profile fixture keeps its complete original material contract.
+  -- Official shared reference faces are exercised by their separate runtime suite.
+  assert(face:GetChild('stsReferenceChrome')==nil,'default profile unexpectedly uses the official card installer')
+  local rarity=assert(F.Theme.cardSkin.rarities[definition.rarity])
+  sameColour(face:GetChild('border').imageColor,rarity[1],'starter frame lost its own rarity')
+  sameColour(face:GetChild('roundFrame'):GetChild('vertical').imageColor,rarity[1],'visible rounded frame lost rarity')
+  sameColour(face:GetChild('nameRule').imageColor,rarity[4],'starter name rule lost rarity')
+  sameColour(face:GetChild('skin'):GetChild('band1').imageColor,rarity[2],'starter banner lost rarity')
+  sameColour(face:GetChild('costDisc').imageColor,F.Theme.cardSkin.roles.traveler.accent,'traveler cost decoration lost')
+  assert(face:GetChild('roleMark'):GetChild('traveler').visible,'traveler emblem lost')
+  assert(face:GetChild('art').visible and face:GetChild('art').imageId==Display.art(definition),'official starter art fallback lost')
+  local well=face:GetChild('skin'):GetChild(definition.type):GetChild('well')
+  local tone=well:GetChild(({attack='upper',skill='vertical',power='base'})[definition.type]).imageColor
+  assert(tone.r<100 and tone.g<100 and tone.b<100,'official icon needs its dark aperture')
+  Skin.apply(face,definition,{color=Color},{cost=definition.cost,baseCost=definition.cost,selected=true})
+  sameColour(face:GetChild('roundFrame'):GetChild('vertical').imageColor,F.Theme.cardSkin.premium.selected,'premium selection highlight lost')
+  sameColour(face:GetChild('nameRule').imageColor,rarity[4],'selection erased rarity')
+  Skin.apply(face,definition,{color=Color},{cost=definition.cost,baseCost=definition.cost})
+  sameColour(face:GetChild('roundFrame'):GetChild('vertical').imageColor,rarity[1],'deselection did not restore rarity')
 end
+grid:flush()
 for _,card in ipairs(preview.deck)do assert(seen[card.id]==card.count,'starter deck multiplicity changed')end
-assert(deck:GetChild('close'):GetChild('hit').click() and not deck.visible,'read-only starter deck must close back to selection')
+assert(deck:GetChild(host.deckUI.browserShell and 'pileReturn' or 'close'):GetChild('hit').click() and not deck.visible,'read-only starter deck must close back to selection')
+ready();assert(select.visible and not host.run,'starter preview created a run or failed to return')
 OnUpdate(.01)
 local hero=root:GetChild('battlePanel'):GetChild('hero'):GetChild('portrait')
 assert(hero.visible,'official hero fallback remains visible')

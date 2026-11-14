@@ -1,5 +1,7 @@
 {
   "layers": {
+    "abyss_page_reveal": "ui",
+    "abyss_lowcost_art": "ui",
     "abyss_component_pages": "ui",
     "abyss_v25_texture_runtime": "platform",
     "abyss_v25_turn_notice": "ui",
@@ -219,6 +221,7 @@
     "abyss_map_topology": "core",
     "abyss_map_ui": "ui",
     "abyss_merchant": "ui",
+    "abyss_merchant_pages": "ui",
     "abyss_new_run_seed": "core",
     "abyss_node_ui": "ui",
     "abyss_nodes": "core",

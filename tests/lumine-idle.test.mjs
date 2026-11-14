@@ -115,7 +115,8 @@ assert(c:release() and LiveCount()==0)
 `));
 
 test('official runtime refuses a missing approved figure even when the old pixel payload is still present',()=>withPortraitVm(`
-assert(Asset.battlePixel and Asset.battlePixel.count==57)
+assert(Asset.selectionUses=='battleApprovedIdle')
+Asset.battlePixel={count=57} -- Retained historical payload must not become a fallback.
 Asset.battleApprovedIdle=nil
 local ok,err=pcall(function()Portraits.new(stage,nil,{battlePortrait=true,selectionAvatar=false})end)
 assert(not ok and tostring(err):find('official battle requires the approved Lumine idle',1,true),'runtime silently restored the pixel placeholder')

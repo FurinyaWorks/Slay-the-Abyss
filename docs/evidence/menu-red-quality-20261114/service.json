@@ -1,0 +1,25 @@
+{
+  "url": "http://127.0.0.1:56706",
+  "pid": 21668,
+  "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "scenePath": "F:\\New folder\\.worktrees\\menu-red-background\\.artifacts\\menu-quality-r1\\final-preview\\scene.save.json",
+  "web": "F:\\New folder\\.artifacts\\simulator-runtime\\web",
+  "buildId": "53629ec8-5a99-4a54-97ed-04e152adeb21",
+  "preloadedEntry": "style-d359015e",
+  "preloadMs": 1475.3765000000003,
+  "archiveParseMs": 687.6819,
+  "archiveParsedOnce": true,
+  "coldLoadAccepted": false,
+  "assetBaseUrl": "http://127.0.0.1:59040",
+  "autoAttach": true,
+  "cases": [
+    {
+      "archive": "menu.save.json",
+      "sha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa"
+    }
+  ],
+  "sdkPath": "F:\\New folder\\.artifacts\\simulator-runtime\\sdk\\actual-session.mjs",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "runtimeMode": "persistent installed Simulator SDK; no editor transactions"
+}

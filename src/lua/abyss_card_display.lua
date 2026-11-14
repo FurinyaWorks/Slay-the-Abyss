@@ -2,6 +2,7 @@
 local integer = require('abyss_numbers').integer
 local Theme = require('abyss_theme')
 local NativeArtRuntime = require('abyss_card_art_runtime')
+local CardSkin = require('abyss_card_skin')
 local M = {}
 local bodyFrames=setmetatable({},{__mode='k'})
 -- Install presentation-only art metadata atomically after real native binding.
@@ -25,26 +26,38 @@ function M.art(definition)
 end
 -- Native portraits opt in with their source dimensions. Type/legacy icons stay
 -- square; a native ID alone is not evidence of a full-card illustration.
-function M.writeArt(control,definition,picture,face)
-    local image,status,source=M.art(definition)
+local function validatePortraitSource(source)
+    assert(type(source)=='table' and #source==2 and type(source[1])=='number' and type(source[2])=='number'
+        and source[1]>0 and source[2]>0 and source[1]<math.huge and source[2]<math.huge,
+        'card portrait source size must contain two positive finite dimensions')
+end
+local function portraitSize(source,status,reference)
     local card=Theme.layout.card
     local width,height=math.min(card.artIcon,card.art),math.min(card.artIcon,card.art)
     if source then
-        assert(type(source)=='table' and #source==2 and type(source[1])=='number' and type(source[2])=='number'
-            and source[1]>0 and source[2]>0 and source[1]<math.huge and source[2]<math.huge,
-            'card portrait source size must contain two positive finite dimensions')
+        validatePortraitSource(source)
         if not tostring(status):find('^placeholder') then
-            local scale=math.min((card.size[1]-Theme.space.border*2)/source[1],card.art/source[2])
+            local viewport=reference and reference.portrait.viewport
+            local scale=math.min((viewport and viewport[1]or card.size[1]-Theme.space.border*2)/source[1],(viewport and viewport[2]or card.art)/source[2])
             width,height=source[1]*scale,source[2]*scale
         end
     end
-    picture(control,image)
-    control:SetSizeDelta(width,height)
-    local content=card.v25Content
-    if content and face and bodyFrames[face]~=true then
-        local position=content.icons[definition.type] or content.icons.attack
+    return width,height
+end
+local function placePortrait(control,definition,face,reference)
+    local content=Theme.layout.card.v25Content
+    if reference or content and face and bodyFrames[face]~=true then
+        local position=reference and reference.portrait.position or content.icons[definition.type] or content.icons.attack
         control:SetAnchoredPosition(position[1],position[2])
     end
+end
+function M.writeArt(control,definition,picture,face)
+    local image,status,source=M.art(definition)
+    local reference=face and CardSkin.referenceGeometry(face)
+    local width,height=portraitSize(source,status,reference)
+    picture(control,image)
+    control:SetSizeDelta(width,height)
+    placePortrait(control,definition,face,reference)
 end
 -- Candidate-only binding into controls already owned by the real card face.
 -- Weak keys do not keep recycled native controls alive. Failed versions wait
@@ -231,15 +244,23 @@ function M.fit(text,maximum,width,height,lineScale,advance)
     end
     return Theme.font.minimum,false
 end
+local function titleMetrics()
+    local card=Theme.layout.card
+    local reference=Theme.presentationProfile=='official-assets-first'and Theme.officialAssets.stsCardReference and Theme.officialAssets.stsCardReference.geometry
+    local width=reference and reference.title.size[1]or card.title.width
+    local titleHeight=reference and reference.title.size[2]or card.nameBand
+    local maximum=Theme.font.cardName
+    if reference then maximum=math.max(14,Theme.font.minimum,Theme.officialAssets.stsCardReference.typography.title)end
+    return width,titleHeight,maximum
+end
 function M.title(name,upgraded,upgrades)
     local suffix=upgraded and ('＋'..(upgrades and integer(upgrades) or '')) or ''
-    local card=Theme.layout.card
-    local width=card.title.width
+    local width,titleHeight,maximum=titleMetrics()
     local text=name..suffix
-    local font,fits=M.fit(text,Theme.font.cardName,width,card.nameBand,1.65)
+    local font,fits=M.fit(text,maximum,width,titleHeight,1.65)
     -- Prefer a readable two-line full name to shrinking a complete English
     -- title into one line. The canonical presentation name is never changed.
-    if units(text)*Theme.font.cardName>width then
+    if units(text)*maximum>width then
         local best,score
         for pos in name:gmatch('() ') do
             local a,b=name:sub(1,pos-1),name:sub(pos+1)..suffix
@@ -247,14 +268,14 @@ function M.title(name,upgraded,upgrades)
             if not score or size<score then best=a..'\n'..b;score=size end
         end
         if best then
-            local candidate,ok=M.fit(best,Theme.font.cardName,width,card.nameBand,1.65)
+            local candidate,ok=M.fit(best,maximum,width,titleHeight,1.65)
             if ok then text,font,fits=best,candidate,true end
         end
     end
     -- Keep the approved one-line title band. Only an upgrade suffix that makes
     -- a complete readable name overflow moves to the existing type text slot.
     if not fits and upgraded then
-        local plainFont,plainFits=M.fit(name,Theme.font.cardName,width,card.nameBand,1.65)
+        local plainFont,plainFits=M.fit(name,maximum,width,titleHeight,1.65)
         if plainFits then return name,plainFont,true,suffix end
     end
     return text,font,fits,''
@@ -329,20 +350,35 @@ local bodyLine,bodyAdvance=1.3,1
 function M.fitBody(text,box)
     return M.fit(text,Theme.font.card,box[1],box[2],bodyLine,bodyAdvance)
 end
-function M.writeBody(control,text,face)
+local function bodyLayout(text,reference)
     local card=Theme.layout.card
-    local box=card.textBox
+    local box=reference and reference.body.size or card.textBox
     local font,fits=M.fitBody(text,box)
     -- Official cards share fixed illustration/type/body slots. The legacy
     -- long-text fallback shrinks only one card's picture into a narrow strip.
     local compact=not fits and Theme.presentationProfile~='official-assets-first'
     if compact then box=card.longTextBox;font,fits=M.fitBody(text,box)end
+    return box,font,fits,compact
+end
+local function bodyPosition(box,reference,compact)
+    if reference then return reference.body.position end
+    local card=Theme.layout.card
+    local position=not compact and card.v25Content and card.v25Content.bodyPosition
+    if position then return position end
+    return {0,-card.size[2]/2+box[2]/2+(compact and Theme.space.xs or Theme.space.border)}
+end
+local function placeBody(control,box,reference,compact)
     if control.SetSizeDelta then
         control:SetSizeDelta(box[1],box[2])
-        local position=not compact and card.v25Content and card.v25Content.bodyPosition
-        control:SetAnchoredPosition(0,position and position[2] or -card.size[2]/2+box[2]/2+(compact and Theme.space.xs or Theme.space.border))
+        local position=bodyPosition(box,reference,compact)
+        control:SetAnchoredPosition(position[1],position[2])
     end
-    if face then bodyFrame(face,compact)end
+end
+function M.writeBody(control,text,face)
+    local reference=face and CardSkin.referenceGeometry(face)
+    local box,font,fits,compact=bodyLayout(text,reference)
+    placeBody(control,box,reference,compact)
+    if face and not reference then bodyFrame(face,compact)end
     control.text,control.fontSize=text,font
     return fits
 end

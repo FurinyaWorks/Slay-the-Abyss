@@ -1,0 +1,5 @@
+
+> slay-the-abyss@1.0.0 check:lua-static
+> node scripts/check-lua-static.mjs
+
+Luacheck 1.2.0: no new diagnostics; 14 explicit historical warnings. Battle render <=10; scoped functions <=15 (Enemy AI initialize <=21); 2161 governed responsibility measurements.

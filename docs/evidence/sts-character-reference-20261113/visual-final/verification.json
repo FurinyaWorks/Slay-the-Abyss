@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "sourceClosureSha256": "1b2268a08fca67f2785ced9e4b520341aa35dad71b38c04919df325d5d001b40",
+  "checks": [
+    {
+      "name": "character-select",
+      "pngSha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "stateSha256": "f6a00272bdf4332a20d4004eb1f255992a56c00058b35b2d61a0a7bf85480011",
+      "readyLogBeforeReveal": true,
+      "images": 3254,
+      "groups": 78
+    },
+    {
+      "name": "character-selected-idle",
+      "pngSha256": "44c63b1f4991cb95bd8f88949ddcc9ae4435fc599c52bcb25663b5d4a24e4d88",
+      "stateSha256": "e6d6fcc87ca988bca3484dc635b526f8453801c127dd6cf30399431f4ad28e97",
+      "readyLogBeforeReveal": true,
+      "images": 3254,
+      "groups": 78
+    }
+  ],
+  "boundaries": {
+    "sdk": true,
+    "headless": true,
+    "softwareWebGL": true,
+    "officialImport": false,
+    "officialReady": false,
+    "deviceEvidence": false,
+    "gpuEvidence": false
+  }
+}

@@ -26,9 +26,9 @@ function requireGitPredecessor(root,prior){
  assert.deepEqual(Object.keys(gitFiles).sort(),Object.keys(prior).sort(),'complete 903bf2a31 predecessor inventory');
  for(const [p,row]of Object.entries(prior))assert.equal(blob(row.source),gitFiles[p],'complete 903bf2a31 predecessor source: '+p);
 }
-export function collectShopDeckSourceEpoch({root=defaultRoot,readSource=p=>readFileSync(join(root,p),'utf8')}={}){
+export function collectShopDeckSourceEpoch({root=defaultRoot,readSource=p=>readFileSync(join(root,p),'utf8'),inventoryPaths}={}){
  const prior=readPrior(root);
- const inventory=()=>['config/architecture.json',...readdirSync(join(root,'src/lua')).filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)].sort();
+ const inventory=inventoryPaths??(()=>['config/architecture.json',...readdirSync(join(root,'src/lua')).filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)].sort());
  assert.deepEqual(inventory(),Object.keys(prior).sort(),'complete current source inventory');
  const collected={};
  for(const [p,row]of Object.entries(prior)){

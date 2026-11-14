@@ -5,6 +5,9 @@ local Theme = require("abyss_theme")
 local Controller = require("abyss_controller")
 local M = {}
 local L = Theme.layout
+local function validPower(value,id)
+    return value and value.id==id and not value.hidden
+end
 -- Explicit ports preserve the approved implementation without a shared constructor closure.
 function M.install(owner, _ownership, host, dependencies)
     local function statusActorAt(slot)
@@ -242,7 +245,10 @@ function M.install(owner, _ownership, host, dependencies)
             local power=powerManager:entry(powerSlot)
             local actor=entry and battle and battle.enemies[entry.index]
             if not entry or entry.id~=actorId or not actor or actor.id~=actorId
-                or not Actors.isPresent(actor) or not power or power.id~=powerId then return end
+                or not Actors.isPresent(actor) or not validPower(power,powerId) then return end
+            if power.status and power.status.overflow then
+                return {index=entry.index,screenSlot=actorSlot,controlBox=actorBox}
+            end
             -- Resolve by power identity, never the row position or a feedback snapshot.
             for _,status in ipairs(Combat.statusView(actor))do
                 if status.id==powerId then

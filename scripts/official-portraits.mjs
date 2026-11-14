@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 import {isLightweightProfile,lightweightInventory,boundedPortraitSource} from './lightweight-2d-profile.mjs';
 import {v25Theme} from './v25-layout.mjs';
 import {v25PortraitRuntimeProfile} from './v25-portrait-profile.mjs';
-import {lightweightAssets} from './art/lightweight-2d-assets.mjs';
+import {stsCharacterPortraitProfile} from './sts-character-select-layout.mjs';
 
 export const portraitModule='abyss_traveler_portrait_assets';
 export const approvedBattleIdlePath='art/characters/traveler-geo/idle-approved-v1/native-idle-210.json';
@@ -193,13 +193,17 @@ export function writePortraitModule(directory,{root=process.cwd(),imageTemplateI
  });
  if(budget&&!v25BattleChrome)data.push(`selection133=${budgetLiteral(assets[1],budget.assets.selection133)}`);
  data.push(...lowpoly);
- // Selection keeps its bounded temporary actor. Full-body literals remain
- // available to other profiles; official combat uses the approved idle below.
- if(officialAssets&&(selectionAvatar||battlePortrait))data.push(`battlePixel=${toLua(lightweightAssets().battle133)}`);
- if(officialAssets&&selectionAvatar)data.push("selectionUses='battlePixel'");
- // One approved combat figure. The temporary pixel remains selection-only;
- // missing or changed approved idle data is a build error, never a fallback.
- if(officialAssets&&battlePortrait)data.push(`battleApprovedIdle=${toLua(approvedBattleIdle(root))}`);
+ // Selection and combat reference this one source object. The slot crops at
+ // presentation time; never export another portrait or duplicate its rows.
+ if(officialAssets&&(selectionAvatar||battlePortrait)){
+  data.push("portraitProfile='official-shared-idle-v2'");
+  data.push(`battleApprovedIdle=${toLua(approvedBattleIdle(root))}`);
+ }
+ if(officialAssets&&selectionAvatar){
+  data.push("selectionUses='battleApprovedIdle'");
+  const theme=JSON.parse(readFileSync(join(root,'data/presentation/ui_theme.json'),'utf8'));
+  data.push(`selectionProfile=${toLua(stsCharacterPortraitProfile(theme))}`);
+ }
  if(v25BattleChrome){
   const theme=v25Theme(JSON.parse(readFileSync(join(root,'data/presentation/ui_theme.json'),'utf8')));
   data.push(`v25PortraitProfile=${toLua(v25PortraitRuntimeProfile(theme))}`);
@@ -224,19 +228,18 @@ function inventoryRows(selectionAvatar,battlePortrait,budget,v25) {
  return rows.map(row=>({...row,groups:Math.ceil(row.images/60),pages:Math.ceil(row.images/3600)}));
 }
 export function portraitInventory({selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false}={}, {budget=true,lowpoly=true,v25=false,officialAssets=false}={}) {
- const rows=inventoryRows(selectionAvatar,battlePortrait,budget,v25);
+ const rows=inventoryRows(selectionAvatar,battlePortrait,budget,v25).filter(row=>!officialAssets||row.asset!=='traveler-geo/portraits/avatar96');
  if(officialAssets&&battlePortrait){
   const row=rows.find(a=>a.asset==='traveler-geo/portraits/battle133');
   Object.assign(row,approvedIdleInventory());
  }
  if(officialAssets&&selectionAvatar){
   const selected=rows.find(a=>a.asset==='traveler-geo/portraits/selection133'||a.asset==='traveler-geo/portraits/battle133-selection');
-  const pixel=lightweightAssets().battle133;
-  const row={asset:'temporary-pixel-traveler-selection',images:pixel.count,groups:Math.ceil(pixel.count/60),pages:Math.ceil(pixel.count/3600),sourceSha256:pixel.sourceSha256};
+  const row={...approvedIdleInventory(),asset:'traveler-geo/idle-approved-v1-selection-crop',imagesAreSourceUpperBound:true};
   if(selected)Object.assign(selected,row);else rows.push(row);
  }
  const legacy=rows.length?{...(budget?{renderProfile:'selection-budget-v1',hiddenBuild:true,cache:true,revealGroupsPerFrame:4}:{}),
-  ...(selectionAvatar&&(budget||officialAssets)?{selectionUses:officialAssets?'battlePixel':v25?'battle133':'selection133'}:{}),assets:rows,instances:rows.length,batchSize:64,
+  ...(selectionAvatar&&(budget||officialAssets)?{selectionUses:officialAssets?'battleApprovedIdle':v25?'battle133':'selection133'}:{}),assets:rows,instances:rows.length,batchSize:64,
   peakDynamicControls:rows.reduce((sum,a)=>sum+a.images+a.groups+a.pages,0),maxDirectDynamicChildren:60,officialCapacity:'not_measured',
   measurement:'offline-runtime-control-contract-not-official-capacity',devicePerformance:'not_run'}:undefined;
  const landscape=lowpolySelectLiterals(process.cwd(),{selectionAvatar:selectionAvatar&&!v25&&!officialAssets,cards,menuBackground});
@@ -248,15 +251,19 @@ export function portraitRuntimeInventory(directory) {
  if(!existsSync(join(directory,`${portraitModule}.lua`)))return undefined;
  const source=readFileSync(join(directory,`${portraitModule}.lua`),'utf8');
  const flags={selectionAvatar:/\bavatar96=/.test(source),battlePortrait:/\bbattle133=/.test(source)};
- const officialAssets=source.includes('battlePixel=');
- if(officialAssets&&flags.battlePortrait){
+ const officialAssets=source.includes("portraitProfile='official-shared-idle-v2'")||source.includes('battleApprovedIdle=');
+ if(officialAssets&&(flags.battlePortrait||flags.selectionAvatar)){
   const expected=`battleApprovedIdle=${toLua(approvedBattleIdle())}`;
   if(source.split(expected).length!==2)throw Error('Official battle idle differs from the pinned producer');
  }
  const selectionMarkers=source.split(/\r?\n/).filter(line=>line.startsWith('selectionUses='));
  if(flags.selectionAvatar&&(officialAssets||selectionMarkers.length)){
-  if(!officialAssets||selectionMarkers.length!==1||!/^selectionUses='battlePixel',?$/.test(selectionMarkers[0]))
+  if(!officialAssets||selectionMarkers.length!==1||!/^selectionUses='battleApprovedIdle',?$/.test(selectionMarkers[0]))
    throw Error('Unsupported official selection schema; read historical candidates with their pinned producer');
+  const profile=stsCharacterPortraitProfile(JSON.parse(readFileSync('data/presentation/ui_theme.json','utf8')));
+  const expected=`selectionProfile=${toLua(profile)}`;
+  if(source.split(expected).length!==2||source.split(/\r?\n/).filter(line=>line.startsWith('selectionProfile=')).length!==1)
+   throw Error('Unsupported official selection crop schema; read historical candidates with their pinned producer');
  }
  if(existsSync(join(directory,'art-performance.json'))){
   const pack=JSON.parse(readFileSync(join(directory,'art-performance.json'),'utf8'));

@@ -9,7 +9,7 @@ import {mediaByPath} from './ci-media-lfs.mjs';
 const media = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg', '.ico',
   '.gia', '.gil', '.blend', '.glb', '.gltf', '.obj', '.fbx', '.wav', '.mp3',
   '.ogg', '.flac', '.mp4', '.webm', '.ttf', '.otf', '.ttc', '.woff', '.woff2']);
-export const sensitive = path => media.has(extname(path).toLowerCase()) ||
+export const sensitive = path => mediaByPath.has(path) || media.has(extname(path).toLowerCase()) ||
   (/^(art\/|docs\/experiments\/art-portrait\/)/.test(path) && /\.(lua|json)$/i.test(path));
 export const digest = (bytes, text = false) => createHash('sha256')
   .update(text ? bytes.toString('utf8').replace(/\r\n/g, '\n') : bytes).digest('hex');

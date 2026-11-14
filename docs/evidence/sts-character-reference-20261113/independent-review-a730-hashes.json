@@ -1,0 +1,22 @@
+{
+  "reviewer": "/root/neow_reference_audit",
+  "conclusion": "pass",
+  "unresolved": [],
+  "reviewedBase": "ba03607abd72e421e9497e66b031e501ad5b2997",
+  "reviewedHead": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "scope": "three-file/six-function equivalent responsibility extraction only",
+  "files": {
+    "src/lua/abyss_character_select_view.lua": {
+      "raw": "13f42aab12ec21485a619c8d534ef9958e348d19fa9451bb7c4f2ce9b5a4afac",
+      "LF": "bc7781c7918a91622cc75d485cdac76e09e4966721f6bc5373670bbce928128f"
+    },
+    "src/lua/abyss_traveler_portraits.lua": {
+      "raw": "6ea022a88336eb8d84f801d1eca34fc9dc6dbf962256f75f7f76d5e663c34563",
+      "LF": "6e104b0def8e6d6e748f5b1e03644a6c795458cc6f99e0036ab125f57bd6f3ab"
+    },
+    "src/lua/abyss_ui.lua": {
+      "raw": "a8be272113688e5d5592c0c97d39ebef33c941d337ee4fb64e5e5f6032f0cfbd",
+      "LF": "3cd20cf1208f9f272da28f872ce3be6be2ef77d1d7c0f62e3ce0b17f39de54ac"
+    }
+  }
+}

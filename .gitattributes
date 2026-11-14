@@ -1342,3 +1342,87 @@ experiments/art-tech-lab/played.png filter=lfs -diff merge=lfs -text ci-immutabl
 experiments/art-tech-lab/sample.png filter=lfs -diff merge=lfs -text ci-immutable-media
 experiments/art-tech-lab/selected.png filter=lfs -diff merge=lfs -text ci-immutable-media
 config/ci-media-lfs.json text eol=lf
+
+# Exact f347 native state evidence; all blob aliases, no source archives.
+docs/evidence/shared-run-hud-20261113/visual-final-current/battle-discard-pile.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/battle-draw-pile.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/battle-hud.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/battle-permanent-deck.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-choice-hud.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-hud.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/map-hud.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/01-shop-bubble.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/02-leave-hover.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/03-leave-pressed.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/04-map-preview.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/05-shop-map-return.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/06-deck17-top.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/07-deck17-bottom.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/08-deck-card-detail.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/09-deck-return-list.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/shop-deck-parity-20261112/visual-current/10-shop-deck-return.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-pending.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-ready.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-final/character-select.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-final/character-selected-idle.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-integrated/character-returned-selection.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-integrated/character-select.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-integrated/character-selected-idle.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-browser.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-detail.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-hover-functional-unverified.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-intro.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-normal.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-hover-functional-unverified.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-intro.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-normal.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-hover-functional-unverified.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-intro.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+# This trial's evidence manifest hashes the original files byte-for-byte.
+docs/evidence/menu-red-20261113/** -text
+docs/evidence/menu-red-entry-20261114/** -text
+docs/evidence/menu-red-quality-20261114/** -text
+docs/evidence/menu-red-quality-20261114/** whitespace=cr-at-eol
+experiments/menu-red-fit/*.py text eol=lf

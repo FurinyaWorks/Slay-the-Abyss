@@ -1,0 +1,20 @@
+{
+  "saveSha256": "a37c1fa342abe63e5620f59fc52de987363eb401b137d2652eab006e93438c27",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "errors": [],
+  "timings": [],
+  "shots": [
+    "01-menu"
+  ],
+  "scope": "Web Simulator actual renderer; not official client or GPU FPS",
+  "archive": "menu.save.json",
+  "archiveLoadMs": 3439.8426,
+  "navigationToFrameMs": 12519.0016,
+  "steadyDrawMs": {
+    "samples": 69,
+    "p50": 0.8999999985098839,
+    "p95": 2.199999999254942,
+    "max": 4.099999999627471
+  },
+  "status": "captured"
+}

@@ -7,7 +7,6 @@ assignee:
 created_date: '2026-10-26 14:33'
 updated_date: '2026-11-07 01:47'
 labels: []
-milestone: m-7
 dependencies: []
 references:
   - docs/backlog-details/TASK-74.md

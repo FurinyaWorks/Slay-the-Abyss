@@ -1,0 +1,145 @@
+{
+  "sourceCommit": "90c46efccff0c7b7f9c7dec0c1e96aac2c350bd0",
+  "status": "SDK_EVENT_COMPONENT_CHECKS_PASS",
+  "captures": [
+    {
+      "path": ".artifacts/sts-feedback-preview/controlled-90c46efc-sdk-events/big_fish/report.json",
+      "sha256": "158d63276ac3dbc77d3687fdcd37a801fd8850866c93411ae8f2915226198b97",
+      "mode": "big_fish",
+      "sourceClosureSha256": "4cf61d1b22b2544edf79d406c4ff361a7a57de0a2afd4e1fa9742829561f5ad3",
+      "shots": [
+        {
+          "name": "big_fish-normal",
+          "checks": {
+            "fixture": true
+          },
+          "sha256": "ac6c5cfebbbe17e4fd7173b75b1ffb87ad5679a2028877bd1563ad465762c6c6"
+        },
+        {
+          "name": "big_fish-hover",
+          "checks": {
+            "fixture": true
+          },
+          "sha256": "45ec6115004c1d6ad83271c648795751b4e91765d78cb34dc2300bb417352da9"
+        }
+      ],
+      "actualIllustrations": [
+        {
+          "id": 7648,
+          "imageId": 111027,
+          "imageSource": "StaticReference",
+          "imageColor": 4294967295,
+          "expected": {
+            "imageId": 111027,
+            "figureInk": "#FFFFFF",
+            "figureOpacity": 1
+          }
+        },
+        {
+          "id": 7648,
+          "imageId": 111027,
+          "imageSource": "StaticReference",
+          "imageColor": 4294967295,
+          "expected": {
+            "imageId": 111027,
+            "figureInk": "#FFFFFF",
+            "figureOpacity": 1
+          }
+        }
+      ]
+    },
+    {
+      "path": ".artifacts/sts-feedback-preview/controlled-90c46efc-sdk-events/lab/report.json",
+      "sha256": "67269892b931200b67b5d5931374671c39cbdcf743dcf21516208ea154b5253f",
+      "mode": "lab",
+      "sourceClosureSha256": "4cf61d1b22b2544edf79d406c4ff361a7a57de0a2afd4e1fa9742829561f5ad3",
+      "shots": [
+        {
+          "name": "lab-normal",
+          "checks": {
+            "fixture": true
+          },
+          "sha256": "91295f6b5fb890f02bfb4b2bdd6afa3053d95647230bcdb103106703831bba65"
+        },
+        {
+          "name": "lab-hover",
+          "checks": {
+            "fixture": true
+          },
+          "sha256": "680572478e87691db9b1092fda210e70d8bec72d3281c9c70313b2674247ca5f"
+        },
+        {
+          "name": "lab-potion-options",
+          "checks": {
+            "fixture": true
+          },
+          "sha256": "3bcd313ebf1335d45be8943ade1c734b1dfa2ce4699301414092a7031353e3c5"
+        }
+      ],
+      "actualIllustrations": [
+        {
+          "id": 7648,
+          "imageId": 111046,
+          "imageSource": "StaticReference",
+          "imageColor": 4294967295,
+          "expected": {
+            "imageId": 111046,
+            "figureInk": "#FFFFFF",
+            "figureOpacity": 1
+          }
+        },
+        {
+          "id": 7648,
+          "imageId": 111046,
+          "imageSource": "StaticReference",
+          "imageColor": 4294967295,
+          "expected": {
+            "imageId": 111046,
+            "figureInk": "#FFFFFF",
+            "figureOpacity": 1
+          }
+        },
+        {
+          "id": 7648,
+          "imageId": 111046,
+          "imageSource": "StaticReference",
+          "imageColor": 4294967295,
+          "expected": {
+            "imageId": 111046,
+            "figureInk": "#FFFFFF",
+            "figureOpacity": 1
+          }
+        }
+      ]
+    }
+  ],
+  "rim": {
+    "path": ".artifacts/event-option-rim-clipping-20261114/after-h-rim-pixels.json",
+    "sha256": "d49486b9678542968bbb8eeeab9711245ce9198a56c82e44ace48ef211108947",
+    "rows": 12,
+    "allPassed": true,
+    "heights": [
+      44,
+      66,
+      88
+    ],
+    "pixelReader": "System.Drawing.Bitmap.GetPixel; original PNG unmodified",
+    "boundary": "Samples validate the visible top-rim extension at two interior cut points; not whole-shape pixel parity."
+  },
+  "before": {
+    "path": ".artifacts/event-option-rim-clipping-20261114/before-c-mask-reference-v2.json",
+    "sha256": "c561d809b60f2f79dff3b1da34eaf8120f3887f2648b71ac86b7a43741548607"
+  },
+  "comparison": {
+    "path": ".artifacts/event-option-rim-clipping-20261114/rim-c-before-h-after.png",
+    "sha256": "70ff108399265265bf88f154d65f3caa02b01f21844a5bd83b116bab26f7d0e6"
+  },
+  "assets": {
+    "path": ".artifacts/sts-feedback-preview/event-art-assets-full.json",
+    "sha256": "9fb41e583d825f66fbb53ce0b89ddc27ccab74311100c695af10931aab1c79a9",
+    "count": 14,
+    "allNativeCatalogSprites": true,
+    "allPrepared": true
+  },
+  "boundary": "Controlled startup fixtures on the actual loopback SDK. Original PNG bytes and source receipts retained privately; no official import, official ready, phone or complete shape-parity claim."
+}

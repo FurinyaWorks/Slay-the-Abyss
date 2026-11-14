@@ -1,6 +1,40 @@
 -- Preserve the approved ordinary list; expand only independent multi-item rows.
 local Theme=require('abyss_theme')
+local RelicView=require('abyss_relic_view_ui')
 local M={}
+local rowFaces=setmetatable({},{__mode='k'})
+local names={'goldReward','stolenGold','relicReward1','relicReward2','emeraldKeyReward','claimPotion','cardReward'}
+local rowNames={};for _,name in ipairs(names)do rowNames[name]=true end
+local function iconId(value)return type(value)=='table'and value.id or value end
+local function rewardIcon(name,run)
+ if name=='goldReward'or name=='stolenGold'then return iconId(Theme.icon.gold)end
+ if name=='cardReward'then return iconId(Theme.icon.deck)end
+ if name=='emeraldKeyReward'then return iconId(Theme.icon.lock)end
+ local rewards=run and run.rewards
+ if name=='claimPotion'then return Theme.icon.potion[rewards and rewards.potion and rewards.potion.id]or Theme.icon.potion.empty end
+ local index=tonumber(name:match('^relicReward(%d)$'))
+ local item=rewards and rewards.relics and rewards.relics[index]
+ return item and RelicView.icon(item.sourceId or item.id,true)or iconId(Theme.icon.node.treasure)
+end
+local function paintIcon(cached,name,run,platform)
+ local id=rewardIcon(name,run)
+ if platform.imageSource and cached.id~=id then cached.icon:SetImage(platform.imageSource,id);cached.id=id end
+end
+function M.paintButton(name,part,state,run,platform,tint,ink)
+ local token=Theme.officialAssets and Theme.officialAssets.rewardRows
+ if Theme.presentationProfile~='official-assets-first'or not token then return false end
+ if name=='continue'then ink(part:GetChild('label'),state=='disabled'and Theme.color.textMuted or token.ink);return true end
+ if not rowNames[name]then return false end
+ local cached=rowFaces[part]
+ if not cached then
+  cached={parts=part:GetChild('stsRewardFace'):GetChildren(),icon=part:GetChild('rewardIcon')};rowFaces[part]=cached
+ end
+ local tone=token[state]or token.normal
+ if cached.tone~=tone then for _,image in ipairs(cached.parts)do tint(image,tone)end;cached.tone=tone end
+ ink(part:GetChild('label'),state=='disabled'and Theme.color.textMuted or token.ink)
+ paintIcon(cached,name,run,platform)
+ return true
+end
 -- Last successful size writer per native handle; owner tokens hold no view references.
 local sizes=setmetatable({},{__mode='k'})
 local function size(control,width,height,owner)
@@ -17,7 +51,6 @@ local function size(control,width,height,owner)
   sizes[control]={owner=owner,width=width,height=height}
  end
 end
-local names={'goldReward','stolenGold','relicReward1','relicReward2','emeraldKeyReward','claimPotion','cardReward'}
 local function visibleRewards(frame)
  local run=frame.run
  local rewards=frame.listing and run.rewards
@@ -40,6 +73,13 @@ local function positionHost(box,layout)
  if field then field:SetAnchoredPosition(-stage[1],-stage[2])end
  local paper=box:GetChild('v25RewardPaper')
  if paper then paper:SetAnchoredPosition(layout.title[1]-stage[1],layout.title[2]-stage[2])end
+ if Theme.presentationProfile=='official-assets-first'and Theme.officialAssets.rewardRows then
+  local token=Theme.officialAssets.rewardRows
+  local panel=box:GetChild('stsRewardPanel')
+  panel:SetAnchoredPosition(token.panelPosition[1]-stage[1],token.panelPosition[2]-stage[2])
+  local height=token.panelSize[2]+stage[4]-Theme.layout.battleRewards.stage[4]
+  panel:SetLocalScale(1,height/token.panelSize[2],1)
+ end
 end
 function M.render(frame,child,sizeOwner)
  local visible=visibleRewards(frame)

@@ -5,9 +5,9 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-09 11:10'
-updated_date: '2026-11-10 14:29'
+updated_date: '2026-11-13 12:04'
 labels: []
-milestone: m-7
+milestone: m-8
 dependencies: []
 references:
   - docs/backlog-details/TASK-100.1.md
@@ -65,4 +65,8 @@ P0 技术阻塞：千星原生 V25 组件方案减少了运行时逐图元组装
 2026-11-10：修复 #582 review5836270444 的挂载参数配对漏洞；按 controlId/script 完整集合比较所有参数，拒绝缺失、重复、非法 JSON，并在 SDK 导入前校验收据。20项 RED 后，扩展39项 GREEN、历史 CI/runtime53项通过，原始两组 SDK 报告及其 hash/预算/观察输出不变，未放宽或重建历史源码证明。证据 docs/evidence/pr582-mounted-identity-20261110/README.md；独审、精确 HEAD Full及合后验收未完成，AC5与状态保持。
 
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
+
+用户2026-11-13明确要求消除每页进入后慢慢补元素的低质体验，允许简短过渡占位；本轮先复现当前链并复用现有scheduler/过渡，定义完整准备后一次揭幕，不用固定sleep/日志ready冒充渲染完整。诊断独立执行，尚未修复或实机验收。
+
+本轮组合a730已通过22个Lua精确提交棘轮0新增。遮罩只准备资源、暂停Match/战斗/计时，ready按显式页面owner；真实OnStart覆盖menuBackground=true隐藏旧页不阻塞。最终祝福6帧和选角5帧同闭包52b6582b…，错误/漂移0。完整工程、4个有效语义变异、6项原生合同及144项来源接续已通过；软件10卡PNG+RPC增加2.70%，不推断GPU/手机。官方导入及设备AC保持未验。
 <!-- SECTION:NOTES:END -->

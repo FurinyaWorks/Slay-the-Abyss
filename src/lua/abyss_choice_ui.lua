@@ -109,7 +109,7 @@ function M.new(root,presentation,clickEvent,platform,onConfirm)
         CardDisplay.writeBody(face:GetChild('label'),CardDisplay.combatText(display,definition,instance,
             Combat.cardPreview(battle,instance),battle),face)
         face:GetChild('cost').text=definition.cost==-2 and '' or definition.costMode=='all_energy' and 'X' or tostring(definition.cost)
-        CardDisplay.writeArt(face:GetChild('art'),definition,function(control,id)control:SetImage(platform.imageSource,id)end)
+        CardDisplay.writeArt(face:GetChild('art'),definition,function(control,id)control:SetImage(platform.imageSource,id)end,face)
         CardDisplay.writeNativeArt(face,definition,display.nativeArt,platform,face:GetChild('art'),instance.uid)
         local printed=battle.catalog.cards[instance.cardId]
         local base=instance.upgraded and printed.upgrade and printed.upgrade.cost or printed.cost
@@ -117,6 +117,7 @@ function M.new(root,presentation,clickEvent,platform,onConfirm)
     end
     local function render()
         if not view.visible then return end
+        require('abyss_page_reveal').registerSource(platform,'choicePanel')
         local kind=view.context.kind
         child("title").text=kind=='potion'and '姿态药水：选择姿态'or kind=='pile' and (view.context.mode=='omniscience' and '全知：选择免费打出两次的牌' or view.context.mode=='meditate' and '冥想：回收并保留' or view.context.mode=='headbutt' and '回收至牌堆顶' or '回收至手牌')
             or kind=="scry" and "占卜" or kind=="discard" and "选择弃牌"

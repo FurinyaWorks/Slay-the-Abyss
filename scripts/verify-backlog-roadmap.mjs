@@ -15,7 +15,7 @@ export function readTaskHeader(source) {
     return [...(block?.[1] ?? '').matchAll(/^[ \t]+-[ \t]+(.+)$/gm)].map(m => m[1].trim().replace(/^['"]|['"]$/g, ''));
   };
   return { id: scalar('id'), status: scalar('status'), priority: scalar('priority'), milestone: scalar('milestone'),
-    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation') };
+    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation'), dependencies: list('dependencies') };
 }
 
 // Priority describes the current queue, not whether a launch requirement matters.
@@ -52,17 +52,21 @@ export function auditMilestoneScope(titles, archivedTitles = [], requireCurrentS
     return matches.length === 1 && required.every(part => matches[0].includes(part)) && !retiredScope.test(matches[0]) ? []
       : [`${stage}: 里程碑范围必须明确包含${required.join('、')}，不得恢复两职业或扩大为四/八/全职业、第三/四幕，也不得退回仅第一幕或缺少该关口`];
   });
-  // Preserve frozen M3/M4 while validating the M7/M8/M9 identity contracts.
+  // M7 remains immutable history, never an active engineering work queue.
   const currentPresent=requireCurrentStages||historicalTitles.some(t=>/^M[789](?:[\s｜|:：]|$)/.test(t));
   const currentErrors=currentPresent?[
-    {stage:'M7',required:['工程架构','性能强化']},
     {stage:'M8',required:['产品体验','核心特色']},
     {stage:'M9',required:['内容建设','扩充']},
   ].flatMap(({stage,required})=>{
     const matches=titles.filter(t=>new RegExp('^'+stage+'(?:[\\s｜|:：]|$)').test(t));
     return matches.length===1&&required.every(x=>matches[0].includes(x))?[]
-      :[stage+': 当前里程碑必须唯一，按工程→体验→内容编号'];
+      :[stage+': 当前活动里程碑必须唯一，M7已归档'];
   }):[];
+  const legacyActive=titles.filter(t=>/^M7(?:[\s｜|:：]|$)/.test(t));
+  const legacyArchived=archivedTitles.filter(t=>/^M7(?:[\s｜|:：]|$)/.test(t));
+  if(legacyActive.length)currentErrors.push('M7: 工程里程碑已退出活动看板，禁止恢复');
+  if(currentPresent&&(legacyArchived.length!==1||!legacyArchived[0].includes('工程架构')||!legacyArchived[0].includes('性能强化')))
+    currentErrors.push('M7: 必须完整保留已归档的工程历史里程碑，禁止删除或改写身份');
   return [...historicalErrors,...currentErrors];
 }
 
@@ -143,15 +147,32 @@ export function auditRoadmap(tasks, roadmap, milestones, completed = []) {
   return errors;
 }
 
+// Explicit capacity-proof dependency for mass character rollouts, independent of M7 stage completion.
+export function auditRoleCapacityGate(tasks, completed = []) {
+  const byId = new Map([...completed, ...tasks].map(task => [task.id, task]));
+  const rollout = byId.get('TASK-97');
+  if (!rollout) return [];
+  const capacity = byId.get('TASK-105');
+  const errors = [];
+  if (!capacity) errors.push('TASK-97: 缺少角色容量前置TASK-105');
+  if (!rollout.dependencies?.includes('TASK-105'))
+    errors.push('TASK-97: 必须显式依赖TASK-105，禁止绕过容量量产准入');
+  if (['In Progress','Done'].includes(rollout.status) && capacity?.status !== 'Done')
+    errors.push('TASK-97: 容量TASK-105未取得GO，不得启动或完成角色批量量产');
+  return errors;
+}
+
 export function auditOrderedStageIds(records, requireCurrentStages = false) {
   const active=records.filter(x=>/^M[789](?:[\s｜|:：]|$)/.test(x.title));
   if(active.length===0&&!requireCurrentStages)return [];
-  return ['M7','M8','M9'].flatMap(stage=>{
+  const errors=['M8','M9'].flatMap(stage=>{
     const matches=active.filter(x=>new RegExp('^'+stage+'(?:[\\s｜|:：]|$)').test(x.title));
     const required='m-'+stage.slice(1);
     return matches.length===1&&matches[0].id===required?[]
-      :[stage+': 原生ID必须为 '+required+'，与里程碑编号一致'];
+      :[stage+': 活动原生ID必须为 '+required];
   });
+  if(active.some(x=>/^M7(?:[\s｜|:：]|$)/.test(x.title)))errors.push('M7: 只能位于历史归档，不得重新创建活动工程里程碑');
+  return errors;
 }
 
 export function verifyBacklogRoadmap(root = '.') {
@@ -175,8 +196,14 @@ export function verifyBacklogRoadmap(root = '.') {
     const stage = title.match(/^(M[1-9])(?:\s|[｜|:：]|$)/)?.[1];
     return [id, stage];
   }).filter(([id, stage]) => id && stage));
+  // Done tasks may retain historical m-7; unfinished work cannot stay under a retired milestone.
+  const retiredM7Errors=tasks.filter(task=>task.status!=='Done'&&task.milestone==='m-7')
+    .map(task=>task.id+': 未完成任务不得再使用已归档M7；迁至实际M8/M9交付或无里程碑维护队列');
+  const intakeFile=join(root,'config/task-intake.json');
+  const intakeM7Errors=existsSync(intakeFile)&&JSON.parse(readFileSync(intakeFile,'utf8')).currentMilestoneIds?.includes('m-7')
+    ?['M7: task-intake仍宣称已归档工程里程碑为活动阶段']:[];
   return [...new Set([...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
-    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
+    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditRoleCapacityGate(tasks,completed), ...retiredM7Errors, ...intakeM7Errors, ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const errors = [...verifyBacklogRoadmap(), ...verifyMilestoneScope()];

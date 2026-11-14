@@ -1,4 +1,5 @@
 import {historicalCardInputPrelude} from '../tests/helpers/historical-card-input.mjs';
+import {runHistoricalStsStyle,historicalStsStyleFixtures} from '../tests/helpers/historical-sts-style-runner.mjs';
 import {runHistoricalMonsterUi,historicalMonsterUiFixtures} from '../tests/helpers/historical-monster-ui-runner.mjs';
 import { spawnSync } from 'node:child_process';
 import {runHistoricalPresentation,historicalPresentationFixtures} from '../tests/helpers/historical-presentation-runner.mjs';
@@ -26,6 +27,7 @@ export function runLua(script = 'tests/lua/combat.lua', { timeout, cwd = process
   }
   if (resolve(cwd) === resolve(fileURLToPath(new URL('..', import.meta.url))) && historicalMonsterUiFixtures.includes(script.replaceAll('\\', '/'))) return runHistoricalMonsterUi(script, { timeout, cwd, caseName, maxBuffer });
   if (resolve(cwd) === resolve(fileURLToPath(new URL('..', import.meta.url))) && historicalPresentationFixtures.includes(script.replaceAll('\\', '/'))) return runHistoricalPresentation(runLua, script, { timeout, cwd, caseName, maxBuffer });
+  if (resolve(cwd) === resolve(fileURLToPath(new URL('..', import.meta.url))) && historicalStsStyleFixtures.includes(script.replaceAll('\\', '/'))) return runHistoricalStsStyle(script, { timeout, cwd, caseName, maxBuffer });
   const cli = require.resolve('fengari-node-cli/src/lua-cli.js');
   // The upstream CLI's positional-script path loses Lua errors' exit status.
   // Its -e path explicitly exits nonzero when dofile raises, including syntax errors.

@@ -80,7 +80,9 @@ local function failUpdate()
     OnUpdate(0.05)
 end
 local function drain(ui)
-    for _=1,400 do if not ui.battleUI.busy then return end;ui:update(0.05) end
+    -- This suite starts the real native entry. Advance that scheduler, including
+    -- its presentation gate, instead of bypassing it through the inner Host.
+    for _=1,400 do if not ui.battleUI.busy then return end;OnUpdate(0.05) end
     error("feedback did not finish")
 end
 local function battle(ui,root,finishFeedback,competition)

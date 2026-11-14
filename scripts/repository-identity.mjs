@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 
 export const projectRepositoryId=1429751262;
-const names=['CHNISam/Slay-the-Abyss','FurinyaWorks/Slay-the-Abyss'];
+const names=['CHNISam/Slay-the-Abyss','FurinyaWorks/Slay-the-Abyss','FurinyaWorks/Slay-the-Heavens'];
 export const projectRepositoryMatches=(resource,name)=>names.includes(name)&&
  resource?.id===projectRepositoryId&&resource.full_name===name;
 export function currentProjectRepository(query){

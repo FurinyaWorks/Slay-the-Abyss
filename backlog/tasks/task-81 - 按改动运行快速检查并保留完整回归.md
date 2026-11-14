@@ -7,7 +7,6 @@ assignee:
 created_date: '2026-10-28 15:30'
 updated_date: '2026-11-05 00:48'
 labels: []
-milestone: m-7
 dependencies: []
 references:
   - docs/plans/2026-11-03-m9-engineering-foundation.md

@@ -15,7 +15,7 @@ import {componentUiSourceEpoch} from './helpers/component-ui-source-epoch.mjs';
 import {jointUiSourceAt} from './helpers/joint-ui-source-epoch.mjs';
 import {encounterFormationEpoch} from './helpers/encounter-formation-source-epoch.mjs';
 import {copyIntegrationSourceClosure} from './helpers/copy-integration-source-closure.mjs';
-import {closeoutPriorEpoch} from './helpers/closeout-source-epoch.mjs';
+import {closeoutPriorEpoch,ciRepairSourceEpoch,stsStyleEpoch,menuRedEpoch} from './helpers/closeout-source-epoch.mjs';
 const path='src/lua/abyss_encounter_formation.lua',proof=sourceEpoch.proof,prior=preEncounterFormationEpoch.proof;
 const raw=p=>proof.current[p]?.source??null;
 // The original 51-owner assertions describe the frozen Formation predecessor.
@@ -176,7 +176,8 @@ test('official repair helper closure imports in isolation and rejects new-file d
  copyIntegrationSourceClosure(root);
  const module=pathToFileURL(join(root,'tests/helpers/combined-epoch/source-epoch.mjs')).href;
  assert.equal(closeoutPriorEpoch.proof.owners.length,96,'unchanged closeout predecessor');
- const result=spawnSync(process.execPath,['--input-type=module','-e',`const m=await import(${JSON.stringify(module)});if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.sourceEpoch.proof.owners.length!==97)throw Error('combined owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
+ const closeout=pathToFileURL(join(root,'tests/helpers/closeout-source-epoch.mjs')).href;
+ const result=spawnSync(process.execPath,['--input-type=module','-e',`const current=await import(${JSON.stringify(module)});const m={...current,sourceEpoch:(await import(${JSON.stringify(closeout)})).stsStyleEpoch};if(m.officialUiRepairIntegratedEpoch.proof.owners.length!==88)throw Error('isolated owner closure');if(m.ciRepairSourceEpoch.proof.owners.length!==97||m.sourceEpoch.proof.owners.length!==104)throw Error('combined owner closure');if(JSON.stringify(current.sourceEpoch.proof.owners)!==${JSON.stringify(JSON.stringify(currentSourceEpoch.proof.owners))})throw Error('current raw owner closure');`],{encoding:'utf8',timeout:30000,windowsHide:true});
  assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
  for(const name of ['official-ui-repair-source-epoch.mjs','official-ui-repair-source-epoch.json.gz','shop-deck-source-epoch.json.gz']){
   const file=join(root,'tests/helpers',name),bytes=diskReadFileSync(file),changed=Buffer.from(bytes);changed[changed.length-1]^=1;
@@ -186,12 +187,39 @@ test('official repair helper closure imports in isolation and rejects new-file d
  }
 });
 
-test('current UI facade authenticates every raw owner once in declared order after warm success',()=>{
+test('pre-feedback UI facade retains all 104 frozen owners and their original authorization contract',()=>{
+ // This complete immutable view retains the old 104-owner contract. The next
+ // case independently authenticates actual current disk bytes and all 105 owners.
+ const currentSourceEpoch=stsStyleEpoch,diskReadFileSync=file=>stsStyleEpoch.proof.current[file]?.source??null;
  const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
  // Keep the component68 + exact28 predecessor; current admission adds merchant.
  assert.equal(closeoutPriorEpoch.proof.owners.length,96);
- assert.deepEqual(current.owners.filter(p=>!closeoutPriorEpoch.proof.owners.includes(p)),['src/lua/abyss_merchant.lua']);
- assert.equal(current.owners.length,97);
+ assert.deepEqual(ciRepairSourceEpoch.proof.owners.filter(p=>!closeoutPriorEpoch.proof.owners.includes(p)),['src/lua/abyss_merchant.lua']);
+ assert.equal(ciRepairSourceEpoch.proof.owners.length,97);
+ assert.deepEqual(current.owners.filter(p=>!ciRepairSourceEpoch.proof.owners.includes(p)),['card_art_runtime','controller','game_ui_lifecycle','game_ui_overlays','game_ui_run','node_ui_lifecycle','page_reveal'].map(n=>'src/lua/abyss_'+n+'.lua'));
+ assert.equal(current.owners.length,104);
+ const expected=current.targets[target].files[file].source;
+ for(const crlf of [false,true]){
+  const reads=[];let bad=null,missing=false;
+  const live=owner=>{reads.push(owner);if(owner===bad&&missing)return null;const bytes=diskReadFileSync(owner,'utf8').replaceAll('\r\n','\n');return owner===bad?bytes+'\n':crlf?bytes.replaceAll('\n','\r\n'):bytes;};
+  for(let repeat=0;repeat<2;repeat++){reads.length=0;assert.equal(currentSourceEpoch.preCombinedSource(file,input,{target,readSource:live}),expected);assert.deepEqual(reads,current.owners);}
+  for(const owner of current.owners){
+   for(const absent of [false,true]){bad=owner;missing=absent;reads.length=0;assert.throws(()=>currentSourceEpoch.preCombinedSource(file,input,{target,readSource:live}),/linked owner identity/,owner);assert.deepEqual(reads,current.owners.slice(0,current.owners.indexOf(owner)+1));}
+   bad=null;reads.length=0;assert.equal(currentSourceEpoch.preCombinedSource(file,input,{target,readSource:live}),expected);assert.deepEqual(reads,current.owners);
+  }
+  reads.length=0;assert.equal(currentSourceEpoch.preCombinedSource(file,'foreign source',{target,readSource:live}),'foreign source');assert.deepEqual(reads,[]);
+ }
+});
+
+test('current UI facade authenticates all 112 disk owners once in order and rejects every warm drift or removal',()=>{
+ const current=currentSourceEpoch.proof,file='config/architecture.json',input=diskReadFileSync(file,'utf8'),target='develop';
+ const pad=files=>Object.fromEntries(Object.keys(current.current).map(path=>[path,files[path]??null]));
+ assert.deepEqual(current.targets.stsFeedbackPrior.files,pad(stsStyleEpoch.proof.current),'complete 104-owner predecessor remains available, new modules have no invented source');
+ assert.deepEqual(menuRedEpoch.proof.owners,[...stsStyleEpoch.proof.owners,'src/lua/abyss_monster_power_view.lua'].sort());
+ assert.equal(menuRedEpoch.proof.owners.length,105);
+ const additions=['lowcost_art','merchant_pages','node_ui_reward_detail','node_ui_shop','node_ui_treasure','node_ui_treasure_list','treasure_ui'].map(name=>'src/lua/abyss_'+name+'.lua');
+ assert.deepEqual(current.owners,[...menuRedEpoch.proof.owners,...additions].sort());
+ assert.equal(current.owners.length,112);
  const expected=current.targets[target].files[file].source;
  for(const crlf of [false,true]){
   const reads=[];let bad=null,missing=false;

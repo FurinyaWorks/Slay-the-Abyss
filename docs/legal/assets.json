@@ -3,6 +3,10 @@
   "baseCommit": "4c75a31fafcd27c204b957cd7dbc75ac6d9f5ab0",
   "hashRule": "SHA256 raw binary bytes; Lua/JSON/SVG CRLF normalized to LF. Categories record provenance, not clearance. Update manually after rights review.",
   "categories": {
+    "menu-red-reference-native": {
+      "status": "User-supplied character illustration and screenshots of its native geometric reconstruction for this platform project. Original artist and source license not established; no separate asset/IP sublicense or commercial clearance. Reference PNG is offline fitting input only; runtime uses native primitive IDs. Screenshots do not prove official import or device acceptance.",
+      "evidence": "docs/legal/MENU_REFERENCE_PROVENANCE.md; experiments/menu-red-fit/README.md; docs/evidence/menu-red-quality-20261114/README.md"
+    },
     "hud-r2-browser-evidence": {
       "status": "Project UI diagnostic screenshots rendered by Chromium using system font fallbacks and stand-in glyphs from the project prototype. No font binaries or official textures redistributed. Referenced game identities remain their owners IP; no asset/IP sublicense or commercial clearance. Offline Host projection only, not official import/ready, final artwork, interaction, device or performance acceptance.",
       "evidence": "docs/evidence/hud-r2-20261101/README.md; experiments/ui-polish-sim/hud-r2-capture.lua and hud-r2-render.mjs; production Lua on native-contract fixture with actual sibling-call order recorded for projection. Baseline b0f64d49; reviewed runtime/evidence revision 487a46ef92d25421fa941e5ee85f1152034a647b. 1280x720 Host trees projected at recorded owner widths; system fonts and original atlas appearance remain device-unverified."
@@ -174,9 +178,45 @@
     "lumine-native-fit-20261113": {
       "status": "User-provided Lumine reference images and project native-geometry experiment captures. Genshin character/platform imagery remains game IP; no IP sublicense or commercial clearance. Runtime uses only native official shape IDs, no reference PNG texture.",
       "evidence": "experiments/lumine-native-fit/README.md; input source hashes, fit-hybrid-final parameters, actual GIL identity and Simulator evidence/RESULTS.md. User requested dual-reference native fitting and Draft PR on 2026-11-13. No official client/mobile/capacity acceptance."
+    },
+    "sts-style-project-sdk-evidence": {
+      "status": "Project-generated offline SDK and headless diagnostic captures of native geometry and existing platform image references. Original Slay the Spire rasters are linked and measured privately, not redistributed in this category. Game and platform IP remains with its owners; no asset sublicense or commercial clearance. Software rendering is not official import, ready, GPU or device acceptance.",
+      "evidence": "docs/design/UI_DESIGN.md; docs/evidence/sts-neow-reference-20261113/README.md; docs/evidence/sts-character-reference-20261113/README.md; docs/evidence/sts-card-reference-20261113/README.md"
+    },
+    "treasure-ui-pil-evidence": {
+      "status": "Project-authored UI geometry and production Lua text projected with Pillow and an installed system font. Unknown SDK textures are wireframe labels, not redistributed official images. Game identities remain their owners IP; no font binaries, IP sublicense or commercial clearance. Offline diagnostics only, not official client/device or final artwork acceptance.",
+      "evidence": "docs/evidence/treasure-readable-20261114/README.md; Owner reviewed both projected scenes on 2026-11-14. Runtime source, generated native layout and explicit Boss component fixture; no natural-playthrough claim."
+    },
+    "lowcost-authored-art-evidence": {
+      "status": "Project-authored simplified geometric enemy and relic illustrations drawn as rectangle, disc and triangle recipes. Contact sheets rendered with Pillow and an installed system font; no font binary or official texture redistributed. Game identities remain their owners IP; no IP sublicense or commercial clearance. Existing noncommercial project license and reserved rights unchanged. Offline geometry only, not SDK/device acceptance.",
+      "evidence": "docs/evidence/lowcost-art-20261114/README.md; data/presentation/lowcost-enemy-art.json; data/presentation/lowcost-relic-art.json. Original hand-authored semantic silhouettes, not reused 400-600-shape legacy assets."
     }
   },
   "files": {
+    "experiments/menu-red-fit/input/source.png": {
+      "sha256": "16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-20261113/menu.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-20261113/returned-menu.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-entry-20261114/menu.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-quality-20261114/before.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-quality-20261114/menu.png": {
+      "sha256": "23ac07b19542c110d6bb443a0c56e7477b40a2c6cc4bd38617326b3a59f44b9a",
+      "category": "menu-red-reference-native"
+    },
     "docs/evidence/hud-r2-20261101/after/battle-hover-1-1280x720.png": {
       "sha256": "77d4a074a0b8c83791a6836bc0d9f5c74677b08e4e05da22e503fc80c3e056e8",
       "category": "hud-r2-browser-evidence",
@@ -8825,6 +8865,814 @@
       "sha256": "a315f0d7032c35ec46db687e37d66e858f99afe6c64bfd5208753311e1b2b534",
       "category": "lumine-native-fit-20261113",
       "lfsBytes": 378523
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-final/character-select.png": {
+      "sha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-final/character-selected-idle.png": {
+      "sha256": "44c63b1f4991cb95bd8f88949ddcc9ae4435fc599c52bcb25663b5d4a24e4d88",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/approved-guide-position.png": {
+      "sha256": "3b14866e11a96e800ce4008ab441a885be7797f170b639f77d104dfcfc76a202",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/guide-same-position-comparison.png": {
+      "sha256": "925bd41c8d912d31f396e3c20f6c37c5810f34d356fa5629a820c8d9b5a5f08e",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/hood-mask-difference.png": {
+      "sha256": "2856cb0d7486e6a77495ee5d917b6d052d5e4cc787cbc2912bdee33c8866bdbf",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-hover-functional-unverified.png": {
+      "sha256": "88dddaf8beb94250a23fb70e4469c213286004b131b5d299c4cb26f62796c6b6",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-intro.png": {
+      "sha256": "8fb90fddcf960a533c2585aaa91878db2144880e1a858775c91c4b43ccc84c3a",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.png": {
+      "sha256": "bb1ee4af0de414887c322430bc4273ce99250ea703a2b32d44927b27c5e00e5a",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.png": {
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.png": {
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.png": {
+      "sha256": "adf52c6d5409d678dc038246d58ea5595a4739914e2cca9df63c2dec09bb2d7c",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.png": {
+      "sha256": "224714f2cf1be793ec422c241d4832a4bda52b922baac2344204517ccc98c3a9",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.png": {
+      "sha256": "d2b90cea5db6e3c565460b2ea401b9f7d9e1206910c188943b796b6cd36aa173",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.png": {
+      "sha256": "40477acd7aa71c7974cf05c81a4c659b223602f2b554886222c9419fc7722a18",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.png": {
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.png": {
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.png": {
+      "sha256": "90306e323ef399af30702c23531ab64be7cf2a705518514906e0cc3679afd842",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.png": {
+      "sha256": "b4d50e9d992a5e97a03d5c09828b92645963872d86c6bef1ec6f95e602dcc618",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.png": {
+      "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.png": {
+      "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.png": {
+      "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.png": {
+      "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.png": {
+      "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.png": {
+      "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.png": {
+      "sha256": "fd3979e41b52418650de482e8aa6051fa08ffea563574131ede9ea63cde69f69",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.png": {
+      "sha256": "f3d29000e5a4dcf0839ea5d0b9c871f613a22e577c4a96f324b0907f60a58859",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.png": {
+      "sha256": "87ada21aef0849bb513b335b717c12b7a33fba9ece3069ff081141fe748eaf82",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.png": {
+      "sha256": "dae2f682b788382768f8f94db9cde76ac03a18ff398fb6363b2ddb475464d315",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.png": {
+      "sha256": "e08cef5c7924cb6c327b1f3d496b1d95189a4f37d6d5fbbd24ec51f8825e3588",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.png": {
+      "sha256": "faee96a87429673a417b731773b2990f2d9a907b99d3cd1810b1e9a785cddc46",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.png": {
+      "sha256": "8f9529f11cac20a0f5bdd4f1cf7e2539bfb0700ef5ed6d49272a9c1492e048a6",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.png": {
+      "sha256": "8f9b5a81265caf15307c0779444a2bf3c7550b6ddc1b1bb480d2de135f96a79a",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-returned-selection.png": {
+      "sha256": "a8123049859139dd8b3088e23bd82b465c0fc7223c9a4b0d44b0046800cddf84",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-select.png": {
+      "sha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-selected-idle.png": {
+      "sha256": "9a61339ccd1fcb85e56f639516351c9c1ee39e32312e6b88e7c8318d4028eed5",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-browser.png": {
+      "sha256": "19e650c7beb16c33630bfbe333b2a938a3c07046e9ec867253b884b8725d195f",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-detail.png": {
+      "sha256": "c35bb7122354f2ce66c7e18e0e76f14009395ed19110f66feec030a611fecb69",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/approved-guide-position.png": {
+      "sha256": "3b14866e11a96e800ce4008ab441a885be7797f170b639f77d104dfcfc76a202",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-hover-functional-unverified.png": {
+      "sha256": "d0bd0c3165e15cae8dc3ee0a2d7ee97f821df55d2a91e1b6657996ada5c4d976",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-intro.png": {
+      "sha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-normal.png": {
+      "sha256": "af4a08a7e19ace9297bad4d5587c396cdcb16c8c7c8f102670d50b12afd9af96",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/guide-same-position-comparison.png": {
+      "sha256": "925bd41c8d912d31f396e3c20f6c37c5810f34d356fa5629a820c8d9b5a5f08e",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/hood-mask-difference.png": {
+      "sha256": "2856cb0d7486e6a77495ee5d917b6d052d5e4cc787cbc2912bdee33c8866bdbf",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-hover-functional-unverified.png": {
+      "sha256": "c630c7f9bf71f9860623cc0bcb94e486f335c643bf79321a7bc7d3515a69772f",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-intro.png": {
+      "sha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-normal.png": {
+      "sha256": "973fea6cbd3736d2143632326bb543f27944641d2048970476f21fb2a0c8e61d",
+      "category": "sts-style-project-sdk-evidence"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-discard-pile.state.json.gz": {
+      "sha256": "29431af80c79584abd24661e1502ae02b8ef01b31f4424be57c64319875c4526",
+      "bytes": 922505,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-draw-pile.state.json.gz": {
+      "sha256": "c0a716fa19f7238dc4c2e1b1de7dd7f3d1a6e0d92eccf805ce99a2a7d98949f9",
+      "bytes": 1014542,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-hud.state.json.gz": {
+      "sha256": "1c3f63847e6af5ef072e924d0bd1156a0139c5b0cc82f102fcfe385d1316ca58",
+      "bytes": 862256,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-permanent-deck.state.json.gz": {
+      "sha256": "a7a1021d66d57f1f323917e1e98a81f4d45251fbbb103749903d978ad8bf90ff",
+      "bytes": 1044206,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-choice-hud.state.json.gz": {
+      "sha256": "51c75106470ea9474baee6b54e753054affb9bfe566dee5fc0fca80c7515d464",
+      "bytes": 852566,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-hud.state.json.gz": {
+      "sha256": "d7101c6cba7e5a91b6fc1b8345304f5a153a2c335e1e150404ebae8c9a5952c7",
+      "bytes": 852413,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/map-hud.state.json.gz": {
+      "sha256": "cf218a36c130ad960c8e82f1847283ad102a34806396eabe1b78ee37e08d10e4",
+      "bytes": 856577,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.state.json.gz": {
+      "sha256": "e5243b496b20c9ff6164d461a9199645a08c3d5102684c8a2629c60aa9583a2b",
+      "bytes": 1023099,
+      "category": "shared-run-hud-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/01-shop-bubble.state.json.gz": {
+      "sha256": "b3cc8099d07b56c13b8c852a9ce805923d225971b5d6e0877ce93e8fbd8bbb2c",
+      "bytes": 864330,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/02-leave-hover.state.json.gz": {
+      "sha256": "29e0971acdffd3a0b0cb5816958ad26301d1273213a6e5e16d7ac7e4bb2b74ee",
+      "bytes": 864406,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/03-leave-pressed.state.json.gz": {
+      "sha256": "61d84326086cc8880e5c8c1dd3d0ed47fe129e25006cf6af8017c169081a24cc",
+      "bytes": 864443,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/04-map-preview.state.json.gz": {
+      "sha256": "7994cab442ce62d1bcea2220c9400781a53f9171f7a332149117c2f4dfc16aca",
+      "bytes": 864746,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/05-shop-map-return.state.json.gz": {
+      "sha256": "3163482625e4cef4a8c52b42475edb731caddb02eb0cdff60cb9c101c6ed9bfd",
+      "bytes": 864932,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/06-deck17-top.state.json.gz": {
+      "sha256": "3ffa3fe1643825302571134d55f87ae94d986c21d2f35399c45992b249d3bf05",
+      "bytes": 1031143,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/07-deck17-bottom.state.json.gz": {
+      "sha256": "73dd33605de598927d8b34998d186e73af3403a36c27203f63948a95e70afc71",
+      "bytes": 1031206,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/08-deck-card-detail.state.json.gz": {
+      "sha256": "3182d60b4a251a09dcee919c4f032ed6a30b0fda68eb642b2a1fe377c112fb28",
+      "bytes": 1031534,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/09-deck-return-list.state.json.gz": {
+      "sha256": "2bff1608eacfcb4555c3f0b4ad56dc83adade95197812ffaf2a76f8f33dcaa1b",
+      "bytes": 1031689,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/shop-deck-parity-20261112/visual-current/10-shop-deck-return.state.json.gz": {
+      "sha256": "28022972e8bee0277f2d84520d6476673e6592240ce712e40d3778f866904837",
+      "bytes": 865596,
+      "category": "shop-deck-parity-simulator-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-pending.json.gz": {
+      "sha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d",
+      "bytes": 38222,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-ready.json.gz": {
+      "sha256": "dc82893792765e28afc76ca78c8854287fd8021b34f3a28035961924dc583633",
+      "bytes": 210073,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-pending.json.gz": {
+      "sha256": "8c36d8bb8c51024808454cee8945bfd13b1b00c64024ff978a667f62eb69c131",
+      "bytes": 43601,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-ready.json.gz": {
+      "sha256": "b8769eda5ce0691bbddacbe07d8029d393cca8b9cc12278967222095e9c2003a",
+      "bytes": 574885,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-pending.json.gz": {
+      "sha256": "8ba9756d4beec19b64e0f058a4afb61481523e27c6ca1a112ae0819f589ed727",
+      "bytes": 63861,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-ready.json.gz": {
+      "sha256": "c0820334e93ce93e63059d72dbd05da610f275d11c4b5f71c6ba85d5dcfbf4eb",
+      "bytes": 233720,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-pending.json.gz": {
+      "sha256": "0ab3d69f9fcb758e68f88e1405196e8de4988a23d59427eea0406a72c14b90df",
+      "bytes": 38601,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-ready.json.gz": {
+      "sha256": "6a4a8b405fdf329897d1c2366a8f4ff1c31eb6d701dbb8af36bf182fd1bda100",
+      "bytes": 210374,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-pending.json.gz": {
+      "sha256": "d342d8d06f02c4551708649bce2a3bd68dd8a4bd8f8baba773d4010ad2476747",
+      "bytes": 43832,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-ready.json.gz": {
+      "sha256": "d1cb96c89c2c138de08b1cd91d0d97e70aacc35ed4a8a659f1b50c40b93e5534",
+      "bytes": 216435,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-pending.json.gz": {
+      "sha256": "59c00ba69ad2c288bec80b29a580d87cc951e75d7a5388571cb8a278825c4b11",
+      "bytes": 43379,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-ready.json.gz": {
+      "sha256": "35e0e3e7e474593502a4d9988a0c106a799d749a371d05f88eafc986d480ced7",
+      "bytes": 43411,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-pending.json.gz": {
+      "sha256": "7d9b411c00b76f6783c1183817c44e5abe870177cb16d2f5bc6f26813d0f088a",
+      "bytes": 43517,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-ready.json.gz": {
+      "sha256": "60c5781037d26ada90d4c75bfaab7d6ea7eb14e9e45fe43bbd0aaf214c529c18",
+      "bytes": 43535,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-pending.json.gz": {
+      "sha256": "fa1a34d5b0fe2353c99d7a988b527c673d1caabd9aa01c72c9143f4ededc2142",
+      "bytes": 38877,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-ready.json.gz": {
+      "sha256": "5abf825db2e6fa74c2e77bf684966ccd8172630dcc7c980b56a1ea94540f7792",
+      "bytes": 210733,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-pending.json.gz": {
+      "sha256": "d1dcc63a5c1acb2f62501622b057d998028790b69df3f8d34de2cd893a98c815",
+      "bytes": 39309,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-ready.json.gz": {
+      "sha256": "1dab29d19946a90cec9e0241fc1687b4043a55b07537d735fdd3ea07aa312f54",
+      "bytes": 209636,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.state.json.gz": {
+      "sha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d",
+      "bytes": 38222,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.state.json.gz": {
+      "sha256": "dc82893792765e28afc76ca78c8854287fd8021b34f3a28035961924dc583633",
+      "bytes": 210073,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.state.json.gz": {
+      "sha256": "8c36d8bb8c51024808454cee8945bfd13b1b00c64024ff978a667f62eb69c131",
+      "bytes": 43601,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.state.json.gz": {
+      "sha256": "b8769eda5ce0691bbddacbe07d8029d393cca8b9cc12278967222095e9c2003a",
+      "bytes": 574885,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.state.json.gz": {
+      "sha256": "8ba9756d4beec19b64e0f058a4afb61481523e27c6ca1a112ae0819f589ed727",
+      "bytes": 63861,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.state.json.gz": {
+      "sha256": "c0820334e93ce93e63059d72dbd05da610f275d11c4b5f71c6ba85d5dcfbf4eb",
+      "bytes": 233720,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.state.json.gz": {
+      "sha256": "0ab3d69f9fcb758e68f88e1405196e8de4988a23d59427eea0406a72c14b90df",
+      "bytes": 38601,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.state.json.gz": {
+      "sha256": "6a4a8b405fdf329897d1c2366a8f4ff1c31eb6d701dbb8af36bf182fd1bda100",
+      "bytes": 210374,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.state.json.gz": {
+      "sha256": "d342d8d06f02c4551708649bce2a3bd68dd8a4bd8f8baba773d4010ad2476747",
+      "bytes": 43832,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.state.json.gz": {
+      "sha256": "d1cb96c89c2c138de08b1cd91d0d97e70aacc35ed4a8a659f1b50c40b93e5534",
+      "bytes": 216435,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.state.json.gz": {
+      "sha256": "59c00ba69ad2c288bec80b29a580d87cc951e75d7a5388571cb8a278825c4b11",
+      "bytes": 43379,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.state.json.gz": {
+      "sha256": "35e0e3e7e474593502a4d9988a0c106a799d749a371d05f88eafc986d480ced7",
+      "bytes": 43411,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.state.json.gz": {
+      "sha256": "7d9b411c00b76f6783c1183817c44e5abe870177cb16d2f5bc6f26813d0f088a",
+      "bytes": 43517,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.state.json.gz": {
+      "sha256": "60c5781037d26ada90d4c75bfaab7d6ea7eb14e9e45fe43bbd0aaf214c529c18",
+      "bytes": 43535,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.state.json.gz": {
+      "sha256": "fa1a34d5b0fe2353c99d7a988b527c673d1caabd9aa01c72c9143f4ededc2142",
+      "bytes": 38877,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.state.json.gz": {
+      "sha256": "5abf825db2e6fa74c2e77bf684966ccd8172630dcc7c980b56a1ea94540f7792",
+      "bytes": 210733,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.state.json.gz": {
+      "sha256": "d1dcc63a5c1acb2f62501622b057d998028790b69df3f8d34de2cd893a98c815",
+      "bytes": 39309,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.state.json.gz": {
+      "sha256": "1dab29d19946a90cec9e0241fc1687b4043a55b07537d735fdd3ea07aa312f54",
+      "bytes": 209636,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.state.json.gz": {
+      "sha256": "9150e20ebd9abe1b78b328e3478ed8f5d08e36f800d16ea661ddedd7f9e46788",
+      "bytes": 17834,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.state.json.gz": {
+      "sha256": "3128447aa39375504d1eb39ce3a11478c401a53d7695030e8ae811ebf0c4e1a3",
+      "bytes": 166267,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.state.json.gz": {
+      "sha256": "f3cf29e039f3b04f5dbabbc28592fb1170e268437f9574d3f01929673dec542f",
+      "bytes": 83575,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.state.json.gz": {
+      "sha256": "ed237b71ba0ce4b404e4e5be0b6457c34cb02426cd6e697cc3e4c04cba110f2b",
+      "bytes": 36868,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.state.json.gz": {
+      "sha256": "ea0468ddcce55054dc629aca05a91c4541ea2015e77885c473ca31203a0979a8",
+      "bytes": 355320,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.state.json.gz": {
+      "sha256": "190ac1604a5644244a3f3d3c35de888f6e57b911560a600d624f420dd632c564",
+      "bytes": 178150,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-final/character-select.state.json.gz": {
+      "sha256": "f6a00272bdf4332a20d4004eb1f255992a56c00058b35b2d61a0a7bf85480011",
+      "bytes": 968074,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-final/character-selected-idle.state.json.gz": {
+      "sha256": "e6d6fcc87ca988bca3484dc635b526f8453801c127dd6cf30399431f4ad28e97",
+      "bytes": 968186,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-returned-selection.state.json.gz": {
+      "sha256": "85a086dae109f6342ab6c7283fac10d4e0280b0e18298a646593c788878b025d",
+      "bytes": 1192859,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-select.state.json.gz": {
+      "sha256": "02a1fc414232e8d600f9bd0454ac77ed6965dbacd51a5e61e170ec9fd3a3357a",
+      "bytes": 1191757,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-selected-idle.state.json.gz": {
+      "sha256": "eb3ce7966fa71842041c6d6e5f05e167dd8bdb0d602a7c06177c5afb2028ae15",
+      "bytes": 1191847,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-browser.state.json.gz": {
+      "sha256": "10d0c9bf31ae979986d5e7549f6afa1eb40f54315e87b0582ec1de6652f13983",
+      "bytes": 1366136,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-detail.state.json.gz": {
+      "sha256": "c121f540b9b33372d421b104973d6cc22d9efaf7fcae3c740cbf3f3f5a98bff7",
+      "bytes": 1366277,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-hover-functional-unverified.state.json.gz": {
+      "sha256": "bc3d3b43c370689a232c1a407406c661ceb203469d4130e4b83883177400c404",
+      "bytes": 1110815,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-intro.state.json.gz": {
+      "sha256": "3b67b1d91cf90eecf957430d0f1c581cf5e53f0dbd7a5e01f2f59393e0465a4d",
+      "bytes": 1110364,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-normal.state.json.gz": {
+      "sha256": "60cd993083462d4708b400bee7bb0a3a2b3eeb3d8972379e4bdac727d97b6eb8",
+      "bytes": 1110803,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-hover-functional-unverified.state.json.gz": {
+      "sha256": "06ea16f3bd3f6ae39a91724741587e73ea606c5304d85243323e385d4d0d648f",
+      "bytes": 1110639,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-intro.state.json.gz": {
+      "sha256": "5e7bfa1a710f7981346e85da9df2c93c071da6b47d1977db944117612f1e7c74",
+      "bytes": 1110369,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-normal.state.json.gz": {
+      "sha256": "c17cbb62ab6f44bb36fadfb08a52908daa887e77d7c6fac7884fcd03f8135abc",
+      "bytes": 1110641,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-hover-functional-unverified.state.json.gz": {
+      "sha256": "b3efbab2773269fd858e8d3eba8b7297be060fdf8fc409dfaaab84da5c2ea8b2",
+      "bytes": 886840,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-intro.state.json.gz": {
+      "sha256": "b141f755ba3eaf034b249dd41feb6ccd628d04085a7062a42aaee3b5a0ec5122",
+      "bytes": 886622,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.state.json.gz": {
+      "sha256": "ed214557c1e080b4b24ee2556773344b051634238a351514ace92f4772cc29d5",
+      "bytes": 886835,
+      "category": "sts-style-project-sdk-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/treasure-readable-20261114/bell-hover.png": {
+      "sha256": "0c7341e0afca6547985d42488b3d6ea4e113a546a1d7cfa6c3fc21f07dd90433",
+      "category": "treasure-ui-pil-evidence"
+    },
+    "docs/evidence/treasure-readable-20261114/snecko-hover.png": {
+      "sha256": "3b1cf59c92bb1af509b6be2cb7b69492db85fe1fadcf3804779ee217157209cf",
+      "category": "treasure-ui-pil-evidence"
+    },
+    "docs/evidence/lowcost-art-20261114/relic-gallery.png": {
+      "sha256": "e91867326e4a6fffcfbcab6278958e91eac9e32d7452cc45878bcffadb9868ee",
+      "category": "lowcost-authored-art-evidence"
+    },
+    "docs/evidence/lowcost-art-20261114/enemy-gallery.png": {
+      "sha256": "a1b9c8f0a1fdcc1bfe331b8338593158d5df4a51effc3c1044c345af8f9ba3dc",
+      "category": "lowcost-authored-art-evidence"
     }
   }
 }

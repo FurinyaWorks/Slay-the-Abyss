@@ -1,0 +1,17 @@
+{
+  "reason": "User explicitly replaces the temporary pixel selection contract with the same approved battle idle source; original test evidence retained.",
+  "files": {
+    "official-portraits-build.test.mjs": {
+      "sha256": "f97f99a6166f81c45082954eb21e814b74c1e56e35f5223efbe0670c05eb0821",
+      "bytes": 8555
+    },
+    "official-assets.test.mjs": {
+      "sha256": "c7ad40bc95f8c5ce344d9474711dc53142d8fcae941c140365fac2d1a2588ae2",
+      "bytes": 21578
+    },
+    "lumine-idle.test.mjs": {
+      "sha256": "32ef6354f3435bd47be6994966e32ea47c0c8b811847c12841da6b6965472993",
+      "bytes": 9913
+    }
+  }
+}

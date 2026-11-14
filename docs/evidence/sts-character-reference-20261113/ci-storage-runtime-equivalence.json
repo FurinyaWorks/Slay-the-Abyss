@@ -1,0 +1,150 @@
+{
+  "status": "BYTE_IDENTICAL_APPLICATION",
+  "mode": "character",
+  "beforeSourceClosure": "52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731",
+  "afterSourceClosure": "b1271f1897a41afb3e2eaa8759e812dfc2190c6e31228062e04e6b7a98cff563",
+  "changedInputs": [
+    "scripts/check-license.mjs",
+    "scripts/ci-media-lfs.mjs",
+    "scripts/test-affected.mjs",
+    "config/ci-media-lfs.json"
+  ],
+  "generated": [
+    {
+      "file": "abyss_art_features.lua",
+      "sha256": "30c57fdb2a8d739ae6d523973f10ebbc1d7e2c55915fef669af56cb86cf74d9b",
+      "bytes": 200
+    },
+    {
+      "file": "abyss_component_binding.lua",
+      "sha256": "ca994b74c66fee485045460ebad65e1752b256e80f8d84b20288b6a34c08e2c8",
+      "bytes": 83
+    },
+    {
+      "file": "abyss_data.lua",
+      "sha256": "478cd77900b73a0eae6b4966d8443d28180b6529e6e8655b1ef1d7d829d56f18",
+      "bytes": 212819
+    },
+    {
+      "file": "abyss_map_controls.lua",
+      "sha256": "f2f2e6618c8105f07da45a6d3ed7fe5a63df5f3e498e2af155b7103d81778507",
+      "bytes": 102846
+    },
+    {
+      "file": "abyss_map_layout.lua",
+      "sha256": "e08ebb48860ffee29db3313b56e1cb68ed6b649070148ddb3b6d16c95af4bff3",
+      "bytes": 612
+    },
+    {
+      "file": "abyss_menu_background_asset.lua",
+      "sha256": "3c27739f7bf21453d31f57d21469bc2579a63dd7ad0d071f9667d440c5db4b03",
+      "bytes": 69
+    },
+    {
+      "file": "abyss_monster_actor_binding.lua",
+      "sha256": "7fc58e3e4bf8807074d64f64f0091849b6ff1293541602c14d1c9042a2e54014",
+      "bytes": 202
+    },
+    {
+      "file": "abyss_monster_art_data.lua",
+      "sha256": "dd3c9956c7cc8c66d0e96f12e6c142b29923a0d3af4f679183519aed3333cbbb",
+      "bytes": 65
+    },
+    {
+      "file": "abyss_narrative.lua",
+      "sha256": "c8b5924faea790e9bb0b81f9d22961b61b8920fe2acf04d0a54f431b1a29f573",
+      "bytes": 7703
+    },
+    {
+      "file": "abyss_original_v4_data.lua",
+      "sha256": "63e4983d6d80241f287e153087efd81e7ab287efbb15e195ef80ad90230fb2cb",
+      "bytes": 577904
+    },
+    {
+      "file": "abyss_presentation.lua",
+      "sha256": "d787983564fc6d1e3435fd55d0b97fe593d12b7b53b393ce4fbf298318449e0c",
+      "bytes": 74514
+    },
+    {
+      "file": "abyss_ready_card_assets.lua",
+      "sha256": "c9270928bf5a43b58a811e80e7d85458861031fc6ae661d3a6af8ed3e2a69db9",
+      "bytes": 81
+    },
+    {
+      "file": "abyss_ready_card_binding.lua",
+      "sha256": "48a39331473040519b2038227707e4a687143a21303b84e2cdcdeaa9e229e585",
+      "bytes": 166
+    },
+    {
+      "file": "abyss_theme.lua",
+      "sha256": "3e917b562aabb7348e2b170926fe38e094e5350d42d867d09def090161d1ebae",
+      "bytes": 181569
+    },
+    {
+      "file": "abyss_traveler_portrait_assets.lua",
+      "sha256": "20c9c8e652ba68037f13853eef09f2c1499cee2c02d5bb6c96f4c1487d379705",
+      "bytes": 1053941
+    },
+    {
+      "file": "abyss_ui_layout.lua",
+      "sha256": "a7adb452d768452cac62d9e65c7b97787240ffd5e34521c7fe46842dc7837e37",
+      "bytes": 4680806
+    },
+    {
+      "file": "abyss_ui_profile.lua",
+      "sha256": "18dca490638f500f0e97c6e1463310b4f2e88f59c1754de8faad49ac140d3e8a",
+      "bytes": 109
+    },
+    {
+      "file": "abyss_ui_templates.lua",
+      "sha256": "270bcf52ecc9abcc7e2bbaf743b1ecb4f669f659b602d7cf0bda152384f1693b",
+      "bytes": 147887
+    },
+    {
+      "file": "abyss_v25_card_assets.lua",
+      "sha256": "f375249ec77cc5e83e3cd4f3fb226eb321eff7e6bae95431d53d5b4f90751503",
+      "bytes": 72
+    },
+    {
+      "file": "art-render-v2.json",
+      "sha256": "b6d991b0e9d37abfdfde58d6c7beacd035d70eca1881fdc3f47c6f77fbcd77ec",
+      "bytes": 80
+    },
+    {
+      "file": "battle-ui.json",
+      "sha256": "114fd44b1c84f64d9885768aa12fbab4e48a79adfec952987e0e45a4ea3750db",
+      "bytes": 3559073
+    },
+    {
+      "file": "game-ui-templates.json",
+      "sha256": "3e330aa5004eeb3f560501b5d345f6e6bd0c039bb938de4a9f05a27b82012b58",
+      "bytes": 499556
+    },
+    {
+      "file": "game-ui.json",
+      "sha256": "0784b1e66151cee9c9847527b4507683d7ad67b2df154f9da6878b45f6747c11",
+      "bytes": 20412900
+    },
+    {
+      "file": "map-ui.json",
+      "sha256": "9819abe824097acf9e339ec84f81981e73a34bacccef29f234488b7147d9b7a2",
+      "bytes": 334229
+    },
+    {
+      "file": "official-assets-theme.json",
+      "sha256": "dc36730f77eeeba07a79693dff202c3a232fc11680a543c7d21a087588e72cea",
+      "bytes": 109693
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "character",
+      "sha256": "90296e9c9e16da43b71c577318c28ca3c31ea3266ff3ec75923244c84410a1cf",
+      "bytes": 53306522
+    }
+  ],
+  "meaning": "Existing SDK captures use exactly the same application bytes; broad source changes are limited to reviewed CI/storage scripts.",
+  "officialImport": false,
+  "officialReady": false,
+  "deviceEvidence": false
+}

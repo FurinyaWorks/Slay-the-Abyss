@@ -61,7 +61,7 @@ test('all encounter pages remain readable and idle waits for the long text to fi
  while true do
   assert(merchant:tap());pages[#pages+1]=root:GetChild('merchant'):GetChild('line').text
   assert(utf8.len(pages[#pages])<=Theme.layout.merchant.pageCharacters)
-  local last=original.page*Theme.layout.merchant.pageCharacters>=#original.chars
+  local last=original.ends[original.page]>=#original.chars
   if last then break end
   assert(merchant:tap())
  end
@@ -94,5 +94,31 @@ test('a hidden or map-covered shop pauses its bubble timer and pose follows the 
  local p,b=box:GetChild('portrait'),box:GetChild('bubble');local m=Theme.layout.merchant
  assert(math.abs((b.y-p.y)-(m.box[2]-m.portrait[2]))<.0001,'bubble detached from nodding head')
  assert(math.abs((b.x-p.x)-(m.box[1]-m.portrait[1]))<.0001,'bubble detached from shaking head')
+end)
+test('production merchant uses semantic pages in both existing budgets',function()
+ local budget=Theme.layout.merchant.pageCharacters
+ for _,limit in ipairs({9,12})do
+  Theme.layout.merchant.pageCharacters=limit
+  local ui,root=setup();assert(ui.merchant:tap())
+  assert(root:GetChild('merchant'):GetChild('line').text=='转过一道石廊，','production entry still uses fixed offsets')
+  ui.merchant:react('buy');assert(ui.merchant:tap())
+  assert(root:GetChild('merchant'):GetChild('line').text=='「眼光不错。」')
+ end
+ Theme.layout.merchant.pageCharacters=budget
+end)
+test('manual and automatic sentence boundaries agree without losing characters',function()
+ local function read(auto)
+  local ui,root=setup();local merchant=ui.merchant;local current=merchant.current;local result={}
+  while true do
+   if auto then ui:update(1) else assert(merchant:tap()) end
+   assert(current.shown==current.ends[current.page])
+   result[#result+1]=root:GetChild('merchant'):GetChild('line').text
+   if current.ends[current.page]==#current.chars then break end
+   if auto then ui:update(Theme.layout.merchant.hold+.01) else assert(merchant:tap()) end
+  end
+  assert(table.concat(result)==Narrative.merchant.encounter)
+  return table.concat(result,'|')
+ end
+ assert(read(false)==read(true))
 end)
 assert(failures==0,tostring(failures)..' merchant lifecycle failures')

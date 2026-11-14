@@ -1,0 +1,195 @@
+{
+  "scope": "offline official-profile source and native control inventory; not official capacity, GPU FPS, or phone measurements",
+  "inventory": {
+    "relic": {
+      "assets": 88,
+      "sourceShapes": 732,
+      "maximumVisibleShapesPerIllustration": 14,
+      "poolCapacity": 16,
+      "sourceBytes": 140095,
+      "sourceSha256": "1735a5f8dfca4b28220825aa163d8b9dc4d8a1aceba0244eb6e11ae6198963b3"
+    },
+    "enemy": {
+      "assets": 42,
+      "sourceShapes": 689,
+      "maximumVisibleShapesPerIllustration": 28,
+      "poolCapacity": 32,
+      "sourceBytes": 132450,
+      "sourceSha256": "0244dc45e5bc69f5c912c89469f2f5025073c6e7dd706d47da0754c60907f89f"
+    }
+  },
+  "totalLayoutAndTemplateControls": 23956,
+  "staticPoolControlsAdded": 679,
+  "relicPools": 38,
+  "enemyTemplatePools": 1,
+  "liveEnemyAdditionalControlsPerActor": 33,
+  "defaultProfilePoolControlsAdded": 0,
+  "maximumChildrenPerNewPool": 32,
+  "illustrationsCopiedPerSlot": false,
+  "nativeTextureDependencies": [
+    100001,
+    100002,
+    100003
+  ],
+  "cachedIllustrationShapeWritesPerRefresh": 0,
+  "pools": [
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/shopView/relic1/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/shopView/relic2/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/shopView/relic3/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/treasureView/reward/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/treasureView/rewardItem1/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/treasureView/rewardItem2/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/treasureView/rewardItem3/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/nodePanel/treasureView/rewardItem4/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot1/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot2/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot3/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot4/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot5/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot6/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot7/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot8/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot9/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot10/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot11/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot12/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot13/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot14/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot15/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot16/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot17/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot18/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot19/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot20/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot21/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot22/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot23/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot24/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicBar/slot25/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicPanel/row1/slot/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicPanel/row2/slot/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicPanel/row3/slot/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicPanel/row4/slot/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/SlayTheAbyss/stage/relicPanel/single/iconArt",
+      "capacity": 16
+    },
+    {
+      "path": "/AbyssMonsterActor/portraitArt",
+      "capacity": 32
+    }
+  ],
+  "sharedRuntimeArtworkLuaBytes": 192242,
+  "buildDirectory": "build/lowcost-official"
+}

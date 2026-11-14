@@ -1,0 +1,68 @@
+{
+  "scope": "frozen source-generated SDK archives; official entries retain cards=false; readyArt is a controlled compatibility injection; no original StS raster is included",
+  "rows": [
+    {
+      "kind": "baseline",
+      "n": 1,
+      "file": "baseline-1.save.json.gz",
+      "saveSha256": "a1dc9480ec46ce893e6392552ca645fee322c25e9e54531ac57b054cd287dc24",
+      "gzipSha256": "2d5405a7934953c3c0040d2e58b127c550d8874e16f652337fd0eaeda290e48d",
+      "bytes": 385660,
+      "gzipBytes": 12229
+    },
+    {
+      "kind": "official",
+      "n": 1,
+      "file": "official-1.save.json.gz",
+      "saveSha256": "7cae7e82fd165fcf77d9137226f0ccb3e653449babc2e5260459910ac059986f",
+      "gzipSha256": "a4620544c1b65c1fadbc8b7bca1b93514326fb3569983b8f1fc58ee49b2e2510",
+      "bytes": 864819,
+      "gzipBytes": 82310
+    },
+    {
+      "kind": "baseline",
+      "n": 5,
+      "file": "baseline-5.save.json.gz",
+      "saveSha256": "02c60666f0010aae0f569b8a6b524b8e72597f883714584e0eb5fcaefd7135e9",
+      "gzipSha256": "2afbd18e1d7ce779757bcbd8d6f5d877ae467ba37012f344f1f46133915d1e8f",
+      "bytes": 1903804,
+      "gzipBytes": 54337
+    },
+    {
+      "kind": "official",
+      "n": 5,
+      "file": "official-5.save.json.gz",
+      "saveSha256": "7e94dd0abb8e50832dd2389989fc814f4af31ff7d5f3f8503392f6b9a735bccf",
+      "gzipSha256": "7b414b052f69a4a5d47742aa42cbd8e7f89ae9c1358775d9dcc0453a1e08929a",
+      "bytes": 3162675,
+      "gzipBytes": 148273
+    },
+    {
+      "kind": "baseline",
+      "n": 10,
+      "file": "baseline-10.save.json.gz",
+      "saveSha256": "baee111107762debfd2345b93f14dc60965ea4e4831d1a089596b6d28175b88e",
+      "gzipSha256": "bd6fb8b17b81adb1f687999be079e846a076c06604e225a418035c5ef497ae86",
+      "bytes": 3801574,
+      "gzipBytes": 106990
+    },
+    {
+      "kind": "official",
+      "n": 10,
+      "file": "official-10.save.json.gz",
+      "saveSha256": "83299412ed4ed683234f9780b48ce7a59a601195ad9d9151c6d124348938669c",
+      "gzipSha256": "a88bfa4818e49e5b9dd4661d19f34d73d5d8df95eb97956632b8bbd7e3cce2b1",
+      "bytes": 6035087,
+      "gzipBytes": 232185
+    },
+    {
+      "kind": "controlled-readyArt",
+      "n": 1,
+      "file": "compatibility.save.json.gz",
+      "saveSha256": "0d839497e92dd691c473ff80c7ae8b55ad483d38ab3096cd1b4ecd1f892bc85d",
+      "gzipSha256": "e6a52d02b4e7858c68b51f5f3286bfcc20dcd870421415add4b6726bf824ea6b",
+      "bytes": 1713231,
+      "gzipBytes": 257716
+    }
+  ]
+}

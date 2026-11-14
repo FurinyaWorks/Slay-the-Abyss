@@ -4,6 +4,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createHash} from 'node:crypto';
 import {loadNativeUiEncoder} from './native-ui-encoder.mjs';
 import {embeddedScripts} from './native-script-inventory.mjs';
+import {loadNativeSimulatorImporter} from './native-simulator-importer.mjs';
 export function previewImageMaskFields(spec){
  return {enableMask:!!(spec.mask||spec.fill||spec.feather||spec.invertMask),enableFill:!!spec.fill,
   enableSoftEdge:!!spec.feather,reverseMaskArea:spec.invertMask===true,
@@ -59,7 +60,7 @@ const platforms=['KEYBOARD','TOUCHSCREEN','CONTROLLER_CONSOLE','CONTROLLER_MOBIL
 const templateIds=Object.fromEntries(templateRecords.map(t=>[t.template.name,t.templateIndex])),warnings=[],unknown=new Map(),allIds=new Set();let fallbackId=1900000000,converted=0;
 const warn=s=>{if(!warnings.includes(s))warnings.push(s);};
 const vector=(a,defaults)=>({x:a?.[0]??defaults[0],y:a?.[1]??defaults[1]});
-function transform(spec){return {scale:{...vector(spec.scale,[1,1]),z:1},rotation:{x:0,y:0,z:spec.rotation??0},anchorMin:vector(spec.anchor?.min,[.5,.5]),anchorMax:vector(spec.anchor?.max,[.5,.5]),offset:vector(spec.position,[0,0]),size:vector(spec.size,[0,0]),pivot:vector(spec.pivot,[.5,.5])};}
+function transform(spec){const xyz=Array.isArray(spec.rotation)?spec.rotation:[0,0,spec.rotation??0];return {scale:{...vector(spec.scale,[1,1]),z:1},rotation:{x:xyz[0],y:xyz[1],z:xyz[2]},anchorMin:vector(spec.anchor?.min,[.5,.5]),anchorMax:vector(spec.anchor?.max,[.5,.5]),offset:vector(spec.position,[0,0]),size:vector(spec.size,[0,0]),pivot:vector(spec.pivot,[.5,.5])};}
 function argb(colour='#FFFFFF',alpha=1){return ((Math.round(alpha*255)<<24)|(parseInt(colour.replace('#',''),16)&0xffffff))>>>0;}
 const cap=s=>s?s[0].toUpperCase()+s.slice(1):s;
 const align={left:'Left',centre:'Middle',right:'Right',top:'Top',middle:'Middle',bottom:'Bottom'};
@@ -116,7 +117,7 @@ warn('Native script public parameter nativeBgmEnabled is present in candidate pa
 const output=path.join(out,'pr588.actual.save.json');fs.writeFileSync(output,JSON.stringify(save));
 // Existing importer is an independent schema reader. It preserves save order,
 // so reverse its controls back before comparing native painter-order identity.
-const {readSimulatorSave}=await import(pathToFileURL(path.join(toolRoot,'src/simulator-import.mjs')));
+const {readSimulatorSave,identity:inverseReader}=await loadNativeSimulatorImporter(toolRoot);
 const inverse=readSimulatorSave(output),inverseFaults=[];
 if(inverse.scripts.length!==scripts.length||inverse.templates.length!==templateRecords.length)inverseFaults.push('inverse inventory differs');
 for(const s of scripts)if(inverse.scripts.find(t=>t.name===s.name)?.source!==s.source)inverseFaults.push('inverse Lua differs '+s.name);
@@ -149,7 +150,7 @@ function compareTree(original,restored,trail){
 const inverseControls=[...(inverse.ui?.controls??[])].reverse();ui.interface.controls.forEach((n,i)=>compareTree(n,inverseControls[i],n.name));
 if(JSON.stringify(inverse.ui?.scripts)!==JSON.stringify(ui.interface.scripts))inverseFaults.push('interface script mount differs');
 for(const t of templateRecords){const restored=inverse.templates.find(x=>x.guid===t.templateIndex);if(!restored)inverseFaults.push('template guid '+t.templateIndex);else compareTree(t.template,restored.spec,t.template.name);}
-const summary={format:save.format,version:save.version,candidateSha256:candidate.candidate.sha256,sourceCommit:candidate.sourceCommit,sourceDirty:candidate.sourceDirty,buildId:candidate.buildId,save:output,saveSha256:hash(output),bytes:fs.statSync(output).size,controlsConverted:converted,templates:templateRecords.map(t=>({name:t.template.name,actualId:t.templateIndex})),scripts:save.assets.scripts.length,luaSourceExact:true,allActualLuaGuidsReadFromGil:true,childOrder:'Every native readback children list reversed into simulator: installed renderer traverses children.reverse() and simulator native importer reverses parsed native lists.',inverseReadback:{nodesCompared:pairs.length,faults:inverseFaults,notes:inverse.notes},unknownProperties:Object.fromEntries(unknown),warnings,modifiedGil:false,played:false};
+const summary={format:save.format,version:save.version,candidateSha256:candidate.candidate.sha256,sourceCommit:candidate.sourceCommit,sourceDirty:candidate.sourceDirty,buildId:candidate.buildId,save:output,saveSha256:hash(output),bytes:fs.statSync(output).size,controlsConverted:converted,templates:templateRecords.map(t=>({name:t.template.name,actualId:t.templateIndex})),scripts:save.assets.scripts.length,luaSourceExact:true,allActualLuaGuidsReadFromGil:true,childOrder:'Every native readback children list reversed into simulator: installed renderer traverses children.reverse() and simulator native importer reverses parsed native lists.',inverseReadback:{nodesCompared:pairs.length,faults:inverseFaults,notes:inverse.notes,reader:inverseReader},unknownProperties:Object.fromEntries(unknown),warnings,modifiedGil:false,played:false};
 if(hash(gil)!==candidate.candidate.sha256)throw Error('GIL changed during preview conversion');
 fs.writeFileSync(path.join(out,'adapter-receipt.json'),JSON.stringify(summary,null,2));
 if(inverseFaults.length||unknown.size)throw Error('Preview conversion differs: '+inverseFaults.slice(0,8).join(';')+' unknown='+[...unknown.keys()].join(','));

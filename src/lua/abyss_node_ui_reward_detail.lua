@@ -1,6 +1,25 @@
 -- Read-only relic/key details: hover on desktop, hold on mobile; never claims.
 local Theme=require('abyss_theme')
 local M={}
+local related={snecko_eye={kind='status',id='confusion'},calling_bell={kind='card',id='curse_of_the_bell'}}
+local function find(entries,id)
+ for _,entry in ipairs(entries or {})do if entry.id==id then return entry end end
+end
+-- References select existing content; descriptions stay owned by their source.
+function M.related(owner,relicId)
+ local reference=related[relicId];if not reference then return nil end
+ local data=owner.run.data
+ if reference.kind=='status' then
+  local definition=find(data.statuses and data.statuses.statuses,reference.id)
+   or find(require('abyss_act2_enemies').statuses,reference.id)
+  if definition then return {name=definition.name,description=definition.description}end
+ else
+  local definition=find(data.cards and data.cards.cards,reference.id)
+  local display=owner.presentation and owner.presentation[reference.id]
+  if definition then return {name='诅咒 · '..(display and display.name or definition.name),
+   description=display and (display.text or display.textTemplate) or definition.text}end
+ end
+end
 function M.new(owner,panel,options)
  local state={records={}}
  local function valid(record)
@@ -9,11 +28,14 @@ function M.new(owner,panel,options)
  end
  local function display(record)
   panel:GetChild('name').text=record.name;panel:GetChild('description').text=record.description
+  local name,description=panel:GetChild('relatedName'),panel:GetChild('relatedDescription')
+  name.text=record.related and record.related.name or '';description.text=record.related and record.related.description or ''
+  name:SetVisible(record.related~=nil);description:SetVisible(record.related~=nil)
   panel:SetVisible(true)
  end
  function state:reset()self.records={};self.held=nil;panel:SetVisible(false)end
- function state:set(key,name,description)
-  self.records[key]={key=key,name=name,description=description,run=owner.run,map=owner.map,view=owner.view,entry=owner.actions[key]}
+ function state:set(key,name,description,reference)
+  self.records[key]={key=key,name=name,description=description,related=reference,run=owner.run,map=owner.map,view=owner.view,entry=owner.actions[key]}
  end
  function state:enter(key)
   if options.touchScreen and options.touchScreen() then return end

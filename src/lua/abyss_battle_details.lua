@@ -2,6 +2,7 @@
 local Actors = require("abyss_actor")
 local Run = require("abyss_run")
 local RewardOwner = require("abyss_battle_reward_owner")
+local RewardLayout = require("abyss_battle_reward_layout")
 local Theme = require("abyss_theme")
 local M = {}
 local C, L = Theme.color, Theme.layout
@@ -21,7 +22,8 @@ function M.install(owner, ownership, host, dependencies)
             if caption then part:GetChild("label").text = caption end
             if name=='endTurn' then
                 endTurnFace(part,state)
-            elseif state == "normal" or state == "hover" then
+            elseif not RewardLayout.paintButton(name,part,state,owner.run,host.platform,dependencies.tint,dependencies.ink)
+                and (state == "normal" or state == "hover") then
                 dependencies.tint(part:GetChild("plate"), primary and (state == "hover" and C.goldBright or C.geo) or C.panelRaised)
                 dependencies.ink(part:GetChild("label"), primary and C.textOnLight or C.goldBright)
             end

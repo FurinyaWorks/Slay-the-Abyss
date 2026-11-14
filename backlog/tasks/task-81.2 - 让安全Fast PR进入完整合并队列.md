@@ -7,7 +7,6 @@ assignee:
 created_date: 2026-11-06 15:41
 updated_date: '2026-11-09T17:25:00Z'
 labels: []
-milestone: m-7
 dependencies: []
 documentation:
   - docs/evidence/ci-draft-history-20261109/README.md

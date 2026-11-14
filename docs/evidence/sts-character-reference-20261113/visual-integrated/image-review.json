@@ -1,0 +1,22 @@
+{
+  "reviewer": "hud_audit",
+  "method": "view_image of all five newly captured PNGs",
+  "sourceClosureSha256": "52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731",
+  "status": "PASS-after-original-pixel-correction",
+  "confirmed": [
+    "Character slot displays the completed shared approved idle half-body; no constellation or invented locked slots.",
+    "Selection stats/relic/loadout summary and Back/Embark flags remain legible.",
+    "Starter browser displays ten cards in the shared five-column shell with visible return control.",
+    "Two actual return clicks restore the unchanged selection page without Run or RNG creation.",
+    "The detail return region is byte-identical to the visible starter browser return and prior shared permanent/discard captures. Its extracted 4x original-pixel region visibly contains the return label and frame."
+  ],
+  "question": {
+    "shot": "character-starter-detail",
+    "observation": "The lower-left return label/frame is absent from the PNG, although pileReturn is visible in the saved native state and the next actual click at that position successfully leaves details.",
+    "renderWait": "At least three additional completed frontend render passes were observed before capture.",
+    "classification": "Retracted full-image visual observation. Original PNG pixels confirm the complete return control; no product defect or capture failure. The inaccurate initial observation does not establish a tool-rendering cause.",
+    "reportedTo": "root; no production modification",
+    "resolution": {"roi":[0,570,180,55],"RGBAsha256":"bfdd114a8677792d37281cc8c8a2a45661756ccd30ec47b5374a818a8615c35e","differentPixelsVsStarterBrowser":0,"maxChannelDifference":0,"sameAsPriorPermanentAndDiscard":true,"privatePixelProof":".artifacts/sts-character-reference-20261113/return-pixel-review/report.json"}
+  },
+  "boundaries": {"officialImport":false,"officialReady":false,"deviceEvidence":false,"gpuEvidence":false}
+}

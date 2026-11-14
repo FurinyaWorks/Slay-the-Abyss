@@ -41,7 +41,8 @@
     "test:related": "node scripts/test-affected.mjs",
     "check:platform-load": "npm run build:data && npm run build:ui && node scripts/platform-load.mjs daily",
     "verify:platform-load": "node scripts/platform-load.mjs release",
-    "build:game": "node scripts/build-game.mjs"
+    "build:game": "node scripts/build-game.mjs",
+    "verify:character-naming": "node scripts/verify-character-naming-release.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",
