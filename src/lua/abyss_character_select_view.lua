@@ -104,10 +104,6 @@ function M.render(panel,state,platform)
     confirm.interactable,confirm.raycastTarget=state:canConfirm(),state:canConfirm()
     if not info then return end
     details:GetChild('name').text=info.name
-    if nativeV25 and not originalSts then
-        local name=state.character=='traveler' and '荧' or info.name
-        panel:GetChild('v25Roster'):GetChild('selected'):GetChild('selectedInitial').text=utf8.char(utf8.codepoint(name))
-    end
     details:GetChild('stats').text=(nativeV25 and '生命：' or '生命  ')..number(info.maxHp)..(nativeV25 and '/' or ' / ')..number(info.maxHp)
     details:GetChild('gold').text=(nativeV25 and '金币：' or '金币  ')..number(info.gold)
     local relics,texts={},{}

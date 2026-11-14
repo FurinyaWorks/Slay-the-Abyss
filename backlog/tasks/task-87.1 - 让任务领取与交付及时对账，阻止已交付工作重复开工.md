@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-11-14 06:09'
-updated_date: '2026-11-14 07:43'
+updated_date: '2026-11-14 10:18'
 labels: []
 dependencies: []
 references:
@@ -35,6 +35,8 @@ ordinal: 174000
 
 <!-- SECTION:PLAN:BEGIN -->
 1. 核对远端任务、开放PR和源码交付。2. 用CLI整理队列并保存逐项证据。3. 在现有入口增加最小状态对账和负例。4. 独立复审并验证GUI/CLI；远端交付按实际授权与门禁。
+
+本轮合流659/660/662至661；保留最新状态和双方实施证据、既有M7迁移及角色容量依赖，修复历史源码校验，再独审及按原门禁交付。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes

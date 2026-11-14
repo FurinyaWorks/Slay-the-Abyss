@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-01 02:05'
-updated_date: '2026-11-14 10:13'
+updated_date: '2026-11-14 10:18'
 labels:
   - release-qa-20261101
   - 待验
@@ -16,7 +16,7 @@ references:
   - docs/backlog-details/MOBILE-RELEASE-QA-20261101.md
   - src/lua/abyss_game_ui_menu_view.lua
 parent_task_id: TASK-38
-priority: high
+priority: medium
 type: bug
 ordinal: 135000
 ---

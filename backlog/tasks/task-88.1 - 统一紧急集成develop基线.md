@@ -1,11 +1,11 @@
 ---
 id: TASK-88.1
 title: 统一紧急集成develop基线
-status: Done
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-14 10:13'
+updated_date: '2026-11-14 10:18'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -41,9 +41,3 @@ Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554�
 
 2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 旧11/8至11/12来源快照已由607/634收拢；sources.json/backups.json保存整合、实验及WIP去向。新PR643继续独立处理后续整合。
 <!-- SECTION:NOTES:END -->
-
-## Final Summary
-
-<!-- SECTION:FINAL_SUMMARY:BEGIN -->
-旧11/8至11/12来源快照已由607/634收拢；sources.json/backups.json保存整合、实验及WIP去向。新PR643继续独立处理后续整合。 本轮已核对真实合后交付证据。
-<!-- SECTION:FINAL_SUMMARY:END -->

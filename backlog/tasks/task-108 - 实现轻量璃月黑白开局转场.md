@@ -1,16 +1,16 @@
 ---
-id: TASK-105
+id: TASK-108
 title: 实现轻量璃月黑白开局转场
 status: Done
 assignee:
   - Furinya
 created_date: '2026-11-14 07:06'
-updated_date: '2026-11-14 08:46'
+updated_date: '2026-11-14 09:55'
 labels: []
 milestone: m-8
 dependencies: []
 documentation:
-  - docs/backlog-details/TASK-105.md
+  - docs/backlog-details/TASK-108.md
 priority: medium
 type: enhancement
 ordinal: 174000

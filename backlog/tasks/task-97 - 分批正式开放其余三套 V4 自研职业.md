@@ -5,10 +5,11 @@ status: Blocked
 assignee:
   - Furinya
 created_date: '2026-11-03 02:45'
-updated_date: '2026-11-14 10:13'
+updated_date: '2026-11-14 10:18'
 labels: []
 milestone: m-9
-dependencies: []
+dependencies:
+  - TASK-105
 references:
   - docs/ORIGINAL_V4.md
   - backlog/tasks/task-72 - 交付原创四角色并合入最新主线.md
