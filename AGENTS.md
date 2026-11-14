@@ -27,7 +27,7 @@
 | 候选交付 | `npm run verify:delivery`；[冒烟与取证](docs/P0-SMOKE.md) |
 | 平台负载 | 日常 `npm run check:platform-load`；RC `npm run verify:platform-load`；[容量与证据合同](docs/PLATFORM_LOAD.md) |
 
-规则参数、阈值和测试合同以可执行配置为准，不在此重复。新增核心 Lua 模块在 [架构配置](config/architecture.json) 分类；不靠放宽门槛、删断言或跳过有效测试解决失败。UI 只读核心状态、发命令；主题来源为 [ui_theme](data/presentation/ui_theme.json)，由 `npm run build:theme` 生成。遵循批准稿，平台降级记录原因与实测状态，保留 C 档点选。
+规则参数、阈值和测试合同以可执行配置为准，不在此重复。**AI 代码导航**：新增/修改代码先执行 `npm run repo:where -- <业务词>`，按[目录与迁移合同](docs/REPO_NAVIGATION.md)核对职责域、被测入口和路径依赖；严禁将 Lua/测试文件搬进现有发现器扫描不到的子目录。新增核心 Lua 模块在 [架构配置](config/architecture.json) 分类；不靠放宽门槛、删断言或跳过有效测试解决失败。UI 只读核心状态、发命令；主题来源为 [ui_theme](data/presentation/ui_theme.json)，由 `npm run build:theme` 生成。遵循批准稿，平台降级记录原因与实测状态，保留 C 档点选。
 
 ## 必要边界
 
