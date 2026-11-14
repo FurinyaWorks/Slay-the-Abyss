@@ -9,7 +9,8 @@ local function same(a,b)
  return true
 end
 function M.prepare(run,api)
- local includeSupply=run.candidateRewardPool=='ganyu-reviewed-55-v1'
+ local includeFollow=run.candidateRewardPool=='ganyu-reviewed-58-v1'
+ local includeSupply=run.candidateRewardPool=='ganyu-reviewed-55-v1'or includeFollow
  local includeChargeChain=run.candidateRewardPool=='ganyu-reviewed-52-v1'or includeSupply
  local includeShotFamily=run.candidateRewardPool=='ganyu-reviewed-49-v1'or includeChargeChain
  local includeShieldCharge=run.candidateRewardPool=='ganyu-reviewed-47-v1'or includeShotFamily
@@ -23,7 +24,7 @@ function M.prepare(run,api)
  assert(not require('abyss_relic_queries').hooks.owns(run,'prismatic_shard'),'experimental_candidate_prismatic_unsupported')
  local pools={common={},uncommon={},rare={}}
  local actual={};for _,c in ipairs(run.data.cards.cards)do if includeShieldCharge then assert(not actual[c.id],'duplicate candidate catalog identity')end;actual[c.id]=c end
- for _,source in ipairs(require('abyss_ganyu_reward_catalog').definitions(includeDraw,includeRetrieval,includeStormFamily,includeDefensiveStorm,includeShieldCharge,includeShotFamily,includeChargeChain,includeSupply))do
+ for _,source in ipairs(require('abyss_ganyu_reward_catalog').definitions(includeDraw,includeRetrieval,includeStormFamily,includeDefensiveStorm,includeShieldCharge,includeShotFamily,includeChargeChain,includeSupply,includeFollow))do
   local c=assert(actual[source.id],'candidate reward definition missing')
   -- Closed generated definitions: no arbitrary extra execution/display fields.
   assert(same(c,source),'candidate reward definition drift')

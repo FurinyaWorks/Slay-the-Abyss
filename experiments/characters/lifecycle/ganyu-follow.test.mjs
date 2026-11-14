@@ -1,0 +1,2 @@
+import test from'node:test';import assert from'node:assert/strict';import{buildLuaData}from'../../../scripts/build-lua-data.mjs';import{runLua}from'../../../scripts/test-lua.mjs';
+test('Ganyu follow compound paid and reward chain',()=>{buildLuaData();for(const f of['ganyu-follow-paid.test.lua','ganyu-follow-generated.test.lua']){const r=runLua('experiments/characters/lifecycle/'+f,{timeout:180000});console.log(r.stdout);assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/PASS/);assert.doesNotMatch(r.stdout+r.stderr,/stack traceback/);}});

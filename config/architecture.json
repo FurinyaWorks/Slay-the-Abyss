@@ -1,5 +1,7 @@
 {
   "layers": {
+    "abyss_ganyu_follow_definitions": "core",
+    "abyss_ganyu_follow_reward_run": "core",
     "abyss_zhongli_follow_definitions": "core",
     "abyss_zhongli_follow_text": "core",
     "abyss_zhongli_twentyeight_catalog": "core",

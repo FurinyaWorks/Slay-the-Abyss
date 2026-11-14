@@ -28,7 +28,10 @@ for _,m in ipairs({require("abyss_ganyu_charge_draw_definitions"),require("abyss
 local chargeChainById={};for _,d in ipairs(ChargeChainDefinitions.cards)do chargeChainById[d.id]=d end
 local SupplyDefinitions=require('abyss_ganyu_supply_definitions')
 local supplyById={};for _,d in ipairs(SupplyDefinitions.cards)do supplyById[d.id]=d end
+local FollowDefinitions=require('abyss_ganyu_follow_definitions')
+for _,d in ipairs(FollowDefinitions.cards)do supplyById[d.id]=d end
 local M={}
+function M.followDefinitions()return Copy(FollowDefinitions)end
 function M.supplyDefinitions()return Copy(SupplyDefinitions)end
 function M.chargeChainDefinitions()return Copy(ChargeChainDefinitions)end
 function M.shotFamilyDefinitions()return Copy(ShotFamilyDefinitions)end
@@ -240,13 +243,20 @@ local function conditionalUse(state,instance,card,targetIndex)
  if d.target=='ENEMY'and not Presence.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
  return true
 end
+function M.supportsFollowStorm(e)
+ if type(e)~='table'or getmetatable(e)or e.op~='ganyuStorm'then return false end
+ for _,d in ipairs(FollowDefinitions.cards)do for _,face in ipairs({d.effects,d.upgrade.effects})do for _,effect in ipairs(face)do
+  if effect.op=='ganyuStorm'and same(e,effect)then return true end
+ end end end
+ return false
+end
 function M.supportsStorm(e)
  if type(e)~='table'or getmetatable(e)or e.op~='ganyuStorm'or(e.amount~=4 and e.amount~=6)or e.turns~=2 then return false end
  for k in pairs(e)do if k~='op'and k~='amount'and k~='turns'then return false end end
  return true
 end
 function M.supports(e)
- if M.supportsDefensiveStorm(e)or M.supportsStormFamily(e)or M.supportsRetrieval(e)or M.supportsDraw(e)or M.supportsStorm(e)or M.supportsConditional(e)then return true end
+ if M.supportsFollowStorm(e)or M.supportsDefensiveStorm(e)or M.supportsStormFamily(e)or M.supportsRetrieval(e)or M.supportsDraw(e)or M.supportsStorm(e)or M.supportsConditional(e)then return true end
  if type(e)~='table' or getmetatable(e) or e.op~='ganyuCard'then return false end
  local allowed=e.kind=='charge'and {op=true,kind=true,amount=true}
   or e.kind=='chargedShot'and {op=true,kind=true,direct=true,bloom=true}
