@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {integratedRead} from './helpers/integrated-ci-source.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -20,6 +21,7 @@ test('red menu production preserves every prior owner and target and freshly rej
  assert.throws(()=>extendMenuRedSourceEpoch(menuRedPriorEpoch,missing));
 });
 test('red menu CI requires complete exact source and retains unknown or drifted inputs',()=>{
+ const raw=p=>integratedRead('menu')(p,'utf8').replaceAll('\r\n','\n');
  assertMenuRedCiCurrent();
  for(const [path,row]of Object.entries(menuRedCiProof.files)){
   const source=raw(path);

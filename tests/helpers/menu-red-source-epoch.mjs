@@ -6,15 +6,15 @@ import {gunzipSync} from 'node:zlib';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./menu-red-production-source.json.gz',import.meta.url));
-assert.equal(hash(bytes),'ee888fd1686beaeffc2e439164619ecedee9ac00d2ca00a2711bd74c63e28cae','complete menu production source');
+assert.equal(hash(bytes),'eac84b07c06da9afb0f37a63ac8b57ea4b88e825ec57f6efe50a00d9c2bae5d7','complete menu production source');
 const freeze=v=>{if(v&&typeof v==='object'&&!Object.isFrozen(v)){Object.values(v).forEach(freeze);Object.freeze(v);}return v;};
 export const menuRedProductionPatch=freeze(JSON.parse(gunzipSync(bytes)));
 const paths=['src/lua/abyss_game_ui_menu_view.lua','src/lua/abyss_game_ui_view.lua','src/lua/abyss_v25_menu_view.lua'];
 export function extendMenuRedSourceEpoch(original,patch=menuRedProductionPatch){
  const prior=original.proof;
  assert.equal(patch.schemaVersion,1);assert.equal(patch.normalization,'LF');
- assert.equal(patch.baseCommit,'e805a87dc4df1a048ba5995931d98a4e4899b5e9');
- assert.equal(patch.sourceCommit,'ee4f8febcd384b60ed43e68a172585968b9be42f');
+ assert.equal(patch.baseCommit,'da7e3b2ff6946f0824a5a20439dbedf27622c866');
+ assert.equal(patch.sourceCommit,'5c2e8173487418c71b607a75eeb043053d1a705c');
  assert.deepEqual(patch.inventory,Object.keys(prior.current).sort(),'complete menu predecessor inventory');
  assert.deepEqual(Object.keys(patch.before).sort(),paths);assert.deepEqual(Object.keys(patch.current).sort(),paths);
  for(const path of paths){

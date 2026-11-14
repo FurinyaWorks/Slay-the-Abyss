@@ -1,5 +1,6 @@
 // CI-only exact text views; production projectors never import this archive.
 import assert from 'node:assert/strict';
+import {integratedSource,integratedRead} from './integrated-ci-source.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
@@ -15,6 +16,7 @@ for(const [path,row]of Object.entries(menuRedCiProof.files))for(const side of ['
  assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(b.source)}\0`).update(b.source).digest('hex'),b.gitBlob);
 }
 export function preMenuRedCiSource(path,source){
+ source=integratedSource(path,source,'menu');
  const row=Object.hasOwn(menuRedCiProof.files,path)?menuRedCiProof.files[path]:null;
  if(!row?.before||typeof source!=='string'||source.includes('\r\r\n')||hash(norm(source))!==row.after.sha256)return source;
  return row.before.source;
@@ -38,6 +40,7 @@ export function extendMenuRedHelperClosure(original){
  return freeze(current);
 }
 export function assertMenuRedCiCurrent(read=readFileSync){
+ read=integratedRead('menu',{read});
  for(const [path,row]of Object.entries(menuRedCiProof.files))assert.equal(hash(norm(read(path,'utf8'))),row.after.sha256,'fresh menu CI source: '+path);
  for(const [path,row]of Object.entries(menuRedCiProof.helperClosure)){
   const value=path.endsWith('.gz')?read(path):norm(read(path,'utf8'));

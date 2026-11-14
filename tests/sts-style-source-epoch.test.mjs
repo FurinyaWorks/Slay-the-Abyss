@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {integratedRead} from './helpers/integrated-ci-source.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './helpers/combined-epoch/source-epoch-runtime.mjs';
@@ -69,6 +70,7 @@ test('real style source retains the complete CI-repair and every older target wh
 });
 
 test('real style CI admits only full inventory, complete source and freshly verified executable helpers',async()=>{
+ const readFileSync=integratedRead('sts');
  const {stsStyleCiProof:p,assertStsStyleCiCurrent,preStsStyleCiSource,stsStylePriorInventory}=await import('./helpers/sts-style-ci-source.mjs');
  const files=discoverJs();assertStsStyleCiCurrent(files);assert.deepEqual(stsStylePriorInventory(files),p.beforeInventory);
  for(const [path,row]of Object.entries(p.files)){
@@ -179,7 +181,8 @@ test('feedback real current source and CI preserve all four immutable archives a
    {target:'stsFeedbackPrior',readSource:p=>p===path?missing:raw(p)}),/linked owner identity/,path);
  }
  const {assertStsStyleCiCurrent,stsStyleCiProof,stsStyleBeforeFeedbackCiProof:previousCi}=await import('./helpers/sts-style-ci-source.mjs');assertStsStyleCiCurrent(discoverJs());
- assert.equal(stsStyleCiProof.feedback.sourceCommit,p.currentCommit,'production and CI continue the same exact source slice');
+ const {menuRedPriorEpoch}=await import('./helpers/closeout-source-epoch.mjs');
+ assert.equal(stsStyleCiProof.feedback.sourceCommit,menuRedPriorEpoch.proof.currentCommit,'feedback production and CI retain their exact source slice before the explicit menu continuation');
  assert.deepEqual(stsStyleCiProof.afterInventory,[...previousCi.afterInventory,...feedbackAddedTests].sort());
  for(const [path,row]of Object.entries(previousCi.files))assert.deepEqual(stsStyleCiProof.files[path].before,row.before,'complete original CI before: '+path);
  for(const path of feedbackCiPaths)assert.throws(()=>assertStsStyleCiCurrent(discoverJs(),(p,e)=>readFileSync(p,e)+(p===path?'\n':'')),/fresh (?:complete StS CI|StS helper) source/,path);

@@ -1,5 +1,6 @@
 import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
 import {menuRedPriorRead,menuRedPriorLua,menuRedCiProof} from './helpers/menu-red-ci-source.mjs';
+import {integratedCiProof} from './helpers/integrated-ci-source.mjs';
 import {runHudPriorRead,runHudPriorInventory,preRunHudCiSource,runHudCiProof,runHudBeforeCiRepairProof} from './helpers/run-hud-ci-source.mjs';
 import {stsStylePriorRead,stsStylePriorInventory} from './helpers/sts-style-ci-source.mjs';
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
@@ -1963,7 +1964,7 @@ test('run HUD continuation authenticates complete current sources and raw Full i
 
 test('menu current complete JS and Lua workload retains Full budgets and every added Lua byte',t=>{
  const js=liveDiscoverJs(),lua=liveCloseoutLua();
- assert.deepEqual(js,runHudCiProof.afterInventory,'all current menu cases execute through the existing preview entry');
+ assert.deepEqual(js,integratedCiProof.inventory,'all combined current cases execute through complete raw Full discovery');
  assert.deepEqual(menuRedPriorLua(lua),closeoutCiProof.luaInventory);
  for(const [path,row]of Object.entries(menuRedCiProof.addedLua)){
   assert.equal(liveDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n'),row.source);

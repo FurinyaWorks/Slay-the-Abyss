@@ -47,9 +47,12 @@ test('actual pinned browser renderer interprets native feather in pixels',{
 
 // New outer continuation: raw current sources remain independently checked.
 import {nativePreviewCiProof,preNativePreviewCiSource} from './helpers/native-preview-ci-source.mjs';
+import {integratedRead} from './helpers/integrated-ci-source.mjs';
+import './integrated-ci-source.cases.mjs';
 import {runHudPriorRead} from './helpers/run-hud-ci-source.mjs';
 import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 test('native preview continuation authenticates complete current files and preserves unknown drift',()=>{
+ const readFileSync=integratedRead('native');
  for(const [path,row]of Object.entries(nativePreviewCiProof.files)){
   const raw=readFileSync(path,'utf8').replaceAll('\r\n','\n');
   assert.equal(raw,row.after.source,path+' complete current source');
