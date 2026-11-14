@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 2,
+  "locale": "zh-CN",
+  "title": "Slay the Heavens",
+  "role": "Copy source for narrative presentation only; NOT a runtime schema, rule table, or already integrated code.",
+  "flow": {
+    "intro": {
+      "status": "v3_reviewed",
+      "full": "「判罚之钉」异动，「圣土化」蔓延。"
+    },
+    "bossEntrance": {
+      "status": "v3_reviewed_no_extra_caption",
+      "full": ""
+    },
+    "victory": {
+      "status": "v3_reviewed",
+      "full": "挑战完成。"
+    },
+    "defeat": {
+      "status": "v3_reviewed_no_extra_caption",
+      "full": ""
+    }
+  },
+  "merchant": {
+    "encounter": "旧毯上摆着几件货物。商人见你走近，抬起头来。",
+    "greet": "路不好走吧？来，看看有没有用得上的。",
+    "purchaseSuccess": "眼光不错。",
+    "insufficientGold": "还差点钱。",
+    "originHint": "做生意嘛，总得知道哪条路安全。",
+    "leave": "前面可不像这里太平。一路小心。"
+  },
+  "combatIntros": {
+    "looter": "石廊尽头，一道人影突然冲了出来。那人蒙着脸，目光却始终盯着荧腰间的钱袋。",
+    "cultist": "火光映在岩壁上。一名披着灰袍的人正在低声祈祷，手中的火焰随着祷词愈发明亮。察觉到荧的脚步，他缓缓转过身来。"
+  },
+  "eventCopy": {
+    "living_wall": {
+      "intro": "墙壁上浮现出一张张人脸。它们低声重复着三个词：遗忘、改变、成长。\n\n你可以选择一张卡牌，留下旧日的招式，或让它成为新的力量。",
+      "choices": [
+        "forget",
+        "change",
+        "grow"
+      ]
+    },
+    "cleric": {
+      "intro": "「要治伤吗？净化也行。」\n\n他往身旁的价目表一指。\n\n「价钱写着呢。」",
+      "choices": [
+        "heal",
+        "purify",
+        "leave"
+      ]
+    },
+    "purifier": {
+      "intro": "路旁是一座破损的神龛，石面上的纹路仍有微光。\n\n你可以在这里舍弃一张不再需要的牌。",
+      "choices": [
+        "pray",
+        "leave"
+      ]
+    }
+  },
+  "source": "docs/lore/v3/README.md"
+}

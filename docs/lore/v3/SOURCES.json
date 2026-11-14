@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "canonBaseline": "Genshin Impact 7.2 / 2026-11-14",
+  "references": {
+    "official-7.2": {
+      "url": "https://ys.mihoyo.com/main/news/detail/167154",
+      "published": "2026-11-01",
+      "usage": "A short background quote, not an official UGC storyline"
+    },
+    "lore-v2": {
+      "path": "docs/lore/v2/04-copy/supporting.zh-CN.json",
+      "usage": "Historical merchant and event wording retained unless defective"
+    },
+    "owner-review": {
+      "path": "docs/lore/v3/README.md",
+      "usage": "The minimal-copy style and examples were accepted by the owner on 2026-11-14"
+    },
+    "project-title": {
+      "path": "README.md",
+      "usage": "Owner-selected title Slay the Heavens"
+    }
+  },
+  "fields": {
+    "combatIntros.cultist": {
+      "ref": "lore-v2",
+      "decision": "inactive-legacy-needs-review-before-use"
+    },
+    "combatIntros.looter": {
+      "ref": "lore-v2",
+      "decision": "inactive-legacy-needs-review-before-use"
+    },
+    "eventCopy.cleric.intro": {
+      "ref": "owner-review",
+      "decision": "accepted-minimal"
+    },
+    "eventCopy.living_wall.intro": {
+      "ref": "lore-v2",
+      "decision": "preserved-extension"
+    },
+    "eventCopy.purifier.intro": {
+      "ref": "owner-review",
+      "decision": "accepted-minimal"
+    },
+    "flow.bossEntrance.full": {
+      "ref": "owner-review",
+      "decision": "intentional-absence"
+    },
+    "flow.defeat.full": {
+      "ref": "owner-review",
+      "decision": "intentional-absence"
+    },
+    "flow.intro.full": {
+      "ref": "official-7.2",
+      "decision": "short-official-quote"
+    },
+    "flow.victory.full": {
+      "ref": "owner-review",
+      "decision": "accepted-minimal"
+    },
+    "merchant.encounter": {
+      "ref": "owner-review",
+      "decision": "accepted-minimal"
+    },
+    "merchant.greet": {
+      "ref": "lore-v2",
+      "decision": "preserved"
+    },
+    "merchant.insufficientGold": {
+      "ref": "owner-review",
+      "decision": "accepted-minimal"
+    },
+    "merchant.leave": {
+      "ref": "lore-v2",
+      "decision": "preserved"
+    },
+    "merchant.originHint": {
+      "ref": "lore-v2",
+      "decision": "preserved"
+    },
+    "merchant.purchaseSuccess": {
+      "ref": "lore-v2",
+      "decision": "preserved"
+    },
+    "title": {
+      "ref": "project-title",
+      "decision": "brand"
+    }
+  }
+}
