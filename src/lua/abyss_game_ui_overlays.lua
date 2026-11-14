@@ -135,6 +135,7 @@ function M.closeExit(self,exitPanel,owner)
             end
             self.exitOpen, self.menuOpen, self.exitError = false, false, nil
             self.battleUI.suppressClick = false
+            self.navigationAction=nil
             self:refresh()
             return true
         end
@@ -145,6 +146,7 @@ function M.confirmExit(self,owner)
             if self.disabled then return false,"ui_disabled" end
             if self.controlsOpen or self.menuOpen or self.routeOpen then return false,"menu_open" end
             if not self.exitOpen then return false, "exit_not_open" end
+            if self.navigationAction then return self:confirmNavigation() end
             -- Voluntary departure never changes combat HP, awards a victory, or
             -- fakes a defeated Run. An already-earned victory keeps its outcome.
             return owner.requestSettlement(self.mode == "victory")

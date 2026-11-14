@@ -1,0 +1,41 @@
+✖ real V25 menu controls support controller round trips without overlapping entries (4569.975722ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4800.002962
+
+✖ failing tests:
+
+test at tests/session-menu-navigation.test.mjs:19:1
+✖ real V25 menu controls support controller round trips without overlapping entries (4569.975722ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_RUN seed=1 source=explicit
+  ABYSS_UI init Color=table
+  ABYSS_UI viewport_ready
+  ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+  ABYSS_UI failed startup: ./src/lua/abyss_v25_menu_view.lua:141: attempt to index a nil value
+  ...ase-menu-continue/tests/lua/support/session_menu_v25.lua:72: assertion failed!
+  stack traceback:
+    [JS]: in function 'assert'
+    ...ase-menu-continue/tests/lua/support/session_menu_v25.lua:72: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-menu-continue/tests/session-menu-navigation.test.mjs:25:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -4,6 +4,11 @@ local Controller = require("abyss_controller")
 local Theme = require('abyss_theme')
 local V25View=require('abyss_v25_menu_view')
 local M = {}
+local menuKinds={start=true,settle=true,egg_open=true,titleQuit=true,continueRun=true}
+local function titleAvailable(self,kind)
+    if self.mode~='menu' or self.exitOpen or self.characterOpen then return false end
+    return kind~='continueRun' or self.sessionPaused==true
+end
 local routeModes={battleRoute='battle',runRoute='node'}
 
 local function mapReturnCovered(self)
@@ -65,7 +70,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
     return function(box, kind, action, enabled, order, group, onFocus)
             local hit = box:GetChild("hit")
             local held, released, observed
-            local menuAction = kind == "start" or kind == "settle" or kind=='egg_open' or kind=='titleQuit'
+            local menuAction = menuKinds[kind]
             local rewardAction = kind == "combatRewards"
             local characterAction = kind:match("^character_")~=nil
             local resourceAction = kind:match('^resource_')~=nil
@@ -79,7 +84,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 return kind=='egg_open' and self.easterEgg:refresh()
             end
             local function menuAvailable()
-                if kind=='titleQuit'then return self.mode=='menu' and not self.exitOpen and not self.characterOpen end
+                if kind=='titleQuit' or kind=='continueRun'then return titleAvailable(self,kind) end
                 if menuAction then
                     if self.exitOpen or self.deckUI.visible then return false end
                     return self.mode == "victory" or self.mode == "defeat"
@@ -229,8 +234,9 @@ function M.installMenu(self,child,clickEvent,resourceHint,bindCommand,start,sett
     -- Source menu actions use the same pointer ownership as exit actions, and also
     -- expire whenever their menu/run context is hidden or replaced.
     bindCommand(start, "start", function() return self:start() end)
+    bindCommand(child('menuPanel'):GetChild('continueRun'),'continueRun',function()return self:continueRun()end,nil,90)
     local quit=child('menuPanel'):GetChild('titleQuit')
-    if (Theme.presentationProfile=='v25-reference' or Theme.presentationProfile=='official-assets-first') and quit then
+    if quit then
         bindCommand(quit,'titleQuit',function()return self:openExit()end,nil,190)
     end
     bindCommand(settlement, "settle", function() return self:settle() end)
@@ -284,7 +290,14 @@ function M.installGuide(self,exitPanel,clickEvent,bindCommand,dismissFromOutside
         return true
     end)
     bindCommand(runMenu:GetChild('resume'), 'run_resume', function() return self:closeExit() end)
+    bindCommand(runMenu:GetChild('mainMenu'),'run_mainMenu',function()return self:returnToMainMenu()end,
+        function()return require('abyss_game_ui_navigation').hasRun(self) and not self.sessionPaused end)
+    bindCommand(runMenu:GetChild('quit'),'run_quit',function()
+        owner.exitGeneration=owner.exitGeneration+1
+        self.menuOpen=false;self.navigationAction=nil;self:refresh();return true
+    end,function()return require('abyss_game_ui_navigation').hasRun(self) and not self.sessionPaused end)
     bindCommand(runMenu:GetChild('abandon'), 'run_abandon', function()
+        if require('abyss_game_ui_navigation').hasRun(self) then return self:requestNavigation('abandon') end
         owner.exitGeneration = owner.exitGeneration + 1
         self.menuOpen = false
         self:refresh()

@@ -17,9 +17,10 @@ local function button()
  c.children.hit.x=0;c.children.hit.w=280
  return c
 end
-local start,quit=button(),button()
+local start,quit,resume=button(),button(),button()
 local ctx={start=start,menu=control('menu'),owner={mode='menu',motion={}},platform={color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end}}
 ctx.menu.children.titleQuit=quit
+ctx.menu.children.continueRun=resume
 V25.button(start,true);V25.button(quit,true)
 V25.animateMenu(ctx,0)
 local line=start.children.menuAccent.children.line
@@ -58,9 +59,27 @@ for _,mode in ipairs({'victory','defeat'})do
  ctx.owner.mode='menu';V25.button(start,true);V25.animateMenu(ctx,1/60)
  assert(start.children.label.y==0,'return from result clears the old press')
 end
+-- All three minimal entries share feedback and lose stale presses off-page.
+ctx.owner.mode='menu';ctx.owner.sessionPaused=true
+for _,box in ipairs({start,quit,resume})do
+ V25.button(box,true);V25.animateMenu(ctx,0)
+ V25.pointer(box,'enter',true);V25.animateMenu(ctx,.2)
+ assert(box.children.menuAccent.children.line.imageColor.a==255,'each entry animates hover')
+ V25.pointer(box,'down',true);V25.animateMenu(ctx,0)
+ assert(box.children.label.y==-Theme.menuPresentation.pressOffset,'each entry depresses')
+ V25.pointer(box,'cancel',true);V25.animateMenu(ctx,.2)
+ assert(box.children.label.y==0 and box.children.menuAccent.children.line.imageColor.a==alpha,'cancel resets each entry')
+ V25.pointer(box,'down',true);V25.animateMenu(ctx,0)
+ ctx.owner.mode='battle';V25.animateMenu(ctx,0)
+ ctx.owner.mode='menu';V25.button(box,true);V25.animateMenu(ctx,0)
+ assert(box.children.label.y==0 and box.children.menuAccent.children.line.imageColor.a==alpha,'return clears each stale press')
+end
+V25.pointer(resume,'down',true);V25.animateMenu(ctx,0)
+ctx.owner.sessionPaused=false;V25.animateMenu(ctx,0)
+assert(resume.children.label.y==0 and resume.children.menuAccent.children.line.imageColor.a==alpha,'unavailable Continue clears feedback')
 local Foreground=require('abyss_game_ui_view')
 ctx.owner.mode='menu';ctx.owner.characterOpen=false
-assert(not Foreground.exitEntryVisible(ctx.owner)(),'main menu has only the two requested actions')
+assert(not Foreground.exitEntryVisible(ctx.owner)(),'minimal menu hides the legacy utility entry')
 ctx.owner.characterOpen=true
 assert(Foreground.exitEntryVisible(ctx.owner)(),'selection retains its existing utility entry')
 ctx.owner.characterOpen=false;ctx.owner.mode='battle'

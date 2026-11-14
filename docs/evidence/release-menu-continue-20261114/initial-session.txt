@@ -1,0 +1,43 @@
+Native battle UI and Traveler display module built.
+✔ session menu preserves live state, confirms destructive actions and uses platform settlement (13058.507431ms)
+✔ reward and mandatory card choices resume with their original live tokens (10676.722424ms)
+✖ real V25 menu controls support controller round trips without overlapping entries (3639.469184ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27529.894779
+
+✖ failing tests:
+
+test at tests/session-menu-navigation.test.mjs:19:1
+✖ real V25 menu controls support controller round trips without overlapping entries (3639.469184ms)
+  AssertionError [ERR_ASSERTION]: ABYSS_RUN seed=1 source=explicit
+  ...ase-menu-continue/tests/lua/support/session_menu_v25.lua:23: assertion failed!
+  stack traceback:
+    [JS]: in function 'assert'
+    ...ase-menu-continue/tests/lua/support/session_menu_v25.lua:23: in local 'press'
+    ...ase-menu-continue/tests/lua/support/session_menu_v25.lua:46: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/release-menu-continue/tests/session-menu-navigation.test.mjs:25:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -72,6 +72,7 @@ function M.update(self,controller,platform,openingCovered,updateBossEntrance,bgm
             if controller then controller:tick() end
             if self.exitOpen or self.settlementBusy then self:syncController();return true end
             if self.settlementRequested then self:animate(dt); return true end
+            if self.sessionPaused then self:animate(dt);self:syncController();return true end
             -- Count client update time within this run; menus/results never extend it.
             -- The terminal rule state can precede the last feedback animation.
             if not countRunTime(self,dt,openingCovered) then return false,"invalid_delta" end

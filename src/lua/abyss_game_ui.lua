@@ -123,6 +123,7 @@ function M.new(root, data, presentation, clickEvent, platform)
     self.openMenu = Overlays.openMenu(self,owner)
     self.closeExit = Overlays.closeExit(self,exitPanel,owner)
     self.confirmExit = Overlays.confirmExit(self,owner)
+    require('abyss_game_ui_navigation').install(self,owner,neowHistory)
 
     self.openDeck = Overlays.openDeck(inputCovered,self)
     self.openStarterDeck = Overlays.openStarterDeck(inputCovered,self,platform,owner)

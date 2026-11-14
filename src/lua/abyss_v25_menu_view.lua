@@ -187,7 +187,7 @@ end
 function M.animateMenu(ctx,dt)
     if not enabled() or not Theme.menuPresentation then return end
     if ctx.owner.mode~='menu' then
-        for _,box in ipairs({ctx.start,ctx.menu:GetChild('titleQuit')})do
+        for _,box in ipairs({ctx.start,ctx.menu:GetChild('titleQuit'),ctx.menu:GetChild('continueRun')})do
             local pointer=pointers[box]
             if pointer then
                 pointer.hover,pointer.down=false,false
@@ -200,6 +200,7 @@ function M.animateMenu(ctx,dt)
     local available=ctx.owner.mode=='menu' and menuAvailable(ctx.owner)
     advanceMenuButton(ctx.start,dt,ctx.platform.color,available)
     advanceMenuButton(ctx.menu:GetChild('titleQuit'),dt,ctx.platform.color,available)
+    advanceMenuButton(ctx.menu:GetChild('continueRun'),dt,ctx.platform.color,available and ctx.owner.sessionPaused==true)
 end
 function M.entrance(ctx)
     if not enabled()then return false end

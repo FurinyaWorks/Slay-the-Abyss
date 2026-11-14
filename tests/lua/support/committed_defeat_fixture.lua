@@ -65,14 +65,15 @@ function M.finish(ui)
     M.until_(ui, function() return ui.mode == 'defeat' and not ui.motion.deathReveal end)
 end
 function M.open(ui, root, api)
+    local name=root:GetChild('runMenu'):GetChild('quit').visible and 'quit' or 'abandon'
     if api then
         assert(M.event(ui, api, M.hit(root, 'exitEntry', 'open')))
         assert(ui.exitOpen and ui.menuOpen)
-        assert(M.event(ui, api, M.hit(root, 'runMenu', 'abandon')))
+        assert(M.event(ui, api, M.hit(root, 'runMenu', name)))
     else
         assert(M.tap(M.hit(root, 'exitEntry', 'open'), 31))
         assert(ui.exitOpen and ui.menuOpen)
-        assert(M.tap(M.hit(root, 'runMenu', 'abandon'), 32))
+        assert(M.tap(M.hit(root, 'runMenu', name), 32))
     end
     assert(ui.exitOpen and not ui.menuOpen)
 end

@@ -1,0 +1,6 @@
+...elease-menu-continue/tests/lua/menu_hover_continuity.lua:67: attempt to index a nil value (field 'imageColor')
+stack traceback:
+    ...elease-menu-continue/tests/lua/menu_hover_continuity.lua:67: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+Lua fixture tests/lua/menu_hover_continuity.lua: 197 ms
