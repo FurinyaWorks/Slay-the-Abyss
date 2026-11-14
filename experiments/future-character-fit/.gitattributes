@@ -1,0 +1,7 @@
+assets-1600/**/*.png filter=lfs diff=lfs merge=lfs -text
+*.py text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+assets-1600/**/*.json text eol=lf
+corrections/**/*.png filter=lfs diff=lfs merge=lfs -text
+corrections/**/*.json text eol=lf

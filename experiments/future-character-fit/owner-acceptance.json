@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "task": "TASK-106",
+  "reviewedAtDate": "2026-11-14",
+  "reviewer": "Owner",
+  "confirmationSource": "Current conversation, after revised hand/bird review page was delivered",
+  "ownerQuote": "呃可以很牛逼 嗯没什么问题的",
+  "visualDecision": "accepted",
+  "scope": "Three future-selection reserve images; Keqing hand and simplified-source Zhongli bird corrections included. Detailed-source Zhongli remains a same-budget comparison.",
+  "productionEnabled": false,
+  "officialImport": "NOT_RUN",
+  "devicePerformance": "UNVERIFIED",
+  "acceptedAssets": [
+    {
+      "character": "ganyu",
+      "geometry": "assets-1600/ganyu/native-art.json",
+      "geometrySha256": "80615aea549f240a45854dcb54aaf1c6cbcb0fffe9a04198a9da829b807fa8a0",
+      "sceneSha256": "a768b31b64da64b2d86d4fd8e46835da29ed8fa4cd04526c0d0bd9659d4dcfdc",
+      "comparisonSha256": "dfac6d9ca1cae0429be27f9243fa6459da93291f4e3ce038d8429a07bbc3625e"
+    },
+    {
+      "character": "keqing",
+      "geometry": "corrections/keqing/native-art.json",
+      "geometrySha256": "f02797f25c1c7fc0bff28c1cf59311c8213146e1c7d6e490f6ef1bbcb1a51ab0",
+      "sceneSha256": "0e2482afb5eab051a16acf0fb63b39ced227b66449c80e9ea252157b990c0dc8",
+      "comparisonSha256": "f0b1c0fbbae1238a42368e5b4dad0bbb9bc36fb0cba37052acb2185c39d75d86"
+    },
+    {
+      "character": "zhongli-simplified",
+      "geometry": "corrections/zhongli-simplified/native-art.json",
+      "geometrySha256": "27034c81199e6a65ce5cd301f9c78bdd8abde4fbf557246dd43a98b544a5d456",
+      "sceneSha256": "a721ced3e9291a24dee56ccf4ffcbe7d5848a18cdf8501b04687f84a41f83d83",
+      "comparisonSha256": "0b845a3d910c916f2f1ffbae076c98431af1f4eed9da84619214089a8484ff1f"
+    }
+  ]
+}

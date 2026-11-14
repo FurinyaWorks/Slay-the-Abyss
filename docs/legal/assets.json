@@ -3,6 +3,10 @@
   "baseCommit": "4c75a31fafcd27c204b957cd7dbc75ac6d9f5ab0",
   "hashRule": "SHA256 raw binary bytes; Lua/JSON/SVG CRLF normalized to LF. Categories record provenance, not clearance. Update manually after rights review.",
   "categories": {
+    "future-selection-user-reference": {
+      "status": "User-supplied Genshin character references and software-rasterised geometry comparisons for future platform-project reserve assets; original generation provenance unspecified. Source/derived identities and exact Owner visual acceptance scope are recorded separately; no game-IP sublicense, commercial clearance or official/device acceptance.",
+      "evidence": "experiments/future-character-fit/README.md; per-image receipt.json; owner-acceptance.json; corrections/verification.json"
+    },
     "hud-r2-browser-evidence": {
       "status": "Project UI diagnostic screenshots rendered by Chromium using system font fallbacks and stand-in glyphs from the project prototype. No font binaries or official textures redistributed. Referenced game identities remain their owners IP; no asset/IP sublicense or commercial clearance. Offline Host projection only, not official import/ready, final artwork, interaction, device or performance acceptance.",
       "evidence": "docs/evidence/hud-r2-20261101/README.md; experiments/ui-polish-sim/hud-r2-capture.lua and hud-r2-render.mjs; production Lua on native-contract fixture with actual sibling-call order recorded for projection. Baseline b0f64d49; reviewed runtime/evidence revision 487a46ef92d25421fa941e5ee85f1152034a647b. 1280x720 Host trees projected at recorded owner widths; system fonts and original atlas appearance remain device-unverified."
@@ -177,6 +181,126 @@
     }
   },
   "files": {
+    "experiments/future-character-fit/assets-1600/ganyu/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "dfac6d9ca1cae0429be27f9243fa6459da93291f4e3ce038d8429a07bbc3625e",
+      "lfsBytes": 780641
+    },
+    "experiments/future-character-fit/assets-1600/ganyu/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "c6b2e4b943f45ee1029c376a05715eff749e3a7621e57fef2499244cd2dfca57",
+      "lfsBytes": 97513
+    },
+    "experiments/future-character-fit/assets-1600/ganyu/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "509a05d8386ed692737d88b11c0ce5d057e2d0cd37dd73fd5de62cc85235538a",
+      "lfsBytes": 1638672
+    },
+    "experiments/future-character-fit/assets-1600/keqing/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "7843ad65384882bdb26779041020258680de7a93b0f75320b0994026f751ed75",
+      "lfsBytes": 915564
+    },
+    "experiments/future-character-fit/assets-1600/keqing/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "9a3f7a580a53270e61506cb3eafa7183ad75b4b48b3ba77987ec390383648cf8",
+      "lfsBytes": 104387
+    },
+    "experiments/future-character-fit/assets-1600/keqing/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "15fed148a6f0a57c4d0a27de79aada4b3533eb810a371ce15488cae81895dd5b",
+      "lfsBytes": 1527766
+    },
+    "experiments/future-character-fit/assets-1600/zhongli-detailed/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "9ee6eb84495a7586b1d7c893d31abe59e02eb6e2aec430ec65ab8f043f1d5c9c",
+      "lfsBytes": 979011
+    },
+    "experiments/future-character-fit/assets-1600/zhongli-detailed/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "9822923884bd2dc96ac2bf6831326ccf438c3abda4c85cfa4fb0ece2c13895d0",
+      "lfsBytes": 109213
+    },
+    "experiments/future-character-fit/assets-1600/zhongli-detailed/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "a3ce648cc4090d98a83b51d3f26182d09d1920d3b7948ba1991875667be4dc43",
+      "lfsBytes": 1644899
+    },
+    "experiments/future-character-fit/assets-1600/zhongli-simplified/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "b12ce3ca1095739ba215c4e1ac0be19fb269cdb07f8378a6d0e31022be892fda",
+      "lfsBytes": 875556
+    },
+    "experiments/future-character-fit/assets-1600/zhongli-simplified/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "e162af5405680d8e4687bab6600dcef8595329f9980031ea21f45a165702d72c",
+      "lfsBytes": 99161
+    },
+    "experiments/future-character-fit/assets-1600/zhongli-simplified/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "efe9a831e646239bf6919d7365dde6fa6e59d646a621df908716565b1727cbc1",
+      "lfsBytes": 1433154
+    },
+    "experiments/future-character-fit/corrections/keqing/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "15fed148a6f0a57c4d0a27de79aada4b3533eb810a371ce15488cae81895dd5b",
+      "lfsBytes": 1527766
+    },
+    "experiments/future-character-fit/corrections/keqing/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "f0b1c0fbbae1238a42368e5b4dad0bbb9bc36fb0cba37052acb2185c39d75d86",
+      "lfsBytes": 916465
+    },
+    "experiments/future-character-fit/corrections/keqing/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "97d9023208933bd4a0dba28786aa025beb42235739360489a9aa3f1186f0ab2a",
+      "lfsBytes": 104251
+    },
+    "experiments/future-character-fit/corrections/keqing/region-comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "4e112c4418abd416da6119c03e65b90b88e400cbe44f0149b1eef7eb3ce0a2e3",
+      "lfsBytes": 79674
+    },
+    "experiments/future-character-fit/corrections/zhongli-detailed/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "a3ce648cc4090d98a83b51d3f26182d09d1920d3b7948ba1991875667be4dc43",
+      "lfsBytes": 1644899
+    },
+    "experiments/future-character-fit/corrections/zhongli-detailed/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "79bfc4104a2abbae8d1deecf32ac8ebb058fddd33ccf69bf03229733b0b13e5e",
+      "lfsBytes": 980939
+    },
+    "experiments/future-character-fit/corrections/zhongli-detailed/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "7d68b9c824cf03687f48d7372c50fa92404b5f8114be11d6df297042caf25113",
+      "lfsBytes": 109406
+    },
+    "experiments/future-character-fit/corrections/zhongli-detailed/region-comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "5f9f0e92a1e447717560d3d524bc2a8bfa0ba343b92d2c421e407889eee6796a",
+      "lfsBytes": 49612
+    },
+    "experiments/future-character-fit/corrections/zhongli-simplified/source.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "efe9a831e646239bf6919d7365dde6fa6e59d646a621df908716565b1727cbc1",
+      "lfsBytes": 1433154
+    },
+    "experiments/future-character-fit/corrections/zhongli-simplified/comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "0b845a3d910c916f2f1ffbae076c98431af1f4eed9da84619214089a8484ff1f",
+      "lfsBytes": 876250
+    },
+    "experiments/future-character-fit/corrections/zhongli-simplified/preview.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "239881d6db9f1738defd9283e7dfc08af96124c6e0dce966ccbed50516d51819",
+      "lfsBytes": 99131
+    },
+    "experiments/future-character-fit/corrections/zhongli-simplified/region-comparison.png": {
+      "category": "future-selection-user-reference",
+      "sha256": "0875aca7f61925b517731c6954887092824989842a459c8526179e4c9816e9b7",
+      "lfsBytes": 46236
+    },
     "docs/evidence/hud-r2-20261101/after/battle-hover-1-1280x720.png": {
       "sha256": "77d4a074a0b8c83791a6836bc0d9f5c74677b08e4e05da22e503fc80c3e056e8",
       "category": "hud-r2-browser-evidence",

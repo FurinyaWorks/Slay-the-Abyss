@@ -1,0 +1,62 @@
+{
+  "status": "OFFLINE_PASS",
+  "builderSha256": "c3d3fee439f64ce603b3b9033a4b9ada60e14fec5ae0c97e06be214eeae53b97",
+  "flatPlacementSha256": "52bccccc5f2ae272c41b1a35ed0ee6262f00069b2511023713508b757b20d42a",
+  "officialImport": "NOT_RUN",
+  "devicePerformance": "UNVERIFIED",
+  "ownerAcceptance": "PENDING",
+  "results": [
+    {
+      "character": "ganyu",
+      "drawingImages": 1600,
+      "fallbackContainers": 119,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1747,
+      "maxVertexError": 3.411345200037716e-13,
+      "geometryBytes": 145933,
+      "sceneBytes": 365035,
+      "sceneSha256": "a768b31b64da64b2d86d4fd8e46835da29ed8fa4cd04526c0d0bd9659d4dcfdc",
+      "geometrySha256": "80615aea549f240a45854dcb54aaf1c6cbcb0fffe9a04198a9da829b807fa8a0",
+      "comparisonSha256": "dfac6d9ca1cae0429be27f9243fa6459da93291f4e3ce038d8429a07bbc3625e"
+    },
+    {
+      "character": "keqing",
+      "drawingImages": 1599,
+      "fallbackContainers": 123,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1750,
+      "maxVertexError": 3.4576501834057003e-13,
+      "geometryBytes": 146061,
+      "sceneBytes": 364975,
+      "sceneSha256": "ed4a8296a071cdc37ae9cfa4a41351fdb124cf33a59c94b99a168d5cbce13a2f",
+      "geometrySha256": "f24b71989fcaadbeb909c04aa7f352d72cb8e0c369217ca8e66d383d61217bc7",
+      "comparisonSha256": "7843ad65384882bdb26779041020258680de7a93b0f75320b0994026f751ed75"
+    },
+    {
+      "character": "zhongli-simplified",
+      "drawingImages": 1599,
+      "fallbackContainers": 146,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1773,
+      "maxVertexError": 3.410605131648481e-13,
+      "geometryBytes": 145543,
+      "sceneBytes": 367639,
+      "sceneSha256": "6196d1e2e301f735a2ff21494686cf89fcbacda4230c63be8a2973254d88880d",
+      "geometrySha256": "299f6d7fc0d2909adfe078fc2f5dceeaa0de2dc39c7daac16d476bd91c03b59b",
+      "comparisonSha256": "b12ce3ca1095739ba215c4e1ac0be19fb269cdb07f8378a6d0e31022be892fda"
+    },
+    {
+      "character": "zhongli-detailed",
+      "drawingImages": 1599,
+      "fallbackContainers": 166,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1793,
+      "maxVertexError": 3.410605131648481e-13,
+      "geometryBytes": 145861,
+      "sceneBytes": 370415,
+      "sceneSha256": "cc8811b085fa496a8d16302850e620b04fadd060d3ff73dc9a2cab3cbfde1831",
+      "geometrySha256": "434967fb31da6e47689d80565e6a3cb16e4c0600ca541cc57d71bb13f317244c",
+      "comparisonSha256": "9ee6eb84495a7586b1d7c893d31abe59e02eb6e2aec430ec65ab8f043f1d5c9c"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "status": "OFFLINE_PASS",
+  "builderSha256": "c3d3fee439f64ce603b3b9033a4b9ada60e14fec5ae0c97e06be214eeae53b97",
+  "flatPlacementSha256": "52bccccc5f2ae272c41b1a35ed0ee6262f00069b2511023713508b757b20d42a",
+  "officialImport": "NOT_RUN",
+  "devicePerformance": "UNVERIFIED",
+  "ownerAcceptance": "PENDING",
+  "results": [
+    {
+      "character": "keqing",
+      "drawingImages": 1574,
+      "fallbackContainers": 123,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1725,
+      "maxVertexError": 3.4576501834057003e-13,
+      "geometryBytes": 152005,
+      "sceneBytes": 359345,
+      "sceneSha256": "0e2482afb5eab051a16acf0fb63b39ced227b66449c80e9ea252157b990c0dc8",
+      "geometrySha256": "f02797f25c1c7fc0bff28c1cf59311c8213146e1c7d6e490f6ef1bbcb1a51ab0",
+      "comparisonSha256": "f0b1c0fbbae1238a42368e5b4dad0bbb9bc36fb0cba37052acb2185c39d75d86"
+    },
+    {
+      "character": "zhongli-simplified",
+      "drawingImages": 1572,
+      "fallbackContainers": 132,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1732,
+      "maxVertexError": 3.410605131648481e-13,
+      "geometryBytes": 150751,
+      "sceneBytes": 359943,
+      "sceneSha256": "a721ced3e9291a24dee56ccf4ffcbe7d5848a18cdf8501b04687f84a41f83d83",
+      "geometrySha256": "27034c81199e6a65ce5cd301f9c78bdd8abde4fbf557246dd43a98b544a5d456",
+      "comparisonSha256": "0b845a3d910c916f2f1ffbae076c98431af1f4eed9da84619214089a8484ff1f"
+    },
+    {
+      "character": "zhongli-detailed",
+      "drawingImages": 1589,
+      "fallbackContainers": 155,
+      "batchContainers": 27,
+      "totalBackgroundControls": 1772,
+      "maxVertexError": 3.410605131648481e-13,
+      "geometryBytes": 152617,
+      "sceneBytes": 366848,
+      "sceneSha256": "b67e1701f59d4df49e929807a182daea0695a516498837c5e3b71c2ba47455d9",
+      "geometrySha256": "82bc8a2f184257cc103a91d6390dcd9836a24dd514c617c71a8d9f6c6fdd616f",
+      "comparisonSha256": "79bfc4104a2abbae8d1deecf32ac8ebb058fddd33ccf69bf03229733b0b13e5e"
+    }
+  ]
+}
