@@ -19,6 +19,7 @@ import {merchantControl} from '../scripts/cinematic-ui-layout.mjs';
 import {gameBuildArgs} from '../scripts/build-game.mjs';
 import {styleEvent} from '../scripts/v25-node-layout.mjs';
 import {applyOfficialNeowLayout} from '../scripts/noncombat-neow-layout.mjs';
+import {applyOfficialNoncombatLayout} from '../scripts/noncombat-v25-layout.mjs';
 import {assertOfficialRunContracts} from '../scripts/official-run-layout.mjs';
 import {buildStsSharedCardChrome,geoCardReferenceTokens} from '../scripts/sts-card-reference-profile.mjs';
 const children=node=>node.controls??node.children??[];
@@ -77,6 +78,11 @@ test('approved pages keep live input identities while unrelated pages retain the
  styleEvent(expectedEvent,theme);
  applyOfficialNeowLayout({children:[{name:'nodePanel',children:[expectedEvent]}]},theme);
  const eventProjection=new Map(paths(expectedEvent,'/SlayTheAbyss/nodePanel'));
+ // The approved minimal menu is an adopted component too. Bind every owned
+ // geometry/input field to that projection while retaining unrelated pages.
+ const expectedMenuLayout=structuredClone(layout);
+ applyOfficialNoncombatLayout(expectedMenuLayout,theme);
+ const menuProjection=new Map(paths(child(expectedMenuLayout,'menuPanel'),'/SlayTheAbyss'));
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
   .map(([path,node])=>[path,node,structuredClone(node)]);
  const containers=nodes.filter(([,node])=>node.kind==='container').map(([path,node])=>[path,node,{position:node.position,size:node.size,visible:node.visible,scale:node.scale,rotation:node.rotation}]);
@@ -110,6 +116,18 @@ test('approved pages keep live input identities while unrelated pages retain the
     continue;
    }
    assert.equal(current.get(path),node,path);
+   if(menuProjection.has(path)){
+    const expected=menuProjection.get(path);
+    for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])
+     assert.deepEqual(node[key],expected[key],path+' approved menu '+key);
+    if(node.text){
+     const actualText={...node.text},expectedText={...expected.text};
+     delete actualText.colour;delete expectedText.colour;
+     if(expectedText.autoSize&&expectedText.minFontSize*1.45+4>expected.size?.[1])expectedText.minFontSize=nativeTheme.font.minimum;
+     assert.deepEqual(actualText,expectedText,path+' approved menu text');
+    }
+    continue;
+   }
    if(eventProjection.has(path)){
     assert.deepEqual(node,eventProjection.get(path),path+' shared event projection');continue;
    }
@@ -148,6 +166,11 @@ test('approved pages keep live input identities while unrelated pages retain the
   for(const [path,node,before]of containers){
    if(path.startsWith(retiredDeckPrefix)){
     assert.equal(current.has(path),false,path+' duplicate selection browser must be removed');continue;
+   }
+   if(menuProjection.has(path)){
+    assert.equal(current.get(path),node,path+' menu input owner identity');
+    for(const key of Object.keys(before))assert.deepEqual(node[key],menuProjection.get(path)[key],path+' approved menu '+key);
+    continue;
    }
    if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;
    if(retiredCardDecorationPaths.has(path)){
