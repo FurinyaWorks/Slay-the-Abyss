@@ -1,4 +1,4 @@
-> **Lightweight preview delivery:** This branch preserves reviewed 1×/4× simulator crops, review, counts and reproducible source code. Large generated native/save JSON and full sheets are not included in this preview commit. Run build.py and run.mjs to regenerate them; validation results below describe the frozen full local run, not CI on this partial archive. No production integration.
+> **Complete repository-managed evidence:** reviewed previews and source code are accompanied by [lossless engineering backup](engineering-backup/README.md). The six large native/save JSONs are explicitly stored as `.json.gz`, with byte hashes and a verified restoration command; full simulator sheets, geometry, SVG and receipts are stored directly. This branch extends, and does not overwrite, the lightweight preview branch. No production integration.
 
 # Round 2 — reference reconstruction, not production art
 

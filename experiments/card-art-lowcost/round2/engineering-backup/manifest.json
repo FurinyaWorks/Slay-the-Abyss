@@ -1,0 +1,178 @@
+{
+  "sourceFrozenCommit": "f117e4329d3ab12affb3316010bcad3868cb2723",
+  "kind": "lossless generated engineering evidence; not production assets",
+  "files": [
+    {
+      "file": "cleave-a-corrected.geometry.json",
+      "bytes": 2780,
+      "sha256": "d3f75ad9d22f0056694d62cdf83f84191be3ca9f5fa2036845addb959a3dc080",
+      "gitBlob": "d901d4d97bd0641e5ab93135c4f4b1204b7262e3",
+      "storage": "raw",
+      "stored": "cleave-a-corrected.geometry.json"
+    },
+    {
+      "file": "cleave-a-corrected.host.png",
+      "bytes": 68109,
+      "sha256": "dfa9e2257e6c48a8aa2b03edb3809d819ede7b74a86a703e9920c18c3c5baec2",
+      "gitBlob": "927594a354536e03cc83743a189a8deec814594a",
+      "storage": "raw",
+      "stored": "cleave-a-corrected.host.png"
+    },
+    {
+      "file": "cleave-a-corrected.native.json",
+      "bytes": 137205,
+      "sha256": "64a4ab1794816a81467908fd65f6fe3a46092ce64e7138140d7ff82b9740006a",
+      "gitBlob": "dc2301cf3793acec62b1498fbedd9d5f9dd3a2b7",
+      "storage": "gzip",
+      "stored": "engineering-backup/cleave-a-corrected.native.json.gz",
+      "storedBytes": 6330,
+      "storedSha256": "df919b93a1984759644a42c2fafdd17b2c9b15d41978123e8c83c7d4c719ece1"
+    },
+    {
+      "file": "cleave-a-corrected.receipt.json",
+      "bytes": 4818,
+      "sha256": "b0e3d0c7ec077ad76fed450eba5bacb9ee8fb84c732a715022f7514145c8681a",
+      "gitBlob": "b351637cff94d37d966af5d6063084b3ddc696fd",
+      "storage": "raw",
+      "stored": "cleave-a-corrected.receipt.json"
+    },
+    {
+      "file": "cleave-a-corrected.save.json",
+      "bytes": 435673,
+      "sha256": "a7f67bbdd9b6b3ec255c3a6e81ec0082e2dcc21176a7b57d82ee93795d34f004",
+      "gitBlob": "8200bc3c74d31d7c4f8f9764a09eb290c50dadfb",
+      "storage": "gzip",
+      "stored": "engineering-backup/cleave-a-corrected.save.json.gz",
+      "storedBytes": 19424,
+      "storedSha256": "9d5ddccee50317412ca1ec563b866f2ccc82e4423391428510fac3273a15971c"
+    },
+    {
+      "file": "cleave-a-corrected.source.svg",
+      "bytes": 2712,
+      "sha256": "053bb5ae8f556cd60ea43e0a5865cd82014cb7b2f70105ecd17d042d8d0a23be",
+      "gitBlob": "707dcf634c68064bfd55b209b5e1b4fa91010bad",
+      "storage": "raw",
+      "stored": "cleave-a-corrected.source.svg"
+    },
+    {
+      "file": "cleave-reference-impact.geometry.json",
+      "bytes": 9234,
+      "sha256": "760ed3134d4cfe06f432aa9a70711d2df69636d55c2aef5f352dc2b60ab67318",
+      "gitBlob": "fad92fd19348ae22ced14c11e7fcabd581b2e861",
+      "storage": "raw",
+      "stored": "cleave-reference-impact.geometry.json"
+    },
+    {
+      "file": "cleave-reference-impact.host.png",
+      "bytes": 96038,
+      "sha256": "86506bcacb796a0d47124918791e088db57d5022b4409d90ef99a71cd19225b6",
+      "gitBlob": "f9049e4951e7e28f3eaa7995a79051a8b287c75a",
+      "storage": "raw",
+      "stored": "cleave-reference-impact.host.png"
+    },
+    {
+      "file": "cleave-reference-impact.native.json",
+      "bytes": 232379,
+      "sha256": "bd6e20740f3d0fb9fa7392751329fbc78288d10dc8b85e8f6d50a28aae5bbeb3",
+      "gitBlob": "b152cb3aeee8ec55f94f28741bf372bb6beb8b92",
+      "storage": "gzip",
+      "stored": "engineering-backup/cleave-reference-impact.native.json.gz",
+      "storedBytes": 9517,
+      "storedSha256": "8755179dfb2b84dad2c87b5d9e193e861dbfe3501386842affab778db816aad9"
+    },
+    {
+      "file": "cleave-reference-impact.receipt.json",
+      "bytes": 4818,
+      "sha256": "729487d6249cc44d5fd8bc03079269478bdad8e28f74e89e6e23d932a13ad155",
+      "gitBlob": "097531eb5cd41e0ae75fa075a132e0b8a439942b",
+      "storage": "raw",
+      "stored": "cleave-reference-impact.receipt.json"
+    },
+    {
+      "file": "cleave-reference-impact.save.json",
+      "bytes": 721165,
+      "sha256": "69a6a3534defdfd3d2a687bdc86840746160f546f936664ce42ee3df6ea572c2",
+      "gitBlob": "c15dab913717d1fba45733f368517979c60443bf",
+      "storage": "gzip",
+      "stored": "engineering-backup/cleave-reference-impact.save.json.gz",
+      "storedBytes": 28926,
+      "storedSha256": "62ad7a368b0340efff0f9dc2a4aab46ddd1c4303cd1320aa7aa4b80a5ef1316a"
+    },
+    {
+      "file": "cleave-reference-impact.source.svg",
+      "bytes": 9888,
+      "sha256": "78689d4a3aa40dae1b6658f9f1875d458d3a2a4cbe6ea8b8a6154177ae3564ca",
+      "gitBlob": "c892c809664d7db2f1c8a89bf722ca3bffd84fdc",
+      "storage": "raw",
+      "stored": "cleave-reference-impact.source.svg"
+    },
+    {
+      "file": "cleave-reference-shape.geometry.json",
+      "bytes": 8481,
+      "sha256": "9a47924fa11c3c44277efedcbf3f0bc98d0260484771f83c679acf563d778c72",
+      "gitBlob": "6558b614e5559c569e665605153ede3551d18f13",
+      "storage": "raw",
+      "stored": "cleave-reference-shape.geometry.json"
+    },
+    {
+      "file": "cleave-reference-shape.host.png",
+      "bytes": 75316,
+      "sha256": "2780424739954f31ce23f2e8e109ef4bc3f8436eff1a57f834597925f23dc2a0",
+      "gitBlob": "a4ad2a2e4cadf842b39c0c42537252cfa9c07c05",
+      "storage": "raw",
+      "stored": "cleave-reference-shape.host.png"
+    },
+    {
+      "file": "cleave-reference-shape.native.json",
+      "bytes": 171759,
+      "sha256": "4565ca570ae2777176ebfe139cd6f68c93e515fb9ffeeaa5823e7d56eaf47737",
+      "gitBlob": "391575f46883e6abd049a12d1d159d5292ed1534",
+      "storage": "gzip",
+      "stored": "engineering-backup/cleave-reference-shape.native.json.gz",
+      "storedBytes": 6689,
+      "storedSha256": "4ed2ec72ca39c9bedc54b82e685d38078775eab36f7eb018583bc813447d5d29"
+    },
+    {
+      "file": "cleave-reference-shape.receipt.json",
+      "bytes": 4818,
+      "sha256": "db301c7bd96f1fa73399befb2d892853cf362837afd86eecdf074e14a5de2388",
+      "gitBlob": "163ec4d5a74ce34cce61788e762b6cfce95acec2",
+      "storage": "raw",
+      "stored": "cleave-reference-shape.receipt.json"
+    },
+    {
+      "file": "cleave-reference-shape.save.json",
+      "bytes": 539197,
+      "sha256": "79a24aff5a1f2ca9722c79e7b8af0c647ee743a2587aa3dbbf03e995af027c4c",
+      "gitBlob": "1032af53557ba5f6ad365a0fbdbf0c87655c799d",
+      "storage": "gzip",
+      "stored": "engineering-backup/cleave-reference-shape.save.json.gz",
+      "storedBytes": 20455,
+      "storedSha256": "a72b3d6cec975d852908b7308350fd12d326f0230125cb10a14c28f94a2f714c"
+    },
+    {
+      "file": "cleave-reference-shape.source.svg",
+      "bytes": 9183,
+      "sha256": "c68187c56fdca07f6a289e757e63d665e7c9aff503740a6b613a141258c4fd00",
+      "gitBlob": "2b916ee8525a6933ad461d1e112545c9b866cc09",
+      "storage": "raw",
+      "stored": "cleave-reference-shape.source.svg"
+    },
+    {
+      "file": "counts.json",
+      "bytes": 514,
+      "sha256": "e25365c1fee39e8d37874ab0db6e25a293671e7be0a1ac583029c19345eb49b5",
+      "gitBlob": "7dab1c8aced251085333d99799ee31ee8311bf7d",
+      "storage": "raw",
+      "stored": "counts.json"
+    },
+    {
+      "file": "failures.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "gitBlob": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "storage": "raw",
+      "stored": "failures.json"
+    }
+  ]
+}

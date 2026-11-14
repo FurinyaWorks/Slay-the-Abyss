@@ -1,0 +1,114 @@
+{
+  "start": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"canvasId\": \"pc-16-9\",\n  \"platform\": \"KEYBOARD\",\n  \"device\": \"KeyboardAndMouse\",\n  \"canvasWidth\": 1600,\n  \"canvasHeight\": 900,\n  \"canvasPresets\": [\n    {\n      \"id\": \"pc-16-9\",\n      \"label\": \"PC 1600×900\",\n      \"platform\": \"KEYBOARD\",\n      \"width\": 1600,\n      \"height\": 900\n    },\n    {\n      \"id\": \"pc-21-9\",\n      \"label\": \"PC 2100×900\",\n      \"platform\": \"KEYBOARD\",\n      \"width\": 2100,\n      \"height\": 900\n    },\n    {\n      \"id\": \"mobile-16-9\",\n      \"label\": \"手机 1280×720\",\n      \"platform\": \"TOUCHSCREEN\",\n      \"width\": 1280,\n      \"height\": 720\n    },\n    {\n      \"id\": \"mobile-19.5-9\",\n      \"label\": \"手机 1560×720\",\n      \"platform\": \"TOUCHSCREEN\",\n      \"width\": 1560,\n      \"height\": 720\n    },\n    {\n      \"id\": \"mobile-4-3\",\n      \"label\": \"手机 1280×960\",\n      \"platform\": \"TOUCHSCREEN\",\n      \"width\": 1280,\n      \"height\": 960\n    }\n  ],\n  \"playerCount\": 1,\n  \"viewPlayerIndex\": 1,\n  \"players\": [\n    {\n      \"index\": 1,\n      \"label\": \"玩家1\",\n      \"entityType\": \"Player1\"\n    }\n  ],\n  \"time\": 0,\n  \"frame\": 0,\n  \"paused\": false,\n  \"levelTimePaused\": false,\n  \"audio\": {\n    \"sessionId\": \"39da5d4d-874d-40ab-b61a-b934c83fca8d\",\n    \"playerIndex\": 1,\n    \"sequence\": 0,\n    \"revision\": 0,\n    \"active\": [],\n    \"recent\": []\n  },\n  \"effects\": [],\n  \"mountError\": null,\n  \"logs\": [],\n  \"tree\": [],\n  \"paint\": [],\n  \"scene\": null,\n  \"server\": {\n    \"clock\": 0,\n    \"onlineLatencyMs\": 0,\n    \"playerCount\": 1,\n    \"viewPlayerIndex\": 1,\n    \"logic\": {\n      \"version\": 1,\n      \"rules\": []\n    },\n    \"vars\": {\n      \"Level\": {},\n      \"PlayerSelf\": {},\n      \"AvatarSelf\": {},\n      \"Player1\": {},\n      \"Avatar1\": {}\n    },\n    \"inbound\": [],\n    \"outbound\": [],\n    \"logs\": []\n  },\n  \"history\": [],\n  \"running\": true,\n  \"serverLogs\": [],\n  \"serverVars\": [],\n  \"clockMode\": \"manual\",\n  \"audioMuted\": true\n}"
+      }
+    ],
+    "structuredContent": {
+      "canvasId": "pc-16-9",
+      "platform": "KEYBOARD",
+      "device": "KeyboardAndMouse",
+      "canvasWidth": 1600,
+      "canvasHeight": 900,
+      "canvasPresets": [
+        {
+          "id": "pc-16-9",
+          "label": "PC 1600×900",
+          "platform": "KEYBOARD",
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "id": "pc-21-9",
+          "label": "PC 2100×900",
+          "platform": "KEYBOARD",
+          "width": 2100,
+          "height": 900
+        },
+        {
+          "id": "mobile-16-9",
+          "label": "手机 1280×720",
+          "platform": "TOUCHSCREEN",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "id": "mobile-19.5-9",
+          "label": "手机 1560×720",
+          "platform": "TOUCHSCREEN",
+          "width": 1560,
+          "height": 720
+        },
+        {
+          "id": "mobile-4-3",
+          "label": "手机 1280×960",
+          "platform": "TOUCHSCREEN",
+          "width": 1280,
+          "height": 960
+        }
+      ],
+      "playerCount": 1,
+      "viewPlayerIndex": 1,
+      "players": [
+        {
+          "index": 1,
+          "label": "玩家1",
+          "entityType": "Player1"
+        }
+      ],
+      "time": 0,
+      "frame": 0,
+      "paused": false,
+      "levelTimePaused": false,
+      "audio": {
+        "sessionId": "39da5d4d-874d-40ab-b61a-b934c83fca8d",
+        "playerIndex": 1,
+        "sequence": 0,
+        "revision": 0,
+        "active": [],
+        "recent": []
+      },
+      "effects": [],
+      "mountError": null,
+      "logs": [],
+      "tree": [],
+      "paint": [],
+      "scene": null,
+      "server": {
+        "clock": 0,
+        "onlineLatencyMs": 0,
+        "playerCount": 1,
+        "viewPlayerIndex": 1,
+        "logic": {
+          "version": 1,
+          "rules": []
+        },
+        "vars": {
+          "Level": {},
+          "PlayerSelf": {},
+          "AvatarSelf": {},
+          "Player1": {},
+          "Avatar1": {}
+        },
+        "inbound": [],
+        "outbound": [],
+        "logs": []
+      },
+      "history": [],
+      "running": true,
+      "serverLogs": [],
+      "serverVars": [],
+      "clockMode": "manual",
+      "audioMuted": true
+    }
+  },
+  "screenshot": [
+    {
+      "type": "text",
+      "text": "{\n  \"canvasId\": \"pc-16-9\",\n  \"frame\": 0,\n  \"time\": 0,\n  \"clockMode\": \"manual\",\n  \"width\": 1600,\n  \"height\": 900,\n  \"pixelWidth\": 1600,\n  \"pixelHeight\": 900,\n  \"assetWarnings\": []\n}"
+    }
+  ],
+  "officialVerified": false
+}
