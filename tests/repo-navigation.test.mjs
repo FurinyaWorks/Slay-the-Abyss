@@ -31,6 +31,7 @@ function sandbox(run) {
 
 test('routes have valid anchors and discoverable flat entry points', () => sandbox(({root, put}) => {
   put('tests/lua/helpers/fixture.lua');
+  put('tests/lua/support/oracle.lua');
   put('tests/fixtures/history.lua');
   const report = auditRepositoryNavigation(root);
   assert.deepEqual(report.errors, []);
