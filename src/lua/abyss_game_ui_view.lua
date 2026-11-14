@@ -64,8 +64,8 @@ function M.syncController(self,controller,openingCovered)
             elseif self.easterEggOpen then scope='easterEgg'
             elseif self.exitOpen then scope='exit'
             elseif self.motion.deathReveal then scope='blocked'
-            elseif self.characterOpen then scope='characters'
             elseif openingCovered() then scope='blocked'
+            elseif self.characterOpen then scope='characters'
             else scope=pageScope() end
             local function pageBack(backScope)
                 if backScope=='potions' then return self:closePotions()
@@ -370,7 +370,8 @@ end
 
 function M.exitEntryVisible(self)
     return function()
-            return not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
+            return not (self.prologue and self.prologue:covering())
+                and not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
         end
 end
 
@@ -469,7 +470,7 @@ end
 
 function M.syncOpening(self,openingCovered)
     return function(run)
-            if self.prologue and (self.settlementRequested or run and (run.phase=='defeat' or run.phase=='victory')) then self.prologue:cancel() end
+            if self.prologue and (self.settlementRequested or not self.starting and run and (run.phase=='defeat' or run.phase=='victory')) then self.prologue:cancel() end
             return openingCovered()
         end
 end
@@ -480,7 +481,7 @@ function M.openingForeground(self,child,prologuePanel,runMenu,exitPanel)
                 child('mapPanel'):SetVisible(false);child('nodePanel'):SetVisible(false)
             end
             if not covering then return end
-            prologuePanel:SetAsLastSibling();child('exitEntry'):SetAsLastSibling()
+            prologuePanel:SetAsLastSibling()
             if self.menuOpen then runMenu:SetAsLastSibling()
             elseif self.exitOpen then exitPanel:SetAsLastSibling() end
         end

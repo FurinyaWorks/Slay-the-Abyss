@@ -26,6 +26,7 @@ function M.resize(self,owner)
             owner.exitGeneration = owner.exitGeneration + 1
             owner.menuGeneration = owner.menuGeneration + 1
             if self.choiceUI then self.choiceUI:resize() end
+            if self.prologue then self.prologue:resize(width,height) end
             local closed=self.potionUI:close()
             self.battleUI:resize(width, height)
             self.mapUI:resize(width, height)

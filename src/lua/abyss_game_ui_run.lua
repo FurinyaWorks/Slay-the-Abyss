@@ -102,7 +102,7 @@ function M.beginRun(platform,data,self,newSeed,presentation,endingHistory,neowHi
             self.mapUI.map = self.map
             self.nodeUI.run, self.nodeUI.map = self.run, self.map
             self.nodeUI:render()
-            if prologuePanel then prologuePanel:SetVisible(false) end
+            if prologuePanel and not self.prologue then prologuePanel:SetVisible(false) end
             self:refresh()
             return true
     end
@@ -136,16 +136,25 @@ end
 function M.confirmCharacter(self,beginRun)
     return function(_)
             if not self.characterOpen or self.starting or self.disabled or self.exitOpen or self.characterSelection.deckOpen
+                or self.prologue and self.prologue:covering()
                 or self.settlementRequested or self.settlementBusy then return false,'character_choice_unavailable' end
             local info=self.characterSelection.info
             if not info then return false,'character_required' end
             if not self.characterSelection:canConfirm()then return false,'competition_character_unavailable'end
             self.starting=true
-            -- Latch before seed generation and Run.new; a native duplicate cannot re-enter.
-            local ok,accepted,reason=pcall(beginRun,info.id)
-            self.starting=false
-            if not ok then error(accepted)end
-            return accepted,reason
+            -- Latch before the fade and seed generation; one confirmation creates one Run.
+            local function commit()
+                local ok,accepted,reason=pcall(beginRun,info.id)
+                self.starting=false
+                if not ok then error(accepted)end
+                return accepted,reason
+            end
+            if self.prologue then
+                local accepted=self.prologue:play(commit)
+                self:refresh()
+                return accepted
+            end
+            return commit()
         end
 end
 

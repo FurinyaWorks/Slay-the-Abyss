@@ -42,35 +42,16 @@ export function vistaControl(theme = nativeTheme, name = 'vista') {
 }
 
 export function prologueControl(theme = nativeTheme) {
-  const { picture, plate, text, leftText, button } = helpers(theme);
-  const p = theme.layout.prologue, c = theme.color, im = theme.image, f = theme.font;
-  const cover = theme.layout.vista.cover, [, , cw] = cover, half = theme.canvas.base[1] / 2;
-  const [hx, hy, hw, hh] = p.hero;
-  const hero = { name: 'hero', kind: 'container', position: [hx, hy], size: [hw, hh], visible: false, children: [
-    picture('glow', [0, 0, p.heroGlow, p.heroGlow], im.glow, c.geo),
-    picture('disc', [0, 0, hw, hh], im.disc, c.panelSunken),
-    picture('ring', [0, 0, hw + theme.space.s, hh + theme.space.s], im.ring, c.gold),
-    picture('icon', [0, 0, hw * 0.62, hh * 0.62], theme.icon.geo, c.geo),
-  ] };
-  const dots = [0, 1, 2].map(i => picture(`dot${i + 1}`, [(i - 1) * p.dots.step, p.dots.y, p.dots.size, p.dots.size], im.disc, c.goldDim));
-  // The camera moves the vista; its vignette stays fixed to the screen instead.
-  const vista = vistaControl(theme), vignette = vista.children.find(child => child.name === 'vignette');
-  vista.children = vista.children.filter(child => child !== vignette);
+  const { picture, plate } = helpers(theme), p = theme.layout.prologue;
+  // One native Geo mark, no imported save, vector reconstruction or dynamic children.
   return { name: 'prologuePanel', kind: 'container', size: [...theme.canvas.base], visible: false, children: [
-    vista,
-    vignette,
-    hero,
-    { ...plate('flash', cover, c.goldBright), visible: false },
-    plate('barTop', [0, half - p.barHeight / 2, cw, p.barHeight], c.vista.shade),
-    plate('barBottom', [0, -half + p.barHeight / 2, cw, p.barHeight], c.vista.shade),
-    leftText('chapter', p.chapter, '', f.label, c.goldBright),
-    leftText('line', p.line, '', f.title, c.text),
-    ...dots,
-    text('hint', p.hint, '点击继续', f.small, c.textMuted),
-    { name: 'advance', kind: 'cursorArea', size: cover.slice(2), focusable: true },
-    button('skip', p.skip, '跳过', { inset: theme.layout.nativeNode.buttonInset, fontSize: f.label,
-      colour: c.goldBright, fill: c.panelSunken, border: c.goldDim }),
-    plate('fade', cover, c.vista.shade),
+    plate('fade', [0, 0, ...theme.canvas.base], p.shade),
+    { name: 'seal', kind: 'container', size: p.seal.slice(2), children: [
+      picture('icon', p.seal, theme.icon.geo, p.ink),
+      plate('ruleLeft', p.ruleLeft, p.ink),
+      plate('ruleRight', p.ruleRight, p.ink),
+    ] },
+    { name: 'blocker', kind: 'cursorArea', size: [...theme.canvas.base], focusable: false },
   ] };
 }
 

@@ -101,9 +101,8 @@ test('generated Chinese display and native tree exercise the real game entry and
   const { nativeMenu: menu, nativeBattle: battle, prologue } = nativeTheme.layout, { font: size } = nativeTheme;
   // Each line is checked against the control that actually displays it.
   assert.equal(previews.menu, '', 'the start screen has no route or control instructions');
-  // The approved intro is told sentence by sentence on the cinematic's single line.
-  const targets = { intro1: [prologue.line, size.title], intro2: [prologue.line, size.title], intro3: [prologue.line, size.title],
-    victory: [menu.subtitle, size.body], defeat: [menu.subtitle, size.body],
+  // The short interstitial carries no prose; result/notice copy retains its layout budget.
+  const targets = { victory: [menu.subtitle, size.body], defeat: [menu.subtitle, size.body],
     settlementError: [menu.status, size.small], boss: [battle.notice, size.body] };
   for (const [name, [frame, font]] of Object.entries(targets)) {
     assert.ok(previews[name], `missing actual controller output for ${name}`);
@@ -133,7 +132,7 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   const theme = nativeTheme, [w, h] = theme.canvas.base, { x, y } = theme.canvas.safe;
   const { prologue, merchant, nativeNode: node } = theme.layout;
   const inside = ([cx, cy, cw, ch]) => Math.abs(cx) + cw / 2 <= w / 2 - x && Math.abs(cy) + ch / 2 <= h / 2 - y;
-  for (const frame of [prologue.line, prologue.chapter, prologue.hint, prologue.skip, merchant.frame, merchant.box, merchant.portrait, merchant.name, merchant.line])
+  for (const frame of [prologue.seal, prologue.ruleLeft, prologue.ruleRight, merchant.frame, merchant.box, merchant.portrait, merchant.name, merchant.line])
     assert.ok(inside(frame), JSON.stringify(frame));
   // The compact dialogue sits below the goods. Check both axes: colorless
   // prices can share its vertical band while remaining to its left.
@@ -148,6 +147,9 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   }
   assert.ok(merchant.box[0] - merchant.box[2] / 2 > node.back[0] + node.back[2] / 2);
   assert.ok(merchant.box[0] + merchant.box[2] / 2 < node.confirm[0] - node.confirm[2] / 2);
-  // The skip button lives in the lower letterbox, away from the persistent exit entry.
-  assert.ok(bottom(prologue.skip) >= -h / 2 + y - 1 && top(prologue.skip) <= -h / 2 + prologue.barHeight + 4);
+  const opening=gameLayout().controls.find(c=>c.name==='prologuePanel');
+  const count=c=>1+(c.children??[]).reduce((n,c)=>n+count(c),0);
+  assert.equal(count(opening),7,'short interstitial has a fixed seven-control budget');
+  assert.deepEqual(opening.children.map(c=>c.name),['fade','seal','blocker']);
+  assert.equal(opening.children.at(-1).focusable,false);
 });
