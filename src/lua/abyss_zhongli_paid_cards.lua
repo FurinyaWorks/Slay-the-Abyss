@@ -9,6 +9,8 @@ local starterNative={}
 for _,d in ipairs(require('abyss_zhongli_starter_source').definitions())do if d.id=='zl01'or d.id=='zl02'then starterNative[d.id]=d end end
 for _,d in ipairs(require('abyss_zhongli_native_definitions').definitions())do starterNative[d.id]=d end
 for _,d in ipairs(require('abyss_zhongli_control_definitions').definitions())do starterNative[d.id]=d end
+local follow={}
+for _,d in ipairs(require('abyss_zhongli_follow_definitions').definitions())do follow[d.id]=d end
 local specs={zl32={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',counter=6,upCounter=8,retain=false,exactExhaust=false},
  zl40={kind='spendJade',base=3,upgraded=3,type='skill',target='SELF',block=12,upBlock=16,retain=true,exactExhaust=true},
  zl21={kind='installPillar',base=3,upgraded=4,type='power',target='SELF'},zl31={kind='installRepair',base=2,upgraded=3,type='power',target='SELF'},
@@ -49,6 +51,19 @@ local function nativeUse(state,instance,card,targetIndex)
  if not pcall(Lifecycle.validate,state)then return false,'invalid_zhongli_resource'end
  return true
 end
+local function followUse(state,instance,card,targetIndex)
+ local d=follow[instance.cardId]
+ if not d or not same(state.catalog.cards[instance.cardId],d)or instance.upgraded~=nil and type(instance.upgraded)~='boolean'
+  or card.zhongliCandidate~=true or state.characterCandidate~='zhongli'or state.experimentalMechanics~=true or state.originalV4
+  or card.experimental~=true or card.originalV4 or card.runNativeABI or card.silentFinalCard or card.costMode
+  or card.keqingCandidate~=nil or card.ganyuCandidate~=nil or card.xiaoCandidate~=nil
+  or card.type~=d.type or card.target~=d.target or (d.exhaust and card.exhaust~=true or not d.exhaust and card.exhaust~=nil and card.exhaust~=false)
+  or (d.selfRetain and card.selfRetain~=true or not d.selfRetain and card.selfRetain~=nil and card.selfRetain~=false)
+  or not same(card.effects,instance.upgraded and d.upgrade.effects or d.effects)then return false,'zhongli_follow_source_drift'end
+ if #state.enemies~=1 or not Presence.isActive(state.player)or not Presence.isActive(state.enemies[1])then return false,'inactive_zhongli_battle'end
+ if d.target=='ENEMY'and targetIndex~=1 then return false,'invalid_target'end
+ return Jade.canApply(state,'gainJade',card.effects[2].value)
+end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='zhongliCard'then return false end
  for k in pairs(e)do if k~='op'and k~='kind'and k~='value'then return false end end
@@ -56,6 +71,7 @@ function M.supports(e)
  return max~=false and max~=nil and type(e.value)=='number'and e.value%1==0 and e.value>=1 and e.value<=max
 end
 function M.canUse(state,instance,card,targetIndex)
+ if instance and follow[instance.cardId]then return followUse(state,instance,card,targetIndex)end
  if instance and starterNative[instance.cardId]then return nativeUse(state,instance,card,targetIndex)end
  if card.zhongliCandidate==nil then
   for _,e in ipairs(card.effects)do if e.op=='zhongliCard'then return false,'unmarked_zhongli_card'end end
@@ -92,6 +108,10 @@ function M.prepare(state,card,effects)
  assert(instance.uid==context.uid and context.zhongliPaid==nil,'duplicate or invalid Zhongli paid context')
  if starterNative[instance.cardId]then return Copy(effects)end
  local playId=#assert(state.cardsPlayedThisCombat,'missing Zhongli accepted history')
+ if follow[instance.cardId]then
+  context.zhongliPaid={uid=instance.uid,turn=state.turn,playId=playId,payload=Copy(effects[2]),follow=true}
+  return {Copy(effects[1]),{op='zhongliPaidStage',payload=Copy(effects[2]),uid=instance.uid,turn=state.turn,playId=playId}}
+ end
  context.zhongliPaid={uid=instance.uid,turn=state.turn,playId=playId,payload=Copy(effects[1])}
  local out={{op='zhongliPaidStage',payload=Copy(effects[1]),uid=instance.uid,turn=state.turn,playId=playId}}
  for i=2,#effects do out[#out+1]=Copy(effects[i])end
@@ -105,6 +125,7 @@ function M.dispatch(combat,state,e,queue)
   and not paid.completed,'stale Zhongli stage')
  assert(state.cardInUse and state.cardInUse.uid==paid.uid and context.uid==paid.uid,'wrong Zhongli paid instance')
  assert(same(e.payload,paid.payload),'mutated Zhongli paid effect')
+ if paid.follow and(not Presence.isActive(state.player)or not Presence.isActive(state.enemies[1]))then paid.completed=true;return true end
  if e.payload.kind=='gainJade'or e.payload.kind=='spendJade'or e.payload.kind=='emptyJade'then Jade.apply(state,e.payload.kind,e.payload.value)
  else Dispatch.dispatch(combat,state,e.payload,queue)end
  paid.completed=true

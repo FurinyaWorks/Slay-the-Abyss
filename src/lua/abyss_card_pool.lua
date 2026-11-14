@@ -47,6 +47,7 @@ function M.prepareRewards(run)
     if run.candidateRewardPool=='xiao-reviewed-nonbasic-seventeen-v1'then return require('abyss_xiao_spend_card_rewards').prepare(run,M)end
     if run.candidateRewardPool=='xiao-reviewed-nonbasic-fifteen-v1'then return require('abyss_xiao_exhaust_card_rewards').prepare(run,M)end
     if run.candidateRewardPool=='xiao-reviewed-nonbasic-twelve-v1'then return require('abyss_xiao_card_rewards').prepare(run,M)end
+    if run.candidateRewardPool=='zhongli-reviewed-common-twentyeight-v1'then return require('abyss_zhongli_twentyeight_rewards').prepare(run,M)end
     if run.candidateRewardPool=='zhongli-reviewed-common-twentyfive-v1'then return require('abyss_zhongli_twentyfive_rewards').prepare(run,M)end
     if run.candidateRewardPool=='zhongli-reviewed-common-twentyone-v1'then return require('abyss_zhongli_twentyone_rewards').prepare(run,M)end
     if run.candidateRewardPool=='zhongli-reviewed-common-sixteen-v1'then return require('abyss_zhongli_sixteen_rewards').prepare(run,M)end

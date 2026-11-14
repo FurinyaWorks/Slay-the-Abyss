@@ -1,5 +1,11 @@
 {
   "layers": {
+    "abyss_zhongli_follow_definitions": "core",
+    "abyss_zhongli_follow_text": "core",
+    "abyss_zhongli_twentyeight_catalog": "core",
+    "abyss_zhongli_twentyeight_run": "core",
+    "abyss_zhongli_twentyeight_rewards": "core",
+
     "abyss_xiao_next_source": "core",
     "abyss_xiao_next_reward_catalog": "core",
     "abyss_xiao_next_reward_run": "core",
