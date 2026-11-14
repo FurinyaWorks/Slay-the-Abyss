@@ -19,7 +19,7 @@ rg -n 'targetSymbol|require\(' src/lua scripts tests
 | 路径 | 发现方式 | 直接迁移到子目录？ |
 | --- | --- | --- |
 | `src/lua/` | `scripts/native-candidate-scripts.mjs` 第一层扫描 + `scripts/test-lua.mjs` 的扁平 `LUA_PATH` | **不能**：先升级模块发现、模块身份与候选打包 |
-| `tests/lua/` | `scripts/test-lua.mjs` 第一层 `*.lua` 用例发现 | **不能**：`helpers/` 为辅助代码，不是自动运行的用例 |
+| `tests/lua/` | `scripts/test-lua.mjs` 第一层 `*.lua` 用例发现 | **不能**：`helpers/`、`support/` 为已存在的辅助代码，不是自动运行的用例 |
 | `tests/` | `package.json` 与 `scripts/ci-shards.mjs` 只发现根层 `*.test.mjs` | **不能**：嵌套后可能不执行测试 |
 | `scripts/` | npm 命令、工作流、相对 import、生成输入清单 | **可逐簇评估**：先更新全部路径/构建合同，不能整包盲移 |
 | `tests/helpers/`、`tests/fixtures/` | 辅助代码、历史快照与向量 | 可按职责组织，必须保留来源和引用 |
@@ -31,7 +31,7 @@ rg -n 'targetSymbol|require\(' src/lua scripts tests
 
 1. **按业务定位**：先用 `repo:where`、`docs/ARCHITECTURE.md` 和依赖图确定所属领域；优先扩展已有模块，不创造第二个状态提交者或通用 `utils` 大桶。
 2. **Lua 新模块**：当前继续平铺在 `src/lua/`，保持 `abyss_*.lua` 模块身份；新模块登记 `config/architecture.json` 并经候选打包、负载检查验证。
-3. **独立测试用例**：Node `*.test.mjs` 放 `tests/` 第一层；Lua 运行用例放 `tests/lua/` 第一层。辅助代码可进 `tests/helpers/`、`tests/fixtures/` 或 `tests/lua/helpers/`；不要让 CI 悄悄漏测。
+3. **独立测试用例**：Node `*.test.mjs` 放 `tests/` 第一层；Lua 运行用例放 `tests/lua/` 第一层。辅助代码可进 `tests/helpers/`、`tests/fixtures/`、`tests/lua/helpers/` 或 `tests/lua/support/`；不要让 CI 悄悄漏测。
 4. **scripts**：内部工具优先使用已有职责子目录；公开构建入口保持稳定。迁移时检查 Node import、package 命令、GitHub 工作流、代码中的路径字符串、测试/生成物身份。
 5. **真实迁移步骤**：先补递归发现和模块名映射的反例测试，再迁移一个业务簇；比较完整 CI、快速测试选择器、候选打包收据、原有加载与回滚行为；不得偷改玩法或放宽质量门禁。
 6. **保持索引可用**：修改或删除索引锚点时同步 `config/repo-navigation.json`，运行 `npm run check:guidance` 和定向测试；不自动刷新历史基线。
