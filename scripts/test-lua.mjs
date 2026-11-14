@@ -6,17 +6,18 @@ import {runHistoricalPresentation,historicalPresentationFixtures} from '../tests
 import {frozenBattleHandPrelude} from '../tests/helpers/battle-life-frozen-hand.mjs';
 import {eventCombatRoutePrelude} from '../tests/helpers/event-combat-route-input.mjs';
 import {v25TextureBindingPrelude} from '../tests/helpers/v25-texture-binding-fixture.mjs';
-import { readdirSync, writeFileSync, unlinkSync } from 'node:fs';
+import { readdirSync, writeFileSync, unlinkSync, mkdtempSync, rmSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { createRequire } from 'node:module';
-import { resolve, join } from 'node:path';
+import { resolve, join, dirname, basename } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { luaString, toLua } from './build-lua-data.mjs';
 import { battleLayout } from './ui-layout.mjs';
 import { partition, timings as runtimeTimings, jsShard, discoverJs } from './ci-shards.mjs';
 import { runLuaWorkers, luaSchedulingWeight } from './lua-workers.mjs';
 import { luaTimeoutMs } from './ci-timeout-policy.mjs';
+import { buildUI } from './build-ui.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -32,6 +33,11 @@ export function runLua(script = 'tests/lua/combat.lua', { timeout, cwd = process
   // The upstream CLI's positional-script path loses Lua errors' exit status.
   // Its -e path explicitly exits nonzero when dofile raises, including syntax errors.
   const normalizedScript = script.replaceAll('\\', '/');
+  // This fixture verifies imported art pools, absent from the default profile.
+  // Prepare its own real production profile; never rewrite shared build/lua.
+  const artProfile = normalizedScript === 'tests/lua/lowcost_art.lua'
+    ? mkdtempSync(join(tmpdir(), 'abyss-lowcost-')) : null;
+  const luaPath = (artProfile ? artProfile.replaceAll('\\','/')+'/?.lua;' : '')+'./build/lua/?.lua;./src/lua/?.lua;;';
   const frozenHand = historicalCardInputPrelude(normalizedScript,{cwd}) + frozenBattleHandPrelude(normalizedScript, {cwd})
     + eventCombatRoutePrelude(normalizedScript,{cwd}) + v25TextureBindingPrelude(normalizedScript,{cwd});
   const fixture = ['tests/lua/battle_ui.lua', 'tests/lua/battle_ui_slice_2.lua', 'tests/lua/battle_ui_slice_3.lua',
@@ -55,10 +61,18 @@ export function runLua(script = 'tests/lua/combat.lua', { timeout, cwd = process
   const args = jawTail
     ? [fileURLToPath(new URL('../tests/helpers/jaw-worm-parallel.mjs', import.meta.url)), String(Date.now() + timeout), String(maxBuffer)]
     : [cli, '-e', `${selection}${frozenHand}dofile(${luaString(temporary || resolve(cwd, script))})`];
-  try { result = spawnSync(process.execPath, args, {
+  try {
+    if (artProfile) buildUI(artProfile, undefined, {officialAssets:true,nativePageLifecycle:true});
+    result = spawnSync(process.execPath, args, {
     cwd, encoding: 'utf8', timeout, maxBuffer,
-    env: { ...process.env, LUA_PATH: './build/lua/?.lua;./src/lua/?.lua;;', LUA_PATH_5_3: './build/lua/?.lua;./src/lua/?.lua;;', LUA_INIT: '', LUA_INIT_5_3: '' }
-  }); } finally { if (temporary) unlinkSync(temporary); }
+    env: { ...process.env, LUA_PATH: luaPath, LUA_PATH_5_3: luaPath, LUA_INIT: '', LUA_INIT_5_3: '' }
+  }); } finally {
+    if (temporary) unlinkSync(temporary);
+    if (artProfile) {
+      if (dirname(resolve(artProfile)) !== resolve(tmpdir()) || !basename(artProfile).startsWith('abyss-lowcost-')) throw Error('Unexpected art fixture temporary path');
+      rmSync(artProfile, {recursive:true,force:true});
+    }
+  }
   if (result.error) {
     // Keep the last completed groups visible on timeout in both CLI and node:test.
     // The child is still a failure, with its original error retained as the cause.

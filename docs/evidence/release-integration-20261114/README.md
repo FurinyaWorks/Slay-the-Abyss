@@ -25,7 +25,7 @@
 
 ## 精确来源合同
 
-当前生产固定源为 `d4ed094e882f433650dfb4d0cbe2686388e4b684`，完整前驱为 `0cf2008fa4f5086ac3b2b84b71753b84e7a37962`；后续 #643 改名修复不改变该生产树。当前完整代码候选 `cdcaaa50786b7617077d776f73c1d8c3dcd56ad6` 已取得独立增量复审。
+当前生产固定源为 `73d4b005b2c94b938e36a807d472d29272883ec0`，完整前驱为 `0cf2008fa4f5086ac3b2b84b71753b84e7a37962`。前轮完整代码候选 `cdcaaa50786b7617077d776f73c1d8c3dcd56ad6` 已取得独立增量复审；本轮 CI 失败修复见下文，原生产冻结 `d4ed094e` 和完整来源历史仍可从远端归档恢复。
 
 - 350 份完整生产来源，14 个本轮变更 owner；56 个上游 target 原有记录逐条不变，新模块历史为 null。菜单历史分别保存在原三个 owner 的归档和独立 `menuPresentationPrior` 中。
 - 原 105 owner 合同保留为历史断言；当前 112 owner 的读取顺序、缺失、漂移及未知输入检查均保留。
@@ -39,7 +39,7 @@ node tests/helpers/generate-release-source-epoch.mjs --check
 node tests/helpers/generate-integrated-ci-source.mjs --check
 ```
 
-生产归档 SHA256：`d358cff452428242122c4c3edffa52d1391498616d52fe256051b485058376bb`。155 份当前 CI 来源与历史 views 分开绑定。
+生产归档 SHA256：`b0d97642725abc6468be09131efabe5492ef517ba5072b7c44c81b0723d3ae39`。156 份当前 CI 来源与历史 views 分开绑定。
 
 ## 验证边界
 
@@ -58,3 +58,15 @@ node tests/helpers/generate-integrated-ci-source.mjs --check
 本轮原始本地日志保留在仓库根 `.artifacts/`：`integration-next-engineering-final.log`、`integration-next-owner-one.log`、`integration-next-source-stable.log` 及最终同提交复验 `integration-next-cd2ff444-final.log`。此前失败、取消及本地临时堆限制触发的 OOM 均保留，不计为通过。最终合并还须精确 HEAD/BASE 的正常 CI、原生队列及独立 develop push Full。
 
 独立复审从 `independent-agent:/root/review_integration_fix/release-production-0eac1d3c` 接续到 `release-raw-corpus-dc39c19c`、四份生产提取 `release-ratchet-production-54f51b4d` 和完整 canonical 合流 `release-canonical-cdcaaa50`。官方与设备 AC 不因本轮集成或源码检查而勾选。
+
+## PR661 首轮 CI 的实际修复
+
+Full `43574439919` 的失败日志保存在根 `.artifacts/pr661-job-*.log`。本地复现 23 项中 21 通过、2 失败，不把首轮当作已完成交付。
+
+- 可选简图接线在缺少 `name` 的旧控件句柄上拼接出错，连带商人卡身份和输入手势失败。现在缺失、无名、已失效图标或图形池直接保留原图回退，并新增零访问/零写入边界检查。
+- raw Lua 简图测试原来隐含依赖 official UI 构建，却在 Full 默认配置下执行。`runLua` 仅为该夹具构建独立临时 official profile，JS 和 raw Lua 使用同一入口；完整 88/42 图案及原失败、重入、缓存回归保留。两种 Lua 路径变量均显式指向独立目录，结束时验证目录位置后清理，不改共享 `build/lua`。
+- 反馈绘制器的新增动态模块查找令 idle require 从 900 增到 1500。改为模块初始化时一次取得引用，原 900 及全部原断言保持。完整 Host 对比保留旧算法文件及其原 SHA，只在内存中的旧算法前补相同静态共享依赖，并严格检查当前依赖恰好一次；逐阶段 require/load/snapshot、原生调用和完整图等价继续受检。
+
+生产仅两份 Lua 的上述小修；不纳入菜单作者的后续标题/按钮补丁。质量棘轮零新增违规，工程 6151 项测量、四项关键变异及六项原生合同已复验通过。九个受影响套件最终 58/58 通过、零失败、零跳过，涵盖完整 Host、旧 runner 逆向、worker、来源和商人边界。实际 raw Lua 简图 88/42 全覆盖、商人身份 15 项和输入手势 22 项全部通过；语法、指引、Backlog 和许可证检查通过。
+
+定向测试、raw Lua 和精确来源复验日志分别为根 `.artifacts/pr661-fix-final-targets.log`、`pr661-fix-raw-lua.log`，其余工程证据以 `pr661-fix-*` 保存。首轮失败及中间修复日志保留，不用前轮绿灯代替本轮结果。Hosted Full 与原生队列须由新 HEAD 重新运行，授权成功不等于实际已入队或已合并。

@@ -3,10 +3,13 @@ local Theme=require('abyss_theme')
 local M={}
 local painted=setmetatable({},{__mode='k'})
 local function poolFor(icon)
+ if not icon or icon.alive==false then return nil end
+ if type(icon.name)~='string' then return nil end
  local parent=icon and icon.parent
  if not parent or parent.alive==false then return nil end
  local ok,pool=pcall(parent.GetChild,parent,icon.name..'Art')
- return ok and pool or nil
+ if not ok or not pool or pool.alive==false then return nil end
+ return pool
 end
 local function visible(control,value)return control:SetVisible(value)~=false end
 local function current(pool,icon,state)

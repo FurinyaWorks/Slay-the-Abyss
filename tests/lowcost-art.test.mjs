@@ -1,14 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtempSync,readFileSync} from 'node:fs';
-import {tmpdir} from 'node:os';
-import {join,resolve} from 'node:path';
-import {createRequire} from 'node:module';
-import {spawnSync} from 'node:child_process';
+import {readFileSync} from 'node:fs';
 import {loadLowCostArt} from '../scripts/lowcost-art.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
-import {buildUI} from '../scripts/build-ui.mjs';
-const require=createRequire(import.meta.url);
+import {runLua} from '../scripts/test-lua.mjs';
 test('authored art covers every placeholder relic and every two-act enemy within small fixed pools',()=>{
  const art=loadLowCostArt(),id=v=>typeof v==='object'?v.id:v;
  const relics=JSON.parse(readFileSync('data/relics.json','utf8')).relics;
@@ -25,9 +20,8 @@ test('authored art covers every placeholder relic and every two-act enemy within
  }
 });
 test('real imported pools switch all illustrations, retain fallback on failure, and do not repaint cached shapes',()=>{
- const out=mkdtempSync(join(tmpdir(),'abyss-lowcost-'));
- buildUI(out,undefined,{officialAssets:true,nativePageLifecycle:true});
- const init=`package.path=${JSON.stringify(out.replaceAll('\\','/')+'/?.lua;'+resolve('build/lua').replaceAll('\\','/')+'/?.lua;'+resolve('src/lua').replaceAll('\\','/')+'/?.lua')};dofile('tests/lua/lowcost_art.lua')`;
- const r=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',init],{encoding:'utf8',timeout:60000,maxBuffer:1024*1024,env:{...process.env,LUA_INIT:'',LUA_INIT_5_3:''}});
+ const before=readFileSync('build/lua/abyss_ui_layout.lua');
+ const r=runLua('tests/lua/lowcost_art.lua',{timeout:60000});
+ assert.deepEqual(readFileSync('build/lua/abyss_ui_layout.lua'),before,'art fixture must not alter the default layout');
  assert.equal(r.status,0,r.stdout+r.stderr+String(r.error??''));assert.match(r.stdout,/LOWCOST_ART_PASS 88 42/);
 });
