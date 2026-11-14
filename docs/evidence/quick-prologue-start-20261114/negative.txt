@@ -1,0 +1,14 @@
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:130: attempt to index a nil value (field 'run')
+stack traceback:
+	...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:130: in local 'fn'
+	...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:10: in local 'test'
+	...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:127: in main chunk
+	[JS]: in function 'dofile'
+	(command line):1: in main chunk
+Lua fixture tests/lua/game_ui_classes_failure.lua: 1725 ms

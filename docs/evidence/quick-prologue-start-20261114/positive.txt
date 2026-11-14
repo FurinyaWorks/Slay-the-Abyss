@@ -1,0 +1,118 @@
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=1 source=clock
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok game_ui_classes_failure 1 - undeclared host flag keeps the unified production selection available
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_UI failed startup: src/lua/abyss_game_ui.lua:61: missing game panel characterPanel
+ok game_ui_classes_failure 2 - missing formal layout produces startup diagnostic and never reports ready
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_UI failed update: ...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:79: injected update viewport failure
+ok game_ui_classes_failure 3 - update failure closes class overlay, disables old class and exit callbacks and keeps diagnostic visible
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=3
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=4
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=4
+ABYSS_RUN seed=1 source=clock
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=5
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=mapPanel epoch=5
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=6
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_PAGE_REVEAL visible page=battlePanel epoch=6
+ABYSS_FEEDBACK block source=player target=player amount=9
+ABYSS_FEEDBACK scry source=- target=- amount=5
+ABYSS_PAGE_REVEAL preparing page=choicePanel epoch=7
+ABYSS_UI failed update: ...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:79: injected update viewport failure
+ok game_ui_classes_failure 4 - update failure closes mandatory choice and all old inputs preserve the pending combat
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=3
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=4
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=4
+ABYSS_RUN seed=1 source=clock
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=5
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=mapPanel epoch=5
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=6
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_UI failed update: ...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:79: injected update viewport failure
+ABYSS_FEEDBACK recovered cancelled
+ok game_ui_classes_failure 5 - update failure during feedback cancels presentation without replaying committed card effects
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=3
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=4
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=4
+ABYSS_RUN seed=1 source=clock
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=5
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=mapPanel epoch=5
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=6
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_PAGE_REVEAL visible page=battlePanel epoch=6
+ABYSS_FEEDBACK block source=player target=player amount=9
+ABYSS_FEEDBACK scry source=- target=- amount=5
+ABYSS_PAGE_REVEAL preparing page=choicePanel epoch=7
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=8
+ABYSS_UI failed update: ...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:79: injected update viewport failure
+ok game_ui_classes_failure 6 - update failure while exit confirmation is open hides it and rejects its old settlement callback
+ABYSS_UI init Color=function
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=1 source=clock
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=4
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=5
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=6
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=7
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_PAGE_REVEAL visible page=battlePanel epoch=7
+ABYSS_FEEDBACK hand_choice source=- target=- amount=0
+ABYSS_PAGE_REVEAL preparing page=choicePanel epoch=8
+ABYSS_UI failed update: ...ick-prologue-start/tests/lua/game_ui_classes_failure.lua:79: injected update viewport failure
+ok game_ui_classes_failure 7 - competition Geo update failure preserves mandatory choice, resources and disabled old inputs
+ok game_ui_classes_failure 8 - opening wait rejects a permanently covered native page within its fixed budget
+GAME_UI_CLASSES_FAILURE_PASS 8
+Lua fixture tests/lua/game_ui_classes_failure.lua: 11149 ms

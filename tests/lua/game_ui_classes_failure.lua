@@ -85,11 +85,23 @@ local function drain(ui)
     for _=1,400 do if not ui.battleUI.busy then return end;OnUpdate(0.05) end
     error("feedback did not finish")
 end
+local function openingReady(ui)
+    -- Drive the public native scheduler: confirmation starts preparation, not
+    -- an immediately usable Run. Keep both transition and page readiness gates.
+    for step=0,80 do
+        assert(not ui.disabled,"native opening disabled during preparation")
+        local opening=ui.prologue and ui.prologue:covering()
+        local page=ui.pageReveal and ui.pageReveal:covered()
+        if ui.run and ui.map and not opening and not page then return end
+        if step<80 then OnUpdate(opening and 0.05 or 0) end
+    end
+    error("native opening/page publication never completed")
+end
 local function battle(ui,root,finishFeedback,competition)
     local character,card=competition and 'ironclad' or 'watcher',competition and 'warcry' or 'third_eye'
     assert(ui:start());assert(ui:selectCharacter('traveler'));assert(ui:selectElement(character));assert(ui:confirmCharacter())
+    openingReady(ui)
     eq(ui.run.campaignProfile,competition and 'competition-two-act' or 'full-source')
-    if ui.prologue then ui.prologue:cancel() end
     ui:refresh()
     if competition then
         assert(ui.run.nodeFlow.event.id=='neow')
@@ -127,7 +139,7 @@ end
 test("undeclared host flag keeps the unified production selection available",function()
     local ui,root,state,lines,restore=startup(nil,true)
     assert(ui);eq(state(),true);eq(root:GetChild("characterPanel").visible,false);eq(root:GetChild("choicePanel").visible,false)
-    assert(F.start(ui));eq(ui.run.characterProfile,nil);eq(ui.run.maxHp,80);eq(#ui.run.deck,10)
+    assert(F.start(ui));openingReady(ui);eq(ui.run.characterProfile,nil);eq(ui.run.maxHp,80);eq(#ui.run.deck,10)
     assert(table.concat(lines,"\n"):find("ABYSS_UI ready",1,true));restore()
 end)
 test("missing formal layout produces startup diagnostic and never reports ready",function()
@@ -190,5 +202,13 @@ test("competition Geo update failure preserves mandatory choice, resources and d
     eq(s.pendingHandChoice,p);eq(s.player.hp,hp);eq(s.energy,energy);eq(s.turn,turn)
     eq(#s.hand,hand);eq(#s.draw,draw);eq(#s.discard,discard);eq(Run.potionCount(run),1)
     noRevival(ui,root,run,message);eq(select(2,state()),0);restore()
+end)
+test("opening wait rejects a permanently covered native page within its fixed budget",function()
+    local actualUpdate,calls=OnUpdate,0
+    OnUpdate=function(dt) eq(dt,0);calls=calls+1 end
+    local ok,why=pcall(openingReady,{run={},map={},pageReveal={covered=function()return true end}})
+    OnUpdate=actualUpdate
+    eq(ok,false);eq(calls,80)
+    assert(tostring(why):find("native opening/page publication never completed",1,true),tostring(why))
 end)
 print("GAME_UI_CLASSES_FAILURE_PASS "..n)
