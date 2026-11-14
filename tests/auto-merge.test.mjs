@@ -42,6 +42,18 @@ test('repository transfer resolves the pinned project and rejects namespace reus
   const bad=structuredClone(f);mutate(bad);assert(autoMergeErrors(bad).length,String(mutate));
  }
 });
+test('the observed Slay-the-Heavens rename preserves immutable repository and historical receipt identity',()=>{
+ const canonical='FurinyaWorks/Slay-the-Heavens',resource={id:projectRepositoryId,full_name:canonical};
+ assert.equal(currentProjectRepository(()=>JSON.stringify(resource)).full_name,canonical);
+ assert.deepEqual(autoMergeErrors(fixture(canonical)),[]);
+ assert.throws(()=>currentProjectRepository(()=>JSON.stringify({...resource,id:1})),/identity/);
+ assert.throws(()=>currentProjectRepository(()=>JSON.stringify({...resource,full_name:'someone/Slay-the-Heavens'})),/identity/);
+ const text=JSON.stringify({repo:'FurinyaWorks/Slay-the-Abyss',head:sha('a')});
+ const witness=collectIdentityWitness(text,canonical,()=>JSON.stringify(resource));
+ assert.equal(witness.canonicalFullName,canonical);
+ assert.equal(witness.preflightText,text);
+ assert.throws(()=>collectIdentityWitness(text,canonical,(...args)=>JSON.stringify(args.at(-1).startsWith('repos/')?{...resource,id:1}:resource)),/identity/);
+});
 function mock(opts={}) {
   const repo=opts.repository??'CHNISam/Slay-the-Abyss';
   const f=fixture(repo),calls=[];let pulls=0,armed=false,statusId=10;

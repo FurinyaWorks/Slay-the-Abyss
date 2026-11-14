@@ -94,6 +94,20 @@ test('closeout reports CLI failure and false success/readback instead of claimin
   assert.throws(()=>delivery.syncBacklogCloseout(input,()=>''),/readback differs/);
   assert.equal(readFileSync(f.path,'utf8'),f.source);
 });
+test('current task snapshots outrank same-ID legacy archives while real active duplicates still fail',t=>{
+  for(const id of ['25.3','61','64']) {
+    const f=closeoutFixture(t),current=join(f.root,`backlog/tasks/task-${id} - 当前任务.md`);
+    const source=f.source.replace('TASK-1',`TASK-${id}`);
+    renameSync(f.path,current);writeFileSync(current,source);
+    writeFileSync(join(f.root,`backlog/archive/tasks/task-${id} - 历史同号.md`),source+'\nUnrelated legacy identity.\n');
+    f.git('add','.');f.git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','legacy archive');
+    f.pr.merge_commit_sha=f.git('rev-parse','HEAD');f.pr.body=`Backlog: TASK-${id}=recorded`;
+    const input={...f,targetSha:f.pr.merge_commit_sha};
+    assert.equal(delivery.syncBacklogCloseout(input,()=>assert.fail('recorded cleanup never mutates')).state,'backlog_synced',id);
+    writeFileSync(join(f.root,`backlog/tasks/task-${id} - 冲突.md`),source);
+    assert.throws(()=>delivery.syncBacklogCloseout(input,()=>assert.fail('duplicate must fail before writes')),/ambiguous/,id);
+  }
+});
 test('an old delivery marker cannot authorize overwriting a later Blocked decision with unchanged AC',t=>{
   const f=closeoutFixture(t);
   writeFileSync(f.path,f.source.replace('status: In Progress','status: Blocked')+

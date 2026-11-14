@@ -58,6 +58,8 @@ Licenses 与 Quality、Quick feedback 一样使用 GitHub 原生同引用 concur
 
 ## PR 自动合并准入
 
+2026-11-14 GitHub已将同一固定仓库ID `1429751262` 的当前名称改为 `FurinyaWorks/Slay-the-Heavens`，原两个Slay-the-Abyss名称均重定向到该ID。当前准入从 `/repositories/1429751262` 解析真实名称；同名fork、被重新占用的旧命名空间或不同ID仍拒绝。历史授权原文不重写，通过既有身份见证连接新名称。下段的旧名称保留原迁移记录。
+
 当前仓库为 `FurinyaWorks/Slay-the-Abyss`，固定 ID 为 `1429751262`。协调入口通过 `/repositories/1429751262` 解析当前名称，核对 settings、PR head/base 的真实 ID；不能用同名仓库或 fork 接续。迁移前的授权和 schema2/3/4/5 收据保留原文。合后验收仅可用单独的迁移见证衔接登记的旧名 `CHNISam/Slay-the-Abyss`：保存原授权文本及 SHA-256、固定 ID 的当前响应与旧名重定向响应，并核对本轮 PR/run 的仓库 ID，不能改写旧证据中的 owner。迁移前取消的 event 不作新 Full 证明，使用迁移后的新提交触发完整验证。
 
 develop PR 的独立评审与 CI 并行。审查与准入通过后可挂起原生 Auto-merge；这只是授权，不是 `pr_passed`。PR 侧必须等原四项门禁、`independent-review`、`pr-quality` 全绿并满足严格基线才能入队，实际 squash 还须组合 Full 通过。Draft、冲突、未落地依赖、已知 CI 失败及锁定标签在启用前拒绝。

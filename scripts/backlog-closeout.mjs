@@ -111,7 +111,9 @@ export function syncBacklogCloseout({pr,files,targetSha,root=process.cwd()},run=
   const paths=git('ls-tree','-r','-z','--name-only',pr.merge_commit_sha,'--','backlog/tasks','backlog/completed','backlog/archive/tasks').split('\0').filter(Boolean);
   for(const id of ids) {
     const task=records.find(record=>record.id===id),prefix=id.toLowerCase()+' - ';
-    const matches=paths.filter(path=>path.split('/').at(-1).startsWith(prefix));
+    const allMatches=paths.filter(path=>path.split('/').at(-1).startsWith(prefix));
+    const authoritative=allMatches.filter(path=>!path.startsWith('backlog/archive/tasks/'));
+    const matches=authoritative.length?authoritative:allMatches;
     if(!task||matches.length!==1)throw Error(`${id}: merged task snapshot missing or ambiguous`);
     const committed=git('show',`${pr.merge_commit_sha}:${matches[0]}`).replaceAll('\r\n','\n'),current=task.source.replaceAll('\r\n','\n');
     if(current!==committed&&!retry)throw Error(`${id}: task changed since this PR; reconcile the newer task instead of overwriting it`);
