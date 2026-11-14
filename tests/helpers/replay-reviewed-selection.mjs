@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readFileSync,writeFileSync,mkdirSync,mkdtempSync,rmSync,copyFileSync,symlinkSync,realpathSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,mkdtempSync,rmSync,copyFileSync,cpSync,symlinkSync,realpathSync} from 'node:fs';
 import {join,dirname,resolve,relative,isAbsolute} from 'node:path';
 import {tmpdir} from 'node:os';
 import {spawnSync,execFileSync} from 'node:child_process';
@@ -19,6 +19,7 @@ export function replayReviewedSelection(){
  try{
   const paths=execFileSync('git',['ls-files','scripts','data','config','tools','tests/helpers'],{encoding:'utf8'}).trim().split('\n');
   for(const path of paths){assert(!isAbsolute(path)&&!path.split('/').includes('..'));const target=join(directory,path);mkdirSync(dirname(target),{recursive:true});copyFileSync(path,target);}
+  cpSync(join(root,'tests/fixtures'),join(directory,'tests/fixtures'),{recursive:true});
   for(const [path,row]of Object.entries(integratedCiProof.files)){
    if(!row.views.release||path.startsWith('src/'))continue;
    const target=join(directory,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,row.views.release.source);
@@ -26,7 +27,7 @@ export function replayReviewedSelection(){
   for(const [path,row]of Object.entries(sourceEpoch.proof.targets.releaseReviewed.files)){
    if(!row)continue;const target=join(directory,path);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,row.source);
   }
-  for(const path of ['art','node_modules','tests/fixtures']){
+  for(const path of ['art','node_modules']){
    mkdirSync(dirname(join(directory,path)),{recursive:true});symlinkSync(join(root,path),join(directory,path),process.platform==='win32'?'junction':'dir');
   }
   const target=join(directory,script);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,original.source);
