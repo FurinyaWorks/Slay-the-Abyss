@@ -118,6 +118,7 @@ test('approved pages keep live input identities while unrelated pages retain the
    assert.equal(current.get(path),node,path);
    if(menuProjection.has(path)){
     const expected=menuProjection.get(path);
+    assert.equal(node.kind,before.kind,path+' existing menu semantic control kind');
     for(const key of ['position','size','visible','scale','rotation','states','focusable','interactable','raycastTarget'])
      assert.deepEqual(node[key],expected[key],path+' approved menu '+key);
     if(node.text){
