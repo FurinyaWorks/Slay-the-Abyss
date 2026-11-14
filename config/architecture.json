@@ -1,5 +1,9 @@
 {
   "layers": {
+    "abyss_xiao_mixed_reward_source": "core",
+    "abyss_xiao_mixed_reward_catalog": "core",
+    "abyss_xiao_mixed_card_rewards": "core",
+    "abyss_xiao_mixed_reward_run": "core",
     "abyss_keqing_draw_cards": "core",
     "abyss_keqing_draw_reward_run": "core",
     "abyss_keqing_guard_cards": "core",

@@ -6,7 +6,7 @@ local Copy=require('abyss_copy').copy
 local M={}
 local prefix='xiao_candidate_'
 local allowed={};for i=1,8 do allowed[prefix..Data.cards[i].id]=Data.cards[i]end
-for _,i in ipairs({9,11,10,17,12,18,13,15,20,21,22,23,38})do allowed[prefix..Data.cards[i].id]=Data.cards[i]end
+for _,i in ipairs({9,11,10,17,12,18,13,15,20,21,22,23,38,30,35,40})do allowed[prefix..Data.cards[i].id]=Data.cards[i]end
 local function upgraded(v)if v==nil then return false end;assert(type(v)=='boolean','invalid upgraded flag');return v end
 local function resource(s)
  assert(type(s.xiao)=='table','missing Xiao resource')
@@ -27,6 +27,7 @@ local function definitions(indices)
 end
 function M.definitions()return definitions({1,2,3,4,5,6,7,8})end
 function M.additionalDefinitions()return definitions({9,11,10,17,12,18,13,15,20,21,22})end
+function M.mixedDefinitions()return definitions({30,35,40})end
 function M.spendDefinitions()return definitions({23,38})end
 function M.canUse(state,instance,targetIndex)
  local c=type(instance)=='table'and allowed[instance.cardId];if not c then return false,'unsupported_xiao_card'end
@@ -34,7 +35,7 @@ function M.canUse(state,instance,targetIndex)
  if not ok then return false,'xiao_life_or_resource_prerequisite'end
  local mask=resource(state).mask
  for _,e in ipairs(plan.orderedEffects)do
-  if e.kind=='exhaustDamage'or e.kind=='damage'or e.kind=='plunge'and mask==0 then
+  if e.kind=='damageHits'or e.kind=='exhaustDamage'or e.kind=='damage'or e.kind=='plunge'and mask==0 then
    if not Actors.isActive(state.enemies[targetIndex])then return false,'invalid_target'end
   end
  end

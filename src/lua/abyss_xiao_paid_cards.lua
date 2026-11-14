@@ -3,12 +3,14 @@ local Bridge=require('abyss_xiao_play_bridge')
 local Dispatch=require('abyss_xiao_dispatch')
 local Presence=require('abyss_actor_presence')
 local M={}
+local Copy=require('abyss_copy').copy
 local canonical={}
 for _,d in ipairs(Bridge.definitions())do
  if d.id=='xiao_candidate_x01'or d.id=='xiao_candidate_x02'or d.id=='xiao_candidate_x04'or d.id=='xiao_candidate_x05'or d.id=='xiao_candidate_x06'or d.id=='xiao_candidate_x03'or d.id=='xiao_candidate_x07'or d.id=='xiao_candidate_x08'then canonical[d.id]=d end
 end
 for _,d in ipairs(Bridge.additionalDefinitions())do canonical[d.id]=d end
 for _,d in ipairs(Bridge.spendDefinitions())do canonical[d.id]=d end
+for _,d in ipairs(Bridge.mixedDefinitions())do canonical[d.id]=d end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
  if getmetatable(a)or getmetatable(b)then return false end
@@ -18,9 +20,11 @@ local function same(a,b)
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='xiaoCard'
-  or e.kind~='spendEnergyBlock'and e.kind~='spendBlockDraw'and e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
- for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='cap'and(e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
- if e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
+  or e.kind~='damageHits'and e.kind~='enemyCountBlock'and e.kind~='spendEnergyBlock'and e.kind~='spendBlockDraw'and e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
+ for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='hits'and e.kind=='damageHits'and e.hits==2)and not(k=='cap'and(e.kind=='enemyCountBlock'or e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
+ if e.kind=='damageHits'and e.hits~=2 then return false end
+ if e.kind=='enemyCountBlock'and e.cap~=3 then return false end
+ if e.kind=='enemyCountBlock'or e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
  return type(e.value)=='number'and e.value%1==0 and e.value>=0 and e.value<=2147483647
 end
 function M.canUse(state,instance,card,targetIndex)
@@ -30,7 +34,7 @@ function M.canUse(state,instance,card,targetIndex)
   return true
  end
  local c=canonical[instance.cardId]
- if instance.cardId=='xiao_candidate_x23'or instance.cardId=='xiao_candidate_x38'then
+ if instance.cardId=='xiao_candidate_x30'or instance.cardId=='xiao_candidate_x35'or instance.cardId=='xiao_candidate_x40'or instance.cardId=='xiao_candidate_x23'or instance.cardId=='xiao_candidate_x38'then
   if instance.upgraded~=nil and type(instance.upgraded)~='boolean'then return false,'invalid_xiao_upgrade'end
   local source=state.catalog.cards[instance.cardId]
   if type(source)~='table'or getmetatable(source)then return false,'xiao_spend_source'end
@@ -60,11 +64,17 @@ function M.prepare(state,card,effects,target)
  local out={};local step=0
  for _,e in ipairs(effects)do
   if e.op=='xiaoCard'then
-   step=step+1
-   out[#out+1]={op='xiaoPaidStage',payload=Bridge.prepare(state,e),uid=instance.uid,
-    turn=state.turn,playId=playId,step=step}
+   -- Expand certified source hits into separate bound stages; preserve native reaction queue order between hits.
+   for _=1,(e.kind=='damageHits'and e.hits or 1)do
+    local payload=e
+    if e.kind=='damageHits'then payload={op='xiaoCard',kind='damage',value=e.value}end
+    step=step+1
+    out[#out+1]={op='xiaoPaidStage',payload=Bridge.prepare(state,payload),uid=instance.uid,
+     turn=state.turn,playId=playId,step=step}
+   end
   else out[#out+1]=e end
  end
+ if instance.cardId=='xiao_candidate_x30'or instance.cardId=='xiao_candidate_x35'or instance.cardId=='xiao_candidate_x40'then context.xiaoPaid.expectedStages=Copy(out)end
  return out
 end
 function M.dispatch(combat,state,e,queue)
@@ -78,6 +88,7 @@ function M.dispatch(combat,state,e,queue)
  -- is. Never roll back a paid card simply because a previous reaction killed it.
  assert(type(e.payload)=='table'and e.payload.op=='xiaoCard'and e.payload.uid==paid.uid
   and(e.payload.targetId==nil or e.payload.targetId==context.targetId),'wrong Xiao stage payload')
+ if paid.expectedStages then assert(same(e,paid.expectedStages[paid.cursor]),'mutated Xiao mixed stage')end
  local skip=false
  if e.payload.kind=='exhaustDamage'or e.payload.kind=='breakBlock'or e.payload.kind=='damage'or e.payload.kind=='plunge'and(state.player.statuses.xiao_mask or 0)==0 then
   local target;for _,enemy in ipairs(state.enemies)do if enemy.id==context.targetId then target=enemy end end
