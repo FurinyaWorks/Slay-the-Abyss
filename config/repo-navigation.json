@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "routes": [
+    {
+      "id": "combat",
+      "description": "战斗事务、行动队列与伤害效果；先看 Combat/Actor 的状态提交边界",
+      "aliases": [
+        "战斗",
+        "结算",
+        "damage"
+      ],
+      "files": [
+        "src/lua/abyss_combat.lua",
+        "src/lua/abyss_actor.lua",
+        "src/lua/abyss_action_queue.lua",
+        "src/lua/abyss_combat_reactions.lua",
+        "tests/lua/combat.lua",
+        "tests/combat-lifecycle.test.mjs"
+      ]
+    },
+    {
+      "id": "cards",
+      "description": "卡牌执行、卡池、职业卡与卡面定义；注意内容定义和执行模块分开",
+      "aliases": [
+        "卡牌",
+        "卡池",
+        "card"
+      ],
+      "files": [
+        "src/lua/abyss_card_actions.lua",
+        "src/lua/abyss_card_pool.lua",
+        "src/lua/abyss_warrior_cards.lua",
+        "data/cards.json",
+        "tests/card-actions-registry.test.mjs"
+      ]
+    },
+    {
+      "id": "relics-potions",
+      "description": "遗物及药水规则、候选与事务回滚",
+      "aliases": [
+        "遗物",
+        "药水",
+        "relic",
+        "potion"
+      ],
+      "files": [
+        "src/lua/abyss_relic_queries.lua",
+        "src/lua/abyss_relic_hooks.lua",
+        "src/lua/abyss_potion_rewards.lua",
+        "tests/relic-lifecycle.test.mjs",
+        "tests/potion-callback.test.mjs"
+      ]
+    },
+    {
+      "id": "run-map",
+      "description": "单局 Run 命令、Nodes 事务、地图生成与路线；不要复制状态提交者",
+      "aliases": [
+        "单局",
+        "地图",
+        "run",
+        "exploration"
+      ],
+      "files": [
+        "src/lua/abyss_run.lua",
+        "src/lua/abyss_nodes.lua",
+        "src/lua/abyss_map.lua",
+        "tests/run-architecture-inverse.test.mjs",
+        "tests/lua/nodes.lua"
+      ]
+    },
+    {
+      "id": "enemies-events",
+      "description": "敌人 AI、遭遇生成、随机事件与选项",
+      "aliases": [
+        "敌人",
+        "怪物",
+        "事件",
+        "enemy"
+      ],
+      "files": [
+        "src/lua/abyss_enemy_ai.lua",
+        "src/lua/abyss_encounter_formation.lua",
+        "src/lua/abyss_act1_events.lua",
+        "tests/enemy-ai-lifecycle.test.mjs",
+        "tests/encounter-runtime.test.mjs"
+      ]
+    },
+    {
+      "id": "battle-ui",
+      "description": "战斗 UI、触摸拖牌、瞄准箭头和渲染；保持 UI 与核心规则隔离",
+      "aliases": [
+        "战斗界面",
+        "拖牌",
+        "瞄准",
+        "battle"
+      ],
+      "files": [
+        "src/lua/abyss_battle_ui.lua",
+        "src/lua/abyss_battle_aim_arrow.lua",
+        "src/lua/abyss_battle_card_view.lua",
+        "tests/battle-drag-click-compatibility.test.mjs",
+        "tests/lua/battle_ui.lua"
+      ]
+    },
+    {
+      "id": "node-ui",
+      "description": "地图/节点页面、营地、商店、奖励与返回菜单",
+      "aliases": [
+        "节点界面",
+        "商店界面",
+        "营地",
+        "node"
+      ],
+      "files": [
+        "src/lua/abyss_node_ui.lua",
+        "src/lua/abyss_map_ui.lua",
+        "src/lua/abyss_node_ui_shop.lua",
+        "tests/node-ui-layout.test.mjs",
+        "tests/lua/node_ui.lua"
+      ]
+    },
+    {
+      "id": "characters",
+      "description": "选角、角色状态与立绘文案；新角色优先定位现有资料与卡牌边界",
+      "aliases": [
+        "角色",
+        "选角",
+        "肖像",
+        "character"
+      ],
+      "files": [
+        "src/lua/abyss_character_select.lua",
+        "src/lua/abyss_character_profiles.lua",
+        "src/lua/abyss_character_presentation.lua",
+        "tests/character-ui-layout.test.mjs",
+        "tests/competition-roster.test.mjs"
+      ]
+    },
+    {
+      "id": "ui-build",
+      "description": "Node 侧 UI 布局/主题/V25 构建器和生成物",
+      "aliases": [
+        "布局",
+        "主题",
+        "ui-layout",
+        "v25"
+      ],
+      "files": [
+        "scripts/build-ui.mjs",
+        "scripts/ui-layout.mjs",
+        "scripts/v25-layout.mjs",
+        "scripts/build-ui-theme.mjs",
+        "tests/ui-layout.test.mjs",
+        "tests/v25-layout.test.mjs"
+      ]
+    },
+    {
+      "id": "art-pipeline",
+      "description": "低图元素材、官方风格肖像、怪物原生图元与视觉拟合",
+      "aliases": [
+        "美术",
+        "低图元",
+        "素材",
+        "art"
+      ],
+      "files": [
+        "scripts/art/segment-lowpoly.py",
+        "scripts/official-portraits.mjs",
+        "scripts/monster-art.mjs",
+        "tests/official-portraits-build.test.mjs",
+        "tests/native-monster-art.test.mjs"
+      ]
+    },
+    {
+      "id": "native-build",
+      "description": "千星原生候选打包、模块清单、容量检查和交付证据；不要移动 Lua 源码路径",
+      "aliases": [
+        "打包",
+        "发版",
+        "容量",
+        "native"
+      ],
+      "files": [
+        "scripts/build-native-candidate.mjs",
+        "scripts/native-candidate-scripts.mjs",
+        "scripts/platform-load.mjs",
+        "scripts/build-game.mjs",
+        "tests/native-candidate.test.mjs",
+        "tests/platform-load.test.mjs"
+      ]
+    },
+    {
+      "id": "ci-quality",
+      "description": "CI 影响分析、测试分片、架构检查和质量棘轮",
+      "aliases": [
+        "集成",
+        "质量",
+        "测试选择",
+        "ci"
+      ],
+      "files": [
+        "scripts/test-affected.mjs",
+        "scripts/ci-impact.mjs",
+        "scripts/ci-shards.mjs",
+        "scripts/check-architecture.mjs",
+        "scripts/check-engineering-quality.mjs",
+        "tests/test-affected.test.mjs",
+        "tests/architecture.test.mjs"
+      ]
+    },
+    {
+      "id": "agent-workflow",
+      "description": "多 Agent 任务认领、协作约束及指引入口；状态以 Backlog CLI 为准",
+      "aliases": [
+        "智能体",
+        "认领",
+        "任务",
+        "agent"
+      ],
+      "files": [
+        "AGENTS.md",
+        "docs/TASK_EXECUTION.md",
+        "backlog/config.yml",
+        "scripts/check-task-intake.mjs",
+        "tests/agent-guidance.test.mjs"
+      ]
+    }
+  ]
+}

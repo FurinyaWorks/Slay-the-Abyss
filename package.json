@@ -9,7 +9,7 @@
   },
   "scripts": {
     "task:pick": "node scripts/check-task-intake.mjs",
-    "check:guidance": "node scripts/check-agent-guidance.mjs",
+    "check:guidance": "node scripts/check-agent-guidance.mjs && node tools/repo-navigation.mjs --check",
     "setup:lua-static": "node scripts/setup-lua-static.mjs",
     "check:architecture": "node scripts/check-architecture.mjs",
     "check:quality": "node scripts/check-engineering-quality.mjs",
@@ -41,7 +41,8 @@
     "test:related": "node scripts/test-affected.mjs",
     "check:platform-load": "npm run build:data && npm run build:ui && node scripts/platform-load.mjs daily",
     "verify:platform-load": "node scripts/platform-load.mjs release",
-    "build:game": "node scripts/build-game.mjs"
+    "build:game": "node scripts/build-game.mjs",
+    "repo:where": "node tools/repo-navigation.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",
