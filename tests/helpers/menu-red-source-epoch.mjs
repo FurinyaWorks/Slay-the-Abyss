@@ -28,3 +28,25 @@ export function extendMenuRedSourceEpoch(original,patch=menuRedProductionPatch){
   currentCommitRole:'exact committed red menu sources; subsequent proof continuation',current,targets,owners}),
  {allowConfigLayout:true,reuseFrozenInput:true});
 }
+// Keep the reviewed three-owner menu archive above immutable. This exact
+// one-owner refactor continues it without replacing any historical target.
+const presentationBytes=readFileSync(new URL('./menu-presentation-source.json.gz',import.meta.url));
+assert.equal(hash(presentationBytes),'abcc561be5a49560684b70bc68a1b320485f8084039a64910d05ff9810fc8e9b','complete menu presentation continuation');
+export const menuPresentationPatch=freeze(JSON.parse(gunzipSync(presentationBytes)));
+export function extendMenuPresentationEpoch(original,patch=menuPresentationPatch){
+ const prior=original.proof,path='src/lua/abyss_v25_menu_view.lua';
+ assert.equal(patch.schemaVersion,1);assert.equal(patch.normalization,'LF');
+ assert.equal(patch.path,path);
+ assert.equal(patch.baseCommit,'5c2e8173487418c71b607a75eeb043053d1a705c');
+ assert.equal(prior.currentCommit,patch.baseCommit);
+ assert.equal(patch.sourceCommit,'436a030e5ef8857595672f24a8f385d5edf2a9aa');
+ assert.deepEqual(patch.before,prior.current[path],'complete menu presentation predecessor');
+ assert.notEqual(patch.after.sha256,patch.before.sha256,'actual presentation source edit');
+ assert(!Object.hasOwn(prior.targets,'menuPresentationPrior'),'cannot replace reviewed menu target');
+ const current={...prior.current,[path]:patch.after};
+ const targets={...prior.targets,menuPresentationPrior:{commit:patch.baseCommit,files:prior.current}};
+ const owners=Object.keys(current).filter(p=>Object.values(targets).some(target=>target.files[p]?.sha256!==current[p].sha256));
+ return createSourceEpochProjector(freeze({...prior,currentTreeCommitted:false,currentCommit:patch.sourceCommit,
+  currentCommitRole:'exact committed menu scenery refactor; reviewed menu retained',current,targets,owners}),
+ {allowConfigLayout:true,reuseFrozenInput:true});
+}

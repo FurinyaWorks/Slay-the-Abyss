@@ -37,7 +37,7 @@ export function assertIntegratedCurrent(read=readFileSync){
 }
 export function extendIntegratedHelperClosure(original){
  const current={...original},patch=integratedCiProof.closure;
- assert.deepEqual(Object.keys(patch).sort(),['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs']);
+ assert.deepEqual(Object.keys(patch).sort(),['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-presentation-source.json.gz','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs']);
  for(const [path,row]of Object.entries(patch)){assert.equal(row.before,original[path]??null,'exact integration copy predecessor: '+path);assert.match(row.after,/^[a-f0-9]{64}$/);current[path]=row.after;}
  return freeze(current);
 }
