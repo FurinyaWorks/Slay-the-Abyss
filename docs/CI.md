@@ -103,7 +103,7 @@ Full 未结束时，schemaVersion 4 授权保存精确组合和 pending run，�
 
 ### 异步交接与失败对账
 
-**边界**：`npm run merge:auto` 完成精确 HEAD/BASE 的独审准入与原生 Auto-merge 授权、读回成功后，GitHub Merge Queue 接管后续等待、组合 Full 和 squash。Agent 不得为等待状态在会话内反复调用 `gh run view` / `gh pr checks` / `gh run watch` / `sleep`；需要诊断时只读一次当前状态，发现明确的新失败或身份变化才继续。合并排队和仓库检查由 GitHub 自行推进，不以 Codex 会话常驻为前提。
+**边界**：独立评审与准入通过后立即运行 `npm run merge:auto`，不等待 CI 跑完。完成精确 HEAD/BASE 的原生 Auto-merge 授权并读回后，保存交接证据，结束当前回合；GitHub Merge Queue 接管后续等待、组合 Full 和 squash。禁止用 `gh run view` / `gh pr checks` / `gh run watch` / `sleep` 循环、定时查询或常驻监控守候，不以对账、合后验收或等待下一批基线为由继续轮询。仅在失败通知、明确依赖变化或用户要求时介入，诊断先读一次当前事实。依赖尚未落地时保留候选、证据及明确接续点并结束本轮，不谎报已授权或已入队。合后验证和清理按实际合并事实接续，不要求 Codex 会话常驻。
 
 **交接**：保留 PR 链接、当前精确 HEAD/BASE、原生授权结果、`build/delivery/auto-merge-*.json` 证明文件位置与下步 `verify:delivery --merged` 命令；在真正验收完成前不清理唯一证据来源/工作树，不把任务标 Done。授权证明目前是本地文件，不是 GitHub 自动持久化附件；跨机器接续缺失时必须报告证据缺失，不能用 PR 绿灯伪造预审证明。可继续其他不冲突的任务，或结束当前 Agent 会话。
 
