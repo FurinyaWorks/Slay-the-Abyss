@@ -47,6 +47,8 @@ node tests/helpers/generate-integrated-ci-source.mjs --check
 
 冻结提交 `cd2ff444` 的两个生成器均逐字复现；最后 11 个受影响套件 167/167 通过，零失败、零跳过，包含功能、来源复制、完整清单、预算及 112-owner 鲜读/缺失/漂移回归。
 
+静态复核再补齐 Defect-final、Watcher 与 Room 的旧 raw 固定数量合同；历史集合不变，当前集合逐项纳入两个新增模块。追加的 5 套件 62/62 通过，零失败、零跳过，日志为 `integration-next-current-corpus-final.log`，不与前轮重复用例累加冒充总数。
+
 本轮原始本地日志保留在仓库根 `.artifacts/`：`integration-next-engineering-final.log`、`integration-next-owner-one.log`、`integration-next-source-stable.log` 及最终同提交复验 `integration-next-cd2ff444-final.log`。此前失败、取消及本地临时堆限制触发的 OOM 均保留，不计为通过。最终合并还须精确 HEAD/BASE 的正常 CI、原生队列及独立 develop push Full。
 
 独立复审链：`independent-agent:/root/review_integration_fix/release-production-0eac1d3c` → `release-complete-d2aa7800` → `release-final-cd2ff444`。官方与设备 AC 不因本轮集成或源码检查而勾选。

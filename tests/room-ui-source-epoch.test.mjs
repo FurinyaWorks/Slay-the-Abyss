@@ -21,8 +21,8 @@ const jointLive=current.combinedReader(currentLive,'joustPrior');
 function retainedPaths(historical){
  const live=['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)];
  assert.deepEqual(live.slice().sort(),Object.keys(combinedCurrent.proof.current).sort(),'complete live production inventory');
- const styleAdded=live.filter(p=>!Object.hasOwn(ciRepairSourceEpoch.proof.current,p));
- assert.deepEqual(styleAdded,['src/lua/abyss_page_reveal.lua'],'exact registered post-closeout source addition');
+ const styleAdded=live.filter(p=>!Object.hasOwn(ciRepairSourceEpoch.proof.current,p)).sort();
+ assert.deepEqual(styleAdded,['lowcost_art','merchant_pages','page_reveal'].map(name=>'src/lua/abyss_'+name+'.lua'),'exact registered post-closeout source additions');
  combinedCurrent.preCombinedSource('config/architecture.json',currentRaw('config/architecture.json'),{target:'stsStylePrior',readSource:currentRaw});
  for(const p of styleAdded){
   assert.equal(combinedCurrent.proof.targets.stsStylePrior.files[p],null,'complete original absence must remain explicit');

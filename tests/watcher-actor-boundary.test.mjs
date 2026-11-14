@@ -56,17 +56,20 @@ test('pre-style Watcher planning retains the complete 346-module SCC contract wi
  }
 });
 
-test('current Watcher SCC analysis includes the exact page-reveal addition and every original production module',()=>{
+test('current Watcher SCC analysis includes exact release additions and every original production module',()=>{
  const raw=discoverSources(),sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
  const prior=Object.keys(ciRepairSourceEpoch.proof.current).filter(p=>p.startsWith('src/lua/')).sort();
- const added=Object.keys(raw).filter(p=>!Object.hasOwn(ciRepairSourceEpoch.proof.current,p));
- assert.deepEqual(added,['src/lua/abyss_page_reveal.lua']);
+ const added=Object.keys(raw).filter(p=>!Object.hasOwn(ciRepairSourceEpoch.proof.current,p)).sort();
+ assert.deepEqual(added,['lowcost_art','merchant_pages','page_reveal'].map(name=>'src/lua/abyss_'+name+'.lua'));
  assert.deepEqual(Object.keys(raw).filter(p=>!added.includes(p)).sort(),prior,'complete original 346-module corpus retained');
  assert.deepEqual(Object.keys(raw).sort(),Object.keys(currentEpoch.proof.current).filter(p=>p.startsWith('src/lua/')).sort());
- assert.equal(Object.keys(raw).length,347);
+ assert.equal(Object.keys(raw).length,349);
  for(const [path,source]of Object.entries(raw))assert.equal(source.replaceAll('\r\n','\n'),currentEpoch.proof.current[path].source,path);
  const policy=JSON.parse(read('config/architecture.json'));
- assert.equal(policy.layers.abyss_page_reveal,'ui');assert.equal(currentEpoch.proof.targets.stsStylePrior.files[added[0]],null);
+ for(const path of added){
+  assert.equal(policy.layers[path.split('/').at(-1).slice(0,-4)],'ui');
+  assert.equal(currentEpoch.proof.targets.stsStylePrior.files[path],null,'new source has no invented predecessor');
+ }
  currentEpoch.preCombinedSource('config/architecture.json',read('config/architecture.json'),{target:'stsStylePrior',readSource:read});
  const report=analyzeSources(sources,policy);assert.deepEqual(report.errors,[]);
  assert(!dependencyCycles(report.nodes,report.edges).some(c=>c.members.includes('abyss_watcher_attack_cards')));
