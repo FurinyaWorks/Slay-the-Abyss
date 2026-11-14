@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - '@Furinya'
 created_date: '2026-10-23 07:34'
-updated_date: '2026-10-27 04:24'
+updated_date: '2026-11-14 06:17'
 labels:
   - P2 optional coop
 dependencies:
@@ -14,6 +14,7 @@ references:
   - docs/SCOPE.md
   - docs/TOOLCHAIN.md
   - docs/backlog-details/TASK-33.md
+  - docs/evidence/backlog-reconcile-20261114.md
 priority: low
 type: spike
 ordinal: 45000
@@ -38,4 +39,6 @@ ordinal: 45000
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-27队列复核：补齐有效负责人Furinya；Low候选仍不占当前冲刺，不因指定负责人自动启动新功能。
+
+2026-11-14按用户队列清理授权归档：双人合作是旧未来探索，不属于当前单人两幕交付；不改正式单人玩法，未来明确授权后恢复。
 <!-- SECTION:NOTES:END -->

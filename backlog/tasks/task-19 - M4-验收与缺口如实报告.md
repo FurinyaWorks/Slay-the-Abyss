@@ -1,13 +1,13 @@
 ---
 id: TASK-19
 title: 投稿前检查资格、材料和剩余问题
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-22 13:48'
-updated_date: '2026-11-07 03:47'
-due_date: '2026-10-29'
-labels: []
+updated_date: '2026-11-14 06:51'
+labels:
+  - delivery-verify
 milestone: m-6
 dependencies:
   - TASK-5
@@ -47,4 +47,8 @@ ordinal: 19000
 旧四职业验收要求由2026-10-28比赛范围决定覆盖。
 
 2026-11-07 看板核对（develop 2c85bc61）：未发现实现提交或在途 PR，状态由 In Progress 归 To Do（未开始）；范围与原 AC 不变。
+
+2026-11-14清理旧窗口日期：原due_date=2026-10-29保留于历史，不再显示为当前截止；实际未完成AC和审批不变。
+
+2026-11-14第二轮状态纠正：技术附件TASK-19.md已有真实候选审计、缺口报告、MCP读回及负控记录，旧未开始备注失实；正式发布前AC仍未勾。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

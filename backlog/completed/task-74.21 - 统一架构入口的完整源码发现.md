@@ -1,11 +1,11 @@
 ---
 id: TASK-74.21
 title: 统一架构入口的完整源码发现
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-10T11:21:00Z'
-updated_date: '2026-11-11T05:24:00Z'
+updated_date: '2026-11-14 06:11'
 labels: []
 milestone: m-7
 dependencies: []
@@ -29,7 +29,7 @@ ordinal: 166000
 <!-- AC:BEGIN -->
 - [x] #1 独立和组合架构入口覆盖相同递归Lua模块，嵌套违规、空扫描和身份冲突不能静默通过
 - [x] #2 链接源码边界拒绝保持，当前全库报告不变，正负回归及独立复审完成
-- [ ] #3 精确HEAD必要CI及正常合并规则通过并完成合后验收
+- [x] #3 精确HEAD必要CI及正常合并规则通过并完成合后验收
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -50,4 +50,12 @@ ordinal: 166000
 2026-11-11补漏：src/src-lua入口链接原先可被跟随，新增3条真实红测后由两级lstat拒绝；保留仓库根别名。四份完整工程消费者37/37、架构边界2/2及独审通过；当前345模块1953引用报告逐字不变。详见docs/backlog-details/M7-SOURCE-ROOT-BOUNDARY-20261111.md；原始失败与通过流保留，Windows/HEAD Full/正常合并/合后push未验，AC3保持未完成。
 
 接续#611到develop 3a061a76：仅合并属性文件追加，原工具/回归与两侧证据逐字保留。当前完整消费者37/37、发现/边界14/14、静态345模块5918测量及轻量门禁通过，独立组合复审无未解决发现；两批重叠不累计。证据见M7-SOURCE-ROOT-CURRENT-20261111。Draft与AC3未完成保持；不重复Full，待#610基线修复后按当时HEAD/BASE正常准入。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 递归发现/边界切片已由后续集中整合交付，原仅本地待合记录已过期。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+递归发现/边界切片已由后续集中整合交付，原仅本地待合记录已过期。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

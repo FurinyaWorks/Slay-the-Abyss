@@ -1,16 +1,16 @@
 ---
 id: TASK-74.22
 title: 阻止未治理模块新增复杂度债务
-status: In Progress
+status: Done
 assignee:
   - Furinya
-created_date: 2026-11-10 14:01
-updated_date: '2026-11-11T07:24:00Z'
+created_date: '2026-11-10 14:01'
+updated_date: '2026-11-14 06:13'
 labels: []
 milestone: m-7
 dependencies: []
 references:
-  - https://github.com/FurinyaWorks/Slay-the-Abyss/issues/600
+  - 'https://github.com/FurinyaWorks/Slay-the-Abyss/issues/600'
 documentation:
   - docs/backlog-details/M7-QUALITY-RATCHET-HEAD-20261111.md
   - docs/backlog-details/M7-QUALITY-RATCHET-CLOSEOUT-20261111.md
@@ -28,10 +28,10 @@ ordinal: 170000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 当前SHA复核专项覆盖范围和新增CC超标函数的真实正反对照
-- [ ] #2 只限制真实新增债务，定义移动改名、嵌套匿名函数及生成文件的身份；保留历史热点和现有专项硬门槛
-- [ ] #3 复用既有AST和Luacheck，无新增扫描器、CI作业或依赖，量化耗时并保留原行为oracle
-- [ ] #4 真实违规与合法负例、独立复审及完整CI通过；若现有任务已覆盖则合并追踪而不重复实施
+- [x] #1 当前SHA复核专项覆盖范围和新增CC超标函数的真实正反对照
+- [x] #2 只限制真实新增债务，定义移动改名、嵌套匿名函数及生成文件的身份；保留历史热点和现有专项硬门槛
+- [x] #3 复用既有AST和Luacheck，无新增扫描器、CI作业或依赖，量化耗时并保留原行为oracle
+- [x] #4 真实违规与合法负例、独立复审及完整CI通过；若现有任务已覆盖则合并追踪而不重复实施
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -52,4 +52,12 @@ ordinal: 170000
 接续45eb945收口匿名身份和835/834历史合同：同AST可选上下文/内容指纹，一对一额度与父owner匹配，不再按匿名序号借债；默认345模块5918量测逐字段不变。真实CLI新SCC/CC增长红灯、旧债不变和无Lua绿灯；独审另发现src/lua非Lua文件误拒绝，已用递归Lua pathspec修复并保留红绿。完整CI消费者83/83、最终calibration52/52、合流六文件53/53、最终ratchet18/18及库存2/2；独立CI70、双binding60、身份9组负控通过。完整工程补生成物后4/4变异kill和native UI6/6通过，首次缺build/lua失败保留。保持Draft，最终Windows/Hosted/队列/合后未验；见M7-QUALITY-RATCHET-CLOSEOUT-20261111.md。
 
 2026-11-11 当前基线接续：PR616@9789fd6 与 develop3a061a76 仅 .gitattributes 追加冲突，双方规则和全部历史字节保留；基线其余24、原PR其余60路径按完整树核对。原源码/工作流/库存/预算不改，345生产Lua同两父；完整ratchet18/18及calibration52/52通过，独审的字节/CRLF/835库存与严格工作流投影通过。继续原Draft，正式当前HEAD Full、正常准入/队列和合后push未验，不重复Full；#610及其他共享来源后续按最终组合重新核验，owner/status/AC不变。
+
+2026-11-14对账：质量棘轮已随634合入903bf2a3，原verify:delivery本轮返回merged_passed；新CC16、旧债增长、匿名/嵌套额度、精确Git源与SCC真实负控本轮全部通过，复用原AST与Luacheck、无新增作业，既有95项相关回归全部通过。旧任务未同步是重复开工风险，不是棘轮缺失。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+质量棘轮已随634合入903bf2a3，原verify:delivery本轮返回merged_passed；新CC16、旧债增长、匿名/嵌套额度、精确Git源与SCC真实负控本轮全部通过，复用原AST与Luacheck、无新增作业，既有95项相关回归全部通过。旧任务未同步是重复开工风险，不是棘轮缺失。
+<!-- SECTION:FINAL_SUMMARY:END -->

@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - '@Furinya'
 created_date: '2026-10-22 15:58'
-updated_date: '2026-10-27 04:24'
+updated_date: '2026-11-14 06:17'
 labels:
   - publishing
   - future
@@ -13,6 +13,7 @@ labels:
 dependencies: []
 references:
   - docs/backlog-details/TASK-26.md
+  - docs/evidence/backlog-reconcile-20261114.md
 priority: low
 type: task
 ordinal: 28000
@@ -34,4 +35,6 @@ ordinal: 28000
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-27队列复核：补齐有效负责人Furinya；Low候选仍不占当前冲刺，不因指定负责人自动启动新功能。
+
+2026-11-14按用户队列清理授权归档：国际服发行仅为首发后未排期设想，当前单角色产品没有本项执行授权；未来要做时从本记录恢复，不重建。
 <!-- SECTION:NOTES:END -->

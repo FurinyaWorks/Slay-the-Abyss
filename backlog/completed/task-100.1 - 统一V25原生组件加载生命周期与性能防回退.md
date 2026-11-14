@@ -1,11 +1,11 @@
 ---
 id: TASK-100.1
 title: 统一V25原生组件加载生命周期与性能防回退
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-09 11:10'
-updated_date: '2026-11-10 14:29'
+updated_date: '2026-11-14 06:11'
 labels: []
 milestone: m-7
 dependencies: []
@@ -33,7 +33,7 @@ P0 技术阻塞：千星原生 V25 组件方案减少了运行时逐图元组装
 - [x] #2 以 RED/负控区分三项根因：运行时细粒度图元组装、全部页面 eager 挂载、代理重复查找/同值提交；每项单独 A/B 与原始记录，未证实不得硬写根因或追求虚假的 FPS 倍数。
 - [x] #3 用统一组件级生命周期接口实现 unprepared→preparing-hidden→ready→visible→cached/released，按屏/预算准备、READY 后一次展示，限定缓存容量及释放所有权；异常/取消/重入/旧回调均正确清理，不重建已存活组件、不在隐藏页继续高频工作；禁止未解释的逐图元渐进显示。
 - [x] #4 仅对实测热点应用稳定句柄缓存、失效与 dirty checking，维持输入事务、控件四态、动态内容、刷新、双宿主、失败重试及切页语义；至少包含旧引用、原生失效、重绑、重入、false/throw 的定向负例。
-- [ ] #5 将组件加载预算、重复创建、生命周期净残留和关键 UI 同源耗时阈值纳入项目现有验证入口，保留原始数据、源 SHA/GIL hash、基线及可审计阈值；对回归做 RED→GREEN/变异或负控与独立复审，不以删除断言、调松预算或关闭用例取绿。
+- [x] #5 将组件加载预算、重复创建、生命周期净残留和关键 UI 同源耗时阈值纳入项目现有验证入口，保留原始数据、源 SHA/GIL hash、基线及可审计阈值；对回归做 RED→GREEN/变异或负控与独立复审，不以删除断言、调松预算或关闭用例取绿。
 - [x] #6 V25 关键布局、卡框、字体、按钮、角色及背景不因性能优化被擅自删除或降质；同视觉候选可导出 GIL 并由模拟器完成菜单→选角→真战斗出牌/取消/奖励回图，留截图和输入轨迹。官方 PC/安卓 FPS/容量/内存如缺必须标 UNVERIFIED 并交接 TASK-4.21，不冒充本任务已实测。
 <!-- AC:END -->
 
@@ -65,4 +65,12 @@ P0 技术阻塞：千星原生 V25 组件方案减少了运行时逐图元组装
 2026-11-10：修复 #582 review5836270444 的挂载参数配对漏洞；按 controlId/script 完整集合比较所有参数，拒绝缺失、重复、非法 JSON，并在 SDK 导入前校验收据。20项 RED 后，扩展39项 GREEN、历史 CI/runtime53项通过，原始两组 SDK 报告及其 hash/预算/观察输出不变，未放宽或重建历史源码证明。证据 docs/evidence/pr582-mounted-identity-20261110/README.md；独审、精确 HEAD Full及合后验收未完成，AC5与状态保持。
 
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 生命周期及预算负控已随607、634交付；原同源SDK证据和已勾AC保留，设备未验归103/4.21。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+生命周期及预算负控已随607、634交付；原同源SDK证据和已勾AC保留，设备未验归103/4.21。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

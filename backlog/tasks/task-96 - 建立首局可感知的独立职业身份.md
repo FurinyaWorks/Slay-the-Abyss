@@ -1,11 +1,11 @@
 ---
 id: TASK-96
 title: 建立首局可感知的独立职业身份
-status: To Do
+status: Blocked
 assignee:
   - Furinya
 created_date: '2026-11-03 02:45'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:51'
 labels:
   - design
 milestone: m-8
@@ -55,4 +55,6 @@ ordinal: 138000
 当前编号映射（2026-11-03）：本任务属于 M8/m-8 产品体验与核心特色；下文保留的旧称“M7 核心产品体验门槛”按当前 M8 理解，验收实质、负责人及既有 AC 不变。
 
 2026-11-07 看板核对（develop 2c85bc61）：按 config/sprint-intake.json 属 blockedUntilOwnerApproval，当前无在途 PR；状态归 To Do（待 Owner 定方向），不勾 AC。
+
+2026-11-14第二轮状态纠正：已有75映射与独立身份审计，AC1已完成；差异化方案待Owner明确确认，不能标成尚未开始或自行继续。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

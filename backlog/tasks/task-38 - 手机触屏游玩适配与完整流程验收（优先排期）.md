@@ -1,15 +1,16 @@
 ---
 id: TASK-38
 title: 复验投稿后版本的手机触屏体验
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-23 12:23'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:51'
 labels:
   - awaiting-live
   - release-qa-20261101
   - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -103,4 +104,6 @@ PR327手机反馈来源增量（基于20a74da的历史观察；不认证6795160�
 2026-11-03 赛后调整：m-5 → M7（产品体验与核心特色）；保留状态和未验 AC；不设新期限。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

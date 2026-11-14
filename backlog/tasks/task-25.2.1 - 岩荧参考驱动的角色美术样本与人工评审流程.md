@@ -1,20 +1,22 @@
 ---
 id: TASK-25.2.1
 title: 岩荧战斗待机动画：保留原构图、整体运动与低负载验证
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-10 09:38'
-updated_date: '2026-11-10 14:19'
+updated_date: '2026-11-14 06:51'
 labels:
   - art
   - design
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
   - 'https://wiki.hoyolab.com/pc/genshin/entry/2674?lang=ja-jp'
   - 'https://genshin-impact.fandom.com/wiki/Traveler/Gallery'
-  - 'https://github-wiki-see.page/m/daviscook477/BaseMod/wiki/Custom-Character-Animations'
+  - >-
+    https://github-wiki-see.page/m/daviscook477/BaseMod/wiki/Custom-Character-Animations
   - 'https://store.steampowered.com/news/posts/?appids=646570&enddate=1542327142'
   - experiments/native-2d-vertical-slice/reference-handbook/RECIPES.md
   - docs/art/CARD_ILLUSTRATION_STANDARD.md
@@ -46,7 +48,6 @@ type: task
 - v1：8帧×230ms，最大位移约3.51原图像素，缩到游戏尺寸后基本不动，**FAIL**。
 - v2：16帧×110ms，以分区光学变形增加位移，Owner 指出人物像被割裂、不像一个整体，**FAIL**；不继续按此方法加工，不以其帧数/振幅作为待机规格。
 - **不为补救待机而开发攻击/受击动画。** 保留现有整个人物反馈和游戏规则，不额外制造动画技术债。
-
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
@@ -58,6 +59,13 @@ type: task
 <!-- AC:END -->
 
 ## Implementation Plan
+
 <!-- SECTION:PLAN:BEGIN -->
 只推进一个真实待机竖切，先复用既有工具和原始视觉参照，做整体动画和小范围次级运动；视觉不合格就回退重新调，不扩成动作系统重构。继续遵守当前 Sprint、Backlog CLI、审查/CI和真实设备验证门禁；本 PR 仅修改任务文档，不声称已实现原生 GIL 或已获得 Owner 动画验收。攻击/受击角色专属动画不进入当前任务，未来另案。
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-11-14第二轮状态纠正：634已接入idle-approved-v1、7303图元/18缓存band及现有动作生命周期；整体运动认可与当前低资源/设备验证仍缺，沿653接续而非重做待机。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
+<!-- SECTION:NOTES:END -->

@@ -1,11 +1,11 @@
 ---
 id: TASK-81.3
 title: 避免不可建模改动的无用源码扫描
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-06 05:36'
-updated_date: '2026-11-08 01:16'
+updated_date: '2026-11-14 06:13'
 labels: []
 milestone: m-7
 dependencies: []
@@ -23,9 +23,9 @@ ordinal: 162000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 仅不可建模输入或空改动的CLI不枚举源码语料，原Full结论、原因和非回归通过提示保持
-- [ ] #2 混合已映射与未知输入保留原选集及Full回退，特殊受支持输入和高风险保守边界不变
-- [ ] #3 确定性IO反例旧实现失败、修后通过，定向合同与独审通过并按原正常集成门禁交付；不伪称整体CI提速
+- [x] #1 仅不可建模输入或空改动的CLI不枚举源码语料，原Full结论、原因和非回归通过提示保持
+- [x] #2 混合已映射与未知输入保留原选集及Full回退，特殊受支持输入和高风险保守边界不变
+- [x] #3 确定性IO反例旧实现失败、修后通过，定向合同与独审通过并按原正常集成门禁交付；不伪称整体CI提速
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -38,4 +38,12 @@ ordinal: 162000
 
 <!-- SECTION:NOTES:BEGIN -->
 紧急集成由来源34115e2b接入；原TASK-81.2仍指Fast合并队列，本任务经doctor消歧为81.3。
+
+2026-11-14对账：不可建模输入零语料IO的确定性CLI守卫、混合映射与未知Full边界本轮复验通过；实现已随607等集中交付，634合后Full及原交付验证本轮已读回，原待合记录失效，不宣称整体CI性能达标。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+不可建模输入零语料IO的确定性CLI守卫、混合映射与未知Full边界本轮复验通过；实现已随607等集中交付，634合后Full及原交付验证本轮已读回，原待合记录失效，不宣称整体CI性能达标。
+<!-- SECTION:FINAL_SUMMARY:END -->

@@ -1,11 +1,11 @@
 ---
 id: TASK-88.1
 title: 统一紧急集成develop基线
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-10 16:03'
+updated_date: '2026-11-14 06:11'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -15,9 +15,9 @@ ordinal: 165000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 所有有价值来源均有可追溯去向
-- [ ] #2 组合源码验证与2D候选身份真实可查
-- [ ] #3 统一develop并清理已保全来源及核对保护
+- [x] #1 所有有价值来源均有可追溯去向
+- [x] #2 组合源码验证与2D候选身份真实可查
+- [x] #3 统一develop并清理已保全来源及核对保护
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -36,4 +36,12 @@ Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554�
 第二轮：#606已实际合入develop@80f1bcfa，合后push Full仍待。最新事件d218已吸收并清理来源分支，源码联合层1638独立检查/Formation12/UI行为14通过；CI完整校准51通过，计时合同13通过，另外三CI消费者24项通过。真实LFS六图5983528字节及license检查通过。继续#607整片独审/新基线Full与原队列，不勾完成AC。
 
 正式#607 Full入口复现原始8份诊断log的141行空白格式错误，属于捕获堆栈/空白行原文。仅8个精确log设置-whitespace，原始字节与正常源码检查均保留；整PR git diff --check已重新通过。首次impact失败日志单独保留，不计为Full成功。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 旧11/8至11/12来源快照已由607/634收拢；sources.json/backups.json保存整合、实验及WIP去向。新PR643继续独立处理后续整合。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+旧11/8至11/12来源快照已由607/634收拢；sources.json/backups.json保存整合、实验及WIP去向。新PR643继续独立处理后续整合。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

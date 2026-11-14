@@ -5,10 +5,12 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-05 03:41'
-updated_date: '2026-11-05 03:55'
+updated_date: '2026-11-14 06:17'
 labels: []
 milestone: m-7
 dependencies: []
+references:
+  - docs/evidence/backlog-reconcile-20261114.md
 documentation:
   - docs/backlog-details/M7-HOST-BATCH-20261105.md
 parent_task_id: TASK-75
@@ -42,4 +44,6 @@ PR516新增Host完整计时校准后，13Windows槽理想下界加原60秒余量
 14槽完整724JS/1356Lua模型加60秒为1764.067秒，原预算余35.933秒；仅估算。独立协议审查实测queueFullErrors可把两个不同分片名称绑定同一job.id而仍无错，原RED已存build/shape-protocol-review；PR发布器/交付已有ID去重，队列发布器需同级补齐，纳入本任务AC2防伪并由非作者复验，未改门槛。
 
 725JS/1356Lua最终14/9唯一完整分配，28exactjobs；原30分钟加60秒断言通过，模型最大1764.761秒。独立100合同与另一轮82协议用例全过，旧13绿灯/缺第14片/错误total/来源/重复ID均拒绝；真实去重guard移除变异被检出。精确HEAD与合后Full仍待，AC3不勾。
+
+2026-11-14按用户队列清理授权归档：13改14Windows分片的过渡形状早已被TASK-75.6及现行18/15替代；不恢复旧矩阵或借归档宣称稳定30分钟。
 <!-- SECTION:NOTES:END -->

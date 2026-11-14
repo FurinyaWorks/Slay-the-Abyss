@@ -1,16 +1,17 @@
 ---
 id: TASK-4.13
-title: 让地图一眼识别当前位置已走路径和可选路线
-status: To Do
+title: 复验地图当前位置与路线辨识（地图已接入）
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-30 21:58'
-updated_date: '2026-11-07 03:47'
+updated_date: '2026-11-14 06:50'
 labels:
   - playtest-20261030
   - p1
   - grok
   - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -50,4 +51,8 @@ Owner强调地图是**整体交互体验**问题：当前节点和连线灰暗�
 2026-11-03 赛后排期：m-5 → M7 产品体验；任务状态与未验 AC 保留。未定新截止日。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14逐项对账：地图源码和SDK切片103.1已收口，仍缺本任务明确的PC/手机可辨性结果；不重做滚动/路线算法。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

@@ -7,6 +7,10 @@ import {auditOutcomeTasks} from './product-outcome.mjs';
 // All changes to these files must still go through that CLI.
 export function readTaskHeader(source) {
   const header = source.replace(/^\uFEFF/, '').split(/^---\s*$/m)[1] ?? '';
+  const keys=[...header.matchAll(/^([\w-]+):/gm)].map(match=>match[1]);
+  const metadataErrors=[...new Set(keys.filter((key,index)=>keys.indexOf(key)!==index))].map(key=>`重复元数据 ${key}`);
+  if(!/^\uFEFF?---[ \t]*\r?\n[\s\S]*?\r?\n---[ \t]*(?:\r?\n|$)/.test(source))metadataErrors.push('缺少完整frontmatter');
+  const criteria=[...(source.match(/<!-- AC:BEGIN -->([\s\S]*?)<!-- AC:END -->/)?.[1]??'').matchAll(/^- \[([ xX])\] /gm)];
   const scalar = key => header.match(new RegExp(`^${key}:\\s*([^\\r\\n]+)`, 'm'))?.[1].trim().replace(/^['"]|['"]$/g, '') ?? null;
   const list = key => {
     const inline = header.match(new RegExp(`^${key}:[ \\t]*\\[([^\\r\\n]*)\\]`, 'm'));
@@ -15,7 +19,8 @@ export function readTaskHeader(source) {
     return [...(block?.[1] ?? '').matchAll(/^[ \t]+-[ \t]+(.+)$/gm)].map(m => m[1].trim().replace(/^['"]|['"]$/g, ''));
   };
   return { id: scalar('id'), status: scalar('status'), priority: scalar('priority'), milestone: scalar('milestone'),
-    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation') };
+    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation'),
+    dependencies:list('dependencies'),references:list('references'),metadataErrors,acCount:criteria.length,acCompleted:criteria.filter(match=>match[1].toLowerCase()==='x').length };
 }
 
 // Priority describes the current queue, not whether a launch requirement matters.
@@ -159,6 +164,13 @@ export function verifyBacklogRoadmap(root = '.') {
     filePath: `${directory}/${name}`, source: readFileSync(join(root, directory, name), 'utf8') }));
   const readTasks = directory => files(directory).map(({ filePath, source }) => ({ ...readTaskHeader(source), filePath }));
   const tasks = readTasks('backlog/tasks'), completed = readTasks('backlog/completed');
+  const stateErrors=[...tasks,...completed].flatMap(task=>[
+    ...task.metadataErrors.map(error=>`${task.id??task.filePath}: ${error}`),
+    ...(!task.id?[`${task.filePath}: 缺少任务ID`]:[]),
+    ...(task.status==='Done'&&task.acCompleted<task.acCount?[`${task.id}: Done仍有未勾AC`]:[]),
+    ...(task.status==='To Do'&&task.labels.some(label=>['待验','delivery-verify'].includes(label))?[`${task.id}: 已开展待验任务不能退回To Do；应保留In Progress，明确阻塞时用Blocked`]:[]),
+    ...(task.status==='In Progress'&&task.acCount>0&&task.acCompleted===task.acCount?[`${task.id}: AC已全勾，须核对交付并同步状态，不得继续重复施工`]:[]),
+  ]);
   const archiveFiles = directory => { try { return files(directory); } catch { return []; } };
   const activeMilestoneFiles = files('backlog/milestones');
   const milestoneRecords=activeMilestoneFiles.map(({source})=>({
@@ -175,8 +187,8 @@ export function verifyBacklogRoadmap(root = '.') {
     const stage = title.match(/^(M[1-9])(?:\s|[｜|:：]|$)/)?.[1];
     return [id, stage];
   }).filter(([id, stage]) => id && stage));
-  return [...new Set([...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
-    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
+  return [...new Set([...stateErrors,...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
+    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks([...tasks,...completed],root)])];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const errors = [...verifyBacklogRoadmap(), ...verifyMilestoneScope()];

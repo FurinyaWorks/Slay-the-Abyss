@@ -1,12 +1,14 @@
 ---
 id: TASK-74
-title: 缩短完整检查并拆清超大模块职责
+title: 复核核心架构余项（既有职责拆分已交付）
 status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-26 14:33'
-updated_date: '2026-11-07 01:47'
-labels: []
+updated_date: '2026-11-14 06:48'
+labels:
+  - 待验
+  - delivery-verify
 milestone: m-7
 dependencies: []
 references:
@@ -34,7 +36,8 @@ ordinal: 118000
 - [x] #8 UI测试公共接口以原生API证据校验，独立状态和故意缺方法负例保留
 - [x] #9 指定核心与表现职责拆清且提取helper受检，数值随机顺序回滚及输入显示所有权保持
 - [x] #10 合并证据绑定实际合入提交和源码树，区分PR通过与合入提交验证状态
-- [ ] #11 本轮当前HEAD完整Quality通过，正常门禁合并后复核实际合入提交CI
+- [x] #11 本轮当前HEAD完整Quality通过，正常门禁合并后复核实际合入提交CI
+- [ ] #12 原74.19/20残余范围按真实产品阻塞复核并取得明确接受结论；已交付职责切片不重复实施。
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -171,6 +174,10 @@ PR521来源Full通过后，merge_group 42157763480的rules5/16真实失败：Sap
 本轮最新de218e5c架构重采333模块/5385完整测量，CC>15为237、>30为58、最大75，SCC81+15；Lua源码与已合final-core逐文件相同。现有Run/Session owner及Actor/CardActions到Session禁边保持，未发现新P0，不宣称全库债务清零。Bonfire窄回归22/22通过13.350秒，原30秒预算；两个独立副本语义负控捕获提前移除及吞掉晚false，throw顺序另核。生产源码不改，当前独审、Full和合后验收待，AC11不勾。
 
 Bonfire技术证据持久化于docs/evidence/bonfire-rollback-20261107.json；两个新用例由另一执行者只读独审PASS，核对green/三个负控真实失败与来源摘要，未重复测试。当前集成仍待精确SHA与远端Full。
+
+2026-11-14逐项对账：已交付重构和棘轮不重做；原AC11本轮634合后验证已证实。保留父任务仅承接74.19/20尚未被Owner接受的残余范围，按真实产品阻塞再安排。
+
+2026-11-14第二轮状态纠正：既有职责拆分与质量棘轮已交付，11项AC已勾；只剩74.19/20残余范围接受，整项已经开展，不能回退为尚未开始。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

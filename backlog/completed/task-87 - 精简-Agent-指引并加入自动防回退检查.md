@@ -1,13 +1,12 @@
 ---
 id: TASK-87
 title: 精简 Agent 指引并加入自动防回退检查
-status: To Do
+status: Done
 assignee:
   - Furinya
 created_date: '2026-10-29 16:59'
-updated_date: '2026-11-07 03:48'
-labels:
-  - 待验
+updated_date: '2026-11-14 06:11'
+labels: []
 dependencies: []
 documentation:
   - docs/AGENT_GUIDANCE.md
@@ -25,7 +24,7 @@ ordinal: 129000
 <!-- AC:BEGIN -->
 - [x] #1 默认指引简洁，当前范围及必要安全边界仍可查到
 - [x] #2 自动检查拦截指引膨胀、失效入口和适配器重复
-- [ ] #3 当前提交 CI 通过并合入 develop
+- [x] #3 当前提交 CI 通过并合入 develop
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -44,4 +43,12 @@ ordinal: 129000
 PR348第二轮Windows分片发现新增workflow步骤未纳入旧快照精确逆变换；已为新增步骤和两处package接线补精确适配，不改旧hash/权限/时限/矩阵/断言。用仓库便携Node24.18.0运行全部CI合同36/36通过，新增指引及接线/历史漂移负对照7/7通过。此前系统Node22不支持test-isolation，已停止其CI合同运行；未放宽测试。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 原PR348/c3c1af6b及合后Quality40926116809早已成功；旧11/7笼统待手机备注不适用指引任务。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+原PR348/c3c1af6b及合后Quality40926116809早已成功；旧11/7笼统待手机备注不适用指引任务。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

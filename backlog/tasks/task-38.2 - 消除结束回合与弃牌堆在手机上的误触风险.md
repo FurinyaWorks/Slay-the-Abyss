@@ -1,16 +1,17 @@
 ---
 id: TASK-38.2
 title: 消除结束回合与弃牌堆在手机上的误触风险
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-30 21:58'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:51'
 labels:
   - playtest-20261030
   - p0
   - grok
   - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -47,4 +48,6 @@ Owner截图右下方结束回合按钮与弃牌堆图标过近，触屏查看弃
 2026-11-01 R2：计数视觉36圆、角位20/-14、字号20，旧56/40/24/-20专用于热区，实际84x82偏移±10/1及结束回合16间隔不变。Host0/1/9/10/99/100/999数据文本、两侧附着与三位宽度通过；设备误触保持未验。证据docs/evidence/hud-r2-20261101/README.md。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

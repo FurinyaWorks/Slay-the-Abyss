@@ -5,7 +5,7 @@ status: Blocked
 assignee:
   - '@Furinya'
 created_date: '2026-10-24 01:10'
-updated_date: '2026-10-28 08:23'
+updated_date: '2026-11-14 06:17'
 labels:
   - P1
   - post-release
@@ -18,6 +18,7 @@ references:
   - docs/TOOLCHAIN.md
   - 'https://github.com/CHNISam/Slay-the-Abyss/pull/147'
   - docs/backlog-details/TASK-45.md
+  - docs/evidence/backlog-reconcile-20261114.md
 priority: low
 type: feature
 ordinal: 73000
@@ -43,4 +44,6 @@ ordinal: 73000
 2026-10-27队列复核：补齐有效负责人Furinya；Low候选仍不占当前冲刺，不因指定负责人自动启动新功能。
 
 2026-10-28用户确认范围变更：当前比赛只覆盖第一幕、第二幕，优先前10分钟体验；第三幕/隐藏第四幕/真结局及依赖退出续玩、跨局进度、历史解锁或跨局留卡的内容退出比赛必做，保留为无新截止日的未来候选。四职业及已批准原创角色要求不变。同局跨房间、第一幕到第二幕的资源与随机流、内存快照/回滚和本局结算保留；源码/候选/平台/实机仍分层，未完成状态不因范围调整改变。
+
+2026-11-14按用户队列清理授权归档：成就与跨局持久化已由SCOPE现行决定移出当前范围，账号能力未获批；未来权限与批准具备后恢复。
 <!-- SECTION:NOTES:END -->

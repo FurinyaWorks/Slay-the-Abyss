@@ -1,11 +1,11 @@
 ---
 id: TASK-97
 title: 分批正式开放其余三套 V4 自研职业
-status: To Do
+status: Blocked
 assignee:
   - Furinya
 created_date: '2026-11-03 02:45'
-updated_date: '2026-11-03 15:29'
+updated_date: '2026-11-14 06:52'
 labels: []
 milestone: m-9
 dependencies: []
@@ -36,4 +36,6 @@ ordinal: 139000
 
 <!-- SECTION:NOTES:BEGIN -->
 当前编号映射（2026-11-03）：本任务属于 M9/m-9 内容扩充；下文及未勾 AC4 的旧称“M7 核心体验/基础 UI”均对应当前 M8/m-8 的体验、触屏、性能与稳定性门槛。保留原 AC4 文字和未勾状态，不改验收实质。
+
+2026-11-14第二轮状态纠正：现有V4资产保留；量产开放仍待Owner单独批准及容量准入，当前不启动扩角色。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

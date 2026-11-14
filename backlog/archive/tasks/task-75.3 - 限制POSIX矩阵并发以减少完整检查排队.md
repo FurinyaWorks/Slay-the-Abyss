@@ -5,12 +5,13 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-04 22:58'
-updated_date: '2026-11-06 03:55'
+updated_date: '2026-11-14 06:17'
 labels: []
 milestone: m-7
 dependencies: []
 references:
   - docs/SPRINT_EXECUTION.md
+  - docs/evidence/backlog-reconcile-20261114.md
 documentation:
   - docs/backlog-details/M7-HOST-BATCH-20261105.md
 parent_task_id: TASK-75
@@ -57,4 +58,6 @@ PR525独审接续：固定Node24.18.0的8文件51合同通过；另查出现有c
 当前525自动合并已通过原入口暂停并读回autoMergeRequest=null。失败原始job127688135188日志已取证：joust_event.lua ETIMEDOUT 30037ms，前五组PASS、第六组尚未完成；其余Full继续收集失败，不将当前候选宣称通过。
 
 Joust已按原文保真拆为1–2/3–6两入口，git原5275字节SHA256及原六组有序正文锁定，实际编号并集1..6恰好一次。主控固定Node24独验Joust/完整校准/Host校准11项通过0跳过，两VM16602/4855ms仍各30秒。新增raw仅显式列为未测，原1356文件/2712观测和timings不改；当前1357入口完整调度及原预算通过。独审session ses_e512f4c4fffeuyyAQjNkbjkNNI复核源身份、状态隔离及8负控通过，新候选托管Full待，AC不勾。
+
+2026-11-14按用户队列清理授权归档：早期cap6与PR525并发试验属于旧调度形状，现行18Windows/15POSIX与cap12由后继75.6等替代；历史实验/失败及未验稳定收益保留，真实吞吐统一由TASK-75和81验收。
 <!-- SECTION:NOTES:END -->

@@ -1,10 +1,128 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { readFileSync, mkdtempSync, writeFileSync, rmSync, mkdirSync, renameSync } from 'node:fs';
+import {spawnSync} from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { verifyDelivery, verifyMergedDelivery, collectPrDelivery, collectMergedDelivery, checkoutReceipt, isLowRiskDocumentationChange, fullQualityJobs, currentFullQualityJobs, deliverySchemaVersion, qualityWorkflowPath } from '../scripts/verify-delivery.mjs';
 import {qualityShardMatrices,qualityShardJobs} from '../scripts/ci-quality-shape.mjs';
+import * as delivery from '../scripts/verify-delivery.mjs';
+
+test('merged delivery requires an explicit, AC-safe Backlog disposition',()=>{
+  assert.equal(typeof delivery.planBacklogCloseout,'function');
+  const records=[{id:'TASK-1',status:'In Progress',acCount:1,acCompleted:0,labels:[],source:'',location:'tasks',dependencies:[]}];
+  const input={body:'Backlog: TASK-1=done',records,mergeSha:'a'.repeat(40),prNumber:10,changedTaskIds:['TASK-1']};
+  assert.match(delivery.planBacklogCloseout(input).errors.join(' '),/AC/);
+  assert.equal(delivery.planBacklogCloseout({...input,body:'Backlog: TASK-1=verify'}).errors.length,0);
+  assert.match(delivery.planBacklogCloseout({...input,body:'Backlog: none'}).errors.join(' '),/TASK-1/);
+  assert.match(delivery.planBacklogCloseout({...input,body:''}).errors.join(' '),/Backlog/);
+});
+test('verification is started work, stays In Progress and cannot implicitly reopen Blocked',()=>{
+  const mergeSha='a'.repeat(40),base={body:'Backlog: TASK-1=verify',mergeSha,prNumber:10};
+  const task={id:'TASK-1',status:'To Do',acCount:2,acCompleted:1,labels:[],source:'',location:'tasks',dependencies:[]};
+  const plan=delivery.planBacklogCloseout({...base,records:[task]});
+  assert.deepEqual(plan.errors,[]);
+  assert.equal(plan.commands[0][plan.commands[0].indexOf('-s')+1],'In Progress');
+  assert.equal(delivery.planBacklogCloseout({...base,records:[{...task,status:'In Progress',labels:['待验','delivery-verify'],
+    source:`[delivery:${mergeSha}] verify PR #10; remaining AC: 1.`}]}).commands.length,0);
+  const blocked=delivery.planBacklogCloseout({...base,records:[{...task,status:'Blocked'}]});
+  assert.match(blocked.errors.join(' '),/Blocked/);
+  assert.equal(blocked.commands.length,0);
+});
+test('already recorded cleanup validates snapshots without redoing archives or changing ongoing work',()=>{
+  const records=[
+    {id:'TASK-1',status:'In Progress',location:'tasks',acCount:2,acCompleted:1},
+    {id:'TASK-2',status:'Done',location:'completed',acCount:2,acCompleted:2},
+    {id:'TASK-3',status:'To Do',location:'archive',acCount:2,acCompleted:0},
+    {id:'TASK-4',status:'Blocked',location:'tasks',acCount:2,acCompleted:0},
+  ];
+  const input={records,body:'Backlog: TASK-1=recorded, TASK-2=recorded, TASK-3=recorded, TASK-4=recorded',
+    mergeSha:'a'.repeat(40),prNumber:10,changedTaskIds:records.map(task=>task.id)};
+  assert.deepEqual(delivery.planBacklogCloseout(input),{errors:[],commands:[]});
+  assert.ok(delivery.planBacklogCloseout({...input,records:records.map(task=>task.id==='TASK-2'?{...task,acCompleted:1}:task)}).errors.length);
+  assert.ok(delivery.planBacklogCloseout({...input,records:records.map(task=>task.id==='TASK-2'?{...task,status:'In Progress'}:task)}).errors.length);
+});
+test('supersession preserves a real successor, rejects cycles and does not guess from age',()=>{
+  assert.equal(typeof delivery.planBacklogCloseout,'function');
+  const records=[1,2].map(id=>({id:`TASK-${id}`,status:'To Do',acCount:1,acCompleted:0,labels:[],source:'',location:'tasks',dependencies:[]}));
+  const input={body:'Backlog: TASK-1=superseded:TASK-2',records,mergeSha:'a'.repeat(40),prNumber:10,changedTaskIds:['TASK-1']};
+  assert.equal(delivery.planBacklogCloseout(input).errors.length,0);
+  for(const body of ['Backlog: TASK-1=superseded:TASK-99','Backlog: TASK-1=superseded:TASK-1',
+    'Backlog: TASK-1=superseded:TASK-2, TASK-2=superseded:TASK-1'])
+    assert.ok(delivery.planBacklogCloseout({...input,body}).errors.length,body);
+  const plan=delivery.planBacklogCloseout({...input,body:'Backlog: TASK-1=continue'});
+  assert.ok(plan.commands.every(args=>!args.includes('archive')&&!args.includes('Done')));
+});
+test('closeout retries only the missing move and requires the actual successor reference',()=>{
+  const mergeSha='a'.repeat(40),marker=`[delivery:${mergeSha}]`;
+  const done={id:'TASK-1',status:'Done',acCount:1,acCompleted:1,labels:[],source:`${marker} done`,location:'tasks',dependencies:[]};
+  const base={records:[done],mergeSha,prNumber:10,body:'Backlog: TASK-1=done'};
+  assert.deepEqual(delivery.planBacklogCloseout(base).commands,[['task','complete','TASK-1']]);
+  const old={...done,status:'To Do',location:'archive',source:`${marker} superseded:TASK-2`,references:[]};
+  const target={...done,id:'TASK-2',status:'To Do',acCompleted:0,source:'',metadataErrors:[]};
+  const input={...base,body:'Backlog: TASK-1=superseded:TASK-2',records:[old,target]};
+  assert.ok(delivery.planBacklogCloseout(input).errors.length,'a note is not a successor reference');
+  assert.equal(delivery.planBacklogCloseout({...input,records:[{...old,references:['TASK-2']},target]}).errors.length,0);
+  assert.ok(delivery.planBacklogCloseout({...input,records:[{...old,location:'tasks'},
+    {...target,metadataErrors:['duplicate status']}]}).errors.length);
+});
+function closeoutFixture(t) {
+  const root=mkdtempSync(join(tmpdir(),'backlog-closeout-'));
+  t.after(()=>rmSync(root,{recursive:true,force:true}));
+  for(const dir of ['tasks','completed','archive/tasks'])mkdirSync(join(root,'backlog',dir),{recursive:true});
+  const path=join(root,'backlog/tasks/task-1 - 交付.md');
+  const source='---\nid: TASK-1\nstatus: In Progress\nlabels: []\ndependencies: []\n---\n<!-- AC:BEGIN -->\n- [ ] #1 device verification\n<!-- AC:END -->\n';
+  writeFileSync(path,source);
+  const git=(...args)=>{
+    const result=spawnSync('git',args,{cwd:root,encoding:'utf8'});
+    assert.equal(result.status,0,result.stderr);return result.stdout.trim();
+  };
+  git('init','-q');git('add','.');git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','fixture');
+  const mergeSha=git('rev-parse','HEAD');
+  return {root,path,source,git,mergeSha,pr:{number:10,merged:true,base:{ref:'develop'},merge_commit_sha:mergeSha,body:'Backlog: TASK-1=verify'},files:[]};
+}
+test('closeout refuses an old worktree and a task revised after the verified merge without writing',t=>{
+  const f=closeoutFixture(t),run=()=>assert.fail('must not write an obsolete task');
+  assert.throws(()=>delivery.syncBacklogCloseout({...f,targetSha:'a'.repeat(40)},run),/current develop SHA/);
+  writeFileSync(f.path,f.source+'\nNewer product decision.\n');
+  f.git('add','.');f.git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','new decision');
+  assert.throws(()=>delivery.syncBacklogCloseout({...f,targetSha:f.git('rev-parse','HEAD')},run),/task changed since this PR/);
+});
+test('closeout reports CLI failure and false success/readback instead of claiming sync',t=>{
+  const f=closeoutFixture(t),input={...f,targetSha:f.mergeSha};
+  assert.throws(()=>delivery.syncBacklogCloseout(input,()=>{throw Error('CLI unavailable');}),/CLI unavailable/);
+  assert.throws(()=>delivery.syncBacklogCloseout(input,()=>''),/readback differs/);
+  assert.equal(readFileSync(f.path,'utf8'),f.source);
+});
+test('an old delivery marker cannot authorize overwriting a later Blocked decision with unchanged AC',t=>{
+  const f=closeoutFixture(t);
+  writeFileSync(f.path,f.source.replace('status: In Progress','status: Blocked')+
+    `\n[delivery:${f.mergeSha}] verify PR #10; remaining AC: 1.\nLater decision: wait for Owner approval.\n`);
+  f.git('add','.');f.git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','block after delivery');
+  assert.throws(()=>delivery.syncBacklogCloseout({...f,targetSha:f.git('rev-parse','HEAD')},
+    ()=>assert.fail('old marker must not reopen a blocked task')),/task changed since this PR|Blocked/);
+});
+test('an interrupted closeout resumes from its exact CLI readback once without duplicate notes',t=>{
+  const f=closeoutFixture(t);
+  writeFileSync(f.path,f.source.replace('- [ ]','- [x]'));
+  f.git('add','.');f.git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-qm','AC evidenced');
+  f.mergeSha=f.git('rev-parse','HEAD');f.pr.merge_commit_sha=f.mergeSha;f.pr.body='Backlog: TASK-1=done';
+  const input={...f,targetSha:f.mergeSha},completed=join(f.root,'backlog/completed/task-1 - 交付.md');
+  let failMove=true,edits=0;
+  const cli=args=>{
+    if(args[1]==='edit') {
+      edits++;
+      writeFileSync(f.path,readFileSync(f.path,'utf8').replace('status: In Progress','status: Done')+'\n'+args.at(-1)+'\n');
+    } else if(failMove){failMove=false;throw Error('interrupted move');}
+    else renameSync(f.path,completed);
+  };
+  assert.throws(()=>delivery.syncBacklogCloseout(input,cli),/interrupted move/);
+  assert.equal(delivery.syncBacklogCloseout(input,cli).state,'backlog_synced');
+  assert.equal(edits,1);
+  assert.equal(delivery.syncBacklogCloseout(input,()=>assert.fail('already synchronized')).commands,0);
+  writeFileSync(completed,readFileSync(completed,'utf8')+'Later independent edit.\n');
+  assert.throws(()=>delivery.syncBacklogCloseout(input,()=>assert.fail('edited receipt must not authorize writes')),/task changed since this PR/);
+});
 
 const sha = letter => letter.repeat(40);
 function mergedEvidence(schemaVersion=2) {

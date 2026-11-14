@@ -1,13 +1,12 @@
 ---
 id: TASK-86
 title: 让回归合同只约束必要行为和候选完整性
-status: To Do
+status: Done
 assignee:
   - Furinya
 created_date: '2026-10-29 12:26'
-updated_date: '2026-11-07 03:48'
-labels:
-  - 待验
+updated_date: '2026-11-14 06:11'
+labels: []
 dependencies: []
 priority: medium
 ordinal: 128000
@@ -23,7 +22,7 @@ PR集成中的历史实现快照可能阻止行为等价改动，需以真实失
 <!-- AC:BEGIN -->
 - [x] #1 真实失败有源码与日志归因
 - [x] #2 最小合同调整保留完整性并通过正反例
-- [ ] #3 当前PR全部必要门禁通过
+- [x] #3 当前PR全部必要门禁通过
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -46,4 +45,12 @@ Agent C读取PR336真实失败，区分历史快照与行为回归；仅对证�
 2026-10-31进一步明确历史责任：旧preMulti动作仍写教学字幕，与冻结fixture空提示断言本不自洽；找到Git38f4原始同body/support输入，固定1837路径整体身份，仅battle_ui七入口使用，原80frame/seeds/断言不变，主控battle1实跑33.660s通过。drag/22scene仍原032来源；单snapshot去掉重复原树写入，drag1/2为16.916/19.567s，22场景深比较26.097s通过，原30/60/120预算保留。当前input/runtime/真实validator保持当前代码，历史source不代替当前验收。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 原PR340/ea70cf0c的合后Quality取消记录保留；后续集成634已重新交付完整合同，不再重复实施。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+原PR340/ea70cf0c的合后Quality取消记录保留；后续集成634已重新交付完整合同，不再重复实施。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

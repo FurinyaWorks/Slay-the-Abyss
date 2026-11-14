@@ -1,11 +1,11 @@
 ---
 id: TASK-88
 title: 修复本轮合并后阻挡测试版的检查失败
-status: In Progress
+status: Done
 assignee:
   - Furinya
-created_date: 2026-10-30 11:45
-updated_date: '2026-11-08T15:12:00Z'
+created_date: '2026-10-30 11:45'
+updated_date: '2026-11-14 06:11'
 labels: []
 dependencies: []
 priority: medium
@@ -20,9 +20,9 @@ ordinal: 130000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 当前合并组合的必要CI全部成功
-- [ ] #2 修复经独立复审并保留精确源码证据
-- [ ] #3 明确候选构建与平台实测尚缺的证据
+- [x] #1 当前合并组合的必要CI全部成功
+- [x] #2 修复经独立复审并保留精确源码证据
+- [x] #3 明确候选构建与平台实测尚缺的证据
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -95,4 +95,12 @@ facade合流发布前发现合法proof下非法JSON token会被误当空白布�
 Full42489554698 POSIX3/14原日志：56文件中52完成，Battle历史配置合同1121.5秒占已完成耗时70.9%，Task77执行中取消。只将Battle原3例改用已有113项Git blob核实的98fef闭包，断言/变异原文不变；新增来源损坏/CRLF及当前公开入口拒绝验证。定向5/5通过59.8秒、语法/指引/Backlog/diff通过，独审无阻塞；首次新增负控诊断不匹配已保留并修正。详见docs/evidence/battle-config-cost-20261108.json；不证明整片时限或当前Full通过，未改任何预算或重跑Full。
 
 补正Battle新增CRLF负控：主控发现已CRLF引用再次展开会形成CRCRLF；隔离树96项真实CRLF引用复现失败，再以先归一化后展开修复，LF/实际CRLF专项各1/1通过，保留红绿日志。原3例不变，不重跑昂贵回放；独审重新确认，旧测试SHA审查被新SHA9c00e81a替代。非原生Windows执行，证据见原Battle成本JSON的crlfCorrection。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 历史CI故障经606/607及634集中修复和独审后交付；候选/设备缺口沿103/38，不将新UI工作无限塞回旧CI修复。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+历史CI故障经606/607及634集中修复和独审后交付；候选/设备缺口沿103/38，不将新UI工作无限塞回旧CI修复。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

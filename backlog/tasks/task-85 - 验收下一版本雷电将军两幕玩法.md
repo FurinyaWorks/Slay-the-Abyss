@@ -1,11 +1,11 @@
 ---
 id: TASK-85
 title: 验收下一版本雷电将军两幕玩法
-status: To Do
+status: Blocked
 assignee:
   - '@Furinya'
 created_date: '2026-10-29 01:28'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:51'
 labels:
   - future
 milestone: m-8
@@ -69,4 +69,6 @@ TASK-47迁出原文（均未勾，保留完整历史）：
 集成独审发现并修正新增证据LF/CRLF字节身份问题，原收据与hash不改写；两Lua合同迁至support由唯一Node入口跨平台执行，避免Windows raw重复。重放当前输出改build目录保留历史，旧参数仅历史基线适用。全部原8组断言保留，当前组合复验/最终SHA独审与CI收口中；六项AC继续未勾。
 
 2026-11-07 看板核对（develop 2c85bc61）：按 config/sprint-intake.json 属 blockedUntilOwnerApproval，当前无在途 PR；状态归 To Do（待 Owner 定方向），不勾 AC。
+
+2026-11-14第二轮状态纠正：冻结V4与离线验证已开展；当前正式雷电方向及后续版本实施仍需Owner单独批准。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

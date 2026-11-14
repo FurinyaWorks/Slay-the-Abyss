@@ -1,12 +1,14 @@
 ---
 id: TASK-75
-title: 缩短完整跨平台检查的实际执行时间
+title: 验收当前CI吞吐（既有调度优化已交付）
 status: In Progress
 assignee:
   - Furinya
-created_date: 2026-10-28 03:47
-updated_date: '2026-11-08T20:10:00Z'
-labels: []
+created_date: '2026-10-28 03:47'
+updated_date: '2026-11-14 06:48'
+labels:
+  - 待验
+  - delivery-verify
 milestone: m-7
 dependencies: []
 references:
@@ -26,6 +28,7 @@ ordinal: 120000
 - [x] #1 Windows和POSIX完整文件精确覆盖且断言超时保持
 - [x] #2 合入提交全部Required Checks通过
 - [x] #3 记录优化前后官方执行耗时
+- [ ] #4 稳定Full不超过30分钟的目标有真实Runner证据；未达标则保持待验，不以旧AC已勾或M7归档宣称通过。
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -94,4 +97,8 @@ PR370首头5d66abfc的run41009713098 impact 05:40:13创建、05:52:29开始、05
 2026-11-05已复核PR514最终a245、base a308、实际squash78e4e746及相同tree；PR Full41914042810、merge_group41918738466及push41923895912和对应Licenses成功。本轮独立复审40项/35语义变异及新增scry负例PASS；主控原工程门禁和119项CI合同通过。证据见docs/backlog-details/M7-CLOSEOUT-20261105.md及docs/evidence/m7-closeout-20261105/。本轮新独审不补造合前reviewId或schema5历史收据；M7稳定耗时/Fast样本与设备仍未完成。 原三个AC证据齐全；章程稳定Full≤30min仍未达（1802s/1984s），保持In Progress，不冒称M7性能达标。
 
 2026-11-09 来源纯计算去重：三个原慢测7/7通过且测试体未动；同机core原2项447.719s→47.035s（原轮带CPU采样），Max HP本轮61.419s，architecture-format仍464.486s。仅缓存完整字符串LF摘要与token计算，每次48-owner鲜读、所有旧oracle/预算/矩阵保持。独审9/9及8208差分通过，剩余慢点定位冻结旧epoch，不扩大本片。远端先保全4cd0697a；证据见docs/backlog-details/CI-SOURCE-CALCULATION-20261109.md。只完成本地定向验证，未重复Full、未准入或合并，TASK75仍In Progress。
+
+2026-11-14逐项对账：既有3项AC历史已通过，原任务因稳定30分钟目标未达而久挂进行中。本轮把该未达出口显式列为AC4；现行调度不按旧13/14分片重做。
+
+2026-11-14第二轮状态纠正：调度优化及3项AC已完成，稳定Full目标尚缺真实证据；属于验收阶段进行中，不重新实现调度。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->
