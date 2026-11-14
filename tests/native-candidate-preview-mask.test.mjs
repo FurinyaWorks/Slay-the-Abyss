@@ -1,4 +1,9 @@
 import test from 'node:test';
+import './menu-flat-triangle.cases.mjs';
+import './menu-preview-composition.cases.mjs';
+import './menu-red-background.cases.mjs';
+import './native-ui-rotations.cases.mjs';
+import './menu-red-source-proof.cases.mjs';
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';

@@ -1,4 +1,5 @@
 import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
+import {menuRedPriorRead,menuRedPriorLua,menuRedCiProof} from './helpers/menu-red-ci-source.mjs';
 import {runHudPriorRead,runHudPriorInventory,preRunHudCiSource,runHudCiProof,runHudBeforeCiRepairProof} from './helpers/run-hud-ci-source.mjs';
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
@@ -1852,7 +1853,7 @@ test('combined closeout validates raw current sources and complete Full discover
  assert.equal(new Set(files).size,files.length);
  assert.equal(files.length,854);
  assert(files.includes('tests/lumine-idle.test.mjs'),'approved idle remains in complete raw Full discovery');
- const lua=liveCloseoutLua();assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
+ const lua=menuRedPriorLua(liveCloseoutLua());assert.deepEqual(lua,closeoutCiProof.luaInventory);assert.equal(lua.length,1416);
  for(const file of lua)assert.equal(hash(nativeCloseoutRead(file,'utf8').replaceAll('\r\n','\n')),closeoutCiProof.luaHashes[file],file);
  const rawCalibration=nativeCloseoutRead('tests/ci-complete-calibration.test.mjs','utf8');
  for(const view of Object.keys(closeoutCiProof.targets))for(const file of ['config/architecture.json','src/lua/abyss_ui.lua']){
@@ -1931,6 +1932,7 @@ test('noncombat immutable added inventory keeps its full source and unknown-cost
 });
 
 test('run HUD continuation authenticates complete current sources and raw Full inventory without rewriting historical receipts',()=>{
+ const liveDiskReadFileSync=menuRedPriorRead();
  const p=runHudCiProof,files=liveDiscoverJs();
  assert.deepEqual(runHudBeforeCiRepairProof.afterInventory,p.afterInventory,'Full repair retains the complete preceding inventory');
  for(const [path,row]of Object.entries(runHudBeforeCiRepairProof.files))assert.deepEqual(p.files[path].before,row.before,'original receipt predecessor retained: '+path);
@@ -1954,5 +1956,34 @@ test('run HUD continuation authenticates complete current sources and raw Full i
    assert.equal(rawCurrentTimings.js[platform][path],undefined,'new regression has no historical hosted timing');
    assert(rawCurrentJsPlanningWeights([path],platform)[path]>=rawCurrentTimings.unknownJsMs);
   }
+ }
+});
+
+test('menu current complete JS and Lua workload retains Full budgets and every added Lua byte',t=>{
+ const js=liveDiscoverJs(),lua=liveCloseoutLua();
+ assert.deepEqual(js,runHudCiProof.afterInventory,'all current menu cases execute through the existing preview entry');
+ assert.deepEqual(menuRedPriorLua(lua),closeoutCiProof.luaInventory);
+ for(const [path,row]of Object.entries(menuRedCiProof.addedLua)){
+  assert.equal(liveDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n'),row.source);
+  assert.equal(hash(row.source),row.sha256);
+  assert.throws(()=>menuRedPriorLua(lua,(p,e)=>liveDiskReadFileSync(p,e)+(p===path?'\n':'')),/added menu Lua source/);
+ }
+ for(const paths of [lua.slice(1),[...lua,lua[0]],[...lua,'tests/lua/foreign.lua']])assert.throws(()=>menuRedPriorLua(paths),/Lua discovery/);
+ for(const [platform,count,budget]of [['win32',18,1800000],['linux',15,1200000]]){
+  const bins=Array.from({length:count},(_,i)=>rawCurrentJsShard(js,`${i+1}/${count}`,platform));
+  assert.deepEqual(bins.flatMap(b=>b.files).sort(),js);assert.equal(new Set(bins.flatMap(b=>b.files)).size,js.length);
+  const loads=bins[0].loads;let combined=loads;
+  if(platform==='win32'){
+   const luaBins=Array.from({length:count},(_,i)=>shardLuaScripts(lua,`${i+1}/${count}`,{...rawCurrentTimings,windowsJsShardMs:loads},2));
+   assert.deepEqual(luaBins.flat().sort(),lua);assert.equal(new Set(luaBins.flat()).size,lua.length);
+   const cost=f=>rawCurrentTimings.luaShard[f]??rawCurrentTimings.lua[f]??rawCurrentTimings.unknownLuaMs;
+   const safety=f=>rawCurrentTimings.lua[f]??rawCurrentTimings.unknownLuaMs;
+   combined=luaBins.map((bin,i)=>{
+    const pool=[0,0];for(const f of bin.filter(f=>safety(f)<10000).sort((a,b)=>safety(b)-safety(a)||a.localeCompare(b)))pool[pool[0]<=pool[1]?0:1]+=cost(f);
+    return loads[i]+bin.filter(f=>safety(f)>=10000).reduce((sum,f)=>sum+cost(f),0)+Math.max(...pool);
+   });
+  }
+  const forecast=Math.max(...combined)+60000;assert(forecast<budget,'complete current menu workload and unchanged reserve');
+  t.diagnostic(`${platform}: ${js.length} JS / ${lua.length} Lua, forecast ${forecast}ms < ${budget}ms`);
  }
 });

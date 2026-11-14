@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
+import {extendMenuRedSourceEpoch} from './menu-red-source-epoch.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-source-epoch.json.gz',import.meta.url));
 assert.equal(hash(bytes),'36aba7fc07f732a191a750d437eefd27e9b9567221811747abf13c97a9ac237a');
@@ -35,8 +36,9 @@ const targets={...priorProof.targets,shopDeckPrior:{commit:outer.targets.prior.c
  shopDeckFourPrior:{commit:four.currentCommit,files:{...priorProof.current,...four.current}},
  shopDeckBeforeCiRepairPrior:{commit:shopDeckBeforeCiRepairPrior.currentCommit,files:{...priorProof.current,...shopDeckBeforeCiRepairPrior.current}}};
 const owners=Object.keys(current).filter(path=>Object.values(targets).some(target=>target.files[path]?.sha256!==current[path]?.sha256));
-export const sourceEpoch=createSourceEpochProjector(freeze({...priorProof,currentTreeCommitted:false,
+export const menuRedPriorEpoch=createSourceEpochProjector(freeze({...priorProof,currentTreeCommitted:false,
  currentCommit:outer.currentCommit,currentCommitRole:outer.currentCommitRole,current,targets,owners}),{allowConfigLayout:true,reuseFrozenInput:true});
+export const sourceEpoch=extendMenuRedSourceEpoch(menuRedPriorEpoch);
 const proof=sourceEpoch.proof;
 // Snapshot consumers must first authenticate every live current owner. This is
 // per invocation; neither live reads nor authorization are cached.

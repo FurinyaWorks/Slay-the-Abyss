@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
+import {preMenuRedCiSource} from './menu-red-ci-source.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const normalize=s=>s.replaceAll('\r\n','\n');
 const beforeRepairBytes=readFileSync(new URL('./run-hud-before-ci-repair-ci-source.json.gz',import.meta.url));
@@ -25,6 +26,7 @@ const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value))
 freeze(runHudCiProof);
 freeze(runHudBeforeCiRepairProof);
 export function preRunHudCiSource(path,source){
+ source=preMenuRedCiSource(path,source);
  const row=Object.hasOwn(runHudCiProof.files,path)?runHudCiProof.files[path]:null;
  if(!row||!row.before||typeof source!=='string'||hash(normalize(source))!==row.after.sha256)return source;
  return row.before.source;
