@@ -24,11 +24,12 @@
 执行前确认这两个 Tag 仍不存在、两个精确 SHA 确实在主线历史、各自提交确实包含上述版本能力；有冲突就停，不用 `-f`、不删除、也不重新指向。这是**补标签**，不是发布或改造游戏：
 
 ```sh
+set -e
 git fetch origin --tags
 git merge-base --is-ancestor a0c35db8d3c7242437f4dff0df373749b0d84985 origin/develop
 git merge-base --is-ancestor 903bf2a31e91f10fb24763ab4cea23d586d0bb83 origin/develop
-git show-ref --verify refs/tags/v1.1.0 && exit 1
-git show-ref --verify refs/tags/v1.2.0 && exit 1
+if git show-ref --verify --quiet refs/tags/v1.1.0; then echo "v1.1.0 already exists; stop"; exit 1; fi
+if git show-ref --verify --quiet refs/tags/v1.2.0; then echo "v1.2.0 already exists; stop"; exit 1; fi
 git tag -a v1.1.0 a0c35db8d3c7242437f4dff0df373749b0d84985 -m "v1.1.0: M7 integration and default 2D baseline (retrospective source checkpoint; not published; historical package version 1.0.0)"
 git tag -a v1.2.0 903bf2a31e91f10fb24763ab4cea23d586d0bb83 -m "v1.2.0: V25 integrated UI baseline (retrospective source checkpoint; not published; historical package version 1.0.0)"
 git push origin refs/tags/v1.1.0 refs/tags/v1.2.0
