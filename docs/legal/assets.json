@@ -9649,6 +9649,10 @@
       "lfs": true,
       "storage": "ci-media-lfs-v1",
       "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/menu-title-finish-20261114/menu.png": {
+      "sha256": "888b4618925ed9d43296aea9efeaadb3eb4cc4ea8f37de7dc15b2868e2a0681f",
+      "category": "menu-red-reference-native"
     }
   }
 }

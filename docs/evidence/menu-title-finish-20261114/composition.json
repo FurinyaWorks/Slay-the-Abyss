@@ -1,0 +1,7 @@
+{
+  "buildId": "1286a59c-334d-4f47-bc08-cafc0530e25d",
+  "input": "../menu-red-background/.artifacts/menu-quality-r1/final-preview/scene.save.json",
+  "backgroundSha256": "215bc80e400656558a7cb73fa9c30cbc62358d6ad0da4b58b5ee4248fc5b29cd",
+  "addedControls": 30,
+  "scope": "Source preview using approved native background; title/button specs from current layout. Not official import."
+}

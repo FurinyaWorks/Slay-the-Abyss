@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-13 14:12'
-updated_date: '2026-11-14 00:22'
+updated_date: '2026-11-14 07:57'
 labels: []
 milestone: m-8
 dependencies: []
@@ -37,6 +37,8 @@ ordinal: 173000
 
 <!-- SECTION:PLAN:BEGIN -->
 1.按Owner确认的1500–1600绘图图元、上限1800预算重做大背景；保留参考构图和双按钮，不直导PNG。2.分层轮廓、可见三角颜色拟合与微小五官/发饰补绘，确定1600图元；记录原图、生成器与包身份。3.普通原生单轴静态XYZ加精确2D回退，背景总控件1732；原生GIL写入、独立读回和XYZ编解码合约验证。4.仅将实际GIL读回背景接入冻结的当前样式预览，保留其余365Lua和其他UI；修复刷新重复预建、设备切换备用实例与重复归档解析。5.同机三对新进程测背景/整游SDK创建和堆增量；实拍和WebGL提交时序、20次缓存返回、hover与自然首战验证。6.独立复审、接回原入口、归档证据；Owner审美、整游无感冷启动及官方PC/手机/Hosted准入未验，保持In Progress。
+
+本轮收尾：严格沿用96219b31的menu.png及现有1600图元背景，仅在左上增加静态中文标题与Slay the Heavens副标题，原生双按钮补底板和四态，复用命中及动画；定向回归、实际模拟器截图、独立复审后提小范围PR，依赖PR643落地再合develop。
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
@@ -59,4 +61,8 @@ ordinal: 173000
 最终补充复审menu-quality-proof-20261114-04覆盖浏览器/刷新/缓存探针；20次返回源稳定、控件31016恒定、背景对象和ID不变，原HP+8/首战/destroy0业务断言全部保留。原56706已切到同save77874401新服务，HTTP当前build53629ec8/active0+parked1读回通过；临时测量服务均结束。AC4按本地候选/独立复审和分开报告范围勾选；AC1/3的Owner与无感冷启动目标仍未通过，不标Done。
 
 Owner在本轮对当前1600图元候选明确反馈“效果不错你可以让它自动合并了”，确认画面并授权自动合入develop；AC1据本轮运行实拍与该确认勾选。继续保留冷启动、官方PC/手机未验边界；正在核对最新develop、精确HEAD独审及Full准入，授权前不标Done。
+
+用户本轮明确要求非常轻量简单；接手续作而非新领。写入范围独立.worktrees/menu-title-finish；不改PR643或其他工作树。
+
+轻量收尾源码与实际模拟器截图已就绪：静态标题杀戮原塔2 / Slay the Heavens，双按钮四态底板，hover80ms/leave60ms；运行时Lua与背景未改，新增30控件。布局/输入8项、悬停Lua及非战斗菜单41断言、模拟器20次返回和自然首战通过。证据docs/evidence/menu-title-finish-20261114；上游PR643仍OPEN/BLOCKED，依赖未落地，按TASK_EXECUTION不提前建PR，保留feat/menu-title-finish后续接续。官方/手机/Full未验，不标Done。
 <!-- SECTION:NOTES:END -->
