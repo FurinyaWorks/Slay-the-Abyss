@@ -63,3 +63,9 @@
 精确提交4ce7c397的独审进一步复现25.3/61/64三个当前任务与既存同号历史归档的快照冲突。合入树选择现与工作树选择一致：当前/completed优先于同号旧归档，权威范围内重复仍拒绝；三个真实ID的隔离Git回归先RED再修正，历史记录不删改。
 
 同轮推送时GitHub返回改名到Slay-the-Heavens；`/repositories/1429751262`及两个旧repo API实际都返回 `FurinyaWorks/Slay-the-Heavens`、同一数字ID。补登记该精确名称并以固定ID拒绝fork/旧名被占用，保留历史收据见证，不修改保护、CI权限或Git远端配置。新增改名/原文/错误ID负控先RED。
+
+## PR659 托管失败与提前登记纠正
+
+- 原run43571256496的impact/job132375965323原始日志已读取：在`node scripts/publish-full-quality.mjs --pending`执行时，npm尚未安装，因`backlog-closeout → verify-backlog-roadmap → product-outcome → replay-ui-outcome → luaparse`静态导入失败。不是产品Lua问题；前一轮把缺少Full路由统一报告为等待，掩盖了此后已发生的真实失败。
+- 将原生Backlog头解析机械迁入无第三方依赖的`backlog-metadata.mjs`，原roadmap保留兼容导出，delivery不再引入产品回放依赖。冷进程ESM hook拒绝所有npm包、实际导入三个状态发布器的反例先RED，再修复；保留npm安装顺序和全部CI门禁。
+- Owner明确要求评审后先登记原生自动合并，不再为Impact排队守候。原入口只在显式ci:full、原生Full队列及严格策略在位、精确当前Impact job为queued/in_progress时提前登记schema4，标记awaitingRouting；无CI、已知失败、错误job身份、Fast展开均拒绝，握手中变化撤销授权。实际必需CI、队列Full与合后push要求不变，不发布Full成功假状态。

@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-11-14 06:09'
-updated_date: '2026-11-14 07:13'
+updated_date: '2026-11-14 07:43'
 labels: []
 dependencies: []
 references:
@@ -49,4 +49,6 @@ ordinal: 174000
 2026-11-14第二轮交付：已逐项复核77条旧To Do，8项M7及其他61项恢复已开展In Progress；5项明确审批阻塞改Blocked，4.2/42/90保留未开始。现82条=74IP/3ToDo/5Blocked，GUI/CLI的ID和status一致，创建时间与验收勾选保留。确认GUI卡片显示创建时间，并非更新时间。verify处置不再退回To Do，且不得清除Blocked；两条新反例RED到GREEN，104/104与Backlog/doctor/guidance/syntax通过。独立复审ses_e27453480ffeyQKlk8niIDnqTF针对本轮复核可接受。原AC5继续等待正常集成，不新增任务或冒称已部署。
 
 2026-11-14用户明确要求提交本轮Backlog及反复确认的全部机制，创建PR并挂原生自动合并，供随后版本规划引用。本轮授权扩展至提交/推送/PR/正常自动合并；AC5仍待真实合后验证，不用入队冒充完成。整理后的82项状态为74进行中、3待办、5明确审批阻塞。
+
+2026-11-14用户明确要求独审后先挂原生自动合并，不应守到Impact运行。原托管43571256496/job132375965323已读取实际失败：本轮delivery静态导入roadmap继而引入安装前luaparse，现机械抽出无依赖metadata解析并保留兼容导出；三个真实发布器在拒绝所有npm包的冷进程反例先红后绿。协调器仅在显式ci:full、严格原生Full队列及精确当前pending Impact身份可验证时先登记schema4；已知失败仍拒绝，握手中失败/Fast切换撤销，全部CI与队列Full门禁不变。8文件224/224及Backlog/doctor/guidance/syntax通过。继续按当前HEAD独审后授权，不把旧失败或入队当合后成功。
 <!-- SECTION:NOTES:END -->

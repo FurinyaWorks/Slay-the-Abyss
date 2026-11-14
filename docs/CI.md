@@ -83,6 +83,8 @@ npm run merge:auto -- <PR> <independent-review.json>
 
 Full 未结束时，schemaVersion 4 授权保存精确组合和 pending run，不能当作 Full 证明。Full 已完成时仍复用原 schema3 checkout artifact 完整校验。Full 发布器同时下载第一片不可变收据，核对实际 run/attempt、PR、HEAD/BASE、测试提交及双父，不能只用绿色作业元数据放行。远端动作前保存 journal；失败尝试撤销 review success 与 Auto-merge，读回须确认真实 squash 排队状态或匹配的实际提交。握手放行之前意外合并视为异常。
 
+显式 `ci:full`、原生Full队列与严格基线/全部必需检查均在位时，精确当前run的Impact仍queued/in_progress也可先登记schema4原生自动合并，不要求Agent守到Impact展开。握手前后核对同run/attempt/job身份，记录awaitingRouting；缺失CI、已知失败、取消、Fast展开或授权身份变化仍拒绝或撤销。此授权仅是等待检查的原生意图，PR必要CI与组合Full仍全部成功后才入队/合并，合后push另验。
+
 合并后运行 `npm run verify:delivery -- <PR> <上述证据.json> --merged`。Full 早期授权另外采集 schema5 历史 PR Full；Fast 使用 schema6 授权、schema7 PR 收据及 schema8 实际队列 Full/inventory 证据，另核独立 develop push Full。均须验证不可变 artifact、完整作业和最新 attempt、实际 squash 唯一父/树，不把合后引用伪造成合前观测。任一缺失保持 `merged_pending`，全部通过才是 `merged_passed`；历史 schema2/3 收据不改写。
 
 **Backlog 同轮收口**：已合 PR 正文用唯一 `Backlog:` 行显式列出改动任务的 `done`、`verify`、`continue` 或 `superseded:TASK-承接`；无任务更新才写 `none`。上述合后入口在真实 `merged_passed` 后核对完整 PR 文件清单、实际最新 develop 与合入时任务快照，再通过 Backlog CLI 更新并读回。`done` 不自动勾 AC，全部已勾才移入 completed；`verify` 保持 In Progress/待验，已有 Blocked 须先明确解除，不能隐式恢复；`continue` 留本轮接续备注；替代归档必须有有效承接且活动依赖已迁移。未知声明、旧工作树、后续任务变化、CLI失败或读回不符保持 `Backlog pending`，不得把代码交付成功当作任务已同步；已写入步骤可安全接续。历史 PR 无声明时先人工对账，不补造其合前声明。该入口没有后台轮询，当前会话不必守候；下次合后验收执行同一命令即可。

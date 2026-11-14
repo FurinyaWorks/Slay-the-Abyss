@@ -2,7 +2,7 @@ import {existsSync,readFileSync,readdirSync,mkdirSync,writeFileSync} from 'node:
 import {join} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {readTaskHeader} from './verify-backlog-roadmap.mjs';
+import {readTaskHeader} from './backlog-metadata.mjs';
 
 // Explicit instructions in the merged PR, never inference from age or green CI.
 export function planBacklogCloseout({body,records,mergeSha,prNumber,changedTaskIds=[]}) {
