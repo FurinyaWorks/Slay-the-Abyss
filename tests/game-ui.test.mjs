@@ -88,7 +88,7 @@ test('generated Chinese display and native tree exercise the real game entry and
   const scripts = [
     ['tests/lua/game_ui.lua', /^LUA_GAME_UI_PASS 16$/m],
     ['tests/lua/game_ui_deck.lua', /^LUA_GAME_UI_DECK_PASS 6$/m],
-    ['tests/lua/game_ui_prologue.lua', /^LUA_GAME_UI_PROLOGUE_PASS 10$/m],
+    ['tests/lua/game_ui_prologue.lua', /^LUA_GAME_UI_PROLOGUE_PASS 11$/m],
   ];
   const output = scripts.map(([script, marker]) => {
     const result = runLua(script);
@@ -132,7 +132,7 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   const theme = nativeTheme, [w, h] = theme.canvas.base, { x, y } = theme.canvas.safe;
   const { prologue, merchant, nativeNode: node } = theme.layout;
   const inside = ([cx, cy, cw, ch]) => Math.abs(cx) + cw / 2 <= w / 2 - x && Math.abs(cy) + ch / 2 <= h / 2 - y;
-  for (const frame of [prologue.seal, prologue.ruleLeft, prologue.ruleRight, merchant.frame, merchant.box, merchant.portrait, merchant.name, merchant.line])
+  for (const frame of [prologue.seal, prologue.title, prologue.line, merchant.frame, merchant.box, merchant.portrait, merchant.name, merchant.line])
     assert.ok(inside(frame), JSON.stringify(frame));
   // The compact dialogue sits below the goods. Check both axes: colorless
   // prices can share its vertical band while remaining to its left.
@@ -149,7 +149,10 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   assert.ok(merchant.box[0] + merchant.box[2] / 2 < node.confirm[0] - node.confirm[2] / 2);
   const opening=gameLayout().controls.find(c=>c.name==='prologuePanel');
   const count=c=>1+(c.children??[]).reduce((n,c)=>n+count(c),0);
-  assert.equal(count(opening),7,'short interstitial has a fixed seven-control budget');
-  assert.deepEqual(opening.children.map(c=>c.name),['fade','seal','blocker']);
+  assert.equal(count(opening),112,'reference composition has a fixed bounded native budget');
+  assert.deepEqual(opening.children.map(c=>c.name),['scene','fade','blocker']);
+  const scene=opening.children[0],seal=scene.children.find(c=>c.name==='seal');
+  assert.equal(seal.children.reduce((n,g)=>n+g.children.length,0),95,'retains the actual Liyue emblem geometry');
+  assert.deepEqual(prologue.elements.times,[1,1.5,2,4,4.5,5,5.5]);
   assert.equal(opening.children.at(-1).focusable,false);
 });

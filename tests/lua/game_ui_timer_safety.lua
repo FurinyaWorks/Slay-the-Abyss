@@ -39,7 +39,7 @@ dofile('src/lua/abyss_ui.lua');OnStart();GameUI.new=originalNew
 assert(host and script.updating,'actual native public entry must start')
 local nativeRoot=canvas:GetChild('stage');nativeRoot.ui=host
 assert(F.start(host))
-OnUpdate(1) -- Finish the presentation-only interstitial; it never counts as run time.
+OnUpdate(8.01) -- Finish the reference interstitial; it never counts as run time.
 assert(host.run.elapsedSeconds==0 and not host.prologue:covering())
 -- Actual OnUpdate path remains internally compatible, but has no verified
 -- foreground/background clock guarantee and therefore must not claim accuracy.
@@ -49,7 +49,7 @@ assert(finish(host,nativeRoot,62.25)=='暂不可用','unverified native clock mu
 for _,value in ipairs({0,3074457345,184467440737.0955,math.huge,-1,0/0})do
  assert(finish(host,nativeRoot,value)=='暂不可用','native values must never leak into the timer display')
 end
-assert(F.start(host));OnUpdate(1);assert(host.run.elapsedSeconds==0)
+assert(F.start(host));OnUpdate(8.01);assert(host.run.elapsedSeconds==0)
 OnUpdate(3600) -- background/resume-like interval, not a device timing claim
 host.run.phase='victory';host.run.nodeFlow={complete=true,result='boss_treasure_complete'};host:refresh()
 assert(F.statValue(nativeRoot,'time')=='暂不可用','victory shares safe fallback after background-like update')

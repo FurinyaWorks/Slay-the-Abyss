@@ -44,7 +44,9 @@ test('fully covered frame commits once and reveals the existing Neow page',funct
     assert(run and run.nodeFlow.event.id=='neow' and ui.prologue:opaque())
     assert(panel(root):GetChild('fade').imageColor.a==255 and not root:GetChild('nodePanel').visible)
     ui:update(P.hold/2)
-    assert(panel(root):GetChild('seal'):GetChild('icon').imageColor.a==255 and ui.run==run)
+    assert(panel(root):GetChild('scene').visible and panel(root):GetChild('fade').imageColor.a==0 and ui.run==run)
+    assert(P.fadeIn+P.hold+P.reveal==8 and P.hold-P.markIn-P.markOut>=6,
+        'reference eight-second timeline must not collapse back into a flash')
     ui:update(P.hold/2+0.01)
     assert(ui.prologue:covering() and not ui.prologue:opaque() and root:GetChild('nodePanel').visible)
     assert(ui.nodeUI.visible==false,'revealing page must stay inert')
@@ -114,5 +116,29 @@ test('rule-only hosts retain immediate start without enabling the old camera',fu
     local ui,root=F.fixture();assert(F.start(ui))
     assert(ui.prologue==nil and ui.mode=='map' and not panel(root).visible)
     assert(not panel(root):GetChild('skip') and not panel(root):GetChild('vista'))
+end)
+
+test('reference element and veil boundaries execute at their actual timestamps',function()
+    local ui,root=host();selected(ui);assert(ui:confirmCharacter())
+    local scene=panel(root):GetChild('scene')
+    local clock=0
+    local function at(t)ui:update(t-clock);clock=t end
+    local function lights(count)
+        for i=1,7 do
+            local c=scene:GetChild('element'..i).imageColor
+            local expected=i<=count and P.ink or P.dim
+            assert(c.r==expected.r and c.g==expected.g and c.b==expected.b,'wrong reference element '..i)
+        end
+    end
+    at(P.fadeIn);lights(0)
+    for i,t in ipairs({1,1.5,2,4,4.5,5,5.5})do
+        at(t-0.001);lights(i-1)
+        at(t+0.001);lights(i)
+    end
+    at(7.39);assert(scene.visible and panel(root):GetChild('fade').imageColor.a==0)
+    at(7.55);local alpha=panel(root):GetChild('fade').imageColor.a
+    assert(scene.visible and alpha>0 and alpha<255 and ui.prologue:opaque())
+    at(7.701);assert(not scene.visible and root:GetChild('nodePanel').visible and not ui.nodeUI.visible)
+    at(8.001);assert(not panel(root).visible and ui.nodeUI.visible and root:GetChild('exitEntry').visible)
 end)
 print('LUA_GAME_UI_PROLOGUE_PASS '..count)

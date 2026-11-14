@@ -30,7 +30,7 @@ local function smooth(p) p=clamp(p);return p*p*(3-2*p) end
 
 function M.new(panel, options)
     local state = {playing=false}
-    local fade, seal = panel:GetChild('fade'), panel:GetChild('seal')
+    local fade, scene = panel:GetChild('fade'), panel:GetChild('scene')
     local function tint(control,c,alpha)
         control.imageColor=options.color(c.r,c.g,c.b,math.floor(255*clamp(alpha)+0.5))
     end
@@ -40,21 +40,28 @@ function M.new(panel, options)
     function state.resize(_,width,height)
         local scale=math.min(width/Theme.canvas.base[1],height/Theme.canvas.base[2])
         fade:SetSizeDelta(width/scale,height/scale)
+        scene:GetChild('shade'):SetSizeDelta(width/scale,height/scale)
         panel:GetChild('blocker'):SetSizeDelta(width/scale,height/scale)
     end
     function state:pose()
         local t=self.t
         local alpha=self.phase=='cover' and smooth(t/P.fadeIn)
-            or self.phase=='reveal' and 1-smooth((t-P.fadeIn-P.hold)/P.reveal) or 1
+            or self.phase=='reveal' and 1-smooth((t-P.fadeIn-P.hold)/P.reveal)
+            or math.max(1-smooth((t-P.fadeIn)/P.markIn),smooth((t-P.fadeIn-P.hold+P.markOut)/P.markOut))
         tint(fade,P.shade,alpha)
-        local mark=math.min(smooth((t-P.fadeIn)/P.markIn),smooth((P.fadeIn+P.hold-t)/P.markOut))
-        for _,name in ipairs({'icon','ruleLeft','ruleRight'}) do tint(seal:GetChild(name),P.ink,mark) end
-        local scale=P.scaleFrom+(1-P.scaleFrom)*smooth((t-P.fadeIn)/P.hold)
-        seal:SetLocalScale(scale,scale,1)
+        local visible=self.phase=='hold'
+        if visible~=self.sceneVisible then scene:SetVisible(visible);self.sceneVisible=visible end
+        -- Preserve the reference's non-looping element timestamps; update only on a step.
+        local lit=0
+        for _,at in ipairs(P.elements.times) do if t>=at then lit=lit+1 end end
+        if lit~=self.lit then
+            for i=1,7 do tint(scene:GetChild('element'..i),i<=lit and P.ink or P.dim,1) end
+            self.lit=lit
+        end
     end
     function state:play(commit)
         if self.playing then return false end
-        self.playing,self.phase,self.t,self.commit=true,'cover',0,commit
+        self.playing,self.phase,self.t,self.commit,self.lit=true,'cover',0,commit,nil
         self:pose();panel:SetVisible(true)
         return true
     end
