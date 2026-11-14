@@ -44,6 +44,10 @@ local function binding(c,key,box,item,index,linked,boss,bind)
     return bind(c,key,box,token,projection,command,argument,
         function()return '已领取「'..label(c,item)..'」'end,choice,true,item)
 end
+local function renderPicture(c,box,item)
+    c.picture(box:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
+    if c.relicPicture then c.relicPicture(box:GetChild('icon'),item.kind=='relic' and item.id or nil,48)end
+end
 local function renderRow(c,panel,item,index,y,opened,linked,boss,bind,items)
         local key='treasureView/rewardItem'..index
         local box=panel:GetChild('rewardItem'..index)
@@ -53,8 +57,7 @@ local function renderRow(c,panel,item,index,y,opened,linked,boss,bind,items)
             c.state(box,available)
             box:GetChild('name').text=(available and '领取 · ' or '')..label(c,item)
             box:GetChild('description').text=description(c,item,boss,items)
-            c.picture(box:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
-            if c.relicPicture then c.relicPicture(box:GetChild('icon'),item.kind=='relic' and item.id or nil,48)end
+            renderPicture(c,box,item)
             local handler,observe=binding(c,key,box,item,index,linked,boss,bind)
             c.action(key,opened and available,handler,nil,nil,observe)
             c.details:set(key,label(c,item),description(c,item,boss,items),
