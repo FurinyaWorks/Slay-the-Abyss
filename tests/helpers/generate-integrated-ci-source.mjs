@@ -24,7 +24,7 @@ const paths=[...all].filter(p=>p&&existsSync(p)&&p!=='tests/helpers/integrated-c
 const files={};for(const p of paths){const views={};for(const [name,revision]of Object.entries(sources)){
  try{views[name]=bind(norm(execFileSync('git',['show',revision+':'+p],{encoding:'utf8',maxBuffer:16*1024*1024,stdio:['ignore','pipe','ignore']})));}catch{views[name]=null;}}
  files[p]={current:bind(norm(readFileSync(p,'utf8'))),views};}
-const closure={};for(const p of ['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs','tests/helpers/release-source-epoch.mjs','tests/helpers/release-source-epoch.json.gz'])
+const closure={};for(const p of ['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-presentation-source.json.gz','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs','tests/helpers/release-source-epoch.mjs','tests/helpers/release-source-epoch.json.gz'])
  closure[p]={before:feedback.helperClosure[p]?.after??null,after:hash(p.endsWith('.gz')?readFileSync(p):norm(readFileSync(p,'utf8')))};
 const binaryViews={'tests/helpers/menu-red-production-source.json.gz':{current:closure['tests/helpers/menu-red-production-source.json.gz'].after,
  views:{menu:{path:'tests/helpers/menu-red-before-integration-production-source.json.gz',sha256:'ee888fd1686beaeffc2e439164619ecedee9ac00d2ca00a2711bd74c63e28cae'}}}};

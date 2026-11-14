@@ -8,7 +8,7 @@ import {extendStsStyleEpoch} from './sts-style-source-epoch-runtime.mjs';
 import {stsStylePatch} from './sts-style-source-proof.mjs';
 import {extendFeedbackSourceEpoch} from './sts-feedback-source-runtime.mjs';
 import {feedbackProductionPatch} from './sts-feedback-production.mjs';
-import {extendMenuRedSourceEpoch} from './menu-red-source-epoch.mjs';
+import {extendMenuRedSourceEpoch,extendMenuPresentationEpoch} from './menu-red-source-epoch.mjs';
 import {extendReleaseSourceEpoch} from './release-source-epoch.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const bytes=readFileSync(new URL('./closeout-source-epoch.json.gz',import.meta.url));
@@ -46,7 +46,8 @@ export const ciRepairSourceEpoch=createSourceEpochProjector(freeze({...priorProo
 export const stsStyleEpoch=extendStsStyleEpoch(ciRepairSourceEpoch,stsStylePatch);
 export const menuRedPriorEpoch=extendFeedbackSourceEpoch(stsStyleEpoch,feedbackProductionPatch);
 export const menuRedEpoch=extendMenuRedSourceEpoch(menuRedPriorEpoch);
-export const sourceEpoch=extendReleaseSourceEpoch(menuRedEpoch);
+export const menuPresentationEpoch=extendMenuPresentationEpoch(menuRedEpoch);
+export const sourceEpoch=extendReleaseSourceEpoch(menuPresentationEpoch);
 const proof=sourceEpoch.proof;
 // Snapshot consumers must first authenticate every live current owner. This is
 // per invocation; neither live reads nor authorization are cached.

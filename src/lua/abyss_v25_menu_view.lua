@@ -123,10 +123,13 @@ local function menuAvailable(self)
     return not self.disabled and not self.exitOpen and not self.characterOpen
         and not self.settlementRequested and not self.settlementBusy and not self.motion.deathReveal
 end
-function M.present(ctx,isOutcome)
-    if not enabled()then return end
+local function presentScenery(ctx,isOutcome)
     local ruins=ctx.menu:GetChild('menuRuinsScene')
     if ruins then ruins:SetVisible(not isOutcome)end
+end
+function M.present(ctx,isOutcome)
+    if not enabled()then return end
+    presentScenery(ctx,isOutcome)
     if Theme.presentationProfile=='official-assets-first' and officialResult(ctx,isOutcome)then return end
     local menu,start=ctx.menu,ctx.start
     menu:GetChild('title'):SetVisible(isOutcome)

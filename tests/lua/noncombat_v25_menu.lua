@@ -6,6 +6,7 @@ local V25=require('abyss_v25_menu_view')
 local function control(name)
  local n={name=name,visible=true,children={},scaleWrites=0}
  function n:GetChild(key)
+  if key=='stsCharacter' then return self.children[key]end
   if not self.children[key]then self.children[key]=control(key)end
   return self.children[key]
  end
@@ -84,6 +85,13 @@ selection.notice='当前无法开始挑战'
 SelectionView.render(panel,selection,{})
 assert(panel:GetChild('hint').text==selection.notice,'selection errors must remain readable')
 selection.notice=nil
+-- The approved STS page owns its portrait instead of the legacy initial.
+panel.children.stsCharacter=control('stsCharacter')
+initial.text='unused legacy initial'
+SelectionView.render(panel,selection,{})
+assert(initial.text=='unused legacy initial','STS page must not paint the legacy roster')
+assert(not details:GetChild('portraits').visible,'STS page hides the legacy portrait group')
+assert(details:GetChild('stats').text=='生命：80/80' and details:GetChild('gold').text=='金币：99')
 SelectionView.render(panel,selection,{portraits={status=function()return{selection={phase='ready'}}end}})
 assert(not details:GetChild('portraits'):GetChild('traveler_ironclad').visible,'native selection must retain ownership over the fallback portrait')
 local Run=require('abyss_run')
