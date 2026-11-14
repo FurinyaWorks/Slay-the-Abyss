@@ -65,7 +65,7 @@ events.enter();assert(quit:GetChild('v25MenuFace'):GetChild('disabled').visible)
 assert(not events.click({touchId=1}) and exits==1,'stale click must not reopen exit')
 local SelectionView=require('abyss_character_select_view')
 local panel=control('characterPanel')
-local selection={character='traveler',element='ironclad',info={name='旅行者·荧',maxHp=80,gold=99,deck={},relics={},deckSize=0}}
+local selection={character='traveler',element='ironclad',info={name='旅行者',maxHp=80,gold=99,deck={},relics={},deckSize=0}}
 function selection:allowsCharacter(id)return id=='traveler'end
 function selection:allowsElement(id)return id=='ironclad'end
 function selection:canConfirm()return true end
@@ -79,7 +79,7 @@ assert(initial.text==nil,'selection must not write a glyph over the static const
 selection.character='raiden';selection.info.name='雷电将军'
 SelectionView.render(panel,selection,{})
 assert(initial.text==nil,'changing characters must not create or update a glyph overlay')
-selection.character='traveler';selection.info.name='旅行者·荧'
+selection.character='traveler';selection.info.name='旅行者'
 selection.notice='当前无法开始挑战'
 SelectionView.render(panel,selection,{})
 assert(panel:GetChild('hint').text==selection.notice,'selection errors must remain readable')

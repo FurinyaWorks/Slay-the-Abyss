@@ -36,7 +36,7 @@ const targets={...priorProof.targets,shopDeckPrior:{commit:outer.targets.prior.c
  shopDeckFourPrior:{commit:four.currentCommit,files:{...priorProof.current,...four.current}},
  shopDeckBeforeCiRepairPrior:{commit:shopDeckBeforeCiRepairPrior.currentCommit,files:{...priorProof.current,...shopDeckBeforeCiRepairPrior.current}}};
 const beforeSelection={...current};
-for(const path of ['src/lua/abyss_character_select_view.lua','src/lua/abyss_traveler_portraits.lua']){
+for(const path of ['src/lua/abyss_character_select.lua','src/lua/abyss_character_select_view.lua','src/lua/abyss_traveler_portraits.lua']){
  const row=selectionCiProof.files[path];assert.deepEqual(row.before,current[path],path+' exact selection predecessor');current[path]=row.after;
 }
 targets.selectionPrior={commit:selectionCiProof.base,files:beforeSelection};

@@ -3,7 +3,7 @@ local M={}
 local Admission=require('abyss_run_admission')
 M.characters={'hutao','arlecchino','furina','raiden','traveler'}
 M.elements={'ironclad','silent','defect','watcher'}
-local names={hutao='胡桃',arlecchino='阿蕾奇诺',furina='芙宁娜',raiden='雷电将军',traveler='旅行者·荧'}
+local names={hutao='胡桃',arlecchino='阿蕾奇诺',furina='芙宁娜',raiden='雷电将军',traveler='旅行者'}
 local elements={ironclad='岩',silent='风',defect='雷',watcher='草'}
 local function contains(list,id)for _,value in ipairs(list)do if value==id then return true end end return false end
 local profiles={dev='full-source',alpha='competition-two-act',['competition-candidate']='competition-two-act',
@@ -55,7 +55,7 @@ function M.preview(source,presentation,id)
         end end
     end
     local rules=data.rules.player
-    return {id=id,name=names[id] or names.traveler..' · '..elements[id],
+    return {id=id,name=names[id] or names.traveler,
         maxHp=rules.maxHp,gold=rules.startingGold,relics=relics,deck=deck,
         deckSize=#data.cards.starter_deck.cards,profile=profile}
 end

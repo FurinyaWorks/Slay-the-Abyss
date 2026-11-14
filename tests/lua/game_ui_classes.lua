@@ -22,6 +22,7 @@ for _,id in ipairs({'hutao','arlecchino','furina','raiden','ironclad','silent','
     if traveler then assert(ui:selectElement(id))end
     local info=ui.characterSelection.info
     assert(info and info.id==id and not ui.run and not ui.map and calls==0 and ui.seed==1)
+    if traveler then assert(info.name=='旅行者','all traveler elements share the player-facing name')end
     local panel=root:GetChild('characterPanel')
     assert(panel:GetChild('details'):GetChild('name').text==info.name)
     assert(panel:GetChild('confirm'):GetChild('hit').interactable)

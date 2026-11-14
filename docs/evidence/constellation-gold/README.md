@@ -25,3 +25,5 @@
 - 源码历史测试增加完整文件前后来源外层，旧压缩归档不改写；当前Full仍读取真实源码，保留未知漂移与linked-owner拒绝。
 
 **当前未完成：本轮官方导入身份核对、新ready、游戏截图、首次/重复进入与角色切换实机验证、设备性能、精确HEAD完整CI及合并。** PR #662保持Draft。Owner明确先看Simulator截图，未授权本轮键鼠控制，不自动操作客户端或发布；不再要求Owner反复导入中间候选。
+
+2026-11-14 名称调整：菜单、角色选择、四种旅行者元素配置的显示名、节点/战斗 HUD 及叙事统一使用“旅行者”；内部角色与元素 ID、准入、属性和其他角色名保持不变。`build:data`、`build:theme`、`build:ui` 通过；`game_ui_classes` 12组、`noncombat_v25_menu` 41项、`competition_character_admission` 通过，精确源码/原生遮罩合同3通过、1可选浏览器集成跳过。独立复审 `traveler-name-working-8915cfb-r1` PASS。上方候选与截图仍绑定此前源码，不作为本次名称调整或后续按钮精修的候选证据。

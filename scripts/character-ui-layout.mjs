@@ -112,7 +112,7 @@ export function experimentalCharacterControls(theme = nativeTheme) {
         l.elements.map((frame, i) => button(`element${i + 1}`, frame, ['岩', '风', '雷', '草'][i], l, f.small, false,
           null)) },
       ...l.choices.map((frame, i) => button(`character${i + 1}`, frame, names[i], l, f.small, false, slots.bust[roles[i]].id)),
-      button('traveler', l.traveler, '旅行者·荧', l, f.small, false, slots.bust.traveler.ironclad.id),
+      button('traveler', l.traveler, '旅行者', l, f.small, false, slots.bust.traveler.ironclad.id),
       button('cancel', l.back, '返回', l),
       button('confirm', l.confirm, '开始冒险', l, f.heading, true),
       deckView,
