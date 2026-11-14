@@ -181,6 +181,7 @@ function M.present(ctx)
     pose(ctx)
 end
 function M.animate(ctx, dt)
+    V25.animateMenu(ctx,dt)
     local self=ctx.owner
     local m = self.motion
     if not m.mode then return end

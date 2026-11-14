@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-13T18:46:11.286Z",
+  "tests": {
+    "command": "node --test --test-concurrency=1 tests/native-client-check.test.mjs tests/native-ui-rotations.test.mjs tests/menu-flat-triangle.test.mjs tests/menu-preview-composition.test.mjs tests/menu-red-background.test.mjs tests/noncombat-v25-layout.test.mjs",
+    "passed": 16,
+    "failed": 0,
+    "exitCode": 0,
+    "initialSandboxAttempt": "spawn EPERM; repeated with local process permission"
+  },
+  "candidateInputsAndOutputsCurrent": true,
+  "fullHosted": "not run",
+  "officialImport": "not verified",
+  "phone": "not verified",
+  "ownerArtAcceptance": "pending",
+  "coldLoadAcceptance": "not achieved",
+  "independentReviews": [
+    "menu-quality-native-20261114-03",
+    "menu-quality-proof-20261114-04"
+  ]
+}

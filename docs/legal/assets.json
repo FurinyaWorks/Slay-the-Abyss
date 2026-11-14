@@ -3,6 +3,10 @@
   "baseCommit": "4c75a31fafcd27c204b957cd7dbc75ac6d9f5ab0",
   "hashRule": "SHA256 raw binary bytes; Lua/JSON/SVG CRLF normalized to LF. Categories record provenance, not clearance. Update manually after rights review.",
   "categories": {
+    "menu-red-reference-native": {
+      "status": "User-supplied character illustration and screenshots of its native geometric reconstruction for this platform project. Original artist and source license not established; no separate asset/IP sublicense or commercial clearance. Reference PNG is offline fitting input only; runtime uses native primitive IDs. Screenshots do not prove official import or device acceptance.",
+      "evidence": "docs/legal/MENU_REFERENCE_PROVENANCE.md; experiments/menu-red-fit/README.md; docs/evidence/menu-red-quality-20261114/README.md"
+    },
     "hud-r2-browser-evidence": {
       "status": "Project UI diagnostic screenshots rendered by Chromium using system font fallbacks and stand-in glyphs from the project prototype. No font binaries or official textures redistributed. Referenced game identities remain their owners IP; no asset/IP sublicense or commercial clearance. Offline Host projection only, not official import/ready, final artwork, interaction, device or performance acceptance.",
       "evidence": "docs/evidence/hud-r2-20261101/README.md; experiments/ui-polish-sim/hud-r2-capture.lua and hud-r2-render.mjs; production Lua on native-contract fixture with actual sibling-call order recorded for projection. Baseline b0f64d49; reviewed runtime/evidence revision 487a46ef92d25421fa941e5ee85f1152034a647b. 1280x720 Host trees projected at recorded owner widths; system fonts and original atlas appearance remain device-unverified."
@@ -181,6 +185,30 @@
     }
   },
   "files": {
+    "experiments/menu-red-fit/input/source.png": {
+      "sha256": "16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-20261113/menu.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-20261113/returned-menu.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-entry-20261114/menu.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-quality-20261114/before.png": {
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "category": "menu-red-reference-native"
+    },
+    "docs/evidence/menu-red-quality-20261114/menu.png": {
+      "sha256": "23ac07b19542c110d6bb443a0c56e7477b40a2c6cc4bd38617326b3a59f44b9a",
+      "category": "menu-red-reference-native"
+    },
     "docs/evidence/hud-r2-20261101/after/battle-hover-1-1280x720.png": {
       "sha256": "77d4a074a0b8c83791a6836bc0d9f5c74677b08e4e05da22e503fc80c3e056e8",
       "category": "hud-r2-browser-evidence",

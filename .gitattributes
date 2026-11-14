@@ -1420,3 +1420,9 @@ docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-normal.sta
 docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-hover-functional-unverified.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
 docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-intro.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
 docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.state.json.gz filter=lfs -diff merge=lfs -text ci-immutable-media
+# This trial's evidence manifest hashes the original files byte-for-byte.
+docs/evidence/menu-red-20261113/** -text
+docs/evidence/menu-red-entry-20261114/** -text
+docs/evidence/menu-red-quality-20261114/** -text
+docs/evidence/menu-red-quality-20261114/** whitespace=cr-at-eol
+experiments/menu-red-fit/*.py text eol=lf

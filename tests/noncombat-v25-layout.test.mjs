@@ -51,7 +51,8 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(JSON.stringify(child(stage,'battlePanel')),oldBattle);
  assert.equal(child(menu,'vista').visible,false);
  assert.equal(child(menu,'emblem').visible,false);
- assert.deepEqual(child(menu,'start').position,[-430,-71]);
+ assert.deepEqual(child(menu,'start').position,[-450,-170]);
+ assert.equal(child(menu,'title').visible,false,'the approved minimalist menu omits the game title');
  assert.deepEqual(child(child(menu,'start'),'officialResultLabel'),{...resultLabel,name:'officialResultLabel',visible:false});
  assertSelectionFlags(panel,theme);
  const oldInk=structuredClone(panel);child(child(child(oldInk,'confirm'),'hit'),'normal').children.find(n=>n.name==='label').text.colour=theme.officialAssets.buttonInk;

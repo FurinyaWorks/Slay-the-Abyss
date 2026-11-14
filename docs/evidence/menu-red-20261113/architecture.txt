@@ -1,0 +1,5 @@
+
+> slay-the-abyss@1.0.0 check:architecture
+> node scripts/check-architecture.mjs
+
+Architecture passed: 346 modules, 1955 edges; build/architecture.json

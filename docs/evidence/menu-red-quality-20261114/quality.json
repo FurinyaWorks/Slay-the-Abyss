@@ -1,0 +1,20 @@
+{
+  "scope": "Same 1280x720 actual browser canvas against supplied reference; excludes the identical menu text area; metrics do not replace visual approval",
+  "excludedRect": [
+    48,
+    480,
+    370,
+    650
+  ],
+  "sourceSha256": "16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d",
+  "old": {
+    "pngSha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+    "mae": 9.332473140607096,
+    "faceMAE": 19.309222661396575
+  },
+  "new": {
+    "pngSha256": "23ac07b19542c110d6bb443a0c56e7477b40a2c6cc4bd38617326b3a59f44b9a",
+    "mae": 5.8596601527351595,
+    "faceMAE": 8.02601166948993
+  }
+}

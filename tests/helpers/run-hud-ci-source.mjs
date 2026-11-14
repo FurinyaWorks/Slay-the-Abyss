@@ -6,6 +6,7 @@ import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {preStsStyleCiSource,stsStylePriorInventory,stsStylePriorRead} from './sts-style-ci-source.mjs';
+import {preMenuRedCiSource} from './menu-red-ci-source.mjs';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const normalize=s=>s.replaceAll('\r\n','\n');
 const toolingBytes=normalize(readFileSync(new URL('../fixtures/pr-history-tooling-continuation.json',import.meta.url),'utf8'));
@@ -31,6 +32,7 @@ const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value))
 freeze(runHudCiProof);
 freeze(runHudBeforeCiRepairProof);
 export function preRunHudCiSource(path,source){
+ source=preMenuRedCiSource(path,source);
  source=preStsStyleCiSource(path,source);
  source=preNativePreviewCiSource(path,source);
  if(path===tooling.path&&typeof source==='string'&&!source.includes('\r\r\n')&&

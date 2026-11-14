@@ -1,0 +1,60 @@
+{
+  "ms": 10538.5472,
+  "errors": [],
+  "resources": [
+    {
+      "name": "http://127.0.0.1:53269/editor/api/play",
+      "duration": 9152.39999999851,
+      "bytes": 1399673,
+      "start": 654.2000000011176
+    },
+    {
+      "name": "http://127.0.0.1:53269/favicon.ico",
+      "duration": 9002.200000001118,
+      "bytes": 332,
+      "start": 799.5
+    },
+    {
+      "name": "http://127.0.0.1:53269/editor/play-renderer.js",
+      "duration": 38.70000000111759,
+      "bytes": 796544,
+      "start": 92
+    },
+    {
+      "name": "http://127.0.0.1:53269/editor/api/play",
+      "duration": 29.90000000037253,
+      "bytes": 2452,
+      "start": 10485.099999999627
+    },
+    {
+      "name": "http://127.0.0.1:53269/editor/play.js",
+      "duration": 29.799999998882413,
+      "bytes": 19427,
+      "start": 56.80000000074506
+    },
+    {
+      "name": "http://127.0.0.1:53269/editor/play.css",
+      "duration": 23.700000001117587,
+      "bytes": 6890,
+      "start": 56
+    },
+    {
+      "name": "http://127.0.0.1:53269/qxqy-assets/sprite-v1/107271.json",
+      "duration": 19.5,
+      "bytes": 382,
+      "start": 10231.400000000373
+    },
+    {
+      "name": "http://127.0.0.1:53269/editor/api/locale",
+      "duration": 8.5,
+      "bytes": 354,
+      "start": 394.90000000037253
+    },
+    {
+      "name": "http://127.0.0.1:53269/qxqy-font/manifest",
+      "duration": 7.300000000745058,
+      "bytes": 325,
+      "start": 400.5
+    }
+  ]
+}

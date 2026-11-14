@@ -1,0 +1,113 @@
+{
+  "kind": "menu-native-fit-trial-evidence",
+  "task": "TASK-103.5",
+  "branch": "feat/menu-red-background",
+  "sourceSha256": "16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d",
+  "buildId": "4e6bd583-da08-4248-b84c-ebb3fd44d9e0",
+  "gil": {
+    "path": "F:\\New folder\\.worktrees\\menu-red-background\\.artifacts\\menu-red-final/candidate.gil",
+    "sha256": "70995f18c6527998dde4889453c6b56658045a635199304a9149fe0f0d3c083a",
+    "bytes": 25055336
+  },
+  "saveSha256": "a37c1fa342abe63e5620f59fc52de987363eb401b137d2652eab006e93438c27",
+  "payloadDigest": "fa730d0b3f606a8e8600152aa4ef957e43baa1540811736b7f52fe81dd1b5887",
+  "scope": "Simulator trial only; cold-load product acceptance incomplete; official/client/device/Full CI unverified",
+  "inventory": {
+    "images": 1598,
+    "containers": 1625,
+    "maxChildren": 60,
+    "masks": 0
+  },
+  "precedingRun": {
+    "buildId": "e8e846a8-3517-4172-b945-fc5d2f3241bf",
+    "saveSha256": "ea48df4bbde5c19d27c5a8d08278a18aca727fe19b8bea9a92acd0605f910229",
+    "sameLayoutSha256": "88c0dea18b67052922b2bd0b4fe39b0841194b294e37269dba631c458e196542"
+  },
+  "manifest": [
+    {
+      "path": "README.md",
+      "sha256": "e8d0fa06bc89b9e0b54b7978a9a8d4664579035d736a0f4b92b5d8e7668f437b",
+      "bytes": 4607
+    },
+    {
+      "path": "adapter-receipt.json",
+      "sha256": "0b1af13439956dfad49ffca7ed8c5387db420b9c643dba49af5c3a18e968af30",
+      "bytes": 8925
+    },
+    {
+      "path": "architecture.txt",
+      "sha256": "3174ac7868c03655b7c3f58520bb56d4d61f87038f0fed8123811d5574d47b8a",
+      "bytes": 152
+    },
+    {
+      "path": "candidate.json",
+      "sha256": "131edd8f7aea2f732058f417242bea6baf3f90fd7154c320406c42c98318a306",
+      "bytes": 48881
+    },
+    {
+      "path": "hover.json",
+      "sha256": "e0b79c941e886a5fbf433bb91cad8ed809ee38c4620682b3054ade85626465b7",
+      "bytes": 2690
+    },
+    {
+      "path": "input-tests.txt",
+      "sha256": "85985d0fbae4ce0e2d14519328d94f4ba178c3b02bf6101d11711e6273d4552f",
+      "bytes": 718
+    },
+    {
+      "path": "lua-static.txt",
+      "sha256": "036760aed6558b8730d2066f5f584b9213931bfdd55436316b19796604dc1471",
+      "bytes": 260
+    },
+    {
+      "path": "menu.png",
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "bytes": 346962
+    },
+    {
+      "path": "native-check.json",
+      "sha256": "83011a27713c73c5610e873a5fc0ec27a984369671019247626de3bf1264de75",
+      "bytes": 101633
+    },
+    {
+      "path": "outcome-attempt.json",
+      "sha256": "318a2c1c2b62167d212b390932fb221ff28ae410db62e22925680e955409f797",
+      "bytes": 1700
+    },
+    {
+      "path": "preceding-load-profile.json",
+      "sha256": "63ad7a2e272ac43a44b095c72dee475d8c78d3201ccfbf6840f04b986cf867c0",
+      "bytes": 1450
+    },
+    {
+      "path": "preceding-sdk.json",
+      "sha256": "92d052b55b5468521dcff182da779b4a8da19c737eea68b26b87d851fcb4853b",
+      "bytes": 53879
+    },
+    {
+      "path": "preceding-visual.json",
+      "sha256": "f401a7b1070eab28213be866842585b9da99ee4f4ef1c20f2bca7b895b766eea",
+      "bytes": 1821
+    },
+    {
+      "path": "returned-menu.png",
+      "sha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "bytes": 346962
+    },
+    {
+      "path": "service.json",
+      "sha256": "2368684e777fffb3b1584530517acde2485a833825f5f60adf0c946863ac0586",
+      "bytes": 960
+    },
+    {
+      "path": "visual.json",
+      "sha256": "4eeb0f4052a28bf7ac1c6cce93b12366b2b1292cc1712c73d9f20c446063fcac",
+      "bytes": 571
+    },
+    {
+      "path": "warm-preview.json",
+      "sha256": "434880342dcd0f680fc4c772e831ad6c063158792e51de4a308e8582dfaf49ed",
+      "bytes": 1894
+    }
+  ]
+}

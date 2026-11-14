@@ -1,0 +1,2 @@
+# Additional offline fitting tool only; existing Pillow/OpenCV/NumPy/Shapely are reused.
+vtracer==0.6.15

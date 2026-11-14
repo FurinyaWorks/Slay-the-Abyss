@@ -1,0 +1,2948 @@
+{
+  "kind": "sdk-natural-noncombat",
+  "scope": "Current-style source preview with actual GIL background; read-only queries and native pointer commands; SDK CPU only",
+  "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+  "sdkSha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+  "deviceVerified": false,
+  "gpuFpsMeasured": false,
+  "parseMs": 1050.7792000000002,
+  "stages": [
+    {
+      "name": "cold-initialize",
+      "elapsedMs": 1828.2486000000001,
+      "controlsBefore": 0,
+      "controlsAfter": 27684,
+      "steps": 0,
+      "sdkStepMs": {
+        "samples": 0
+      },
+      "pointerEvents": [],
+      "pointerHandlerMs": {
+        "samples": 0
+      },
+      "memory": {
+        "rss": 678985728,
+        "heapTotal": 549920768,
+        "heapUsed": 524667744,
+        "external": 61126685,
+        "arrayBuffers": 58769055
+      },
+      "state": {
+        "mode": "menu",
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": true,
+            "nativeStateKnown": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "menu-idle-120",
+      "elapsedMs": 635.8824,
+      "controlsBefore": 27684,
+      "controlsAfter": 27684,
+      "steps": 120,
+      "sdkStepMs": {
+        "samples": 120,
+        "p50": 4.335299999999734,
+        "p95": 9.958199999999579,
+        "p99": 11.623399999999947,
+        "max": 45.73869999999988
+      },
+      "pointerEvents": [],
+      "pointerHandlerMs": {
+        "samples": 0
+      },
+      "memory": {
+        "rss": 686247936,
+        "heapTotal": 555687936,
+        "heapUsed": 523573392,
+        "external": 61125933,
+        "arrayBuffers": 58768263
+      },
+      "state": {
+        "mode": "menu",
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": true,
+            "nativeStateKnown": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "first-selection-ready",
+      "elapsedMs": 839.712,
+      "controlsBefore": 27684,
+      "controlsAfter": 31016,
+      "steps": 73,
+      "sdkStepMs": {
+        "samples": 73,
+        "p50": 10.770899999999529,
+        "p95": 15.964899999999943,
+        "p99": 38.112999999999374,
+        "max": 38.112999999999374
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 1.760899999999765
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.5007000000000517
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 47.09830000000011
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 3,
+        "p50": 1.760899999999765,
+        "p95": 47.09830000000011,
+        "p99": 47.09830000000011,
+        "max": 47.09830000000011
+      },
+      "memory": {
+        "rss": 735694848,
+        "heapTotal": 586498048,
+        "heapUsed": 555160560,
+        "external": 61129271,
+        "arrayBuffers": 58771601
+      },
+      "state": {
+        "mode": "menu",
+        "characterOpen": true,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": true,
+            "nativeStateKnown": true,
+            "nativePaused": false
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "selection-idle-120",
+      "elapsedMs": 638.4563000000007,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 120,
+      "sdkStepMs": {
+        "samples": 120,
+        "p50": 4.64639999999963,
+        "p95": 10.2549999999992,
+        "p99": 10.587400000000343,
+        "max": 10.929699999999684
+      },
+      "pointerEvents": [],
+      "pointerHandlerMs": {
+        "samples": 0
+      },
+      "memory": {
+        "rss": 730517504,
+        "heapTotal": 590168064,
+        "heapUsed": 555151792,
+        "external": 61128940,
+        "arrayBuffers": 58771270
+      },
+      "state": {
+        "mode": "menu",
+        "characterOpen": true,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": true,
+            "nativeStateKnown": true,
+            "nativePaused": false
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "selection-return-20",
+      "elapsedMs": 3200.9804999999997,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 120,
+      "sdkStepMs": {
+        "samples": 120,
+        "p50": 4.758300000000418,
+        "p95": 20.028800000000047,
+        "p99": 23.224200000000565,
+        "max": 25.10149999999976
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 1.3667000000004919
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 1.0262000000002445
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.970800000000054
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.5204000000003361
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.21770000000014988
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 23.474699999999757
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7937000000001717
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 2.326299999999719
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.808200000000397
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.48729999999977736
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.17860000000018772
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 24.82759999999962
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.8876000000000204
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6931000000004133
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.571500000000015
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4113999999999578
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.18040000000019063
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.22569999999996
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7107999999998356
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.618600000000697
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 18.336299999999937
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4359999999996944
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.1684000000004744
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.649199999999837
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6489000000001397
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.5911999999998443
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 17.006899999999405
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4124000000001615
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.16759999999976571
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.72780000000057
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7088000000003376
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6343999999999141
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 16.948199999999815
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.42669999999998254
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.1613999999999578
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.774200000000747
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.8733000000001994
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7136000000000422
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.79320000000007
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.6382000000003245
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.19920000000001892
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 22.48869999999988
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6761999999998807
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6208000000005995
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 14.576200000000426
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4535999999998239
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.1683999999995649
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.82880000000023
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6718000000000757
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.5985000000000582
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 16.848399999999856
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4257999999999811
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.15599999999994907
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 21.229299999999967
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.9311999999999898
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7292999999999665
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.525900000000547
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4180000000005748
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.18720000000030268
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 22.302699999999277
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.9257999999999811
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.8845000000001164
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 19.18369999999959
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.5349999999998545
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.1956000000000131
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 25.269100000000435
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.8245999999999185
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6779000000005908
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 17.57470000000012
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.627400000000307
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.23290000000088185
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 22.44719999999961
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7182000000002517
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6730999999999767
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 16.97070000000076
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.4378000000006068
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.19539999999960855
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 22.26929999999993
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 1.018000000000029
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7145000000000437
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 16.081100000000333
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.41049999999995634
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.174300000000585
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 23.20310000000063
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6754000000000815
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6210999999993874
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 14.800500000000284
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.44949999999971624
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.17560000000048603
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.14310000000023
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6916000000001077
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6086000000004788
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 16.001099999999497
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.41190000000005966
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.16269999999985885
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 22.45389999999952
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6390999999994165
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.5648000000001048
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.514900000000125
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.41449999999986176
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.15229999999974098
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.77890000000025
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.734599999999773
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.8949999999995271
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 13.915299999999661
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.42070000000057917
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.15979999999944994
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 18.5632999999998
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7263999999995576
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6265999999995984
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 15.586100000000442
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.415500000000975
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.16189999999915017
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 22.15139999999883
+        },
+        {
+          "type": "move",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.7486000000008062
+        },
+        {
+          "type": "down",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 0.6080999999994674
+        },
+        {
+          "type": "up",
+          "x": 112.5,
+          "y": 160,
+          "elapsedMs": 16.602100000000064
+        },
+        {
+          "type": "move",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.40710000000035507
+        },
+        {
+          "type": "down",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 0.1554999999989377
+        },
+        {
+          "type": "up",
+          "x": 237.5,
+          "y": 237.5,
+          "elapsedMs": 20.046199999998862
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 120,
+        "p50": 0.7088000000003376,
+        "p95": 22.44719999999961,
+        "p99": 24.82759999999962,
+        "max": 25.269100000000435
+      },
+      "memory": {
+        "rss": 929546240,
+        "heapTotal": 686948352,
+        "heapUsed": 638999992,
+        "external": 59697486,
+        "arrayBuffers": 57309658
+      },
+      "state": {
+        "counts": [
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016,
+          31016
+        ],
+        "state": {
+          "mode": "menu",
+          "characterOpen": true,
+          "portraits": {
+            "avatar": {
+              "phase": "disabled",
+              "owned": 0
+            },
+            "battle": {
+              "phase": "idle",
+              "generation": 0,
+              "nextIndex": 1,
+              "total": 7303,
+              "owned": 0,
+              "retained": 0,
+              "cleanupFailures": 0
+            },
+            "selection": {
+              "phase": "ready",
+              "generation": 1,
+              "nextIndex": 7304,
+              "total": 7303,
+              "owned": 3332,
+              "retained": 0,
+              "cleanupFailures": 0,
+              "nativeActive": true,
+              "nativeStateKnown": true,
+              "nativePaused": false
+            },
+            "batchSize": 64
+          }
+        }
+      }
+    },
+    {
+      "name": "confirm-neow-intro",
+      "elapsedMs": 741.7090000000007,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 3,
+      "sdkStepMs": {
+        "samples": 3,
+        "p50": 3.823599999999715,
+        "p95": 25.905699999999342,
+        "p99": 25.905699999999342,
+        "max": 25.905699999999342
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 1487.5,
+          "y": 153.75,
+          "elapsedMs": 0.7157999999999447
+        },
+        {
+          "type": "down",
+          "x": 1487.5,
+          "y": 153.75,
+          "elapsedMs": 0.699399999999514
+        },
+        {
+          "type": "up",
+          "x": 1487.5,
+          "y": 153.75,
+          "elapsedMs": 679.9102999999996
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 3,
+        "p50": 0.7157999999999447,
+        "p95": 679.9102999999996,
+        "p99": 679.9102999999996,
+        "max": 679.9102999999996
+      },
+      "memory": {
+        "rss": 932315136,
+        "heapTotal": 745889792,
+        "heapUsed": 704427904,
+        "external": 59817716,
+        "arrayBuffers": 57429888
+      },
+      "state": {
+        "mode": "node",
+        "characterOpen": false,
+        "phase": "node",
+        "hp": 80,
+        "maxHp": 80,
+        "gold": 99,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": false,
+            "nativeStateKnown": true,
+            "nativePaused": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "neow-intro-idle-120",
+      "elapsedMs": 646.4874,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 120,
+      "sdkStepMs": {
+        "samples": 120,
+        "p50": 5.0645999999997,
+        "p95": 7.391400000000431,
+        "p99": 7.705699999998615,
+        "max": 8.06919999999991
+      },
+      "pointerEvents": [],
+      "pointerHandlerMs": {
+        "samples": 0
+      },
+      "memory": {
+        "rss": 932347904,
+        "heapTotal": 750084096,
+        "heapUsed": 700577272,
+        "external": 59817291,
+        "arrayBuffers": 57429463
+      },
+      "state": {
+        "mode": "node",
+        "characterOpen": false,
+        "phase": "node",
+        "hp": 80,
+        "maxHp": 80,
+        "gold": 99,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": false,
+            "nativeStateKnown": true,
+            "nativePaused": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "neow-offers",
+      "elapsedMs": 91.64749999999913,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 2,
+      "sdkStepMs": {
+        "samples": 2,
+        "p50": 5.295199999998658,
+        "p95": 6.8216999999986,
+        "p99": 6.8216999999986,
+        "max": 6.8216999999986
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 5.371100000000297
+        },
+        {
+          "type": "down",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 8.373599999998987
+        },
+        {
+          "type": "up",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 40.126900000001115
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 3,
+        "p50": 8.373599999998987,
+        "p95": 40.126900000001115,
+        "p99": 40.126900000001115,
+        "max": 40.126900000001115
+      },
+      "memory": {
+        "rss": 934207488,
+        "heapTotal": 768188416,
+        "heapUsed": 728846072,
+        "external": 59817987,
+        "arrayBuffers": 57430159
+      },
+      "state": {
+        "mode": "node",
+        "characterOpen": false,
+        "phase": "node",
+        "hp": 80,
+        "maxHp": 80,
+        "gold": 99,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": false,
+            "nativeStateKnown": true,
+            "nativePaused": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "neow-hp-blessing",
+      "elapsedMs": 96.00160000000142,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 2,
+      "sdkStepMs": {
+        "samples": 2,
+        "p50": 4.721999999999753,
+        "p95": 5.169099999999162,
+        "p99": 5.169099999999162,
+        "max": 5.169099999999162
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 5.283900000000358
+        },
+        {
+          "type": "down",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 9.908399999998437
+        },
+        {
+          "type": "up",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 42.824399999999514
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 3,
+        "p50": 9.908399999998437,
+        "p95": 42.824399999999514,
+        "p99": 42.824399999999514,
+        "max": 42.824399999999514
+      },
+      "memory": {
+        "rss": 936763392,
+        "heapTotal": 788045824,
+        "heapUsed": 743197424,
+        "external": 59817693,
+        "arrayBuffers": 57429865
+      },
+      "state": {
+        "mode": "node",
+        "characterOpen": false,
+        "phase": "node",
+        "hp": 88,
+        "maxHp": 88,
+        "gold": 99,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": false,
+            "nativeStateKnown": true,
+            "nativePaused": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "neow-to-map",
+      "elapsedMs": 227.65800000000127,
+      "controlsBefore": 31016,
+      "controlsAfter": 31016,
+      "steps": 3,
+      "sdkStepMs": {
+        "samples": 3,
+        "p50": 5.268500000000131,
+        "p95": 60.819000000001324,
+        "p99": 60.819000000001324,
+        "max": 60.819000000001324
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 5.297699999999168
+        },
+        {
+          "type": "down",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 12.76130000000012
+        },
+        {
+          "type": "up",
+          "x": 516.6666666666667,
+          "y": 104.58333333333337,
+          "elapsedMs": 112.24880000000121
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 3,
+        "p50": 12.76130000000012,
+        "p95": 112.24880000000121,
+        "p99": 112.24880000000121,
+        "max": 112.24880000000121
+      },
+      "memory": {
+        "rss": 945975296,
+        "heapTotal": 810754048,
+        "heapUsed": 761411120,
+        "external": 59817607,
+        "arrayBuffers": 57429779
+      },
+      "state": {
+        "mode": "map",
+        "characterOpen": false,
+        "phase": "map",
+        "hp": 88,
+        "maxHp": 88,
+        "gold": 99,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "idle",
+            "generation": 0,
+            "nextIndex": 1,
+            "total": 7303,
+            "owned": 0,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": false,
+            "nativeStateKnown": true,
+            "nativePaused": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "map-to-battle",
+      "elapsedMs": 3526.0437,
+      "controlsBefore": 31016,
+      "controlsAfter": 38510,
+      "steps": 384,
+      "sdkStepMs": {
+        "samples": 384,
+        "p50": 8.15480000000025,
+        "p95": 11.597799999999552,
+        "p99": 14.002399999999398,
+        "max": 52.30249999999978
+      },
+      "pointerEvents": [
+        {
+          "type": "move",
+          "x": 940,
+          "y": 140,
+          "elapsedMs": 0.9297000000005937
+        },
+        {
+          "type": "down",
+          "x": 940,
+          "y": 140,
+          "elapsedMs": 3.695400000000518
+        },
+        {
+          "type": "up",
+          "x": 940,
+          "y": 140,
+          "elapsedMs": 326.60299999999916
+        }
+      ],
+      "pointerHandlerMs": {
+        "samples": 3,
+        "p50": 3.695400000000518,
+        "p95": 326.60299999999916,
+        "p99": 326.60299999999916,
+        "max": 326.60299999999916
+      },
+      "memory": {
+        "rss": 1028972544,
+        "heapTotal": 893214720,
+        "heapUsed": 844369832,
+        "external": 59821111,
+        "arrayBuffers": 57433283
+      },
+      "state": {
+        "mode": "battle",
+        "characterOpen": false,
+        "phase": "combat",
+        "hp": 88,
+        "maxHp": 88,
+        "gold": 99,
+        "portraits": {
+          "avatar": {
+            "phase": "disabled",
+            "owned": 0
+          },
+          "battle": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 7459,
+            "retained": 0,
+            "cleanupFailures": 0
+          },
+          "selection": {
+            "phase": "ready",
+            "generation": 1,
+            "nextIndex": 7304,
+            "total": 7303,
+            "owned": 3332,
+            "retained": 0,
+            "cleanupFailures": 0,
+            "nativeActive": false,
+            "nativeStateKnown": true,
+            "nativePaused": true
+          },
+          "batchSize": 64
+        }
+      }
+    },
+    {
+      "name": "root-destroy",
+      "elapsedMs": 54.02520000000004,
+      "controlsBefore": 38510,
+      "controlsAfter": 0,
+      "steps": 0,
+      "sdkStepMs": {
+        "samples": 0
+      },
+      "pointerEvents": [],
+      "pointerHandlerMs": {
+        "samples": 0
+      },
+      "memory": {
+        "rss": 1055547392,
+        "heapTotal": 919654400,
+        "heapUsed": 874940680,
+        "external": 59821111,
+        "arrayBuffers": 57433268
+      },
+      "state": {
+        "controls": 0
+      }
+    }
+  ],
+  "status": "pass",
+  "sdkStepMs": {
+    "samples": 947,
+    "p50": 6.313700000000608,
+    "p95": 14.778900000000249,
+    "p99": 20.308899999999994,
+    "max": 60.819000000001324
+  },
+  "logs": [
+    {
+      "level": "info",
+      "text": "ABYSS_BUILD 53629ec8-5a99-4a54-97ed-04e152adeb21",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=1",
+      "time": 0.03333333333333333
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2",
+      "time": 2.0166666666666644
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 2.0166666666666644
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=revealing owned=3332 reason=nil",
+      "time": 2.933333333333328
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=ready owned=3332 reason=nil",
+      "time": 3.1999999999999935
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2",
+      "time": 3.21666666666666
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=3",
+      "time": 5.23333333333332
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=3",
+      "time": 5.266666666666653
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=4",
+      "time": 5.28333333333332
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=4",
+      "time": 5.316666666666653
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=5",
+      "time": 5.33333333333332
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=5",
+      "time": 5.366666666666653
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=6",
+      "time": 5.3833333333333195
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=6",
+      "time": 5.416666666666653
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=7",
+      "time": 5.433333333333319
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=7",
+      "time": 5.466666666666653
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=8",
+      "time": 5.483333333333319
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=8",
+      "time": 5.516666666666652
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=9",
+      "time": 5.533333333333319
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=9",
+      "time": 5.566666666666652
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=10",
+      "time": 5.583333333333319
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=10",
+      "time": 5.616666666666652
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=11",
+      "time": 5.633333333333319
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=11",
+      "time": 5.666666666666652
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=12",
+      "time": 5.6833333333333185
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=12",
+      "time": 5.716666666666652
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=13",
+      "time": 5.733333333333318
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=13",
+      "time": 5.7666666666666515
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=14",
+      "time": 5.783333333333318
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=14",
+      "time": 5.816666666666651
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=15",
+      "time": 5.833333333333318
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=15",
+      "time": 5.866666666666651
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=16",
+      "time": 5.883333333333318
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=16",
+      "time": 5.916666666666651
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=17",
+      "time": 5.933333333333318
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=17",
+      "time": 5.966666666666651
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=18",
+      "time": 5.983333333333317
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=18",
+      "time": 6.016666666666651
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=19",
+      "time": 6.033333333333317
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=19",
+      "time": 6.06666666666665
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=20",
+      "time": 6.083333333333317
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=20",
+      "time": 6.11666666666665
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=21",
+      "time": 6.133333333333317
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=21",
+      "time": 6.16666666666665
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=22",
+      "time": 6.183333333333317
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=22",
+      "time": 6.21666666666665
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=23",
+      "time": 6.2333333333333165
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=23",
+      "time": 6.26666666666665
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=24",
+      "time": 6.283333333333316
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=24",
+      "time": 6.3166666666666496
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=25",
+      "time": 6.333333333333316
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=25",
+      "time": 6.366666666666649
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=26",
+      "time": 6.383333333333316
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=26",
+      "time": 6.416666666666649
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=27",
+      "time": 6.433333333333316
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=27",
+      "time": 6.466666666666649
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=28",
+      "time": 6.483333333333316
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=28",
+      "time": 6.516666666666649
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=29",
+      "time": 6.5333333333333155
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=29",
+      "time": 6.566666666666649
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=30",
+      "time": 6.583333333333315
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=30",
+      "time": 6.6166666666666485
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=31",
+      "time": 6.633333333333315
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=31",
+      "time": 6.666666666666648
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=32",
+      "time": 6.683333333333315
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=32",
+      "time": 6.716666666666648
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=33",
+      "time": 6.733333333333315
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=33",
+      "time": 6.766666666666648
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=34",
+      "time": 6.783333333333315
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=34",
+      "time": 6.816666666666648
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=35",
+      "time": 6.833333333333314
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=35",
+      "time": 6.866666666666648
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=36",
+      "time": 6.883333333333314
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=36",
+      "time": 6.916666666666647
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=37",
+      "time": 6.933333333333314
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=37",
+      "time": 6.966666666666647
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=38",
+      "time": 6.983333333333314
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=38",
+      "time": 7.016666666666647
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=39",
+      "time": 7.033333333333314
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=39",
+      "time": 7.066666666666647
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=40",
+      "time": 7.0833333333333135
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=40",
+      "time": 7.116666666666647
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=41",
+      "time": 7.133333333333313
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=menuPanel epoch=41",
+      "time": 7.1666666666666465
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=42",
+      "time": 7.183333333333313
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=42",
+      "time": 7.216666666666646
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_RUN seed=28274 source=clock",
+      "time": 7.233333333333313
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=43",
+      "time": 7.233333333333313
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 7.233333333333313
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=nodePanel epoch=43",
+      "time": 7.266666666666646
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL updated page=nodePanel epoch=44",
+      "time": 9.283333333333374
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL updated page=nodePanel epoch=45",
+      "time": 9.316666666666709
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=46",
+      "time": 9.350000000000044
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=map nodeNativeActive=false choiceNativeActive=false",
+      "time": 9.350000000000044
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=mapPanel epoch=46",
+      "time": 9.383333333333379
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=47",
+      "time": 9.900000000000071
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+      "time": 9.900000000000071
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil",
+      "time": 11.866666666666836
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=ready owned=7459 reason=nil",
+      "time": 12.43333333333353
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=battlePanel epoch=47",
+      "time": 12.450000000000198
+    }
+  ],
+  "faults": [],
+  "sourceStable": true,
+  "pointerEvents": [
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 1.760899999999765
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.5007000000000517
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 47.09830000000011
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 1.3667000000004919
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 1.0262000000002445
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.970800000000054
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.5204000000003361
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.21770000000014988
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 23.474699999999757
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7937000000001717
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 2.326299999999719
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.808200000000397
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.48729999999977736
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.17860000000018772
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 24.82759999999962
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.8876000000000204
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6931000000004133
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.571500000000015
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4113999999999578
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.18040000000019063
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.22569999999996
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7107999999998356
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.618600000000697
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 18.336299999999937
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4359999999996944
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.1684000000004744
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.649199999999837
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6489000000001397
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.5911999999998443
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 17.006899999999405
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4124000000001615
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.16759999999976571
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.72780000000057
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7088000000003376
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6343999999999141
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 16.948199999999815
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.42669999999998254
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.1613999999999578
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.774200000000747
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.8733000000001994
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7136000000000422
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.79320000000007
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.6382000000003245
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.19920000000001892
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 22.48869999999988
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6761999999998807
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6208000000005995
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 14.576200000000426
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4535999999998239
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.1683999999995649
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.82880000000023
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6718000000000757
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.5985000000000582
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 16.848399999999856
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4257999999999811
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.15599999999994907
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 21.229299999999967
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.9311999999999898
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7292999999999665
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.525900000000547
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4180000000005748
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.18720000000030268
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 22.302699999999277
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.9257999999999811
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.8845000000001164
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 19.18369999999959
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.5349999999998545
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.1956000000000131
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 25.269100000000435
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.8245999999999185
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6779000000005908
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 17.57470000000012
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.627400000000307
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.23290000000088185
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 22.44719999999961
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7182000000002517
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6730999999999767
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 16.97070000000076
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.4378000000006068
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.19539999999960855
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 22.26929999999993
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 1.018000000000029
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7145000000000437
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 16.081100000000333
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.41049999999995634
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.174300000000585
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 23.20310000000063
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6754000000000815
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6210999999993874
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 14.800500000000284
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.44949999999971624
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.17560000000048603
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.14310000000023
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6916000000001077
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6086000000004788
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 16.001099999999497
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.41190000000005966
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.16269999999985885
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 22.45389999999952
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6390999999994165
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.5648000000001048
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.514900000000125
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.41449999999986176
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.15229999999974098
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.77890000000025
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.734599999999773
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.8949999999995271
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 13.915299999999661
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.42070000000057917
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.15979999999944994
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 18.5632999999998
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7263999999995576
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6265999999995984
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 15.586100000000442
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.415500000000975
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.16189999999915017
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 22.15139999999883
+    },
+    {
+      "type": "move",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.7486000000008062
+    },
+    {
+      "type": "down",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 0.6080999999994674
+    },
+    {
+      "type": "up",
+      "x": 112.5,
+      "y": 160,
+      "elapsedMs": 16.602100000000064
+    },
+    {
+      "type": "move",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.40710000000035507
+    },
+    {
+      "type": "down",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 0.1554999999989377
+    },
+    {
+      "type": "up",
+      "x": 237.5,
+      "y": 237.5,
+      "elapsedMs": 20.046199999998862
+    },
+    {
+      "type": "move",
+      "x": 1487.5,
+      "y": 153.75,
+      "elapsedMs": 0.7157999999999447
+    },
+    {
+      "type": "down",
+      "x": 1487.5,
+      "y": 153.75,
+      "elapsedMs": 0.699399999999514
+    },
+    {
+      "type": "up",
+      "x": 1487.5,
+      "y": 153.75,
+      "elapsedMs": 679.9102999999996
+    },
+    {
+      "type": "move",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 5.371100000000297
+    },
+    {
+      "type": "down",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 8.373599999998987
+    },
+    {
+      "type": "up",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 40.126900000001115
+    },
+    {
+      "type": "move",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 5.283900000000358
+    },
+    {
+      "type": "down",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 9.908399999998437
+    },
+    {
+      "type": "up",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 42.824399999999514
+    },
+    {
+      "type": "move",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 5.297699999999168
+    },
+    {
+      "type": "down",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 12.76130000000012
+    },
+    {
+      "type": "up",
+      "x": 516.6666666666667,
+      "y": 104.58333333333337,
+      "elapsedMs": 112.24880000000121
+    },
+    {
+      "type": "move",
+      "x": 940,
+      "y": 140,
+      "elapsedMs": 0.9297000000005937
+    },
+    {
+      "type": "down",
+      "x": 940,
+      "y": 140,
+      "elapsedMs": 3.695400000000518
+    },
+    {
+      "type": "up",
+      "x": 940,
+      "y": 140,
+      "elapsedMs": 326.60299999999916
+    }
+  ],
+  "backgroundReusedFor20Returns": true
+}
