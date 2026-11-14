@@ -5,6 +5,22 @@ import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { checkHistory, auditHistory } from '../scripts/check-pr-history.mjs';
+import { receiptToolingSource } from './helpers/integration-1111-tooling.mjs';
+
+test('history receipt continuation authenticates complete source only in its official view', () => {
+  const row = JSON.parse(readFileSync(new URL('./fixtures/pr-history-receipt-continuation.json', import.meta.url), 'utf8'));
+  const source = readFileSync(row.path, 'utf8').replaceAll('\r\n', '\n');
+  assert.equal(source, row.after.source);
+  for (const input of [source, source.replaceAll('\n', '\r\n')])
+    assert.equal(receiptToolingSource(row.path, input, 'official'), row.before.source);
+  for (const input of [source + '\n', source.slice(1), source.slice(0, -1), source.replace('checkHistory', 'changedHistory'), source.replaceAll('\n', '\r\r\n'), null, {}, 17])
+    assert.equal(receiptToolingSource(row.path, input, 'official'), input);
+  for (const view of ['curses', 'foreign', undefined])
+    assert.equal(receiptToolingSource(row.path, source, view), source);
+  for (const path of ['__proto__', 'constructor', 'foreign/' + row.path, row.path + '/extra'])
+    assert.equal(receiptToolingSource(path, source, 'official'), source);
+  assert.equal(receiptToolingSource(row.path, row.before.source, 'official'), row.before.source);
+});
 
 const sha = n => n.toString(16).padStart(40, '0');
 const commit = n => ({ sha: sha(n), parents: [{ sha: sha(n - 1) }] });
