@@ -66,8 +66,8 @@ function M.syncController(self,controller,openingCovered)
             elseif self.exitOpen then scope='exit'
             elseif self.pageReveal and self.pageReveal:covered() then scope='pageReveal'
             elseif self.motion.deathReveal then scope='blocked'
-            elseif self.characterOpen and not self.deckUI.visible then scope='characters'
             elseif openingCovered() then scope='blocked'
+            elseif self.characterOpen and not self.deckUI.visible then scope='characters'
             else scope=pageScope() end
             local function pageBack(backScope)
                 if backScope=='potions' then return self:closePotions()
@@ -383,7 +383,8 @@ function M.exitEntryVisible(self)
             local minimal=(Theme.presentationProfile=='official-assets-first' or Theme.presentationProfile=='v25-reference')
                 and Theme.menuPresentation and Theme.menuPresentation.minimal
             if minimal and self.mode=='menu' and not self.characterOpen then return false end
-            return not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
+            return not (self.prologue and self.prologue:covering())
+                and not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
         end
 end
 
@@ -485,9 +486,22 @@ end
 
 function M.syncOpening(self,openingCovered)
     return function(run)
-            if self.prologue and (self.settlementRequested or run and (run.phase=='defeat' or run.phase=='victory')) then self.prologue:cancel() end
+            if self.prologue and (self.settlementRequested or not self.starting and run and (run.phase=='defeat' or run.phase=='victory')) then self.prologue:cancel() end
             return openingCovered()
         end
+end
+
+-- Completed UI preparation stages, not bytes or an unobservable GPU/network percentage.
+function M.openingProgress(self,child,platform)
+    return function()
+        local done=self.openingPrepared or 0
+        if done<6 or self.starting then return done end
+        if not self.run or not self.map then return 6 end
+        if self.mode~='node' and self.mode~='map' then return 6 end
+        local page=child(self.mode=='node' and 'nodePanel' or 'mapPanel')
+        if platform.nativePageLifecycle==true and page.active~=true then return 6 end
+        return 7
+    end
 end
 
 function M.openingForeground(self,child,prologuePanel,runMenu,exitPanel)
@@ -496,7 +510,7 @@ function M.openingForeground(self,child,prologuePanel,runMenu,exitPanel)
                 child('mapPanel'):SetVisible(false);child('nodePanel'):SetVisible(false)
             end
             if not covering then return end
-            prologuePanel:SetAsLastSibling();child('exitEntry'):SetAsLastSibling()
+            prologuePanel:SetAsLastSibling()
             if self.menuOpen then runMenu:SetAsLastSibling()
             elseif self.exitOpen then exitPanel:SetAsLastSibling() end
         end

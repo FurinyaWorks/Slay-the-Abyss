@@ -1,0 +1,78 @@
+LORE_PREVIEW	intro1	岩层深处传来了异常的共鸣。
+LORE_PREVIEW	intro2	古老的封印正在崩解……
+LORE_PREVIEW	intro3	旅行者，深入遗迹，阻止深渊的侵蚀。
+ok prologue 1 - shared approved sentence helpers remain intact
+ABYSS_TRANSITION begin
+ok prologue 2 - confirmation fades over the selected character before creating any run
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.61
+ABYSS_TRANSITION complete elapsed=1.61
+ABYSS_TRANSITION end elapsed=2.22
+ok prologue 3 - fully covered frame commits once and reveals the existing Neow page
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=1.3
+ABYSS_TRANSITION complete elapsed=1.3
+ABYSS_TRANSITION end elapsed=1.91
+ok prologue 4 - transparent shield and admission reject duplicate confirmation and stale page commands
+ABYSS_TRANSITION begin
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 5 - cancel before cover discards pending run and reopens selection input
+ABYSS_TRANSITION begin
+ok prologue 6 - disable clears the shield and pending commit
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=40
+ABYSS_TRANSITION complete elapsed=40
+ABYSS_TRANSITION end elapsed=80
+ok prologue 7 - large frames cannot bypass post-commit readiness or repeat creation
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 8 - resize covers wide and tall canvases without enlarging the central mark
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=43 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 9 - a retry from defeat plays again and preserves one-run ownership
+ABYSS_RUN seed=1 source=explicit
+ok prologue 10 - rule-only hosts retain immediate start without enabling the old camera
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.3
+ABYSS_TRANSITION complete elapsed=1.14
+ABYSS_TRANSITION end elapsed=1.742
+ok prologue 11 - completed preparation stages light in order and fast starts do not wait eight seconds
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=12.35
+ABYSS_TRANSITION complete elapsed=12.7
+ABYSS_TRANSITION end elapsed=13.3
+ok prologue 12 - unfinished preparation never advances a light or uncovers the destination
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_TRANSITION begin
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 13 - audio fires once on entry and successful completion; cancellation and sound errors are safe
+LUA_GAME_UI_PROLOGUE_PASS 13
+Lua fixture tests/lua/game_ui_prologue.lua: 18879 ms

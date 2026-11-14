@@ -1,0 +1,33 @@
+{
+  "referenceSha256": "162a0315acb2b9683c9057654b3155cd928f129a5254f1726f2af77de1a326e0",
+  "sourceTemplateId": 1073742848,
+  "sourceControls": 116,
+  "adaptedControls": 95,
+  "sourcePngSha256": "f28fd435f2ee4b4d52b22999d166280840d566d44718923b80933b05a5e2c086",
+  "adaptedPngSha256": "f28fd435f2ee4b4d52b22999d166280840d566d44718923b80933b05a5e2c086",
+  "differentPixels": 0,
+  "scope": "BeyondSimulator software Host, 1600x900, symbolScale=2.0. Exact equality in this configuration; other scales and official client unverified.",
+  "timer": {
+    "nodeIndex": 7,
+    "loop": false,
+    "sequenceNodeIndex": 8,
+    "absoluteSeconds": [
+      1,
+      1.5,
+      2,
+      4,
+      4.5,
+      5,
+      5.5,
+      7,
+      8
+    ]
+  },
+  "projectAdaptation": {
+    "totalSeconds": 8,
+    "cover": 0.3,
+    "reveal": 0.3,
+    "fixedTitle": "璃月",
+    "copy": "岩层深处传来了异常的共鸣。"
+  }
+}
