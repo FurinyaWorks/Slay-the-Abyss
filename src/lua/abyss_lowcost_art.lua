@@ -25,32 +25,24 @@ local function colour(pool,icon,state,control,r,g,b,a)
  local value=state.color(r,g,b,a);check(pool,icon,state)
  control.imageColor=value;check(pool,icon,state)
 end
-function M.paint(icon,kind,id,size,platform)
- local pool=poolFor(icon);if not pool then return false end
- local registry=Theme.lowCostArt and Theme.lowCostArt[kind]
- local asset=registry and registry.assets[id]
- if not asset or not platform.imageSource or not platform.color then
-  painted[pool]=nil;visible(pool,false);visible(icon,true);return false
- end
- local old=painted[pool]
- if old and old.failed and old.asset==asset and old.size==size and old.source==platform.imageSource and old.color==platform.color then return false end
- if old and old.ready and old.asset==asset and old.size==size and old.source==platform.imageSource and old.color==platform.color then
+local function matches(state,asset,size,platform)
+ return state.asset==asset and state.size==size and state.source==platform.imageSource and state.color==platform.color
+end
+local function reveal(pool,icon,old)
   local ok=pcall(function()
    local accepted=visible(pool,true);check(pool,icon,old);assert(accepted)
    accepted=visible(icon,false);check(pool,icon,old);assert(accepted)
   end)
   if not ok and current(pool,icon,old)then old.ready=false;visible(pool,false);visible(icon,true)end
   return ok and current(pool,icon,old)
- end
- local token={asset=asset,size=size,source=platform.imageSource,color=platform.color,parent=icon.parent,pose=old and old.pose,dim=old and old.dim}
- painted[pool]=token
- local function owned()return current(pool,icon,token)end
+end
+local function draw(pool,icon,token,registry,asset,size,platform)
  local function call(control,method,...)
   check(pool,icon,token)
   local accepted=control[method](control,...);check(pool,icon,token)
   assert(accepted~=false,'artwork setter rejected')
  end
- local ok=pcall(function()
+ return pcall(function()
   -- The imported sibling already shares the icon's authored anchor position.
   -- Native handles need not expose initial x/y getters before their first write.
   call(pool,'SetVisible',false)
@@ -67,9 +59,25 @@ function M.paint(icon,kind,id,size,platform)
   end
   call(pool,'SetVisible',true);call(icon,'SetVisible',false)
  end)
- if not ok and owned()then token.failed=true;visible(pool,false);visible(icon,true)end
- if ok and owned()then token.ready=true;return true end
+end
+local function finish(pool,icon,token,ok)
+ if not ok and current(pool,icon,token)then token.failed=true;visible(pool,false);visible(icon,true)end
+ if ok and current(pool,icon,token)then token.ready=true;return true end
  return false
+end
+function M.paint(icon,kind,id,size,platform)
+ local pool=poolFor(icon);if not pool then return false end
+ local registry=Theme.lowCostArt and Theme.lowCostArt[kind]
+ local asset=registry and registry.assets[id]
+ if not asset or not platform.imageSource or not platform.color then
+  painted[pool]=nil;visible(pool,false);visible(icon,true);return false
+ end
+ local old=painted[pool]
+ if old and old.failed and matches(old,asset,size,platform)then return false end
+ if old and old.ready and matches(old,asset,size,platform)then return reveal(pool,icon,old)end
+ local token={asset=asset,size=size,source=platform.imageSource,color=platform.color,parent=icon.parent,pose=old and old.pose,dim=old and old.dim}
+ painted[pool]=token
+ return finish(pool,icon,token,draw(pool,icon,token,registry,asset,size,platform))
 end
 function M.hide(icon,restore)
  local pool=poolFor(icon);if pool then painted[pool]=nil;visible(pool,false);if restore~=false then visible(icon,true)end end

@@ -17,11 +17,7 @@ local function boundary(chars, first, last, marks)
     end
     return result
 end
-function M.ends(chars, limit)
-    assert(type(limit)=='number' and limit>=2 and limit==math.floor(limit), 'invalid merchant page budget')
-    local ends, first = {}, 1
-    while first<=#chars do
-        local last=math.min(#chars,first+limit-1)
+local function pageEnd(chars, first, last, limit)
         if last<#chars then
             local full=boundary(chars,first,last,sentence)
             local part=boundary(chars,first,last,clause)
@@ -36,6 +32,13 @@ function M.ends(chars, limit)
             while last>first and (close[chars[last+1]] or sentence[chars[last+1]]
                 or clause[chars[last+1]] or open[chars[last]]) do last=last-1 end
         end
+    return last
+end
+function M.ends(chars, limit)
+    assert(type(limit)=='number' and limit>=2 and limit==math.floor(limit), 'invalid merchant page budget')
+    local ends, first = {}, 1
+    while first<=#chars do
+        local last=pageEnd(chars,first,math.min(#chars,first+limit-1),limit)
         ends[#ends+1]=last
         first=last+1
     end

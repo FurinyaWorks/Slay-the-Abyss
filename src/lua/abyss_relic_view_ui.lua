@@ -168,6 +168,9 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
     end
     -- Owned-only tray like the prototype topBar(). Beyond count the last disc
     -- becomes a +N overflow chip that opens the paginated overlay there.
+    local function hideEmptyArt(icon,cell,more)
+        if not cell or more then Art.hide(icon)end
+    end
     function self.refreshBar(_,run,visible)
         local relics=run and run.relics or {}
         local style=official and battleBar or baseBar
@@ -186,7 +189,7 @@ function M.new(root,bar,clickEvent,platform,describe,onClose,onSlot,barScope)
             hit:SetSizeDelta(style.hit or style.step,style.hit or 44)
             for _,name in ipairs({'rim','face'})do slot:GetChild(name):SetVisible(not official)end
             local more=type(cell)=='string'
-            if not cell or more then Art.hide(icon)end
+            hideEmptyArt(icon,cell,more)
             icon:SetVisible(not more)
             slot:GetChild('more'):SetVisible(more)
             slot:GetChild('more').text=more and cell or ''
