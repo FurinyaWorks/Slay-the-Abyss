@@ -10,6 +10,10 @@ const capacityRoadmapBytes=readFileSync(new URL('./role-capacity-roadmap-source.
 assert.equal(hash(capacityRoadmapBytes.toString('utf8').replaceAll('\r\n','\n')),'e0c27a383c57f64071a4c9b78fd027588ac2998d53f49119a2a8e99bb65fcd02');
 const capacityRoadmapBinding=JSON.parse(capacityRoadmapBytes);
 assert.equal(hash(capacityRoadmapBinding.source),capacityRoadmapBinding.before);
+const namingBytes=readFileSync(new URL('./naming-package-source.json',import.meta.url),'utf8').replaceAll('\r\n','\n');
+assert.equal(hash(namingBytes),'c2f602587df404d4b7bf298406e8a288c8ad01038e9029c0b5ba7e3e4f1fe4d1');
+const naming=JSON.parse(namingBytes);
+assert.equal(hash(naming.source),naming.before);
 const bytes=readFileSync(new URL('./closeout-ci-source.json.gz',import.meta.url));
 assert.equal(hash(bytes),'cfc72306af30d0d4b0b61398e3ed0eea36767d6e005c146eb215897fc431a8f8');
 const packed=JSON.parse(gunzipSync(bytes));
@@ -21,6 +25,7 @@ export function preCloseoutCiSource(path,source,view){
  const before=target(view);
  if(before.scope==='workflow-only'&&path!=='.github/workflows/quality.yml')return source;
  if(path===capacityRoadmapBinding.path&&typeof source==='string'&&hash(source.replaceAll('\r\n','\n'))===capacityRoadmapBinding.current)return capacityRoadmapBinding.source;
+ if(path===naming.path&&typeof source==='string'&&!source.includes('\r\r\n')&&hash(source.replaceAll('\r\n','\n'))===naming.current)return naming.source;
  // Production sources belong to the complete freshly authenticated owner
  // closure; a CI receipt must never intercept them before that authorization.
  if(path==='config/architecture.json'||path.startsWith('src/lua/'))return source;

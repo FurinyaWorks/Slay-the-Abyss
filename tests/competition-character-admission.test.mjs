@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import { runLua } from '../scripts/test-lua.mjs';
+import './character-source-priority.cases.mjs';
 
 test('Alpha and Production admit only the user-approved Geo traveler; development retains eight loadouts', () => {
   const result = runLua('tests/lua/competition_character_admission.lua');
