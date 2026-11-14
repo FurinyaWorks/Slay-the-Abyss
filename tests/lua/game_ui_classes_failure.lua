@@ -89,7 +89,7 @@ local function finishOpening(ui)
     for _=1,80 do
         local opening=ui.prologue and ui.prologue:covering()
         local page=ui.pageReveal and ui.pageReveal:covered()
-        if not ui.starting and not opening and not page then assert(ui.run);return end
+        if not ui.starting and not opening and not page then assert(ui.run and not ui.disabled);return end
         OnUpdate(0.05)
     end
     error('native opening did not finish before failure injection')
