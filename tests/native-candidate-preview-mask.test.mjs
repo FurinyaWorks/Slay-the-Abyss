@@ -39,3 +39,26 @@ test('actual pinned browser renderer interprets native feather in pixels',{
  assert.equal(wrong.featherX,.54);
  assert(renderer.actualMaskCoverage(8.5,0,wrong)>.9,'negative control must reproduce the hard corner');
 });
+
+// New outer continuation: raw current sources remain independently checked.
+import {nativePreviewCiProof,preNativePreviewCiSource} from './helpers/native-preview-ci-source.mjs';
+import {runHudPriorRead} from './helpers/run-hud-ci-source.mjs';
+import {closeoutRead} from './helpers/closeout-ci-source.mjs';
+test('native preview continuation authenticates complete current files and preserves unknown drift',()=>{
+ for(const [path,row]of Object.entries(nativePreviewCiProof.files)){
+  const raw=readFileSync(path,'utf8').replaceAll('\r\n','\n');
+  assert.equal(raw,row.after.source,path+' complete current source');
+  for(const source of [raw,raw.replaceAll('\n','\r\n')])assert.equal(preNativePreviewCiSource(path,source),row.before.source);
+  for(const value of [raw+'\n',raw.slice(1),raw.replace('native','foreign'),null,{},17])assert.equal(preNativePreviewCiSource(path,value),value);
+  for(const foreign of ['__proto__','constructor','foreign/'+path,path+'/extra'])assert.equal(preNativePreviewCiSource(foreign,raw),raw);
+  const reader=(p,encoding)=>encoding?raw:Buffer.from(raw);
+  assert.equal(runHudPriorRead(reader)(path,'utf8'),row.before.source);
+  assert.deepEqual(runHudPriorRead(reader)(path),Buffer.from(row.before.source));
+  assert.equal(runHudPriorRead(()=>raw+'\n')(path,'utf8'),raw+'\n');
+ }
+ const path='scripts/native-candidate-preview.mjs',raw=readFileSync(path,'utf8');
+ assert.equal(closeoutRead('pr629')(path,'utf8'),nativePreviewCiProof.files[path].before.source);
+ assert.equal(closeoutRead('pr629',()=>raw+'\n')(path,'utf8'),raw+'\n');
+ assert.equal(readFileSync(path,'utf8'),raw,'projection never writes the runtime script');
+ assert(Object.isFrozen(nativePreviewCiProof.files[path].after));
+});
