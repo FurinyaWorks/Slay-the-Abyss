@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "review_task": "胡桃机制独立评审",
+  "run_identifier": "unavailable",
+  "checked_at_utc": "2026-11-14T13:24:33Z",
+  "source": {
+    "candidate_id": "baseline-pr640-99cc1e0",
+    "source_ref": "99cc1e0537dd611c0167584458a82ba5545694f7",
+    "implementation_parent_head": "096d0dd300ce3e68caa3ae296d7c3bad2482c77c",
+    "git_blob_sha": "364e1d3e8c8559e2fcb26276b9ae8a2813f21735",
+    "sha256": "d285b858e7261fac659141ec9dee97ef375550f5a7b1e14a30922ee3bdfbf373",
+    "byte_length": 98864
+  },
+  "runtime": "Node.js v22.16.0 VM first script; no DOM or browser",
+  "command": "node experiments/characters/hutao-v6-lab/reviews/decisions/baseline-probes.mjs",
+  "status": "CHANGES_REQUESTED",
+  "mechanical_faces": {
+    "unique_cards": 75,
+    "faces": 150,
+    "starter": 10,
+    "reward_pool": 69
+  },
+  "scenario_slices": {
+    "faces_x_states": 1800,
+    "errors": 0,
+    "denied": 0,
+    "hp_states": [
+      72,
+      36,
+      8
+    ],
+    "butterfly_states": [
+      0,
+      2
+    ],
+    "marked_states": [
+      false,
+      true
+    ],
+    "upgrade_states": [
+      false,
+      true
+    ]
+  },
+  "natural_opening": {
+    "seed_range": [
+      1,
+      256
+    ],
+    "N": 256,
+    "e_in_hand": 115,
+    "heavy_in_hand": 108,
+    "e_and_heavy_in_hand": 44,
+    "e_without_attack": 5,
+    "e_with_normal": 109,
+    "initial_individual_canPlay_denials": 0
+  },
+  "same_hand_decision": {
+    "input": "72HP, 3 energy, first enemy 35HP/7 attack, hand e heavy normal guard, same seed 17",
+    "e_heavy_guard": {
+      "after_end_hero_hp": 66,
+      "enemy_hp": 23,
+      "remaining_mark_ticks": 1
+    },
+    "heavy_normal_guard": {
+      "after_end_hero_hp": 70,
+      "enemy_hp": 22,
+      "remaining_mark_ticks": 0
+    }
+  },
+  "upgraded_hearth": {
+    "card": "hearth+",
+    "text": "每张攻击牌首个命中额外+3伤。",
+    "hp72_normal_damage": 6,
+    "hp36_normal_damage": 9,
+    "expected_high_if_literal": 9
+  },
+  "q_order": {
+    "input": "36HP, butterfly 2, hand q normal, enemy 35HP",
+    "q_then_normal_enemy_hp_after_end": 12,
+    "normal_then_q_enemy_hp_after_end": 10,
+    "both_hp_after_end": 36
+  },
+  "first_battle_policy": {
+    "seed_range": [
+      1,
+      256
+    ],
+    "N": 256,
+    "method": "fixed exploratory greedy baseline; safe never plays E; proactive plays E first when butterfly inactive; both prioritize same other cards",
+    "safe": {
+      "win_count": 256,
+      "fail_count": 0,
+      "mean_finish_hp": 67.89453125,
+      "mean_turn": 3.4140625
+    },
+    "proactive": {
+      "win_count": 256,
+      "fail_count": 0,
+      "mean_finish_hp": 63.6484375,
+      "mean_turn": 2.6015625
+    },
+    "paired_proactive_finish_hp_lower": 214,
+    "paired_proactive_finish_hp_higher": 5,
+    "paired_equal": 37
+  },
+  "limitations": [
+    "Frozen historical baseline, not a retuned candidate",
+    "No five-battle campaign, camp, natural rewards or long-run economy",
+    "Forced single-card matrix is not natural availability or economic value",
+    "Deterministic seed enumeration is not a random population sample; no generalizable win-rate confidence intervals",
+    "One heuristic per strategy is not optimal policy; no blind player experience",
+    "No GUI, browser, platform or mobile tests",
+    "Control and author BASELINE notes were visible to this reviewer before finishing probes; not a fully blinded review"
+  ]
+}
