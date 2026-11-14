@@ -11,15 +11,18 @@ const child=(n,key)=>children(n).find(c=>c.name===key);
 const all=n=>[n,...children(n).flatMap(all)];
 function assertFlagInk(panel,theme){
  for(const key of ['cancel','confirm']){
-  const button=child(panel,key),hit=child(button,'hit'),t=theme.layout.stsCharacter;
-  assert.deepEqual(hit.size,t.rectangles[key].slice(2),'original native hit remains aligned');
+  const button=child(panel,key),hit=child(button,'hit');
+  // The approved full-background V25 selection supersedes the old idle layout.
+  // Keep its native hit and readable labels checked independently of the adapter.
+  assert.deepEqual(button.size,[180,60],'approved selection button bounds');
+  assert.deepEqual(hit.size,[180,60],'original native hit remains aligned');
   for(const name of ['normal','hover','pressed']){
    const face=child(hit,name),flag=child(face,'v25Flag'),label=child(face,'label');
    assert(flag&&child(flag,'cloth')&&child(flag,'rim'),'shared irregular flag material');
    assert.equal(child(face,'plate').visible,false);assert.equal(child(face,'border').visible,false);
-   assert.equal(label.text.colour,t.colour.buttonInk,'shared character ink token');
-   assert.equal(label.text.minFontSize,theme.font.minimum);assert(label.text.minFontSize>=14,'native reading minimum');
-   assert.equal(label.text.fontSize,t.font.button);assert.equal(label.text.content,key==='cancel'?'返回':'启程');
+   assert.equal(label.text.colour,theme.officialAssets.buttonInk,'shared character ink token');
+   assert.equal(label.text.minFontSize,24);assert(label.text.minFontSize>=Math.max(14,theme.font.minimum),'native reading minimum');
+   assert.equal(label.text.fontSize,24);assert.equal(label.text.content,key==='cancel'?'返回':'开始挑战');
   }
  }
 }
@@ -63,8 +66,8 @@ function assertTypeFrame(card,theme){
  if(child(card,'skin')){assert.equal(child(card,'skin').visible,false);assert.equal(children(child(card,'skin')).length,0,'old rounded frame cannot survive behind new chrome');}
 }
 function assertDisabledInk(hit,theme){
- const enabled=child(child(hit,'normal'),'label'),disabled=child(child(hit,'disabled'),'label'),t=theme.layout.stsCharacter;
- assert.equal(enabled.text.colour,t.colour.buttonInk);assert.equal(disabled.text.colour,t.colour.muted,'shared disabled selection token');
+ const enabled=child(child(hit,'normal'),'label'),disabled=child(child(hit,'disabled'),'label');
+ assert.equal(enabled.text.colour,theme.officialAssets.buttonInk);assert.equal(disabled.text.colour,theme.color.textMuted,'shared disabled selection token');
  assert.notEqual(disabled.text.colour,enabled.text.colour,'disabled label retains contrast');
  for(const text of [enabled,disabled])assert(text.text.minFontSize>=Math.max(14,theme.font.minimum));
  const brightness=hex=>[1,3,5].reduce((sum,i)=>sum+parseInt(hex.slice(i,i+2),16),0);
@@ -94,8 +97,10 @@ test('official battle HUD can render at least one full native text line without 
 test('official selection flags retain readable shared ink and their aligned native hit surface',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme);applyOfficialAssets([layout],theme);
  const panel=child(layout,'characterPanel');assertFlagInk(panel,theme);
- const old=structuredClone(panel);child(child(child(old,'confirm'),'hit'),'normal').children.find(n=>n.name==='label').text.colour='#FFF8E7';
- assert.throws(()=>assertFlagInk(old,theme),/shared character ink token/,'old generic button ink must fail');
+ const old=structuredClone(panel);child(child(child(old,'confirm'),'hit'),'normal').children.find(n=>n.name==='label').text.colour=theme.layout.stsCharacter.colour.buttonInk;
+ assert.throws(()=>assertFlagInk(old,theme),/shared character ink token/,'superseded idle-layout ink must fail');
+ const misaligned=structuredClone(panel);child(child(misaligned,'confirm'),'hit').size=[180,54];
+ assert.throws(()=>assertFlagInk(misaligned,theme),/original native hit remains aligned/,'old hit bounds must fail');
 });
 test('official card hosts share the measured back/front frame, visible cost and native reading minimum',()=>{
  const source=JSON.stringify(nativeTheme),theme=officialAssetsTheme(nativeTheme);
@@ -160,7 +165,7 @@ test('selection disabled labels keep their shared muted token and visible contra
  assertDisabledInk(hit,theme);
  const old=structuredClone(hit);child(child(old,'disabled'),'label').text.colour=child(child(old,'normal'),'label').text.colour;
  assert.throws(()=>assertDisabledInk(old,theme),/shared disabled selection token/,'losing disabled distinction must fail');
- const changed=structuredClone(theme);changed.layout.stsCharacter.colour.muted='#777777';const tokenLayout=gameLayout();applyOfficialAssets([tokenLayout],changed);
+ const changed=structuredClone(theme);changed.color.textMuted='#777777';const tokenLayout=gameLayout();applyOfficialAssets([tokenLayout],changed);
  assertDisabledInk(child(child(child(tokenLayout,'characterPanel'),'confirm'),'hit'),changed);
 });
 
