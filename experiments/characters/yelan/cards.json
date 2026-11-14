@@ -1,0 +1,17 @@
+{
+  "version":"yelan-g3-r0-20261114","status":"candidate; naming HOLD; balance UNVERIFIED; human_playtest NOT_RUN; production FORBIDDEN",
+  "cards":[
+    {"id":"YL-P001","role":"基础攻击","type":"attack","cost":1,"rarity":"basic","base":[["damage",6]],"upgrade":[["damage",9]]},
+    {"id":"YL-P002","role":"基础防御","type":"skill","cost":1,"rarity":"basic","base":[["block",5]],"upgrade":[["block",8]]},
+    {"id":"YL-P003","role":"低输出铺索","type":"attack","cost":1,"rarity":"basic","base":[["damage",3],["line",1]],"upgrade":[["damage",5],["line",1]]},
+    {"id":"YL-P004","role":"提前兑现","type":"attack","cost":1,"rarity":"basic","base":[["cash",4,5]],"upgrade":[["cash",6,5]]},
+    {"id":"YL-P005","role":"纯伤击杀阈值","type":"attack","cost":2,"rarity":"common","base":[["damage",14]],"upgrade":[["damage",18]]},
+    {"id":"YL-P006","role":"防守时铺索","type":"skill","cost":1,"rarity":"common","base":[["block",4],["line",1]],"upgrade":[["block",7],["line",1]]},
+    {"id":"YL-P007","role":"集中铺索但牺牲防守","type":"skill","cost":1,"rarity":"common","base":[["line",2]],"upgrade":[["line",3]]},
+    {"id":"YL-P008","role":"爆发窗口","type":"skill","cost":2,"rarity":"uncommon","base":[["dice",3,3]],"upgrade":[["dice",3,4]]},
+    {"id":"YL-P009","role":"连续攻击组件","type":"attack","cost":1,"rarity":"common","base":[["damage",4],["draw",1]],"upgrade":[["damage",7],["draw",1]]},
+    {"id":"YL-P010","role":"放弃本回合攻击求稳定防守","type":"skill","cost":2,"rarity":"common","base":[["block",13]],"upgrade":[["block",17]]},
+    {"id":"YL-P011","role":"维持手牌流但占能量","type":"skill","cost":1,"rarity":"common","base":[["draw",2]],"upgrade":[["draw",3]]},
+    {"id":"YL-P012","role":"不消耗索的小兑现与大兑现竞争","type":"attack","cost":1,"rarity":"uncommon","base":[["scaled",3,2]],"upgrade":[["scaled",5,2]]}
+  ]
+}
