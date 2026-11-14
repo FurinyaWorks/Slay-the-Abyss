@@ -8,6 +8,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "check:release-notes": "node scripts/check-release-changelog.mjs",
     "task:pick": "node scripts/check-task-intake.mjs",
     "check:guidance": "node scripts/check-agent-guidance.mjs",
     "setup:lua-static": "node scripts/setup-lua-static.mjs",
@@ -34,7 +35,7 @@
     "verify:backlog": "node scripts/verify-backlog-roadmap.mjs",
     "verify:outcome": "node scripts/product-outcome.mjs",
     "replay:outcome": "node scripts/replay-ui-outcome.mjs",
-    "check:rules": "npm run check:guidance && npm run check:network && npm run check:platform-load && npm run verify:backlog && npm run check:syntax && npm test && npm run validate:data && npm run test:lua && npm run build:theme && npm run check:engineering",
+    "check:rules": "npm run check:release-notes && npm run check:guidance && npm run check:network && npm run check:platform-load && npm run verify:backlog && npm run check:syntax && npm test && npm run validate:data && npm run test:lua && npm run build:theme && npm run check:engineering",
     "check": "npm run check:rules && npm run test:presentation",
     "check:network": "node scripts/check-network-policy.mjs",
     "test:fast": "node scripts/test-affected.mjs --fast",
