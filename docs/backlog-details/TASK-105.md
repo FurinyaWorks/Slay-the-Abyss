@@ -36,3 +36,4 @@ R1 历史模拟器帧仍保留在 `docs/evidence/liyue-transition/`，不代表 
 ![确认角色到开局的完整帧序列](../evidence/liyue-transition/reference-adaptation/transition.gif)
 
 [候选身份、原始截图收据和运行日志](../evidence/liyue-transition/reference-adaptation/capture.json)；[参考图形同条件逐像素比较及原时间轴](../evidence/liyue-transition/reference-adaptation/reference-comparison.json)。GIF 首尾停留为便于查看而延长，中间按实采时间点显示，没有延长游戏自身 8 秒时长。这是实际候选 Lua 的模拟器软件画面，R2 官方导入/设备验收保持待验。
+保存的文本测试输出只规范化行尾空格，原始失败与重跑输出仍保留在本轮 .artifacts；前轮唯一失败为进程预载10项旧标记，11项Lua已全过，唯一失败组重跑后通过。

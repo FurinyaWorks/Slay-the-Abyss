@@ -38,7 +38,7 @@ not ok 6 - generated Chinese display and native tree exercise the real game entr
   failureType: 'testCodeFailure'
   error: |-
     The input did not match the regular expression /^LUA_GAME_UI_PROLOGUE_PASS 10$/m. Input:
-    
+
     'LORE_PREVIEW\tintro1\t岩层深处传来了异常的共鸣。\n' +
       'LORE_PREVIEW\tintro2\t古老的封印正在崩解……\n' +
       'LORE_PREVIEW\tintro3\t旅行者，深入遗迹，阻止深渊的侵蚀。\n' +
@@ -63,7 +63,7 @@ not ok 6 - generated Chinese display and native tree exercise the real game entr
       'ABYSS_RUN seed=42 source=explicit\n' +
       'ok prologue 11 - reference element and veil boundaries execute at their actual timestamps\n' +
       'LUA_GAME_UI_PROLOGUE_PASS 11\n'
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected:
@@ -92,7 +92,7 @@ not ok 6 - generated Chinese display and native tree exercise the real game entr
     ABYSS_RUN seed=42 source=explicit
     ok prologue 11 - reference element and veil boundaries execute at their actual timestamps
     LUA_GAME_UI_PROLOGUE_PASS 11
-    
+
   operator: 'match'
   stack: |-
     file:///F:/New%20folder/.worktrees/liyue-transition/tests/game-ui.test.mjs:96:12
