@@ -5,6 +5,17 @@ local root=F.Viewport.apply(F.control({children=F.Layout}),1280,720)
 local icon=root:GetChild('relicBar'):GetChild('slot1'):GetChild('icon')
 local pool=icon.parent:GetChild('iconArt')
 local platform={imageSource='static',color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end}
+local unsupportedParent={GetChild=function()error('unnamed icon must not look up an art pool')end}
+for _,unsupported in ipairs({{parent=unsupportedParent},{name=42,parent=unsupportedParent},
+ {name='icon',parent={alive=false,GetChild=unsupportedParent.GetChild}}})do
+ assert(not Art.paint(unsupported,'relic','calling_bell',42,platform),'unnamed icon retains existing picture')
+ Art.hide(unsupported);Art.scale(unsupported,1)
+end
+assert(not Art.paint(nil,'relic','calling_bell',42,platform),'missing optional icon retains fallback')
+local dead=setmetatable({alive=false},{__index=function()error('dead icon must not be read')end})
+assert(not Art.paint(dead,'relic','calling_bell',42,platform))
+local deadPool=setmetatable({alive=false},{__index=function()error('dead pool must not be written')end})
+assert(not Art.paint({name='icon',parent={GetChild=function()return deadPool end}},'relic','calling_bell',42,platform))
 local writes=0
 for _,shape in pairs(pool.children)do local set=shape.SetImage;shape.SetImage=function(self,...)writes=writes+1;return set(self,...)end end
 local relics=0
