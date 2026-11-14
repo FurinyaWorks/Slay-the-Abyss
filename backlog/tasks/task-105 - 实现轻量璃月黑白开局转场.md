@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-14 07:06'
-updated_date: '2026-11-14 07:27'
+updated_date: '2026-11-14 07:28'
 labels: []
 milestone: m-8
 dependencies: []
@@ -27,7 +27,7 @@ ordinal: 174000
 - [x] #1 确认角色到开局展示短时黑白璃月过场，原生控件数量有据可查
 - [x] #2 遮挡和输入隔离覆盖全程，结束与取消不残留遮罩，菜单选角开局流程回归通过
 - [ ] #3 提供当前实现实际截图和完整前后衔接证据，明确模拟器与官方实机验证边界
-- [ ] #4 完成独立评审并提交目标 develop 的正常 PR
+- [x] #4 完成独立评审并提交目标 develop 的正常 PR
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -40,4 +40,6 @@ ordinal: 174000
 
 <!-- SECTION:NOTES:BEGIN -->
 已实现并独立复审通过；工程门禁、12项定向回归与同候选实际 Lua 模拟器截图完成。存档交用户手动新导入；官方导入、ready与设备视觉待验，AC3保持未完成。技术证据见 docs/backlog-details/TASK-105.md。
+
+正常 PR #660 已创建：https://github.com/FurinyaWorks/Slay-the-Heavens/pull/660。精确源码提交818d26dc由独立审查 /root/review_liyue_transition 通过；官方实机/视觉 AC3待用户导入验收，保持 In Progress，不自动合并。
 <!-- SECTION:NOTES:END -->
