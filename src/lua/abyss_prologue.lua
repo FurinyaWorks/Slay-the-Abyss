@@ -35,7 +35,6 @@ function M.new(panel, options)
         control.imageColor=options.color(c.r,c.g,c.b,math.floor(255*clamp(alpha)+0.5))
     end
     local function changed() if options.onPhase then options.onPhase() end end
-    local function sound(cue) if options.sound then pcall(options.sound,cue) end end
     function state:covering() return self.playing end
     function state:opaque() return self.playing and (self.phase=='hold' or self.phase=='close') end
     function state.resize(_,width,height)
@@ -62,7 +61,7 @@ function M.new(panel, options)
         if self.playing then return false end
         self.playing,self.phase,self.t,self.elapsed,self.commit=true,'cover',0,0,commit
         self.displayed,self.target,self.lit=0,0,nil
-        self:pose();panel:SetVisible(true);sound('transition_enter')
+        self:pose();panel:SetVisible(true)
         print('ABYSS_TRANSITION begin')
         return true
     end
@@ -94,7 +93,6 @@ function M.new(panel, options)
         self.displayed=math.min(self.target,self.displayed+dt/P.elementStep)
         if target==7 and self.displayed>=7 and self.t>=P.markIn then
             self.phase,self.t='close',0
-            sound('transition_leave')
             print('ABYSS_TRANSITION complete elapsed='..self.elapsed)
         end
     end

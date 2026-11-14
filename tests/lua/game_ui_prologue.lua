@@ -157,14 +157,14 @@ test('unfinished preparation never advances a light or uncovers the destination'
     assert(ui.nodeUI.visible and not panel(root).visible)
 end)
 
-test('audio fires once on entry and successful completion; cancellation and sound errors are safe',function()
+test('transition stays silent on entry, completion and cancellation',function()
     local cues={}
     local ui=host(function(cue)cues[#cues+1]=cue end)
     selected(ui);assert(ui:confirmCharacter());assert(not ui:confirmCharacter());finish(ui);ui:update(1)
-    assert(#cues==2 and cues[1]=='transition_enter' and cues[2]=='transition_leave')
+    assert(#cues==0,'transition must not play audio on entry or completion')
     local cancelled=host(function(cue)cues[#cues+1]=cue end)
     selected(cancelled);assert(cancelled:confirmCharacter());cancelled.prologue:cancel();cancelled:refresh();cancelled:update(10)
-    assert(#cues==3 and cues[3]=='transition_enter','cancelled preparation must not play the completion cue')
+    assert(#cues==0,'cancelled transition must stay silent')
     local silent=host(function()error('unavailable sound device')end)
     selected(silent);assert(silent:confirmCharacter());finish(silent);assert(silent.nodeUI.visible)
 end)

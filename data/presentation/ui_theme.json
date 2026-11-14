@@ -402,8 +402,6 @@
     "enemy_die_large": 20093,
     "victory": 50919,
     "defeat": 50931,
-    "transition_enter": 50944,
-    "transition_leave": 50945,
     "prologue_rumble": 40224,
     "prologue_crack": 50928,
     "prologue_rise": 50926,
