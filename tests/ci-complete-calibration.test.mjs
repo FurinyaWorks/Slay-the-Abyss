@@ -1,5 +1,6 @@
 import {closeoutRead,closeoutInventory,preCloseoutCiSource,closeoutCiProof} from './helpers/closeout-ci-source.mjs';
 import {runHudPriorRead,runHudPriorInventory,preRunHudCiSource,runHudCiProof,runHudBeforeCiRepairProof} from './helpers/run-hud-ci-source.mjs';
+import {stsStylePriorRead,stsStylePriorInventory} from './helpers/sts-style-ci-source.mjs';
 import {receiptToolingSource,toolingProof} from './helpers/integration-1111-tooling.mjs';
 import {cursesPlanningFloors,cursesGateProof,preCursesGateSource} from './helpers/curses-ci-planning.mjs';
 import {jointCiSourceAt,jointCiInventoryAt,jointCiMatches,preCurrentPlanningSource,preRatchetInventory,ratchetInventoryFile} from './helpers/joint-ui-ci-source-inverse.mjs';
@@ -1867,7 +1868,9 @@ test('combined closeout validates raw current sources and complete Full discover
  }
  for(const [path,id]of Object.entries(closeoutCiProof.current)){
   if(id===null)continue;
-  const source=nativeCloseoutRead(path,'utf8').replaceAll('\r\n','\n');
+  const source=(path==='config/architecture.json'||path.startsWith('src/lua/')
+   ?joustEpoch.preCombinedSource(path,joustCurrentSource(path),{target:'stsStylePrior',readSource:joustCurrentSource})
+   :nativeCloseoutRead(path,'utf8')).replaceAll('\r\n','\n');
   assert.equal(hash(source),id,'raw current source: '+path);
   for(const view of Object.keys(closeoutCiProof.targets)){
    for(const foreign of [source+'\n',source.slice(1),null,{},17])assert.equal(preCloseoutCiSource(path,foreign,view),foreign,path+'/'+view);
@@ -1931,14 +1934,14 @@ test('noncombat immutable added inventory keeps its full source and unknown-cost
 });
 
 test('run HUD continuation authenticates complete current sources and raw Full inventory without rewriting historical receipts',()=>{
- const p=runHudCiProof,files=liveDiscoverJs();
+ const p=runHudCiProof,files=stsStylePriorInventory(liveDiscoverJs()),priorRead=stsStylePriorRead(liveDiskReadFileSync);
  assert.deepEqual(runHudBeforeCiRepairProof.afterInventory,p.afterInventory,'Full repair retains the complete preceding inventory');
  for(const [path,row]of Object.entries(runHudBeforeCiRepairProof.files))assert.deepEqual(p.files[path].before,row.before,'original receipt predecessor retained: '+path);
  assert.deepEqual(files,p.afterInventory,'complete current Full discovery');
  assert.equal(new Set(files).size,files.length);
  assert.deepEqual(runHudPriorInventory(files),closeoutCiProof.inventory,'exact original closeout inventory retained');
  for(const [path,row]of Object.entries(p.files)){
-  const raw=liveDiskReadFileSync(path,'utf8').replaceAll('\r\n','\n');
+  const raw=priorRead(path,'utf8').replaceAll('\r\n','\n');
   assert.equal(hash(raw),row.after.sha256,'complete current HUD source: '+path);
   assert.equal(preRunHudCiSource(path,raw),row.before?.source??raw);
   for(const foreign of [raw+'\n',raw.slice(1),null,{},17])assert.equal(preRunHudCiSource(path,foreign),foreign);

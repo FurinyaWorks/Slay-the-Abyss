@@ -39,7 +39,10 @@ end
 function M.closeCharacters(self,selectionChanged)
     return function(_)
             if not self.characterOpen or self.starting then return false end
-            if self.characterSelection.deckOpen then self.characterSelection.deckOpen=false;selectionChanged();return true end
+            if self.characterSelection.deckOpen then
+                if self.deckUI.previewInfo then return self:closeDeck()end
+                self.characterSelection.deckOpen=false;selectionChanged();return true
+            end
             self.characterOpen=false;self.characterSelection:clear()
             selectionChanged();return true
         end

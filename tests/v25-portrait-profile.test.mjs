@@ -124,7 +124,8 @@ assert(a:status().selection.owned==0 and a:status().avatar.owned==0 and LiveCoun
  'official title eagerly built hidden selection')
 assert(a:sync('menu',true,false,'ironclad',true));a:tick()
 local partial=a:status().selection;local allocated=LiveCount()
-assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.battlePixel.rows)
+assert(partial.owned>0 and partial.phase=='building' and partial.total==#Asset.battleApprovedIdle.rows)
+assert(a:status().avatar.phase=='disabled' and a:status().avatar.owned==0,'official crop allocated a separate avatar')
 assert(not selectionHost.visible,'partial official selection was exposed')
 assert(a:sync('menu',false,false,'ironclad',true))
 for _=1,20 do a:tick()end
@@ -132,15 +133,15 @@ assert(LiveCount()==allocated and a:status().selection.nextIndex==partial.nextIn
  'cancelled official selection kept building or discarded its cached partial drawing')
 assert(not selectionHost.visible and not avatar.visible)
 assert(a:sync('menu',true,false,'ironclad',true))
-for _=1,1000 do a:tick();if a:status().selection.phase=='ready' and a:status().avatar.phase=='ready' then break end end
-assert(a:status().selection.phase=='ready' and a:status().avatar.phase=='ready')
+for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
+assert(a:status().selection.phase=='ready' and a:status().avatar.phase=='disabled' and a:status().avatar.owned==0)
 local complete=LiveCount();local generation=a:status().selection.generation
-assert(selectionHost.visible and avatar.visible)
+assert(selectionHost.visible and not avatar.visible)
 for _=1,5 do
  assert(a:sync('menu',false,false,'ironclad',true));for _=1,5 do a:tick()end
  assert(not selectionHost.visible and not avatar.visible and LiveCount()==complete)
  assert(a:sync('menu',true,false,'ironclad',true));a:tick()
- assert(selectionHost.visible and avatar.visible and LiveCount()==complete)
+ assert(selectionHost.visible and not avatar.visible and a:status().avatar.owned==0 and LiveCount()==complete)
  assert(a:status().selection.generation==generation,'cached official selection was rebuilt')
 end
 assert(a:release() and LiveCount()==0)
@@ -148,7 +149,7 @@ os.clock=originalClock
 `,{runtimeV2:true,officialAssets:true});
 });
 
-test('official hidden roster does not build its avatar and visible roster can prepare cancel and resume',()=>{
+test('official roster visibility never allocates a second avatar and retains the shared selection cache',()=>{
  withPortraitVm(`
 Theme.presentationProfile='official-assets-first'
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
@@ -161,30 +162,29 @@ assert(a:sync('menu',true,false,'ironclad',true))
 for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
 for _=1,20 do a:tick()end
 assert(a:status().selection.phase=='ready' and selectionHost.visible)
-assert(a:status().avatar.phase=='idle' and a:status().avatar.owned==0,
+assert(a:status().avatar.phase=='disabled' and a:status().avatar.owned==0,
  'official hidden roster allocated an invisible avatar')
 assert(LiveCount()==a:status().selection.owned)
+local complete=LiveCount();local generation=a:status().selection.generation;local selected=Images()
 traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
-local partial=a:status().avatar;local count=LiveCount()
-assert(partial.phase=='building' and partial.owned>0,'visible full-source roster did not begin its avatar')
+assert(a:status().avatar.phase=='disabled' and a:status().avatar.owned==0,'visible official roster allocated a duplicate avatar')
 traveler:SetVisible(false);assert(a:sync('menu',true,false,'ironclad',true))
 for _=1,20 do a:tick()end
-assert(not avatar.visible and LiveCount()==count and a:status().avatar.nextIndex==partial.nextIndex,
- 'hiding roster did not pause and retain its partial avatar')
+assert(not avatar.visible and LiveCount()==complete,'roster visibility changed shared allocation ownership')
 assert(a:status().selection.phase=='ready' and selectionHost.visible,'avatar visibility disturbed main art')
 traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true))
-for _=1,1000 do a:tick();if a:status().avatar.phase=='ready' then break end end
-assert(a:status().avatar.phase=='ready' and avatar.visible)
-local complete=LiveCount();local generation=a:status().avatar.generation
+for _=1,20 do a:tick()end
+assert(a:status().avatar.phase=='disabled' and not avatar.visible)
 traveler:SetVisible(false);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
 assert(not avatar.visible and LiveCount()==complete)
 traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad',true));a:tick()
-assert(avatar.visible and LiveCount()==complete and a:status().avatar.generation==generation)
+assert(not avatar.visible and LiveCount()==complete and a:status().selection.generation==generation)
+for i,image in ipairs(Images())do assert(image==selected[i],'roster visibility replaced cached selection rows')end
 assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
 });
 
-test('official selection retains its bounded cache while battle uses the approved idle and full-body literals remain available',()=>{
+test('official half-body selection and battle retain independent caches from one approved idle while full-body literals remain available',()=>{
  withPortraitVm(`
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
@@ -192,7 +192,7 @@ stage.children.characterPanel.children.details=tree({officialSelectionFigure=sel
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
 traveler:SetVisible(false)
 assert(Asset.battle133.count==4315 and #Asset.battle133.rows==4315,'full-source figure was replaced')
-assert(Asset.battlePixel.count==57 and #Asset.battlePixel.rows==57)
+assert(Asset.battlePixel==nil,'official runtime must not revive the temporary pixel surrogate')
 local idle=assert(Asset.battleApprovedIdle)
 assert(idle.renderProfile=='approved-idle-v1' and idle.count==7303 and #idle.rows==7303)
 assert(#idle.bands==18 and #idle.bandByRow==7303 and idle.samplesPerCycle==20 and idle.period==2.2)
@@ -200,9 +200,14 @@ assert(idle.sourceSha256=='32830a9ab3f0b181202205bba59447efe660ce3225ab26f32943c
 local a=Portraits.new(stage,nil,{selectionAvatar=true,battlePortrait=true})
 assert(a:sync('menu',true,false,'ironclad'))
 for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
-assert(a:status().selection.total==57 and a:status().selection.owned<=60,
- 'official selection did not retain its explicit bounded source')
-assert(#Images()==57 and a:status().avatar.owned==0)
+local crop=Asset.selectionProfile.crop;local croppedRows=0
+for _,r in ipairs(idle.rows)do
+ if r[2]+r[4]/2>crop.left and r[2]-r[4]/2<crop.right and r[3]+r[5]/2>crop.bottom and r[3]-r[5]/2<crop.top then croppedRows=croppedRows+1 end
+end
+assert(croppedRows>0 and croppedRows<idle.count,'selection crop did not retain an actual half-body subset')
+assert(a:status().selection.total==idle.count and #Images()==croppedRows,
+ 'official selection did not crop the shared source rows exactly')
+assert(a:status().avatar.phase=='disabled' and a:status().avatar.owned==0)
 local selected=Images();local selectedTraces={}
 for i,image in ipairs(selected)do
  selectedTraces[i]={};for j,record in ipairs(image.trace)do selectedTraces[i][j]={table.unpack(record)}end
@@ -211,8 +216,8 @@ assert(a:sync('battle',false,false,'ironclad'))
 for _=1,1000 do a:tick();if a:status().battle.phase=='ready' then break end end
 local both=Images();local battle=a:status().battle
 assert(battle.phase=='ready' and battle.total==7303 and battle.owned==7459,'approved source did not reach its measured native cache')
-assert(#both==57+7303,'selection and approved combat did not keep their exact independent image counts')
-for i=1,57 do assert(both[i]==selected[i],'battle replaced the selection cache');Equal(selectedTraces[i],selected[i].trace)end
+assert(#both==croppedRows+7303,'selection and approved combat did not keep their exact independent image counts')
+for i=1,croppedRows do assert(both[i]==selected[i],'battle replaced the selection cache');Equal(selectedTraces[i],selected[i].trace)end
 local generation=battle.generation;local complete=LiveCount()
 assert(a:sync('menu',true,false,'ironclad'));a:tick()
 assert(a:sync('battle',false,false,'ironclad'));a:tick()
@@ -223,31 +228,31 @@ assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
 });
 
-test('official selection rejects missing shared pixel source instead of silently building the old full-body drawing',()=>{
+test('official selection rejects a missing approved shared idle instead of silently building the old full-body drawing',()=>{
  withPortraitVm(`
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
-Asset.battlePixel=nil
+Asset.battleApprovedIdle=nil
 local ok,reason=pcall(Portraits.new,stage,nil,{selectionAvatar=true})
-assert(not ok and tostring(reason):find('shared battle pixel',1,true),
+assert(not ok and tostring(reason):find('shared approved battle idle',1,true),
  'official selection silently fell back to 4315 primitives')
 assert(LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
 });
 
 test('official selection rejects unmarked or foreign source schema without building a fallback',()=>{
- for(const marker of ['nil',"'battle133'"]){
+ for(const marker of ['nil',"'battle133'","'battlePixel'"]){
   withPortraitVm(`
 local selectionHost=tree();local frame=tree();rawset(frame,'sizeDeltaX',440)
 local note=tree();note.text=''
 stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
  portraits=tree({traveler_ironclad=tree()}),portraitNote=note})
 Asset.selectionUses=${marker}
-assert(Asset.battlePixel and Asset.battlePixel.count==57)
+assert(Asset.battleApprovedIdle and Asset.battleApprovedIdle.count==7303)
 local ok,reason=pcall(Portraits.new,stage,nil,{selectionAvatar=true})
-assert(not ok and tostring(reason):find('shared battle pixel schema',1,true),'unmarked official source was accepted')
+assert(not ok and tostring(reason):find('shared approved idle schema',1,true),'unmarked official source was accepted')
 assert(LiveCount()==0)
 `,{runtimeV2:true,officialAssets:true});
  }

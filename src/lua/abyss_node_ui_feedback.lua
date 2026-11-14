@@ -5,6 +5,22 @@ local C = Theme.color
 local layout = Theme.layout.nativeNode
 local M = {}
 
+local function neowChoiceChrome(ctx, box, look, hover, pressed)
+    local chrome = box:GetChild('stsNeowChrome')
+    if not chrome then return end
+    local flow = ctx.self.run.nodeFlow
+    local active = flow and flow.event and flow.event.id == 'neow'
+    chrome:SetVisible(active == true)
+    for _,name in ipairs({'v25BaseMaterial','v25StateChrome','v25Corner0_0','v25Corner0_1','v25Corner1_0','v25Corner1_1'})do
+        local part=box:GetChild(name);if part then part:SetVisible(not active)end
+    end
+    if not active then return end
+    for _, name in ipairs({'border','normal','hover','pressed','disabled','selected'}) do box:GetChild(name):SetVisible(false) end
+    local token = layout.event.neow.stsChoice
+    local face = not look.enabled and token.disabled or pressed and token.pressed or hover and token.hover or token.face
+    for _, part in ipairs(chrome:GetChild('face'):GetChildren()) do ctx.tint(part, face) end
+end
+
 local function referenceCamp(ctx, box)
     local reference, camp = layout.camp.reference, ctx.child('campView')
     if not reference or box.parent ~= camp then return end
@@ -26,6 +42,12 @@ local function referenceShop(ctx, box, look, hover)
 end
 
 local function referenceChrome(ctx, box, look, hover)
+    local reference = layout.event.reference
+    if reference and box.parent == ctx.child('eventView') then
+        ctx.tint(box:GetChild('hover'), reference.hover)
+        ctx.tint(box:GetChild('pressed'), reference.pressed)
+        ctx.tint(box:GetChild('border'), hover and reference.hoverBorder or reference.border)
+    end
     local buttons = layout.referenceButtons
     if not buttons then return end
     local label = box:GetChild('label')
@@ -33,12 +55,6 @@ local function referenceChrome(ctx, box, look, hover)
         local palette = box.parent == ctx.root and buttons.flag or buttons.choice
         ctx.tint(box:GetChild('hover'), palette.hover);ctx.tint(box:GetChild('pressed'), palette.pressed)
         ctx.ink(label, look.enabled and buttons.ink or buttons.disabledInk)
-    end
-    local reference = layout.event.reference
-    if reference and box.parent == ctx.child('eventView') then
-        ctx.tint(box:GetChild('hover'), reference.hover)
-        ctx.tint(box:GetChild('pressed'), reference.pressed)
-        ctx.tint(box:GetChild('border'), hover and reference.hoverBorder or reference.border)
     end
     referenceCamp(ctx, box)
     referenceShop(ctx, box, look, hover)
@@ -83,6 +99,7 @@ function M.install(ctx)
         end
         paintButtonFrame()
         referenceChrome(ctx, box, look, hover)
+        neowChoiceChrome(ctx, box, look, hover, pressed)
         local scale = pressed and layout.buttonStates.pressedScale or layout.buttonStates.normalScale
         box:SetLocalScale(scale, scale, 1)
     end

@@ -84,6 +84,11 @@ local function v25Profile(asset)
     validate(drawing,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
     return profile
 end
+local function validateCrop(data,crop)
+    if not crop then return end
+    assert(data.renderProfile=='approved-idle-v1' and crop.left<crop.right and crop.bottom<crop.top,'invalid shared idle crop')
+    assert(crop.left>=-data.width/2 and crop.right<=data.width/2 and crop.bottom>=-data.height/2 and crop.top<=data.height/2,'shared idle crop outside source')
+end
 local function controller(host, data, display, templates, options)
     local Idle=idleModule(data)
     local Asset=templates or require('abyss_traveler_portrait_assets')
@@ -93,6 +98,8 @@ local function controller(host, data, display, templates, options)
     local rotation=type(options)=='table' and options.rotation or 0
     local tint=type(options)=='table' and options.tint
     local base=type(options)=='table' and options.position or nil
+    local crop=type(options)=='table' and options.crop or nil
+    validateCrop(data,crop)
     if base then base={base[1],base[2]}end
     assert(host,'missing dedicated portrait host')
     local self,created={},{}
@@ -215,7 +222,9 @@ local function controller(host, data, display, templates, options)
             -- Shared template supplies the white image and identity transforms.
             -- Basic shape 100001 has no imageType field. Its rectangle is sized
             -- directly; gallery nine-slice modes do not apply to this resource.
-            call(token,c,'SetSizeDelta',r[4],r[5]);call(token,c,'SetAnchoredPosition',r[2],r[3])
+            local left,right,bottom,top=r[2]-r[4]/2,r[2]+r[4]/2,r[3]-r[5]/2,r[3]+r[5]/2
+            if crop then left,right,bottom,top=math.max(left,crop.left),math.min(right,crop.right),math.max(bottom,crop.bottom),math.min(top,crop.top)end
+            call(token,c,'SetSizeDelta',right-left,top-bottom);call(token,c,'SetAnchoredPosition',(left+right)/2,(bottom+top)/2)
             c.imageColor=rowColour(r);check(token)
             call(token,c,'SetVisible',true);return
         end
@@ -228,6 +237,13 @@ local function controller(host, data, display, templates, options)
         call(token,c,'SetLocalRotation',tri and r[19] or 0,tri and r[20] or 0,r[14]);call(token,c,'SetAnchoredPosition',r[2],r[3])
         c.imageColor=rowColour(r);check(token)
         call(token,c,'SetAsLastSibling');call(token,c,'SetActive',true);call(token,c,'SetVisible',true)
+    end
+    local function included(r)
+        return not crop or r[2]+r[4]/2>crop.left and r[2]-r[4]/2<crop.right and r[3]+r[5]/2>crop.bottom and r[3]-r[5]/2<crop.top
+    end
+    local function finishBuild(token)
+        if data.runtimeV2 then phase='revealing'
+        else call(token,host,'SetVisible',true);phase='ready'end
     end
     function self.status(_)
         local nativeActive,known
@@ -294,6 +310,10 @@ local function controller(host, data, display, templates, options)
             if pending then cleanup()end;working=false;return ok,'reveal'
         end
         local ok,err=pcall(function()
+            -- Invisible source rows do not create controls and must not spend
+            -- the shared 64-native-attempt budget or allocate empty idle bands.
+            if crop then while data.rows[nextIndex] and not included(data.rows[nextIndex])do nextIndex=nextIndex+1 end end
+            if nextIndex>#data.rows then finishBuild(token);return end
             local p=Idle and data.bandByRow[nextIndex] or math.floor((nextIndex-1)/3600)+1
             local g=math.floor((nextIndex-1)/60)+1
             if pageIndex~=p then
@@ -305,11 +325,10 @@ local function controller(host, data, display, templates, options)
                 call(token,group,'SetActive',not data.runtimeV2);call(token,group,'SetVisible',not data.runtimeV2)
                 if data.runtimeV2 then revealGroups[#revealGroups+1]={control=group,page=page}end
             else
-                local c=create(token,Asset.imagePrefabId,group);image(token,c,data.rows[nextIndex]);nextIndex=nextIndex+1
-                if nextIndex>#data.rows then
-                    if data.runtimeV2 then phase='revealing'
-                    else call(token,host,'SetVisible',true);phase='ready'end
-                end
+                local row=data.rows[nextIndex]
+                local c=create(token,Asset.imagePrefabId,group);image(token,c,row)
+                nextIndex=nextIndex+1
+                if nextIndex>#data.rows then finishBuild(token)end
             end
         end)
         if not ok and err~=CANCELLED then fail(err)end
@@ -380,8 +399,33 @@ local function activeTargets(mode,characterOpen,stopped,character,preloadSelecti
         selectScene=choosing or warm,battleScene=mode=='battle',menuScene=mode=='menu' and not choosing}
 end
 local function selectionFigure(Asset,official,profile)
-    return official and assert(Asset.battlePixel,'official selection requires shared battle pixel')
+    return official and assert(Asset.battleApprovedIdle,'official selection requires the shared approved battle idle')
                 or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
+end
+local function selectionController(Asset,official,profile,details,host,ownerEpoch)
+    if official then assert(Asset.selectionUses=='battleApprovedIdle','official selection requires shared approved idle schema')end
+    local figure=selectionFigure(Asset,official,profile)
+    if figure.renderProfile~='lowpoly-v1' then
+        validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
+    end
+    local slot=official and assert(Asset.selectionProfile,'official selection requires the reference slot')
+    local display=slot and slot.display or profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
+    return controller(host,figure,display,Asset,slot and {position=slot.position,crop=slot.crop,nativeLifecycle=true,ownerEpoch=ownerEpoch}
+        or profile and {position=profile.selectionPosition,nativeLifecycle=true,ownerEpoch=ownerEpoch})
+end
+local function requiredPortrait(row,scope,wanted,mode)
+    return (not scope or scope[row.name]) and (wanted[row.name] or row.name=='result' and (mode=='victory' or mode=='defeat'))
+end
+local function portraitReadiness(row,mode,resultOutcome)
+    local state=row.adapter:status()
+    if state.phase=='failed' or state.phase=='release_failed' or state.phase=='destroyed' then return false,state.reason or state.phase end
+    if not row.active or state.phase~='ready' or row.name=='result' and resultOutcome~=mode then return false end
+    return true
+end
+local function poseSelection(official,selection,dt,rows)
+    if official and selection and dt then
+        for _,row in ipairs(rows)do if row.name=='selection' and row.active then selection:pose(0,0,1,1,dt,'idle')end end
+    end
 end
 -- cardTemplates: ready-card image/container template indices, used when only the cards flag is on.
 function M.new(stage,report,flags,cardTemplates)
@@ -414,28 +458,25 @@ function M.new(stage,report,flags,cardTemplates)
         end
     end
     if selecting then
-        validate(Asset.avatar96,96,4822,'c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb','93bcf4303d370f7faac2b8289146acfe655bae6dced0abf5257e407d69f748ef')
         local panel=assert(stage:GetChild('characterPanel'))
         local traveler=assert(panel:GetChild('traveler'))
         local bust=assert(traveler:GetChild('hit'):GetChild('normal'):GetChild('bust'))
-        avatar=controller(traveler:GetChild('officialAvatar'),Asset.avatar96,assert(bust.sizeDeltaX),Asset,
-            profile and {nativeLifecycle=true,ownerEpoch=function()return epoch end})
+        if not official then
+            validate(Asset.avatar96,96,4822,'c30551e1fed1cd7f18c61b67fe0ad0cd6e52c61bfa6ae937ccd9e4c90e7f72bb','93bcf4303d370f7faac2b8289146acfe655bae6dced0abf5257e407d69f748ef')
+            avatar=controller(traveler:GetChild('officialAvatar'),Asset.avatar96,assert(bust.sizeDeltaX),Asset,
+                profile and {nativeLifecycle=true,ownerEpoch=function()return epoch end})
+        end
         details=panel:GetChild('details')
         local host=details and details:GetChild('officialSelectionFigure')
         if host then
-            if official then assert(Asset.selectionUses=='battlePixel','official selection requires shared battle pixel schema')end
-            local figure=selectionFigure(Asset,official,profile)
-            if figure.renderProfile~='lowpoly-v1' then
-                validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
-            end
-            local display=profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
-            selection=controller(host,figure,display,Asset,profile and {position=profile.selectionPosition,
-                nativeLifecycle=true,ownerEpoch=function()return epoch end})
+            selection=selectionController(Asset,official,profile,details,host,function()return epoch end)
             rows[#rows+1]={name='selection',adapter=selection,fallback={details:GetChild('portraits'):GetChild('traveler_ironclad')},active=false}
         end
-        local row={name='avatar',adapter=avatar,fallback={},active=false,visibleOwner=traveler}
-        for _,name in ipairs({'normal','hover','pressed','disabled'})do row.fallback[#row.fallback+1]=traveler:GetChild('hit'):GetChild(name):GetChild('bust')end
-        rows[#rows+1]=row
+        if avatar then
+            local row={name='avatar',adapter=avatar,fallback={},active=false,visibleOwner=traveler}
+            for _,name in ipairs({'normal','hover','pressed','disabled'})do row.fallback[#row.fallback+1]=traveler:GetChild('hit'):GetChild(name):GetChild('bust')end
+            rows[#rows+1]=row
+        end
     end
     if carding then
         -- Premium frames + low-poly illustrations fanned under the select details, like the breakthrough GIF.
@@ -573,7 +614,23 @@ function M.new(stage,report,flags,cardTemplates)
     end
     -- Prioritize the main selection figure over the small thumbnail.
     local buildOrder=rows
-    function self.tick(_)
+    local pagePortraits={characterPanel={avatar=true,selection=true,cardFan=true,selectScene=true},
+        battlePanel={battle=true,battleScene=true},menuPanel={menuScene=true,result=true}}
+    function self.readyForPage(_,mode,characterOpen,character,page)
+        local scope=page and pagePortraits[page]
+        if page and not scope then return true end
+        if destroyed then return false,'portrait owner destroyed' end
+        if busy then return false end
+        local wanted=activeTargets(mode,characterOpen,false,character,false)
+        for _,row in ipairs(rows)do
+            if requiredPortrait(row,scope,wanted,mode) then
+                local ready,reason=portraitReadiness(row,mode,resultOutcome)
+                if not ready then return false,reason end
+            end
+        end
+        return true
+    end
+    function self.tick(_,dt)
         if busy or destroyed then return end
         busy=true
         local start=os.clock()
@@ -585,6 +642,7 @@ function M.new(stage,report,flags,cardTemplates)
             end end
             if not progressed or kind=='reveal' or timeBudget and i%8==0 and os.clock()-start>=.008 then break end
         end
+        poseSelection(official,selection,dt,rows)
         paint();busy=false
     end
     function self.battlePose(_,x,y,sx,sy,dt,motionState)

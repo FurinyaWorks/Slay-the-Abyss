@@ -1,0 +1,125 @@
+{
+  "productionSha": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "inputs": {
+    "scripts/sts-card-reference-profile.mjs": "3c84278fc2a9fe0650da88f18f118bcb175068cbfffa416084e2f6fc641a0071",
+    "scripts/official-assets-layout.mjs": "2dc2ab9815f1062a17cf90ea72f4148046439fb4013d3e0bbd0aa4fbbcb64d33",
+    "scripts/v25-battle-scene.mjs": "06469c986db21466c28476674fcfe96b921b934d611c0a3cb6952e53fd003230",
+    "scripts/art/ready-card-runtime.mjs": "2b88f991db76c6f0574c64e49b6e5377b6e86506ee49651bb3e402aa264b7148",
+    "src/lua/abyss_card_skin.lua": "b6ffeaa67366613028633ee1859f03686d9127d0f5024ddba5a4479165ce7ef6",
+    "src/lua/abyss_card_display.lua": "802bcf70f9e992d21096fc60f9e58e9feb3acba368ab7504d4101f8b9cf14889",
+    "src/lua/abyss_card_art_runtime.lua": "76409f37c3e3d7bc42f1d7d08b475dfed70a47e1de9fecd5d83a6475ab4775bc",
+    "data/presentation/ui_theme.json": "35bb15b96c4de67388c9cf24e590a60dcc9d16357fee32430a2fc8988aacd9eb"
+  },
+  "officialFlags": {
+    "cards": false
+  },
+  "compatibilityArtProfile": "original precise+converted, compact:false; controlled injection only",
+  "compatibilityStates": [
+    {
+      "id": "bash",
+      "type": "attack",
+      "rarity": "basic",
+      "upgraded": false,
+      "fullText": "造成 8 点伤害，施加 2 层易伤。",
+      "assetShapes": 2556
+    },
+    {
+      "id": "armaments",
+      "type": "skill",
+      "rarity": "common",
+      "upgraded": false,
+      "fullText": "获得 5 点格挡，升级手中 1 张牌（本场战斗）。",
+      "assetShapes": 1834
+    },
+    {
+      "id": "inflame",
+      "type": "power",
+      "rarity": "uncommon",
+      "upgraded": false,
+      "fullText": "获得 2 层力量。",
+      "assetShapes": 2607
+    },
+    {
+      "id": "bash",
+      "type": "attack",
+      "rarity": "basic",
+      "upgraded": false,
+      "fullText": "造成 8 点伤害，施加 2 层易伤。",
+      "assetShapes": 2556
+    },
+    {
+      "id": "offering",
+      "type": "skill",
+      "rarity": "rare",
+      "upgraded": false,
+      "fullText": "消耗。失去 6 点生命，获得 2 点能量，抽 3 张牌。",
+      "assetShapes": 2591
+    },
+    {
+      "id": "burn",
+      "type": "status",
+      "rarity": "common",
+      "upgraded": false,
+      "fullText": "无法打出。回合结束时受到2点伤害。",
+      "assetShapes": 0
+    },
+    {
+      "id": "regret",
+      "type": "curse",
+      "rarity": "curse",
+      "upgraded": false,
+      "fullText": "无法打出。回合结束时，失去等同手牌张数的生命。",
+      "assetShapes": 0
+    },
+    {
+      "id": "bash",
+      "type": "attack",
+      "rarity": "basic",
+      "upgraded": false,
+      "fullText": "造成 8 点伤害，施加 2 层易伤。",
+      "assetShapes": 2556
+    },
+    {
+      "id": "perfected_strike",
+      "type": "attack",
+      "rarity": "common",
+      "upgraded": true,
+      "fullText": "造成 6 点伤害；你所有名称含“打击”的牌，每张额外造成 3 点伤害。",
+      "assetShapes": 2595
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "official-1",
+      "save": ".artifacts/sts-final-a730-20261113-r6/official-1/probe.save.json",
+      "sha256": "7cae7e82fd165fcf77d9137226f0ccb3e653449babc2e5260459910ac059986f",
+      "projectedControls": 354,
+      "unknownProperties": {},
+      "scope": "production official-assets shared face; cards flag false; read-only fixture; full game/device unverified"
+    },
+    {
+      "name": "official-5",
+      "save": ".artifacts/sts-final-a730-20261113-r6/official-5/probe.save.json",
+      "sha256": "7e94dd0abb8e50832dd2389989fc814f4af31ff7d5f3f8503392f6b9a735bccf",
+      "projectedControls": 1762,
+      "unknownProperties": {},
+      "scope": "production official-assets shared face; cards flag false; read-only fixture; full game/device unverified"
+    },
+    {
+      "name": "official-10",
+      "save": ".artifacts/sts-final-a730-20261113-r6/official-10/probe.save.json",
+      "sha256": "83299412ed4ed683234f9780b48ce7a59a601195ad9d9151c6d124348938669c",
+      "projectedControls": 3522,
+      "unknownProperties": {},
+      "scope": "production official-assets shared face; cards flag false; read-only fixture; full game/device unverified"
+    },
+    {
+      "name": "compatibility",
+      "save": ".artifacts/sts-final-a730-20261113-r6/compatibility/probe.save.json",
+      "sha256": "0d839497e92dd691c473ff80c7ae8b55ad483d38ab3096cd1b4ecd1f892bc85d",
+      "projectedControls": 357,
+      "unknownProperties": {},
+      "scope": "controlled readyArt compatibility injection, official flags remain cards=false"
+    }
+  ]
+}

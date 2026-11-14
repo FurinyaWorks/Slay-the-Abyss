@@ -9,6 +9,7 @@ import {luaString} from '../scripts/build-lua-data.mjs';
 import {discoverSources,dependencyCycles} from '../scripts/lua-quality-metrics.mjs';
 import {componentUiSourceEpoch} from './helpers/component-ui-source-epoch.mjs';
 import {sourceEpoch as currentEpoch} from './helpers/combined-epoch/source-epoch.mjs';
+import {ciRepairSourceEpoch} from './helpers/closeout-source-epoch.mjs';
 const file='src/lua/abyss_watcher_attack_cards.lua';
 const queued='src/lua/abyss_combat_queued_play.lua';
 const read=p=>readFileSync(p,'utf8').replaceAll('\r\n','\n');
@@ -20,8 +21,10 @@ test('complete original owners bind to independent develop Git blobs',()=>{
  for(const [path,source]of Object.entries(baselineSources()))assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(source)}\0`).update(source).digest('hex'),expected[path]);
 });
 
-test('Watcher planning leaves the complete SCC without hiding delayed requires',()=>{
- const raw=discoverSources();const sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
+test('pre-style Watcher planning retains the complete 346-module SCC contract without hiding delayed requires',()=>{
+ const currentEpoch=ciRepairSourceEpoch,read=p=>ciRepairSourceEpoch.proof.current[p]?.source??null;
+ const raw=Object.fromEntries(Object.entries(ciRepairSourceEpoch.proof.current).filter(([p])=>p.startsWith('src/lua/')).map(([p,row])=>[p,row.source]));
+ const sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
  const policy=JSON.parse(read('config/architecture.json')),report=analyzeSources(sources,policy);
  assert.deepEqual(report.errors,[]);
  const additions=['abyss_actor_presence','abyss_colorless_catalog','abyss_native_pages','abyss_relic_potion_hooks','abyss_turn_power_phases'];
@@ -50,6 +53,28 @@ test('Watcher planning leaves the complete SCC without hiding delayed requires',
  for(const injected of ["local X=require('abyss_actor')\n","local function X()return require('abyss_actor')end\n"]){
   const mutant=analyzeSources({...sources,abyss_watcher_attack_cards:injected+sources.abyss_watcher_attack_cards},policy);
   assert(mutant.errors.some(e=>JSON.stringify(e).includes('watcher-attack-planning')),'direct and deferred back edges are rejected');
+ }
+});
+
+test('current Watcher SCC analysis includes the exact page-reveal addition and every original production module',()=>{
+ const raw=discoverSources(),sources=Object.fromEntries(Object.entries(raw).map(([p,s])=>[p.split('/').at(-1).slice(0,-4),s]));
+ const prior=Object.keys(ciRepairSourceEpoch.proof.current).filter(p=>p.startsWith('src/lua/')).sort();
+ const added=Object.keys(raw).filter(p=>!Object.hasOwn(ciRepairSourceEpoch.proof.current,p));
+ assert.deepEqual(added,['src/lua/abyss_page_reveal.lua']);
+ assert.deepEqual(Object.keys(raw).filter(p=>!added.includes(p)).sort(),prior,'complete original 346-module corpus retained');
+ assert.deepEqual(Object.keys(raw).sort(),Object.keys(currentEpoch.proof.current).filter(p=>p.startsWith('src/lua/')).sort());
+ assert.equal(Object.keys(raw).length,347);
+ for(const [path,source]of Object.entries(raw))assert.equal(source.replaceAll('\r\n','\n'),currentEpoch.proof.current[path].source,path);
+ const policy=JSON.parse(read('config/architecture.json'));
+ assert.equal(policy.layers.abyss_page_reveal,'ui');assert.equal(currentEpoch.proof.targets.stsStylePrior.files[added[0]],null);
+ currentEpoch.preCombinedSource('config/architecture.json',read('config/architecture.json'),{target:'stsStylePrior',readSource:read});
+ const report=analyzeSources(sources,policy);assert.deepEqual(report.errors,[]);
+ assert(!dependencyCycles(report.nodes,report.edges).some(c=>c.members.includes('abyss_watcher_attack_cards')));
+ assert.deepEqual(report.edges.filter(e=>e.from==='abyss_watcher_attack_cards'),[]);
+ assert.equal(report.edges.filter(e=>e.from==='abyss_combat_queued_play'&&e.to==='abyss_actor').length,3);
+ for(const injected of ["local X=require('abyss_actor')\n","local function X()return require('abyss_actor')end\n"]){
+  const mutant=analyzeSources({...sources,abyss_watcher_attack_cards:injected+sources.abyss_watcher_attack_cards},policy);
+  assert(mutant.errors.some(e=>JSON.stringify(e).includes('watcher-attack-planning')));
  }
 });
 

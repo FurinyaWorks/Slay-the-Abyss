@@ -1,0 +1,41 @@
+{
+  "productionSha": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "productionFiles": {
+    "scripts/sts-card-reference-profile.mjs": "3c84278fc2a9fe0650da88f18f118bcb175068cbfffa416084e2f6fc641a0071",
+    "scripts/official-assets-layout.mjs": "2dc2ab9815f1062a17cf90ea72f4148046439fb4013d3e0bbd0aa4fbbcb64d33",
+    "scripts/v25-battle-scene.mjs": "06469c986db21466c28476674fcfe96b921b934d611c0a3cb6952e53fd003230",
+    "scripts/art/ready-card-runtime.mjs": "2b88f991db76c6f0574c64e49b6e5377b6e86506ee49651bb3e402aa264b7148",
+    "src/lua/abyss_card_skin.lua": "b6ffeaa67366613028633ee1859f03686d9127d0f5024ddba5a4479165ce7ef6",
+    "src/lua/abyss_card_display.lua": "802bcf70f9e992d21096fc60f9e58e9feb3acba368ab7504d4101f8b9cf14889",
+    "src/lua/abyss_card_art_runtime.lua": "76409f37c3e3d7bc42f1d7d08b475dfed70a47e1de9fecd5d83a6475ab4775bc",
+    "data/presentation/ui_theme.json": "35bb15b96c4de67388c9cf24e590a60dcc9d16357fee32430a2fc8988aacd9eb"
+  },
+  "officialGeneratedFlags": "-- Generated developer-controlled candidate configuration; rebuild to change.\nreturn {schemaVersion=2,flags={cards=false,menuBackground=false,selectionAvatar=true,battlePortrait=true,monsters=false}}\n",
+  "costSampler": {
+    "path": "docs/evidence/sts-card-reference-20261113/capture-final-sdk.mjs",
+    "sha256": "6fccdaca19d0dc9ab3f5a35dc6c543cdf69a28edc4d74195ab51a3a99c51a624",
+    "sealedSource": "cost-r6/collector-source.mjs.gz",
+    "currentSourceMatchesSeal": true
+  },
+  "evidenceScripts": {
+    "docs/evidence/sts-card-reference-20261113/prepare-final-sdk.mjs": "ac1325d3ad7a12e05fc01f4f88a7d06ec17cc5141f1eab373b74465b5482ee33",
+    "docs/evidence/sts-card-reference-20261113/preflight-final-sdk.mjs": "35331954827d3dde9642276503e35316042f25db5728216499275e60daafaff6",
+    "docs/evidence/sts-card-reference-20261113/capture-final-sdk.mjs": "6fccdaca19d0dc9ab3f5a35dc6c543cdf69a28edc4d74195ab51a3a99c51a624"
+  },
+  "compatibility": {
+    "inputSha256": "0d839497e92dd691c473ff80c7ae8b55ad483d38ab3096cd1b4ecd1f892bc85d",
+    "inputArchive": "inputs/compatibility.save.json.gz",
+    "currentPreparationInputExactlyMatchesCapturedR5": true,
+    "productionModuleRegistry": "five frozen production modules plus controlled host, all bytes included in the archive",
+    "collectorHistoricalHash": "not sealed at start; no retrospective historical hash claimed",
+    "collectorChangesSinceCompatibility": "cost-only deadline and official-ready assertion, plus environment/SDK/source-seal receipt metadata; compatibility assertions and step schedule unchanged",
+    "rawProof": "18 PNG hashes, 18 full SDK states, ready logs, actual paint-order and RGBA readback"
+  },
+  "benchmark": {
+    "validRound": "cost-r6",
+    "warmup": 3,
+    "samples": 5,
+    "scope": "isolated card component, same-content attack 1/5/10; source baseline original bytes, no new-layout overlay"
+  },
+  "sourceModificationDuringFinalSDK": "none; evidence preparation/capture scripts only"
+}

@@ -6,6 +6,8 @@ import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import lua from 'luaparse';
 import {gunzipSync} from 'node:zlib';
+import {historicalHostRuntime} from './game-ui-host-historical-runtime.mjs';
+import {installCurrentHostContract,executeCurrentHost} from './game-ui-host-live-contract.mjs';
 const root=process.cwd();
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const old=fs.readFileSync('tests/fixtures/game-ui-host/old-host.lua','utf8');
@@ -15,9 +17,9 @@ export const scenarios={clock:7,wide:7,'full-source':7,'map-failure':7,'refresh-
 export function windows(total){const out=[];for(let n=1;n<=total;n+=6)out.push([n,Math.min(total,n+5)]);return out;}
 function coverage(ranges,total){assert.deepEqual(ranges.flatMap(([a,b])=>Array.from({length:b-a+1},(_,i)=>a+i)),Array.from({length:total},(_,i)=>i+1));}
 coverage(mainWindows,35);for(const total of Object.values(scenarios))coverage(windows(total),total);
-export function materialize(kind){
+export function materialize(kind,sourceRoot=root){
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'abyss-host-'+kind+'-'));
- for(const p of ['src/lua','build/lua','tests/lua/support'])fs.cpSync(path.join(root,p),path.join(dir,p),{recursive:true});
+ for(const p of ['src/lua','build/lua','tests/lua/support'])fs.cpSync(path.join(sourceRoot,p),path.join(dir,p),{recursive:true});
  const source=path.join(dir,'src/lua/abyss_game_ui.lua');
  if(kind==='old'){
   fs.writeFileSync(source,old);
@@ -54,8 +56,10 @@ export function execute(dir,seed,constructor='',from=1,to=35){
 }
 
 export function runPair({seed=1,from=1,to=6,scenario='',requiredBaselineMarker,expectedMutantMarker},mutate){
- const a=materialize('old'),b=materialize('new');
+ const historical=historicalHostRuntime(),a=materialize('old',historical),b=materialize('new',historical),current=materialize('new');
  try{
+  installCurrentHostContract(current);
+  console.log(`HISTORICAL_HOST_ORDERED_TRACE cb1 monolith-to-modules ${scenario||'main'} seed=${seed} ${from}-${to}`);
   for(const base of ['src/lua','build/lua'])for(const name of fs.readdirSync(path.join(a,base))){
    if(name==='abyss_game_ui.lua')continue;
    assert.equal(hash(fs.readFileSync(path.join(a,base,name))),hash(fs.readFileSync(path.join(b,base,name))),base+'/'+name);
@@ -63,15 +67,17 @@ export function runPair({seed=1,from=1,to=6,scenario='',requiredBaselineMarker,e
   const expected=execute(a,seed,scenario,from,to),actual=execute(b,seed,scenario,from,to);
   const tag=`${scenario||'main'}-${seed}-${from}-${to}`;
   fs.mkdirSync('build/ui-host-impl',{recursive:true});
-  fs.writeFileSync(`build/ui-host-impl/old-${tag}.log`,expected);
-  fs.writeFileSync(`build/ui-host-impl/new-${tag}.log`,actual);
+  fs.writeFileSync(`build/ui-host-impl/historical-old-${tag}.log`,expected);
+  fs.writeFileSync(`build/ui-host-impl/historical-new-${tag}.log`,actual);
   assert.ok(actual===expected,'complete ordered trace mismatch: '+tag);
   if(requiredBaselineMarker)assert.ok(expected.includes(requiredBaselineMarker),'required successful baseline boundary');
   if(expectedMutantMarker)assert.ok(!expected.includes(expectedMutantMarker),'original baseline must not fail the contract assertion');
-  if(mutate){mutate(b);const mutant=execute(b,seed,scenario,from,to);fs.writeFileSync(`build/ui-host-impl/mutant-${tag}.log`,mutant);
+  executeCurrentHost(current,{seed,scenario,from,to});
+  if(mutate){mutate(b);const mutant=execute(b,seed,scenario,from,to);fs.writeFileSync(`build/ui-host-impl/historical-mutant-${tag}.log`,mutant);
    if(expectedMutantMarker)assert.ok(mutant.includes(expectedMutantMarker),'mutant must reach the named contract assertion');
-   assert.ok(mutant!==expected,'assertion must kill semantic mutant');}
- }finally{removeTemporaryHost(a);removeTemporaryHost(b);}
+   assert.ok(mutant!==expected,'assertion must kill semantic mutant');
+   mutate(current);executeCurrentHost(current,{seed,scenario,from,to},true);}
+ }finally{removeTemporaryHost(a);removeTemporaryHost(b);removeTemporaryHost(current);}
 }
 function removeTemporaryHost(dir){
  const absolute=path.resolve(dir);

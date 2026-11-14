@@ -1,0 +1,29 @@
+{
+  "files": {
+    "tests/helpers/generate-sts-style-source-epoch.mjs": {
+      "raw": "9afd1071889e2613b362e82b45f16736930cfc933f079d418fcb9389e6ec4b64",
+      "lf": "9afd1071889e2613b362e82b45f16736930cfc933f079d418fcb9389e6ec4b64",
+      "bytes": 9950
+    },
+    "tests/helpers/sts-style-ci-binding.mjs": {
+      "raw": "e88f8a68f1998a348cf872021ba0773e6bc4364d71bacf0ce77c4b630328b825",
+      "lf": "e88f8a68f1998a348cf872021ba0773e6bc4364d71bacf0ce77c4b630328b825",
+      "bytes": 471
+    },
+    "tests/helpers/sts-style-ci-source.json.gz": {
+      "raw": "4dc022273fd7ca381b1de6bca1fdd1c9eb49ceb94df292d9e490b4ab2abc80f5",
+      "lf": null,
+      "bytes": 632971
+    },
+    "tests/sts-style-source-epoch.test.mjs": {
+      "raw": "5f3203ebb1fa08733473fdbefc9f4d3be091a0a3efdb35fa3778a3a3065de61d",
+      "lf": "5f3203ebb1fa08733473fdbefc9f4d3be091a0a3efdb35fa3778a3a3065de61d",
+      "bytes": 8148
+    },
+    "docs/evidence/sts-neow-reference-20261113/verify-runtime-equivalence.mjs": {
+      "raw": "5dc47827cbabb2691c9a678c1577e07b769aff77670953e9bb2ce325c79f29da",
+      "lf": "5dc47827cbabb2691c9a678c1577e07b769aff77670953e9bb2ce325c79f29da",
+      "bytes": 4579
+    }
+  }
+}

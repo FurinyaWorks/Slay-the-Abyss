@@ -1,0 +1,164 @@
+{
+  "status": "actual SDK component/controlled compatibility checks passed; visual materials and device acceptance incomplete",
+  "productionSha": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "scope": {
+    "officialCardFlags": "cards=false; genuine official shared face and generated Lua",
+    "readyArt": "controlled independent compatibility injection with original precise+converted assets, compact=false; not official enablement",
+    "timing": "Node24.18.0 / SDK0.5.2 /1600x900/manual clock; opaque static card software raster+PNG+RPC; 3 warmups+5 samples, coordinated CPU window, no GPU/FPS inference"
+  },
+  "countsAndTimings": [
+    {
+      "cards": 1,
+      "baselineMedianMs": 66.56320000000005,
+      "candidateMedianMs": 57.67800000000034,
+      "changePercent": -13.348516898225604,
+      "baselinePerCard": {
+        "totalControls": 243,
+        "totalImages": 192,
+        "totalTexts": 6,
+        "visibleControls": 105,
+        "visibleImages": 83,
+        "visibleTexts": 4
+      },
+      "candidatePerCard": {
+        "totalControls": 352,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "baselineWhole": {
+        "totalControls": 245,
+        "totalImages": 193,
+        "totalTexts": 6,
+        "visibleControls": 107,
+        "visibleImages": 84,
+        "visibleTexts": 4
+      },
+      "candidateWhole": {
+        "totalControls": 354,
+        "totalImages": 305,
+        "totalTexts": 6,
+        "visibleControls": 169,
+        "visibleImages": 145,
+        "visibleTexts": 4
+      }
+    },
+    {
+      "cards": 5,
+      "baselineMedianMs": 117.55609999999979,
+      "candidateMedianMs": 100.44920000000002,
+      "changePercent": -14.552115968460843,
+      "baselinePerCard": {
+        "totalControls": 243,
+        "totalImages": 192,
+        "totalTexts": 6,
+        "visibleControls": 105,
+        "visibleImages": 83,
+        "visibleTexts": 4
+      },
+      "candidatePerCard": {
+        "totalControls": 352,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "baselineWhole": {
+        "totalControls": 1217,
+        "totalImages": 961,
+        "totalTexts": 30,
+        "visibleControls": 527,
+        "visibleImages": 416,
+        "visibleTexts": 20
+      },
+      "candidateWhole": {
+        "totalControls": 1762,
+        "totalImages": 1521,
+        "totalTexts": 30,
+        "visibleControls": 837,
+        "visibleImages": 721,
+        "visibleTexts": 20
+      }
+    },
+    {
+      "cards": 10,
+      "baselineMedianMs": 129.63940000000002,
+      "candidateMedianMs": 133.136199999999,
+      "changePercent": 2.6973281270963767,
+      "baselinePerCard": {
+        "totalControls": 243,
+        "totalImages": 192,
+        "totalTexts": 6,
+        "visibleControls": 105,
+        "visibleImages": 83,
+        "visibleTexts": 4
+      },
+      "candidatePerCard": {
+        "totalControls": 352,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "baselineWhole": {
+        "totalControls": 2432,
+        "totalImages": 1921,
+        "totalTexts": 60,
+        "visibleControls": 1052,
+        "visibleImages": 831,
+        "visibleTexts": 40
+      },
+      "candidateWhole": {
+        "totalControls": 3522,
+        "totalImages": 3041,
+        "totalTexts": 60,
+        "visibleControls": 1672,
+        "visibleImages": 1441,
+        "visibleTexts": 40
+      }
+    }
+  ],
+  "compatibility": {
+    "phases": 9,
+    "captures": 18,
+    "preciseArmamentsShapes": 1834,
+    "maxCreatesPerUpdate": 64,
+    "layerOrder": "all18 actual paint queue cases passed",
+    "neutralMaterials": "status646464->curse1D1D1D->Geo5B472A restored",
+    "frameSlots": 142,
+    "visibleFrameSlots": {
+      "attack": 48,
+      "skill": 68,
+      "power": 142
+    },
+    "allFullTextPropertiesRetained": true,
+    "titleBodyMinimum": 14
+  },
+  "closure": {
+    "costReportSha256": "6005f6c2dff141fa1fe144e2d7f2762e1159e639b5c55033d9c5796c0502c6d8",
+    "compatibilityReportSha256": "02da2b79708d82252c17b422dd7ee9ec77249796eb731efc5de471eedff9ad57",
+    "preflightSha256": "4c7fd7f61df56102c612f109a6b4d67db3836438f8b3906bdb2006ae34895a0a",
+    "inputArchivesSha256": "9d8a1c644f705a3ccd46ac83945036050792347447e31ebacf1ce98dffb65634",
+    "productionInputHashes": {
+      "scripts/sts-card-reference-profile.mjs": "3c84278fc2a9fe0650da88f18f118bcb175068cbfffa416084e2f6fc641a0071",
+      "scripts/official-assets-layout.mjs": "2dc2ab9815f1062a17cf90ea72f4148046439fb4013d3e0bbd0aa4fbbcb64d33",
+      "scripts/v25-battle-scene.mjs": "06469c986db21466c28476674fcfe96b921b934d611c0a3cb6952e53fd003230",
+      "scripts/art/ready-card-runtime.mjs": "2b88f991db76c6f0574c64e49b6e5377b6e86506ee49651bb3e402aa264b7148",
+      "src/lua/abyss_card_skin.lua": "b6ffeaa67366613028633ee1859f03686d9127d0f5024ddba5a4479165ce7ef6",
+      "src/lua/abyss_card_display.lua": "802bcf70f9e992d21096fc60f9e58e9feb3acba368ab7504d4101f8b9cf14889",
+      "src/lua/abyss_card_art_runtime.lua": "76409f37c3e3d7bc42f1d7d08b475dfed70a47e1de9fecd5d83a6475ab4775bc",
+      "data/presentation/ui_theme.json": "35bb15b96c4de67388c9cf24e590a60dcc9d16357fee32430a2fc8988aacd9eb"
+    },
+    "allScreenshotAndArchiveHashesVerified": true
+  },
+  "remaining": [
+    "fire-like cost material and painted paper/silver surface not fully reproduced",
+    "other character geometry and neutral card shape parity not certified",
+    "whole game official import/GPU/mobile not tested by this probe",
+    "unbounded all-source text readability not inferred from one long upgraded card"
+  ]
+}

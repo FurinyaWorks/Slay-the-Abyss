@@ -168,6 +168,8 @@ checkout 默认 skip-smudge，自托管路径也显式禁用自动 smudge。仅�
 
 2026-11-12 合流冷检出为218235384字节，原128MiB门禁据实拒绝。既有738条PNG/JPEG/GIF路径改为LFS，705个不同对象合计117369505字节；这是既有原字节的存储迁移，不是新增素材、授权或运行时容量。`config/ci-media-lfs.json` 固定每路径原SHA、大小、原许可类别及source9ed/base3a的真实旧binary Git OID。原六PNG的5983528字节上限、四预览组、原资产校验与所有许可正文不变。新清单只允许当前精确对象，不抓历史、不用目录通配；对象总量按OID去重，不冒称HTTP/TCP或费用上限。
 
+PR646 的 f347 冷检出实测159956847字节，仍由原128MiB门禁拒绝；8MiB比较源准备已通过。清单的独立 `evidenceExtension` 仅迁移该提交新增的58个native state gzip对象，共37495268原字节、76条精确文档路径（含18条inspection别名）；每条冻结原SHA256、大小、Git blob OID、既有来源类别与f347来源。原738条记录和117369505字节预算原封保留；扩展单列预算，复用同一恢复、索引、逐字节认证及90秒期限。`tests/helpers` 来源归档和任意未登记gzip不在迁移范围。许可检查也将清单精确登记的gzip纳入敏感路径，恢复后验证原始字节，不以文件扩展名跳过。
+
 Windows hosted仍从空Git数据库检出精确SHA、depth2及双父，增加blob:none。pack guard前取全实际parent/比较base中缺失的非清单blob，保留fetch pack并禁止自动维护；新增missing对象实际原字节总量超过8MiB即失败。原128MiB原样计算全部检出及预取pack；之后禁止lazy fetch。数据量断言是下载后验，不冒充传输前限流。安装式runner的原增量128MiB检查和有界long-push后备保留。
 
 二进制转换不能靠漏读旧对象来跳过有效空白检查。`ci-whitespace.mjs` 鲜查全部before/after/index路径的cached及working属性，排除集合只能恰为清单；每路径必须是精确普通100644指针，旧侧只能是该路径已实读确认前8000字节含NUL的冻结旧OID或当前pointer，且旧diff属性不得强制text。指针采用完整字节验证，其余所有文本仍执行原git diff --check及rename语义。未知旧OID、额外排除属性、symlink mode或指针漂移均拒绝。冷partial clone负控证明旧binary保持missing，文本空白仍失败，比较后没有新增未计量pack。

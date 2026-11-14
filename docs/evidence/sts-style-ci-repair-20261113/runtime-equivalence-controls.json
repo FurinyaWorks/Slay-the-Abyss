@@ -1,0 +1,85 @@
+{
+  "kind": "synthetic verifier mechanism controls; not SDK application acceptance",
+  "scriptSha256": "5dc47827cbabb2691c9a678c1577e07b769aff77670953e9bb2ce325c79f29da",
+  "inputCount": 658,
+  "results": [
+    {
+      "name": "positive-full-inventory",
+      "expected": "PASS",
+      "status": 0,
+      "matched": true
+    },
+    {
+      "name": "empty-inputs",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "empty-generated",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "stale-after",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "generated-byte-drift",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "sdk-byte-drift",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "unreviewed-input",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "extra-disk-output",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "incomplete-scenarios",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "character-positive",
+      "expected": "PASS",
+      "status": 0,
+      "matched": true
+    },
+    {
+      "name": "character-wrong-scenarios",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "character-empty-scenarios",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    },
+    {
+      "name": "unknown-mode",
+      "expected": "REJECT",
+      "status": 1,
+      "matched": true
+    }
+  ]
+}

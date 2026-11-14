@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 08:07'
-updated_date: '2026-11-14 00:31'
+updated_date: '2026-11-14 03:19'
 labels:
   - 待验
 milestone: m-8
@@ -68,4 +68,8 @@ R7最终复验：SDK28项、实际浏览器HP21+Lament9项通过，20次暖选�
 用户2026-11-13再次指出选祝福选项按钮反复返工且退步，要求严格初代杀戮尖塔实物风格。启动小样本精确Neow对照：固定原版普通/hover已知状态、保留证据与未知项，分解文字/行距/括号/底板/反馈；当前先审计参照与失真源，不用旧二次稿或属性绿灯当完成。
 
 2026-11-14集成对账：保留已合634的源码与既有全部证据；正式候选官方、PC和手机体验仍待验，原AC保持未勾。
+
+2026-11-13最新用户决定覆盖旧选角稿：使用初代PC选角构图、共享旗帜token及同一battleApprovedIdle半身；初始牌组复用正式DeckUI，删除旧12槽writer。祝福选项按固定原作参照，人物仍按批准guide SVG修复兜帽遮挡与HUD金缝。显式page readiness防隐藏selection/menuScene阻挡当前卡组；独审及定向证据见本轮evidence，最终集成与实机未完成。
+
+最终组合祝福6帧、选角/共享初始牌组5帧均完成实际SDK渲染和独审；兜帽暗面按批准稿对照99.34%，旧身体遮挡负控62.66%，顶部旧金色缝已消除。CI修复后新closure b1271f18与原52b6582b的25生成物及全部3份完整SDK输入逐字节相同，保留原截图身份，见两目录ci-storage-runtime-equivalence.json。官方编译受本机脚本签名策略阻断，未更改策略，设备验收保持未完成。
 <!-- SECTION:NOTES:END -->

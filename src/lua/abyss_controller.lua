@@ -20,6 +20,7 @@ function M.new(api,root)
         if not record or self.byControl[record.control]~=record then return false end
         local scope=type(record.scope)=='function' and record.scope() or record.scope
         return not not (not self.disabled and scope==self.scope
+            and (not self.blocked or not self.blocked() or scope=='pageReveal')
             and visible(record.control) and record.control.raycastTarget~=false
             and (not record.enabled or record.enabled()))
     end
@@ -108,7 +109,7 @@ function M.unbind(manager,control,engineDestroyed)
     return true
 end
 function M.pointerBlocked(manager)
-    return manager and manager.consumed and manager.api.isController() or false
+    return manager and (manager.blocked and manager.blocked() or manager.consumed and manager.api.isController()) or false
 end
 function M.isController(manager)return manager and manager.api.isController() or false end
 function M.bind(manager,control,scope,action,enabled,order,group,onFocus)

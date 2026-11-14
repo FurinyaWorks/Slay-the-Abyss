@@ -1,0 +1,171 @@
+{
+  "kind": "headless-current-source-shared-run-hud",
+  "createdAt": "2026-11-13T08:59:58.306Z",
+  "sourceClosureSha256": "1b2268a08fca67f2785ced9e4b520341aa35dad71b38c04919df325d5d001b40",
+  "scenarios": {
+    "two": {
+      "file": "current-two.save.json",
+      "sha256": "1d1754bc33c3f1a5de3849bb2fb94e4d1b4586c8fada2c040f51b56f3d69ffcd",
+      "startupSha256": "828ab5ddbceb3d9d72296ec13c381bc61184070ecff4fc1f560499c1615aed5d"
+    },
+    "four": {
+      "file": "current-four.save.json",
+      "sha256": "110a1b24587b1a9fe2b0e6dd251c8b8b41ddcd3ba298be1adab788eca59a8e8b",
+      "startupSha256": "6f43cd86dc442feb08178f5a9e1d6c413391242c3e8a634b1c177a96a32b6180"
+    }
+  },
+  "rendererSha256": "3b34e80b712c56ba2bb8042446257c57b52b3d027e20446596ce7dc27afb2fb2",
+  "browserPath": "C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "rendering": "headless Chromium SwiftShader software WebGL; offline SDK fixture; not official import/ready/GPU/device evidence",
+  "shots": [
+    {
+      "name": "two-intro",
+      "scenario": "two",
+      "checks": "intro action reuses measured choice component",
+      "sha256": "8fb90fddcf960a533c2585aaa91878db2144880e1a858775c91c4b43ccc84c3a",
+      "time": 1.26639999999851,
+      "frame": 7,
+      "frontendRenderPasses": {
+        "before": 17,
+        "after": 21
+      }
+    },
+    {
+      "name": "two-normal",
+      "scenario": "two",
+      "checks": "real seeded Neow options; one baseline and measured body; synthetic history explicitly injected",
+      "sha256": "bb1ee4af0de414887c322430bc4273ce99250ea703a2b32d44927b27c5e00e5a",
+      "time": 6.627700000002981,
+      "frame": 35,
+      "frontendRenderPasses": {
+        "before": 46,
+        "after": 49
+      }
+    },
+    {
+      "name": "two-hover-functional-unverified",
+      "scenario": "two",
+      "checks": "functional hover retained; original hover fidelity UNVERIFIED",
+      "sha256": "88dddaf8beb94250a23fb70e4469c213286004b131b5d299c4cb26f62796c6b6",
+      "time": 10.149300000000745,
+      "frame": 54,
+      "frontendRenderPasses": {
+        "before": 65,
+        "after": 69
+      }
+    }
+  ],
+  "errors": [],
+  "resourceResponses": [],
+  "requests": [
+    {
+      "scenario": "two",
+      "control": "hit",
+      "id": 9532,
+      "point": {
+        "x": 473.3333333333334,
+        "y": 787.3333333333334
+      }
+    }
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_STS_NEOW_FIXTURE scenario=two explicitBossHistory=0",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3",
+      "time": 0.4675999999977648
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=4",
+      "time": 5.127700000002981
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=nodePanel epoch=4",
+      "time": 5.627700000002981
+    }
+  ],
+  "liveTreeDrift": [],
+  "status": "captured-awaiting-image-review"
+}

@@ -1,0 +1,4622 @@
+{
+  "status": "captured-and-asserted",
+  "productionSha": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "preparationSha256": "c8075060a7ca27a3cb793611955072636bf19d9d37efe66d82da5baeb7cfa563",
+  "mode": "compatibility",
+  "scope": "actual SDK software renderer; manual clock; no official import, GPU or device claim",
+  "runs": [
+    {
+      "phase": 1,
+      "stage": "pending",
+      "card": {
+        "id": "bash",
+        "type": "attack",
+        "rarity": "basic",
+        "upgraded": false,
+        "fullText": "造成 8 点伤害，施加 2 层易伤。",
+        "assetShapes": 2556
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        }
+      ],
+      "screenshot": {
+        "file": "phase-1-bash-pending.png",
+        "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8"
+      }
+    },
+    {
+      "phase": 1,
+      "stage": "ready",
+      "card": {
+        "id": "bash",
+        "type": "attack",
+        "rarity": "basic",
+        "upgraded": false,
+        "fullText": "造成 8 点伤害，施加 2 层易伤。",
+        "assetShapes": 2556
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 2952,
+        "totalImages": 2860,
+        "totalTexts": 6,
+        "visibleControls": 2766,
+        "visibleImages": 2699,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        }
+      ],
+      "screenshot": {
+        "file": "phase-1-bash-ready.png",
+        "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3"
+      }
+    },
+    {
+      "phase": 2,
+      "stage": "pending",
+      "card": {
+        "id": "armaments",
+        "type": "skill",
+        "rarity": "common",
+        "upgraded": false,
+        "fullText": "获得 5 点格挡，升级手中 1 张牌（本场战斗）。",
+        "assetShapes": 1834
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 187,
+        "visibleImages": 164,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 149,
+        "visibleImages": 139,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        }
+      ],
+      "screenshot": {
+        "file": "phase-2-armaments-pending.png",
+        "sha256": "adf52c6d5409d678dc038246d58ea5595a4739914e2cca9df63c2dec09bb2d7c"
+      }
+    },
+    {
+      "phase": 2,
+      "stage": "ready",
+      "card": {
+        "id": "armaments",
+        "type": "skill",
+        "rarity": "common",
+        "upgraded": false,
+        "fullText": "获得 5 点格挡，升级手中 1 张牌（本场战斗）。",
+        "assetShapes": 1834
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 2218,
+        "totalImages": 2138,
+        "totalTexts": 6,
+        "visibleControls": 2052,
+        "visibleImages": 1997,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 149,
+        "visibleImages": 139,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        }
+      ],
+      "screenshot": {
+        "file": "phase-2-armaments-ready.png",
+        "sha256": "224714f2cf1be793ec422c241d4832a4bda52b922baac2344204517ccc98c3a9"
+      }
+    },
+    {
+      "phase": 3,
+      "stage": "pending",
+      "card": {
+        "id": "inflame",
+        "type": "power",
+        "rarity": "uncommon",
+        "upgraded": false,
+        "fullText": "获得 2 层力量。",
+        "assetShapes": 2607
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 142,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        63,
+        127,
+        198,
+        255
+      ],
+      "bannerRGBA": [
+        127,
+        184,
+        242,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 255,
+        "visibleImages": 233,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 26,
+        "visibleImages": 19,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 223,
+        "visibleImages": 213,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        }
+      ],
+      "screenshot": {
+        "file": "phase-3-inflame-pending.png",
+        "sha256": "d2b90cea5db6e3c565460b2ea401b9f7d9e1206910c188943b796b6cd36aa173"
+      }
+    },
+    {
+      "phase": 3,
+      "stage": "ready",
+      "card": {
+        "id": "inflame",
+        "type": "power",
+        "rarity": "uncommon",
+        "upgraded": false,
+        "fullText": "获得 2 层力量。",
+        "assetShapes": 2607
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 142,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        63,
+        127,
+        198,
+        255
+      ],
+      "bannerRGBA": [
+        127,
+        184,
+        242,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 3004,
+        "totalImages": 2911,
+        "totalTexts": 6,
+        "visibleControls": 2906,
+        "visibleImages": 2839,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 26,
+        "visibleImages": 19,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 223,
+        "visibleImages": 213,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        }
+      ],
+      "screenshot": {
+        "file": "phase-3-inflame-ready.png",
+        "sha256": "40477acd7aa71c7974cf05c81a4c659b223602f2b554886222c9419fc7722a18"
+      }
+    },
+    {
+      "phase": 4,
+      "stage": "pending",
+      "card": {
+        "id": "bash",
+        "type": "attack",
+        "rarity": "basic",
+        "upgraded": false,
+        "fullText": "造成 8 点伤害，施加 2 层易伤。",
+        "assetShapes": 2556
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        }
+      ],
+      "screenshot": {
+        "file": "phase-4-bash-pending.png",
+        "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8"
+      }
+    },
+    {
+      "phase": 4,
+      "stage": "ready",
+      "card": {
+        "id": "bash",
+        "type": "attack",
+        "rarity": "basic",
+        "upgraded": false,
+        "fullText": "造成 8 点伤害，施加 2 层易伤。",
+        "assetShapes": 2556
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 2952,
+        "totalImages": 2860,
+        "totalTexts": 6,
+        "visibleControls": 2766,
+        "visibleImages": 2699,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        }
+      ],
+      "screenshot": {
+        "file": "phase-4-bash-ready.png",
+        "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3"
+      }
+    },
+    {
+      "phase": 5,
+      "stage": "pending",
+      "card": {
+        "id": "offering",
+        "type": "skill",
+        "rarity": "rare",
+        "upgraded": false,
+        "fullText": "消耗。失去 6 点生命，获得 2 点能量，抽 3 张牌。",
+        "assetShapes": 2591
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        212,
+        165,
+        74,
+        255
+      ],
+      "bannerRGBA": [
+        246,
+        214,
+        140,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 187,
+        "visibleImages": 164,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 149,
+        "visibleImages": 139,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        }
+      ],
+      "screenshot": {
+        "file": "phase-5-offering-pending.png",
+        "sha256": "90306e323ef399af30702c23531ab64be7cf2a705518514906e0cc3679afd842"
+      }
+    },
+    {
+      "phase": 5,
+      "stage": "ready",
+      "card": {
+        "id": "offering",
+        "type": "skill",
+        "rarity": "rare",
+        "upgraded": false,
+        "fullText": "消耗。失去 6 点生命，获得 2 点能量，抽 3 张牌。",
+        "assetShapes": 2591
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        212,
+        165,
+        74,
+        255
+      ],
+      "bannerRGBA": [
+        246,
+        214,
+        140,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 2988,
+        "totalImages": 2895,
+        "totalTexts": 6,
+        "visibleControls": 2822,
+        "visibleImages": 2754,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 149,
+        "visibleImages": 139,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        }
+      ],
+      "screenshot": {
+        "file": "phase-5-offering-ready.png",
+        "sha256": "b4d50e9d992a5e97a03d5c09828b92645963872d86c6bef1ec6f95e602dcc618"
+      }
+    },
+    {
+      "phase": 6,
+      "stage": "pending",
+      "card": {
+        "id": "burn",
+        "type": "status",
+        "rarity": "common",
+        "upgraded": false,
+        "fullText": "无法打出。回合结束时受到2点伤害。",
+        "assetShapes": 0
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 182,
+        "visibleImages": 161,
+        "visibleTexts": 3
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 145,
+        "visibleImages": 136,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        }
+      ],
+      "screenshot": {
+        "file": "phase-6-burn-pending.png",
+        "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa"
+      }
+    },
+    {
+      "phase": 6,
+      "stage": "ready",
+      "card": {
+        "id": "burn",
+        "type": "status",
+        "rarity": "common",
+        "upgraded": false,
+        "fullText": "无法打出。回合结束时受到2点伤害。",
+        "assetShapes": 0
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 182,
+        "visibleImages": 161,
+        "visibleTexts": 3
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 145,
+        "visibleImages": 136,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        }
+      ],
+      "screenshot": {
+        "file": "phase-6-burn-ready.png",
+        "sha256": "76708de2696d7e89f96e45a421fba5eeae9aac9d3e36fad8871e4d2bf29617aa"
+      }
+    },
+    {
+      "phase": 7,
+      "stage": "pending",
+      "card": {
+        "id": "regret",
+        "type": "curse",
+        "rarity": "curse",
+        "upgraded": false,
+        "fullText": "无法打出。回合结束时，失去等同手牌张数的生命。",
+        "assetShapes": 0
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 182,
+        "visibleImages": 161,
+        "visibleTexts": 3
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 145,
+        "visibleImages": 136,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+          "time": 11.500000000000151
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+          "time": 12.000000000000176
+        }
+      ],
+      "screenshot": {
+        "file": "phase-7-regret-pending.png",
+        "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac"
+      }
+    },
+    {
+      "phase": 7,
+      "stage": "ready",
+      "card": {
+        "id": "regret",
+        "type": "curse",
+        "rarity": "curse",
+        "upgraded": false,
+        "fullText": "无法打出。回合结束时，失去等同手牌张数的生命。",
+        "assetShapes": 0
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 68,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 182,
+        "visibleImages": 161,
+        "visibleTexts": 3
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 145,
+        "visibleImages": 136,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+          "time": 11.500000000000151
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 750 live=0 created=0 failed=0 waiting=0",
+          "time": 12.5000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 780 live=0 created=0 failed=0 waiting=0",
+          "time": 13.000000000000226
+        }
+      ],
+      "screenshot": {
+        "file": "phase-7-regret-ready.png",
+        "sha256": "9ff2365fcb0f733f2bf5b1f7d97442211b0e7f7abe9e59ca9dda6b8f0bd3d4ac"
+      }
+    },
+    {
+      "phase": 8,
+      "stage": "pending",
+      "card": {
+        "id": "bash",
+        "type": "attack",
+        "rarity": "basic",
+        "upgraded": false,
+        "fullText": "造成 8 点伤害，施加 2 层易伤。",
+        "assetShapes": 2556
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+          "time": 11.500000000000151
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 750 live=0 created=0 failed=0 waiting=0",
+          "time": 12.5000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 780 live=0 created=0 failed=0 waiting=0",
+          "time": 13.000000000000226
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 810 live=0 created=0 failed=0 waiting=0",
+          "time": 13.50000000000025
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 840 live=0 created=0 failed=0 waiting=0",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 8 bash type=attack rarity=basic fits=true pending=true",
+          "time": 14.000000000000275
+        }
+      ],
+      "screenshot": {
+        "file": "phase-8-bash-pending.png",
+        "sha256": "4206c5337c1d066e316ab581638e04f477fff50618065cd3057c0a342fb80ba8"
+      }
+    },
+    {
+      "phase": 8,
+      "stage": "ready",
+      "card": {
+        "id": "bash",
+        "type": "attack",
+        "rarity": "basic",
+        "upgraded": false,
+        "fullText": "造成 8 点伤害，施加 2 层易伤。",
+        "assetShapes": 2556
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 2952,
+        "totalImages": 2860,
+        "totalTexts": 6,
+        "visibleControls": 2766,
+        "visibleImages": 2699,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+          "time": 11.500000000000151
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 750 live=0 created=0 failed=0 waiting=0",
+          "time": 12.5000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 780 live=0 created=0 failed=0 waiting=0",
+          "time": 13.000000000000226
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 810 live=0 created=0 failed=0 waiting=0",
+          "time": 13.50000000000025
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 840 live=0 created=0 failed=0 waiting=0",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 8 bash type=attack rarity=basic fits=true pending=true",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 870 live=1920 created=64 failed=0 waiting=0",
+          "time": 14.5000000000003
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 14.683333333333643
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 900 live=2599 created=0 failed=0 waiting=0",
+          "time": 15.000000000000325
+        }
+      ],
+      "screenshot": {
+        "file": "phase-8-bash-ready.png",
+        "sha256": "1f8c74c202f8447b5059db1ad3f7f09dce5460b0a31b0d408afbd132ae6d64e3"
+      }
+    },
+    {
+      "phase": 9,
+      "stage": "pending",
+      "card": {
+        "id": "perfected_strike",
+        "type": "attack",
+        "rarity": "common",
+        "upgraded": true,
+        "fullText": "造成 6 点伤害；你所有名称含“打击”的牌，每张额外造成 3 点伤害。",
+        "assetShapes": 2595
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": false,
+      "fallbackVisible": true,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 353,
+        "totalImages": 304,
+        "totalTexts": 6,
+        "visibleControls": 167,
+        "visibleImages": 144,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+          "time": 11.500000000000151
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 750 live=0 created=0 failed=0 waiting=0",
+          "time": 12.5000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 780 live=0 created=0 failed=0 waiting=0",
+          "time": 13.000000000000226
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 810 live=0 created=0 failed=0 waiting=0",
+          "time": 13.50000000000025
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 840 live=0 created=0 failed=0 waiting=0",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 8 bash type=attack rarity=basic fits=true pending=true",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 870 live=1920 created=64 failed=0 waiting=0",
+          "time": 14.5000000000003
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 14.683333333333643
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 900 live=2599 created=0 failed=0 waiting=0",
+          "time": 15.000000000000325
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 930 live=2599 created=0 failed=0 waiting=0",
+          "time": 15.50000000000035
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 960 live=2599 created=0 failed=0 waiting=0",
+          "time": 16.000000000000373
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 9 perfected_strike type=attack rarity=common fits=true pending=true",
+          "time": 16.000000000000373
+        }
+      ],
+      "screenshot": {
+        "file": "phase-9-perfected_strike-pending.png",
+        "sha256": "fd3979e41b52418650de482e8aa6051fa08ffea563574131ede9ea63cde69f69"
+      }
+    },
+    {
+      "phase": 9,
+      "stage": "ready",
+      "card": {
+        "id": "perfected_strike",
+        "type": "attack",
+        "rarity": "common",
+        "upgraded": true,
+        "fullText": "造成 6 点伤害；你所有名称含“打击”的牌，每张额外造成 3 点伤害。",
+        "assetShapes": 2595
+      },
+      "frameParts": 142,
+      "visibleFrameParts": 48,
+      "poolVisible": true,
+      "fallbackVisible": false,
+      "frameRGBA": [
+        149,
+        149,
+        149,
+        255
+      ],
+      "bannerRGBA": [
+        158,
+        158,
+        158,
+        255
+      ],
+      "holder": {
+        "position": [
+          0,
+          37.5
+        ],
+        "size": [
+          144,
+          64
+        ],
+        "scale": [
+          0.8333333333333334,
+          0.8333333333333334
+        ]
+      },
+      "cardCounts": {
+        "totalControls": 2992,
+        "totalImages": 2899,
+        "totalTexts": 6,
+        "visibleControls": 2806,
+        "visibleImages": 2738,
+        "visibleTexts": 4
+      },
+      "backCounts": {
+        "totalControls": 42,
+        "totalImages": 31,
+        "totalTexts": 0,
+        "visibleControls": 32,
+        "visibleImages": 24,
+        "visibleTexts": 0
+      },
+      "frontCounts": {
+        "totalControls": 223,
+        "totalImages": 213,
+        "totalTexts": 0,
+        "visibleControls": 129,
+        "visibleImages": 119,
+        "visibleTexts": 0
+      },
+      "text": {
+        "complete": true,
+        "fontSize": 14,
+        "titleFontSize": 14
+      },
+      "logs": [
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_COMPATIBILITY_READY",
+          "time": 0
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+          "time": 0.49999999999999994
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 0.6833333333333338
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.0000000000000013
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.4999999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+          "time": 1.9999999999999978
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+          "time": 2.499999999999996
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+          "time": 2.9999999999999942
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.4999999999999925
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+          "time": 3.9999999999999907
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+          "time": 4.499999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+          "time": 4.699999999999989
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+          "time": 4.999999999999988
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.499999999999986
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+          "time": 5.999999999999984
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+          "time": 6.499999999999982
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 6.683333333333315
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+          "time": 6.9999999999999805
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.499999999999979
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+          "time": 7.999999999999977
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+          "time": 8.500000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+          "time": 8.700000000000012
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.000000000000027
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+          "time": 9.500000000000052
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+          "time": 10.000000000000076
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+          "time": 10.500000000000101
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+          "time": 11.000000000000126
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+          "time": 11.500000000000151
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+          "time": 12.000000000000176
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 750 live=0 created=0 failed=0 waiting=0",
+          "time": 12.5000000000002
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 780 live=0 created=0 failed=0 waiting=0",
+          "time": 13.000000000000226
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 810 live=0 created=0 failed=0 waiting=0",
+          "time": 13.50000000000025
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 840 live=0 created=0 failed=0 waiting=0",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 8 bash type=attack rarity=basic fits=true pending=true",
+          "time": 14.000000000000275
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 870 live=1920 created=64 failed=0 waiting=0",
+          "time": 14.5000000000003
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+          "time": 14.683333333333643
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 900 live=2599 created=0 failed=0 waiting=0",
+          "time": 15.000000000000325
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 930 live=2599 created=0 failed=0 waiting=0",
+          "time": 15.50000000000035
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 960 live=2599 created=0 failed=0 waiting=0",
+          "time": 16.000000000000373
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_PHASE 9 perfected_strike type=attack rarity=common fits=true pending=true",
+          "time": 16.000000000000373
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 990 live=1920 created=64 failed=0 waiting=0",
+          "time": 16.500000000000345
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "ABYSS_NATIVE_ART ready card_id=perfected_strike shapes=2595",
+          "time": 16.700000000000333
+        },
+        {
+          "source": "client",
+          "level": "info",
+          "text": "STS_FINAL_TICK 1020 live=2639 created=0 failed=0 waiting=0",
+          "time": 17.000000000000316
+        }
+      ],
+      "screenshot": {
+        "file": "phase-9-perfected_strike-ready.png",
+        "sha256": "f3d29000e5a4dcf0839ea5d0b9c871f613a22e577c4a96f324b0907f60a58859"
+      }
+    }
+  ],
+  "input": {
+    "inputSha256": "0d839497e92dd691c473ff80c7ae8b55ad483d38ab3096cd1b4ecd1f892bc85d",
+    "startLogs": [
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+        "time": 0
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_COMPATIBILITY_READY",
+        "time": 0
+      }
+    ]
+  },
+  "lastInspection": {
+    "frame": 1020,
+    "time": 17.000000000000316,
+    "logs": [
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 1 bash type=attack rarity=basic fits=true pending=true",
+        "time": 0
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_COMPATIBILITY_READY",
+        "time": 0
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 30 live=1920 created=64 failed=0 waiting=0",
+        "time": 0.49999999999999994
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+        "time": 0.6833333333333338
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 60 live=2599 created=0 failed=0 waiting=0",
+        "time": 1.0000000000000013
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 90 live=2599 created=0 failed=0 waiting=0",
+        "time": 1.4999999999999996
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 120 live=2599 created=0 failed=0 waiting=0",
+        "time": 1.9999999999999978
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 2 armaments type=skill rarity=common fits=true pending=true",
+        "time": 1.9999999999999978
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=armaments shapes=1834",
+        "time": 2.499999999999996
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 150 live=1865 created=9 failed=0 waiting=0",
+        "time": 2.499999999999996
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 180 live=1865 created=0 failed=0 waiting=0",
+        "time": 2.9999999999999942
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 210 live=1865 created=0 failed=0 waiting=0",
+        "time": 3.4999999999999925
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 240 live=1865 created=0 failed=0 waiting=0",
+        "time": 3.9999999999999907
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 3 inflame type=power rarity=uncommon fits=true pending=true",
+        "time": 3.9999999999999907
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 270 live=1920 created=64 failed=0 waiting=0",
+        "time": 4.499999999999989
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=inflame shapes=2607",
+        "time": 4.699999999999989
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 300 live=2651 created=0 failed=0 waiting=0",
+        "time": 4.999999999999988
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 330 live=2651 created=0 failed=0 waiting=0",
+        "time": 5.499999999999986
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 360 live=2651 created=0 failed=0 waiting=0",
+        "time": 5.999999999999984
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 4 bash type=attack rarity=basic fits=true pending=true",
+        "time": 5.999999999999984
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 390 live=1920 created=64 failed=0 waiting=0",
+        "time": 6.499999999999982
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+        "time": 6.683333333333315
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 420 live=2599 created=0 failed=0 waiting=0",
+        "time": 6.9999999999999805
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 450 live=2599 created=0 failed=0 waiting=0",
+        "time": 7.499999999999979
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 480 live=2599 created=0 failed=0 waiting=0",
+        "time": 7.999999999999977
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 5 offering type=skill rarity=rare fits=true pending=true",
+        "time": 7.999999999999977
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 510 live=1920 created=64 failed=0 waiting=0",
+        "time": 8.500000000000002
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=offering shapes=2591",
+        "time": 8.700000000000012
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 540 live=2635 created=0 failed=0 waiting=0",
+        "time": 9.000000000000027
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 570 live=2635 created=0 failed=0 waiting=0",
+        "time": 9.500000000000052
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 600 live=2635 created=0 failed=0 waiting=0",
+        "time": 10.000000000000076
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 6 burn type=status rarity=common fits=true pending=true",
+        "time": 10.000000000000076
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 630 live=0 created=0 failed=0 waiting=0",
+        "time": 10.500000000000101
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 660 live=0 created=0 failed=0 waiting=0",
+        "time": 11.000000000000126
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 690 live=0 created=0 failed=0 waiting=0",
+        "time": 11.500000000000151
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 720 live=0 created=0 failed=0 waiting=0",
+        "time": 12.000000000000176
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 7 regret type=curse rarity=curse fits=true pending=true",
+        "time": 12.000000000000176
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 750 live=0 created=0 failed=0 waiting=0",
+        "time": 12.5000000000002
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 780 live=0 created=0 failed=0 waiting=0",
+        "time": 13.000000000000226
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 810 live=0 created=0 failed=0 waiting=0",
+        "time": 13.50000000000025
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 840 live=0 created=0 failed=0 waiting=0",
+        "time": 14.000000000000275
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 8 bash type=attack rarity=basic fits=true pending=true",
+        "time": 14.000000000000275
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 870 live=1920 created=64 failed=0 waiting=0",
+        "time": 14.5000000000003
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=bash shapes=2556",
+        "time": 14.683333333333643
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 900 live=2599 created=0 failed=0 waiting=0",
+        "time": 15.000000000000325
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 930 live=2599 created=0 failed=0 waiting=0",
+        "time": 15.50000000000035
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 960 live=2599 created=0 failed=0 waiting=0",
+        "time": 16.000000000000373
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_PHASE 9 perfected_strike type=attack rarity=common fits=true pending=true",
+        "time": 16.000000000000373
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 990 live=1920 created=64 failed=0 waiting=0",
+        "time": 16.500000000000345
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "ABYSS_NATIVE_ART ready card_id=perfected_strike shapes=2595",
+        "time": 16.700000000000333
+      },
+      {
+        "source": "client",
+        "level": "info",
+        "text": "STS_FINAL_TICK 1020 live=2639 created=0 failed=0 waiting=0",
+        "time": 17.000000000000316
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "sourceClosureSha256": "52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731",
+  "checks": [
+    {
+      "name": "character-select",
+      "pngSha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "stateSha256": "02a1fc414232e8d600f9bd0454ac77ed6965dbacd51a5e61e170ec9fd3a3357a",
+      "readyLogBeforeReveal": true,
+      "images": 3254,
+      "groups": 78
+    },
+    {
+      "name": "character-selected-idle",
+      "pngSha256": "9a61339ccd1fcb85e56f639516351c9c1ee39e32312e6b88e7c8318d4028eed5",
+      "stateSha256": "eb3ce7966fa71842041c6d6e5f05e167dd8bdb0d602a7c06177c5afb2028ae15",
+      "readyLogBeforeReveal": true,
+      "images": 3254,
+      "groups": 78
+    },
+    {
+      "name": "character-returned-selection",
+      "pngSha256": "a8123049859139dd8b3088e23bd82b465c0fc7223c9a4b0d44b0046800cddf84",
+      "stateSha256": "85a086dae109f6342ab6c7283fac10d4e0280b0e18298a646593c788878b025d",
+      "readyLogBeforeReveal": true,
+      "images": 3254,
+      "groups": 78
+    }
+  ],
+  "boundaries": {
+    "sdk": true,
+    "headless": true,
+    "softwareWebGL": true,
+    "officialImport": false,
+    "officialReady": false,
+    "deviceEvidence": false,
+    "gpuEvidence": false
+  },
+  "browserChecks": [
+    {
+      "name": "character-starter-browser",
+      "pngSha256": "19e650c7beb16c33630bfbe333b2a938a3c07046e9ec867253b884b8725d195f",
+      "sharedFiveColumnTemplate": true,
+      "cards": 10,
+      "noRunOrRng": true,
+      "loadoutDrift": false
+    },
+    {
+      "name": "character-starter-detail",
+      "pngSha256": "c35bb7122354f2ce66c7e18e0e76f14009395ed19110f66feec030a611fecb69",
+      "sharedFiveColumnTemplate": true,
+      "cards": 10,
+      "noRunOrRng": true,
+      "loadoutDrift": false
+    }
+  ],
+  "sourceDrift": [],
+  "reusedAdmission": {
+    "path": "verify-visual.mjs",
+    "sha256": "76f8a9f4e1a81a26349ffead8323d772b1f08d2deeecb1423f6f35f9b89cbc50",
+    "adaptation": "five-shot receipt; original selection checks applied to three selection shots"
+  }
+}

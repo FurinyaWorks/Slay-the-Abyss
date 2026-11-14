@@ -1,4 +1,6 @@
 // Bounded native geometry for the reference shell; no raster decomposition.
+// Shared six-part native material primitive, also used by source-measured fits.
+export {rounded as nativeRoundedMaterial};
 const child=(node,name)=>node.children.find(part=>part.name===name);
 const image=(name,size,colour,position=[0,0],extra={})=>({name,kind:'image',size,position,image:100001,colour,...extra});
 function rounded(name,w,h,r,colour,extra={}){

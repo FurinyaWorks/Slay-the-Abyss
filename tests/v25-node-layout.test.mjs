@@ -104,7 +104,9 @@ local first=EventH.Map.available(eventMap)[1]
 for _,node in ipairs(eventMap.nodes)do if node.id==first.id then node.type='event';node.eventId='cleric'end end
 assert(EventH.Nodes.enter(eventRun,eventMap,first.id))
 local eventUI,eventGet=EventH.setup(eventRun,eventMap)
-assert(eventGet('eventView/art').imageId==100114,'approved event keeps the quiet question placeholder')
+assert(eventGet('eventView/art').imageId==require('abyss_theme').icon.eventArt.cleric,'cleric must use the declared healing illustration')
+local artColour=eventGet('eventView/art').imageColor
+assert(artColour.r==255 and artColour.g==255 and artColour.b==255 and artColour.a==255,'native event illustration must remain full colour')
 assert(not eventGet('eventView/option1/description').visible,'reference choice title and effect share one line')
 local inline=eventGet('eventView/option1/title').text
 assert(inline:find('35',1,true)and inline:find('20',1,true)and inline:find('<color=',1,true),'cost/reward and native semantic ink must be in the choice')

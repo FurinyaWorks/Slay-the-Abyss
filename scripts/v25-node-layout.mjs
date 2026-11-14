@@ -170,12 +170,14 @@ function styleCamp(panel,theme){
  setRect(must(result,'description'),[0,90,600,120]);type(must(result,'description'),26,'#F0ECDB');
 }
 
-function styleEvent(panel,theme){
+export function styleEvent(panel,theme){
  // plateBorder is visibility-only in the real event writer, including Neow.
  // Keep its identity and path, adding children only after making it a container.
  const border=must(panel,'plateBorder');border.kind='container';border.position=[0,0];border.size=[1280,720];delete border.image;delete border.colour;
+ const hud=theme.officialAssets.battleHud,top=theme.presentationProfile==='official-assets-first'?
+  theme.canvas.base[1]/2-(hud.y-hud.height/2):44;
  border.children=[group('v25EventParchment',[
-  rect('field',0,-22,1280,676,'#2E3B38'),rect('storyPanel',...theme.layout.nativeNode.event.plate,'#020504'),
+  rect('field',0,-top/2,1280,720-top,'#2E3B38'),rect('storyPanel',...theme.layout.nativeNode.event.plate,'#020504'),
   image('panelShadow',0,-55,1260,522,theme.image.glowWide,'#000000'),
   polygon('ribbon',[[14,145],[49,132],[219,129],[558,130],[678,139],[704,152],[676,163],[697,173],[626,177],[138,176],[42,186]],'#A3967E'),
   rect('storyWell',-372,-50,410,410,'#121B18'),
@@ -184,14 +186,19 @@ function styleEvent(panel,theme){
  const plate=must(panel,'plate');setRect(plate,theme.layout.nativeNode.event.plate);plate.colour='#020504';
  // Put the well/ribbon after the black field while preserving all original paths.
  const at=panel.children.indexOf(border);panel.children.splice(at,1);panel.children.splice(panel.children.indexOf(plate)+1,0,border);
- must(panel,'glow').opacity=0;must(panel,'caption').text.opacity=0;const art=must(panel,'art');setRect(art,theme.layout.nativeNode.event.art);art.opacity=.25;
+ must(panel,'glow').opacity=0;must(panel,'caption').text.opacity=0;const art=must(panel,'art');setRect(art,theme.layout.nativeNode.event.art);
+ art.image=theme.icon.eventArt?.default??theme.layout.nativeNode.event.reference.icon;
+ art.colour=theme.layout.nativeNode.event.reference.figureInk;
+ art.opacity=theme.layout.nativeNode.event.reference.figureOpacity??1;
  const name=must(panel,'name');setRect(name,theme.layout.nativeNode.event.name);type(name,27,'#F0CF60');
  setRect(must(panel,'body'),theme.layout.nativeNode.event.body);type(must(panel,'body'),21,'#EDEEDF',{align:'left',valign:'top'});
  const o=theme.layout.nativeNode.event.options;
  for(let i=1;i<=4;i++){const n=must(panel,'option'+i);setRect(n,[o.x,o.rows[i-1],...o.size]);must(n,'hit').size=[...o.size];framedSkin(n);
   // Anchored corner covers follow the original Neow/ordinary option resizing.
+  // Clip the complete decorative chrome before live text and input are drawn.
   // All colours/states still come from the original Image feedback targets.
-  for(const side of [0,1])for(const top of [0,1])n.children.splice(7,0,image('v25Corner'+side+'_'+top,0,0,42,22,100003,'#020504',{
+  let cornerAt=n.children.indexOf(must(n,'v25StateChrome'))+1;
+  for(const side of [0,1])for(const top of [0,1])n.children.splice(cornerAt++,0,image('v25Corner'+side+'_'+top,0,0,42,22,100003,'#020504',{
    pivot:[.5,0],anchor:{min:[side,top],max:[side,top]},scale:[side?-1:1,top?-1:1],fill:{shape:'horizontal',from:'right',amount:.5}}));
   must(n,'border').opacity=1;must(n,'border').colour='#406166';
   for(const state of ['normal','hover','pressed','disabled','selected']){must(n,state).image=100001;must(n,state).size=[696,40];}

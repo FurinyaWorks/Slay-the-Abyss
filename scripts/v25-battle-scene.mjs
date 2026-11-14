@@ -64,22 +64,30 @@ export function buildV25BattleSceneGeometry(){
 }
 
 const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
-function triangulate(points){
+function triangulate(points,earSelection='first'){
  const polygon=points.filter((point,index)=>Math.abs(cross(points[(index+points.length-1)%points.length],point,points[(index+1)%points.length]))>1e-7);
  const area=polygon.reduce((sum,p,i)=>{const q=polygon[(i+1)%polygon.length];return sum+p[0]*q[1]-p[1]*q[0];},0);
  const remaining=Array.from(polygon.keys());if(area<0)remaining.reverse();
  const result=[];
  while(remaining.length>3){
-  let clipped=false;
+  let selected=null;
   for(let i=0;i<remaining.length;i++){
    const indices=[remaining[(i+remaining.length-1)%remaining.length],remaining[i],remaining[(i+1)%remaining.length]];
    const [a,b,c]=indices.map(index=>polygon[index]);
    if(cross(a,b,c)<=1e-7)continue;
-   const contains=remaining.some(index=>!indices.includes(index)&&cross(a,b,polygon[index])>=-1e-7&&cross(b,c,polygon[index])>=-1e-7&&cross(c,a,polygon[index])>=-1e-7);
+   // A measured ring may join an inner contour with a zero-width bridge.
+   // Coincident bridge endpoints are one geometric vertex, not an interior
+   // blocker. Ordinary scene polygons have no duplicates and keep their order.
+   const coincident=p=>[a,b,c].some(v=>p[0]===v[0]&&p[1]===v[1]);
+   const contains=remaining.some(index=>!indices.includes(index)&&!coincident(polygon[index])&&cross(a,b,polygon[index])>=-1e-7&&cross(b,c,polygon[index])>=-1e-7&&cross(c,a,polygon[index])>=-1e-7);
    if(contains)continue;
-   result.push([a,b,c]);remaining.splice(i,1);clipped=true;break;
+   const squared=(p,q)=>(p[0]-q[0])**2+(p[1]-q[1])**2;
+   const quality=cross(a,b,c)/(squared(a,b)+squared(b,c)+squared(c,a));
+   if(!selected||quality>selected.quality)selected={i,vertices:[a,b,c],quality};
+   if(earSelection==='first')break;
   }
-  if(!clipped)throw Error('V25 scene has invalid polygon geometry');
+  if(!selected)throw Error('V25 scene has invalid polygon geometry');
+  result.push(selected.vertices);remaining.splice(selected.i,1);
  }
  if(remaining.length===3)result.push(remaining.map(index=>polygon[index]));
  return result;
@@ -99,7 +107,9 @@ function polygonTone(hex,alpha){
  const sky='#516371';return tone('#'+[1,3,5].map(i=>Math.round(parseInt(hex.slice(i,i+2),16)*alpha+parseInt(sky.slice(i,i+2),16)*(1-alpha)).toString(16).padStart(2,'0')).join(''));
 }
 const group=(name,items)=>({name,kind:'container',position:[0,0],size:[1280,676],children:items});
-export function nativeShape(shape,theme){
+export function nativeShape(shape,theme,{edgeBleed=nativeSceneEdgeBleed,earSelection='first'}={}){
+ if(!Number.isFinite(edgeBleed)||edgeBleed<0||edgeBleed>1)throw Error('Native polygon edge bleed must be within 0..1');
+ if(!['first','balanced'].includes(earSelection))throw Error('Native polygon ear selection must be first or balanced');
  const picture=(name,box,image,extra={})=>({name,kind:'image',position:nativePoint([box[0]+box[2]/2,box[1]+box[3]/2]),size:box.slice(2),image,colour:tone(shape.colour),opacity:shape.opacity,...extra});
  if(shape.type==='rect')return [picture(shape.name,shape.box,theme.image.rect)];
  // 106095 is vertically transparent-to-white in the local catalog photo.
@@ -113,7 +123,16 @@ export function nativeShape(shape,theme){
   return picture(shape.name+index,[(p[0]+a[0]-length)/2,(p[1]+a[1]-shape.width)/2,length,shape.width],theme.image.rect,{rotation:-Math.atan2(dy,dx)*180/Math.PI});
  });
  const images=[];
- for(const vertices of triangulate(shape.points)){
+ const half=(foot,end,a)=>{
+  const ux=end[0]-foot[0],uy=end[1]-foot[1],width=Math.hypot(ux,uy),height=Math.hypot(a[0]-foot[0],a[1]-foot[1]);
+  if(width<1e-7||height<1e-7)return;
+  const sign=Math.sign(ux*(a[1]-foot[1])-uy*(a[0]-foot[0])),pad=edgeBleed;
+  const origin=[foot[0]-ux/width*pad+uy/width*sign*pad,foot[1]-uy/width*pad-ux/width*sign*pad];
+  images.push({name:shape.name+'Tri'+images.length,kind:'image',position:origin,size:[(width+pad*3)*2,height+pad*3],image:100003,
+   colour:polygonTone(shape.colour,shape.opacity),opacity:1,pivot:[.5,0],rotation:Math.atan2(uy,ux)*180/Math.PI,
+   scale:[1,sign],fill:{shape:'horizontal',from:'right',amount:.5}});
+ };
+ for(const vertices of triangulate(shape.points,earSelection)){
   // Longest edge ensures the altitude foot lies on the edge. Splitting there
   // needs two right triangles, each a masked half of the observed equal-sided
   // library triangle. No shear or per-pixel rectangle conversion is involved.
@@ -121,16 +140,8 @@ export function nativeShape(shape,theme){
   const edge=sides.sort((a,b)=>b.length-a.length)[0].i;
   const [b,c,a]=[vertices[edge],vertices[(edge+1)%3],vertices[(edge+2)%3]].map(nativePoint);
   const dx=c[0]-b[0],dy=c[1]-b[1],t=((a[0]-b[0])*dx+(a[1]-b[1])*dy)/(dx*dx+dy*dy);
-  const foot=[b[0]+dx*t,b[1]+dy*t],height=Math.hypot(a[0]-foot[0],a[1]-foot[1]);
-  for(const end of [b,c]){
-   const ux=end[0]-foot[0],uy=end[1]-foot[1],width=Math.hypot(ux,uy);
-   if(width<1e-7||height<1e-7)continue;
-   const sign=Math.sign(ux*(a[1]-foot[1])-uy*(a[0]-foot[0])),pad=nativeSceneEdgeBleed;
-   const origin=[foot[0]-ux/width*pad+uy/width*sign*pad,foot[1]-uy/width*pad-ux/width*sign*pad];
-   images.push({name:shape.name+'Tri'+images.length,kind:'image',position:origin,size:[(width+pad*3)*2,height+pad*3],image:100003,
-    colour:polygonTone(shape.colour,shape.opacity),opacity:1,pivot:[.5,0],rotation:Math.atan2(uy,ux)*180/Math.PI,
-    scale:[1,Math.sign(ux*(a[1]-foot[1])-uy*(a[0]-foot[0]))],fill:{shape:'horizontal',from:'right',amount:.5}});
-  }
+  const foot=[b[0]+dx*t,b[1]+dy*t];
+  for(const end of [b,c])half(foot,end,a);
  }
  return images;
 }

@@ -8,19 +8,39 @@ import {buildUI} from '../scripts/build-ui.mjs';
 import {buildLuaData,luaString,toLua} from '../scripts/build-lua-data.mjs';
 
 const require=createRequire(import.meta.url);
-function runOfficial(t,body,marker,overrides={}){
+const sharedFaceHelpers=`
+local function sharedFace(box)
+ local geometry=assert(require('abyss_card_skin').referenceGeometry(box),'missing production shared card geometry')
+ local front=assert(box:GetChild('stsReferenceChrome'))
+ local back=assert(box:GetChild('stsReferenceBack'))
+ return {geometry=geometry,front=front,back=back,body=back:GetChild('body'),portraits=back:GetChild('portraits')}
+end
+local function imageLeaves(root,out)
+ out=out or{}
+ if root.kind=='image'then out[#out+1]=root
+ else for _,part in ipairs(root:GetChildren())do imageLeaves(part,out)end end
+ return out
+end
+local function sameColour(actual,expected,label)
+ for i,key in ipairs({'r','g','b','a'})do
+  assert(actual and (actual[key]or actual[i])==(expected[key]or expected[i]or 255),label..' '..key)
+ end
+end
+`;
+function runOfficial(t,body,marker,overrides={},official=true){
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
  const directory=mkdtempSync(join(root,'official-runtime-'));
  t.after(()=>rmSync(directory,{recursive:true,force:true}));
  buildLuaData('data',join(directory,'abyss_data.lua'));
- buildUI(directory,undefined,{officialAssets:true,nativePageLifecycle:true});
+ buildUI(directory,undefined,{officialAssets:official,nativePageLifecycle:official});
  const modules=readdirSync(directory).filter(name=>name.endsWith('.lua')).map(name=>name.slice(0,-4));
  for(const name of ['abyss_data','abyss_ui_layout','abyss_ui_templates','abyss_theme','abyss_ui_profile'])assert(modules.includes(name));
  const layout=JSON.parse(readFileSync(join(directory,'game-ui.json'),'utf8'));
- const theme=JSON.parse(readFileSync(join(directory,'official-assets-theme.json'),'utf8'));
+ const theme=JSON.parse(readFileSync(official?join(directory,'official-assets-theme.json'):'data/presentation/ui_theme.json','utf8'));
  const stage=layout.controls.find(c=>c.name==='stage');
  const battle=stage.children.find(c=>c.name==='battlePanel');
  const face=battle.children.find(c=>c.name==='card1');
+ if(official){
  const pileGrid=stage.children.find(c=>c.name==='deckPanel').children.find(c=>c.name==='pileGrid');
  const templates=JSON.parse(readFileSync(join(directory,'game-ui-templates.json'),'utf8'));
  const pile=templates.find(c=>c.name===pileGrid.itemTemplate);
@@ -34,7 +54,13 @@ function runOfficial(t,body,marker,overrides={}){
  const ordinary=structuredClone(templates.find(c=>c.name==='AbyssDeckCard').children.find(c=>c.name==='face'));
  ordinary.position=[0,0];
  assert.deepEqual(ordinary,expected,'permanent and combat piles share the final hand face');
- assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
+ assert.equal(face.children.find(c=>c.name==='stsReferenceBack').children.find(c=>c.name==='body').children.find(c=>c.name==='paperWell').image,theme.image.rect,
+  'the generated production shared face retains its rectangular paper well');
+ }else{
+  assert.notEqual(theme.presentationProfile,'official-assets-first');
+  assert(face.children.some(c=>c.name==='skin'),'default layout must retain its actual legacy face');
+  assert(!face.children.some(c=>c.name==='stsReferenceBack'),'default fixture must not borrow the official face');
+ }
  const overrideLoads=Object.entries(overrides).map(([name,source])=>{
   assert.match(name,/^abyss_[a-z_]+$/);
   const file=join(directory,'override-'+name+'.lua');writeFileSync(file,source);
@@ -46,7 +72,7 @@ package.path=generated..'/?.lua;src/lua/?.lua'
 -- Fixture paths include build/lua. Explicit preloads prevent any generated
 -- module from silently falling back to another candidate's shared build.
 for _,name in ipairs(${toLua(modules)})do package.preload[name]=assert(loadfile(generated..'/'..name..'.lua'))end
-local profile=require('abyss_ui_profile');assert(profile.nativePageLifecycle)
+local profile=require('abyss_ui_profile');assert(profile.nativePageLifecycle==${official})
 ${overrideLoads}
 local GameUI=require('abyss_game_ui');local create=GameUI.new;local Fixture
 -- Pass the generated bootstrap setting into the real Host. The shared fixture
@@ -65,6 +91,7 @@ end
 local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
 Fixture=H.F
 local C=H.F.Combat
+${sharedFaceHelpers}
 local function same(a,b)
  if type(a)~=type(b)then return false end
  if type(a)~='table'then return a==b end
@@ -93,12 +120,24 @@ local faces={p:GetChild('card1'),H.F.control(template.AbyssDeckCard):GetChild('f
 local long='本场战斗每失去 一 次生命，本牌费用 减少一。造成 18 点伤害。'
 for _,face in ipairs(faces)do
  local body=face:GetChild('label')or face:GetChild('description')
- local picture=face:GetChild('skin'):GetChild('attack')
+ local geometry=sharedFace(face).geometry
+ local illustrations={}
+ for _,picture in ipairs(face:GetChildren())do if picture.name=='art'or picture.name:match('^art_')then
+  local measured={picture.sizeDeltaX,picture.sizeDeltaY,picture.localScaleX or 1,picture.localScaleY or 1,picture.x,picture.y}
+  assert(measured[1]>0 and measured[2]>0,'production illustration needs a real measured size')
+  illustrations[#illustrations+1]={control=picture,measured=measured}
+ end end
+ assert(#illustrations>0,'production face lost its semantic illustration slots')
  for _,text in ipairs({long,'获得 5 点格挡。',long})do
   assert(D.writeBody(body,text,face),'full unchanged reward text must fit')
   assert(body.text==text and body.fontSize>=14,'full text and native minimum')
-  assert(body.sizeDeltaX==124 and body.sizeDeltaY==92,'fixed reading slot')
-  assert((picture.localScaleY or 1)==1,'long text compressed illustration')
+  assert(body.sizeDeltaX==geometry.body.size[1]and body.sizeDeltaY==geometry.body.size[2],'fixed measured reading slot')
+  assert(body.x==geometry.body.position[1]and body.y==geometry.body.position[2],'measured body anchor changed')
+  for _,entry in ipairs(illustrations)do local picture,measured=entry.control,entry.measured
+   assert((picture.localScaleX or 1)==measured[3]and(picture.localScaleY or 1)==measured[4],'long text compressed illustration')
+   assert(picture.sizeDeltaX==measured[1]and picture.sizeDeltaY==measured[2],'full shared illustration changed size')
+   assert(picture.x==measured[5]and picture.y==measured[6],'long text moved the illustration slot')
+  end
   assert(body.y+body.sizeDeltaY/2<=-4 and body.y-body.sizeDeltaY/2>=-96,'reading slot leaves the card')
  end
 end
@@ -142,12 +181,18 @@ u3:playSelected(1)
 assert(not u3.busy and not u3.feedback.busy and not u3.displayBattle)
 assert(b3.energy==beforeEnergy-1 and #b3.hand==2 and u3.selected==nil)
 assert(p3:GetChild('endTurn').interactable,'startup recovery left input disabled')
--- Legacy theme keeps its original three-render behavior.
-local h4,u4,p4,b4=setup();local previous=Theme.presentationProfile;Theme.presentationProfile=nil
-local full=u4.render;local count=0;u4.render=function(self,...)count=count+1;return full(self,...)end
-u4:playSelected(1);Theme.presentationProfile=previous
-assert(count==3,'legacy theme must keep the existing refresh path')
 `, 'OFFICIAL_FEEDBACK_FRAME_REUSE_PASS');
+ // The default production layout still owns the legacy skin. Its refresh
+ // contract needs that real layout/theme pair, rather than changing the theme
+ // underneath an official face whose retired legacy children no longer exist.
+ runOfficial(t,`
+local h,u,p=H.setup({'strike','defend','strike'},{'cultist'})
+assert(H.F.Theme.presentationProfile~='official-assets-first' and p:GetChild('card1'):GetChild('skin'))
+local b=h.run.combat;u.selected=b.hand[1].uid;u:render()
+local full=u.render;local count=0;u.render=function(self,...)count=count+1;return full(self,...)end
+u:playSelected(1)
+assert(count==3,'legacy theme must keep the existing refresh path')
+`, 'DEFAULT_FEEDBACK_FRAME_REFRESH_PASS',{},false);
 });
 
 test('official mouse targeting returns to the source centre with frame time while touch keeps its own pose',t=>{
@@ -218,13 +263,18 @@ local h3,u3,p3,event3,drain3,b3=setup();local before3=C.copy(b3);local count=0;l
 u3.render=function(self,...)count=count+1;return full3(self,...)end
 event3('dragLayer','up',71,-500,0)
 assert(count>0 and not u3.busy);unchanged(b3,before3,'invalid target drop committed a card')
--- Other themes retain the old intermediate render plus their trailing refresh.
-local previous=Theme.presentationProfile;Theme.presentationProfile=nil
-local h4,u4,p4,event4,drain4,b4,uid4,enemy4=setup();local count4=0;local full4=u4.render
-u4.render=function(self,...)count4=count4+1;return full4(self,...)end
-event4('dragLayer','up',71,enemy4.x,enemy4.y);Theme.presentationProfile=previous
-assert(count4==4,'default real drag path changed: '..count4)
 `, 'OFFICIAL_REAL_DRAG_RELEASE_PASS');
+ runOfficial(t,`
+local h,u,p,event=H.setup({'strike','defend','strike'},{'cultist'})
+assert(H.F.Theme.presentationProfile~='official-assets-first')
+local enemy=H.F.actorControl(p,'enemy1')
+event('card1','down',71);event('card1','drag',71,enemy.x,enemy.y);h:update(.1)
+assert(u.gesture and u.gesture.moving and u.gesture.drawnValid and u.gesture.drawnTarget==1)
+local count4=0;local full4=u.render
+u.render=function(self,...)count4=count4+1;return full4(self,...)end
+event('dragLayer','up',71,enemy.x,enemy.y)
+assert(count4==4,'default real drag path changed: '..count4)
+`, 'DEFAULT_REAL_DRAG_RELEASE_PASS',{},false);
 });
 
 const officialSingleDamageSetup=`
@@ -362,18 +412,18 @@ local layout=require('abyss_ui_layout');local stage
 for _,v in ipairs(layout)do if v.name=='stage'then stage=v end end
 local battle=specChild(stage,'battlePanel')
 local textures={}
+local function bindImages(control,generated)
+  if generated.kind=='image'then
+   control:SetImage('static',generated.image);textures[#textures+1]={control,generated.image}
+  else for _,part in ipairs(generated.children or{})do bindImages(control:GetChild(part.name),part)end end
+end
 for i=1,10 do
  local card=p:GetChild('card'..i);local spec=specChild(battle,'card'..i)
- for _,name in ipairs({'roundBody','roundFrame','roundShadow'})do
-  local image=card:GetChild(name):GetChild('flat')
-  local id=specChild(specChild(spec,name),'flat').image
-  assert(id==H.F.Theme.image.rect)
-  image:SetImage('static',id);textures[#textures+1]={image,id}
- end
+ for _,name in ipairs({'stsReferenceBack','stsReferenceChrome'})do bindImages(card:GetChild(name),specChild(spec,name))end
 end
 h:refresh();u:render()
 for _,entry in ipairs(textures)do assert(entry[1].imageId==entry[2],'render replaced official card texture')end
--- The selected light medallion requires dark neutral numbers. Exercise the
+-- Exercise the shared native cost material and authoritative number palette,
 -- real cost painter as well as red/green changes and insufficient-energy ink.
 local Skin=require('abyss_card_skin');local theme=H.F.Theme
 local card=p:GetChild('card1');local number=card:GetChild('cost')
@@ -404,8 +454,9 @@ for _,case in ipairs({
 end
 local costless=C.copy(definition);costless.cost=-2
 Skin.apply(card,costless,paint,{surfaceScope='battle'})
-assert(not card:GetChild('nativeCostOrb').visible,'costless card keeps a coin')
-u:render();assert(card:GetChild('nativeCostOrb').visible,'live cost orb not restored')
+local costMaterial=sharedFace(card).front:GetChild('costMaterial')
+assert(not costMaterial.visible and not number.visible,'costless card keeps a coin')
+u:render();assert(costMaterial.visible and number.visible,'live shared cost material not restored')
 colour(number.fontColor,battleInk,'battle neutral ink restored after semantic cost changes')
 unchanged(b,before,'official image binding mutated Combat')
 unchanged(H.F.Data,dataBefore,'official image binding mutated Core data')
@@ -583,12 +634,16 @@ Candidate.prepare=prepare
 h.run.potions[3]='not_a_potion';u:render()
 assert(u.potionViewCache[3].id=='not_a_potion' and u.potionViewCache[3].canUse==nil)
 h.run.potions[3]=nil;u:render()
--- Default retains the complete inventory view and its original canUse contract.
-local profile=H.F.Theme.presentationProfile;H.F.Theme.presentationProfile=nil
-local views=0;Run.potionView=function(...)views=views+1;return whole(...)end
-u:render();assert(views==1 and u.potionViewCache[1].canUse~=nil)
-Run.potionView=whole;H.F.Theme.presentationProfile=profile
 `, 'OFFICIAL_POTION_METADATA_PASS');
+ runOfficial(t,`
+local Run=require('abyss_run');local h,u=H.setup({'strike','defend'},{'cultist'})
+assert(H.F.Theme.presentationProfile~='official-assets-first')
+assert(Run.obtainPotion(h.run,'fire_potion'))
+local whole=Run.potionView;local views=0
+Run.potionView=function(...)views=views+1;return whole(...)end
+u:render();assert(views==1 and u.potionViewCache[1].canUse~=nil)
+Run.potionView=whole
+`, 'DEFAULT_POTION_INVENTORY_VIEW_PASS',{},false);
 });
 
 test('official hover refresh touches poses only and falls back on turn, UID and viewport changes',t=>{
@@ -792,18 +847,27 @@ local function find(entries)for _,entry in ipairs(entries)do
  if entry.name=='deckPanel'then panelSpec=entry end;find(entry.children or {})
 end end
 find(F.Layout)
-local panel=F.control(assert(panelSpec));local grid=panel:GetChild('pileGrid')
-local controller=false;local deck
-deck=require('abyss_deck_ui').new(panel,F.Presentation,'click',{
- imageSource='static',color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end,
- controllerApi={isController=function()return controller end}},function()return deck:close()end)
+local panel,grid,deck;local controller=false
+local function resetBrowser()
+ panel=F.control(assert(panelSpec));grid=panel:GetChild('pileGrid')
+ local ownedDeck
+ ownedDeck=require('abyss_deck_ui').new(panel,F.Presentation,'click',{
+  imageSource='static',color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end,
+  controllerApi={isController=function()return controller end}},function()return ownedDeck:close()end)
+ deck=ownedDeck
+end
+resetBrowser()
 local function instance(uid,id,upgraded)return {uid=uid,cardId=id,upgraded=upgraded==true}end
 local function tool(mode)return panel:GetChild('pileTools'):GetChild(mode):GetChild('hit').click()end
 `;
 
 test('official permanent browser handles 0/1/5/6/17 cards, deferred index origins, detail return and recycled late callbacks',t=>{
  runOfficial(t,officialDeckBrowserSetup+`
-for _,origin in ipairs({0,1})do for _,amount in ipairs({0,1,5,6,17})do
+for _,origin in ipairs({0,1})do
+ -- The native index origin belongs to a grid instance. Keep the same grid
+ -- warm across list sizes, but never change a calibrated native grid's ABI.
+ resetBrowser();local warmed=false
+ for _,amount in ipairs({0,1,5,6,17})do
  host.run.deck={}
  for i=1,amount do host.run.deck[i]=instance(200+i,i%2==0 and 'defend' or 'bash',i==1)end
  local before=C.copy(host.run)
@@ -811,8 +875,10 @@ for _,origin in ipairs({0,1})do for _,amount in ipairs({0,1,5,6,17})do
  assert(deck:open(host.run))
  assert(grid.visible and not panel:GetChild('grid').visible,'permanent view did not select shared browser')
  local calibration=grid.refreshCallback
- deck:update();assert(grid.itemCount==(amount>0 and 1 or 0),'deferred calibration lost ownership')
+ deck:update();assert(grid.itemCount==(amount>0 and (warmed and amount or 1) or 0),'deferred calibration lost ownership')
+ if amount==0 then assert(not deck.pending and not deck.calibrating and not deck.pendingGrid,'empty browser retained readiness work')end
  grid:flush();deck:update();grid:flush()
+ if amount>0 then warmed=true end
  assert(grid.itemCount==amount and grid.scrollProgress==0)
  assert(panel:GetChild('pileChrome'):GetChild('empty').visible==(amount==0))
  assert(not deck:setFilter('skill'),'hidden legacy filters must not alter the official snapshot')
@@ -997,12 +1063,13 @@ end
             host.deckUI:update()
             local face=grid.items[0]:GetChild('face')
             assert(face.y==0 and not grid.items[0]:GetChild('uid').visible)
-            assert(face:GetChild('nativeRibbon') and face:GetChild('nativeCostOrb').visible)
+            local shared=sharedFace(face)
+            assert(shared.front.visible~=false and shared.back.visible~=false and shared.front:GetChild('costMaterial').visible)
             for _,name in ipairs({'nativePlayableRim','glow','costHalo'})do
                 assert(not face:GetChild(name).visible,'read-only piles cannot flash ready/cost halos')
             end
-            assert(face:GetChild('name').fontColor[1]==Theme.officialAssets.battleCardTitleInk.r)
-            assert(face:GetChild('cost').fontColor[1]==Theme.cardSkin.battleCostText.r)
+            sameColour(face:GetChild('name').fontColor,Theme.officialAssets.stsCardReference.rarity.common.ink,'shared title ink')
+            sameColour(face:GetChild('cost').fontColor,Theme.cardSkin.costText,'shared cost ink')
             if amount==13 then
                 grid.destroyOnRecycle=true
                 local previous=grid.items[0]
@@ -1286,21 +1353,27 @@ for(const official of [false,true])test(`${official?'official':'default'} genera
 local generated=${luaString(directory.replaceAll('\\','/'))}
 package.path=generated..'/?.lua;src/lua/?.lua'
 for _,name in ipairs(${toLua(modules)})do package.preload[name]=assert(loadfile(generated..'/'..name..'.lua'))end
-local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
-local h,u,p=H.setup({'strike','defend','bash','anger','inflame'},{'cultist','jaw_worm'})
 local official=${official}
+local probes=0
+local GameUI=require('abyss_game_ui');local create=GameUI.new
+GameUI.new=function(root,...)
+ local panel=root:GetChild('battlePanel')
+ for i=1,10 do
+  local box=panel:GetChild('card'..i)
+  assert((box.children.stsReferenceChrome~=nil)==official and (box.children.stsReferenceBack~=nil)==official,'generated profile owns the shared reference face')
+  local get=box.GetChild
+  box.GetChild=function(self,key)
+   if key=='nativeBannerRight' or key=='nativePlayableRim' or key=='nativeRibbon' or key=='nativeCostOrb' or key=='stsReferenceChrome' or key=='stsReferenceBack' then probes=probes+1;assert(official,'default profile probed official-only decoration')end
+   return assert(get(self,key),'missing required card child '..key)
+  end
+ end
+ return create(root,...)
+end
+local H=dofile('tests/lua/support/battle_gesture_fixture.lua')
+local h,u,p=H.setup({'strike','defend','bash','anger','inflame'},{'cultist','jaw_worm'});GameUI.new=create
+${sharedFaceHelpers}
 local theme=H.F.Theme
 assert((theme.presentationProfile=='official-assets-first')==official)
-local probes=0
-for i=1,10 do
- local box=p:GetChild('card'..i)
- assert((box.children.nativeBannerRight~=nil)==official,'generated profile owns the ribbon')
- local get=box.GetChild
- box.GetChild=function(self,key)
-  if key=='nativeBannerRight' or key=='nativePlayableRim' or key=='nativeRibbon' or key=='nativeCostOrb' then probes=probes+1;assert(official,'default profile probed official-only decoration')end
-  return assert(get(self,key),'missing required card child '..key)
- end
-end
 local function colour(actual,expected)
  assert(actual and actual.r==expected.r and actual.g==expected.g and actual.b==expected.b,'rarity ink mismatch')
 end
@@ -1310,13 +1383,17 @@ for _,rarity in ipairs({'basic','common','uncommon','rare'})do
  u:render()
  for i=1,#h.run.combat.hand do
   local box=p:GetChild('card'..i)
-  local ink=official and theme.officialAssets.battleBannerByRarity[rarity] or theme.color.rarityBand[rarity]
-  colour(box:GetChild('nameBand').imageColor,ink)
-  if official then colour(box:GetChild('nativeBannerRight').imageColor,ink)end
+  if official then
+   local face=sharedFace(box);local token=theme.officialAssets.stsCardReference.rarity[rarity=='basic'and'common'or rarity]
+   local frame=imageLeaves(face.front:GetChild('frame'));assert(#frame>0)
+   for _,part in ipairs(frame)do sameColour(part.imageColor,token.frame,'shared rarity frame')end
+   local banner=imageLeaves(face.front:GetChild('banner'):GetChild('front'));assert(#banner>0)
+   for _,part in ipairs(banner)do sameColour(part.imageColor,token.banner,'shared rarity banner')end
+  else colour(box:GetChild('nameBand').imageColor,theme.color.rarityBand[rarity])end
  end
 end
 assert(official and probes>0 or not official and probes==0)
-for _,name in ipairs(official and {'nameBand','nameRule','art','nativeBannerRight','nativePlayableRim','nativeRibbon','nativeCostOrb'} or {'nameBand','nameRule','art'})do
+for _,name in ipairs(official and {'name','type','label','cost','art'} or {'nameBand','nameRule','art'})do
  local box=p:GetChild('card1');local saved=box.children[name];assert(saved)
  box.children[name]=nil
  local ok,reason=pcall(function()u:render()end)
@@ -1333,55 +1410,50 @@ print('BANNER_CONTRACT_PASS')
  assert.match(result.stdout,/BANNER_CONTRACT_PASS/);
 });
 
-test('official battle status and curse reuse neutral skill materials and restore the red recycled face',t=>{
+test('official battle status and curse reuse neutral skill materials and restore the shared Geo recycled face',t=>{
  runOfficial(t,`
 local h,u,p=H.setup({'strike','defend','bash','anger','impervious'},{'cultist'})
 local theme=H.F.Theme;local b=h.run.combat;local instance=b.hand[1]
-local box=p:GetChild('card1');local body=box:GetChild('nativeCardBody');local skin=box:GetChild('skin')
-local function colour(actual,expected,label)
- for _,channel in ipairs({'r','g','b','a'})do assert(actual[channel]==(expected[channel]or 255),label..' '..channel)end
-end
-local frozenWells={attack={r=85,g=28,b=36},skill={r=26,g=48,b=66},power={r=37,g=37,b=54}}
-for kind,expected in pairs(frozenWells)do colour(theme.officialAssets.battleArtWells[kind],expected,'final project-card-theme.css '..kind)end
--- Owner's StS1 reference refinement supersedes the thin brown V25 frame.
-local frozenBody={outerBevel={r=112,g=53,b=46},paperBevel={r=182,g=91,b=67},innerWell={r=64,g=53,b=48},topCatchlight={r=224,g=161,b=118},leftCatchlight={r=217,g=135,b=97},bottomShade={r=69,g=37,b=42}}
-for part,expected in pairs(frozenBody)do colour(theme.officialAssets.battleCardBodyMaterials.red[part],expected,'StS1 material reference '..part)end
+local box=p:GetChild('card1');local shared=sharedFace(box);local body,skin=shared.body,shared.portraits
+local reference=theme.officialAssets.stsCardReference
+local originalBody={};for _,part in ipairs(imageLeaves(body))do originalBody[part]=part.imageColor end
+local bodyRoles={bodyFit='outer',paperWell='body',topBevel='shade',leftBevel='shade',
+ rightBevel='outer',bottomBevel='outer',innerLight='bevel',cornerBevel='bevel'}
 local function material(id,kind,shape)
  instance.cardId=id;u:render()
  assert(not box:GetChild('roleRing').visible and not box:GetChild('roleMark').visible,'recycled card restored removed bottom ornament')
- local token=theme.officialAssets.battleCardBodyMaterials[kind]
- for _,group in ipairs({'outerBevel','paperBevel','recessShadow','innerWell'})do
-  for _,part in ipairs(body:GetChild(group):GetChildren())do colour(part.imageColor,token[group],id..' '..group)end
- end
- for _,part in ipairs({'topCatchlight','leftCatchlight','bottomShade'})do
-  local c=token[part];local expected={r=c.r,g=c.g,b=c.b,a=math.floor(theme.officialAssets.battleCardBodyLayerOpacity[part]*255+.5)}
-  colour(body:GetChild(part).imageColor,expected,id..' translucent '..part)
- end
- for _,name in ipairs({'attack','skill','power'})do assert(skin:GetChild(name).visible==(name==shape),id..' native portrait shape '..name)end
- if kind~='red'then
-  colour(skin:GetChild('skill'):GetChild('well'):GetChild('vertical').imageColor,token.artWell,id..' neutral portrait well')
- else
-  local piece=shape=='attack' and 'upper' or shape=='power' and 'arch' or 'vertical'
-  colour(skin:GetChild(shape):GetChild('well'):GetChild(piece).imageColor,frozenWells[shape],id..' final CSS portrait well')
- end
- if kind=='curse'then
-  local common=theme.officialAssets.battleBannerByRarity.common
-  colour(theme.officialAssets.battleBannerByRarity.curse,common,'source CURSE banner token must equal COMMON')
-  colour(box:GetChild('nativeBannerRight').imageColor,common,id..' common banner end')
-  local faces=0
-  for _,part in ipairs(box:GetChild('nativeRibbon'):GetChildren())do
-   if part.name:match('^face')then colour(part.imageColor,common,id..' common banner '..part.name);faces=faces+1 end
+ local neutral=kind~='red'and theme.officialAssets.battleCardBodyMaterials[kind]
+ local colours=neutral and{outer=neutral.outerBevel,shade=neutral.paperBevel,body=neutral.innerWell,bevel=neutral.leftCatchlight}
+  or reference.character
+ local seen={}
+ for _,group in ipairs(body:GetChildren())do
+  local role=assert(bodyRoles[group.name],id..' unknown shared body role '..group.name)
+  assert(not seen[group.name],id..' duplicate shared body role '..group.name);seen[group.name]=true
+  local leaves=imageLeaves(group);assert(#leaves>0,id..' empty shared body role '..group.name)
+  for _,part in ipairs(leaves)do
+   sameColour(part.imageColor,colours[role],id..' exact shared body '..group.name)
+   if not neutral then sameColour(part.imageColor,originalBody[part],id..' full Geo projection was not restored')end
   end
-  assert(faces==8,'curse must repaint all eight ribbon faces with the common material')
  end
- local original=body:GetChild('innerWell'):GetChild('vertical').imageColor
+ for name in pairs(bodyRoles)do assert(seen[name],id..' missing shared body role '..name)end
+ for _,name in ipairs({'attack','skill','power'})do assert(skin:GetChild(name).visible==(name==shape),id..' native portrait shape '..name)end
+ local well=neutral and neutral.artWell or theme.cardSkin.artWells[shape]
+ local parts=imageLeaves(skin:GetChild(shape):GetChild('well'));assert(#parts>0)
+ for _,part in ipairs(parts)do sameColour(part.imageColor,well,id..' shared portrait well')end
+ if kind=='curse'then
+  local common=reference.rarity.common
+  for _,part in ipairs(imageLeaves(shared.front:GetChild('frame')))do sameColour(part.imageColor,common.frame,id..' common frame')end
+  for _,part in ipairs(imageLeaves(shared.front:GetChild('banner'):GetChild('front')))do sameColour(part.imageColor,common.banner,id..' common banner')end
+  for _,part in ipairs(imageLeaves(shared.front:GetChild('banner'):GetChild('left')))do sameColour(part.imageColor,common.bannerFold,id..' common fold')end
+ end
+ local original=body:GetChild('paperWell').imageColor
  u.selected=instance.uid;u:render();u.selected=nil;u:render()
- assert(body:GetChild('innerWell'):GetChild('vertical').imageColor==original,'unchanged material was repainted during selection')
+ assert(body:GetChild('paperWell').imageColor==original,'unchanged material was repainted during selection')
 end
--- Fail after three complete rounded groups have already changed. A failed
+-- Fail at the shared paper material after preceding writes. A failed
 -- material transaction must not cache its kind and skip the same-kind retry.
 material('wound','status','skill');material('strike','red','attack')
-local interrupted=body:GetChild('innerWell'):GetChild('vertical')
+local interrupted=body:GetChild('paperWell')
 local priorMeta=getmetatable(interrupted);local current=interrupted.imageColor
 local writes,fail=0,true
 rawset(interrupted,'imageColor',nil)
