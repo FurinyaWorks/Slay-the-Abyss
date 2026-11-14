@@ -37,7 +37,7 @@
 - 关卡与 MCP 操作先读 [TOOLCHAIN](docs/TOOLCHAIN.md) 和 [千星技能](.codebuddy/skills/miliastra-wonderland/SKILL.md)，使用 MCP 前读 miliastra://workflow 与 miliastra://platform-rules。MILIASTRA_ALLOW_LIVE_WRITE 保持 0，只写存档副本，发布由人完成。
 - 实机需本轮候选身份、日志/ready 和设备证据；自动试玩显式 clientScriptLog: true，工具确保每次新导入后订阅。不得用旧日志、离线模拟或 PC 结果代替当前手机实测。
 - 原版对照、无 Lv.4 持久存档依赖和同局状态要求见 [SCOPE](docs/SCOPE.md)。不自行调平衡、升级账号或引入后端绕过限制；保留 full-source 内容及历史证据。
-- 保留 [LICENSE](LICENSE) 的非商业许可及项目商业权利；第三方素材保留各自授权，不擅自更换许可。
+- 保留 [LICENSE](LICENSE) 当前严格的非商业、禁止分发与改编边界和项目方有权商用的权利；历史已授许可及第三方素材独立有效，不擅自改授他人作品。详见 [授权范围](LICENSE-SCOPE.md)。
 - Codex 负责决策、集成和验收；适合的短任务优先免费 OpenCode，配置、最高推理档位及验收方式见 [委派记录](docs/backlog-details/TASK-51.md)。明确限额后暂停，恢复窗口未知时不试探、不切收费模型；仅有恢复依据后做一次短任务验证。
 
 门禁覆盖与维护方式见 [指引维护](docs/AGENT_GUIDANCE.md)。

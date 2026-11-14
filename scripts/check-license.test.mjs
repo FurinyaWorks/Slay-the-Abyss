@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { checkDependencies, checkAssets, digest, sensitive } from './check-license.mjs';
@@ -162,4 +162,22 @@ test('missing reviewed assets return provenance errors rather than throwing', t 
     const inventory = {categories:{unknown:{}},files:{[path]:{category:'unknown',sha256:'0'.repeat(64),...extra}}};
     assert.deepEqual(checkAssets(root,[path],inventory), [`Changed asset/runtime needs provenance review: ${path}`]);
   }
+});
+
+test('current license prohibits redistribution, and notices preserve historic and third-party rights', () => {
+  const root = new URL('../', import.meta.url);
+  const read = name => readFileSync(new URL(name, root), 'utf8');
+  const license = read('LICENSE');
+  const readme = read('README.md');
+  const scope = read('LICENSE-SCOPE.md');
+  const notices = read('THIRD_PARTY_NOTICES.md');
+  assert.match(license, /^# PolyForm Strict License 1\.0\.0/m);
+  assert.match(license, /other than distributing the software or\s+making changes or new works based on the software/);
+  assert.doesNotMatch(license, /^## Distribution License/m);
+  assert.match(readme, /免费发布/);
+  assert.match(readme, /创作者激励/);
+  assert.match(scope, /历史版本及贡献者权利/);
+  assert.match(scope, /不追溯撤销/);
+  assert.match(scope, /GitHub Fork/);
+  assert.match(notices, /第三方组件许可及平台 IP/);
 });

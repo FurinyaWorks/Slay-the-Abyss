@@ -1,4 +1,4 @@
-// Project-original compliance tooling: PolyForm-Noncommercial-1.0.0.
+// Project-original compliance tooling: see LICENSE-SCOPE.md (current Strict and historical grants).
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';

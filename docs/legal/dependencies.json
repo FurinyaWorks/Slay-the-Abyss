@@ -70,7 +70,7 @@
     }
   },
   "reviewedFiles": {
-    "LICENSE": "ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8",
+    "LICENSE": "e2361f52ad5be22b937a6e983c824a534c5cffa454b6c34af2f8ce0c2cdf7c1a",
     "art/cards/shared/licenses/EDITOR-GPL-3.0.txt": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
     "art/cards/shared/licenses/PRIMITIVE-SHAPE-MIT.txt": "b5f34362abd2e8c31b7a7bc62c2977f158faa4cd78b17ef7c197fb464e56a6ef",
     "art/processed/ai-samples/licenses/EDITOR-GPL-3.0.txt": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
