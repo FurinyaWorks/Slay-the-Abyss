@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "repository": "FurinyaWorks/Slay-the-Abyss",
+  "repositoryId": 1429751262,
+  "archiveBranch": "archive/source-closeout-20261114",
+  "develop": "e805a87dc4df1a048ba5995931d98a4e4899b5e9",
+  "selection": "No open PR; not a pending consolidated source or protected/current aggregate; last commit older than four hours. Preserve all original objects as archive commit parents before deleting exact refs. Also retain all branches observed being created or updated during this session, regardless of commit timestamp.",
+  "candidates": [
+    {
+      "branch": "feat/character-source-role-audit",
+      "sha": "bf8cbf291b4e1d67d8fdead2a14a86d1e5dfcf41",
+      "committerUnix": 1794559821
+    },
+    {
+      "branch": "feat/four-character-pool-plan-nov13",
+      "sha": "2e22d47f599603f2b7d9e9cfddee837cc066da66",
+      "committerUnix": 1794555872
+    },
+    {
+      "branch": "feat/ganyu-source-integrity",
+      "sha": "6a8b02d1461fc2536075e304ff8ca5c9fbd9aa37",
+      "committerUnix": 1794574253
+    },
+    {
+      "branch": "feat/guidance-union-903",
+      "sha": "0372e556b3871152dc7b1744fd2467a27ad54f27",
+      "committerUnix": 1794531062
+    },
+    {
+      "branch": "feat/hutao-input-integration",
+      "sha": "7c3abce098e789cacca03f25ee528047e24fbe25",
+      "committerUnix": 1794551417
+    },
+    {
+      "branch": "feat/hutao-v5-g0-g3-design",
+      "sha": "2e4ab0be9b7f8ec23ae197e7403b7622e58c3b6b",
+      "committerUnix": 1794480797
+    },
+    {
+      "branch": "feat/keqing-003-host-validation",
+      "sha": "262406d4eed81783e0a3aab2836419e674f6af46",
+      "committerUnix": 1794571800
+    },
+    {
+      "branch": "feat/keqing-004-host-validation",
+      "sha": "722638c1c14392e9e5d88a3903f8df8520029d52",
+      "committerUnix": 1794577007
+    },
+    {
+      "branch": "feat/keqing-043-host-validation",
+      "sha": "43a8f1b9e967ba06a333a6ee05a0f64267dd653f",
+      "committerUnix": 1794575082
+    },
+    {
+      "branch": "feat/keqing-conditional-author",
+      "sha": "b2880aec1d2d19f7b9bb033ceaff103ffb40b41e",
+      "committerUnix": 1794586363
+    },
+    {
+      "branch": "feat/keqing-discard-continuation",
+      "sha": "395942fad07a79ae10b2aaf7d6877a37245604bd",
+      "committerUnix": 1794573493
+    },
+    {
+      "branch": "feat/keqing-host-gates",
+      "sha": "16a08bc3d38714cb181b7d306b6daca55ac318f8",
+      "committerUnix": 1794571452
+    },
+    {
+      "branch": "feat/keqing-native-eight",
+      "sha": "91eab0b37e0f2d825579c767ee9dd7c21e198909",
+      "committerUnix": 1794581445
+    },
+    {
+      "branch": "feat/keqing-native-support-pair",
+      "sha": "446afeef67f9410714090bd7509d4455af721f12",
+      "committerUnix": 1794583005
+    },
+    {
+      "branch": "feat/keqing-paid-choice-transaction",
+      "sha": "720a8e68ac8c68923a315cd82be0c92906295934",
+      "committerUnix": 1794567304
+    },
+    {
+      "branch": "feat/keqing-production",
+      "sha": "47dd4a84d361750e3cc18860ce24887088fcddbf",
+      "committerUnix": 1794580215
+    },
+    {
+      "branch": "feat/keqing-reward-host-validation",
+      "sha": "1f6355e4c4895d2db10201f05ea88d75a1088258",
+      "committerUnix": 1794582637
+    },
+    {
+      "branch": "feat/keqing-run-host-validation",
+      "sha": "588d7df54ecaab30988a05c83674aac38989572c",
+      "committerUnix": 1794580698
+    },
+    {
+      "branch": "feat/keqing-setup-stages",
+      "sha": "618ae2fedb08d550740f1659aac27ac533812a1c",
+      "committerUnix": 1794591439
+    },
+    {
+      "branch": "feat/keqing-shared-manual-run",
+      "sha": "a2532f7b67a8954b3c80b7ea414c01e00262b250",
+      "committerUnix": 1794568678
+    },
+    {
+      "branch": "feat/keqing-source-starter",
+      "sha": "3984ee877458e9b955fd4d903c02c6e0a4aa61a7",
+      "committerUnix": 1794579957
+    },
+    {
+      "branch": "feat/keqing-support-reward-author",
+      "sha": "d40f4780511d1ba5760cb83a8ab6f91a5602e3be",
+      "committerUnix": 1794584675
+    },
+    {
+      "branch": "feat/liyue-four-idle-candidates-20261113",
+      "sha": "ed73c5a3752316ca9bdc151b5d573523c02c502c",
+      "committerUnix": 1794557336
+    },
+    {
+      "branch": "feat/lumine-native-fit",
+      "sha": "8ca834f40a450ddf11a8a2956b1ebf25c68c09a7",
+      "committerUnix": 1794587031
+    },
+    {
+      "branch": "feat/mobile-screenshot-diagnostics-20261112",
+      "sha": "177a413699851bf7ca3593d136521f74d4e772ef",
+      "committerUnix": 1794480261
+    },
+    {
+      "branch": "feat/publisher-history-903",
+      "sha": "a96a8cf771a15de8e04a1b92468e66d67e4ae4d7",
+      "committerUnix": 1794539437
+    },
+    {
+      "branch": "feat/xiao-skill-production",
+      "sha": "1a8f4f5dc234a03e303e52451a8560d0fcd7b086",
+      "committerUnix": 1794590486
+    },
+    {
+      "branch": "feat/zhongli-generated-author-evidence",
+      "sha": "480233d02eb88ac3dc86e92db695f5a834869b39",
+      "committerUnix": 1794589819
+    },
+    {
+      "branch": "feat/zhongli-skill-production",
+      "sha": "10847765d73b147c89c445c94afe4ff7960781f2",
+      "committerUnix": 1794579735
+    },
+    {
+      "branch": "feat/zhongli-zero-author-evidence",
+      "sha": "34840d0d575c52be4eead8321f7a5125c3ed0f9f",
+      "committerUnix": 1794587532
+    },
+    {
+      "branch": "fix/hutao-keyboard-controls",
+      "sha": "0ad7a2c31c56a07ab3e66a27cdf4eb6effd5d83f",
+      "committerUnix": 1794543812
+    },
+    {
+      "branch": "fix/hutao-modal-focus",
+      "sha": "66820c95678eea9b306c2f00bd0162141ab9c0a6",
+      "committerUnix": 1794547343
+    },
+    {
+      "branch": "fix/hutao-report-copy-feedback",
+      "sha": "fc80055e2c8206d3c9e2192d70b9d066e546daf9",
+      "committerUnix": 1794536538
+    },
+    {
+      "branch": "fix/naming-approval-types-nov13",
+      "sha": "6397bbba847414909f14c9f7c92d6d2098e4a399",
+      "committerUnix": 1794540024
+    }
+  ],
+  "retained": [
+    {
+      "branch": "chore/m7-product-first-handoff-20261113",
+      "sha": "fdb91c7e30688f593728bde26db0e4d6f614d933",
+      "committerUnix": 1794618982
+    },
+    {
+      "branch": "develop",
+      "sha": "e805a87dc4df1a048ba5995931d98a4e4899b5e9",
+      "committerUnix": 1794574967
+    },
+    {
+      "branch": "docs/geo-lumine-renderable-art-prompt-20261113",
+      "sha": "b9dcaf3e0eed9c8d0f3c861940eb14600bab9911",
+      "committerUnix": 1794568308
+    },
+    {
+      "branch": "feat/character-design-docs-migration",
+      "sha": "c53e3511dcc4af631f541f71e21afc66797c4dd2",
+      "committerUnix": 1794541668
+    },
+    {
+      "branch": "feat/character-naming-priority-gate",
+      "sha": "c66ac02870be9a4ea70d5dad0903e57c11ac1712",
+      "committerUnix": 1794617749
+    },
+    {
+      "branch": "feat/liyue-lifecycle-integration",
+      "sha": "f7a4e633826651acf0865443f4cc1ebbf213c0ee",
+      "committerUnix": 1794617884
+    },
+    {
+      "branch": "feat/lumine-native-fit-admission",
+      "sha": "97af2fed6db0d8c77ea29165ec6395bfb55e2161",
+      "committerUnix": 1794618790
+    },
+    {
+      "branch": "feat/m7-capacity-scalability-backlog-20261113",
+      "sha": "2c559cd4a1356d168f01c8601de8b4ece7c0f76f",
+      "committerUnix": 1794539664
+    },
+    {
+      "branch": "feat/menu-red-background",
+      "sha": "ee4f8febcd384b60ed43e68a172585968b9be42f",
+      "committerUnix": 1794616129
+    },
+    {
+      "branch": "feat/multi-agent-integration-history-20261113",
+      "sha": "5bc2eae408d2ab67ebdc8fcfa22a47cc54f65873",
+      "committerUnix": 1794616429
+    },
+    {
+      "branch": "feat/pr-closeout-1114",
+      "sha": "8009d7c8738bfb901e2c632587504cac9852448c",
+      "committerUnix": 1794615763
+    },
+    {
+      "branch": "feat/pr-readiness",
+      "sha": "b5874c4f5d13e5150819c3a2c0ddcad959e4cb60",
+      "committerUnix": 1794489417
+    },
+    {
+      "branch": "feat/sts-style-fidelity",
+      "sha": "2bd131f26cce588767b070f452e4332ddfc2dbbf",
+      "committerUnix": 1794591050
+    },
+    {
+      "branch": "master",
+      "sha": "796f5659f44a337d85bbdcd48061a4d99d9db218",
+      "committerUnix": 1793532669
+    },
+    {
+      "branch": "feat/ganyu-lua-adapter",
+      "sha": "3fcae2b1dbef0a8b1fdc324cb39e7115da0d5299",
+      "committerUnix": 1794593375
+    },
+    {
+      "branch": "feat/keqing-setup-generated-author",
+      "sha": "2a0dd6f40528df0af75c36db70d08d889ecca637",
+      "committerUnix": 1794593031
+    },
+    {
+      "branch": "feat/zhongli-sacrifice-paid",
+      "sha": "b955b99da501265e1b4db8d5550e6cee228bc2be",
+      "committerUnix": 1794591613
+    },
+    {
+      "branch": "feat/zhongli-sixteen-author-evidence",
+      "sha": "6a4375b51e8236052a2a48b3d4d76cdd963bd899",
+      "committerUnix": 1794594061
+    },
+    {
+      "branch": "feat/zhongli-sixteen-rewards",
+      "sha": "e07cb7f9e830d34bcd71ec0f9b93cfa8dbbb63a0",
+      "committerUnix": 1794593560
+    }
+  ]
+}
