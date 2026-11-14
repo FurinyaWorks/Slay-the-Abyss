@@ -13,6 +13,9 @@
     "abyss_xiao_next_reward_run": "core",
     "abyss_xiao_next_card_rewards": "core",
 
+    "abyss_keqing_cycle_cards": "core",
+    "abyss_keqing_cycle_text": "core",
+    "abyss_keqing_cycle_reward_run": "core",
     "abyss_keqing_utility_cards": "core",
     "abyss_keqing_utility_text": "core",
     "abyss_keqing_utility_reward_run": "core",

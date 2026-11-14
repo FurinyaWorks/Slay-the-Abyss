@@ -2,7 +2,7 @@
 local M = {}
 local Actors = require("abyss_actor")
 local CardActions = require("abyss_card_actions")
-local extensionOps={keqingUtility=true,keqingDraw=true,keqingGuard=true,keqingConversion=true,keqingSetup=true,keqingConditional=true,ganyuRetrieve=true,ganyuDraw=true,keqingDefense=true,ganyuConditional=true,ganyuStorm=true,keqingDiscard=true,keqingInspect=true,zhongliCard=true,xiaoCard=true,ganyuCard=true,defectFinal=true,gainMantra=true,applyMantra=true,removeMantra=true,gainDevotion=true,gainExhaustPower=true,gainOrbPower=true,
+local extensionOps={keqingCycle=true,keqingUtility=true,keqingDraw=true,keqingGuard=true,keqingConversion=true,keqingSetup=true,keqingConditional=true,ganyuRetrieve=true,ganyuDraw=true,keqingDefense=true,ganyuConditional=true,ganyuStorm=true,keqingDiscard=true,keqingInspect=true,zhongliCard=true,xiaoCard=true,ganyuCard=true,defectFinal=true,gainMantra=true,applyMantra=true,removeMantra=true,gainDevotion=true,gainExhaustPower=true,gainOrbPower=true,
     gainEnergyIfDiscard=true,calculatedGamble=true}
 for op in pairs(require('abyss_build_actions').ops) do extensionOps[op]=true end
 for op in pairs(require('abyss_flow_actions').ops) do extensionOps[op]=true end
@@ -182,6 +182,7 @@ local function supportedEffectOp(effect)
     if op=='keqingDiscard'and not require('abyss_keqing_paid_cards').supportsDiscard(effect)then return nil,'invalid_keqing_discard'end
     if op=='zhongliCard' and not require('abyss_zhongli_paid_cards').supports(effect)then return nil,'invalid_zhongli_card'end
     if op=='xiaoCard' and not require('abyss_xiao_paid_cards').supports(effect)then return nil,'invalid_xiao_card'end
+    if op=='keqingCycle'and not require('abyss_keqing_paid_cards').supportsCycle(effect)then return nil,'invalid_keqing_cycle'end
     if op=='keqingUtility'and not require('abyss_keqing_paid_cards').supportsUtility(effect)then return nil,'invalid_keqing_utility'end
     if op=='keqingDraw'and not require('abyss_keqing_paid_cards').supportsDraw(effect)then return nil,'invalid_keqing_draw'end
     if op=='keqingGuard'and not require('abyss_keqing_paid_cards').supportsGuard(effect)then return nil,'invalid_keqing_guard'end
