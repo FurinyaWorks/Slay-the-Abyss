@@ -58,10 +58,10 @@ v2.0.0 ── 发布主线                                  当前：NO-GO
 | 先后 | 本轮执行动作 | 已有负责人/任务 | 结束判据 |
 | --- | --- | --- | --- |
 | 0 | 补录两个历史 Tag；合入版本机制 | [路线图的精确 Tag 操作](ROADMAP.md)、[#665](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/665)、TASK-20 | 远端 Tag 对象和提交指向读回；develop 版本三处一致且门禁生效 |
-| 1 | 组合美术与页面，确认正式入口 | [#661](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661)、TASK-103、103.3、25.5、4.22、4.23 | **merged=true**、同 HEAD Full 通过，最终页面不存在空白或旧占位 |
+| 1 | 组合美术与页面，确认正式入口 | [#661](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661)、TASK-103、TASK-103.3、TASK-25.5、TASK-4.22、TASK-4.23 | **merged=true**、同 HEAD Full 通过，最终页面不存在空白或旧占位 |
 | 2 | 组合菜单状态与返回操作 | [#663](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/663)、TASK-4.16 | 回主菜单/继续/放弃/退出实机状态正确 |
-| 3 | 核对两幕与卡牌输入 | TASK-77、47、30、38、42 | 同一最终候选的 PC + 手机自然试玩，保留关键截图、日志、胜败结算 |
-| 4 | 核对性能、视觉和容量 | TASK-4.21、100.1、94；[平台容量合同](../PLATFORM_LOAD.md) | 官方当前候选容量与动态报告、重复进出和画面/响应记录达到现有门槛 |
+| 3 | 核对两幕与卡牌输入 | TASK-77、TASK-47、TASK-30、TASK-38、TASK-42 | 同一最终候选的 PC + 手机自然试玩，保留关键截图、日志、胜败结算 |
+| 4 | 核对性能、视觉和容量 | TASK-4.21、TASK-100.1、TASK-94；[平台容量合同](../PLATFORM_LOAD.md) | 官方当前候选容量与动态报告、重复进出和画面/响应记录达到现有门槛 |
 | 5 | 冻结、发布、留回执 | TASK-20、[PUBLISHING](../PUBLISHING.md) | 版本同步、CHANGELOG 审核、master/tag 身份、用户人工发布、回执 |
 
 **性能特别说明：** #648 的 1600 图元实验（冷进入完整显示 P95 为 10.82 秒、缓存重入 P95 为 1.70 秒）**只是实验观测，不是最终游戏或真实手机的结论**。只有这套背景实际进入待发布配置且同候选实测存在明显等待，才算本次必须修的体验缺陷；优先用既有批准的轻量回退方案，**不为扩展新的性能研究而推迟发版**。
