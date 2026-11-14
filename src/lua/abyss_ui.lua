@@ -94,6 +94,7 @@ local function preparedArtOwners(page)
     return true
 end
 local function deckPending(intent)
+    if view and intent.page=='deckPanel' and view.deckUI.gridReady and not view.deckUI.pending and not view.deckUI.calibrating then view.deckUI.gridReady() end
     return view and intent.page=='deckPanel' and (view.deckUI.pending or view.deckUI.calibrating or view.deckUI.pendingGrid)
 end
 local function presentationReady(intent)

@@ -559,14 +559,19 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         local cells,indices={},{}
         local complete=first>last
         self.pendingGrid=not complete
+        self.gridReady=function()
+            local currentFirst,currentLast=visibleCardWindow(grid,#cards,gridColumns())
+            complete=visibleCardsReady(cells,currentFirst,currentLast)
+            self.pendingGrid=not complete
+            return complete
+        end
         local function prepared(index,control)
-            if complete then return end
+            local wasComplete=complete
             local previous=indices[control]
             if previous and cells[previous]==control then cells[previous]=nil end
             indices[control]=nil
-            if index>=first and index<=last then cells[index],indices[control]=control,index end
-            complete=visibleCardsReady(cells,first,last)
-            self.pendingGrid=not complete
+            if index>=1 and index<=#cards then cells[index],indices[control]=control,index end
+            if not wasComplete then self.gridReady() end
         end
         grid:RefreshItems(#cards,function(control,index)
             if not self.visible or self.generation~=generation then return end

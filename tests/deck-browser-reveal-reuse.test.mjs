@@ -9,7 +9,7 @@ import {buildUI} from '../scripts/build-ui.mjs';
 const require=createRequire(import.meta.url);
 function lua(body){
  const result=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',body],{encoding:'utf8',timeout:60000,maxBuffer:2*1024*1024});
- if(result.status!==0)writeFileSync('.artifacts/deck-sort-reveal-audit-20261113/failed-regression.lua',body);
+ if(result.status!==0){mkdirSync('.artifacts/deck-sort-reveal-audit-20261113',{recursive:true});writeFileSync('.artifacts/deck-sort-reveal-audit-20261113/failed-regression.lua',body);}
  assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);assert.match(result.stdout,/DECK_REUSE_PASS/);
 }
 test('post-paint fast publication is limited to existing deck content and Neow text, and never trusts pre-paint readiness',()=>{
@@ -172,6 +172,17 @@ local top=grid:GetPadding();grid:SetSizeDelta(918,top+210+27);assert(deck:setSor
 fill(grid,1,4);turns(update);assert(deck.pendingGrid);fill(grid,5,5);turns(update);assert(not deck.pendingGrid)
 grid:SetSizeDelta(918,top+210+27+1);assert(deck:setSort('cost'));fill(grid,1,5);turns(update)
 assert(deck.pendingGrid,'one-pixel partial row was omitted');fill(grid,6,10);turns(update);assert(not deck.pendingGrid)
+-- Completion is provisional until the real gate confirms a second scheduler turn.
+grid:SetSizeDelta(918,557);grow(17);fill(grid,1,15);assert(not deck.pendingGrid and host.pageReveal:covered())
+local preparedCell=grid.items[0];grid.destroyOnRecycle=true;grid:recycle(0,16);grid.destroyOnRecycle=false
+turns(update);assert(not preparedCell.alive and deck.pendingGrid and host.pageReveal:covered(),'completed then destroyed cell published an incomplete page')
+fill(grid,1,1);turns(update);assert(not deck.pendingGrid and not host.pageReveal:covered())
+grow(17);fill(grid,1,15);assert(not deck.pendingGrid);grid:recycle(0,16)
+turns(update);assert(deck.pendingGrid and host.pageReveal:covered(),'completed cell recycled offscreen published stale index readiness')
+fill(grid,1,1);turns(update);assert(not deck.pendingGrid and not host.pageReveal:covered())
+grow(17);fill(grid,1,15);F.monsterActors().destroy(grid.items[0])
+turns(update);assert(deck.pendingGrid and host.pageReveal:covered(),'destroyed cell without a refresh callback bypassed final readiness')
+grid.destroyOnRecycle=true;fill(grid,1,1);grid.destroyOnRecycle=false;turns(update);assert(not host.pageReveal:covered())
 print('DECK_REUSE_PASS')`);
 });
 
