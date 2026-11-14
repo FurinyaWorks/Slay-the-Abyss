@@ -4,7 +4,7 @@
 
 ## 当前状态：未上线
 
-- `develop` 检查点 `9f2f44e`（2026-11-14），`package.json` 仍为 `1.0.0`；`v2.0.0` Tag 尚未创建。
+- `develop` 检查点 `9f2f44e`（2026-11-14），`package.json` 已对当前已合入源码补正为 `1.2.0`；`v2.0.0` Tag 尚未创建。
 - [`#661`](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661) 与 [`#663`](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/663) 审计时仍 **Open**；已关闭而未合并的来源 PR 不计作实际落地。
 - 本次仅计划补 `v1.1.0`@a0c35db 和 `v1.2.0`@903bf2a 两枚**历史源码检查点 Tag**；详情和操作见 [版本路线图](ROADMAP.md)。
 
