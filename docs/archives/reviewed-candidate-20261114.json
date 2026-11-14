@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "repositoryId": 1429751262,
+  "previousArchive": "70e0e413555d435313daac488d7651ce29295339",
+  "candidate": "2b35298d40a107e75bc9178c84d3268907b72516",
+  "state": "Reviewed local integration candidate, pending current develop BASE, hosted Full and actual merge. Archive retention is not product integration, device acceptance or release.",
+  "sources": {
+    "PR643": "fdb91c7e30688f593728bde26db0e4d6f614d933",
+    "PR648": "97af2fed6db0d8c77ea29165ec6395bfb55e2161",
+    "PR646": "afd8834b1e7f613b7d68c7a4b6d68ca196f37064",
+    "PR650": "ec0d0b990bb4baa7d45413101599ef3030f33892",
+    "PR649": "6381ed832bf8d512ee4e0b107a87824bfcdbcfc5"
+  },
+  "reviews": [
+    "independent-agent:/root/review_docs_closeout/unified-closeout-proof-2b35298d",
+    "independent-agent:/root/review_pr644/combined-production-final-2b35298d"
+  ]
+}
