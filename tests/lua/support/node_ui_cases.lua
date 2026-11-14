@@ -16,7 +16,7 @@ local function readMerchantLine(ui,get)
     local pages={}
     while true do
         local current=ui.merchant.current
-        local last=math.min(#current.chars,current.page*Theme.layout.merchant.pageCharacters)
+        local last=current.ends[current.page]
         if current.shown<last then assert(get('merchant/talk/hit').click()) end
         pages[#pages+1]=get('merchant/line').text
         assert(utf8.len(pages[#pages])<=Theme.layout.merchant.pageCharacters)
@@ -329,7 +329,7 @@ test("merchant opens with the scene narration once per run, then greets, and sta
     local pages={}
     while true do
         local current=ui.merchant.current
-        local last=math.min(#current.chars,current.page*Theme.layout.merchant.pageCharacters)
+        local last=current.ends[current.page]
         if current.shown<last then assert(get('merchant/talk/hit').click()) end
         pages[#pages+1]=get('merchant/line').text
         assert(utf8.len(pages[#pages])<=Theme.layout.merchant.pageCharacters
