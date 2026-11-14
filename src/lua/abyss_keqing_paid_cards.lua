@@ -4,6 +4,7 @@ local Lifecycle=require('abyss_character_owner_end')
 local Planner=require('abyss_keqing_staged_plan')
 local Finisher=require('abyss_keqing_finisher_plan')
 local Conditional=require('abyss_keqing_conditional_attacks')
+local Utility=require('abyss_keqing_utility_cards')
 local Draw=require('abyss_keqing_draw_cards')
 local Guard=require('abyss_keqing_guard_cards')
 local Conversion=require('abyss_keqing_conversion_cards')
@@ -16,6 +17,7 @@ local function same(a,b)
  return true
 end
 local M={}
+function M.supportsUtility(e)return Utility.supports(e)end
 function M.supportsDraw(e)return Draw.supports(e)end
 function M.supportsGuard(e)return Guard.supports(e)end
 function M.supportsConversion(e)return Conversion.supports(e)end
@@ -75,6 +77,9 @@ local function supportUse(state,card,instance)
  return true
 end
 function M.canUse(state,card,instance)
+ if instance and Utility.known(instance.cardId)or card.effects[1]and card.effects[1].op=='keqingUtility'then
+  if not Lifecycle.active(state)or not Utility.canUse(state,card,instance)then return false,'keqing_utility_unavailable'end;return true
+ end
  if instance and Draw.known(instance.cardId)or card.effects[1]and card.effects[1].op=='keqingDraw'then
   if not Lifecycle.active(state)or not Draw.canUse(card,instance)then return false,'keqing_draw_unavailable'end;return true
  end
@@ -140,6 +145,7 @@ function M.prepare(state,card,effects,combat,target)
  local context=assert(state.pendingPlay,'missing paid card context')
  assert(context.keqingPaid==nil,'duplicate paid card plan')
  context.keqingPaid={turn=state.turn,uid=context.uid,attack=card.type=='attack',infused=card.type=='attack'and r.infusion>0}
+ if Utility.known(state.cardInUse.cardId)then return Utility.prepare(combat,state,card,target,context.keqingPaid,context)end
  if Draw.known(state.cardInUse.cardId)then return Draw.prepare(combat,state,card,target,context.keqingPaid,context)end
  if Guard.known(state.cardInUse.cardId)then return Guard.prepare(combat,state,card,target,context.keqingPaid,context)end
  if Conversion.known(state.cardInUse.cardId)then return Conversion.prepare(combat,state,card,target,context.keqingPaid,context)end
@@ -211,6 +217,7 @@ function M.dispatch(_combat,state,effect,queue)
  local instance=assert(state.cardInUse,'missing staged limbo card')
  assert(Lifecycle.active(state) and instance.uid==context.uid and paid.uid==instance.uid
   and paid.turn==state.turn and not paid.completed and effect.targetId==context.targetId,'stale staged context')
+ if paid.utility then return Utility.dispatch(_combat,state,effect,paid,queue)end
  if paid.drawPlan then return Draw.dispatch(_combat,state,effect,paid,queue)end
  if paid.guard then return Guard.dispatch(_combat,state,effect,paid,queue)end
  if paid.conversion then return Conversion.dispatch(_combat,state,effect,paid,queue)end

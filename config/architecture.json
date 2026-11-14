@@ -1,5 +1,8 @@
 {
   "layers": {
+    "abyss_keqing_utility_cards": "core",
+    "abyss_keqing_utility_text": "core",
+    "abyss_keqing_utility_reward_run": "core",
     "abyss_ganyu_supply_definitions": "core",
     "abyss_ganyu_supply_reward_run": "core",
     "abyss_xiao_mixed_reward_source": "core",
