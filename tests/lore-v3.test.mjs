@@ -67,8 +67,13 @@ test('active story surfaces never revert to old seal plot or brand',()=>{
     const source=readFileSync(path,'utf8');
     for(const phrase of banned)assert.ok(!source.includes(phrase),path+': obsolete text '+phrase);
   }
-  assert.ok(readFileSync('src/lua/abyss_neow.lua','utf8').includes(read(livePath).flow.intro.full),
-    'opening background must be present in the actual Neow state');
+  const neowSource=readFileSync('src/lua/abyss_neow.lua','utf8');
+  assert.match(neowSource,/require\(['"]abyss_narrative['"]\)/,
+    'Neow must import the generated narrative module');
+  assert.match(neowSource,/event\.stage,event\.body='neow_intro',Narrative\.flow\.intro\.full/,
+    'Neow must read the shared narrative field rather than hard-code a duplicate');
+  assert.ok(!neowSource.includes(read(livePath).flow.intro.full),
+    'Neow must not copy the approved sentence into another hard-coded source');
   assert.equal(read(livePath).flow.bossEntrance.full,'');
   assert.equal(read(livePath).flow.defeat.full,'');
 });
