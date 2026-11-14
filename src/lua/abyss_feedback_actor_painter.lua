@@ -1,4 +1,5 @@
 local MonsterArt=require('abyss_monster_art')
+local LowCostArt=require('abyss_lowcost_art')
 local Escape=require('abyss_monster_escape')
 -- Composes committed actor feedback into native portrait/effect controls only.
 -- Queue timing, completion and battle ownership remain with abyss_feedback.
@@ -306,6 +307,6 @@ function M.paint(ctx,id, dt, shakes)
     local tone=portraitTone(ctx,id,base,ink,flash)
     tint(ctx,portrait,tone,alpha)
     MonsterArt.pose(box,x,y,sx,sy,tone,alpha)
-    require('abyss_lowcost_art').pose(box,x,y,sx,sy,tone,alpha,ctx.platform)
+    LowCostArt.pose(box,x,y,sx,sy,tone,alpha,ctx.platform)
 end
 return M

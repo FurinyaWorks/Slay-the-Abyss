@@ -3,6 +3,7 @@ local Theme=require('abyss_theme')
 local M={}
 local painted=setmetatable({},{__mode='k'})
 local function poolFor(icon)
+ if type(icon and icon.name)~='string' then return nil end
  local parent=icon and icon.parent
  if not parent or parent.alive==false then return nil end
  local ok,pool=pcall(parent.GetChild,parent,icon.name..'Art')
