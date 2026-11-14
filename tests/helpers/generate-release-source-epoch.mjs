@@ -4,7 +4,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 const mode=process.argv[2]??'--check';assert(['--check','--write'].includes(mode));
-const baseCommit='b427ac7ce8c947b06e1f27ae1625a26bc2f80270',currentCommit='a3f0295829eda4e7e342e1edab69fa892606d63a';
+const baseCommit='0cf2008fa4f5086ac3b2b84b71753b84e7a37962',currentCommit='d4ed094e882f433650dfb4d0cbe2686388e4b684';
 const hash=s=>createHash('sha256').update(s).digest('hex'),norm=s=>s.replaceAll('\r\n','\n');
 const binding=source=>({source,sha256:hash(source),gitBlob:createHash('sha1').update(`blob ${Buffer.byteLength(source)}\0`).update(source).digest('hex')});
 const git=(revision,path)=>norm(execFileSync('git',['show',revision+':'+path],{encoding:'utf8',maxBuffer:8*1024*1024}));
