@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "repositoryId": 1429751262,
+  "previousArchive": "48afec22e0a48ab0a140998c8a35c45c8c88d7eb",
+  "integrationPr": 643,
+  "integrationHead": "fdb91c7e30688f593728bde26db0e4d6f614d933",
+  "state": "Sources closed by consolidation into reviewed PR643, still subject to develop CI and merge. Archive retains all source commits and is not integration or acceptance.",
+  "sources": {
+    "feat/character-naming-priority-gate": "c66ac02870be9a4ea70d5dad0903e57c11ac1712",
+    "feat/pr-readiness": "b5874c4f5d13e5150819c3a2c0ddcad959e4cb60",
+    "feat/multi-agent-integration-history-20261113": "5bc2eae408d2ab67ebdc8fcfa22a47cc54f65873",
+    "feat/character-design-docs-migration": "c53e3511dcc4af631f541f71e21afc66797c4dd2",
+    "feat/m7-capacity-scalability-backlog-20261113": "2c559cd4a1356d168f01c8601de8b4ece7c0f76f",
+    "feat/pr-closeout-1114": "8009d7c8738bfb901e2c632587504cac9852448c",
+    "docs/geo-lumine-renderable-art-prompt-20261113": "b9dcaf3e0eed9c8d0f3c861940eb14600bab9911"
+  }
+}
