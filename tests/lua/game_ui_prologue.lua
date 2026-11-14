@@ -50,6 +50,7 @@ test("a competition start opens Neow instead of the camera", function()
     local event = root:GetChild("nodePanel"):GetChild("eventView")
     assert(event:GetChild("neowFigure").visible and not event:GetChild("art").visible)
     assert(event:GetChild("caption").text == "七天神像")
+    assert(event:GetChild("body").text == Narrative.flow.intro.full, "players must actually see the approved copy")
     assert(not panel(root).visible and ui.prologue == nil)
 end)
 
