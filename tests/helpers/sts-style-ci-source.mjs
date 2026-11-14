@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {integratedSource,integratedRead} from './integrated-ci-source.mjs';
+import {integratedSource,integratedRead,integratedPriorInventory} from './integrated-ci-source.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
@@ -32,6 +32,7 @@ export function stsStylePriorRead(read=readFileSync){return(path,encoding)=>{
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };}
 export function stsStylePriorInventory(paths,read=readFileSync){
+ paths=integratedPriorInventory(paths,'sts','js',read);
  read=integratedRead('sts',{read});
  const proof=stsStyleCiProof;if(!proof.addedTests.some(path=>paths.includes(path)))return [...paths];
  assert.deepEqual([...paths].sort(),proof.afterInventory,'complete StS Full inventory');
@@ -39,6 +40,7 @@ export function stsStylePriorInventory(paths,read=readFileSync){
  return [...proof.beforeInventory];
 }
 export function assertStsStyleCiCurrent(paths,read=readFileSync){
+ paths=integratedPriorInventory(paths,'sts','js',read);
  read=integratedRead('sts',{read});
  assert.deepEqual([...paths].sort(),stsStyleCiProof.afterInventory,'complete StS current Full inventory');
  for(const [p,row]of Object.entries(stsStyleCiProof.files))assert.equal(hash(norm(read(p,'utf8'))),row.after.sha256,'fresh complete StS CI source: '+p);

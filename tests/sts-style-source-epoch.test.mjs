@@ -1,5 +1,5 @@
 import test from 'node:test';
-import {integratedRead} from './helpers/integrated-ci-source.mjs';
+import {integratedRead,integratedCiProof,integratedPriorInventory,assertIntegratedCurrent} from './helpers/integrated-ci-source.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {createSourceEpochProjector} from './helpers/combined-epoch/source-epoch-runtime.mjs';
@@ -22,6 +22,23 @@ function fixture(){
   owners:[added,one].sort(),current:{[one]:bind('return 10\n'),[added]:bind('return 30\n')},before:{[one]:current[one],[added]:null}};
  return {config,one,two,added,original,outer};
 }
+
+test('release additions remain in raw Full and exact historical inventories reject gaps and source drift',()=>{
+ assertIntegratedCurrent();
+ const rawJs=discoverJs(),rawLua=readdirSync('tests/lua').filter(p=>p.endsWith('.lua')).map(p=>'tests/lua/'+p).sort();
+ assert.deepEqual(rawJs,integratedCiProof.inventory);assert.deepEqual(rawLua,integratedCiProof.luaInventory);
+ for(const [kind,current]of [['js',rawJs],['lua',rawLua]])for(const target of Object.keys(integratedCiProof.sources)){
+  const prior=integratedCiProof.inventories[target][kind],added=current.filter(path=>!prior.includes(path));
+  assert(added.length>0,'this release adds real '+kind+' work');
+  assert.deepEqual(integratedPriorInventory(current,target,kind),prior);
+  for(const path of added){
+   assert.throws(()=>integratedPriorInventory(current.filter(p=>p!==path),target,kind),/inventory/);
+   for(const value of [null,readFileSync(path,'utf8')+'\n'])assert.throws(()=>integratedPriorInventory(current,target,kind,
+    (p,e)=>p===path?value:readFileSync(p,e)),/added inventory source|replaceAll/);
+  }
+  for(const changed of [[...current,current[0]],[...current,'tests/foreign.'+kind]])assert.throws(()=>integratedPriorInventory(changed,target,kind),/inventory/);
+ }
+});
 test('style continuation preserves every old complete target and adds a complete prior view without rewriting its input',()=>{
  const f=fixture(),unchanged=JSON.stringify(f.outer),next=extendStsStyleEpoch(f.original,f.outer),p=next.proof;
  assert.equal(JSON.stringify(f.outer),unchanged);assert(!Object.isFrozen(f.outer));
@@ -57,7 +74,7 @@ test('real style source retains the complete CI-repair and every older target wh
  const {sourceEpoch,ciRepairSourceEpoch}=await import('./helpers/closeout-source-epoch.mjs');
  const p=sourceEpoch.proof,before=ciRepairSourceEpoch.proof,read=path=>readFileSync(path,'utf8');
  assert.equal(Object.keys(before.current).length,347); // config plus all 346 prior Lua modules.
- assert.equal(Object.keys(p.current).length,348); // one new page-reveal module.
+ assert.equal(Object.keys(p.current).length,350); // page reveal, low-cost art, merchant pages.
  const actual=['config/architecture.json',...readdirSync('src/lua').filter(n=>n.endsWith('.lua')).map(n=>'src/lua/'+n)].sort();
  assert.deepEqual(Object.keys(p.current).sort(),actual);
  for(const [path,row]of Object.entries(before.current))assert.deepEqual(p.targets.stsStylePrior.files[path],row,path+' complete prior');
@@ -170,8 +187,15 @@ test('feedback real current source and CI preserve all four immutable archives a
   'tests/helpers/sts-style-ci-source.json.gz':feedbackPriorCiSha,'tests/helpers/closeout-source-closure.json':feedbackPriorClosureSha,
  }))assert.equal(feedbackHash(readFileSync(path)),sha,path);
  const {sourceEpoch,stsStyleEpoch}=await import('./helpers/closeout-source-epoch.mjs'),p=sourceEpoch.proof;
- assert.deepEqual(p.targets.stsFeedbackPrior.files,stsStyleEpoch.proof.current);
- for(const [name,target]of Object.entries(stsStyleEpoch.proof.targets))assert.deepEqual(p.targets[name],target,name);
+ for(const [path,row]of Object.entries(stsStyleEpoch.proof.current))assert.deepEqual(p.targets.stsFeedbackPrior.files[path],row,path);
+ for(const [name,target]of Object.entries(stsStyleEpoch.proof.targets)){
+  assert.equal(p.targets[name].commit,target.commit,name);
+  for(const [path,row]of Object.entries(target.files))assert.deepEqual(p.targets[name].files[path],row,name+'/'+path);
+ }
+ for(const path of ['src/lua/abyss_lowcost_art.lua','src/lua/abyss_merchant_pages.lua']){
+  assert.equal(p.targets.stsFeedbackPrior.files[path],null,'new module has no invented predecessor');
+  for(const name of Object.keys(stsStyleEpoch.proof.targets))assert.equal(p.targets[name].files[path],null,name+'/'+path);
+ }
  for(const [path,row]of Object.entries(p.current))assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),row.source,path);
  const anchor=feedbackProductionPaths[0],raw=path=>readFileSync(path,'utf8');
  assert.equal(sourceEpoch.preCombinedSource(anchor,raw(anchor),{target:'stsFeedbackPrior',readSource:raw}),stsStyleEpoch.proof.current[anchor].source);

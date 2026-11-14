@@ -37,9 +37,24 @@ export function assertIntegratedCurrent(read=readFileSync){
 }
 export function extendIntegratedHelperClosure(original){
  const current={...original},patch=integratedCiProof.closure;
- assert.deepEqual(Object.keys(patch).sort(),['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs']);
+ assert.deepEqual(Object.keys(patch).sort(),['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs','tests/helpers/release-source-epoch.json.gz','tests/helpers/release-source-epoch.mjs']);
  for(const [path,row]of Object.entries(patch)){assert.equal(row.before,original[path]??null,'exact integration copy predecessor: '+path);assert.match(row.after,/^[a-f0-9]{64}$/);current[path]=row.after;}
  return freeze(current);
+}
+// Exact complete inventories for historical receipts; raw Full discovery remains live.
+export function integratedPriorInventory(paths,target,kind='js',read=readFileSync){
+ const current=kind==='js'?integratedCiProof.inventory:integratedCiProof.luaInventory;
+ const prior=integratedCiProof.inventories[target]?.[kind];
+ assert(prior,'known integration inventory');
+ if(JSON.stringify([...paths].sort())===JSON.stringify(prior))return [...paths];
+ const added=current.filter(p=>!prior.includes(p));
+ if(!added.some(path=>paths.includes(path)))return [...paths];
+ assert.deepEqual([...paths].sort(),current,kind==='lua'?'complete integration Lua discovery inventory':'complete integration js inventory');
+ for(const path of added){
+  const row=integratedCiProof.files[path];assert(row,'complete added inventory source: '+path);
+  assert.equal(hash(norm(read(path,'utf8'))),row.current.sha256,'fresh added inventory source: '+path);
+ }
+ return [...prior];
 }
 export function renderIntegratedCiBinding(sha){
  assert.match(sha,/^[a-f0-9]{64}$/);

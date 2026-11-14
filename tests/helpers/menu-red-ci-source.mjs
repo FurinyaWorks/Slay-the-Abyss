@@ -1,6 +1,6 @@
 // CI-only exact text views; production projectors never import this archive.
 import assert from 'node:assert/strict';
-import {integratedSource,integratedRead} from './integrated-ci-source.mjs';
+import {integratedSource,integratedRead,integratedPriorInventory} from './integrated-ci-source.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
@@ -26,6 +26,7 @@ export function menuRedPriorRead(read=readFileSync){return(path,encoding)=>{
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };}
 export function menuRedPriorLua(paths,read=readFileSync){
+ paths=integratedPriorInventory(paths,'menu','lua',read);
  assert.deepEqual([...paths].sort(),menuRedCiProof.afterLua,'complete current menu Lua discovery');
  for(const [path,row]of Object.entries(menuRedCiProof.addedLua))assert.equal(hash(norm(read(path,'utf8'))),row.sha256,'complete added menu Lua source: '+path);
  return [...menuRedCiProof.beforeLua];

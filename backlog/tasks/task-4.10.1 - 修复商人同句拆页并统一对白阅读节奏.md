@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-11-14 03:03'
-updated_date: '2026-11-14 03:04'
+updated_date: '2026-11-14 05:36'
 labels:
   - ui
   - text
@@ -35,3 +35,9 @@ ordinal: 175000
 - [ ] #4 以原作或成熟游戏的实际阅读例证解释规范，先自检多维问题并独立复核，再交用户同条件前后连续对照和短中长句样本，人工确认记录绑定本轮候选
 - [ ] #5 真实问题有必要自动回归及反例，重复改坏的原因形成最小可执行防回退；官方PC和实体手机实测分层记录，未测项不宣称验收
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+源码候选PR655完整纳入当前单主角版integration-next并保留原独审与阅读回归；本次仅集中集成，实际连续画面/设备/人工阅读验收仍按原AC保留。
+<!-- SECTION:NOTES:END -->

@@ -24,11 +24,16 @@ const paths=[...all].filter(p=>p&&existsSync(p)&&p!=='tests/helpers/integrated-c
 const files={};for(const p of paths){const views={};for(const [name,revision]of Object.entries(sources)){
  try{views[name]=bind(norm(execFileSync('git',['show',revision+':'+p],{encoding:'utf8',maxBuffer:16*1024*1024,stdio:['ignore','pipe','ignore']})));}catch{views[name]=null;}}
  files[p]={current:bind(norm(readFileSync(p,'utf8'))),views};}
-const closure={};for(const p of ['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs'])
+const closure={};for(const p of ['tests/helpers/closeout-source-epoch.mjs','tests/helpers/menu-red-production-source.json.gz','tests/helpers/menu-red-source-epoch.mjs','tests/helpers/release-source-epoch.mjs','tests/helpers/release-source-epoch.json.gz'])
  closure[p]={before:feedback.helperClosure[p]?.after??null,after:hash(p.endsWith('.gz')?readFileSync(p):norm(readFileSync(p,'utf8')))};
 const binaryViews={'tests/helpers/menu-red-production-source.json.gz':{current:closure['tests/helpers/menu-red-production-source.json.gz'].after,
  views:{menu:{path:'tests/helpers/menu-red-before-integration-production-source.json.gz',sha256:'ee888fd1686beaeffc2e439164619ecedee9ac00d2ca00a2711bd74c63e28cae'}}}};
-const bytes=gzipSync(JSON.stringify({schemaVersion:1,sources,production,files,closure,binaryViews,inventory:discoverJs()})),sha=hash(bytes);
+const inventories=Object.fromEntries(Object.entries(sources).map(([name,revision])=>[name,{
+ js:git(['ls-tree','--name-only',revision+':tests']).trim().split('\n').filter(p=>p.endsWith('.test.mjs')).map(p=>'tests/'+p).sort(),
+ lua:git(['ls-tree','--name-only',revision+':tests/lua']).trim().split('\n').filter(p=>p.endsWith('.lua')).map(p=>'tests/lua/'+p).sort(),
+}]));
+const luaInventory=git(['ls-files','tests/lua']).trim().split('\n').filter(p=>/^tests\/lua\/[^/]+\.lua$/.test(p)).sort();
+const bytes=gzipSync(JSON.stringify({schemaVersion:1,sources,production,files,closure,binaryViews,inventory:discoverJs(),luaInventory,inventories})),sha=hash(bytes);
 output('tests/helpers/integrated-ci-source.json.gz',bytes);
 output('tests/helpers/integrated-ci-binding.mjs',`// Fixed trust leaf; excluded from its own archive.\nimport assert from 'node:assert/strict';\nimport {readFileSync} from 'node:fs';\nimport {createHash} from 'node:crypto';\nexport const integratedCiBytes=readFileSync(new URL('./integrated-ci-source.json.gz',import.meta.url));\nassert.equal(createHash('sha256').update(integratedCiBytes).digest('hex'),${JSON.stringify(sha)},'complete reviewed integration CI sources');\n`);
 console.log(JSON.stringify({paths:paths.length,bytes:bytes.length,sha256:sha}));
