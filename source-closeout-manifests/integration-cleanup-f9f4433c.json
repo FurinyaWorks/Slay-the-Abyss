@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "purpose": "完整源码保全；不是产品合并或发布通过",
+  "repositoryId": 1429751262,
+  "candidate": "f9f4433c2396b1640588b65edecb09d0204b3c2c",
+  "base": "9f2f44e4c79789fbcb64a515938765dbc240f830",
+  "sourcePRs": {
+    "659": "644b31c8cc7bef6b7a0b72f52027e868c065bba3",
+    "662": "f0581b708a62378fa838233139d2efef1db7ed8b",
+    "660": "6d77e92035d3ada6629fd2bf723399650dab94d2"
+  },
+  "previousArchive": "abe579095e13f7d12ac5fe170668d138b94b08dd",
+  "devices": "not_verified",
+  "ci": "pending"
+}
