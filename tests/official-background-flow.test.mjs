@@ -6,12 +6,15 @@ import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {buildUI} from '../scripts/build-ui.mjs';
 import {toLua} from '../scripts/build-lua-data.mjs';
+import {bindPortraitTemplates} from '../scripts/official-portraits.mjs';
 function runBackgroundFixture(path) {
  const dir=mkdtempSync(join(tmpdir(),'background-enabled-flow-'));
  try {
   buildUI(dir,undefined,{artFeatures:{menuBackground:true}});
+  bindPortraitTemplates(dir,{image:{templateIndex:987654},container:{templateIndex:987655}},
+   {selectionAvatar:false,battlePortrait:false,menuBackground:true});
   const entry=join(dir,'entry.lua');
-  const modules=['abyss_presentation','abyss_ui_layout','abyss_ui_templates','abyss_menu_background_asset'];
+  const modules=['abyss_presentation','abyss_ui_layout','abyss_ui_templates','abyss_menu_background_asset','abyss_traveler_portrait_assets'];
   writeFileSync(entry,modules.map(name=>`package.loaded[${toLua(name)}]=dofile(${toLua(join(dir,name+'.lua'))})`).join('\n')
    +`\ndofile(${toLua(path)})\n`);
   return runLua(entry);

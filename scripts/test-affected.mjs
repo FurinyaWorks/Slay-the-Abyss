@@ -17,6 +17,7 @@ const isGraphInput = path => /^(src\/lua\/.*\.lua|scripts\/.*\.mjs|tests\/.*\.(m
 // Importing runLua does not execute its conditional fixture setup. Keep these
 // helper edges on their real Lua entries, as with the historical replay port.
 const conditionalRunnerFixtures = new Map([
+  ['scripts/build-ui.mjs', new Set(['tests/lua/lowcost_art.lua'])],
   ['tests/helpers/historical-presentation-runner.mjs', new Set(historicalPresentationFixtures)],
   ['tests/helpers/historical-sts-style-runner.mjs', new Set(historicalStsStyleFixtures)],
   ['tests/helpers/battle-life-frozen-hand.mjs', new Set(frozenBattleHandFixtures)],
