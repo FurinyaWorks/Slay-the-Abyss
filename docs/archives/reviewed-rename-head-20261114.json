@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "repositoryId": 1429751262,
+  "previousArchive": "2c97d7603ba735a5d2bba1782eaf89d5c04cdf93",
+  "candidate": "952560137c03b44a855351ec7eaf9639193a27f1",
+  "state": "Exact independently reviewed PR643 HEAD based on develop 9f2f44e4c79789fbcb64a515938765dbc240f830; current hosted Full and actual merge pending. Archive retention is not product integration, device acceptance or release.",
+  "sources": {
+    "PR643": "fdb91c7e30688f593728bde26db0e4d6f614d933",
+    "PR648": "97af2fed6db0d8c77ea29165ec6395bfb55e2161",
+    "PR646": "afd8834b1e7f613b7d68c7a4b6d68ca196f37064",
+    "PR650": "ec0d0b990bb4baa7d45413101599ef3030f33892",
+    "PR649": "6381ed832bf8d512ee4e0b107a87824bfcdbcfc5"
+  },
+  "reviews": [
+    "independent-agent:/root/review_docs_closeout/repository-rename-gates-95256013",
+    "independent-agent:/root/review_pr644/combined-rename-final-95256013"
+  ]
+}
