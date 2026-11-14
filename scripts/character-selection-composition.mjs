@@ -22,11 +22,12 @@ export function characterSelectionComposition(panel,theme){
  // that entry below the summary and beside the selected character card.
  const deck=child(details,'deckOpen');
  if(deck){
-  Object.assign(deck,frame(115,532,200,36));
-  const hit=child(deck,'hit');hit.size=[200,36];
+  Object.assign(deck,frame(190,532,160,36));
+  const hit=child(deck,'hit');hit.size=[160,36];
   for(const state of children(hit)){
-   state.size=[200,36];
-   const label=child(state,'label');label.position=[0,0];label.size=[200,36];
+   state.size=[160,36];
+   child(state,'border').size=[160,36];child(state,'plate').size=[156,32];
+   const label=child(state,'label');label.position=[0,0];label.size=[160,36];
    label.text.fontSize=18;label.text.minFontSize=18;
   }
  }

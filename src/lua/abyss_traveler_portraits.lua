@@ -391,6 +391,15 @@ local function selectionFigure(Asset,official,profile)
                 or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
 end
 -- cardTemplates: ready-card image/container template indices, used when only the cards flag is on.
+local function requiredPortrait(row,scope,wanted,mode)
+    return (not scope or scope[row.name]) and (wanted[row.name] or row.name=='result' and (mode=='victory' or mode=='defeat'))
+end
+local function portraitReadiness(row,mode,resultOutcome)
+    local state=row.adapter:status()
+    if state.phase=='failed' or state.phase=='release_failed' or state.phase=='destroyed' then return false,state.reason or state.phase end
+    if not row.active or state.phase~='ready' or row.name=='result' and resultOutcome~=mode then return false end
+    return true
+end
 function M.new(stage,report,flags,cardTemplates)
     local selecting=type(flags)=='table' and flags.selectionAvatar==true
     local fighting=type(flags)=='table' and flags.battlePortrait==true
@@ -561,17 +570,23 @@ function M.new(stage,report,flags,cardTemplates)
             end
         return accepted
     end
+    local function presentationTargets(mode,characterOpen,stopped,character,preloadSelection)
+        local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
+        for _,row in ipairs(rows)do
+            if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
+        end
+        return wanted
+    end
     function self.sync(_,mode,characterOpen,stopped,character,preloadSelection)
         if busy or destroyed then return false end
         busy=true;local token=epoch
         -- V25 and official pages open selection artwork on demand. The legacy host's warm
         -- hint must not allocate hidden figures during its title screen.
         if profile or official then preloadSelection=false end
-        local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
+        local wanted=presentationTargets(mode,characterOpen,stopped,character,preloadSelection)
         for _,row in ipairs(rows)do
             -- Competition hides the one-role legacy roster; its V25 badge has
             -- its own official symbol and does not consume this avatar drawing.
-            if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
             -- MenuView owns result outcome selection; ordinary scene sync may
             -- pause it on departure, but must never publish a default victory
             -- figure while a defeat outcome is still being prepared.
@@ -583,6 +598,22 @@ function M.new(stage,report,flags,cardTemplates)
     end
     -- Prioritize the main selection figure over the small thumbnail.
     local buildOrder=rows
+    local pagePortraits={characterPanel={avatar=true,selection=true,cardFan=true,selectScene=true},
+        battlePanel={battle=true,battleScene=true},menuPanel={menuScene=true,result=true}}
+    function self.readyForPage(_,mode,characterOpen,character,page)
+        local scope=page and pagePortraits[page]
+        if page and not scope then return true end
+        if destroyed then return false,'portrait owner destroyed' end
+        if busy then return false end
+        local wanted=presentationTargets(mode,characterOpen,false,character,false)
+        for _,row in ipairs(rows)do
+            if requiredPortrait(row,scope,wanted,mode) then
+                local ready,reason=portraitReadiness(row,mode,resultOutcome)
+                if not ready then return false,reason end
+            end
+        end
+        return true
+    end
     function self.tick(_)
         if busy or destroyed then return end
         busy=true

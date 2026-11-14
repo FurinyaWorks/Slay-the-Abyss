@@ -57,11 +57,14 @@ test('integrated selection retains the shared deck input below its summary witho
  const deck=child(details,'deckOpen'),hit=child(deck,'hit');
  applyOfficialNoncombatLayout(layout,theme);
  assert.equal(child(child(details,'deckOpen'),'hit'),hit,'reuse the live shared-browser input');
- assert.deepEqual(deck.size,[200,36]);assert.deepEqual(hit.size,[200,36]);
+ assert.deepEqual(deck.size,[160,36]);assert.deepEqual(hit.size,[160,36]);
  const overlaps=(a,b)=>Math.abs(a.position[0]-b.position[0])*2<a.size[0]+b.size[0]
   &&Math.abs(a.position[1]-b.position[1])*2<a.size[1]+b.size[1];
  for(const other of [child(details,'deckSummary'),selectedSlot(panel),child(panel,'cancel')])
   assert.equal(overlaps(deck,other),false,'deck entry overlaps '+other.name);
+ for(const state of parts(hit))for(const face of [child(state,'border'),child(state,'plate')]){
+  assert(face.size[0]<=deck.size[0]&&face.size[1]<=deck.size[1],'painted button surface escapes its hit box');
+ }
 });
 
 test('production background preserves the exact approved experiment rows, including colour and half masks',()=>{

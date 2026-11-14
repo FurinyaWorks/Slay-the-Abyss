@@ -108,6 +108,36 @@ assert(a:release() and LiveCount()==0)
 `,{runtimeV2:true});
 });
 
+test('combined native page readiness waits for the complete 1600 background and ignores the hidden legacy avatar',()=>{
+ withPortraitVm(`
+local selectionHost=tree();stage.children.characterPanel.children.lumineSelectionBackground=selectionHost
+local frame=tree();rawset(frame,'sizeDeltaX',440)
+stage.children.characterPanel.children.details=tree({officialSelectionFigure=selectionHost,portraitFrame=frame,
+ portraits=tree({traveler_ironclad=tree()}),portraitNote=tree()})
+traveler:SetVisible(false)
+local a=Portraits.new(stage,nil,{selectionAvatar=true,battlePortrait=true})
+assert(a:sync('menu',true,false,'ironclad'))
+assert(not a:readyForPage('menu',true,'ironclad','characterPanel'),'partial background passed readiness')
+for _=1,1000 do a:tick();if a:status().selection.phase=='ready' then break end end
+assert(a:status().selection.total==1600 and a:status().selection.phase=='ready')
+assert(a:status().avatar.owned==0 and a:readyForPage('menu',true,'ironclad','characterPanel'),
+ 'hidden legacy avatar blocked the complete native page')
+traveler:SetVisible(true);assert(a:sync('menu',true,false,'ironclad'))
+assert(not a:readyForPage('menu',true,'ironclad','characterPanel'),'visible incomplete avatar passed readiness')
+for _=1,1000 do a:tick();if a:status().avatar.phase=='ready' then break end end
+assert(a:readyForPage('menu',true,'ironclad','characterPanel'))
+assert(a:sync('battle',false,false,'ironclad'))
+assert(not a:readyForPage('battle',false,'ironclad','battlePanel'),'unbuilt battle passed readiness')
+for _=1,1000 do a:tick();if a:status().battle.phase=='ready' then break end end
+assert(a:readyForPage('battle',false,'ironclad','battlePanel'),'hidden selection blocked battle readiness')
+a:release();figure.SetSizeDelta=function()error('native figure rejected')end
+a:sync('battle',false,false,'ironclad')
+local ready,reason=a:readyForPage('battle',false,'ironclad','battlePanel')
+assert(not ready and reason,'failed native owner passed readiness without its reason')
+a:onEngineDestroy();assert(not a:readyForPage('menu',true,'ironclad','characterPanel'))
+`,{runtimeV2:true,officialAssets:true});
+});
+
 test('official title uses on-demand selection while partial cancellation and ready cache remain intact',()=>{
  withPortraitVm(`
 Theme.presentationProfile='official-assets-first'
