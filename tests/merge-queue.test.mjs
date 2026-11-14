@@ -16,7 +16,7 @@ function fixture(){
  const head=sha('a'),base=sha('b'),ref='refs/heads/gh-readonly-queue/develop/pr-510-a';
  const env={GITHUB_EVENT_NAME:'merge_group',GITHUB_REPOSITORY:repo,GITHUB_REF:ref,GITHUB_SHA:head,
   GITHUB_RUN_ID:'7',GITHUB_RUN_ATTEMPT:'1',FULL_MODE:'full',FULL_NEEDS:''};
- const event={action:'checks_requested',repository:{full_name:repo},
+ const event={action:'checks_requested',repository:{id:1429751262,full_name:repo},
   merge_group:{head_sha:head,base_sha:base,base_ref:'refs/heads/develop',head_ref:ref}};
  const needs={impact:{result:'success'},rules:{result:'success'},fast:{result:'skipped'},
   presentation:{result:'success'},'engineering-posix':{result:'success'}};

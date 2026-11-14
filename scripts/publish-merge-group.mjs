@@ -7,8 +7,8 @@ import {pathToFileURL} from 'node:url';
 import {checkoutReceipt,receiptErrors,currentFullQualityJobs,qualityWorkflowPath} from './verify-delivery.mjs';
 import {collectQueueAdmission} from './merge-queue-admission.mjs';
 import {queueRulesAttested} from './merge-queue-policy.mjs';
+import {projectRepositoryMatches} from './repository-identity.mjs';
 
-const expectedRepo='FurinyaWorks/Slay-the-Abyss';
 const contexts=['check','presentation','engineering-posix','inventory','full-quality','independent-review'];
 const sha=value=>typeof value==='string'&&/^[0-9a-f]{40}$/.test(value);
 const id=value=>Number.isSafeInteger(value)&&value>0;
@@ -19,7 +19,7 @@ const id=value=>Number.isSafeInteger(value)&&value>0;
 export function queueEventErrors(event,env) {
  const group=event?.merge_group,errors=[];
  if(env.GITHUB_EVENT_NAME!=='merge_group'||event?.action!=='checks_requested'||
-  event?.repository?.full_name!==expectedRepo||env.GITHUB_REPOSITORY!==expectedRepo)
+  !projectRepositoryMatches(event?.repository,env.GITHUB_REPOSITORY))
   errors.push('Not a native merge_group event from this repository');
  if(!sha(env.GITHUB_SHA)||group?.head_sha!==env.GITHUB_SHA||
   group?.head_ref!==env.GITHUB_REF||
@@ -30,6 +30,7 @@ export function queueEventErrors(event,env) {
 }
 
 export function queueFullErrors({event,env,needs,ruleset,run,latest,jobs,checkout,admission},{metadataOnly=false}={}) {
+ const expectedRepo=env.GITHUB_REPOSITORY;
  const errors=queueEventErrors(event,env);
  const statusPolicy=ruleset?.rules?.find(rule=>rule.type==='required_status_checks')?.parameters;
  const checks=statusPolicy?.required_status_checks;
@@ -124,7 +125,7 @@ export function statusWriteResponse(p,identity,diagnostic=entry=>console.error(J
  }
  return body;
 }
-function post(query,head,state,context,runId,attempt,{validate,wait}) {
+function post(query,expectedRepo,head,state,context,runId,attempt,{validate,wait}) {
  const target=`https://github.com/${expectedRepo}/actions/runs/${runId}`;
  const description=(state==='pending'?'Awaiting verified native merge group Full':'Verified native queue admission and exact Full group')+` [attempt:${attempt}]`;
  for(let retry=0;retry<3;retry++){
@@ -159,6 +160,7 @@ export function main(env=process.env,query=gh,{pending=false,loadCheckout,
  const event=JSON.parse(readFileSync(env.GITHUB_EVENT_PATH,'utf8'));
  const identityErrors=queueEventErrors(event,env);
  if(identityErrors.length)throw Error(identityErrors.join('; '));
+ const expectedRepo=env.GITHUB_REPOSITORY;
  const head=env.GITHUB_SHA,runId=Number(env.GITHUB_RUN_ID),attempt=Number(env.GITHUB_RUN_ATTEMPT);
  const get=path=>JSON.parse(query('api',`repos/${expectedRepo}/${path}`));
  const pages=(path,key)=>JSON.parse(query('api','--paginate','--slurp',`repos/${expectedRepo}/${path}`)).flatMap(page=>page[key]);
@@ -176,7 +178,7 @@ export function main(env=process.env,query=gh,{pending=false,loadCheckout,
  };
  if(pending){
   for(const context of ['full-quality','independent-review','pr-quality'])
-   post(query,head,'pending',context,runId,attempt,{validate:()=>activeRun(true),wait});
+   post(query,expectedRepo,head,'pending',context,runId,attempt,{validate:()=>activeRun(true),wait});
   return {state:'pending'};
  }
  const run=get('actions/runs/'+runId);
@@ -213,7 +215,7 @@ export function main(env=process.env,query=gh,{pending=false,loadCheckout,
    throw Error('Native group PR authorization changed during artifact verification');
  };
  validate();
- for(const name of ['full-quality','independent-review','pr-quality'])post(query,head,'success',name,runId,attempt,{validate,wait});
+ for(const name of ['full-quality','independent-review','pr-quality'])post(query,expectedRepo,head,'success',name,runId,attempt,{validate,wait});
  return {state:'success',runId,head};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){
