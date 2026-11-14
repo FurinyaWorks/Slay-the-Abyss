@@ -42,6 +42,19 @@ test('a fully evidenced P1 name can be approved',()=>{
  assert.deepEqual(report.errors,[]);
  assert.equal(report.ready,true);
 });
+
+test('human approval and official inventory completion require literal JSON true',()=>{
+ for(const value of ['false','true',1,{},[],false,null]){
+  for(const field of ['human','P1','P2']){
+   const m=baseApproved();
+   if(field==='human')m.cards[0].review.human.approved=value;
+   else m.official_inventory[field].complete=value;
+   const report=validateNamingManifest(m);
+   assert.equal(report.ready,false,field+' must reject '+JSON.stringify(value));
+   assert.match(report.errors.join(';'),field==='human'?/human reviewer/:/inventory incomplete/);
+  }
+ }
+});
 test('cannot label unresolved role as APPROVED',()=>{
  const m=make();m.status='APPROVED';
  assert.match(validateNamingManifest(m).errors.join(' / '),/false APPROVED/);
