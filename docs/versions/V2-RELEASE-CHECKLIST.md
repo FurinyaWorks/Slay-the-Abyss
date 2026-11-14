@@ -60,7 +60,7 @@
 git fetch origin --tags
 git switch master
 git pull --ff-only origin master
-git tag -a v2.0.0 -m "Slay the Heavens v2.0.0 — verified release"
+git tag -a v2.0.0 -m "v2.0.0 verified release"
 git push origin v2.0.0
 ```
 
