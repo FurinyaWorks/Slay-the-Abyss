@@ -7,6 +7,7 @@ import {isLightweightProfile,lightweightInventory,boundedPortraitSource} from '.
 import {v25Theme} from './v25-layout.mjs';
 import {v25PortraitRuntimeProfile} from './v25-portrait-profile.mjs';
 import {lightweightAssets} from './art/lightweight-2d-assets.mjs';
+import {lumineSelectionBackground,lumineSelectionPath} from './lumine-selection-background.mjs';
 
 export const portraitModule='abyss_traveler_portrait_assets';
 export const approvedBattleIdlePath='art/characters/traveler-geo/idle-approved-v1/native-idle-210.json';
@@ -67,7 +68,7 @@ export function portraitSourceInputs(options={}) {
  const selected=selectedAssets(options);if(!selected.length)return [];
  return [...selected.flatMap(a=>['runtime-no-snapshot.lua','native-art.json'].map(f=>`${base}/${a.kind}/${f}`)),licensePath,
   ...(selected.some(a=>a.kind==='battle133')?[approvedBattleIdlePath,approvedIdleSource,approvedIdleGif]:[]),
-  ...(selected.some(a=>a.kind==='avatar96')?[selectionBudgetPath,`${base}/avatar96/preview-native-1x.png`,`${base}/battle133/preview-native-1x.png`]:[])];
+  ...(selected.some(a=>a.kind==='avatar96')?[selectionBudgetPath,`${base}/avatar96/preview-native-1x.png`,`${base}/battle133/preview-native-1x.png`,lumineSelectionPath]:[])];
 }
 export function portraitSources(root=process.cwd(),options) {
  const selected=selectedAssets(options);if(selected.length)license(root);
@@ -137,13 +138,13 @@ export function portraitRuntimeInputs(flags={}) {
  return [...portraitSourceInputs(flags),...(flags.selectionAvatar||flags.cards||flags.menuBackground?[lowpolySelectPath]:[])];
 }
 function lowpolyInventory(source) {
- if(!/\blowpoly(?:Hero|CardFan|Land)=/.test(source))return [];
+ if(!/\blowpoly(?:Hero|CardFan|Land|Lumine)=/.test(source))return [];
  const luaparse=createRequire(import.meta.url)('luaparse');
  const table=luaparse.parse(source).body.find(n=>n.type==='ReturnStatement')?.arguments[0];
  const rows=[];
  for(const field of table?.fields??[]) {
   const name=field.key?.name;
-  if(!['lowpolyHero','lowpolyCardFan','lowpolyLand'].includes(name))continue;
+  if(!['lowpolyHero','lowpolyCardFan','lowpolyLand','lowpolyLumine'].includes(name))continue;
   const fields=field.value.fields;
   const value=key=>fields.find(f=>f.key?.name===key||f.key?.raw===`"${key}"`)?.value;
   const count=value('count')?.value,images=value('rows')?.fields;
@@ -154,7 +155,7 @@ function lowpolyInventory(source) {
 }
 function combineInventory(inventory,lowpoly) {
  if(!lowpoly.length)return inventory;
- const assets=[...(inventory?.assets??[]).filter(a=>a.asset!=='traveler-geo/portraits/selection133'),...lowpoly];
+ const assets=[...(inventory?.assets??[]).filter(a=>a.asset!=='traveler-geo/portraits/selection133'&&!lowpoly.some(b=>b.asset===a.asset)),...lowpoly];
  return {...inventory,renderProfile:'lowpoly-mixed-v1',assets,instances:assets.reduce((n,a)=>n+(a.instances??1),0),batchSize:64,
   ...(lowpoly.some(a=>a.asset==='lowpolyHero')?{selectionUses:'lowpolyHero'}:{}),
   peakDynamicControls:assets.reduce((n,a)=>n+(a.images+a.groups+a.pages)*(a.instances??1)+(a.hosts??0),0),
@@ -169,9 +170,10 @@ export function lowpolySelectLiterals(root=process.cwd(),{selectionAvatar=false,
  return [...(selectionAvatar?[asset('lowpolyHero',data.hero)]:[]),...(cards?[asset('lowpolyCardFan',data.cardFan)]:[]),
   ...(menuBackground?[asset('lowpolyLand',data.land)]:[])];
 }
-export function writePortraitModule(directory,{root=process.cwd(),imageTemplateIndex=0,containerTemplateIndex=0,selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false,v25BattleChrome=false,officialAssets=false}={}) {
+export function writePortraitModule(directory,{root=process.cwd(),imageTemplateIndex=0,containerTemplateIndex=0,selectionHalfImageTemplateIndex=0,selectionAvatar=true,battlePortrait=true,cards=false,menuBackground=false,v25BattleChrome=false,officialAssets=false}={}) {
  if(typeof v25BattleChrome!=='boolean'||v25BattleChrome&&selectionAvatar!==battlePortrait)throw Error('V25 portraits require paired selection and battle source assets');
  if(!validIndex(imageTemplateIndex,true)||!validIndex(containerTemplateIndex,true))throw Error('Invalid portrait templateIndex');
+ if(officialAssets&&selectionAvatar&&imageTemplateIndex!==0&&(!validIndex(selectionHalfImageTemplateIndex)||selectionHalfImageTemplateIndex===imageTemplateIndex))throw Error('Official selection requires a distinct half-triangle templateIndex');
  if(isLightweightProfile(directory)){
   if(!selectionAvatar||!battlePortrait||!menuBackground||cards)throw Error('Bounded 2D requires fixed experiment art flags');
   const source=boundedPortraitSource(imageTemplateIndex,containerTemplateIndex);
@@ -196,7 +198,7 @@ export function writePortraitModule(directory,{root=process.cwd(),imageTemplateI
  // Selection keeps its bounded temporary actor. Full-body literals remain
  // available to other profiles; official combat uses the approved idle below.
  if(officialAssets&&(selectionAvatar||battlePortrait))data.push(`battlePixel=${toLua(lightweightAssets().battle133)}`);
- if(officialAssets&&selectionAvatar)data.push("selectionUses='battlePixel'");
+ if(officialAssets&&selectionAvatar)data.push("selectionUses='lowpolyLumine'",`selectionHalfImagePrefabId=${selectionHalfImageTemplateIndex}`,`lowpolyLumine=${toLua(lumineSelectionBackground(root))}`);
  // One approved combat figure. The temporary pixel remains selection-only;
  // missing or changed approved idle data is a build error, never a fallback.
  if(officialAssets&&battlePortrait)data.push(`battleApprovedIdle=${toLua(approvedBattleIdle(root))}`);
@@ -212,7 +214,7 @@ ${license(root)}]=]
 export function bindPortraitTemplates(directory,result,options={}) {
  const imageTemplateIndex=result?.image?.templateIndex,containerTemplateIndex=result?.container?.templateIndex;
  if(!validIndex(imageTemplateIndex)||!validIndex(containerTemplateIndex))throw Error('MCP did not return valid portrait image/container templateIndex');
- return writePortraitModule(directory,{...options,imageTemplateIndex,containerTemplateIndex});
+ return writePortraitModule(directory,{...options,imageTemplateIndex,containerTemplateIndex,selectionHalfImageTemplateIndex:result.half?.templateIndex??0});
 }
 function inventoryRows(selectionAvatar,battlePortrait,budget,v25) {
  const rows=[];
@@ -231,12 +233,12 @@ export function portraitInventory({selectionAvatar=true,battlePortrait=true,card
  }
  if(officialAssets&&selectionAvatar){
   const selected=rows.find(a=>a.asset==='traveler-geo/portraits/selection133'||a.asset==='traveler-geo/portraits/battle133-selection');
-  const pixel=lightweightAssets().battle133;
-  const row={asset:'temporary-pixel-traveler-selection',images:pixel.count,groups:Math.ceil(pixel.count/60),pages:Math.ceil(pixel.count/3600),sourceSha256:pixel.sourceSha256};
+  const drawing=lumineSelectionBackground();
+  const row={asset:'lowpolyLumine',images:drawing.count,groups:Math.ceil(drawing.count/60),pages:1,sourceSha256:drawing.sourceSha256};
   if(selected)Object.assign(selected,row);else rows.push(row);
  }
  const legacy=rows.length?{...(budget?{renderProfile:'selection-budget-v1',hiddenBuild:true,cache:true,revealGroupsPerFrame:4}:{}),
-  ...(selectionAvatar&&(budget||officialAssets)?{selectionUses:officialAssets?'battlePixel':v25?'battle133':'selection133'}:{}),assets:rows,instances:rows.length,batchSize:64,
+  ...(selectionAvatar&&(budget||officialAssets)?{selectionUses:officialAssets?'lowpolyLumine':v25?'battle133':'selection133'}:{}),assets:rows,instances:rows.length,batchSize:64,
   peakDynamicControls:rows.reduce((sum,a)=>sum+a.images+a.groups+a.pages,0),maxDirectDynamicChildren:60,officialCapacity:'not_measured',
   measurement:'offline-runtime-control-contract-not-official-capacity',devicePerformance:'not_run'}:undefined;
  const landscape=lowpolySelectLiterals(process.cwd(),{selectionAvatar:selectionAvatar&&!v25&&!officialAssets,cards,menuBackground});
@@ -255,7 +257,8 @@ export function portraitRuntimeInventory(directory) {
  }
  const selectionMarkers=source.split(/\r?\n/).filter(line=>line.startsWith('selectionUses='));
  if(flags.selectionAvatar&&(officialAssets||selectionMarkers.length)){
-  if(!officialAssets||selectionMarkers.length!==1||!/^selectionUses='battlePixel',?$/.test(selectionMarkers[0]))
+  if(!officialAssets||selectionMarkers.length!==1||!/^selectionUses='lowpolyLumine',?$/.test(selectionMarkers[0])
+    ||!source.includes(`lowpolyLumine=${toLua(lumineSelectionBackground())}`))
    throw Error('Unsupported official selection schema; read historical candidates with their pinned producer');
  }
  if(existsSync(join(directory,'art-performance.json'))){

@@ -6,6 +6,7 @@ local V25=require('abyss_v25_menu_view')
 local function control(name)
  local n={name=name,visible=true,children={},scaleWrites=0}
  function n:GetChild(key)
+  if key=='stsCharacter' then return self.children[key]end
   if not self.children[key]then self.children[key]=control(key)end
   return self.children[key]
  end
@@ -65,7 +66,7 @@ events.enter();assert(quit:GetChild('v25MenuFace'):GetChild('disabled').visible)
 assert(not events.click({touchId=1}) and exits==1,'stale click must not reopen exit')
 local SelectionView=require('abyss_character_select_view')
 local panel=control('characterPanel')
-local selection={character='traveler',element='ironclad',info={name='旅行者·荧',maxHp=80,gold=99,deck={},relics={},deckSize=0}}
+local selection={character='traveler',element='ironclad',info={name='旅行者',maxHp=80,gold=99,deck={},relics={},deckSize=0}}
 function selection:allowsCharacter(id)return id=='traveler'end
 function selection:allowsElement(id)return id=='ironclad'end
 function selection:canConfirm()return true end
@@ -75,15 +76,22 @@ assert(details:GetChild('stats').text=='生命：80/80' and details:GetChild('go
     'official selection must retain the approved resource labels')
 assert(panel:GetChild('hint').text=='','the approved selection has no extra default helper line')
 local initial=panel:GetChild('v25Roster'):GetChild('selected'):GetChild('selectedInitial')
-assert(initial.text=='荧','Traveler uses the requested release placeholder')
+assert(initial.text==nil,'selection must not write a glyph over the static constellation')
 selection.character='raiden';selection.info.name='雷电将军'
 SelectionView.render(panel,selection,{})
-assert(initial.text=='雷','another character uses its first complete UTF-8 glyph')
-selection.character='traveler';selection.info.name='旅行者·荧'
+assert(initial.text==nil,'changing characters must not create or update a glyph overlay')
+selection.character='traveler';selection.info.name='旅行者'
 selection.notice='当前无法开始挑战'
 SelectionView.render(panel,selection,{})
 assert(panel:GetChild('hint').text==selection.notice,'selection errors must remain readable')
 selection.notice=nil
+-- The approved STS page owns its portrait instead of the legacy initial.
+panel.children.stsCharacter=control('stsCharacter')
+initial.text='unused legacy initial'
+SelectionView.render(panel,selection,{})
+assert(initial.text=='unused legacy initial','STS page must not paint the legacy roster')
+assert(not details:GetChild('portraits').visible,'STS page hides the legacy portrait group')
+assert(details:GetChild('stats').text=='生命：80/80' and details:GetChild('gold').text=='金币：99')
 SelectionView.render(panel,selection,{portraits={status=function()return{selection={phase='ready'}}end}})
 assert(not details:GetChild('portraits'):GetChild('traveler_ironclad').visible,'native selection must retain ownership over the fallback portrait')
 local Run=require('abyss_run')

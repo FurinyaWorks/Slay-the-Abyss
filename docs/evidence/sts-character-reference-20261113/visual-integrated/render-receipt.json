@@ -1,0 +1,311 @@
+{
+  "kind": "headless-integrated-character-shared-starter-browser",
+  "createdAt": "2026-11-13T11:28:45.007Z",
+  "sourceClosureSha256": "52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731",
+  "scenarios": {
+    "character": {
+      "file": "current-character.save.json",
+      "sha256": "90296e9c9e16da43b71c577318c28ca3c31ea3266ff3ec75923244c84410a1cf",
+      "startupSha256": "b459963b87bbcb846d01f3ce11c0e251a70c2f4b846476779e8fa705a6923412"
+    }
+  },
+  "rendererSha256": "3b34e80b712c56ba2bb8042446257c57b52b3d027e20446596ce7dc27afb2fb2",
+  "browserPath": "C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "rendering": "headless Chromium SwiftShader software WebGL; offline SDK fixture; not official import/ready/GPU/device evidence",
+  "shots": [
+    {
+      "name": "character-select",
+      "scenario": "character",
+      "checks": "integrated original PC selection; completed shared approved idle half-body",
+      "sha256": "725bb8246e04b8107311f32c38e118f97ae70c637c3d1cd90bb5efa7b66de5c5",
+      "time": 13.619100000000326,
+      "frame": 81,
+      "frontendRenderPasses": {
+        "before": 87,
+        "after": 91
+      }
+    },
+    {
+      "name": "character-selected-idle",
+      "scenario": "character",
+      "checks": "same live approved battle source, original roster slot; no constellation",
+      "sha256": "9a61339ccd1fcb85e56f639516351c9c1ee39e32312e6b88e7c8318d4028eed5",
+      "time": 18.154400000000603,
+      "frame": 115,
+      "frontendRenderPasses": {
+        "before": 121,
+        "after": 125
+      }
+    },
+    {
+      "name": "character-starter-browser",
+      "scenario": "character",
+      "checks": "actual production starter deck through shared five-column pileGrid",
+      "sha256": "19e650c7beb16c33630bfbe333b2a938a3c07046e9ec867253b884b8725d195f",
+      "time": 21.912600000000783,
+      "frame": 139,
+      "frontendRenderPasses": {
+        "before": 149,
+        "after": 153
+      }
+    },
+    {
+      "name": "character-starter-detail",
+      "scenario": "character",
+      "checks": "card detail and upgrade preview use existing shared browser",
+      "sha256": "c35bb7122354f2ce66c7e18e0e76f14009395ed19110f66feec030a611fecb69",
+      "time": 26.68550000000092,
+      "frame": 171,
+      "frontendRenderPasses": {
+        "before": 181,
+        "after": 185
+      }
+    },
+    {
+      "name": "character-returned-selection",
+      "scenario": "character",
+      "checks": "shared return restores original selection and unchanged loadout, without Run/RNG",
+      "sha256": "a8123049859139dd8b3088e23bd82b465c0fc7223c9a4b0d44b0046800cddf84",
+      "time": 32.70850000000115,
+      "frame": 206,
+      "frontendRenderPasses": {
+        "before": 221,
+        "after": 224
+      }
+    }
+  ],
+  "errors": [],
+  "resourceResponses": [],
+  "requests": [
+    {
+      "scenario": "character",
+      "control": "hit",
+      "id": 4977,
+      "point": {
+        "x": 474,
+        "y": 737.5
+      }
+    },
+    {
+      "scenario": "character",
+      "control": "hit",
+      "id": 4199,
+      "point": {
+        "x": 265,
+        "y": 658
+      }
+    },
+    {
+      "scenario": "character",
+      "control": "hit",
+      "id": 32161,
+      "point": {
+        "x": 1042,
+        "y": 695
+      }
+    },
+    {
+      "scenario": "character",
+      "control": "hit",
+      "id": 6568,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    },
+    {
+      "scenario": "character",
+      "control": "hit",
+      "id": 6568,
+      "point": {
+        "x": 150,
+        "y": 748
+      }
+    }
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=false starterCards=10 browserCards=0",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_STS_CHARACTER_FIXTURE scenario=character seed=42 selection-and-shared-browser",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=revealing owned=3332 reason=nil",
+      "time": 9.53809999999986
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=ready owned=3332 reason=nil",
+      "time": 12.318300000000045
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2",
+      "time": 12.568300000000045
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=false starterCards=10 browserCards=0",
+      "time": 12.568300000000045
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=false starterCards=10 browserCards=0",
+      "time": 16.386400000000375
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=deckPanel epoch=3",
+      "time": 20.468200000000877
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=true starterCards=10 browserCards=10",
+      "time": 20.468200000000877
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=deckPanel epoch=3",
+      "time": 20.895300000000738
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=true starterCards=10 browserCards=10",
+      "time": 20.895300000000738
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=deckPanel epoch=4",
+      "time": 25.0539000000006
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=deckPanel epoch=4",
+      "time": 25.083800000000505
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=true starterCards=10 browserCards=10",
+      "time": 25.083800000000505
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=deckPanel epoch=5",
+      "time": 29.446300000001195
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=deckPanel epoch=5",
+      "time": 29.512000000001148
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=true starterCards=10 browserCards=10",
+      "time": 29.512000000001148
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=6",
+      "time": 30.531000000001146
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=false starterCards=10 browserCards=0",
+      "time": 30.531000000001146
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=characterPanel epoch=6",
+      "time": 31.031000000001146
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_CHARACTER_BROWSER_AUDIT run=none runCreations=0 randomCalls=0 loadoutDrift=false browser=false starterCards=10 browserCards=0",
+      "time": 31.031000000001146
+    }
+  ],
+  "status": "captured-awaiting-image-review",
+  "sourceDrift": [],
+  "fixtureAssertions": "Production select/browser commands; after Host construction every refreshed frame asserts no Run, no RNG call and unchanged loadout projection."
+}

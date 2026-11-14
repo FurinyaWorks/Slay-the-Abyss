@@ -1,5 +1,6 @@
 // Exact outer continuation for PR648; immutable predecessor records stay unchanged.
 import assert from 'node:assert/strict';
+import {integratedSource} from './integrated-ci-source.mjs';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
@@ -18,6 +19,7 @@ for(const [path,row]of Object.entries(nativePreviewCiProof.files))for(const side
 const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
 freeze(nativePreviewCiProof);
 export function preNativePreviewCiSource(path,source){
+ source=integratedSource(path,source,'native');
  const row=Object.hasOwn(nativePreviewCiProof.files,path)?nativePreviewCiProof.files[path]:null;
  if(!row||typeof source!=='string'||hash(source.replaceAll('\r\n','\n'))!==row.after.sha256)return source;
  return row.before.source;

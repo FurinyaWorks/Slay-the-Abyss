@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "kind": "sdk-ui-outcome",
+  "createdAt": "2026-11-13T15:18:52.142Z",
+  "scope": "Actual GIL-derived SDK model, exact Lua and native mount params; script/model wall time and Node memory only. No renderer, GPU, official capacity, official client or device acceptance.",
+  "identity": {},
+  "scenario": {
+    "id": "menu-character-roundtrip-v1",
+    "roundTrips": 20,
+    "dt": 0.016666666666666666,
+    "frameLimit": 180
+  },
+  "events": [],
+  "pages": [],
+  "inputs": [],
+  "roundTrips": [],
+  "faults": [],
+  "mountErrors": [],
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "node": "v22.22.1",
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12700H"
+  },
+  "external": {
+    "officialImport": "UNVERIFIED",
+    "officialReady": "UNVERIFIED",
+    "officialCapacity": "UNVERIFIED",
+    "pcPerformance": "UNVERIFIED",
+    "androidPerformance": "UNVERIFIED",
+    "v25Visual": "UNVERIFIED"
+  },
+  "error": "TypeError [ERR_INVALID_ARG_TYPE]: The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined\n    at readFileSync (node:fs:438:14)\n    at read (file:///F:/New%20folder/.worktrees/menu-red-background/scripts/replay-ui-outcome.mjs:13:29)\n    at replayUiOutcome (file:///F:/New%20folder/.worktrees/menu-red-background/scripts/replay-ui-outcome.mjs:186:40)\n    at file:///F:/New%20folder/.worktrees/menu-red-background/scripts/replay-ui-outcome.mjs:281:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+  "longBlocks": []
+}

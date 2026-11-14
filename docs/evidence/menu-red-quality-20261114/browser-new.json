@@ -1,0 +1,152 @@
+{
+  "kind": "actual-natural-browser-draw-timing",
+  "buildId": "53629ec8-5a99-4a54-97ed-04e152adeb21",
+  "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+  "rendererSha256": "5971287fabb54d2c061b76857bafffae6575b9e7612cb4bcc4ba95e88bb0aa20",
+  "sid": "qa-stage-visual-1794593375993",
+  "shots": [
+    {
+      "name": "01-menu",
+      "frame": 4,
+      "checks": {},
+      "sha256": "23ac07b19542c110d6bb443a0c56e7477b40a2c6cc4bd38617326b3a59f44b9a"
+    },
+    {
+      "name": "02-character",
+      "frame": 452,
+      "checks": {},
+      "sha256": "1b70fc71b67c2ae48f9109a89cd2d42dcbbdea32c575d79c7ecab40bdebf73b8"
+    },
+    {
+      "name": "03-neow",
+      "frame": 513,
+      "checks": {},
+      "sha256": "33928da648bfb7da54d4a914b878c6827a3579db01239885c0e4af42444f2562"
+    },
+    {
+      "name": "04-neow-offers",
+      "frame": 575,
+      "checks": {},
+      "sha256": "f06b2ab9aeb4a00035b47a2f7406bebe06b42317737d41ac4cee567ece7626e6"
+    },
+    {
+      "name": "05-neow-result",
+      "frame": 637,
+      "checks": {},
+      "sha256": "d98575b399348b64ca1d99f2d1b7d4a16fd8093e31823b7f604ba14b05e5c1a5"
+    },
+    {
+      "name": "06-map",
+      "frame": 698,
+      "checks": {},
+      "sha256": "7f27e034878b17c995973f859f446e13a24d4b7925ee5999f32b32253dd8afb1"
+    },
+    {
+      "name": "07-first-battle",
+      "frame": 879,
+      "checks": {},
+      "sha256": "4058964b6678a277727cb576f3772e3f05e334c1c6de5d5e72c6dea94548080e"
+    }
+  ],
+  "errors": [],
+  "archiveLoadMs": 21.654800000000023,
+  "navigationToPositiveFrameMs": 2296.9953,
+  "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x000046A6) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "transitions": [
+    {
+      "phase": "tap-hit-0",
+      "before": {
+        "start": 8127.60000000149,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":true},{\"id\":8924,\"visible\":false},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":false}]"
+      },
+      "observed": {
+        "phase": "tap-hit-0",
+        "start": 8306.10000000149,
+        "end": 8349.800000000745,
+        "signature": "[{\"id\":4094,\"visible\":true},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":false},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":false}]"
+      },
+      "clickToFirstChangedDrawMs": 222.19999999925494
+    },
+    {
+      "phase": "tap-hit-1",
+      "before": {
+        "start": 14980.10000000149,
+        "signature": "[{\"id\":4094,\"visible\":true},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":false},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":false}]"
+      },
+      "observed": {
+        "phase": "tap-hit-1",
+        "start": 15778.300000000745,
+        "end": 15798.89999999851,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":true},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":true,\"text\":\"高塔之下，一位古老的存在\\n向你伸出援手。\"}]"
+      },
+      "clickToFirstChangedDrawMs": 818.7999999970198
+    },
+    {
+      "phase": "tap-hit-2",
+      "before": {
+        "start": 17488.699999999255,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":true},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":true,\"text\":\"高塔之下，一位古老的存在\\n向你伸出援手。\"}]"
+      },
+      "observed": {
+        "phase": "tap-hit-2",
+        "start": 17635.89999999851,
+        "end": 17642.5,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":true},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":true,\"text\":\"选择一份恩赐。\"}]"
+      },
+      "clickToFirstChangedDrawMs": 153.80000000074506
+    },
+    {
+      "phase": "tap-hit-3",
+      "before": {
+        "start": 19349.199999999255,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":true},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":true,\"text\":\"选择一份恩赐。\"}]"
+      },
+      "observed": {
+        "phase": "tap-hit-3",
+        "start": 19527.89999999851,
+        "end": 19532.89999999851,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":true},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":true,\"text\":\"你已接受恩赐，可以启程。\"}]"
+      },
+      "clickToFirstChangedDrawMs": 183.69999999925494
+    },
+    {
+      "phase": "tap-hit-4",
+      "before": {
+        "start": 21328.10000000149,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":true},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":true,\"text\":\"你已接受恩赐，可以启程。\"}]"
+      },
+      "observed": {
+        "phase": "tap-hit-4",
+        "start": 21569.199999999255,
+        "end": 21580.39999999851,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":false},{\"id\":19992,\"visible\":true},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":false}]"
+      },
+      "clickToFirstChangedDrawMs": 252.29999999701977
+    },
+    {
+      "phase": "tap-hit-5",
+      "before": {
+        "start": 25238.39999999851,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":false},{\"id\":19992,\"visible\":true},{\"id\":21843,\"visible\":false},{\"id\":9153,\"visible\":false}]"
+      },
+      "observed": {
+        "phase": "tap-hit-5",
+        "start": 25751.60000000149,
+        "end": 25818.5,
+        "signature": "[{\"id\":4094,\"visible\":false},{\"id\":6921,\"visible\":false},{\"id\":8924,\"visible\":false},{\"id\":19992,\"visible\":false},{\"id\":21843,\"visible\":true},{\"id\":9153,\"visible\":false}]"
+      },
+      "clickToFirstChangedDrawMs": 580.1000000014901
+    }
+  ],
+  "status": "captured",
+  "menuRendererCpuMs": {
+    "samples": 223,
+    "p50": 0.19999999925494194,
+    "p95": 0.30000000074505806,
+    "max": 0.3999999985098839,
+    "scope": "WebGL renderer command submission wall time; not GPU/official FPS"
+  },
+  "rawReportSha256": "5d350115a7fb76c0413dc3339c357f8c60c0ec7bfd955d6b94c949fcf6a2be37",
+  "rawReportPath": ".artifacts/menu-quality-r1/browser-new/report.json",
+  "drawSamples": 934
+}

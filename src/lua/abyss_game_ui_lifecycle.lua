@@ -1,10 +1,11 @@
 local M = {}
+local PageReveal=require('abyss_page_reveal')
 local function validDelta(dt)
     return type(dt) == 'number' and dt == dt and dt >= 0 and dt ~= math.huge
 end
 local function countRunTime(self,dt,openingCovered)
     local run=self.run
-    if run and not openingCovered() and run.phase ~= "defeat" and self.mode ~= "victory" and self.mode ~= "defeat" then
+    if run and not (self.pageReveal and self.pageReveal:covered()) and not openingCovered() and run.phase ~= "defeat" and self.mode ~= "victory" and self.mode ~= "defeat" then
         local elapsed=run.elapsedSeconds+dt
         if elapsed==math.huge then return false end
         run.elapsedSeconds=elapsed
@@ -26,6 +27,7 @@ function M.resize(self,owner)
             owner.exitGeneration = owner.exitGeneration + 1
             owner.menuGeneration = owner.menuGeneration + 1
             if self.choiceUI then self.choiceUI:resize() end
+            if self.prologue then self.prologue:resize(width,height) end
             local closed=self.potionUI:close()
             self.battleUI:resize(width, height)
             self.mapUI:resize(width, height)
@@ -34,14 +36,25 @@ function M.resize(self,owner)
         end
 end
 
+local function updatePrepared(self,platform,dt)
+    PageReveal.registerSource(platform,'nodePanel');self.nodeUI:update(dt)
+    PageReveal.registerSource(platform,'deckPanel');self.deckUI:update(dt)
+    PageReveal.registerSource(platform,'mapPanel');return self.mapUI:update(dt)
+end
+local function advancePreparation(self,platform,dt)
+    if not (self.pageReveal and self.pageReveal:covered()) then return false end
+    PageReveal.registerSource(platform,'nodePanel');self.nodeUI:prepare(dt)
+    PageReveal.registerSource(platform,'deckPanel');self.deckUI:update(dt)
+    PageReveal.registerSource(platform,'mapPanel');self.mapUI:update(dt)
+    self:syncController();return true
+end
 function M.update(self,controller,platform,openingCovered,updateBossEntrance,bgm)
     local function advancePages(dt)
+            PageReveal.registerSource(platform,'battlePanel')
             self.battleUI:update(dt)
             updateBossEntrance(dt)
             if self.battleUI.busy and self.battleUI.feedback.deaths.player then bgm:update("defeat") end
-            self.nodeUI:update(dt)
-            self.deckUI:update(dt)
-            local updated=self.mapUI:update(dt)
+            local updated=updatePrepared(self,platform,dt)
             self:syncController()
             return updated
     end
@@ -54,7 +67,7 @@ function M.update(self,controller,platform,openingCovered,updateBossEntrance,bgm
                 self.easterEgg:tick();if controller then controller:tick()end;self:syncController();return true
             end
             if platform.background then platform.background:tick() end
-            if platform.portraits then platform.portraits:tick() end
+            if platform.portraits then platform.portraits:tick(dt) end
             self:paintArtLoading()
             if controller then controller:tick() end
             if self.exitOpen or self.settlementBusy then self:syncController();return true end
@@ -65,6 +78,7 @@ function M.update(self,controller,platform,openingCovered,updateBossEntrance,bgm
             self:animate(dt)
             if self.prologue then self.prologue:update(dt) end
             if openingCovered() then self:syncController();return true end
+            if advancePreparation(self,platform,dt) then return true end
             return advancePages(dt)
         end
 end

@@ -1,15 +1,17 @@
 ---
 id: TASK-4.22
-title: 修复官方战斗能量球视觉并补齐HUD画面验收
+title: 复验能量球与手机HUD（修复已合入）
 status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-11 14:56'
-updated_date: '2026-11-11 23:33'
+updated_date: '2026-11-14 06:50'
 labels:
   - ui
   - combat
   - visual-regression
+  - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 parent_task_id: TASK-4
@@ -45,4 +47,8 @@ ordinal: 172000
 2026-11-12独立源码与实际1280x720 Simulator画面复审PASS；并非Owner/官方客户端或实体手机验收。标准GIL build0222683d由干净9cece5dc构建，360模块精确读回；另有只改一个启动模块、非脚本section相同的双敌十牌直达副本。见docs/evidence/official-ui-repair-20261112，官方/手机项保持未完成、不发布。
 
 最终集成CI：补截图来源登记并修正#621牌库最小字号14→26，原测试不放宽；Licenses/Quick feedback在50a5dae3通过，Draft Full未运行。为候选身份一致，最终重新由干净50a5dae3构建d3b4c46e，当前官方回归与同候选触屏/性能/图像均重取；初版022仅为历史。标准SHA7f13c927…，直达SHA68d7c998…，详见同目录最终收据。实机继续待验。
+
+2026-11-14逐项对账：629/634已纳入源码和Simulator视觉修复，AC1/2已通过；AC3只缺当前同候选官方/手机验收，不重新画一套能量球。
+
+2026-11-14第二轮状态纠正：已有2/3项AC通过及既有实施证据，剩余未完成要求属于后续验证或接续。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

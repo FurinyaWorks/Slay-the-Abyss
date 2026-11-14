@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {lumineSelectionBackground} from '../scripts/lumine-selection-background.mjs';
 import {gameLayout} from '../scripts/game-ui-layout.mjs';
 import {withViewport} from '../scripts/viewport-layout.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
@@ -19,18 +21,17 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(child(child(menu,'start'),'hit'),start);
  assert.equal(child(child(panel,'confirm'),'hit'),confirm);
  assert.equal(parts(panel).at(-1),modal);
+ assert.equal(modal.visible,false);assert.deepEqual(modal.children,[],'retire the duplicated selection deck; reuse the shared browser');
  assert.equal(JSON.stringify(child(stage,'battlePanel')),oldBattle);
  assert.equal(child(menu,'vista').visible,false);
  assert.equal(child(menu,'emblem').visible,false);
- assert.deepEqual(child(menu,'start').position,[-430,-71]);
+ assert.deepEqual(child(menu,'start').position,[-450,-170]);
  assert.deepEqual(child(child(menu,'start'),'officialResultLabel'),{...resultLabel,name:'officialResultLabel',visible:false});
- const fills={cancel:{normal:'#8C3739',hover:'#A54143',pressed:'#813334',disabled:'#8C3739'},
-  confirm:{normal:'#477B89',hover:'#5491A2',pressed:'#41717E',disabled:'#477B89'}};
  for(const key of ['confirm','cancel'])for(const state of parts(child(child(panel,key),'hit'))){
   const flag=child(state,'v25Flag'),cloth=child(flag,'cloth'),rim=child(flag,'rim');
-  assert(rim&&cloth,'approved flag has separate irregular rim and cloth');
-  assert(parts(cloth).length<=30);assert(parts(rim).length<=30);
-  for(const band of parts(cloth)){assert.equal(band.image,theme.image.rect);assert.equal(band.colour,fills[key][state.name]);}
+  assert(rim&&cloth,'smooth buttons retain separate rim and cloth');
+  assert.equal(parts(cloth).length,1);assert.equal(parts(rim).length,1);
+  assert(all(cloth).filter(n=>n.kind==='image').every(n=>[theme.image.rect,theme.image.disc].includes(n.image)));
   assert.equal(child(state,'label').text.colour,state.name==='disabled'?theme.color.textMuted:theme.officialAssets.buttonInk,'shared official button ink preserves disabled distinction');
   assert.equal(child(state,'plate').visible,false);assert.equal(child(state,'border').visible,false);
   assert.equal(all(flag).some(n=>n.image===theme.officialAssets.images.button),false,'official rectangle must not replace original flag');
@@ -38,9 +39,9 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(child(panel,'v25Background').visible,true);
  assert.equal(all(panel).filter(n=>n.name==='officialGeoBadge').length,0,'the selected character must not become an unrelated geo icon');
  const constellation=child(child(child(panel,'v25Roster'),'selected'),'v25Constellation');
- assert.equal(constellation.visible,false);assert.equal(parts(constellation).length,0);
+ assert.equal(constellation.visible,true);assert.equal(all(constellation).filter(n=>n.kind==='image').length,93);
  const initial=child(selectedSlot(panel),'selectedInitial');
- assert(initial.visible);assert.equal(initial.kind,'text');assert.equal(initial.text.content,'荧');
+ assert.equal(initial,undefined,'initial must not cover the exact-alpha constellation');
  assert.equal(child(selectedSlot(panel),'selectedPixelAvatar'),undefined);
  const details=child(panel,'details'),bag=child(details,'v25GoldIcon');
  assert.equal(bag.kind,'container');assert.equal(all(bag).some(n=>n.image===theme.icon.gold),false,'approved grey money bag must not become a round coin');
@@ -51,14 +52,46 @@ test('official menu and selection reuse live inputs with bounded native decorati
 });
 function selectedSlot(panel){return child(child(panel,'v25Roster'),'selected');}
 
-test('release selection placeholder is one readable glyph and reuses the selected frame',()=>{
+test('integrated selection retains the shared deck input below its summary without overlapping the selected card',()=>{
+ const theme=officialAssetsTheme(nativeTheme),layout=withViewport(gameLayout(),theme);
+ const panel=child(child(layout,'stage')??layout,'characterPanel'),details=child(panel,'details');
+ const deck=child(details,'deckOpen'),hit=child(deck,'hit');
+ applyOfficialNoncombatLayout(layout,theme);
+ assert.equal(child(child(details,'deckOpen'),'hit'),hit,'reuse the live shared-browser input');
+ assert.deepEqual(deck.size,[160,36]);assert.deepEqual(hit.size,[160,36]);
+ const overlaps=(a,b)=>Math.abs(a.position[0]-b.position[0])*2<a.size[0]+b.size[0]
+  &&Math.abs(a.position[1]-b.position[1])*2<a.size[1]+b.size[1];
+ for(const other of [child(details,'deckSummary'),selectedSlot(panel),child(panel,'cancel')])
+  assert.equal(overlaps(deck,other),false,'deck entry overlaps '+other.name);
+ for(const state of parts(hit))for(const face of [child(state,'border'),child(state,'plate')]){
+  assert(face.size[0]<=deck.size[0]&&face.size[1]<=deck.size[1],'painted button surface escapes its hit box');
+ }
+});
+
+test('production background preserves the exact approved experiment rows, including colour and half masks',()=>{
+ const background=lumineSelectionBackground();
+ const rows=background.rows.map(r=>[...r.slice(0,7),...r.slice(11,13),r[18],r[19],r[13],...r.slice(14,17),r[20]]
+  .map(v=>Number.isInteger(v)?v:Math.round(v*1000)/1000));
+ // Independently frozen from lumine-native-v11/rows-1600.json, not this adapter.
+ assert.equal(createHash('sha256').update(JSON.stringify(rows)).digest('hex'),'8feed38c818cfa0abda50d1955cfaa99f360ec60bf501544a7245aa4c779eee5');
+ assert.equal(rows.length,1600);assert.equal(rows.filter(r=>r[15]===1).length,224);
+});
+
+test('selection uses static exact-alpha geometry and reuses the selected frame without a glyph overlay',()=>{
  const theme=officialAssetsTheme(nativeTheme),layout=withViewport(gameLayout(),theme);applyOfficialNoncombatLayout(layout,theme);
  const panel=child(child(layout,'stage')??layout,'characterPanel'),slot=selectedSlot(panel),initial=child(slot,'selectedInitial');
  assert.deepEqual(slot.size,[124,124]);assert(child(slot,'rim'));
- assert.deepEqual(initial.position,[0,0]);assert.deepEqual(initial.size,[104,108]);
- assert.equal(initial.text.fontSize,54);assert.equal(initial.text.minFontSize,54);
- assert.equal(initial.text.align,'centre');assert.equal(initial.text.valign,'middle');
- assert.equal(initial.text.colour,'#FFE0A2');assert.equal(initial.focusable,false);assert.equal(parts(initial).length,0);
+ assert.equal(initial,undefined);
+ const symbol=child(slot,'v25Constellation');assert.deepEqual(symbol.size,[118,118]);
+ assert.deepEqual(symbol.position,[0,0]);assert(symbol.visible);
+ assert(all(symbol).filter(n=>n.kind==='image').every(n=>[theme.image.rect,100006].includes(n.image)&&n.colour==='#FFE0A2'));
+ assert.equal(all(symbol).filter(n=>n.kind==='image'&&n.image===100006).length,49);
+ for(const arc of all(symbol).filter(n=>n.kind==='image'&&n.image===100006)){
+  assert.equal(arc.fill.shape,'horizontal');assert.equal(arc.fill.from,'right');
+  assert(arc.fill.amount>0&&arc.fill.amount<1);
+ }
+ assert.equal(all(symbol).some(n=>['text','presetButton','cursorArea'].includes(n.kind)),false);
  applyOfficialNoncombatLayout(layout,theme);
- assert.equal(parts(selectedSlot(panel)).filter(n=>n.name==='selectedInitial').length,1);
+ assert.equal(parts(selectedSlot(panel)).filter(n=>n.name==='v25Constellation').length,1);
+ assert.equal(parts(panel).filter(n=>n.name==='lumineSelectionBackground').length,1);
 });

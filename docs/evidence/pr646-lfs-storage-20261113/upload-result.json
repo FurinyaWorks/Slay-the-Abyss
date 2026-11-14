@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/FurinyaWorks/Slay-the-Abyss",
+  "command": "git lfs push --object-id origin <58 exact reviewed SHA256 objects>",
+  "result": "Uploading LFS objects: 100% (58/58), 40 MB | 884 KB/s, done.",
+  "exitCode": 0,
+  "objects": 58,
+  "selection": "config/ci-media-lfs.json evidenceExtension.files, deduplicated SHA256",
+  "existingContentProof": "remote-existing-content.json",
+  "coldNetworkRestoreVerified": false,
+  "hostedFullVerified": false
+}

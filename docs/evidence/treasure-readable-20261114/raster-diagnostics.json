@@ -1,0 +1,38 @@
+[
+  {
+    "scene": "treasure-open",
+    "provenance": "Offline production Lua controller + native generated layout; component fixture stages Boss victory and source queue, not natural playthrough or official client evidence.",
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 83,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "snecko-hover",
+    "provenance": "Actual production CursorEnter on component Boss reward row; no claim command. Offline mock-native evidence only.",
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 85,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "bell-hover",
+    "provenance": "Actual production CursorEnter on component Boss reward row; no claim command. Offline mock-native evidence only.",
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 85,
+    "overlappingSiblingHits": []
+  },
+  {
+    "scene": "cube-hover",
+    "provenance": "Actual production CursorEnter on component Boss reward row; no claim command. Offline mock-native evidence only.",
+    "textOverflowCandidates": [],
+    "outsideStage": [],
+    "rotatedTextUnverified": [],
+    "unknownImageCount": 85,
+    "overlappingSiblingHits": []
+  }
+]

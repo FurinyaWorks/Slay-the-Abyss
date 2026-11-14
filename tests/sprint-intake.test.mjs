@@ -33,6 +33,18 @@ test('explicit Owner approvals survive removal of Sprint gates',()=>{
     assert.ok(result.reasons.includes('explicit Owner approval required'),id);
   }
 });
+test('verification-only and fully checked tasks cannot be picked as new implementation',t=>{
+  const root=fixture(t);
+  for(const metadata of ['labels: [待验]\n','labels:\n  - 待验\n',
+    'labels: ["delivery-verify"]\n','']) {
+    const ac=metadata?'<!-- AC:BEGIN -->\n- [ ] #1 device check\n<!-- AC:END -->':
+      '<!-- AC:BEGIN -->\n- [x] #1 delivered\n<!-- AC:END -->';
+    writeRawTask(root,`---\nid: TASK-25\nstatus: To Do\n${metadata}---\n${ac}\n`);
+    const result=evaluateIntake({id:'TASK-25',task:loadTask('TASK-25',root),policy});
+    assert.equal(result.decision,'HOLD',metadata||'all AC checked');
+    assert.match(result.reasons.join(' '),/verif|reconcil/i);
+  }
+});
 test('active, blocked and completed work cannot be claimed again in any milestone',()=>{
   for(const milestone of ['m-7','m-8','m-9','m-5']) for(const status of ['In Progress','Blocked','Done',undefined,'']) {
     const result=evaluateIntake({id:'TASK-4.18',task:{id:'TASK-4.18',milestone,status},policy});

@@ -9,6 +9,20 @@ local function frame(control,box)
     control:SetAnchoredPosition(box[1],box[2])
     control:SetSizeDelta(box[3],box[4])
 end
+local function menuTarget(box,pointer,available,state)
+    if not Theme.menuPresentation or not box:GetChild('menuAccent') then return end
+    local target=available and (pointer.hover or pointer.down) and 1 or 0
+    if not available then
+        pointer.value,pointer.target,pointer.transition=0,0,nil
+    elseif pointer.target~=target then
+        local seconds=target==1 and Theme.menuPresentation.hoverSeconds or Theme.menuPresentation.leaveSeconds
+        pointer.transition={from=pointer.value or 0,to=target,t=0,seconds=seconds}
+        pointer.target=target
+    end
+    pointer.needsPaint=true
+    pointer.available=available
+    pointer.state=state
+end
 function M.button(box,available)
     if not enabled()then return end
     local pointer=pointers[box] or {}
@@ -16,6 +30,7 @@ function M.button(box,available)
     if not available then pointer.hover,pointer.down=false,false end
     local state=not available and 'disabled' or pointer.down and 'pressed' or pointer.hover and 'hover' or 'normal'
     if pointer.painted==state then return end
+    menuTarget(box,pointer,available,state)
     for _,name in ipairs({'v25Face','v25MenuFace'})do
         local group=box:GetChild(name)
         if group then for _,key in ipairs(states)do group:GetChild(key):SetVisible(key==state)end end
@@ -62,8 +77,8 @@ local function presentStart(ctx,layout,isOutcome)
     frame(start,box);frame(start:GetChild('hit'),{0,0,box[3],box[4]})
     local label=start:GetChild('label')
     label.adaptiveFontSize=false
-    label.fontSize=isOutcome and 21 or 25
-    label:SetAnchoredPosition(isOutcome and 28 or 22,0)
+    label.fontSize=isOutcome and 21 or Theme.menuPresentation.fontSize
+    label:SetAnchoredPosition(isOutcome and 28 or Theme.menuPresentation.labelX,0)
     label:SetSizeDelta(isOutcome and 140 or 218,52)
     label.text=isOutcome and '重新启程' or '开始游戏'
 end
@@ -79,6 +94,8 @@ local function officialResult(ctx,isOutcome)
         local part=menu:GetChild(name);if part then part:SetVisible(isOutcome)end
     end
     if not isOutcome then return false end
+    menu:GetChild('title'):SetVisible(true)
+    local accent=start:GetChild('menuAccent');if accent then accent:SetVisible(false)end
     -- These were already hidden by the official profile before this menu
     -- slice; a result restores that profile, not the legacy title landscape.
     for _,name in ipairs({'vista','heroArt'})do
@@ -106,12 +123,17 @@ local function menuAvailable(self)
     return not self.disabled and not self.exitOpen and not self.characterOpen
         and not self.settlementRequested and not self.settlementBusy and not self.motion.deathReveal
 end
-function M.present(ctx,isOutcome)
-    if not enabled()then return end
+local function presentScenery(ctx,isOutcome)
     local ruins=ctx.menu:GetChild('menuRuinsScene')
     if ruins then ruins:SetVisible(not isOutcome)end
+end
+function M.present(ctx,isOutcome)
+    if not enabled()then return end
+    presentScenery(ctx,isOutcome)
     if Theme.presentationProfile=='official-assets-first' and officialResult(ctx,isOutcome)then return end
     local menu,start=ctx.menu,ctx.start
+    menu:GetChild('title'):SetVisible(isOutcome)
+    local accent=start:GetChild('menuAccent');if accent then accent:SetVisible(not isOutcome)end
     local layout=isOutcome and Theme.layout.v25Result or Theme.layout.v25Menu
     frame(menu:GetChild('title'),layout.title)
     menu:GetChild('title').fontSize=isOutcome and 36 or 64
@@ -132,6 +154,52 @@ function M.present(ctx,isOutcome)
     if ctx.platform.portraits and ctx.platform.portraits.syncResult then
         ctx.platform.portraits:syncResult(self.mode,self.disabled or self.settlementRequested or self.settlementBusy)
     end
+end
+local function paintMenuButton(box,pointer,color)
+    local tokens=Theme.menuPresentation
+    local line=box:GetChild('menuAccent'):GetChild('line')
+    local value=pointer.value or 0
+    local ink=pointer.available and tokens.ink or tokens.muted
+    line.imageColor=color(tokens.accent.r,tokens.accent.g,tokens.accent.b,
+        math.floor(tokens.lineRestAlpha+(255-tokens.lineRestAlpha)*value))
+    box:GetChild('label').fontColor=color(ink.r,ink.g,ink.b,255)
+    box:GetChild('label'):SetAnchoredPosition(tokens.labelX,pointer.down and -tokens.pressOffset or 0)
+    pointer.needsPaint=false
+end
+local function advanceMenuButton(box,dt,color,available)
+    if not box or not box:GetChild('menuAccent') then return end
+    local pointer=pointers[box]
+    if not pointer then return end
+    if not available and (pointer.hover or pointer.down or pointer.transition) then
+        pointer.hover,pointer.down=false,false
+        menuTarget(box,pointer,false,'disabled')
+    end
+    local transition=pointer.transition
+    if transition then
+        transition.t=math.min(transition.seconds,transition.t+math.max(0,dt))
+        local progress=transition.t/transition.seconds
+        pointer.value=transition.from+(transition.to-transition.from)*(1-(1-progress)^3)
+        pointer.needsPaint=true
+        if progress>=1 then pointer.transition=nil end
+    end
+    if pointer.needsPaint then paintMenuButton(box,pointer,color)end
+end
+function M.animateMenu(ctx,dt)
+    if not enabled() or not Theme.menuPresentation then return end
+    if ctx.owner.mode~='menu' then
+        for _,box in ipairs({ctx.start,ctx.menu:GetChild('titleQuit')})do
+            local pointer=pointers[box]
+            if pointer then
+                pointer.hover,pointer.down=false,false
+                pointer.value,pointer.target,pointer.transition=0,0,nil
+                pointer.painted,pointer.needsPaint=nil,true
+            end
+        end
+        return
+    end
+    local available=ctx.owner.mode=='menu' and menuAvailable(ctx.owner)
+    advanceMenuButton(ctx.start,dt,ctx.platform.color,available)
+    advanceMenuButton(ctx.menu:GetChild('titleQuit'),dt,ctx.platform.color,available)
 end
 function M.entrance(ctx)
     if not enabled()then return false end

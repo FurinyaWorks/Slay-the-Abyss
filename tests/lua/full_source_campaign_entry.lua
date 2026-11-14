@@ -4,6 +4,14 @@
 -- no keys or historical wins are granted. This is not a natural playthrough.
 local F=dofile('tests/lua/support/game_ui_fixture.lua')
 local Map,Run=require('abyss_map'),require('abyss_run')
+local function finishOpening(host)
+    for _=1,80 do
+        if not host.starting and not(host.prologue and host.prologue:covering())
+            and not(host.pageReveal and host.pageReveal:covered())then assert(host.run and not host.disabled);return end
+        OnUpdate(0.05)
+    end
+    error('native opening did not finish')
+end
 local function fixture(experimental,bgm)
     local canvas=F.control({children=F.Layout})
     local host,signals
@@ -47,8 +55,9 @@ local function start(host,root,button,element)
     if element then F.click(root,'characterPanel','elements/element'..element)end
     assert(not host.run,'selection must not create a Run')
     F.click(root,'characterPanel','confirm')
-    assert(not host.prologue and host.mode=='map' and host.map.floor==0,
-        'full-source still reaches the map without the cancelled cinematic')
+    finishOpening(host)
+    assert(not(host.prologue and host.prologue:covering()) and host.mode=='map' and host.map.floor==0,
+        'full-source reaches the map after the opening')
     assert(host.mapUI.navigationEnabled)
     -- Unlike the bounded competition's fresh-start mini, the explicit full-
     -- source host still needs a real provider/session record for Neow. This

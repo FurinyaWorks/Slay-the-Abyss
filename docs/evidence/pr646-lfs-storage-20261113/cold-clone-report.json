@@ -1,0 +1,63 @@
+{
+  "kind": "Local empty Git database / retained physical packs / exact private synthetic trees; not GitHub hosted measurement",
+  "base": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+  "cb": "cb1eac63620b908d880b8a339ab834b1b533dfc1",
+  "f347": "f34723b6d54b6153de8a333a8abcc77884737f8f",
+  "indexTree": "6c715395ef45f730bc23f049e584319e720f5313",
+  "candidate": "9df276c8d4fd79b3fb9825c9fa12a2a80e55ed8a",
+  "merge": "e97e5627be8879de859970cc984b6aeae73bb93f",
+  "measurements": [
+    {
+      "name": "cb",
+      "sha": "d55e1c142e50cf1068a1b45d7b72635c08437b76",
+      "clone": "F:\\New folder\\.worktrees\\sts-style-fidelity\\.artifacts\\pr646-ci-diagnosis-20261113\\full-cold\\cb",
+      "comparison": {
+        "parents": [
+          "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+          "cb1eac63620b908d880b8a339ab834b1b533dfc1"
+        ],
+        "base": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+        "objects": 8745,
+        "fetched": 37,
+        "bytes": 1181790
+      },
+      "packs": [
+        "pack-2e7b55f7d86e80099de67496eeff224570eaaf26.pack",
+        "pack-7a02b2cfd86e32789a8f75ca64fea507b51dd922.pack",
+        "pack-8583425bcaabe6539c8e3a71f4352aa229d19dca.pack"
+      ],
+      "bytes": 131074861,
+      "remaining": 3142867
+    },
+    {
+      "name": "candidate",
+      "sha": "e97e5627be8879de859970cc984b6aeae73bb93f",
+      "clone": "F:\\New folder\\.worktrees\\sts-style-fidelity\\.artifacts\\pr646-ci-diagnosis-20261113\\full-cold\\candidate",
+      "comparison": {
+        "parents": [
+          "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+          "9df276c8d4fd79b3fb9825c9fa12a2a80e55ed8a"
+        ],
+        "base": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+        "objects": 8926,
+        "fetched": 74,
+        "bytes": 2027072
+      },
+      "packs": [
+        "pack-682ce62adb22f6c2bacf1b758a858c7981ef00a9.pack",
+        "pack-b4254ace55b427f6b4a6add80c4f62234fbb6017.pack",
+        "pack-d490f540fed035dd91d4bce2f92f86399ed1e9de.pack"
+      ],
+      "bytes": 125026148,
+      "remaining": 9191580,
+      "oldRawObjectsMissing": 58,
+      "whitespace": {
+        "status": "pass",
+        "base": "903bf2a31e91f10fb24763ab4cea23d586d0bb83",
+        "head": "e97e5627be8879de859970cc984b6aeae73bb93f",
+        "authenticatedBinaryPaths": 814
+      },
+      "packsAfterWhitespaceUnchanged": true
+    }
+  ]
+}

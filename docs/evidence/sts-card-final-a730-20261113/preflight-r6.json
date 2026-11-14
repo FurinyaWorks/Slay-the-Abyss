@@ -1,0 +1,322 @@
+{
+  "status": "passed",
+  "productionSha": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "scope": "all generated Lua parses; eager SDK registry closure, mounts, literal require paths, template bindings, frozen production identity, 142 pools and official art flag checked. Optional originalV4/prebuilt-surface function branches are recorded and are outside this controlled probe.",
+  "rows": [
+    {
+      "fixture": "official-1",
+      "inputSha256": "7cae7e82fd165fcf77d9137226f0ccb3e653449babc2e5260459910ac059986f",
+      "parsedScripts": 6,
+      "eagerRequires": [
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_display",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_numbers",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        }
+      ],
+      "conditionalRequires": [
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_v25_card_surface",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        }
+      ],
+      "templateBindings": [],
+      "serverControls": 355,
+      "cards": 1,
+      "status": "passed"
+    },
+    {
+      "fixture": "official-5",
+      "inputSha256": "7e94dd0abb8e50832dd2389989fc814f4af31ff7d5f3f8503392f6b9a735bccf",
+      "parsedScripts": 6,
+      "eagerRequires": [
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_display",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_numbers",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        }
+      ],
+      "conditionalRequires": [
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_v25_card_surface",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        }
+      ],
+      "templateBindings": [],
+      "serverControls": 1763,
+      "cards": 5,
+      "status": "passed"
+    },
+    {
+      "fixture": "official-10",
+      "inputSha256": "83299412ed4ed683234f9780b48ce7a59a601195ad9d9151c6d124348938669c",
+      "parsedScripts": 6,
+      "eagerRequires": [
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_display",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_numbers",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        }
+      ],
+      "conditionalRequires": [
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_v25_card_surface",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        }
+      ],
+      "templateBindings": [],
+      "serverControls": 3523,
+      "cards": 10,
+      "status": "passed"
+    },
+    {
+      "fixture": "compatibility",
+      "inputSha256": "0d839497e92dd691c473ff80c7ae8b55ad483d38ab3096cd1b4ecd1f892bc85d",
+      "parsedScripts": 6,
+      "eagerRequires": [
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_display",
+          "mounted": true
+        },
+        {
+          "from": "sts_final_probe.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_numbers",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_theme",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_art_runtime",
+          "mounted": true
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_card_skin",
+          "mounted": true
+        }
+      ],
+      "conditionalRequires": [
+        {
+          "from": "abyss_card_skin.lua",
+          "module": "abyss_v25_card_surface",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4",
+          "mounted": false
+        },
+        {
+          "from": "abyss_card_display.lua",
+          "module": "abyss_original_v4_display",
+          "mounted": false
+        }
+      ],
+      "templateBindings": [
+        1800000100,
+        1800000101
+      ],
+      "serverControls": 356,
+      "cards": 1,
+      "status": "passed"
+    }
+  ],
+  "baselines": [
+    {
+      "n": 1,
+      "file": ".artifacts/sts-card-reference/cost-v2-baseline-1/prototype.save.json",
+      "sha256": "a1dc9480ec46ce893e6392552ca645fee322c25e9e54531ac57b054cd287dc24",
+      "status": "same original bytes previously verified, Lua parsed, no new-root overlay"
+    },
+    {
+      "n": 5,
+      "file": ".artifacts/sts-card-reference/cost-v2-baseline-5/prototype.save.json",
+      "sha256": "02c60666f0010aae0f569b8a6b524b8e72597f883714584e0eb5fcaefd7135e9",
+      "status": "same original bytes previously verified, Lua parsed, no new-root overlay"
+    },
+    {
+      "n": 10,
+      "file": ".artifacts/sts-card-reference/cost-v2-baseline-10/prototype.save.json",
+      "sha256": "baee111107762debfd2345b93f14dc60965ea4e4831d1a089596b6d28175b88e",
+      "status": "same original bytes previously verified, Lua parsed, no new-root overlay"
+    }
+  ]
+}

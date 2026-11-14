@@ -1,0 +1,33 @@
+{
+  "candidateVersion": "R1 - user rejected visual/timing",
+  "candidateBuildId": "b75a3a56-8d33-4bc6-89e1-35f787c10d84",
+  "sourceHash": "211328da615aaf9376d2a165847dee16818621978c1bc2d5b826a6f7b8ac8510",
+  "bytes": 30470,
+  "mtime": "2026-11-14T07:29:10.898Z",
+  "printCount": 182,
+  "notices": [
+    {
+      "elapsedSeconds": "1",
+      "text": "ABYSS_BUILD b75a3a56-8d33-4bc6-89e1-35f787c10d84"
+    },
+    {
+      "elapsedSeconds": "1",
+      "text": "ABYSS_UI ready"
+    },
+    {
+      "elapsedSeconds": "8",
+      "text": "ABYSS_RUN seed=42649 source=clock"
+    },
+    {
+      "elapsedSeconds": "41",
+      "text": "ABYSS_FEEDBACK victory source=- target=- amount=0"
+    },
+    {
+      "elapsedSeconds": "93",
+      "text": "ABYSS_FEEDBACK victory source=- target=- amount=0"
+    }
+  ],
+  "matchedOfficialLuaModules": 361,
+  "errorsPrinted": [],
+  "scope": "Current R1 official log/source association only. Not R2 ready/visual acceptance; missing error prints do not prove absence of all engine errors."
+}

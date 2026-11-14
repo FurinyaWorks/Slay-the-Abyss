@@ -1,0 +1,176 @@
+{
+  "scope": "Three paired fresh Node processes per scope; SDK and GC heap, not official/device GPU performance",
+  "nodeVersion": "v22.22.1",
+  "scopes": {
+    "background": {
+      "old": {
+        "parseMs": 883.9106,
+        "sdkMs": 68.53860000000009,
+        "heapDelta": 5381496,
+        "heapAfter": 125990344,
+        "rssAfter": 226369536,
+        "peakRssBytes": 385089536,
+        "stepP95Ms": 0.0014000000001033186,
+        "saveSha256": "44e1c68acef46297a2369f92e715fc1e1b8a0f811cdc11226fd5322403526145"
+      },
+      "new": {
+        "parseMs": 853.6738,
+        "sdkMs": 53.60130000000004,
+        "heapDelta": 1973224,
+        "heapAfter": 118108144,
+        "rssAfter": 217812992,
+        "peakRssBytes": 368259072,
+        "stepP95Ms": 0.003300000000081127,
+        "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa"
+      }
+    },
+    "full": {
+      "old": {
+        "parseMs": 905.9727,
+        "sdkMs": 1951.0777,
+        "heapDelta": 206630984,
+        "heapAfter": 327240360,
+        "rssAfter": 496861184,
+        "peakRssBytes": 534122496,
+        "stepP95Ms": 6.553200000000288,
+        "saveSha256": "44e1c68acef46297a2369f92e715fc1e1b8a0f811cdc11226fd5322403526145"
+      },
+      "new": {
+        "parseMs": 841.6434999999999,
+        "sdkMs": 1935.1942000000001,
+        "heapDelta": 202700808,
+        "heapAfter": 318836328,
+        "rssAfter": 488300544,
+        "peakRssBytes": 521867264,
+        "stepP95Ms": 6.582400000000234,
+        "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa"
+      }
+    }
+  },
+  "reload": {
+    "status": "passed",
+    "samples": 1,
+    "reports": [
+      {
+        "label": "old",
+        "saveSha256": "44e1c68acef46297a2369f92e715fc1e1b8a0f811cdc11226fd5322403526145",
+        "originalServiceSha256": "12d77d66dbf74b8dcb926bff336b08c3b0e4f11bbf71ff21635eaa02d693d95c",
+        "instrumentedServiceSha256": "a903f1468d24c6aee7d202e9779df50d37d6bc2c0cfc625810fbc18d3b27c14f",
+        "initial": {
+          "active": 0,
+          "parked": 1,
+          "parkedSdkMs": 2015.2912999999999,
+          "memory": {
+            "rss": 593858560,
+            "heapTotal": 379912192,
+            "heapUsed": 320270120,
+            "external": 4343066,
+            "arrayBuffers": 126033
+          }
+        },
+        "after": {
+          "active": 1,
+          "parked": 1,
+          "parkedSdkMs": 1538.8599000000004,
+          "memory": {
+            "rss": 1014042624,
+            "heapTotal": 811483136,
+            "heapUsed": 515384360,
+            "external": 6897514,
+            "arrayBuffers": 183676
+          }
+        },
+        "restartReplyMs": 1683.1633999999995,
+        "restartToObservedStableMs": 3369.459999999999,
+        "mobileSingleRuntime": null,
+        "scope": "One local HTTP stop/start reproduction; GC heap sample and 300ms observation wait included; not official/device load or GPU performance"
+      },
+      {
+        "label": "new",
+        "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+        "originalServiceSha256": "ef9659b463158d68bdd7447ba7b41ee9fbc84114b5c3f37fa5ac4581aff851ea",
+        "instrumentedServiceSha256": "80e22becd9ae85c948eb1c8ebd964245c5d3eb5eea06b27681f787efbb448123",
+        "initial": {
+          "active": 0,
+          "parked": 1,
+          "parkedSdkMs": 1824.6119999999999,
+          "memory": {
+            "rss": 498917376,
+            "heapTotal": 406126592,
+            "heapUsed": 312410784,
+            "external": 63036840,
+            "arrayBuffers": 126033
+          }
+        },
+        "after": {
+          "active": 1,
+          "parked": 0,
+          "parkedSdkMs": null,
+          "memory": {
+            "rss": 714756096,
+            "heapTotal": 544276480,
+            "heapUsed": 313116808,
+            "external": 5574317,
+            "arrayBuffers": 126033
+          }
+        },
+        "restartReplyMs": 1726.8389000000006,
+        "restartToObservedStableMs": 2118.5939,
+        "mobileSingleRuntime": true,
+        "scope": "One local HTTP stop/start reproduction; GC heap sample and 300ms observation wait included; not official/device load or GPU performance"
+      }
+    ]
+  },
+  "quality": {
+    "scope": "Same 1280x720 actual browser canvas against supplied reference; excludes the identical menu text area; metrics do not replace visual approval",
+    "excludedRect": [
+      48,
+      480,
+      370,
+      650
+    ],
+    "sourceSha256": "16bdf7b614f0fb6fdbc2414271682446c0012a9e8ff8da70abad3b7a0374480d",
+    "old": {
+      "pngSha256": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+      "mae": 9.332473140607096,
+      "faceMAE": 19.309222661396575
+    },
+    "new": {
+      "pngSha256": "23ac07b19542c110d6bb443a0c56e7477b40a2c6cc4bd38617326b3a59f44b9a",
+      "mae": 5.8596601527351595,
+      "faceMAE": 8.02601166948993
+    }
+  },
+  "browser": {
+    "old": {
+      "samples": 220,
+      "p50": 0.19999999925494194,
+      "p95": 0.3999999985098839,
+      "max": 0.8000000007450581,
+      "scope": "WebGL renderer command submission wall time; not GPU/official FPS"
+    },
+    "new": {
+      "samples": 223,
+      "p50": 0.19999999925494194,
+      "p95": 0.30000000074505806,
+      "max": 0.3999999985098839,
+      "scope": "WebGL renderer command submission wall time; not GPU/official FPS"
+    },
+    "coldNavigationAccepted": false,
+    "note": "First shared-server baseline navigation was 28.4s with a discoverable baseline archive; candidate 2.3s. Excluded from speedup claims; empty-workspace reverse-order check retained separately."
+  },
+  "coldEmptyWorkspace": {
+    "order": [
+      "new",
+      "old"
+    ],
+    "sdkPreload": false,
+    "old": 2730.3899,
+    "new": 3019.4965,
+    "scope": "Navigation to positive frame on already parsed archives, fresh browser per case; no startup speedup accepted"
+  },
+  "review": {
+    "id": "menu-quality-native-20261114-03",
+    "conclusion": "code and local trial pass; owner aesthetics, official device/cold-load acceptance remain open"
+  }
+}

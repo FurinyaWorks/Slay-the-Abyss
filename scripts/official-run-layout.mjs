@@ -3,15 +3,16 @@
 import {applyOfficialNoncombatLayout} from './noncombat-v25-layout.mjs';
 import {applyOfficialNeowLayout} from './noncombat-neow-layout.mjs';
 import {applyV25MapLayout} from './v25-map-layout.mjs';
-import {applyV25RewardLayout,styleMerchant} from './v25-node-layout.mjs';
+import {applyV25RewardLayout,styleMerchant,styleEvent} from './v25-node-layout.mjs';
 import {officialRunChrome} from './official-battle-hud.mjs';
+import {applyStsRewardRows} from './sts-reward-row-layout.mjs';
 
 const parts=node=>node?.children??node?.controls??[];
 const child=(node,name)=>parts(node).find(part=>part.name===name);
 const stage=tree=>child(tree,'stage')??tree;
 const walk=(node,visit)=>{visit(node);for(const part of parts(node))walk(part,visit);};
 const templates=new Set(['AbyssDeckCard','AbyssBattlePileCard','AbyssReadyCardGroup',
- 'AbyssReadyCardImage','AbyssMonsterActor','AbyssMonsterPower']);
+ 'AbyssReadyCardImage','AbyssMonsterActor','AbyssMonsterPower','AbyssSelectionHalfTriangle']);
 const composed=new WeakSet();
 const runRoles=['menuPanel','characterPanel','mapPanel','nodePanel','battlePanel',
  'deckPanel','potionEntry','relicBar','relicPanel'];
@@ -61,6 +62,7 @@ export function composeOfficialRun(tree,theme){
  const kind=rootKind(tree);
  if(kind==='run'){
   applyOfficialNoncombatLayout(tree,theme);
+  styleEvent(required(child(stage(tree),'nodePanel'),'eventView'),theme);
   applyOfficialNeowLayout(tree,theme);
   const node=child(stage(tree),'nodePanel'),shop=child(node,'shopView');
   const merchant=required(node,'merchant');
@@ -71,11 +73,14 @@ export function composeOfficialRun(tree,theme){
   });
   applyV25MapLayout(tree,theme);
  }
- if(kind!=='template')applyV25RewardLayout(tree,theme);
+ if(kind!=='template'){
+  applyV25RewardLayout(tree,theme);
+  applyStsRewardRows(tree,theme);
+ }
  if(kind==='run')officialRunChrome(tree,theme);
 }
 
-const cardRoles=['nativeCardBody','nativeRibbon','nativeCostOrb','tagEdge','tagBody'];
+const cardRoles=['nativeCardBody','nativeRibbon','nativeCostOrb','tagEdge','tagBody','stsReferenceBack','stsReferenceChrome'];
 function cardMaterial(face){
  return JSON.stringify(cardRoles.map(role=>required(face,role)));
 }

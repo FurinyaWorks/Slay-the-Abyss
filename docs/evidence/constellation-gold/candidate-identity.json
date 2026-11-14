@@ -1,0 +1,22 @@
+{
+  "buildId": "72a73a22-de89-492b-acc6-263983527b0e",
+  "sourceCommit": "736e36a1698a231556e2a003587d37219d5e003c",
+  "sourceDirty": false,
+  "payloadDigest": "5a8f687178f26e8629417e5deeedbeab94ebd9723fdcc46af9e9e8d5901c5d6b",
+  "candidate": {
+    "path": "F:\\New folder\\.worktrees\\constellation-gold\\.artifacts\\constellation-final-candidates\\72a73a22-de89-492b-acc6-263983527b0e\\candidate.gil",
+    "sha256": "751280a8a441dbc9f0aa8fa3e7d0cc00f9e99fc8533cf15e1bc0fa6d7106c7e4",
+    "bytes": 22776837
+  },
+  "adapter": {
+    "saveSha256": "4868b52a2740f910463fc0d1979b17503cf40b6119625b98692cd6a7589c2ef7",
+    "nodes": 22865,
+    "modules": 361,
+    "inverseFaults": []
+  },
+  "sourceAlphaSha256": "5780bc541d322b369b61f656908da59bdeee7f3ad83988edca8be23776720ecd",
+  "screenshotKind": "Simulator; not official game",
+  "officialImport": "UNVERIFIED",
+  "officialReady": "UNVERIFIED",
+  "officialPerformance": "UNVERIFIED"
+}

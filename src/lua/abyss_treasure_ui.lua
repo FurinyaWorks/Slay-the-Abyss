@@ -71,6 +71,10 @@ local function source(self,opened,boss,reward)
   or token.roomGeneration~=self.run.roomGeneration or token.id~=self.run.nodeFlow.id then return nil end
  return token
 end
+local function renderRewardPicture(c,row,item)
+ c.picture(row:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
+ if c.relicPicture then c.relicPicture(row:GetChild('icon'),item.kind=='relic' and item.id or nil,Theme.layout.nativeNode.treasure.rewardDisc)end
+end
 function M.render(c)
  local self,node=c.self,c.node
  local chest,reward=node.chest,node.reward
@@ -99,7 +103,7 @@ function M.render(c)
   row:GetChild('description').text=item.kind=='sapphire' and ('放弃关联遗物「'..c.relicName(item.relicId)..'」；保留金币和额外遗物。')
    or item.kind=='gold' and '独立领取宝箱金币。'
    or available and c.relicText(item.id) or RewardList.unavailableDescription(item,items)
-  c.picture(row:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
+  renderRewardPicture(c,row,item)
   take:GetChild('label').text=linked and item.origin=='base' and '领取遗物' or item.kind=='sapphire' and '选择蓝钥匙' or '领取奖励'
   c.state(take,available,false,true)
   panel:GetChild('page').text=(kinds[chest.kind] or '宝箱')..' · '..self.treasureChoice..' / '..#items

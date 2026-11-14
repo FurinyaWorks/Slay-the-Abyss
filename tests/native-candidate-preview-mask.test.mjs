@@ -1,9 +1,29 @@
 import test from 'node:test';
+import './menu-flat-triangle.cases.mjs';
+import './menu-preview-composition.cases.mjs';
+import './menu-red-background.cases.mjs';
+import './native-ui-rotations.cases.mjs';
+import './menu-red-source-proof.cases.mjs';
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {previewImageMaskFields} from '../scripts/native-candidate-preview.mjs';
+import {selectionCiProof,preSelectionCiSource} from './helpers/selection-ci-source.mjs';
+import {sourceEpoch} from './helpers/closeout-source-epoch.mjs';
+import {integratedSource} from './helpers/integrated-ci-source.mjs';
+
+test('reviewed selection slice authenticates every complete source and rejects unknown drift',()=>{
+ for(const [path,row]of Object.entries(selectionCiProof.files)){
+  const current=readFileSync(path,'utf8');
+  const raw=(path.startsWith('src/')?sourceEpoch.preCombinedSource(path,current,{target:'selectionReviewed'}):integratedSource(path,current,'selection')).replaceAll('\r\n','\n');
+  assert.equal(raw,row.after.source,path+' complete current source');
+  assert.equal(preSelectionCiSource(path,raw),row.before.source);
+  assert.equal(preSelectionCiSource(path,raw.replaceAll('\n','\r\n')),row.before.source);
+  for(const changed of [raw+'\n',raw.slice(1),null,{},17])assert.equal(preSelectionCiSource(path,changed),changed);
+  for(const unknown of ['__proto__','constructor','foreign/'+path])assert.equal(preSelectionCiSource(unknown,raw),raw);
+ }
+});
 
 test('native pixel feather uses the browser renderer enum and preserves exact widths',()=>{
  const pixel=previewImageMaskFields({feather:{pixels:[3,8]}});
@@ -42,9 +62,12 @@ test('actual pinned browser renderer interprets native feather in pixels',{
 
 // New outer continuation: raw current sources remain independently checked.
 import {nativePreviewCiProof,preNativePreviewCiSource} from './helpers/native-preview-ci-source.mjs';
+import {integratedRead} from './helpers/integrated-ci-source.mjs';
+import './integrated-ci-source.cases.mjs';
 import {runHudPriorRead} from './helpers/run-hud-ci-source.mjs';
 import {closeoutRead} from './helpers/closeout-ci-source.mjs';
 test('native preview continuation authenticates complete current files and preserves unknown drift',()=>{
+ const readFileSync=integratedRead('native');
  for(const [path,row]of Object.entries(nativePreviewCiProof.files)){
   const raw=readFileSync(path,'utf8').replaceAll('\r\n','\n');
   assert.equal(raw,row.after.source,path+' complete current source');

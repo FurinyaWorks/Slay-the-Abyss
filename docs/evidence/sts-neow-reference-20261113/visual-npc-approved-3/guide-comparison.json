@@ -1,0 +1,108 @@
+{
+  "kind": "same-position-svg-vs-real-sdk-png",
+  "scope": "hood visible dark opening and HUD body seam, not full scene/style approval",
+  "hoodROI": [
+    930,
+    110,
+    1135,
+    324
+  ],
+  "tolerancePerChannel": 2,
+  "minimumIoU": 0.98,
+  "candidate": {
+    "intersection": 22491,
+    "union": 22640,
+    "iou": 0.9934187279151944,
+    "missing": 146,
+    "extra": 3
+  },
+  "oldBodyNegative": {
+    "intersection": 14936,
+    "union": 23836,
+    "iou": 0.6266152038932706,
+    "missing": 7701,
+    "extra": 1199
+  },
+  "formerGoldGapPixels": {
+    "43": {
+      "candidate": [
+        19,
+        30,
+        31
+      ],
+      "old": [
+        149,
+        119,
+        86
+      ]
+    },
+    "44": {
+      "candidate": [
+        16,
+        28,
+        28
+      ],
+      "old": [
+        160,
+        127,
+        89
+      ]
+    },
+    "50": {
+      "candidate": [
+        16,
+        28,
+        28
+      ],
+      "old": [
+        214,
+        171,
+        120
+      ]
+    },
+    "60": {
+      "candidate": [
+        16,
+        28,
+        28
+      ],
+      "old": [
+        214,
+        167,
+        119
+      ]
+    },
+    "70": {
+      "candidate": [
+        16,
+        28,
+        28
+      ],
+      "old": [
+        214,
+        166,
+        119
+      ]
+    },
+    "79": {
+      "candidate": [
+        16,
+        28,
+        28
+      ],
+      "old": [
+        214,
+        166,
+        118
+      ]
+    }
+  },
+  "hudBottom": "43px derived from actual shared officialAssets.battleHud y/height; independent 44px left a gold gap",
+  "files": {
+    "docs\\evidence\\sts-neow-reference-20261113\\visual-npc-approved-3\\approved-guide-position.png": "3b14866e11a96e800ce4008ab441a885be7797f170b639f77d104dfcfc76a202",
+    "docs\\evidence\\sts-neow-reference-20261113\\visual-npc-approved-3\\two-normal.png": "bb1ee4af0de414887c322430bc4273ce99250ea703a2b32d44927b27c5e00e5a",
+    "docs\\evidence\\sts-neow-reference-20261113\\visual-current-1\\two-normal.png": "227e8d79d2848cbe5aac7e0a839026aab8442c70180a57da126140df12c1197a"
+  },
+  "officialClient": "not_run",
+  "gradient": "vertical 2px source-silhouette approximation; original SVG slight horizontal slant unverified"
+}

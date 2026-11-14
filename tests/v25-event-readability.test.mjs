@@ -16,18 +16,22 @@ test('V25 event geometry follows the approved compact story composition',()=>{
  const layout=nodeLayout(t);applyV25NodeLayout(layout,t);
  const event=walk(layout).find(n=>n.name==='eventView');
  const art=walk(event).find(n=>n.name==='art');
- assert.deepEqual(art.size,[155,155]);assert.equal(art.opacity,.25);
+ assert.deepEqual(art.size,[330,330]);assert.equal(art.opacity,1);
+ assert.equal(art.image,t.icon.eventArt.default);
+ assert.equal(art.colour,t.layout.nativeNode.event.reference.figureInk);
  assert(!walk(event).some(n=>n.name==='emblemDisc'||n.name==='emblemInset'),'no invented event medallions');
  assert.deepEqual(t.layout.nativeNode.event.plate,[0,-55,1230,490]);
  assert.deepEqual(t.layout.nativeNode.event.name,[-280,203,620,60]);
  assert(walk(event).find(n=>n.name==='ribbon').children.length>3,'retain the irregular long paper silhouette');
 });
 
-test('V25 keeps the approved question placeholder and semantic inline ink without changing the ordinary theme',()=>{
+test('V25 uses declared native event illustrations and semantic inline ink without changing the ordinary theme',()=>{
  const before=structuredClone(nativeTheme),t=v25Theme(nativeTheme),reference=t.layout.nativeNode.event.reference;
- assert.equal(reference.icon,100114);
+ assert.equal(reference.icon,111049);
+ assert.equal(t.icon.eventArt.big_fish,111027);assert.equal(t.icon.eventArt.lab,111046);
  assert.equal(reference.costInk,'#D77C7E');assert.equal(reference.rewardInk,'#9DD740');
- assert.equal(reference.figureInk,'#C3C9BF40','runtime tint must preserve the approved quarter opacity');
+ assert.equal(reference.figureInk,'#FFFFFF','native illustrations must keep their original colour');
+ assert.equal(reference.figureOpacity,1,'event artwork must not be a faded question watermark');
  assert.deepEqual(nativeTheme,before);
  assert.equal(nativeTheme.layout.nativeNode.event.reference,undefined);
 });

@@ -1,0 +1,25 @@
+{
+  "reviewer": "/root/neow_reference_audit",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "character-select/source-crop/shared-starter-browser only; final shared-card geometry excluded",
+  "themeScopeSha256": "ed0a9c876bfbdebafa6a5e3cb2bc4016730850aefa23964ff5d928df087082b9",
+  "files": {
+    "scripts/sts-character-select-layout.mjs": "1a7015820561e6bed49892bde44c93847c75ceb3d347f6945d406675c78aaeb6",
+    "scripts/v25-character-layout.mjs": "fbb4e0b994cbda548e940a6a715c171dfd65e5dea34db9902aa7cce2c1b0bddf",
+    "scripts/noncombat-v25-layout.mjs": "5417796019cd17764947b53caf1a9adec837ba36143274e6dab6e2feb0a0eba8",
+    "scripts/official-portraits.mjs": "07eee3a783a6c477fb7f27af7e4313ef6216ad9edae4a59f829410e7f1144fe4",
+    "src/lua/abyss_traveler_portraits.lua": "13c790a7e865efe199b937c269b0eee37b7824e37f53da656bf423ad43f04264",
+    "src/lua/abyss_character_select_view.lua": "1db26f5be3a926bf4a9a7d018f56332d3086648c61f6d9cbc0e2e234475f5986",
+    "src/lua/abyss_deck_ui.lua": "7f1f95e73e1ecc9a2a398c4d4ef453e32c753e621a88cf124bf117b5f4d554c5",
+    "src/lua/abyss_game_ui.lua": "3cc85dfa485bcae716e981cc8209abf25e44a4656fcecedfc3999574c15e89fe",
+    "src/lua/abyss_game_ui_overlays.lua": "3c47d44d02e0d313e75ab66da98f667dff3ebfa8dbb0112be01c3ea65e5f068f",
+    "src/lua/abyss_game_ui_input.lua": "d19727c1818a7f5faf5d889826e6f30ebba0ea56296285ddeae26d0dc0bbac96",
+    "src/lua/abyss_game_ui_view.lua": "722123617d34833872aac66db662e919105d414af8042bca0885e7396dfab1b1",
+    "src/lua/abyss_game_ui_run.lua": "7b4cd23d5ff9b3031988d8807d3e2ac10754c23a7a18e3ce33183ab5b83792ae",
+    "src/lua/abyss_page_reveal.lua": "7c9cffeb7541fc39bdd869971571d29879295d00bd0837a18c807c1aab2f99ba",
+    "tests/sts-character-browser.test.mjs": "0ed6e66ce6638009cf8e8d5eabe48046376fb36a9e8773d8b94786d66ff18f3d",
+    "tests/sts-character-reference.test.mjs": "102bea9db5617d7409b9f15b9198982910c5dd084609e84a4d1d540ee7c06e19",
+    "src/lua/abyss_ui.lua": "282225342c231d91502362e5dbb66459d0737ff6b2a54d80d603daad9389f6e9"
+  }
+}

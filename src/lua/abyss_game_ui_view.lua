@@ -12,6 +12,7 @@ local EndingHistory=require('abyss_ending_history')
 local Acts=require('abyss_acts')
 local NativePages=require('abyss_native_pages')
 local Input=require('abyss_game_ui_input')
+local PageReveal=require('abyss_page_reveal')
 local M = {}
 local function building(status)
     return status and (status.phase=='building' or status.phase=='revealing')
@@ -63,9 +64,10 @@ function M.syncController(self,controller,openingCovered)
             if self.disabled or self.settlementRequested or self.settlementBusy then scope='blocked'
             elseif self.easterEggOpen then scope='easterEgg'
             elseif self.exitOpen then scope='exit'
+            elseif self.pageReveal and self.pageReveal:covered() then scope='pageReveal'
             elseif self.motion.deathReveal then scope='blocked'
-            elseif self.characterOpen then scope='characters'
             elseif openingCovered() then scope='blocked'
+            elseif self.characterOpen and not self.deckUI.visible then scope='characters'
             else scope=pageScope() end
             local function pageBack(backScope)
                 if backScope=='potions' then return self:closePotions()
@@ -139,15 +141,22 @@ end
 
 function M.closeStaleDeck(self)
     return function(run,inMenu)
+            if self.deckUI.previewInfo then
+                if not self.characterOpen or not self.characterSelection.deckOpen or self.deckUI.previewInfo~=self.characterSelection.info then
+                    self.deckUI:close();self.characterSelection.deckOpen=false
+                end
+                return
+            end
             if self.deckUI.visible and (inMenu or run and run.phase=='ending_proceed' or self.battleUI.busy or self.deckUI.run ~= run
             or self.deckUI.pileKind and (run.phase~='combat' or run.combat~=self.deckUI.battle))then self.deckUI:close()end
         end
 end
 
-function M.openCardChoice(self)
+function M.openCardChoice(self,platform)
     return function(run)
             if run and run.phase=="combat" and run.combat.pendingChoice and not self.battleUI.busy
                 and not self.deckUI.visible and not self.exitOpen then
+                PageReveal.registerSource(platform,'deckPanel')
                 self.deckUI:open(run,run.combat.pendingChoice,function(token,uid)
                     self.battleUI:chooseCard(token,uid)
                     self:refresh()
@@ -319,8 +328,9 @@ function M.renderMapPage(self)
         end
 end
 
-function M.renderCurrentPage(self,renderBattlePage,renderMapPage)
+function M.renderCurrentPage(self,renderBattlePage,renderMapPage,platform)
     return function(run,deckOpen,potionOpen,blocked,covering)
+            PageReveal.registerSource(platform,PageReveal.basePage(self.mode))
             if self.mode == "battle" then
                 renderBattlePage(run)
             elseif self.mode == "map" then
@@ -370,7 +380,11 @@ end
 
 function M.exitEntryVisible(self)
     return function()
-            return not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
+            local minimal=(Theme.presentationProfile=='official-assets-first' or Theme.presentationProfile=='v25-reference')
+                and Theme.menuPresentation and Theme.menuPresentation.minimal
+            if minimal and self.mode=='menu' and not self.characterOpen then return false end
+            return not (self.prologue and self.prologue:covering())
+                and not self.easterEggOpen and not self.exitOpen and not self.settlementRequested and not self.settlementBusy
         end
 end
 
@@ -404,15 +418,18 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
         end
         utilitiesReady=true
     end
+    local function characterForeground()
+        if not characterPanel then return end
+        characterPanel:SetVisible(self.characterOpen==true and not self.deckUI.visible)
+        if self.characterOpen and not self.deckUI.visible then
+            PageReveal.registerSource(platform,'characterPanel')
+            CharacterView.render(characterPanel,self.characterSelection,platform)
+            characterPanel:SetAsLastSibling()
+        end
+    end
     return function()
             battleUtilities()
-            if characterPanel then
-                characterPanel:SetVisible(self.characterOpen==true)
-                if self.characterOpen then
-                    CharacterView.render(characterPanel,self.characterSelection,platform)
-                    characterPanel:SetAsLastSibling()
-                end
-            end
+            characterForeground()
             if self.choiceUI and self.choiceUI.visible then self.choiceUI.root:SetAsLastSibling() end
             -- Shared utilities stay above the deck overlay; the confirmation stays
             -- above every page, including an in-flight battle presentation.
@@ -469,9 +486,22 @@ end
 
 function M.syncOpening(self,openingCovered)
     return function(run)
-            if self.prologue and (self.settlementRequested or run and (run.phase=='defeat' or run.phase=='victory')) then self.prologue:cancel() end
+            if self.prologue and (self.settlementRequested or not self.starting and run and (run.phase=='defeat' or run.phase=='victory')) then self.prologue:cancel() end
             return openingCovered()
         end
+end
+
+-- Completed UI preparation stages, not bytes or an unobservable GPU/network percentage.
+function M.openingProgress(self,child,platform)
+    return function()
+        local done=self.openingPrepared or 0
+        if done<6 or self.starting then return done end
+        if not self.run or not self.map then return 6 end
+        if self.mode~='node' and self.mode~='map' then return 6 end
+        local page=child(self.mode=='node' and 'nodePanel' or 'mapPanel')
+        if platform.nativePageLifecycle==true and page.active~=true then return 6 end
+        return 7
+    end
 end
 
 function M.openingForeground(self,child,prologuePanel,runMenu,exitPanel)
@@ -480,7 +510,7 @@ function M.openingForeground(self,child,prologuePanel,runMenu,exitPanel)
                 child('mapPanel'):SetVisible(false);child('nodePanel'):SetVisible(false)
             end
             if not covering then return end
-            prologuePanel:SetAsLastSibling();child('exitEntry'):SetAsLastSibling()
+            prologuePanel:SetAsLastSibling()
             if self.menuOpen then runMenu:SetAsLastSibling()
             elseif self.exitOpen then exitPanel:SetAsLastSibling() end
         end
@@ -508,6 +538,24 @@ local function surfaceScopes(self)
     return {battle=self.mode=='battle',node=self.mode=='node',character=self.characterOpen==true,
         deck=self.deckUI and self.deckUI.visible==true,choice=self.choiceUI and self.choiceUI.visible==true}
 end
+local function requestReveal(self,platform)
+    local intent=PageReveal.intent(self)
+    PageReveal.registerSource(platform,intent.page)
+    if self.pageReveal then self.pageReveal:begin(intent)end
+end
+local function paintReveal(self)
+    if not self.pageReveal then return end
+    self.pageReveal:paint(not self.exitOpen)
+    if self.exitOpen then
+        self.root:GetChild('runMenu'):SetAsLastSibling()
+        self.root:GetChild('exitPanel'):SetAsLastSibling()
+    end
+end
+local function finishReveal(self,platform)
+    local intent=PageReveal.intent(self)
+    PageReveal.registerSource(platform,intent.page)
+    if self.pageReveal then self.pageReveal:finish(intent)end
+end
 function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleScene,syncMenuContext,platform,syncCardChoice,closeStaleDeck,openCardChoice,canManagePotions,overlaysBlocked,syncRewardReturn,refreshUtilities,refreshPageVisibility,renderCurrentPage,bgm,present,refreshForeground,syncPortraits,openingForeground)
     return function(_)
             if self.disabled then return false,"ui_disabled" end
@@ -516,6 +564,7 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             finishRunFlow(run)
             local covering = syncOpening(run)
             selectMode(run)
+            requestReveal(self,platform)
             syncOfficialBattleScene(run)
             local inMenu = self.mode == "menu" or self.mode == "defeat" or self.mode == "victory"
             syncMenuContext(run,inMenu)
@@ -536,9 +585,11 @@ function M.refresh(self,finishRunFlow,syncOpening,selectMode,syncOfficialBattleS
             refreshForeground()
             if self.easterEgg then self.easterEgg:refresh()end
             syncPortraits()
+            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
+            finishReveal(self,platform)
+            paintReveal(self)
             openingForeground(covering)
             self:syncController()
-            CardSkin.endFrame(surfaceFrame,surfaceScopes(self))
         end
 end
 

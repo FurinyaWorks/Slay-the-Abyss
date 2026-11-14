@@ -1,0 +1,32 @@
+{
+  "buildId": "53629ec8-5a99-4a54-97ed-04e152adeb21",
+  "saveSha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+  "styleInput": {
+    "path": "F:\\New folder\\.worktrees\\menu-red-background\\.artifacts\\menu-entry-fix\\combined-fa7273ec\\combined.save.json",
+    "sha256": "44e1c68acef46297a2369f92e715fc1e1b8a0f811cdc11226fd5322403526145"
+  },
+  "nativeCandidate": {
+    "path": "F:\\New folder\\.worktrees\\menu-red-background\\.artifacts\\menu-quality-r1\\native-final/candidate.gil",
+    "sha256": "688ad0b64abc56c3e81a4d8c4c3721dab472ad16d5a814c42ea78fcc98af3075",
+    "bytes": 24066899
+  },
+  "nativeReadback": {
+    "path": "F:\\New folder\\.worktrees\\menu-red-background\\.artifacts\\menu-quality-r1\\native-final-readback\\pr588.actual.save.json",
+    "sha256": "31e580e96e7efa5e28c21750c83af221f859ab1048fcf37a77e38d617ec6ace0",
+    "backgroundSha256": "91b20f7c6505976062ba9ac2f7a17983a67024e48a41f08ee36ce009815fe1e0",
+    "inverseFaults": 0
+  },
+  "before": {
+    "controls": 3223,
+    "images": 1598,
+    "bytes": 5216545
+  },
+  "after": {
+    "controls": 1732,
+    "images": 1600,
+    "bytes": 3322793
+  },
+  "totalApplicationControls": 27685,
+  "unchangedLua": 365,
+  "scope": "Current-style source preview; only the background is from this actual GIL readback; official client/device acceptance not run"
+}

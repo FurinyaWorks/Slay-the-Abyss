@@ -21,6 +21,8 @@ local function noop(api)
  function self.update()return false end
  function self.syncMask()return false end
  function self.status()return {roots=0,retained=0,ready=0}end
+ function self.presentationReady()return true end
+ function self.setPresentationPage()end
  return self
 end
 local function hex(blocks,at,n)
@@ -95,7 +97,7 @@ local function retire(s,row)
  row.retired=true;row.ready=false;return cleanup(s,row)
 end
 local function clear(s)
- s.epoch=s.epoch+1;local closing=s.closing;s.closing=true;s.mask=nil;s.maskIntentKnown=false;s.maskIntent=nil
+ s.epoch=s.epoch+1;local closing=s.closing;s.closing=true;s.mask=nil;s.maskIntentKnown=false;s.maskIntent=nil;s.failures={};s.reason=nil
  local rows=snapshot(s);for _,row in ipairs(rows)do row.retired=true;row.ready=false end
  local clean=true;for _,row in ipairs(rows)do if not cleanup(s,row)then clean=false end end
  s.closing=closing;return clean and next(s.records)==nil
@@ -115,17 +117,30 @@ local function beginController(s,row,data)
  if not valid(s,row)then return false end
  return row.controller:begin()~=false and valid(s,row)
 end
+local function failed(s,row,reason)
+ if row.retired or row.epoch~=s.epoch then return end
+ local parent=s.failures[row.parent]or {};s.failures[row.parent]=parent
+ parent[row.id]={page=row.page,reason=tostring(reason)}
+end
 local function allocate(s,row,data)
  row.creating=true
  local ok,root=pcall(s.api.instantiate,s.binding.groupTemplateId,row.parent)
  if ok and (type(root)=='table' or type(root)=='userdata')then row.root=root;s.byRoot[root]=row end
  row.creating=false
- if not ok or not valid(s,row)then retire(s,row);return nil end
+ if not ok or not valid(s,row)then failed(s,row,not ok and root or 'texture root unavailable');retire(s,row);return nil end
  if not invoke(root,'SetVisible',false) or not valid(s,row)then retire(s,row);return nil end
  row.busy=true;local started,result=pcall(beginController,s,row,data);row.busy=false
  if not started or not result or not valid(s,row)then
-  row.reason=not started and tostring(result) or 'V25 texture creation cancelled';retire(s,row);return nil
+  row.reason=not started and tostring(result) or 'V25 texture creation cancelled';failed(s,row,row.reason);retire(s,row);return nil
  end
+ return root
+end
+local function allocateLease(s,id,parent,parentRows,data)
+ s.serial=s.serial+1
+ local row={id=id,parent=parent,serial=s.serial,epoch=s.epoch,data=data,page=s.page}
+ s.records[row.serial]=row;parentRows=parentRows or {};s.byParent[parent]=parentRows;parentRows[id]=row
+ local root=allocate(s,row,data)
+ if root and s.failures[parent]then s.failures[parent][id]=nil end
  return root
 end
 local function instantiate(s,id,parent)
@@ -133,14 +148,11 @@ local function instantiate(s,id,parent)
  if blocked(s) or not alive(parent) or not epochValid(s,token)then return nil end
  local asset=s.binding.textures[id] or s.binding.textures[tostring(id)];if type(asset)~='table'then return nil end
  local parentRows=s.byParent[parent];local old=parentRows and parentRows[id]
- if old and valid(s,old)then return old.root end
+ if old and valid(s,old)then old.page=s.page;return old.root end
  if old and not retire(s,old)then return nil end
  if not epochValid(s,token)then return nil end
  local ok,data=pcall(dataFor,s,asset);if not ok then s.reason=tostring(data);return nil end
- s.serial=s.serial+1
- local row={id=id,parent=parent,serial=s.serial,epoch=s.epoch,data=data}
- s.records[row.serial]=row;parentRows=parentRows or {};s.byParent[parent]=parentRows;parentRows[id]=row
- return allocate(s,row,data)
+ return allocateLease(s,id,parent,parentRows,data)
 end
 local function ready(s,control)
  local row=s.byRoot[control];return row~=nil and row.ready==true and valid(s,row)
@@ -149,11 +161,13 @@ local function advance(s,row)
  if row.retired then return false end -- retry requires an explicit fresh release/page intent
  if not valid(s,row)then retire(s,row);return false end
  if row.ready or not row.controller then return false end
- row.busy=true;local ok=pcall(row.controller.step,row.controller);row.busy=false
- if not ok or not valid(s,row)then retire(s,row);return false end
+ row.busy=true;local ok,why=pcall(row.controller.step,row.controller);row.busy=false
+ if not ok then failed(s,row,why);retire(s,row);return false end
+ if not valid(s,row)then retire(s,row);return false end
  local read,status=pcall(row.controller.status,row.controller)
- if not read or not valid(s,row)then retire(s,row);return false end
- if status.phase=='failed' or status.phase=='release_failed'then retire(s,row);return false end
+ if not read then failed(s,row,status);retire(s,row);return false end
+ if not valid(s,row)then retire(s,row);return false end
+ if status.phase=='failed' or status.phase=='release_failed'then failed(s,row,status.reason or status.phase);retire(s,row);return false end
  if status.phase=='ready'then row.ready=true;return true end
  return false
 end
@@ -231,7 +245,7 @@ function M.new(binding,api)
  if binding.enabled==false and not binding.uiMask then return noop(api)end
  assert(type(api.instantiate)=='function' and type(api.destroy)=='function','V25 texture native API unavailable')
  assert(integer(binding.imageTemplateId) and binding.imageTemplateId>0 and integer(binding.groupTemplateId) and binding.groupTemplateId>0,'V25 texture templates unavailable')
- local s={binding=binding,api=api,records={},byRoot={},byParent=setmetatable({},{__mode='k'}),data=setmetatable({},{__mode='k'}),epoch=0,serial=0,cursor=0,clock=api.clock or os.clock}
+ local s={binding=binding,api=api,records={},failures={},byRoot={},byParent=setmetatable({},{__mode='k'}),data=setmetatable({},{__mode='k'}),epoch=0,serial=0,cursor=0,clock=api.clock or os.clock}
  local self={};local surface={instantiate=function(id,parent)return instantiate(s,id,parent)end,
   destroy=function(root)local row=s.byRoot[root];return row~=nil and retire(s,row)end,ready=function(root)return ready(s,root)end}
  function self.surfaceApi()return surface end
@@ -240,6 +254,24 @@ function M.new(binding,api)
  function self.update()return update(s)end
  function self.syncMask(_,stage)return syncMask(s,stage)end
  function self.status()return status(s)end
+ function self.setPresentationPage(_,page)s.page=page end
+ function self.presentationReady(_,page)
+  if s.reason then return false,s.reason end
+  for parent,failures in pairs(s.failures)do
+   if not alive(parent)then s.failures[parent]=nil
+   else for _,entry in pairs(failures)do
+    if not entry.page then return false,'UNAVAILABLE texture page owner: '..entry.reason end
+    if entry.page==page then return false,entry.reason end
+   end end
+  end
+  for _,row in pairs(s.records)do
+   if not row.retired and row.page==page then
+    if not row.ready then return false,row.reason end
+   end
+   if not row.retired and not row.ready and not row.page then return false,'UNAVAILABLE texture page owner' end
+  end
+  return true
+ end
  return self
 end
 return M

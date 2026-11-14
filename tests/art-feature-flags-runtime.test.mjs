@@ -18,6 +18,8 @@ local function start(config,broken,previous)
  backgrounds={};viewDeaths=0;cardDeaths=0;componentParams=0
  local function owner()return {release=function()released=released+1 end,onEngineDestroy=function()dead=dead+1 end}end
  modules={abyss_ui_profile={schemaVersion=1,nativePageLifecycle=false},abyss_monster_actor_binding={templateIndex=31,containerTemplateIndex=32,powerTemplateIndex=33,enabled=true},abyss_art_features=config,abyss_data={},abyss_presentation={},abyss_theme={sound={}},
+  -- This fixture substitutes GameUI itself; provide its page-intent boundary too.
+  abyss_page_reveal={intent=function()return {page='menuPanel'}end},
   abyss_viewport={apply=function()return {GetChild=function()error('all-off has no custom hosts')end}end},
   abyss_narrative={build={}},abyss_game_ui={new=function(_,_,p,_,o)presentation=p;options=o;views=views+1;return {
    resize=function()end,update=function()end,disable=function()end,
@@ -28,7 +30,8 @@ local function start(config,broken,previous)
    assert(f.selectionAvatar==flags.selectionAvatar and f.battlePortrait==flags.battlePortrait);return owner()end,
    createController=function()error('entry mock must not create geometry')end},
   abyss_card_art_runtime={configure=function(v)if v then configured=configured+1 else cleared=cleared+1 end end,
-   clear=function()cleared=cleared+1 end,update=function()end,onEngineDestroy=function()cardDeaths=cardDeaths+1 end},
+   clear=function()cleared=cleared+1 end,update=function()end,onEngineDestroy=function()cardDeaths=cardDeaths+1 end,
+   setPresentationPage=function(page)assert(page=='menuPanel')end,presentationReady=function()return true end},
   abyss_ready_card_binding={enabled=true,imageTemplateIndex=1234,containerTemplateIndex=5678},
   abyss_ready_card_assets={strike={runtime=true,cardId='strike'}},abyss_card_display={bindNativeAssets=function(_,a)assert(a.strike)end}}
  if broken then broken(modules)end

@@ -256,7 +256,7 @@ test("node panels compose through Boss16, independent treasure17 then restart", 
     assert(eventCount>=2,'same real map route must reach multiple different events')
     assert(root:GetChild("menuPanel"):GetChild("title").text == "深渊已被封印")
     assert(statValue(root, "floor") == data.rules.map.floors .. " / " .. data.rules.map.floors)
-    assert(resultText(root, "subtitle") == "随着守卫倒下，岩元素的光芒重新沿着石纹蔓延。裂隙逐渐闭合，遗迹恢复了往日的寂静。荧收起剑，继续自己的旅途。")
+    assert(resultText(root, "subtitle") == "随着守卫倒下，岩元素的光芒重新沿着石纹蔓延。裂隙逐渐闭合，遗迹恢复了往日的寂静。旅行者收起剑，继续自己的旅途。")
     preview("victory", resultText(root, "subtitle"))
     local previous=ui.run
     testStartButton(root)
@@ -391,7 +391,7 @@ test("result page shows only the recorded run stats in the approved four cells",
     assert(resultText(root, "status"):find("不会提交", 1, true))
     ui.run.phase = "victory" ui.run.nodeFlow = {complete=true, result="boss_treasure_complete"} ui:refresh()
     assert(menu:GetChild("title").text == "深渊已被封印" and resultText(root, "detail"):find("生命 33 / ", 1, true))
-    assert(resultText(root, "subtitle") == "随着守卫倒下，岩元素的光芒重新沿着石纹蔓延。裂隙逐渐闭合，遗迹恢复了往日的寂静。荧收起剑，继续自己的旅途。")
+    assert(resultText(root, "subtitle") == "随着守卫倒下，岩元素的光芒重新沿着石纹蔓延。裂隙逐渐闭合，遗迹恢复了往日的寂静。旅行者收起剑，继续自己的旅途。")
 end)
 
 test("repeated settlement clicks, clicks during reveal and restart attempts submit exactly once", function()
@@ -533,8 +533,9 @@ test("native lifecycle loads every composed control and registers its listeners 
         "ordinary native entry can confirm the preselected Geo loadout")
     assert(root:GetChild("characterPanel").visible and not root:GetChild("mapPanel").visible)
     click(root, "characterPanel", "confirm")
-    assert(not root:GetChild("characterPanel").visible)
-    for _ = 1, 8 do OnUpdate(0.25) end
+    assert(root:GetChild("characterPanel").visible and root:GetChild("prologuePanel").visible,
+        "selection remains behind the short opening fade until full cover")
+    for _ = 1, 33 do OnUpdate(0.25) end
     assert(not root:GetChild("mapPanel").visible and not root:GetChild("prologuePanel").visible)
     assert(root:GetChild('nodePanel').visible and root:GetChild('nodePanel'):GetChild('eventView').visible)
     for _ = 1, 8 do OnUpdate(0.25) end

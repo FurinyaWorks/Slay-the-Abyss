@@ -1,0 +1,56 @@
+---
+id: TASK-81.1
+title: 补齐事件源码合同的相关选测漏边
+status: Done
+assignee:
+  - Furinya
+created_date: '2026-11-06 03:15'
+updated_date: '2026-11-14 06:11'
+labels: []
+dependencies: []
+documentation:
+  - docs/backlog-details/M7-EVENT-SELECTOR-RECORD-20261110.md
+parent_task_id: TASK-81
+priority: medium
+type: bug
+ordinal: 161000
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+Colosseum与Masked Bandits源码变更已有其他映射，related因此不回退Full，却漏掉确实读取它们的event-combat-routes-source合同。仅修正消费者依赖可见性，保持核心变更Full与原测试断言。
+<!-- SECTION:DESCRIPTION:END -->
+
+## Acceptance Criteria
+<!-- AC:BEGIN -->
+- [x] #1 五个实际事件源码输入均命中原源码合同，已有映射不能掩盖漏边，回归在旧实现失败
+- [x] #2 无关输入不扩集，未知、删除与核心高风险Full保持；原断言和完整回归不减少
+- [x] #3 定向验证与独立复审通过，按精确HEAD及原正常集成门禁交付；不宣称Fast性能验收完成
+<!-- AC:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+先用真实消费者及已映射直接用例构造选测漏边负例；将该消费者五个真实读取路径显式化，不扩展选择器求值。核对五输入命中、无关选集不变及高风险/未知/删除Full，运行原定向合同并独审。主控独占任务与最终集成，worker只写两测试文件。
+
+2026-11-10 交付记录纠错：先核对已合PR525的真实来源、独审、PR/队列/合后运行与当前develop保留情况，复验原五输入选测合同。只更正遗漏交付记录，不重做已合实现；旧合后失败不得改成通过，验收缺项继续保留。
+<!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+两测试文件最小修复完成：真实consumer五路径显式化；原实现新增6项3失败，修后常规本树锁依赖与固定Node24四文件131通过0失败0跳过。独审session ses_e511dab3dffe5zKlPnL6nU6Jjn复核5路径断边负控与2856输入真实选集；仅Colosseum/Bandits integration各加原合同1项，fast/Lua及无关输入逐项不变，13类高风险和删除输入Full保持。AC3等待精确提交/正常集成，不声明Fast或M7验收。
+
+2026-11-07 看板核对（develop 2c85bc61）：未发现实现提交或在途 PR，状态由 In Progress 归 To Do（未开始）；范围与原 AC 不变。
+
+2026-11-10 纠正上一条看板判断：实现已随PR525/c20f9898合入，当前ab65ed3b的两原测试文件Git blob完全相同；本轮原两文件111/111及独立旧consumer三项漏边负控通过。原精确HEAD独审、PR及队列Full成功，但原squash push42168995589真实失败，不能用当前develop push42772190615成功代验；因此只更正为In Progress，AC3仍未勾，未标Done或merged_passed。详见新增附件；不重做代码、不重复Full或占用用户设备。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 原PR525合后失败保留，后续607及634完整重交付；不把原失败改绿，不再重做五路径映射。
+<!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+原PR525合后失败保留，后续607及634完整重交付；不把原失败改绿，不再重做五路径映射。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

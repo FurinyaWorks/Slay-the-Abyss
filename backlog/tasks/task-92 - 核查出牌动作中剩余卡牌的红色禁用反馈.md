@@ -1,16 +1,17 @@
 ---
 id: TASK-92
 title: 核查出牌动作中剩余卡牌的红色禁用反馈
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-30 21:58'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:52'
 labels:
   - playtest-20261030
   - p2
   - grok
   - 待验
+  - delivery-verify
 dependencies: []
 references:
   - docs/backlog-details/PLAYTEST-20261030.md
@@ -43,4 +44,6 @@ type: enhancement
 89349隔离源码已复现busy把规则可打牌画成禁用，修复仅分离卡面playable与input enabled，动作锁/费用规则不变。新增回归先红后绿，最终相关4/4通过含真实防御出牌反馈帧；原作逐帧与同候选设备未验，AC不勾。证据docs/backlog-details/TASK-92.md。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

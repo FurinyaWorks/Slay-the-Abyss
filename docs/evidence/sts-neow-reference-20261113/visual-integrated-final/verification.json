@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "sourceClosureSha256": "52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731",
+  "checks": [
+    {
+      "name": "two-intro",
+      "pngSha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "stateSha256": "5e7bfa1a710f7981346e85da9df2c93c071da6b47d1977db944117612f1e7c74",
+      "pageRevealed": true,
+      "renderPasses": 4
+    },
+    {
+      "name": "two-normal",
+      "pngSha256": "973fea6cbd3736d2143632326bb543f27944641d2048970476f21fb2a0c8e61d",
+      "stateSha256": "c17cbb62ab6f44bb36fadfb08a52908daa887e77d7c6fac7884fcd03f8135abc",
+      "pageRevealed": true,
+      "renderPasses": 4
+    },
+    {
+      "name": "two-hover-functional-unverified",
+      "pngSha256": "c630c7f9bf71f9860623cc0bcb94e486f335c643bf79321a7bc7d3515a69772f",
+      "stateSha256": "06ea16f3bd3f6ae39a91724741587e73ea606c5304d85243323e385d4d0d648f",
+      "pageRevealed": true,
+      "renderPasses": 4
+    },
+    {
+      "name": "four-intro",
+      "pngSha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "stateSha256": "3b67b1d91cf90eecf957430d0f1c581cf5e53f0dbd7a5e01f2f59393e0465a4d",
+      "pageRevealed": true,
+      "renderPasses": 4
+    },
+    {
+      "name": "four-normal",
+      "pngSha256": "af4a08a7e19ace9297bad4d5587c396cdcb16c8c7c8f102670d50b12afd9af96",
+      "stateSha256": "60cd993083462d4708b400bee7bb0a3a2b3eeb3d8972379e4bdac727d97b6eb8",
+      "pageRevealed": true,
+      "renderPasses": 4
+    },
+    {
+      "name": "four-hover-functional-unverified",
+      "pngSha256": "d0bd0c3165e15cae8dc3ee0a2d7ee97f821df55d2a91e1b6657996ada5c4d976",
+      "stateSha256": "bc3d3b43c370689a232c1a407406c661ceb203469d4130e4b83883177400c404",
+      "pageRevealed": true,
+      "renderPasses": 4
+    }
+  ],
+  "hoodIoU": 0.9934187279151944,
+  "oldHoodNegativeIoU": 0.6266152038932706,
+  "boundaries": {
+    "actualSdk": true,
+    "headlessSoftwareRendering": true,
+    "normalReference": true,
+    "originalHoverParity": false,
+    "officialImport": false,
+    "officialReady": false,
+    "deviceEvidence": false,
+    "gpuEvidence": false
+  }
+}

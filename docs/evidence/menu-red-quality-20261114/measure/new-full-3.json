@@ -1,0 +1,14 @@
+{
+  "scope": "Actual Simulator SDK full construction; not GPU/official FPS",
+  "sha256": "778744010972555e7d4847204f22ce9c1bb136a0aa8c95d1bd4377ba712551fa",
+  "bytes": 57215175,
+  "parseMs": 648.0962,
+  "sdkMs": 1868.8923000000002,
+  "heapDelta": 202695304,
+  "rssDelta": 279273472,
+  "heapAfter": 318831616,
+  "rssAfter": 488300544,
+  "peakRssBytes": 521256960,
+  "backgroundControls": 1732,
+  "stepP95Ms": 6.944899999999961
+}

@@ -6,6 +6,7 @@ import {spawnSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {v25Theme} from '../scripts/v25-layout.mjs';
+import {officialAssetsTheme} from '../scripts/official-assets-layout.mjs';
 import {mapLayout,mapGeometry} from '../scripts/map-ui-layout.mjs';
 import {buildUiTheme} from '../scripts/build-ui-theme.mjs';
 import {buildLuaData,toLua,luaString} from '../scripts/build-lua-data.mjs';
@@ -23,10 +24,25 @@ test('V25 map runtime colours follow the authoritative theme input without gener
  assert.equal(nativeTheme.color.node.pathTaken,'#FFD88A');
 });
 
-for(const v25 of [true,false])test(`${v25?'V25':'legacy'} generated theme drives actual MapUI room/path colour writers and widths without changing routes`,t=>{
+test('official map preserves the approved ink tokens through the presentation adapter',()=>{
+ const source=structuredClone(nativeTheme),before=structuredClone(source);
+ const theme=officialAssetsTheme(source);
+ assert.equal(theme.color.mapCanvas.available,'#17212B');
+ assert.equal(theme.color.mapCanvas.far,'#575757');
+ assert.equal(theme.color.node.path,'#5D625E');
+ assert.equal(theme.color.node.pathTaken,'#26373E');
+ source.v25Battle.color.mapCanvas.available='#102030';source.v25Battle.color.node.pathTaken='#405060';
+ const altered=officialAssetsTheme(source);
+ assert.equal(altered.color.mapCanvas.available,'#102030');assert.equal(altered.color.node.pathTaken,'#405060');
+ assert.equal(theme.color.mapCanvas.available,'#17212B','earlier resolved palette must not alias mutable source');
+ assert.deepEqual(nativeTheme,before,'adapter must not mutate the shared source theme');
+});
+
+for(const mode of ['V25','legacy','official'])test(`${mode} generated theme drives actual MapUI room/path colour writers and widths without changing routes`,t=>{
  const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
  const dir=mkdtempSync(join(root,'map-theme-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));
- const source=structuredClone(nativeTheme),before=structuredClone(source),theme=v25?v25Theme(source):source;
+ const source=structuredClone(nativeTheme),before=structuredClone(source),v25=mode!=='legacy';
+ const theme=mode==='official'?officialAssetsTheme(source):v25?v25Theme(source):source;
  assert.deepEqual(source,before,'V25 theme mutated the shared Enhanced source');
  const file=join(dir,'theme.json');writeFileSync(file,JSON.stringify(theme));
  buildUiTheme(file,'data',join(dir,'abyss_theme.lua'));buildLuaData('data',join(dir,'abyss_data.lua'));

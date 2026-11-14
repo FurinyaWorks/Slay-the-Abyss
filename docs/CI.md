@@ -20,7 +20,21 @@ PR391 的官方超时与成功日志证明早期四片、六片及八加八规�
 
 合并须核对 PR 精确 head、base 和当前 attempt 的完整必要作业，通过下文 `npm run merge:auto` 的 pending→原生授权→success 握手入队。完整源码检查、平台构建、官方导入、实机与UI体验仍分层记录。日志空白时读取对应job的原始日志，不能判为通过。
 
-2026-10-28轻量治理：develop 的原 Ruleset 仅允许 squash，并要求线性历史；master 保留 release/hotfix 的 merge 流程。既有 Licenses/inventory 加入 develop 必需检查，不新增验证作业。Quality 的 Windows 第一片在安装依赖前运行 `check-pr-history.mjs`，用事件中的精确 base/head SHA 分页读取 GitHub comparison，拒绝 PR 引入的任何合并提交（不检查 GitHub 合成 merge commit）。新依赖先独立合入 develop，再从它开始后续短分支，无需为每次基线前进重跑同步。历史读取失败或不完整会明确失败，不视作通过。它只做一次轻量 API 读取，不增加锁、轮询或另一套完整回归。
+2026-11-13分离主干保护与来源分支历史：develop 仍仅允许 squash 并要求线性历史，master 的 release/hotfix merge 流程不变。`check-pr-history.mjs` 保留精确 base/head SHA、分页完整性、提交唯一性与父提交身份检查；功能/集成分支中的 merge commit 不再单独导致失败，而在日志的 `mergeCommits` 中列出，`status` 为 `linear` 或 `nonlinear`。两者仅表示历史形状，不表示代码已通过审查或测试。读取失败、缺页、重复、错误 HEAD/BASE 或无效父提交仍失败；不检查 GitHub 合成 merge commit，不增加作业、锁、轮询或完整回归层。此规则替代2026-10-28的来源分支一律线性要求，不放宽主干保护。
+
+## 多 Agent 协调集成
+
+日常仍优先独立短分支与小批 PR；仅需要外部前置能力时，先让依赖落入 develop。同步已落地主线可使用 merge；独占分支可自行选择 rebase，但不为历史外形要求重写已共享提交，不自动强推。现有 Strict 与精确 HEAD/BASE 授权仍适用：本次不承诺消除基线推进后的重新验证。
+
+多个 Agent 的成果需要一起交付时，采用一个协调集成 PR，而不是各分支相互反复合并；这是正常的受审集成路径，不是紧急绕过 CI：
+
+1. 指定一个协调者，从最新 develop 建独立工作树/短集成分支。只冻结本批来源身份和写入范围，不停掉其他独立任务；接管前按原 `merge:auto --pause` 暂停来源 PR 并读回出队，防止来源 PR 与集成 PR 重复交付。
+2. 在集成 PR 正文记录来源 PR/分支、完整固定 HEAD SHA、纳入范围及冲突取舍。按固定 SHA 合并，保留原提交与集成节点；后续来源新提交不自动纳入。不能把他人的脏文件、未知工作或未授权范围悄悄打包。
+3. `Depends-on` 只列**本次未包含、必须先独立合入**的外部前置 PR，仍须已落入受审 BASE；已整体纳入的工作列在来源清单，不伪称原 PR 已合并。只纳入部分成果时，逐项写清取舍与剩余依赖，不能把尚缺的前置改成 `none`。
+4. 对最终组合的精确 HEAD/BASE 重新独立评审与验证，重点核对来源完整性、冲突解法和跨模块行为；多来源集成使用已有 `ci:full` 请求 PR Full，再走原 Merge Queue 组合 Full 与合后验收。来源各自的绿灯或审查不能拼接成组合通过；失败在集成分支追加修复，不为过关清理历史、删测试或放宽门槛。
+5. 组合实际合入并验收后，逐来源核对固定 SHA 的成果、后续新提交、脏文件及唯一证据，再关闭已承接的 PR并注明集成去向。squash 不会让来源 SHA 成为 develop 祖先，不能只用 `--is-ancestor` 判定成果已交付；保留来源清单和恢复点，有新工作或未纳入内容的分支不删除、不误记 Done。
+
+来源范围与独立审查的真实性仍由现有协调/复审流程核实，历史审计不自证这些事项。复用现有 PR、Backlog、交付收据与队列，不新增常驻协调器或第二套任务锁。
 
 Licenses 与 Quality、Quick feedback 一样使用 GitHub 原生同引用 concurrency；新提交取消旧提交，PR 与 develop 的运行独立。已结束的 cancelled 保留历史；只有确认被更新 HEAD 或实际合入提交覆盖的非终态运行才手动取消。queued 先核对 runner/开始时间，pending 步骤表示依赖尚未执行，不能据此判断卡死。最终以最新 develop SHA 的完整必要检查成功为准。
 
@@ -58,6 +72,8 @@ Licenses 与 Quality、Quick feedback 一样使用 GitHub 原生同引用 concur
 
 ## PR 自动合并准入
 
+2026-11-14 GitHub已将同一固定仓库ID `1429751262` 的当前名称改为 `FurinyaWorks/Slay-the-Heavens`，原两个Slay-the-Abyss名称均重定向到该ID。当前准入从 `/repositories/1429751262` 解析真实名称；同名fork、被重新占用的旧命名空间或不同ID仍拒绝。历史授权原文不重写，通过既有身份见证连接新名称。下段的旧名称保留原迁移记录。
+
 当前仓库为 `FurinyaWorks/Slay-the-Abyss`，固定 ID 为 `1429751262`。协调入口通过 `/repositories/1429751262` 解析当前名称，核对 settings、PR head/base 的真实 ID；不能用同名仓库或 fork 接续。迁移前的授权和 schema2/3/4/5 收据保留原文。合后验收仅可用单独的迁移见证衔接登记的旧名 `CHNISam/Slay-the-Abyss`：保存原授权文本及 SHA-256、固定 ID 的当前响应与旧名重定向响应，并核对本轮 PR/run 的仓库 ID，不能改写旧证据中的 owner。迁移前取消的 event 不作新 Full 证明，使用迁移后的新提交触发完整验证。
 
 develop PR 的独立评审与 CI 并行。审查与准入通过后可挂起原生 Auto-merge；这只是授权，不是 `pr_passed`。PR 侧必须等原四项门禁、`independent-review`、`pr-quality` 全绿并满足严格基线才能入队，实际 squash 还须组合 Full 通过。Draft、冲突、未落地依赖、已知 CI 失败及锁定标签在启用前拒绝。
@@ -72,7 +88,7 @@ develop PR 的独立评审与 CI 并行。审查与准入通过后可挂起原�
 
 ### 常规使用
 
-PR 正文必须有一行 `Depends-on: none` 或 `Depends-on: #123, #456`；关联 PR 必须已确认合并。先由独立 Agent 复审并形成符合现有 `verify:delivery` 字段的 JSON（`reviewId`、`reviewedHeadSha`、`reviewedBaseSha`、`conclusion: "pass"`、`unresolved: []`）。本地在有 GitHub CLI 和已授权仓库身份的工作树中运行：
+PR 正文必须有一行 `Depends-on: none` 或 `Depends-on: #123, #456`；所列外部前置 PR 必须已确认合并；本次已纳入的工作按上文来源清单记录。先由独立 Agent 复审并形成符合现有 `verify:delivery` 字段的 JSON（`reviewId`、`reviewedHeadSha`、`reviewedBaseSha`、`conclusion: "pass"`、`unresolved: []`）。本地在有 GitHub CLI 和已授权仓库身份的工作树中运行：
 
 ```bash
 npm run merge:auto -- <PR> <independent-review.json> --dry-run
@@ -81,7 +97,13 @@ npm run merge:auto -- <PR> <independent-review.json>
 
 Full 未结束时，schemaVersion 4 授权保存精确组合和 pending run，不能当作 Full 证明。Full 已完成时仍复用原 schema3 checkout artifact 完整校验。Full 发布器同时下载第一片不可变收据，核对实际 run/attempt、PR、HEAD/BASE、测试提交及双父，不能只用绿色作业元数据放行。远端动作前保存 journal；失败尝试撤销 review success 与 Auto-merge，读回须确认真实 squash 排队状态或匹配的实际提交。握手放行之前意外合并视为异常。
 
+显式 `ci:full`、原生Full队列与严格基线/全部必需检查均在位时，精确当前run的Impact仍queued/in_progress也可先登记schema4原生自动合并，不要求Agent守到Impact展开。握手前后核对同run/attempt/job身份，记录awaitingRouting；缺失CI、已知失败、取消、Fast展开或授权身份变化仍拒绝或撤销。此授权仅是等待检查的原生意图，PR必要CI与组合Full仍全部成功后才入队/合并，合后push另验。
+
 合并后运行 `npm run verify:delivery -- <PR> <上述证据.json> --merged`。Full 早期授权另外采集 schema5 历史 PR Full；Fast 使用 schema6 授权、schema7 PR 收据及 schema8 实际队列 Full/inventory 证据，另核独立 develop push Full。均须验证不可变 artifact、完整作业和最新 attempt、实际 squash 唯一父/树，不把合后引用伪造成合前观测。任一缺失保持 `merged_pending`，全部通过才是 `merged_passed`；历史 schema2/3 收据不改写。
+
+**Backlog 同轮收口**：已合 PR 正文用唯一 `Backlog:` 行显式列出改动任务的 `done`、`verify`、`continue` 或 `superseded:TASK-承接`；无任务更新才写 `none`。上述合后入口在真实 `merged_passed` 后核对完整 PR 文件清单、实际最新 develop 与合入时任务快照，再通过 Backlog CLI 更新并读回。`done` 不自动勾 AC，全部已勾才移入 completed；`verify` 保持 In Progress/待验，已有 Blocked 须先明确解除，不能隐式恢复；`continue` 留本轮接续备注；替代归档必须有有效承接且活动依赖已迁移。未知声明、旧工作树、后续任务变化、CLI失败或读回不符保持 `Backlog pending`，不得把代码交付成功当作任务已同步；已写入步骤可安全接续。历史 PR 无声明时先人工对账，不补造其合前声明。该入口没有后台轮询，当前会话不必守候；下次合后验收执行同一命令即可。
+
+纯对账 PR 已通过 CLI 更新、归档或移入 completed 的任务用 `TASK-编号=recorded`：仍逐项验证合入快照和 Done 的全部 AC，但不再次改状态、归档或追加备注。它不是完成声明，也不消除原未验项，便于同一 PR 交付历史清理而不重复执行清理。
 
 暂停使用 `npm run merge:auto -- <PR> --pause`；若已在原生 Merge Queue，命令先调用 dequeue 并读回成员身份消失，再关闭并读回 Auto-merge，最后撤销审查状态。不能仅凭 `gh pr merge --disable-auto` 的退出码认定已出队。移除失败、能力未知或重新入队均不报告 paused。仅添加 hold 标签不是已确认取消。改变依赖/授权意图前先暂停，重新审查后再启用；已声明依赖必须是已纳入受审基线的提交，不允许授权未落地依赖。strict 会阻止落后的 head；更新分支形成新 head 后须有新审查状态，不自动强推、自动重基或假定旧审查仍有效。队列 BASE 变化仍要求新授权；原生 API 不提供可变正文/标签的原子条件，本流程不作此承诺。
 
@@ -89,7 +111,7 @@ Full 未结束时，schemaVersion 4 授权保存精确组合和 pending run，�
 
 ### 异步交接与失败对账
 
-**边界**：`npm run merge:auto` 完成精确 HEAD/BASE 的独审准入与原生 Auto-merge 授权、读回成功后，GitHub Merge Queue 接管后续等待、组合 Full 和 squash。Agent 不得为等待状态在会话内反复调用 `gh run view` / `gh pr checks` / `gh run watch` / `sleep`；需要诊断时只读一次当前状态，发现明确的新失败或身份变化才继续。合并排队和仓库检查由 GitHub 自行推进，不以 Codex 会话常驻为前提。
+**边界**：独立评审与准入通过后立即运行 `npm run merge:auto`，不等待 CI 跑完。完成精确 HEAD/BASE 的原生 Auto-merge 授权并读回后，保存交接证据，结束当前回合；GitHub Merge Queue 接管后续等待、组合 Full 和 squash。禁止用 `gh run view` / `gh pr checks` / `gh run watch` / `sleep` 循环、定时查询或常驻监控守候，不以对账、合后验收或等待下一批基线为由继续轮询。仅在失败通知、明确依赖变化或用户要求时介入，诊断先读一次当前事实。依赖尚未落地时保留候选、证据及明确接续点并结束本轮，不谎报已授权或已入队。合后验证和清理按实际合并事实接续，不要求 Codex 会话常驻。
 
 **交接**：保留 PR 链接、当前精确 HEAD/BASE、原生授权结果、`build/delivery/auto-merge-*.json` 证明文件位置与下步 `verify:delivery --merged` 命令；在真正验收完成前不清理唯一证据来源/工作树，不把任务标 Done。授权证明目前是本地文件，不是 GitHub 自动持久化附件；跨机器接续缺失时必须报告证据缺失，不能用 PR 绿灯伪造预审证明。可继续其他不冲突的任务，或结束当前 Agent 会话。
 
@@ -153,6 +175,8 @@ checkout 默认 skip-smudge，自托管路径也显式禁用自动 smudge。仅�
 ## 既有媒体的精确 LFS 存储与完整比较
 
 2026-11-12 合流冷检出为218235384字节，原128MiB门禁据实拒绝。既有738条PNG/JPEG/GIF路径改为LFS，705个不同对象合计117369505字节；这是既有原字节的存储迁移，不是新增素材、授权或运行时容量。`config/ci-media-lfs.json` 固定每路径原SHA、大小、原许可类别及source9ed/base3a的真实旧binary Git OID。原六PNG的5983528字节上限、四预览组、原资产校验与所有许可正文不变。新清单只允许当前精确对象，不抓历史、不用目录通配；对象总量按OID去重，不冒称HTTP/TCP或费用上限。
+
+PR646 的 f347 冷检出实测159956847字节，仍由原128MiB门禁拒绝；8MiB比较源准备已通过。清单的独立 `evidenceExtension` 仅迁移该提交新增的58个native state gzip对象，共37495268原字节、76条精确文档路径（含18条inspection别名）；每条冻结原SHA256、大小、Git blob OID、既有来源类别与f347来源。原738条记录和117369505字节预算原封保留；扩展单列预算，复用同一恢复、索引、逐字节认证及90秒期限。`tests/helpers` 来源归档和任意未登记gzip不在迁移范围。许可检查也将清单精确登记的gzip纳入敏感路径，恢复后验证原始字节，不以文件扩展名跳过。
 
 Windows hosted仍从空Git数据库检出精确SHA、depth2及双父，增加blob:none。pack guard前取全实际parent/比较base中缺失的非清单blob，保留fetch pack并禁止自动维护；新增missing对象实际原字节总量超过8MiB即失败。原128MiB原样计算全部检出及预取pack；之后禁止lazy fetch。数据量断言是下载后验，不冒充传输前限流。安装式runner的原增量128MiB检查和有界long-push后备保留。
 

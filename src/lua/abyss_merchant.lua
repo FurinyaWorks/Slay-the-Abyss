@@ -4,6 +4,7 @@
 local Theme = require("abyss_theme")
 local Narrative = require("abyss_narrative")
 local Prologue = require("abyss_prologue")
+local Pages = require("abyss_merchant_pages")
 local M = {}
 local L, C = Theme.layout.merchant, Theme.color
 local copy = Narrative.merchant
@@ -13,7 +14,7 @@ local lines = { encounter = copy.encounter, greet = copy.greet, buy = copy.purch
 local cues = { buy = "merchant_buy", poor = "merchant_deny" }
 
 local function clamp(value) return math.max(0, math.min(1, value)) end
-local function pageEnd(current)return math.min(#current.chars,(current.page or 1)*L.pageCharacters)end
+local function pageEnd(current)return current.ends[current.page] end
 
 -- options.color, options.sound. box is the merchant container from merchantControl().
 function M.new(box, options)
@@ -30,7 +31,8 @@ function M.new(box, options)
     local function begin(kind)
         local narration = kind == "encounter"
         local text = narration and lines[kind] or "「" .. lines[kind] .. "」"
-        merchant.current = { kind = kind, narration = narration, chars = Prologue.chars(text), shown = 0, hold = 0, page=1 }
+        local chars = Prologue.chars(text)
+        merchant.current = { kind = kind, narration = narration, chars = chars, ends = Pages.ends(chars, L.pageCharacters), shown = 0, hold = 0, page=1 }
         merchant.idle = 0
         merchant.nod, merchant.shake = nil, nil
         if cues[kind] and options.sound then pcall(options.sound, cues[kind]) end
@@ -72,7 +74,7 @@ function M.new(box, options)
 
     local function paintSpeech(current)
         local count = math.min(pageEnd(current), math.floor(current.shown))
-        line.text = table.concat(current.chars, "", (current.page-1)*L.pageCharacters+1, count)
+        line.text = table.concat(current.chars, "", (current.ends[current.page-1] or 0)+1, count)
         local speaking = not current.dismissed
         if bubble then bubble:SetVisible(speaking); line:SetVisible(speaking) end
         ink(line, bubble and L.bubble.ink or (current.narration and C.textDim or C.text))

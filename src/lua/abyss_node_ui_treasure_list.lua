@@ -4,6 +4,7 @@ local Theme = require('abyss_theme')
 local L = Theme.layout.nativeNode.rewardList
 local M = {}
 local integer=require('abyss_numbers').integer
+local RewardDetail=require('abyss_node_ui_reward_detail')
 local function label(c,item)
     if item.kind=='gold' then return integer(item.amount)..' 金币' end
     if item.kind=='sapphire' then return '蓝钥匙' end
@@ -24,7 +25,9 @@ local function description(c,item,boss,items)
     if item.kind=='gold' then return '点击领取 · 不影响其他奖励' end
     if item.kind=='sapphire' then return '二选一 · 放弃「'..c.relicName(item.relicId)..'」' end
     if not item.available then return M.unavailableDescription(item,items) end
-    local prefix = boss and '三选一 · ' or item.linkedSlot and '与蓝钥匙二选一 · ' or ''
+    -- The shared footer already states the Boss choice rule. Reserve each row
+    -- and its hover body for the effect the player is actually evaluating.
+    local prefix = boss and '' or item.linkedSlot and '与蓝钥匙二选一 · ' or ''
     return prefix..c.relicText(item.id)
 end
 local function binding(c,key,box,item,index,linked,boss,bind)
@@ -41,6 +44,10 @@ local function binding(c,key,box,item,index,linked,boss,bind)
     return bind(c,key,box,token,projection,command,argument,
         function()return '已领取「'..label(c,item)..'」'end,choice,true,item)
 end
+local function renderPicture(c,box,item)
+    c.picture(box:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
+    if c.relicPicture then c.relicPicture(box:GetChild('icon'),item.kind=='relic' and item.id or nil,48)end
+end
 local function renderRow(c,panel,item,index,y,opened,linked,boss,bind,items)
         local key='treasureView/rewardItem'..index
         local box=panel:GetChild('rewardItem'..index)
@@ -50,10 +57,11 @@ local function renderRow(c,panel,item,index,y,opened,linked,boss,bind,items)
             c.state(box,available)
             box:GetChild('name').text=(available and '领取 · ' or '')..label(c,item)
             box:GetChild('description').text=description(c,item,boss,items)
-            c.picture(box:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
+            renderPicture(c,box,item)
             local handler,observe=binding(c,key,box,item,index,linked,boss,bind)
             c.action(key,opened and available,handler,nil,nil,observe)
-            c.details:set(key,label(c,item),description(c,item,boss,items))
+            c.details:set(key,label(c,item),description(c,item,boss,items),
+                available and item.kind=='relic' and RewardDetail.related(c.self,item.id) or nil)
         else c.action(key,false,function()return false end) end
         box:SetAnchoredPosition(L.x,y);box:SetLocalScale(1,1,1)
 end

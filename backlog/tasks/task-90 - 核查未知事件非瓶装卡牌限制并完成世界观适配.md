@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - '@Furinya'
 created_date: '2026-10-30 21:58'
-updated_date: '2026-10-30 21:58'
+updated_date: '2026-11-14 06:51'
 labels:
   - playtest-20261030
   - p2
@@ -29,3 +29,9 @@ Owner在未知事件遇到「非瓶装卡牌」，玩家不了解原作遗物绑
 - [ ] #1 说明本项目是否存在等价机制、该限制为何成立、原有事件是否可正常选择卡牌。
 - [ ] #2 若机制成立则提供自然清晰且符合世界观的用户可见解释；若不存在则不保留无意义的原作限制。
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-11-14第二轮逐项核对，保留To Do：仅有玩家疑问与调查目标，未找到针对非瓶装限制的调查结论、实施或验证记录。
+<!-- SECTION:NOTES:END -->

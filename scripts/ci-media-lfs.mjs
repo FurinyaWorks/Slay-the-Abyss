@@ -1,4 +1,4 @@
-// Existing media bytes, not new assets or rights: exact manifest-only LFS I/O.
+// Existing media and native state evidence: exact manifest-only LFS I/O.
 import assert from 'node:assert/strict';
 import {readFileSync, lstatSync, realpathSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -8,28 +8,50 @@ import {spawnSync} from 'node:child_process';
 import {lfsArguments,lfsEnvironment} from './ci-reviewed-lfs.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const bytes=readFileSync(new URL('../config/ci-media-lfs.json',import.meta.url));
-assert.equal(hash(bytes),'732a8b8b64611a2a3f714bf41a7c2bc1f458b1a6f9dfb86f5d37d0dc0c3a715a','exact existing media manifest');
+assert.equal(hash(bytes),'9e144aa53d856dd7f14402f30365168229e1957bf83f0b5bb7926256a6f66279','exact media and evidence manifest');
 const manifest=JSON.parse(bytes);
 assert.equal(manifest.schemaVersion,1);
-export const mediaFiles=Object.freeze(manifest.files.map(row=>Object.freeze({...row,oldBinaryGitBlobs:Object.freeze(row.oldBinaryGitBlobs)})));
+const original={...manifest};delete original.evidenceExtension;delete original.archiveExtension;
+assert.equal(hash(JSON.stringify(original,null,2)+'\n'),'732a8b8b64611a2a3f714bf41a7c2bc1f458b1a6f9dfb86f5d37d0dc0c3a715a','complete original media contract');
+const freeze=row=>Object.freeze({...row,oldBinaryGitBlobs:Object.freeze(row.oldBinaryGitBlobs)});
+export const originalMediaFiles=Object.freeze(manifest.files.map(freeze));
+export const evidenceFiles=Object.freeze(manifest.evidenceExtension.files.map(freeze));
+export const archiveFiles=Object.freeze(manifest.archiveExtension.files.map(freeze));
+export const mediaFiles=Object.freeze([...originalMediaFiles,...evidenceFiles,...archiveFiles]);
 const mediaMap=new Map(mediaFiles.map(row=>[row.path,row]));
 export const mediaByPath=Object.freeze({size:mediaMap.size,has:path=>mediaMap.has(path),get:path=>mediaMap.get(path)});
 export const maxMediaPayloadBytes=117369505;
+export const maxEvidencePayloadBytes=37495268;
+export const maxArchivePayloadBytes=6584075;
 assert.equal(manifest.maxPayloadBytes,maxMediaPayloadBytes);
+assert.equal(manifest.evidenceExtension.maxPayloadBytes,maxEvidencePayloadBytes);
+assert.equal(manifest.evidenceExtension.sourceCommit,'f34723b6d54b6153de8a333a8abcc77884737f8f');
+assert.equal(evidenceFiles.length,76);
+assert.equal(manifest.archiveExtension.sourceCommit,'9f2f44e4c79789fbcb64a515938765dbc240f830');
+assert.equal(manifest.archiveExtension.maxPayloadBytes,maxArchivePayloadBytes);
+assert.deepEqual(archiveFiles.map(row=>row.path),['docs/evidence/m7-reward-query-cards-graph-20261107.jsonl.gz','docs/evidence/m9-ci-20261103/raw-ci.json.gz','docs/evidence/pr621-deck-sort-20261111/validation.tar.gz']);
 assert.equal(mediaByPath.size,mediaFiles.length);
 const unique=new Map();
 for(const row of mediaFiles){
  assert(typeof row.path==='string'&&!isAbsolute(row.path)&&!/[\\\s,:*?\[\]\0]/u.test(row.path)&&row.path.split('/').every(p=>p!=='.'&&p!=='..'&&p!==''),'exact safe media path');
- assert(/\.(png|jpe?g|gif)$/i.test(row.path)&&/^[0-9a-f]{64}$/.test(row.sha256)&&Number.isSafeInteger(row.bytes)&&row.bytes>0);
+ const scoped=evidenceFiles.includes(row)?/^docs\/evidence\/.+\.json\.gz$/.test(row.path)&&row.sourceCommit===manifest.evidenceExtension.sourceCommit
+  :archiveFiles.includes(row)?row.sourceCommit===manifest.archiveExtension.sourceCommit:/\.(png|jpe?g|gif)$/i.test(row.path);
+ assert(scoped&&/^[0-9a-f]{64}$/.test(row.sha256)&&Number.isSafeInteger(row.bytes)&&row.bytes>0);
  assert(row.oldBinaryGitBlobs.length>0&&row.oldBinaryGitBlobs.every(id=>/^[0-9a-f]{40}$/.test(id))&&typeof row.category==='string');
  if(unique.has(row.sha256))assert.equal(unique.get(row.sha256),row.bytes);unique.set(row.sha256,row.bytes);
 }
-assert.equal([...unique.values()].reduce((a,b)=>a+b,0),maxMediaPayloadBytes,'distinct exact media payload');
+const payload=rows=>[...new Map(rows.map(row=>[row.sha256,row.bytes])).values()].reduce((a,b)=>a+b,0);
+assert.equal(payload(originalMediaFiles),maxMediaPayloadBytes,'distinct original media payload');
+assert.equal(new Set(evidenceFiles.map(row=>row.sha256)).size,58);
+assert.equal(payload(evidenceFiles),maxEvidencePayloadBytes,'distinct exact evidence payload');
+assert.equal(payload(archiveFiles),maxArchivePayloadBytes,'distinct exact existing history payload');
+const maxStoragePayloadBytes=maxMediaPayloadBytes+maxEvidencePayloadBytes+maxArchivePayloadBytes;
+assert.equal([...unique.values()].reduce((a,b)=>a+b,0),maxStoragePayloadBytes,'distinct exact storage payload');
 export const mediaPointer=row=>Buffer.from(`version https://git-lfs.github.com/spec/v1\noid sha256:${row.sha256}\nsize ${row.bytes}\n`);
 export function validateMediaPointers(pointers){
  assert.equal(pointers.size,mediaFiles.length,'complete media pointer inventory');
  for(const row of mediaFiles)assert(Buffer.isBuffer(pointers.get(row.path))&&pointers.get(row.path).equals(mediaPointer(row)),'exact frozen media index pointer: '+row.path);
- return {files:mediaFiles.length,objects:unique.size,bytes:maxMediaPayloadBytes};
+ return {files:mediaFiles.length,objects:unique.size,bytes:maxStoragePayloadBytes};
 }
 export function validateMediaIndex(root,env=process.env){
  const staged=spawnSync('git',['ls-files','--stage','-z'],{cwd:root,env:lfsEnvironment({...env,CI_LFS_TOKEN:''}),windowsHide:true,timeout:30000,maxBuffer:8*1024*1024});
@@ -59,7 +81,7 @@ function mediaPath(root,row){
 }
 export function verifyMediaAssets(root){
  for(const row of mediaFiles){const data=readFileSync(mediaPath(root,row));assert.equal(data.length,row.bytes,'exact media size: '+row.path);assert.equal(hash(data),row.sha256,'complete media bytes: '+row.path);}
- return {files:mediaFiles.length,objects:unique.size,bytes:maxMediaPayloadBytes};
+ return {files:mediaFiles.length,objects:unique.size,bytes:maxStoragePayloadBytes};
 }
 export function prepareMediaAssets({root=process.cwd(),env=process.env}={}){
  root=realpathSync.native(root);validateMediaIndex(root,env);

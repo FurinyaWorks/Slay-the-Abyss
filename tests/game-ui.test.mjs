@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 test('composed native tree has exactly one menu, battle, map and node panel', () => {
   const layout = gameLayout();
   assert.equal(layout.script, 'abyss_ui');
-  assert.deepEqual(layout.controls.map(control => control.name).sort(), ['battlePanel', 'characterPanel', 'choicePanel', 'combatRewards', 'deckEntry', 'deckPanel', 'exitEntry', 'exitPanel', 'mapPanel', 'menuPanel', 'nodePanel', 'officialBattleBackdrop', 'potionEntry', 'potionPanel', 'prologuePanel', 'relicBar', 'relicEntry', 'relicPanel', 'runMenu', 'victoryEasterEgg']);
+  assert.deepEqual(layout.controls.map(control => control.name).sort(), ['battlePanel', 'characterPanel', 'choicePanel', 'combatRewards', 'deckEntry', 'deckPanel', 'exitEntry', 'exitPanel', 'mapPanel', 'menuPanel', 'nodePanel', 'officialBattleBackdrop', 'pageReveal', 'potionEntry', 'potionPanel', 'prologuePanel', 'relicBar', 'relicEntry', 'relicPanel', 'runMenu', 'victoryEasterEgg']);
   for (const control of layout.controls.filter(control => !['menuPanel', 'exitEntry'].includes(control.name))) {
     assert.equal(control.visible, false, `${control.name} must not bleed through during startup`);
   }
@@ -88,7 +88,7 @@ test('generated Chinese display and native tree exercise the real game entry and
   const scripts = [
     ['tests/lua/game_ui.lua', /^LUA_GAME_UI_PASS 16$/m],
     ['tests/lua/game_ui_deck.lua', /^LUA_GAME_UI_DECK_PASS 6$/m],
-    ['tests/lua/game_ui_prologue.lua', /^LUA_GAME_UI_PROLOGUE_PASS 10$/m],
+    ['tests/lua/game_ui_prologue.lua', /^LUA_GAME_UI_PROLOGUE_PASS 13$/m],
   ];
   const output = scripts.map(([script, marker]) => {
     const result = runLua(script);
@@ -101,9 +101,8 @@ test('generated Chinese display and native tree exercise the real game entry and
   const { nativeMenu: menu, nativeBattle: battle, prologue } = nativeTheme.layout, { font: size } = nativeTheme;
   // Each line is checked against the control that actually displays it.
   assert.equal(previews.menu, '', 'the start screen has no route or control instructions');
-  // The approved intro is told sentence by sentence on the cinematic's single line.
-  const targets = { intro1: [prologue.line, size.title], intro2: [prologue.line, size.title], intro3: [prologue.line, size.title],
-    victory: [menu.subtitle, size.body], defeat: [menu.subtitle, size.body],
+  // The short interstitial carries no prose; result/notice copy retains its layout budget.
+  const targets = { victory: [menu.subtitle, size.body], defeat: [menu.subtitle, size.body],
     settlementError: [menu.status, size.small], boss: [battle.notice, size.body] };
   for (const [name, [frame, font]] of Object.entries(targets)) {
     assert.ok(previews[name], `missing actual controller output for ${name}`);
@@ -133,7 +132,7 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   const theme = nativeTheme, [w, h] = theme.canvas.base, { x, y } = theme.canvas.safe;
   const { prologue, merchant, nativeNode: node } = theme.layout;
   const inside = ([cx, cy, cw, ch]) => Math.abs(cx) + cw / 2 <= w / 2 - x && Math.abs(cy) + ch / 2 <= h / 2 - y;
-  for (const frame of [prologue.line, prologue.chapter, prologue.hint, prologue.skip, merchant.frame, merchant.box, merchant.portrait, merchant.name, merchant.line])
+  for (const frame of [prologue.seal, prologue.title, prologue.line, merchant.frame, merchant.box, merchant.portrait, merchant.name, merchant.line])
     assert.ok(inside(frame), JSON.stringify(frame));
   // The compact dialogue sits below the goods. Check both axes: colorless
   // prices can share its vertical band while remaining to its left.
@@ -148,6 +147,19 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   }
   assert.ok(merchant.box[0] - merchant.box[2] / 2 > node.back[0] + node.back[2] / 2);
   assert.ok(merchant.box[0] + merchant.box[2] / 2 < node.confirm[0] - node.confirm[2] / 2);
-  // The skip button lives in the lower letterbox, away from the persistent exit entry.
-  assert.ok(bottom(prologue.skip) >= -h / 2 + y - 1 && top(prologue.skip) <= -h / 2 + prologue.barHeight + 4);
+  const opening=gameLayout().controls.find(c=>c.name==='prologuePanel');
+  const count=c=>1+(c.children??[]).reduce((n,c)=>n+count(c),0);
+  assert.equal(count(opening),112,'reference composition has a fixed bounded native budget');
+  assert.deepEqual(opening.children.map(c=>c.name),['scene','fade','blocker']);
+  const scene=opening.children[0],seal=scene.children.find(c=>c.name==='seal');
+  assert.equal(seal.children.reduce((n,g)=>n+g.children.length,0),95,'retains the actual Liyue emblem geometry');
+  assert.equal(prologue.hold,undefined,'no fixed loading-screen hold');
+  assert.equal(prologue.elementStep,0.12,'short interpolation of completed stages');
+  assert.equal(opening.children.at(-1).focusable,false);
+});
+
+test('opening completion waits for the native destination without reading unrelated resources',()=>{
+  const result=runLua('tests/lua/game_ui_prologue_readiness.lua');
+  assert.equal(result.status,0,result.stdout+result.stderr);
+  assert.match(result.stdout,/LUA_OPENING_NATIVE_READINESS_PASS/);
 });

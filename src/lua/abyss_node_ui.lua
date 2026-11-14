@@ -15,6 +15,10 @@ local C = Theme.color
 local kinds = { camp = "营地", shop = "商店", event = "未知事件", treasure = "宝箱",ending_proceed='真结局' }
 local layout = Theme.layout.nativeNode
 local OPTIONS = #layout.event.options.rows
+local function repeatedEventNotice(ctx,node,message)
+    return layout.event.reference and node and node.type=='event' and not ctx.self.failed
+        and (ctx.self.notice=='' or message==ctx.child('eventView'):GetChild('body').text)
+end
 local function snapshotDeck(deck)
     local result = {}
     for _, card in ipairs(deck) do result[#result + 1] = { uid = card.uid, cardId = card.cardId, upgraded = card.upgraded } end
@@ -58,6 +62,13 @@ function M.new(root, run, map, presentation, clickEvent, onChange, options)
 
     function ctx.picture(control, id)
         if ctx.options.imageSource and id then control:SetImage(ctx.options.imageSource, iconId(id)) end
+    end
+    function ctx.relicPicture(control,id,size)
+        local art=require('abyss_lowcost_art')
+        if id then
+            ctx.picture(control,require('abyss_relic_view_ui').icon(id,Theme.presentationProfile=='official-assets-first'))
+            art.paint(control,'relic',id,size,ctx.options)
+        else art.hide(control)end
     end
 
     require("abyss_node_ui_feedback").install(ctx)
@@ -168,7 +179,9 @@ function M.new(root, run, map, presentation, clickEvent, onChange, options)
             ctx.merchant:enter(ctx.self.run)
         end
         ctx.merchant:setVisible(merchantVisible(ctx, node, active))
-        ctx.child("notice").text = ctx.self.notice ~= "" and ctx.self.notice or hint
+        local message=ctx.self.notice ~= "" and ctx.self.notice or hint
+        if repeatedEventNotice(ctx,node,message)then message=''end
+        ctx.child("notice").text = message
         ctx.ink(ctx.child("notice"), ctx.self.failed and ctx.self.notice ~= "" and C.danger or C.text)
 
     end

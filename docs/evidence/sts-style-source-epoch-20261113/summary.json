@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "sourceSliceCommit": "a73043a738cd5c6d11b3f6a66ef7383cbd463c01",
+  "baseCommit": "cb1eac63620b908d880b8a339ab834b1b533dfc1",
+  "archives": {
+    "sts-style-source-epoch": {
+      "path": "tests/helpers/sts-style-source-epoch.json.gz",
+      "sha256": "cc47fd96c79d7a604d2c5c269b012354d887762aecbe2990ac89fbf2ac74c1a9",
+      "bytes": 195169
+    },
+    "sts-style-ci-source": {
+      "path": "tests/helpers/sts-style-ci-source.json.gz",
+      "sha256": "3ae1599f14216ab2211e5f67b56fa416cb0fe2e16d52c252365b04ae636ade72",
+      "bytes": 268717
+    },
+    "sts-style-prior-runtime": {
+      "path": "tests/helpers/sts-style-prior-runtime.json.gz",
+      "sha256": "10bf3b7d960e4c02ae2d64e26d8d5f16824439b9396949973f08ccec1c9d9330",
+      "bytes": 4216851
+    }
+  },
+  "production": {
+    "beforeInputs": 347,
+    "currentInputs": 348,
+    "registeredPaths": 23,
+    "currentSourceOwnerCount": 104,
+    "priorSourceOwnerCount": 97
+  },
+  "ci": {
+    "beforeTests": 855,
+    "currentTests": 864,
+    "addedTests": [
+      "tests/sts-card-reference-runtime.test.mjs",
+      "tests/sts-card-reference.test.mjs",
+      "tests/sts-character-browser.test.mjs",
+      "tests/sts-character-reference.test.mjs",
+      "tests/sts-neow-choice.test.mjs",
+      "tests/sts-neow-guide.test.mjs",
+      "tests/sts-neow-runtime.test.mjs",
+      "tests/sts-page-reveal.test.mjs",
+      "tests/sts-style-source-epoch.test.mjs"
+    ],
+    "completeChangedSources": 45,
+    "freshHelpers": 12
+  },
+  "fixedLeaf": {
+    "path": "tests/helpers/sts-style-ci-binding.mjs",
+    "sha256": "a3ada9bfd336d269d0b31450719800b13d2977f69f4cc7364b329477296367c3",
+    "role": "fixed archive read/hash only; no policy; excluded from its own archive"
+  },
+  "validation": {
+    "firstFull": {
+      "total": 139,
+      "pass": 124,
+      "fail": 15,
+      "retained": true
+    },
+    "completeFull": {
+      "total": 144,
+      "pass": 144,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 254736.9235,
+      "ciArchiveAtRun": "c5e5d844d72178108cb9413fef9b577da2f91d6369757ba1efb56d595338b7ed"
+    },
+    "finalDelta": {
+      "changes": [
+        "Windows path separator normalization in test helper",
+        "new-test unknown-cost and no fabricated hosted-observation assertions"
+      ],
+      "styleTests": 5,
+      "passed": 5,
+      "legacyWindowsFiles": [
+        "tests/lua/competition_roster_ui.lua",
+        "tests/lua/deck_browse_filters.lua"
+      ],
+      "legacyComplete": true,
+      "legacyOriginalDeadline": true
+    },
+    "collectorCheck": "pass"
+  },
+  "trackedOldGzipDiff": "",
+  "evidence": {
+    "style-full-source-epoch-tests.log": {
+      "path": "docs/evidence/sts-style-source-epoch-20261113/style-full-source-epoch-tests.log.gz",
+      "sha256": "59c8d6456f9036e7a6de698f735df01efa57ebc9cf93575637829c1b6930a59b",
+      "rawSha256": "02f155ca2113650b0693dc53f66025b87f5ca5ea6dbd78e4e4b1d43bd201a1b7",
+      "bytes": 7262
+    },
+    "style-final-source-epoch-tests.log": {
+      "path": "docs/evidence/sts-style-source-epoch-20261113/style-final-source-epoch-tests.log.gz",
+      "sha256": "33cb24146cc573d711aa6313f89214bedc1b045bb3b6bb89d3ddc38d4e644940",
+      "rawSha256": "77f598b63937d473729f13f3c87f845754c42c5bca4ec59f09fec1c4c49f2d6f",
+      "bytes": 4760
+    },
+    "style-final-helper-tests.log": {
+      "path": "docs/evidence/sts-style-source-epoch-20261113/style-final-helper-tests.log.gz",
+      "sha256": "cb540d529c61a59511daf4ed578cd509057ab310d0c20e32b003e22d2751178c",
+      "rawSha256": "f8414cee7ac0cc497a246380be03ce39d2ea3f90351afe7bdda6b4e957629f5f",
+      "bytes": 427
+    },
+    "style-final-windows-roster.log": {
+      "path": "docs/evidence/sts-style-source-epoch-20261113/style-final-windows-roster.log.gz",
+      "sha256": "3335c8ae73b77c0093ea4be8fe3a6ac33853598cb5b499cf2875223c4b312828",
+      "rawSha256": "ed7b345a426157c20e9fcb5a149e63a92ccf275d9d8382160ba24457dd15d8d6",
+      "bytes": 267
+    },
+    "style-final-windows-deck.log": {
+      "path": "docs/evidence/sts-style-source-epoch-20261113/style-final-windows-deck.log.gz",
+      "sha256": "85f2cf24ae76993d8a86142183789dfbd13251e1771e20e917da42c01ec4ef39",
+      "rawSha256": "48e7b062c4c41bbe37f255ab3b56480b32ed4947ada0ec08b6f7b8893370b3cc",
+      "bytes": 483
+    },
+    "style-final-collector-check.log": {
+      "path": "docs/evidence/sts-style-source-epoch-20261113/style-final-collector-check.log.gz",
+      "sha256": "632b782edcbadf9e29e93e11288e8400d2e371445cb5ebfec341a12941704be1",
+      "rawSha256": "1bf93fff67640b120c644476576c42eba5a7c37ffd429aef14fe4f7849d4b6f2",
+      "bytes": 254
+    }
+  },
+  "officialDevice": "not_run",
+  "independentReview": "separate reviewer"
+}

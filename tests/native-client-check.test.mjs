@@ -141,6 +141,7 @@ test('encoder helper identity executes fresh disk bytes even when the plain help
  const f=await encoderFixture(t),adapter=join(f.dir,'adapter');mkdirSync(adapter);
  const loader=join(adapter,'native-ui-encoder.mjs'),helper=join(adapter,'native-client-check.mjs');
  writeFileSync(loader,readFileSync(new URL('../scripts/native-ui-encoder.mjs',import.meta.url)));
+ writeFileSync(join(adapter,'native-ui-rotations.mjs'),readFileSync(new URL('../scripts/native-ui-rotations.mjs',import.meta.url)));
  const oldSource="export function checkScripts(){return {scripts:[{name:'cached-A'}]};}\n";
  const diskSource="export function checkScripts(){return {scripts:[{name:'disk-B'}]};}\n";
  writeFileSync(helper,oldSource);

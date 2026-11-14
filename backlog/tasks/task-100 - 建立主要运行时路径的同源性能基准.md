@@ -1,13 +1,15 @@
 ---
 id: TASK-100
-title: 建立主要运行时路径的同源性能基准
+title: 复核当前候选热路径基准（已有工具与样本保留）
 status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-06 01:46'
-updated_date: '2026-11-07 23:14'
-labels: []
-milestone: m-7
+updated_date: '2026-11-14 10:12'
+labels:
+  - 待验
+  - delivery-verify
+milestone: m-8
 dependencies: []
 documentation:
   - docs/backlog-details/M7-SCOPE-GAP-20261105.md
@@ -57,4 +59,8 @@ PR #523 首份离线Host全路径基线已实现：固定实际seed、源摘要�
 2026-11-08接续Owner授权PR557轻量2D实验，独立树feat/lightweight-2d d8a57cae。只增加本轮同源艺术创建/驻留/重复提交诊断，既有负责人与状态/AC保留；不重做旧基准、不把离线控件计数当手机FPS。
 
 2026-11-08 PR558冻结311089f9已获独立复审及精确Full成功；C实际首房领奖回图和主动放弃结算有原图，原C2清理失败保留，另次C60正式startup通过、完整UI仍未过。独立sourceDirty E1原生两隐藏页停用实测菜单51.70/选角53.65 FPS（同机60上限短窗），日志false→true及合法Neow/首战拖牌通过；不借认C、不归因手机。显式开关源码接入与E2边界诊断继续，负责人、Sprint、任务状态及未验AC保持；入口experiments/native-2d-vertical-slice/IMPLEMENTATION.md。
+
+2026-11-14逐项对账：同源Host基准、visibility样本及原SDK结果均已交付，复用现有工具；未覆盖当前生产候选完整冷暖路径的测量继续保留，不把旧样本当当前，也不重造基准工具。
+
+2026-11-14第二轮状态纠正：已有Host基准、visibility配对与SDK阶段记录，当前候选完整覆盖待补；工具及研究已开展，不应标To Do。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->

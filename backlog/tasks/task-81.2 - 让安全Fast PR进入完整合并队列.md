@@ -1,13 +1,14 @@
 ---
 id: TASK-81.2
-title: 让安全Fast PR进入完整合并队列
+title: 验收安全Fast真实入队闭环（机制已交付）
 status: In Progress
 assignee:
   - Furinya
-created_date: 2026-11-06 15:41
-updated_date: '2026-11-09T17:25:00Z'
-labels: []
-milestone: m-7
+created_date: '2026-11-06 15:41'
+updated_date: '2026-11-14 10:13'
+labels:
+  - 待验
+  - delivery-verify
 dependencies: []
 documentation:
   - docs/evidence/ci-draft-history-20261109/README.md
@@ -51,4 +52,8 @@ TASK-81已有按影响选测，但当前develop Ruleset 25870651强制full-quali
 #539旧c7 Fast已完成8项合同，13分11秒，双平台执行33/27秒，原入口dry-run eligible。但#538合后Full Win1真实失败后没有发布授权、没有入队；将已审M7成果与阶段诊断正常追加539，新HEAD必须新独审/Full，旧Fast不冒充新组合或完整链路通过。
 
 PR584本地历史合同修复：六项Draft/Fast完整外层投影接入既有历史链，旧执行余量断言仅恢复实际历史输入边界；未改正式工作流、旧hash、预算或生产逻辑。176个不同定向用例通过；独立审查及533逐行变异、移动/重复/混合换行负控PASS。保留原4个复现失败及两次新负控夹具定位错误日志，verify:backlog和guidance通过；doctor仍报原5组重复ID和旧归档警告。精确新HEAD Hosted Full/队列/合后验收待验证，不重跑Full、不改AC。技术证据 docs/evidence/ci-draft-history-20261109/README.md。
+
+2026-11-14逐项对账：已实现pr-quality/严格队列及双平台Fast收据；原539安全Fast后未完成完整自动链路，不能据Full PR634代验Fast真实成功闭环。仅保留该验收缺口，不重配Ruleset或重做门禁。
+
+2026-11-14第二轮状态纠正：pr-quality、双平台Fast收据与严格队列已经实现；尚缺安全Fast真实入队完整链路，是验收中而非未开始。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->

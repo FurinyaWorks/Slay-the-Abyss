@@ -40,6 +40,13 @@ export function installNativeToolchainFixture(tool,sdk) {
 import {record,scenario,scriptRecord,readScripts} from './fixture-store.mjs';
 import {container,fields,one} from './scene/wire.mjs';
 import {checkClient} from './client-check.mjs';
+// Rectangle protocol at the synthetic SDK boundary. The real isolated loader
+// must adapt these original Z-only read/write anchors, just as in the SDK.
+const field=(id,wire,data)=>Buffer.from(JSON.stringify({id,wire,data:Array.from(data)}));
+const f32=value=>{const bytes=Buffer.alloc(4);bytes.writeFloatLE(value);return bytes;};
+const sub=(value,id)=>value[id],float=(value,id)=>value?.[id]??0;
+export function fixtureRectangleWrite(s){return field(508,2,s?.rotation?field(3,5,f32(s.rotation)):Buffer.alloc(0));}
+export function fixtureRectangleRead(st){return {rotation:float(sub(st,508),3)};}
 export function clientScriptRecord(spec){return scriptRecord(spec);}
 export function listClientScripts({mapPath}){return {scripts:readScripts(mapPath)};}
 export function listInterface(){return {clientTemplates:[],clientInterfaces:[]};}
@@ -59,6 +66,7 @@ export function addClientTemplate({mapPath,name,...template}){
  return {mapPath,templateIndex:indices[name]};
 }
 export function addClientUi(args){
+ fixtureRectangleWrite(args.ui??args);
  record('scene_add_client_ui',args);const state=scenario();
  if(state.failTool==='scene_add_client_ui')throw Error('FIXTURE_FAILURE scene_add_client_ui');
  if(state.payloadErrorTool==='scene_add_client_ui')return {error:{code:'PAYLOAD_FAILURE'}};

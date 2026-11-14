@@ -208,9 +208,16 @@ local function controller(host, data, display, templates, options)
         local function channel(value)return math.floor((luminance+(value-luminance)*tint.saturation)*tint.brightness+.5)end
         return Color.FromRGBA(channel(r[15]),channel(r[16]),channel(r[17]),math.floor(r[18]*tint.opacity+.5))
     end
+    local function imageMask(token,c,r)
+        if #r==21 then
+            c.enableMask=r[21]==1;check(token)
+            if r[21]==1 then call(token,c,'SetFillHorizontal',Enum.ImageFillHorizontalType.Right,.5)
+            else call(token,c,'SetFillUnused')end
+        end
+    end
     local function image(token,c,r)
         local tri=data.renderProfile=='lowpoly-v1'
-        assert(tri and #r==20 and integer(r[1]) or #r==18 and r[1]==100001,'unexpected portrait image row')
+        assert(tri and (#r==20 or #r==21) and integer(r[1]) or #r==18 and r[1]==100001,'unexpected portrait image row')
         if compactProfile(data) or data.rectanglesOnly then
             -- Shared template supplies the white image and identity transforms.
             -- Basic shape 100001 has no imageType field. Its rectangle is sized
@@ -227,6 +234,7 @@ local function controller(host, data, display, templates, options)
         call(token,c,'SetSizeDelta',r[4],r[5]);call(token,c,'SetLocalScale',r[12],r[13],1)
         call(token,c,'SetLocalRotation',tri and r[19] or 0,tri and r[20] or 0,r[14]);call(token,c,'SetAnchoredPosition',r[2],r[3])
         c.imageColor=rowColour(r);check(token)
+        imageMask(token,c,r)
         call(token,c,'SetAsLastSibling');call(token,c,'SetActive',true);call(token,c,'SetVisible',true)
     end
     function self.status(_)
@@ -305,7 +313,9 @@ local function controller(host, data, display, templates, options)
                 call(token,group,'SetActive',not data.runtimeV2);call(token,group,'SetVisible',not data.runtimeV2)
                 if data.runtimeV2 then revealGroups[#revealGroups+1]={control=group,page=page}end
             else
-                local c=create(token,Asset.imagePrefabId,group);image(token,c,data.rows[nextIndex]);nextIndex=nextIndex+1
+                local row=data.rows[nextIndex]
+                local template=row[21]==1 and assert(Asset.selectionHalfImagePrefabId,'missing half-triangle template') or Asset.imagePrefabId
+                local c=create(token,template,group);image(token,c,row);nextIndex=nextIndex+1
                 if nextIndex>#data.rows then
                     if data.runtimeV2 then phase='revealing'
                     else call(token,host,'SetVisible',true);phase='ready'end
@@ -380,15 +390,34 @@ local function activeTargets(mode,characterOpen,stopped,character,preloadSelecti
         selectScene=choosing or warm,battleScene=mode=='battle',menuScene=mode=='menu' and not choosing}
 end
 local function selectionFigure(Asset,official,profile)
-    return official and assert(Asset.battlePixel,'official selection requires shared battle pixel')
+    return official and assert(Asset.lowpolyLumine,'official selection requires approved 1600 background')
                 or profile and Asset.battle133 or lowpoly(Asset.lowpolyHero) and Asset.lowpolyHero or Asset.selection133 or Asset.battle133
 end
 -- cardTemplates: ready-card image/container template indices, used when only the cards flag is on.
+local function requiredPortrait(row,scope,wanted,mode)
+    return (not scope or scope[row.name]) and (wanted[row.name] or row.name=='result' and (mode=='victory' or mode=='defeat'))
+end
+local function portraitReadiness(row,mode,resultOutcome)
+    local state=row.adapter:status()
+    if state.phase=='failed' or state.phase=='release_failed' or state.phase=='destroyed' then return false,state.reason or state.phase end
+    if not row.active or state.phase~='ready' or row.name=='result' and resultOutcome~=mode then return false end
+    return true
+end
+local function enabled(flags,key)
+    return type(flags)=='table' and flags[key]==true
+end
+local function selectionFallback(panel,details,official)
+    return official and {panel:GetChild('v25Background'),details:GetChild('portraits')}
+        or {details:GetChild('portraits'):GetChild('traveler_ironclad')}
+end
+local function fallbackControls(row)
+    return (row.name~='selection' or row.active or row.restoreOnPause)and row.fallback or {}
+end
 function M.new(stage,report,flags,cardTemplates)
-    local selecting=type(flags)=='table' and flags.selectionAvatar==true
-    local fighting=type(flags)=='table' and flags.battlePortrait==true
-    local carding=type(flags)=='table' and flags.cards==true
-    local landing=type(flags)=='table' and flags.menuBackground==true
+    local selecting=enabled(flags,'selectionAvatar')
+    local fighting=enabled(flags,'battlePortrait')
+    local carding=enabled(flags,'cards')
+    local landing=enabled(flags,'menuBackground')
     if not selecting and not fighting and not carding and not landing then return nil end
     if owners[stage]then return owners[stage]end
     local Asset=require('abyss_traveler_portrait_assets')
@@ -421,17 +450,20 @@ function M.new(stage,report,flags,cardTemplates)
         avatar=controller(traveler:GetChild('officialAvatar'),Asset.avatar96,assert(bust.sizeDeltaX),Asset,
             profile and {nativeLifecycle=true,ownerEpoch=function()return epoch end})
         details=panel:GetChild('details')
-        local host=details and details:GetChild('officialSelectionFigure')
+        local host
+        if official then host=assert(panel:GetChild('lumineSelectionBackground'),'missing approved selection background host')
+        else host=details and details:GetChild('officialSelectionFigure')end
         if host then
-            if official then assert(Asset.selectionUses=='battlePixel','official selection requires shared battle pixel schema')end
+            if official then assert(Asset.selectionUses=='lowpolyLumine','official selection requires approved background schema')end
             local figure=selectionFigure(Asset,official,profile)
             if figure.renderProfile~='lowpoly-v1' then
                 validate(figure,133,4315,'ae2161957033d688b1bed1c7ab2ad2891d5f7bf5e34b291f9ecaef7cfa11f880','f8a7af7b079aa5bbb7e16b502b222f1fd7dbfaa2c30f6eef1bf0d76af0a0a248')
             end
-            local display=profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
+            local display=official and 1280 or profile and profile.selectionDisplay or assert(details:GetChild('portraitFrame').sizeDeltaX)
             selection=controller(host,figure,display,Asset,profile and {position=profile.selectionPosition,
                 nativeLifecycle=true,ownerEpoch=function()return epoch end})
-            rows[#rows+1]={name='selection',adapter=selection,fallback={details:GetChild('portraits'):GetChild('traveler_ironclad')},active=false}
+            local fallback=selectionFallback(panel,details,official)
+            rows[#rows+1]={name='selection',adapter=selection,fallback=fallback,active=false,restoreOnPause=official}
         end
         local row={name='avatar',adapter=avatar,fallback={},active=false,visibleOwner=traveler}
         for _,name in ipairs({'normal','hover','pressed','disabled'})do row.fallback[#row.fallback+1]=traveler:GetChild('hit'):GetChild(name):GetChild('bust')end
@@ -502,8 +534,8 @@ function M.new(stage,report,flags,cardTemplates)
         painting=true
         for _,row in ipairs(rows)do
             local s=row.adapter:status();local ready=row.active and s.phase=='ready'
-            local fallbackVisible=row.name~='selection' and row.fallbackVisible~=false
-            for _,c in ipairs((row.name~='selection' or row.active)and row.fallback or {})do
+            local fallbackVisible=(row.name~='selection' or row.restoreOnPause) and row.fallbackVisible~=false
+            for _,c in ipairs(fallbackControls(row))do
                 if destroyed then painting=false;return end
                 if c and c.alive~=false then
                     paintFallback(c,not ready and fallbackVisible,s.phase)
@@ -551,17 +583,23 @@ function M.new(stage,report,flags,cardTemplates)
             end
         return accepted
     end
+    local function presentationTargets(mode,characterOpen,stopped,character,preloadSelection)
+        local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
+        for _,row in ipairs(rows)do
+            if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
+        end
+        return wanted
+    end
     function self.sync(_,mode,characterOpen,stopped,character,preloadSelection)
         if busy or destroyed then return false end
         busy=true;local token=epoch
         -- V25 and official pages open selection artwork on demand. The legacy host's warm
         -- hint must not allocate hidden figures during its title screen.
         if profile or official then preloadSelection=false end
-        local wanted=activeTargets(mode,characterOpen,stopped,character,preloadSelection)
+        local wanted=presentationTargets(mode,characterOpen,stopped,character,preloadSelection)
         for _,row in ipairs(rows)do
             -- Competition hides the one-role legacy roster; its V25 badge has
             -- its own official symbol and does not consume this avatar drawing.
-            if official and row.name=='avatar' and row.visibleOwner.visible~=true then wanted.avatar=false end
             -- MenuView owns result outcome selection; ordinary scene sync may
             -- pause it on departure, but must never publish a default victory
             -- figure while a defeat outcome is still being prepared.
@@ -573,6 +611,22 @@ function M.new(stage,report,flags,cardTemplates)
     end
     -- Prioritize the main selection figure over the small thumbnail.
     local buildOrder=rows
+    local pagePortraits={characterPanel={avatar=true,selection=true,cardFan=true,selectScene=true},
+        battlePanel={battle=true,battleScene=true},menuPanel={menuScene=true,result=true}}
+    function self.readyForPage(_,mode,characterOpen,character,page)
+        local scope=page and pagePortraits[page]
+        if page and not scope then return true end
+        if destroyed then return false,'portrait owner destroyed' end
+        if busy then return false end
+        local wanted=presentationTargets(mode,characterOpen,false,character,false)
+        for _,row in ipairs(rows)do
+            if requiredPortrait(row,scope,wanted,mode) then
+                local ready,reason=portraitReadiness(row,mode,resultOutcome)
+                if not ready then return false,reason end
+            end
+        end
+        return true
+    end
     function self.tick(_)
         if busy or destroyed then return end
         busy=true

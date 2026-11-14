@@ -2,6 +2,7 @@
 local Actors=require('abyss_actor')
 local SourceGeometry=require('abyss_monster_source_geometry')
 local Theme=require('abyss_theme')
+local number=require('abyss_numbers').integer
 local M={}
 local L=Theme.layout
 local function pendingFeedback(feedback,actor)
@@ -26,26 +27,66 @@ function M.find(battle,index,feedback)
 end
 -- AbstractMonster: drawX=WIDTH*.75+offsetX*xScale, drawY=340*yScale+offsetY*yScale.
 -- Native anchored coordinates are centered and Y-up. Control slots never enter this transform.
--- STS floorY is 340 for a 0.7-scale hand; this hand is taller (208/720), so the
--- monster floor rises 60 source px to keep bodies, HP bars and block above resting cards.
-M.floorY=L.enemyRow.floorY or 400
+-- The official native hand/status rectangles need a larger reserved lower lane
+-- than the original atlas sprites. The theme owns that presentation adaptation.
+M.floorY=Theme.presentationProfile=='official-assets-first' and L.enemyRow.nativeFloorY or L.enemyRow.floorY or 400
+function M.powerLayout(g,mobile)
+ local scale=g.sourceScale
+ local icon=48*scale*(mobile and 1.17 or 1)
+ local countY=-(mobile and 22 or 18)*scale
+ local pitch=(mobile and 55 or 48)*scale
+ local firstX=g.healthX-g.hitWidth/2+10*scale
+ local columns,rowPitch=math.huge,0
+ if Theme.presentationProfile=='official-assets-first' then
+  local left=math.max(icon/2,(g.statusCountWidth or L.nativeText.lineHeight)-22*scale)
+  local right=math.max(icon/2,22*scale)
+  pitch=math.max(pitch,left+right)+L.statusIcon.gap
+  local minimum=L.enemyRow.nativeStatusColumns
+  local width=math.max(g.statusWidth or g.hitWidth,left+right+(minimum-1)*pitch)
+  columns=math.max(minimum,math.min(L.statusIcon.perRow,math.floor((width-left-right)/pitch)+1))
+  firstX=g.healthX-width/2+left
+  -- The top-aligned 40px native box has transparent leading below the text.
+  -- Its 1.2em line fits inside the icon after compact lower-right placement.
+  rowPitch=icon+L.statusIcon.gap
+ else countY=countY-L.nativeText.lineHeight/2 end
+ return {icon=icon,countX=22*scale,countY=countY,pitch=pitch,columns=columns,
+  hitHeight=48*scale,firstX=firstX,rowPitch=rowPitch,
+  firstY=g.healthY-math.max(g.healthHeight,Theme.font.small)/2-Theme.space.s-icon/2}
+end
+local function statusCountWidth(actor)
+ local width=L.nativeText.lineHeight
+ for _,entry in ipairs(Actors.statusView(actor))do
+  width=math.max(width,utf8.len(number(entry.sourceAmount or entry.amount))*Theme.font.small)
+ end
+ return width
+end
+local function presentationScale(source,bottom,sy)
+ if Theme.presentationProfile~='official-assets-first' then return sy end
+ local hud=Theme.officialAssets.battleHud
+ local top=hud.y-hud.height/2-Theme.space.s
+ local line=math.max(L.nativeText.lineHeight,L.intent.size)
+ local ceiling=top-line-Theme.space.xs
+ return math.min(sy,math.max(1,ceiling-bottom)/math.max(source.width,source.height,source.hbY+source.height))
+end
 function M.geometry(actor)
  local source=SourceGeometry.resolve(actor)
  local sx,sy=Theme.canvas.base[1]/1920,Theme.canvas.base[2]/1080
  local x=(1440+source.x)*sx-Theme.canvas.base[1]/2
  local bottom=(M.floorY+source.y)*sy-Theme.canvas.base[2]/2
- local portrait=math.max(source.width*sx,source.height*sy)
- local hitX,hitBottom=x+source.hbX*sx,bottom+source.hbY*sy
+ local bodyScale=presentationScale(source,bottom,sy)
+ local portrait=math.max(source.width,source.height)*bodyScale
+ local hitX,hitBottom=x+source.hbX*bodyScale,bottom+source.hbY*bodyScale
  local rootY=bottom+portrait/2
  return {x=x,y=rootY,portrait=portrait,
-  hitX=hitX,hitY=hitBottom+source.height*sy/2,hitWidth=source.width*sx,hitHeight=source.height*sy,
+  hitX=hitX,hitY=hitBottom+source.height*bodyScale/2,hitWidth=source.width*bodyScale,hitHeight=source.height*bodyScale,
+  statusWidth=source.width*sx,statusCountWidth=Theme.presentationProfile=='official-assets-first' and statusCountWidth(actor)or L.nativeText.lineHeight,
   nameX=hitX-x,nameY=hitBottom-36*sy-rootY,sourceScale=sy,
   healthX=hitX-x,healthY=hitBottom-18*sy-rootY,healthTextY=hitBottom-17*sy-rootY,healthHeight=20*sy,
-  blockX=hitX-source.width*sx/2-14*sx-x,blockY=hitBottom-14*sy-rootY,blockTextY=hitBottom-16*sy-rootY,
+  blockX=hitX-source.width*bodyScale/2-14*sx-x,blockY=hitBottom-14*sy-rootY,blockTextY=hitBottom-16*sy-rootY,
   blockWidth=64*sx,blockHeight=64*sy,
   intentX=hitX-x+(actor.definitionId=='gremlin_nob' and -30*sx or 0),
   -- Full-bleed native glyphs and their 40px text line must clear both art and hitbox.
-  intentY=math.max(portrait/2,hitBottom+source.height*sy-rootY)+math.max(L.nativeText.lineHeight,L.intent.size)/2+Theme.space.xs,
+  intentY=math.max(portrait/2,hitBottom+source.height*bodyScale-rootY)+math.max(L.nativeText.lineHeight,L.intent.size)/2+Theme.space.xs,
   intentWidth=128*sx,intentHeight=128*sy,
   intentHitWidth=64*sx,intentHitHeight=64*sy}
 

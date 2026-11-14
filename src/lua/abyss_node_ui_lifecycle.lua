@@ -37,8 +37,14 @@ function M.install(ctx)
         if self.view and self.view.node and self.view.node.type=='event' and stagedEvent(self.view.node.event.id) then self:render() end
     end
 
-    function ctx.self:update(dt)
+    function ctx.self.prepare(_,dt)
+        -- Resource/skin work may run behind the publication cover. Match clocks,
+        -- input holds and room/merchant timelines start only after publication.
         for box in pairs(ctx.skinFaces)do CardSkin.tick(box,dt)end
+    end
+
+    function ctx.self:update(dt)
+        self:prepare(dt)
         ctx.roomMotion:update(dt)
         ctx.rewardDetail:update(dt)
         ctx.shopSelection:update(dt)

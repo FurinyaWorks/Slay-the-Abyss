@@ -4,6 +4,8 @@
 local M={}
 local MAX_POOLS,MAX_CREATES,MAX_SLOTS=10,64,2657
 local api,records,order=nil,{},{}
+local presentationPage
+function M.setPresentationPage(page)presentationPage=page end
 local createdLastUpdate,generation,operationDepth=0,0,0
 local updating,clearing=false,false
 local CANCELLED={}
@@ -209,6 +211,7 @@ function M.onEngineDestroy()
     order={};createdLastUpdate=0
 end
 function M.configure(value)
+    presentationPage=nil
     if value then
         assert(type(value.instantiate)=='function' and type(value.destroy)=='function','native art creation API missing')
         for _,key in ipairs({'imageTemplateIndex','containerTemplateIndex'})do
@@ -266,6 +269,7 @@ function M.request(box,pool,metadata,platform,fallback,identity,writeSlot)
     if clearing or not api then return false,'native art runtime not configured' end
     local previous=records[box]
     if previous and previous.metadata==metadata and previous.pool==pool and previous.fallback==fallback then
+        previous.page=presentationPage
         previous.identity=identity
         if not previous.failed and operationDepth==0 then work(previous,function()visibility(previous,previous.ready==true)end)end
         return current(previous) and previous.ready==true,previous.reason
@@ -273,7 +277,7 @@ function M.request(box,pool,metadata,platform,fallback,identity,writeSlot)
     local data=drawing(metadata)
     if not data then M.release(box,fallback,pool);return false,'native art drawing rejected' end
     if previous then cancel(previous)end
-    local record={box=box,pool=pool,metadata=metadata,platform=platform,fallback=fallback,identity=identity,
+    local record={box=box,pool=pool,metadata=metadata,platform=platform,fallback=fallback,identity=identity,page=presentationPage,
         generation=generation,groups={},controls={},drawing=data,writeSlot=writeSlot,destroy=api.destroy,
         intent=claim(box,pool,fallback),
         instantiate=api.instantiate,imageTemplateIndex=api.imageTemplateIndex,containerTemplateIndex=api.containerTemplateIndex}
@@ -363,5 +367,17 @@ function M.status()
         end
     end
     return status
+end
+function M.presentationReady(page)
+    for _,record in pairs(records)do
+        if not record.removed and not record.cancelled and record.page==page then
+            if record.failed then return false,record.reason or 'card artwork preparation failed' end
+            if not record.ready then return false end
+        end
+        if not record.removed and not record.cancelled and not record.ready and not record.page then
+            return false,'UNAVAILABLE card artwork page owner'
+        end
+    end
+    return true
 end
 return M

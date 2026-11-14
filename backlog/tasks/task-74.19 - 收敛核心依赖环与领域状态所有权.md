@@ -1,14 +1,15 @@
 ---
 id: TASK-74.19
-title: 收敛核心依赖环与领域状态所有权
+title: 按真实内容阻塞复核状态所有权与残余依赖
 status: In Progress
 assignee:
   - Furinya
-created_date: 2026-11-06 01:46
-updated_date: '2026-11-11T09:22:00Z'
-updated_date: '2026-11-11T04:33:00Z'
-labels: []
-milestone: m-7
+created_date: '2026-11-06 01:46'
+updated_date: '2026-11-14 10:13'
+labels:
+  - 待验
+  - delivery-verify
+milestone: m-9
 dependencies: []
 documentation:
   - docs/backlog-details/M7-DEPENDENCY-AUDIT-20261106.md
@@ -127,4 +128,8 @@ Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯�
 DefectUtility当前完整345源实测退出核心SCC：68/513/324→67/511/321（成员/内部位置/唯一对），其他11/2环保持；全图1953位置不变、唯一对1578→1577，CC热点数量不变。新18项、相邻27项、完整工程及最终来源12项通过，行为/来源与成本独审通过。原历史读取漏边及失败均保全并逐项修复，不改原断言。新50秒floor仅本地完整Node耗时，835JS/1415Lua的Windows18/POSIX15预测在原预算。最终直接来源消费者和精确提交/正常CI交付继续，owner/status/AC保持。详见docs/backlog-details/M7-DEFECT-ACTOR-BOUNDARY-20261111.md。
 
 DefectUtility最终历史消费者补齐：Formation12、Room6、Seven19完整通过；旧Compendium/Relic/责任30项通过。成本最终20份精确来源身份已读回，最后14项CI身份回归通过，旧70项结果按原16map批次保留不冒充重跑。所有旧压缩档案和原断言不改。53份已暂存evidence/gzip经Linux真实Git autocrlf检出逐字一致，非Windows运行。独审最终身份与Draft可取回交付收口中，Hosted Full/队列/合后push未取得。
+
+2026-11-14逐项对账：重复元数据经用户批准修复，CLI现恢复可读；Defect/Protected等已有成果见634来源清单，不能据旧待合备注重做。全局残余风险未获接受，待真实内容扩展阻塞再核查；保留原AC。
+
+2026-11-14第二轮状态纠正：已有Protected/Defect能力边界等切片、全图与回滚证据；残余所有权/风险复核未完成，属于已开展工作的收口，不是待新开工。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->

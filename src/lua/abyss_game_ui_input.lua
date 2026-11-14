@@ -118,6 +118,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 return runMenuAvailable()
             end
             local function available()
+                if self.prologue and self.prologue:covering() then return false end
                 if self.disabled or self.settlementRequested or self.settlementBusy then return false end
                 if routeMode then return battleRouteAvailable(self,enabled,routeMode)end
                 if resourceAction then return not self.potionUI.visible and canManagePotions(self.run) and (not enabled or enabled()) end
@@ -302,7 +303,7 @@ function M.installGuide(self,exitPanel,clickEvent,bindCommand,dismissFromOutside
     end)
 end
 
-function M.installCharacters(self,characterPanel,clickEvent,bindCommand,selectionChanged,controller)
+function M.installCharacters(self,characterPanel,clickEvent,bindCommand,controller)
     characterPanel.disableCursorEventPassthrough=true
     characterPanel:GetChild("blocker"):AddCursorEventListener(clickEvent,function()return true end)
     bindCommand(characterPanel:GetChild("cancel"),"character_cancel",function() return self:closeCharacters() end,nil,90)
@@ -310,15 +311,8 @@ function M.installCharacters(self,characterPanel,clickEvent,bindCommand,selectio
         function()return self.characterSelection:canConfirm() and not self.characterSelection.deckOpen end,100)
     -- 查看初始牌组（STS 式卡面网格）；返回/取消先关牌组再退选角。
     bindCommand(characterPanel:GetChild('details'):GetChild('deckOpen'),'character_deck',function()
-        if not self.characterSelection.info then return false end
-        self.characterSelection.deckOpen=true;selectionChanged();return true
+        return self:openStarterDeck()
     end,function()return self.characterSelection.info~=nil and not self.characterSelection.deckOpen end,95)
-    local deckView=characterPanel:GetChild('deckView')
-    deckView:GetChild('catch'):AddCursorEventListener(clickEvent,function()return true end)
-    bindCommand(deckView:GetChild('close'),'character_deckClose',function()
-        if not self.characterSelection.deckOpen then return false end
-        self.characterSelection.deckOpen=false;selectionChanged();return true
-    end,function()return self.characterSelection.deckOpen==true end,96)
     for i,id in ipairs(CharacterSelect.characters)do
         local box=characterPanel:GetChild(i==5 and 'traveler' or 'character'..i)
         bindCommand(box,'character_'..i,function()return self:selectCharacter(id)end,

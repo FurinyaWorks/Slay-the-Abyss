@@ -1,0 +1,14 @@
+{
+  "oldLicenseRulesCategoriesEntriesUnchanged": true,
+  "addedEntries": 76,
+  "all76WorkingGzipBytesMatch": true,
+  "newCategoryKeys": [],
+  "sample": {
+    "sha256": "29431af80c79584abd24661e1502ae02b8ef01b31f4424be57c64319875c4526",
+    "bytes": 922505,
+    "category": "shared-run-hud-simulator-evidence",
+    "lfs": true,
+    "storage": "ci-media-lfs-v1",
+    "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+  }
+}

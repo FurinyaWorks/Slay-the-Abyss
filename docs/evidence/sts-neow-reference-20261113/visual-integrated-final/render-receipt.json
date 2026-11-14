@@ -1,0 +1,216 @@
+{
+  "kind": "headless-current-source-shared-run-hud",
+  "createdAt": "2026-11-13T11:32:31.419Z",
+  "sourceClosureSha256": "52b6582bfc5a1eb2507fd6aaa2ced4272db7bd521781ff5ef3d738cdf73c5731",
+  "scenarios": {
+    "two": {
+      "file": "current-two.save.json",
+      "sha256": "10a57d5f2a3b96192a6bf5ca72d26fc625b84a2252a23b0521f7d898812d48b7",
+      "startupSha256": "9199edfb56527336d259f42e8bf9e9223638da3e6ab5fe3f179700573e0e40ae"
+    },
+    "four": {
+      "file": "current-four.save.json",
+      "sha256": "0ae2290c8dd98514003d054d083d2b852c4fd29611fc3e3625fc1d948852caf4",
+      "startupSha256": "f21013191e245d29c52e2eed222a468a1d820339672c29fb72bd66cd7d3681c3"
+    }
+  },
+  "rendererSha256": "3b34e80b712c56ba2bb8042446257c57b52b3d027e20446596ce7dc27afb2fb2",
+  "browserPath": "C:/Users/Administrator/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "rendering": "headless Chromium SwiftShader software WebGL; offline SDK fixture; not official import/ready/GPU/device evidence",
+  "shots": [
+    {
+      "name": "two-intro",
+      "scenario": "two",
+      "checks": "intro action reuses measured choice component",
+      "sha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "time": 1.1870000000002328,
+      "frame": 8,
+      "frontendRenderPasses": {
+        "before": 19,
+        "after": 23
+      }
+    },
+    {
+      "name": "two-normal",
+      "scenario": "two",
+      "checks": "real seeded Neow options; one baseline and measured body; synthetic history explicitly injected",
+      "sha256": "973fea6cbd3736d2143632326bb543f27944641d2048970476f21fb2a0c8e61d",
+      "time": 5.630100000000094,
+      "frame": 34,
+      "frontendRenderPasses": {
+        "before": 45,
+        "after": 49
+      }
+    },
+    {
+      "name": "two-hover-functional-unverified",
+      "scenario": "two",
+      "checks": "functional hover retained; original hover fidelity UNVERIFIED",
+      "sha256": "c630c7f9bf71f9860623cc0bcb94e486f335c643bf79321a7bc7d3515a69772f",
+      "time": 8.600000000000001,
+      "frame": 53,
+      "frontendRenderPasses": {
+        "before": 64,
+        "after": 68
+      }
+    },
+    {
+      "name": "four-intro",
+      "scenario": "four",
+      "checks": "intro action reuses measured choice component",
+      "sha256": "071bb7f5b2fb8fdc23b088824ecf44fde49b6fdce63fb0eca67ac4c69589cc1c",
+      "time": 0.8503999999999069,
+      "frame": 6,
+      "frontendRenderPasses": {
+        "before": 16,
+        "after": 20
+      }
+    },
+    {
+      "name": "four-normal",
+      "scenario": "four",
+      "checks": "real seeded Neow options; one baseline and measured body; synthetic history explicitly injected",
+      "sha256": "af4a08a7e19ace9297bad4d5587c396cdcb16c8c7c8f102670d50b12afd9af96",
+      "time": 4.991399999999906,
+      "frame": 31,
+      "frontendRenderPasses": {
+        "before": 42,
+        "after": 46
+      }
+    },
+    {
+      "name": "four-hover-functional-unverified",
+      "scenario": "four",
+      "checks": "functional hover retained; original hover fidelity UNVERIFIED",
+      "sha256": "d0bd0c3165e15cae8dc3ee0a2d7ee97f821df55d2a91e1b6657996ada5c4d976",
+      "time": 7.924199999999719,
+      "frame": 50,
+      "frontendRenderPasses": {
+        "before": 61,
+        "after": 65
+      }
+    }
+  ],
+  "errors": [],
+  "resourceResponses": [],
+  "requests": [
+    {
+      "scenario": "two",
+      "control": "hit",
+      "id": 7600,
+      "point": {
+        "x": 473.3333333333334,
+        "y": 787.3333333333334
+      }
+    },
+    {
+      "scenario": "four",
+      "control": "hit",
+      "id": 7600,
+      "point": {
+        "x": 473.3333333333334,
+        "y": 787.3333333333334
+      }
+    }
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=42 source=explicit",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "OFFLINE_STS_NEOW_FIXTURE scenario=four explicitBossHistory=1",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3",
+      "time": 0.3155
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=4",
+      "time": 3.7608000000000454
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PAGE_REVEAL visible page=nodePanel epoch=4",
+      "time": 4.241399999999906
+    }
+  ],
+  "liveTreeDrift": [],
+  "status": "captured-awaiting-image-review"
+}

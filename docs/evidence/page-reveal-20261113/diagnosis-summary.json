@@ -1,0 +1,1123 @@
+{
+  "historical": {
+    "replay": {
+      "path": "docs/evidence/product-outcomes/pr565-new-roundtrip-20261109-v3.json.gz",
+      "sha256": "1fd8625813bb26699eab64f3dd6eddc894ae16d1b3dded51b5c88828f3c8dbdd",
+      "candidate": "207e4ad401fe86a4682618b347162bd6d7bd97ccd13996266f26daff3213fa0b",
+      "sdkSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+      "mode": "original-components",
+      "pages": [
+        {
+          "name": "menu",
+          "cycle": 0,
+          "initial": {
+            "scriptReady": true,
+            "structureReady": true,
+            "complete": true,
+            "requiredChecks": {
+              "controls": true,
+              "templates": true,
+              "text": true
+            }
+          },
+          "frames": 0,
+          "complete": true
+        },
+        {
+          "name": "character",
+          "cycle": 1,
+          "initial": {
+            "scriptReady": true,
+            "structureReady": true,
+            "complete": true,
+            "requiredChecks": {
+              "controls": true,
+              "templates": true,
+              "text": true
+            }
+          },
+          "frames": 0,
+          "complete": true
+        },
+        {
+          "name": "menu",
+          "cycle": 1,
+          "initial": {
+            "scriptReady": true,
+            "structureReady": true,
+            "complete": true,
+            "requiredChecks": {
+              "controls": true,
+              "templates": true,
+              "text": true
+            }
+          },
+          "frames": 0,
+          "complete": true
+        }
+      ],
+      "longBlocks": [
+        {
+          "eventIndex": 0,
+          "phase": "initialize",
+          "cycle": 0,
+          "wallMs": 3304.5444,
+          "frame": 0
+        },
+        {
+          "eventIndex": 1,
+          "phase": "open-character",
+          "cycle": 1,
+          "wallMs": 318.52540000000045,
+          "frame": 2
+        },
+        {
+          "eventIndex": 2,
+          "phase": "close-character",
+          "cycle": 1,
+          "wallMs": 153.96739999999954,
+          "frame": 4
+        },
+        {
+          "eventIndex": 3,
+          "phase": "open-character",
+          "cycle": 2,
+          "wallMs": 184.84040000000005,
+          "frame": 6
+        },
+        {
+          "eventIndex": 4,
+          "phase": "close-character",
+          "cycle": 2,
+          "wallMs": 206.1269000000002,
+          "frame": 8
+        },
+        {
+          "eventIndex": 5,
+          "phase": "open-character",
+          "cycle": 3,
+          "wallMs": 109.39660000000003,
+          "frame": 10
+        },
+        {
+          "eventIndex": 6,
+          "phase": "close-character",
+          "cycle": 3,
+          "wallMs": 109.82859999999982,
+          "frame": 12
+        },
+        {
+          "eventIndex": 7,
+          "phase": "open-character",
+          "cycle": 4,
+          "wallMs": 149.29059999999936,
+          "frame": 14
+        },
+        {
+          "eventIndex": 9,
+          "phase": "open-character",
+          "cycle": 5,
+          "wallMs": 100.89410000000044,
+          "frame": 18
+        },
+        {
+          "eventIndex": 10,
+          "phase": "close-character",
+          "cycle": 5,
+          "wallMs": 141.96289999999954,
+          "frame": 20
+        },
+        {
+          "eventIndex": 11,
+          "phase": "open-character",
+          "cycle": 6,
+          "wallMs": 160.11030000000028,
+          "frame": 22
+        },
+        {
+          "eventIndex": 12,
+          "phase": "close-character",
+          "cycle": 6,
+          "wallMs": 140.73109999999997,
+          "frame": 24
+        },
+        {
+          "eventIndex": 13,
+          "phase": "open-character",
+          "cycle": 7,
+          "wallMs": 118.8786999999993,
+          "frame": 26
+        },
+        {
+          "eventIndex": 14,
+          "phase": "close-character",
+          "cycle": 7,
+          "wallMs": 139.0653999999995,
+          "frame": 28
+        },
+        {
+          "eventIndex": 15,
+          "phase": "open-character",
+          "cycle": 8,
+          "wallMs": 149.61659999999938,
+          "frame": 30
+        },
+        {
+          "eventIndex": 17,
+          "phase": "open-character",
+          "cycle": 9,
+          "wallMs": 117.64720000000125,
+          "frame": 34
+        },
+        {
+          "eventIndex": 19,
+          "phase": "open-character",
+          "cycle": 10,
+          "wallMs": 123.99770000000171,
+          "frame": 38
+        },
+        {
+          "eventIndex": 20,
+          "phase": "close-character",
+          "cycle": 10,
+          "wallMs": 116.34169999999904,
+          "frame": 40
+        },
+        {
+          "eventIndex": 21,
+          "phase": "open-character",
+          "cycle": 11,
+          "wallMs": 120.76630000000114,
+          "frame": 42
+        },
+        {
+          "eventIndex": 22,
+          "phase": "close-character",
+          "cycle": 11,
+          "wallMs": 187.22599999999875,
+          "frame": 44
+        },
+        {
+          "eventIndex": 23,
+          "phase": "open-character",
+          "cycle": 12,
+          "wallMs": 141.02709999999934,
+          "frame": 46
+        },
+        {
+          "eventIndex": 25,
+          "phase": "open-character",
+          "cycle": 13,
+          "wallMs": 112.59939999999915,
+          "frame": 50
+        },
+        {
+          "eventIndex": 26,
+          "phase": "close-character",
+          "cycle": 13,
+          "wallMs": 105.92549999999937,
+          "frame": 52
+        },
+        {
+          "eventIndex": 28,
+          "phase": "close-character",
+          "cycle": 14,
+          "wallMs": 108.60790000000088,
+          "frame": 56
+        },
+        {
+          "eventIndex": 29,
+          "phase": "open-character",
+          "cycle": 15,
+          "wallMs": 102.02069999999912,
+          "frame": 58
+        },
+        {
+          "eventIndex": 30,
+          "phase": "close-character",
+          "cycle": 15,
+          "wallMs": 132.72919999999976,
+          "frame": 60
+        },
+        {
+          "eventIndex": 31,
+          "phase": "open-character",
+          "cycle": 16,
+          "wallMs": 137.02139999999963,
+          "frame": 62
+        },
+        {
+          "eventIndex": 32,
+          "phase": "close-character",
+          "cycle": 16,
+          "wallMs": 143.74599999999919,
+          "frame": 64
+        },
+        {
+          "eventIndex": 33,
+          "phase": "open-character",
+          "cycle": 17,
+          "wallMs": 144.4318000000003,
+          "frame": 66
+        },
+        {
+          "eventIndex": 35,
+          "phase": "open-character",
+          "cycle": 18,
+          "wallMs": 155.70420000000013,
+          "frame": 70
+        },
+        {
+          "eventIndex": 36,
+          "phase": "close-character",
+          "cycle": 18,
+          "wallMs": 113.08339999999953,
+          "frame": 72
+        },
+        {
+          "eventIndex": 37,
+          "phase": "open-character",
+          "cycle": 19,
+          "wallMs": 140.46000000000095,
+          "frame": 74
+        },
+        {
+          "eventIndex": 38,
+          "phase": "close-character",
+          "cycle": 19,
+          "wallMs": 112.19290000000001,
+          "frame": 76
+        },
+        {
+          "eventIndex": 39,
+          "phase": "open-character",
+          "cycle": 20,
+          "wallMs": 107.86000000000058,
+          "frame": 78
+        },
+        {
+          "eventIndex": 40,
+          "phase": "close-character",
+          "cycle": 20,
+          "wallMs": 103.88220000000001,
+          "frame": 80
+        }
+      ]
+    },
+    "reproduction": {
+      "path": "docs/evidence/product-outcomes/pr565-old-roundtrip-20261109-v3.json.gz",
+      "sha256": "458b2d9bd143e32f74997065f7b568281306617584e41190b82210f376845a14",
+      "candidate": "ae1dcf818812470ea2e7ffa91241d9e94aae3cb9146a76ac5ecbf1af37bbdac9",
+      "sdkSha256": "a62bb31a594874fbf1dc40e728ca2e0600e8d4cea0f1a16cda80481fb88452f3",
+      "mode": "legacy-portrait",
+      "pages": [
+        {
+          "name": "menu",
+          "cycle": 0,
+          "initial": {
+            "scriptReady": true,
+            "structureReady": false,
+            "complete": false,
+            "requiredChecks": {
+              "controls": true,
+              "templates": false,
+              "text": true
+            }
+          },
+          "frames": 17,
+          "complete": true
+        },
+        {
+          "name": "character",
+          "cycle": 1,
+          "initial": {
+            "scriptReady": true,
+            "structureReady": false,
+            "complete": false,
+            "requiredChecks": {
+              "controls": true,
+              "templates": false,
+              "text": true
+            }
+          },
+          "frames": 122,
+          "complete": true
+        },
+        {
+          "name": "menu",
+          "cycle": 1,
+          "initial": {
+            "scriptReady": true,
+            "structureReady": true,
+            "complete": true,
+            "requiredChecks": {
+              "controls": true,
+              "templates": true,
+              "text": true
+            }
+          },
+          "frames": 0,
+          "complete": true
+        }
+      ],
+      "longBlocks": [
+        {
+          "eventIndex": 0,
+          "phase": "initialize",
+          "cycle": 0,
+          "wallMs": 2431.8878,
+          "frame": 0
+        },
+        {
+          "eventIndex": 18,
+          "phase": "open-character",
+          "cycle": 1,
+          "wallMs": 299.5655000000006,
+          "frame": 19
+        }
+      ]
+    }
+  },
+  "current": {
+    "sdk-timeline.json": {
+      "sdk": {
+        "path": "F:/New folder/.artifacts/simulator-runtime/sdk/actual-session.mjs",
+        "sha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+        "derivedSha256": "27491465445e6ee884fcc7b3eea5497eb65edee3d520e64896ddc113779ab0ca",
+        "dependencyRemaps": [
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/@napi-rs/canvas/index.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/@napi-rs/canvas/index.js"
+          ],
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/@napi-rs/canvas/index.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/@napi-rs/canvas/index.js"
+          ],
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/protobufjs/index.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/protobufjs/index.js"
+          ],
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/fengari/src/fengari.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/fengari/src/fengari.js"
+          ]
+        ]
+      },
+      "cases": [
+        {
+          "fixture": "current-blessing.save.json",
+          "sha256": "75cebce4fffb9594d89e883ca3e05e0861ac4c50b05b04216a5759370fa0f7db",
+          "hasComponentBinding": true,
+          "frames": [
+            {
+              "step": 0,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 1,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 2,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 3,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 4,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 8,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 16,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 32,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 60,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 120,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            }
+          ]
+        },
+        {
+          "fixture": "current-shop.save.json",
+          "sha256": "75cebce4fffb9594d89e883ca3e05e0861ac4c50b05b04216a5759370fa0f7db",
+          "hasComponentBinding": true,
+          "frames": [
+            {
+              "step": 0,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 1,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 2,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 3,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 4,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 8,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 16,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 32,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 60,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 120,
+              "total": 22741,
+              "visibleBattleImages": 0,
+              "nodeVisible": true,
+              "battleVisible": false,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil"
+              ]
+            }
+          ]
+        },
+        {
+          "fixture": "current-battle.save.json",
+          "sha256": "e1678a4a2968bf281883b59ada05fe4f4729273de063b8a7fb293991d916ba1c",
+          "hasComponentBinding": true,
+          "frames": [
+            {
+              "step": 0,
+              "total": 22776,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 1,
+              "total": 22800,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 2,
+              "total": 22848,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 3,
+              "total": 22912,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 4,
+              "total": 22976,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 8,
+              "total": 23232,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 16,
+              "total": 23744,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 32,
+              "total": 24768,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 60,
+              "total": 26560,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ]
+            },
+            {
+              "step": 120,
+              "total": 30235,
+              "visibleBattleImages": 908,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "battle-details.json": {
+      "sdk": {
+        "path": "F:/New folder/.artifacts/simulator-runtime/sdk/actual-session.mjs",
+        "sha256": "8d10975a41285c54935d003bf68933586bd6bcf133328435ce8e944b005d94b8",
+        "derivedSha256": "27491465445e6ee884fcc7b3eea5497eb65edee3d520e64896ddc113779ab0ca",
+        "dependencyRemaps": [
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/@napi-rs/canvas/index.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/@napi-rs/canvas/index.js"
+          ],
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/@napi-rs/canvas/index.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/@napi-rs/canvas/index.js"
+          ],
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/protobufjs/index.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/protobufjs/index.js"
+          ],
+          [
+            "file:///F:/New%20folder/.worktrees/v25-port/.artifacts/v25-simulator-debug/sdk-identity-19dd39e7-ca14-479a-93d5-338f4bdb7a3b/sdk-fixed/node_modules/fengari/src/fengari.js",
+            "file:///F:/New%20folder/.artifacts/simulator-runtime/node_modules/fengari/src/fengari.js"
+          ]
+        ]
+      },
+      "cases": [
+        {
+          "fixture": "current-battle.save.json",
+          "sha256": "e1678a4a2968bf281883b59ada05fe4f4729273de063b8a7fb293991d916ba1c",
+          "hasComponentBinding": true,
+          "frames": [
+            {
+              "step": 0,
+              "total": 22776,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 1,
+              "total": 22824,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 2,
+              "total": 22880,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 3,
+              "total": 22936,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 4,
+              "total": 23000,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 8,
+              "total": 23256,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 16,
+              "total": 23768,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 32,
+              "total": 24792,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 60,
+              "total": 26576,
+              "visibleBattleImages": 921,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 120,
+              "total": 30235,
+              "visibleBattleImages": 908,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 180,
+              "total": 30235,
+              "visibleBattleImages": 8211,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil",
+                "ABYSS_PORTRAIT battle phase=ready owned=7459 reason=nil"
+              ],
+              "lateVisibleExamples": [
+                "/root/stage/battlePanel/hero/officialFigure/AbyssReadyCardGroup/AbyssReadyCardGroup/AbyssReadyCardImage",
+                "/root/stage/battlePanel/hero/officialFigure/AbyssReadyCardGroup/AbyssReadyCardGroup/AbyssReadyCardImage",
+                "/root/stage/battlePanel/hero/officialFigure/AbyssReadyCardGroup/AbyssReadyCardGroup/AbyssReadyCardImage"
+              ]
+            },
+            {
+              "step": 240,
+              "total": 30235,
+              "visibleBattleImages": 8211,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil",
+                "ABYSS_PORTRAIT battle phase=ready owned=7459 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            },
+            {
+              "step": 360,
+              "total": 30235,
+              "visibleBattleImages": 8211,
+              "nodeVisible": false,
+              "battleVisible": true,
+              "scriptReady": true,
+              "portraitLogs": [
+                "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+                "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil",
+                "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil",
+                "ABYSS_PORTRAIT battle phase=ready owned=7459 reason=nil"
+              ],
+              "lateVisibleExamples": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "SDK model only, not renderer or device",
+    "Current fixture is generated official-profile shop/battle/blessing, not actual-GIL import",
+    "Sampled frame indexes are simulated SDK steps, not measured device presentation duration"
+  ]
+}

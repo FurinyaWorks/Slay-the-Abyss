@@ -1,0 +1,22 @@
+{
+  "reviewId": "menu-entry-fix-20261114-readonly-02",
+  "reviewConclusion": "single-player Simulator entry trial pass; official/cold/product acceptance unverified",
+  "source": {
+    "experiments/menu-red-fit/compose.mjs": "11d8b3874238adfd7d429c32a9a41e47d75cc209e7e04e76846c9d7a19805d81",
+    "experiments/menu-red-fit/serve.mjs": "c5979454615f579c50f65d2052ba8dc5d1ebe0cf3df7d9599c48c468d0407c03",
+    "experiments/menu-red-fit/hover.mjs": "d42a3f272f0444bcab98f24678a7fb94e9b5b44d2ba6d9feb4121d833a1fd364",
+    "experiments/menu-red-fit/preview-image-catalog.mjs": "f1db2ac720ac09766ab40e0069dbb7d6322f4aa8959e0011475d7497027ac954",
+    "experiments/menu-red-fit/verify-entry.mjs": "228d676ef022cfc73bdf8cf709e4e9b39ffa0d09128377fd852debab037fb36d",
+    "tests/menu-preview-composition.test.mjs": "604e40826c302828939d7ec003af9d22121a33b18d9cad97f18818f40b5f2ad6"
+  },
+  "evidence": {
+    "docs/evidence/menu-red-entry-20261114/composition.json": "07a6bdb834d1baf287f3695d2214b48a0960d1b3e87d094636502982ba3fe7f6",
+    "docs/evidence/menu-red-entry-20261114/entry.json": "666877be08387cd736c6dc24e920c22ce5aa365960f880075e3c52cb7ee02292",
+    "docs/evidence/menu-red-entry-20261114/hover.json": "d31d91cf0d6f8fb0154fab2899ea825ce0d4e220364617867525b45fe7abbf74",
+    "docs/evidence/menu-red-entry-20261114/image-compatibility.json": "2cf4ceb0bb9f45e08d2c7eb6b128b00b6b2400dc887536aaaf89829b7608b972",
+    "docs/evidence/menu-red-entry-20261114/menu.png": "b12e36c8cc3e1b127134678b1087f7226b34dab4365cf2ab1bda17b56bdae622",
+    "docs/evidence/menu-red-entry-20261114/natural-flow.json": "69f5f11e1f6030a71f082e7ebdf2215e4b359241c13e82ba112188d533362100",
+    "docs/evidence/menu-red-entry-20261114/README.md": "36364599d80b8b8e60937ca7aef544ad43d35e369077d4317cfdc71f85f0e2d8",
+    "docs/evidence/menu-red-entry-20261114/service.json": "5a5e2ecbd38eda69b6ace707bc141e97c9f237ac014813227870df719068079e"
+  }
+}

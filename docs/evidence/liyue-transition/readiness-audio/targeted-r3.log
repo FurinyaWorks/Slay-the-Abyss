@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: result duration fails closed for invalid data and the unverified native public clock
+ok 1 - result duration fails closed for invalid data and the unverified native public clock
+  ---
+  duration_ms: 11943.5555
+  type: 'test'
+  ...
+# Subtest: composed native tree has exactly one menu, battle, map and node panel
+ok 2 - composed native tree has exactly one menu, battle, map and node panel
+  ---
+  duration_ms: 67.7356
+  type: 'test'
+  ...
+# Subtest: title carries no version label (Pan 2026-10-31: 首页版本号砍掉) and no custom announcement
+ok 3 - title carries no version label (Pan 2026-10-31: 首页版本号砍掉) and no custom announcement
+  ---
+  duration_ms: 44.0681
+  type: 'test'
+  ...
+# Subtest: menu and result follow the approved win.png composition inside the safe area
+ok 4 - menu and result follow the approved win.png composition inside the safe area
+  ---
+  duration_ms: 34.5674
+  type: 'test'
+  ...
+# Subtest: result settlement button starts hidden and uses the approved two-button placement
+ok 5 - result settlement button starts hidden and uses the approved two-button placement
+  ---
+  duration_ms: 34.052
+  type: 'test'
+  ...
+# Subtest: generated Chinese display and native tree exercise the real game entry and run controllers
+ok 6 - generated Chinese display and native tree exercise the real game entry and run controllers
+  ---
+  duration_ms: 119913.461
+  type: 'test'
+  ...
+# Subtest: the game name appears only on the title screen; other pages name their own scene
+ok 7 - the game name appears only on the title screen; other pages name their own scene
+  ---
+  duration_ms: 192.3996
+  type: 'test'
+  ...
+# Subtest: cinematic and merchant controls stay inside the phone safe area and clear of shop goods
+ok 8 - cinematic and merchant controls stay inside the phone safe area and clear of shop goods
+  ---
+  duration_ms: 69.039
+  type: 'test'
+  ...
+# Subtest: current native menu pointer, controller and settlement boundaries
+ok 9 - current native menu pointer, controller and settlement boundaries
+  ---
+  duration_ms: 9402.3218
+  type: 'test'
+  ...
+# Subtest: approved title omits initial speed selection
+ok 10 - approved title omits initial speed selection
+  ---
+  duration_ms: 50.031
+  type: 'test'
+  ...
+# Subtest: route menu native enabled states and commands share real run and opening admission
+ok 11 - route menu native enabled states and commands share real run and opening admission
+  ---
+  duration_ms: 5294.0161
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 148080.8379

@@ -1,0 +1,125 @@
+{
+  "candidateSha256": "62f239957fe0b0d86ee99edf81d93daa5d206ff64e7aff6b9f97a124cda3145a",
+  "buildId": "b75a3a56-8d33-4bc6-89e1-35f787c10d84",
+  "scope": "Actual candidate readback UI and Lua in BeyondSimulator 0.5.2 Host software PNG; NOT official device",
+  "clockMode": "manual",
+  "phaseSeconds": [
+    0,
+    0,
+    0.12,
+    0.24,
+    0.43,
+    0.61,
+    0.74,
+    0.87
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_BUILD b75a3a56-8d33-4bc6-89e1-35f787c10d84",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=ready owned=59 reason=nil",
+      "time": 0.24
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=36182 source=clock",
+      "time": 0.24
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0.24
+    }
+  ],
+  "mountError": null,
+  "frames": [
+    {
+      "file": "menu.png",
+      "sha256": "b0a1936b545249471d14508104d2f30c4a3f123b526ad78a5ce7fef15ff4d0a7"
+    },
+    {
+      "file": "character.png",
+      "sha256": "61fc0e43839bc0efb24d991fc2b47c6a564e89c5405c5cdd3e582cb6959c9d9e"
+    },
+    {
+      "file": "cover.png",
+      "sha256": "3741d9ffa28c5971000a802c7deba159c92387e60b8051b0e6e7ef6b0b3b6f0f"
+    },
+    {
+      "file": "black.png",
+      "sha256": "0df6b406fc6b914eb0d6b4774a066c3534c041745fd7cea30b5f852a2c8a341f"
+    },
+    {
+      "file": "seal.png",
+      "sha256": "c6eb28bf416bd9853429c36953a8f38585c790fd84a65fa54c56ccee5fb0cc2f"
+    },
+    {
+      "file": "hold.png",
+      "sha256": "7f954fd733c1a6306f4ab9a75bc5136d98d47ec6469b19ce0d99163d67b5c0ee"
+    },
+    {
+      "file": "reveal.png",
+      "sha256": "f8a68104ff2afa790149463787b041157cf4eca0a34e873ef341163368f2815c"
+    },
+    {
+      "file": "after.png",
+      "sha256": "0a0f271bbf32e3c98ede3922448e4c8c7b8708c38c2e8c804a3096bfbfeb4c61"
+    }
+  ]
+}

@@ -1,14 +1,14 @@
 ---
 id: TASK-20
-title: 保存发布版本、更新说明和投稿凭证
-status: To Do
+title: 核对已发布版本记录与当前版本展示
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-22 13:48'
-updated_date: '2026-11-07 03:47'
-due_date: '2026-10-30'
+updated_date: '2026-11-14 06:51'
 labels:
   - 待验
+  - delivery-verify
 milestone: m-0
 dependencies:
   - TASK-6
@@ -76,4 +76,10 @@ PR249评审修正：负责人按现行AGENTS保持Furinya。实际14版宿主遍
 2026-10-31：准备1.0.0正式候选版本字段与玩家说明；release-notes定向27项中21通过、6项Windows符号链接EPERM跳过，非整套CI。contest-2026候选说明加载成功，发布历史为空；真实GUID、官方导入、设备与投稿证据仍待，不创建Tag。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14逐项对账：用户已确认v1.0.0进入master。继续保留真实凭证/版本展示与文案AC，不重新发版、移动旧Tag或创建公告系统。
+
+2026-11-14清理旧窗口日期：原due_date=2026-10-30保留于历史，不再显示为当前截止；实际未完成AC和审批不变。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

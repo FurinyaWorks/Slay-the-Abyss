@@ -1,0 +1,146 @@
+TAP version 13
+# Subtest: result duration fails closed for invalid data and the unverified native public clock
+ok 1 - result duration fails closed for invalid data and the unverified native public clock
+  ---
+  duration_ms: 11962.2855
+  type: 'test'
+  ...
+# Subtest: composed native tree has exactly one menu, battle, map and node panel
+ok 2 - composed native tree has exactly one menu, battle, map and node panel
+  ---
+  duration_ms: 77.2293
+  type: 'test'
+  ...
+# Subtest: title carries no version label (Pan 2026-10-31: 首页版本号砍掉) and no custom announcement
+ok 3 - title carries no version label (Pan 2026-10-31: 首页版本号砍掉) and no custom announcement
+  ---
+  duration_ms: 60.8662
+  type: 'test'
+  ...
+# Subtest: menu and result follow the approved win.png composition inside the safe area
+ok 4 - menu and result follow the approved win.png composition inside the safe area
+  ---
+  duration_ms: 43.7792
+  type: 'test'
+  ...
+# Subtest: result settlement button starts hidden and uses the approved two-button placement
+ok 5 - result settlement button starts hidden and uses the approved two-button placement
+  ---
+  duration_ms: 39.553
+  type: 'test'
+  ...
+# Subtest: generated Chinese display and native tree exercise the real game entry and run controllers
+not ok 6 - generated Chinese display and native tree exercise the real game entry and run controllers
+  ---
+  duration_ms: 113036.6003
+  type: 'test'
+  location: 'F:\\New folder\\.worktrees\\liyue-transition\\tests\\game-ui.test.mjs:80:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /^LUA_GAME_UI_PROLOGUE_PASS 10$/m. Input:
+
+    'LORE_PREVIEW\tintro1\t岩层深处传来了异常的共鸣。\n' +
+      'LORE_PREVIEW\tintro2\t古老的封印正在崩解……\n' +
+      'LORE_PREVIEW\tintro3\t旅行者，深入遗迹，阻止深渊的侵蚀。\n' +
+      'ok prologue 1 - shared approved sentence helpers remain intact\n' +
+      'ok prologue 2 - confirmation fades over the selected character before creating any run\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ok prologue 3 - fully covered frame commits once and reveals the existing Neow page\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ok prologue 4 - transparent shield and admission reject duplicate confirmation and stale page commands\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ok prologue 5 - cancel before cover discards pending run and reopens selection input\n' +
+      'ok prologue 6 - disable clears the shield and pending commit\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ok prologue 7 - large frame completes all phases without residual mask or repeated creation\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ok prologue 8 - resize covers wide and tall canvases without enlarging the central mark\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ABYSS_RUN seed=43 source=explicit\n' +
+      'ok prologue 9 - a retry from defeat plays again and preserves one-run ownership\n' +
+      'ABYSS_RUN seed=1 source=explicit\n' +
+      'ok prologue 10 - rule-only hosts retain immediate start without enabling the old camera\n' +
+      'ABYSS_RUN seed=42 source=explicit\n' +
+      'ok prologue 11 - reference element and veil boundaries execute at their actual timestamps\n' +
+      'LUA_GAME_UI_PROLOGUE_PASS 11\n'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    LORE_PREVIEW	intro1	岩层深处传来了异常的共鸣。
+    LORE_PREVIEW	intro2	古老的封印正在崩解……
+    LORE_PREVIEW	intro3	旅行者，深入遗迹，阻止深渊的侵蚀。
+    ok prologue 1 - shared approved sentence helpers remain intact
+    ok prologue 2 - confirmation fades over the selected character before creating any run
+    ABYSS_RUN seed=42 source=explicit
+    ok prologue 3 - fully covered frame commits once and reveals the existing Neow page
+    ABYSS_RUN seed=42 source=explicit
+    ok prologue 4 - transparent shield and admission reject duplicate confirmation and stale page commands
+    ABYSS_RUN seed=42 source=explicit
+    ok prologue 5 - cancel before cover discards pending run and reopens selection input
+    ok prologue 6 - disable clears the shield and pending commit
+    ABYSS_RUN seed=42 source=explicit
+    ok prologue 7 - large frame completes all phases without residual mask or repeated creation
+    ABYSS_RUN seed=42 source=explicit
+    ok prologue 8 - resize covers wide and tall canvases without enlarging the central mark
+    ABYSS_RUN seed=42 source=explicit
+    ABYSS_RUN seed=43 source=explicit
+    ok prologue 9 - a retry from defeat plays again and preserves one-run ownership
+    ABYSS_RUN seed=1 source=explicit
+    ok prologue 10 - rule-only hosts retain immediate start without enabling the old camera
+    ABYSS_RUN seed=42 source=explicit
+    ok prologue 11 - reference element and veil boundaries execute at their actual timestamps
+    LUA_GAME_UI_PROLOGUE_PASS 11
+
+  operator: 'match'
+  stack: |-
+    file:///F:/New%20folder/.worktrees/liyue-transition/tests/game-ui.test.mjs:96:12
+    Array.map (<anonymous>)
+    TestContext.<anonymous> (file:///F:/New%20folder/.worktrees/liyue-transition/tests/game-ui.test.mjs:93:26)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the game name appears only on the title screen; other pages name their own scene
+ok 7 - the game name appears only on the title screen; other pages name their own scene
+  ---
+  duration_ms: 111.0066
+  type: 'test'
+  ...
+# Subtest: cinematic and merchant controls stay inside the phone safe area and clear of shop goods
+ok 8 - cinematic and merchant controls stay inside the phone safe area and clear of shop goods
+  ---
+  duration_ms: 30.1358
+  type: 'test'
+  ...
+# Subtest: current native menu pointer, controller and settlement boundaries
+ok 9 - current native menu pointer, controller and settlement boundaries
+  ---
+  duration_ms: 5274.5553
+  type: 'test'
+  ...
+# Subtest: approved title omits initial speed selection
+ok 10 - approved title omits initial speed selection
+  ---
+  duration_ms: 45.5104
+  type: 'test'
+  ...
+# Subtest: route menu native enabled states and commands share real run and opening admission
+ok 11 - route menu native enabled states and commands share real run and opening admission
+  ---
+  duration_ms: 4375.478
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 10
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 135996.1837

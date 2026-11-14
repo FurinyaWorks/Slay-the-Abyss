@@ -7,6 +7,7 @@ import {frozenBattleHandFixtures} from '../tests/helpers/battle-life-frozen-hand
 import {historicalMonsterUiFixtures} from '../tests/helpers/historical-monster-ui-runner.mjs';
 import {historicalCardInputFixtures} from '../tests/helpers/historical-card-input.mjs';
 import {historicalPresentationFixtures} from '../tests/helpers/historical-presentation-runner.mjs';
+import {historicalStsStyleFixtures} from '../tests/helpers/historical-sts-style-runner.mjs';
 import {eventCombatRouteFixtures,eventCombatRouteInput} from '../tests/helpers/event-combat-route-input.mjs';
 import {prepareRuntimePreviews, needsRuntimePreviews} from './ci-reviewed-lfs.mjs';
 
@@ -16,7 +17,9 @@ const isGraphInput = path => /^(src\/lua\/.*\.lua|scripts\/.*\.mjs|tests\/.*\.(m
 // Importing runLua does not execute its conditional fixture setup. Keep these
 // helper edges on their real Lua entries, as with the historical replay port.
 const conditionalRunnerFixtures = new Map([
+  ['scripts/build-ui.mjs', new Set(['tests/lua/lowcost_art.lua'])],
   ['tests/helpers/historical-presentation-runner.mjs', new Set(historicalPresentationFixtures)],
+  ['tests/helpers/historical-sts-style-runner.mjs', new Set(historicalStsStyleFixtures)],
   ['tests/helpers/battle-life-frozen-hand.mjs', new Set(frozenBattleHandFixtures)],
   ['tests/helpers/historical-monster-ui-runner.mjs', new Set(historicalMonsterUiFixtures)],
   ['tests/helpers/historical-card-input.mjs', new Set(historicalCardInputFixtures)],

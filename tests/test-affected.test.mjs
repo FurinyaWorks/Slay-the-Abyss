@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { selectTests, parseGitChanges } from '../scripts/test-affected.mjs';
 import {frozenBattleHandFixtures} from './helpers/battle-life-frozen-hand.mjs';
 import {eventCombatRouteFixtures,eventCombatRouteInput} from './helpers/event-combat-route-input.mjs';
+import {historicalStsStyleFixtures} from './helpers/historical-sts-style-runner.mjs';
 
 const sources = {
   'src/lua/abyss_low.lua': 'return {}',
@@ -471,11 +472,57 @@ test('real generated node layout changes retain actual host Lua regressions and 
   assert.ok(!plan.integration.includes('tests/reward-upgrades.test.mjs'));
 });
 
+test('conditional low-cost UI preparation retains its actual layout dependency without tainting rule wrappers',()=>{
+  const plan=selectTests(['scripts/node-ui-layout.mjs'],{
+    'scripts/node-ui-layout.mjs':'export const layout={}',
+    'scripts/build-ui.mjs':"import {layout} from './node-ui-layout.mjs'",
+    'scripts/test-lua.mjs':"import {buildUI} from './build-ui.mjs'; export function runLua(){}",
+    'tests/lua/lowcost_art.lua':'return true',
+    'tests/lua/reward_upgrades.lua':'return true',
+    'tests/lowcost.test.mjs':"import {runLua} from '../scripts/test-lua.mjs';runLua('tests/lua/lowcost_art.lua')",
+    'tests/reward-upgrades.test.mjs':"import {runLua} from '../scripts/test-lua.mjs';runLua('tests/lua/reward_upgrades.lua')",
+  });
+  assert.equal(plan.full,false);
+  assert.deepEqual(plan.lua,['tests/lua/lowcost_art.lua']);
+  assert.deepEqual(plan.integration,['tests/lowcost.test.mjs']);
+});
+
 test('the conditional historical replay helper selects its fixture without tainting ordinary Lua wrappers',()=>{
   const plan=selectTests(['tests/helpers/historical-presentation-runner.mjs'],repositorySources);
   assert.equal(plan.full,false);
   assert.ok(plan.lua.includes('tests/lua/presentation_responsibilities_trace.lua'));
   assert.ok(!plan.integration.includes('tests/reward-upgrades.test.mjs'));
+});
+
+const stsStyleRunnerSources={
+  'tests/helpers/historical-sts-style-runner.mjs':'export function runHistoricalStsStyle(){}',
+  'scripts/test-lua.mjs':`import {runHistoricalStsStyle} from '../tests/helpers/historical-sts-style-runner.mjs'; export function runLua(){}`,
+  ...Object.fromEntries(historicalStsStyleFixtures.map(path=>[path,'return true'])),
+  'tests/lua/unrelated.lua':'return true',
+  'tests/sts-style-replay.test.mjs':historicalStsStyleFixtures.map(path=>`runLua('${path}')`).join(';'),
+  'tests/unrelated.test.mjs':`import {runLua} from '../scripts/test-lua.mjs';runLua('tests/lua/unrelated.lua')`,
+};
+
+test('StS style conditional runner selects only the two frozen fixtures without polluting imported runLua wrappers',()=>{
+  assert.deepEqual(historicalStsStyleFixtures,['tests/lua/competition_roster_ui.lua','tests/lua/deck_browse_filters.lua']);
+  const plan=selectTests(['tests/helpers/historical-sts-style-runner.mjs'],stsStyleRunnerSources);
+  assert.equal(plan.full,false);
+  assert.deepEqual(plan.lua,[...historicalStsStyleFixtures].sort());
+  assert.deepEqual(plan.integration,['tests/sts-style-replay.test.mjs']);
+  assert.deepEqual(plan.fast,[]);
+});
+
+test('real StS historical helper retains both complete fixtures and excludes unrelated reward wrappers',()=>{
+  const plan=selectTests(['tests/helpers/historical-sts-style-runner.mjs'],repositorySources);
+  assert.equal(plan.full,false);
+  for(const fixture of historicalStsStyleFixtures)assert.ok(plan.lua.includes(fixture),fixture);
+  assert.ok(!plan.integration.includes('tests/reward-upgrades.test.mjs'));
+});
+
+test('StS conditional boundary keeps shared-runner and unknown helper changes on Full',()=>{
+  assert.equal(selectTests(['scripts/test-lua.mjs'],stsStyleRunnerSources).full,true);
+  const unknown='tests/helpers/historical-sts-style-other.mjs';
+  assert.equal(selectTests([unknown],{...stsStyleRunnerSources,[unknown]:'export const value=1'}).full,true);
 });
 
 const eventRouteSources={

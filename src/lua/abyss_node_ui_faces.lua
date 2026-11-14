@@ -11,6 +11,7 @@ end
 local M = {}
 
 local function referenceCard(ctx, box, definition, look)
+    if box:GetChild('stsReferenceChrome') then return end
     local reference = Theme.layout.nativeNode.cardReference
     if not reference then return end
     local chrome, skin = box:GetChild('v25NodeCardChrome'), box:GetChild('skin')

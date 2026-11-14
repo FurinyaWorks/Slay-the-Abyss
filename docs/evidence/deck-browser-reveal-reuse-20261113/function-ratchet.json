@@ -1,0 +1,28 @@
+{
+  "kind": "Five owned Lua function ratchet only; graph/SCC committed gate remains integration check",
+  "base": "d359015e567aa2d8ee39cce069f2a151206d1f1d",
+  "errors": [],
+  "status": "pass",
+  "functions": [
+    {
+      "file": "src/lua/abyss_deck_ui.lua",
+      "name": "self.update",
+      "line": 552,
+      "complexity": 22,
+      "before": 26
+    },
+    {
+      "file": "src/lua/abyss_page_reveal.lua",
+      "name": "gate:finish",
+      "line": 86,
+      "complexity": 12
+    },
+    {
+      "file": "src/lua/abyss_ui.lua",
+      "name": "presentationReady",
+      "line": 99,
+      "complexity": 12,
+      "before": 15
+    }
+  ]
+}

@@ -1,16 +1,16 @@
 ---
 id: TASK-2.1
 title: 制作首发岩系遗迹场景
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-22 16:37'
-updated_date: '2026-11-07 03:47'
-due_date: '2026-10-28'
+updated_date: '2026-11-14 06:50'
 labels:
   - art
   - launch
   - 待验
+  - delivery-verify
 milestone: m-5
 dependencies: []
 references:
@@ -54,4 +54,8 @@ ordinal: 32000
 2026-10-27场景路线已确定：优先复用GI/千星官方允许使用的原生3D与布景。首发不批量拟合绘制全屏高清战斗背景；只保留必要的低成本前景或环境差异化。原始模型导入、镜头、碰撞与退出清理验收继续有效。
 
 2026-11-07 看板核对（develop 2c85bc61）：无在途 PR/本轮提交，状态由 In Progress 归 To Do；既有实现与历史证据保留，未勾 AC 不变，待后续认领或同候选平台/设备验收。
+
+2026-11-14清理旧窗口日期：原due_date=2026-10-28保留于历史，不再显示为当前截止；实际未完成AC和审批不变。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

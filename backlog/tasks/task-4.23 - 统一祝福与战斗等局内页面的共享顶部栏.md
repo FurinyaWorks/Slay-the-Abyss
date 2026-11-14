@@ -1,12 +1,14 @@
 ---
 id: TASK-4.23
-title: 统一祝福与战斗等局内页面的共享顶部栏
+title: 核对共享顶栏合后交付（组件已合入）
 status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-13 07:40'
-updated_date: '2026-11-13 08:08'
-labels: []
+updated_date: '2026-11-14 10:13'
+labels:
+  - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 parent_task_id: TASK-4
@@ -43,4 +45,10 @@ ordinal: 173000
 本轮续接组合验证：官方布局/真实Host四文件53/53通过；工程AST346模块6016/6016、架构1955边和Luacheck无新诊断；四变异killed_by_assertion，六项原生UI合同通过。初始缺Luacheck、缺生成数据、系统TEMP权限失败均按环境修正后重跑，未放宽规则。Backlog/平台日常负载/数据验证通过。独立agent修复37项来源接续失败，另一路新源码真实Simulator截图正在生成。
 
 最终单行potionTint视觉修复及同RGBA回归已通过；最终8张真实SDK截图/状态与source manifest绑定8e8ab557…闭包，逐文件读回无漂移。药水跨祝福/地图/战斗图片与RGBA一致，三浏览器返回区域RGBA一致，Lua/console/HTTP零错误；独立复审PASS。原截图“返回缺失”为观察误判，已用原PNG逐字节核对撤回，未改生产。最终71项完整CI来源合同+10项受影响来源负控通过；旧冻结档保留。官方导入ready和设备尚未测，任务保持In Progress。
+
+2026-11-14逐项对账：639/e805a87d已实际合入，独立源码/SDK八图和71项合同已有记录。尚未取到639原预审授权的合后回执，保留交付对账及原AC，不重复实现顶栏；官方/设备仍未测。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
+
+PR639当前head cb1eac63620b908d880b8a339ab834b1b533dfc1已推送。Full唯一历史trace30秒超时，经同Node24/TEMP/冻结输入对照cb与903分别16.48/16.66秒通过，原预算未变；已仅一次重跑原run43402980943失败job，尚未宣称合并。后续卡框/选角/Neow/揭幕已在线性style候选整合。原生副本构建另因本机未签名PowerShell helper被策略拒绝，未改策略/未导入/未取官方ready。
 <!-- SECTION:NOTES:END -->

@@ -66,6 +66,12 @@ assert(creates==0)
 for name in pairs(forbidden)do assert(package.loaded[name]==nil,'disabled data loaded '..name)end
 assert(not options.cardArt and not options.background and not options.portraits)
 assert(captured:confirmCharacter())
+for _=1,80 do
+ if not captured.starting and not(captured.prologue and captured.prologue:covering())
+  and not(captured.pageReveal and captured.pageReveal:covered())then break end
+ OnUpdate(0.05)
+end
+assert(captured.run and not captured.starting and not captured.prologue:covering(),'native monster opening did not finish')
 assert(F.click(root,'nodePanel','eventView/option1'))
 assert(F.click(root,'nodePanel','eventView/option2'))
 assert(F.click(root,'nodePanel','eventView/option1'))

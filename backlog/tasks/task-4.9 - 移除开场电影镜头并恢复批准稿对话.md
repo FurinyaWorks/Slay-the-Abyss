@@ -1,12 +1,14 @@
 ---
 id: TASK-4.9
-title: 移除开场电影镜头并恢复批准稿对话
-status: To Do
+title: 复验开局对话与无电影镜头（源码已交付）
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-29 05:10'
-updated_date: '2026-10-29 12:33'
-labels: []
+updated_date: '2026-11-14 06:50'
+labels:
+  - 待验
+  - delivery-verify
 milestone: m-5
 dependencies: []
 references:
@@ -35,4 +37,8 @@ ordinal: 126000
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-10-29 正式开局不再创建或播放 abyss_prologue 镜头，跳过按钮没有点击处理，序章面板保持隐藏。确认角色后进入原有高塔恩赐。商人仍用其中的逐字拆分。电脑和手机实机证据仍缺，验收未勾。
+
+2026-11-14逐项对账：原序章不播放已实现；保留批准稿开场及同候选PC/手机AC，不能因旧描述重新增加电影开场。
+
+2026-11-14第二轮状态纠正：已核对本任务原实施计划、技术附件或已有PR/修复记录；工作已经开展，未勾AC不等于未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

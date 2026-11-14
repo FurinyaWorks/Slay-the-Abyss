@@ -133,9 +133,15 @@ export function gameLayout(theme = nativeTheme, options = {}) {
       ...experimentalCharacterControls(theme),
       prologueControl(theme),
       ...exitControls(theme),
+      { name: 'pageReveal', kind: 'container', size: [...theme.canvas.base], visible: false, children: [
+        plate('veil', [0, 0, ...theme.canvas.base], color.backdrop),
+        { name: 'blocker', kind: 'cursorArea', size: [...theme.canvas.base], focusable: false },
+        text('message', [0, 24, 600, 56], '正在准备画面…', font.body, color.text),
+        button('cancel', [0, -64, 180, 48], '打开菜单', { inset: [space.s, space.s], fontSize: font.label }),
+      ] },
     ],
   };
-  const overlays = new Set(['deckPanel', 'relicPanel', 'potionPanel', 'choicePanel', 'characterPanel', 'exitPanel', 'runMenu', 'prologuePanel']);
+  const overlays = new Set(['deckPanel', 'relicPanel', 'potionPanel', 'choicePanel', 'characterPanel', 'exitPanel', 'runMenu', 'prologuePanel', 'pageReveal']);
   for (const control of layoutTree.controls) if (overlays.has(control.name)) control.isolateNavigation = true;
   const menuPanel=layoutTree.controls.find(c=>c.name==='menuPanel');
   for(const name of ['vista','heroArt']){const old=menuPanel.children.find(c=>c.name===name);if(old)old.visible=false;}

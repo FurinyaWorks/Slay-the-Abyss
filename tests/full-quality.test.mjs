@@ -8,6 +8,16 @@ import {currentFullQualityJobs,qualityWorkflowPath} from '../scripts/verify-deli
 import {qualityShardJobs} from '../scripts/ci-quality-shape.mjs';
 import {beforeAutoMergeWorkflow,beforeExecutionTimeoutWorkflow} from './helpers/auto-merge-workflow.mjs';
 import {beforeDraftQualityWorkflow} from './helpers/draft-quality-workflow.mjs';
+import {spawnSync} from 'node:child_process';
+test('pre-install CI status publishers load without npm packages',()=>{
+ const urls=['publish-full-quality.mjs','publish-pr-quality.mjs','publish-merge-group.mjs'].map(name=>new URL('../scripts/'+name,import.meta.url).href);
+ const program=`import {registerHooks} from 'node:module';
+ registerHooks({resolve(specifier,context,next){if(!specifier.startsWith('node:')&&!specifier.startsWith('.')&&!specifier.startsWith('/')&&!specifier.startsWith('file:'))throw Error('pre-install package dependency: '+specifier);return next(specifier,context);}});
+ for(const url of ${JSON.stringify(urls)})await import(url);console.log('pre-install-load-ok');`;
+ const result=spawnSync(process.execPath,['--input-type=module','-e',program],{encoding:'utf8',timeout:10000});
+ assert.equal(result.status,0,result.stderr);
+ assert.match(result.stdout,/pre-install-load-ok/);
+});
 const sha=c=>c.repeat(40),repo='CHNISam/Slay-the-Abyss';
 function fixture(){return {repo,runId:7,attempt:1,number:510,head:sha('a'),base:sha('b'),tested:sha('d'),mode:'full',
  needs:{impact:{result:'success'},rules:{result:'success'},fast:{result:'skipped'},presentation:{result:'success'},'engineering-posix':{result:'success'}},

@@ -1,0 +1,71 @@
+{
+  "attack": {
+    "source": "rarity_frame_common_attack.png",
+    "sourceSha256": "d24e6c71fe1e772a8bafda19bc384d221624eed47f63cc3d6b0d6e877f2ea8dd",
+    "sdkSha256": "fc6e74819519b78d07df9fdce746bc11edead96ab499a1aa8b5ff3d20945b62a",
+    "sourceFrameOffset": [
+      30,
+      0
+    ],
+    "sdkCrop": [
+      530,
+      30,
+      1070,
+      514
+    ],
+    "sourceTopOccludedByBanner": 113,
+    "maskIoU": 0.9497369260204082,
+    "maxBoundaryLogicalPx": 0.5,
+    "p95BoundaryLogicalPx": 0.25,
+    "meanBoundaryLogicalPx": 0.14616924832456563,
+    "sourcePx": 24334,
+    "candidatePx": 24581,
+    "scope": "current shared production buildReferencePortrait; source alpha>=128; SDK minRGB>=142; not whole card material parity"
+  },
+  "skill": {
+    "source": "rarity_frame_common_skill.png",
+    "sourceSha256": "f017b06484a5c0e2cda16328c0709be0f8e57a5107f69bc27f41a4dca6d6ccc6",
+    "sdkSha256": "0a431d181690424fee0d8820d20fa7668bad1389b6daf63425a382e61f068f46",
+    "sourceFrameOffset": [
+      30,
+      0
+    ],
+    "sdkCrop": [
+      530,
+      30,
+      1070,
+      514
+    ],
+    "sourceTopOccludedByBanner": 113,
+    "maskIoU": 0.9601699020082716,
+    "maxBoundaryLogicalPx": 0.5,
+    "p95BoundaryLogicalPx": 0.25,
+    "meanBoundaryLogicalPx": 0.11456280035046956,
+    "sourcePx": 26110,
+    "candidatePx": 26499,
+    "scope": "current shared production buildReferencePortrait; source alpha>=128; SDK minRGB>=142; not whole card material parity"
+  },
+  "power": {
+    "source": "rarity_frame_uncommon_power.png",
+    "sourceSha256": "1f8ae741c2adfea4971a7d991c32c5a9b5b243e8d5ade0f1556b86aac62b3742",
+    "sdkSha256": "b874d9d72b3196689fab7aded9c729e79a66603a1eb116792317842613adab77",
+    "sourceFrameOffset": [
+      30,
+      0
+    ],
+    "sdkCrop": [
+      530,
+      30,
+      1070,
+      514
+    ],
+    "sourceTopOccludedByBanner": 0,
+    "maskIoU": 0.9636897404202719,
+    "maxBoundaryLogicalPx": 0.5590169943749475,
+    "p95BoundaryLogicalPx": 0.25,
+    "meanBoundaryLogicalPx": 0.10352275856944905,
+    "sourcePx": 31458,
+    "candidatePx": 32087,
+    "scope": "current shared production buildReferencePortrait; source alpha>=128; SDK minRGB>=142; not whole card material parity"
+  }
+}

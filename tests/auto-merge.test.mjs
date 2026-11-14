@@ -11,6 +11,14 @@ import {queueRulesFingerprint} from '../scripts/merge-queue-policy.mjs';
 const sha=c=>c.repeat(40);
 const armAutoMerge=(repo,number,review,query,options={})=>activate(repo,number,review,query,{loadCheckout:query.loadCheckout,...options});
 const repo='CHNISam/Slay-the-Abyss';
+test('renamed repository retains its immutable identity and rejects impostors',()=>{
+ const canonical='FurinyaWorks/Slay-the-Heavens';
+ const read=value=>()=>JSON.stringify(value);
+ assert.equal(currentProjectRepository(read({id:projectRepositoryId,full_name:canonical})).full_name,canonical);
+ for(const value of [{id:1,full_name:canonical},{id:projectRepositoryId,full_name:'someone/Slay-the-Heavens'}])
+  assert.throws(()=>currentProjectRepository(read(value)),/identity/);
+ assert.deepEqual(autoMergeErrors(fixture(canonical)),[]);
+});
 function fixture(repoName=repo) {
   const pr={number:510,node_id:'PR_reviewed_510',state:'open',merged:false,draft:false,mergeable:true,changed_files:1,
     head:{sha:sha('a'),ref:'feat/reviewed',repo:{id:projectRepositoryId,full_name:repoName}},base:{ref:'develop',sha:sha('b'),repo:{id:projectRepositoryId,full_name:repoName}},merge_commit_sha:sha('d'),body:'Summary\n\nDepends-on: none',
@@ -42,6 +50,27 @@ test('repository transfer resolves the pinned project and rejects namespace reus
   const bad=structuredClone(f);mutate(bad);assert(autoMergeErrors(bad).length,String(mutate));
  }
 });
+test('renamed project keeps its pinned ID, historical witnesses and exact auto-merge authorization',()=>{
+ const canonical='FurinyaWorks/Slay-the-Heavens',resource={id:projectRepositoryId,full_name:canonical};
+ assert.equal(currentProjectRepository(()=>JSON.stringify(resource)).full_name,canonical);
+ assert.throws(()=>currentProjectRepository(()=>JSON.stringify({...resource,id:1})),/identity/);
+ const text=JSON.stringify({repo:'FurinyaWorks/Slay-the-Abyss',head:sha('a')});
+ assert.equal(collectIdentityWitness(text,canonical,()=>JSON.stringify(resource)).canonicalFullName,canonical);
+ const m=mock({repository:canonical,pending:true});
+ assert.equal(armAutoMerge(canonical,510,m.f.review,m.query).state,'auto-merge-requested');
+});
+test('the observed Slay-the-Heavens rename preserves immutable repository and historical receipt identity',()=>{
+ const canonical='FurinyaWorks/Slay-the-Heavens',resource={id:projectRepositoryId,full_name:canonical};
+ assert.equal(currentProjectRepository(()=>JSON.stringify(resource)).full_name,canonical);
+ assert.deepEqual(autoMergeErrors(fixture(canonical)),[]);
+ assert.throws(()=>currentProjectRepository(()=>JSON.stringify({...resource,id:1})),/identity/);
+ assert.throws(()=>currentProjectRepository(()=>JSON.stringify({...resource,full_name:'someone/Slay-the-Heavens'})),/identity/);
+ const text=JSON.stringify({repo:'FurinyaWorks/Slay-the-Abyss',head:sha('a')});
+ const witness=collectIdentityWitness(text,canonical,()=>JSON.stringify(resource));
+ assert.equal(witness.canonicalFullName,canonical);
+ assert.equal(witness.preflightText,text);
+ assert.throws(()=>collectIdentityWitness(text,canonical,(...args)=>JSON.stringify(args.at(-1).startsWith('repos/')?{...resource,id:1}:resource)),/identity/);
+});
 function mock(opts={}) {
   const repo=opts.repository??'CHNISam/Slay-the-Abyss';
   const f=fixture(repo),calls=[];let pulls=0,armed=false,statusId=10;
@@ -52,6 +81,7 @@ function mock(opts={}) {
     conclusion:name==='fast'?'skipped':'success',run_attempt:1,run_id:7,head_sha:sha('a')}));
   if(opts.fastOnly)jobs.find(j=>j.name.startsWith('rules')).conclusion='skipped';
   if(opts.pending){run.status='in_progress';run.conclusion=null;for(const job of jobs)if(job.name!=='fast'){job.status='queued';job.conclusion=null;}}
+  if(opts.unrouted){run.status='queued';jobs.splice(0,jobs.length,...jobs.filter(job=>['impact','presentation'].includes(job.name)));}
   if(opts.pendingFailure)jobs.find(j=>j.name.startsWith('rules')).conclusion='failure';
   const checkout={schemaVersion:1,attempt:1,event:'pull_request',runId:7,prNumber:510,
     head:sha('a'),base:sha('b'),tested:sha('d'),parents:[sha('b'),sha('a')]};
@@ -427,8 +457,9 @@ test('overwritten review gate, replaced CI attempt and a merge before release ar
  }
 });
 
-function nativeArmFixture({queuedAt='release',corrupt=()=>{},stuck=false,dequeueError=false,wrongDequeue=false,failAfterRelease=false,noAuto=false,mergeBeforeRelease=false,driftRules=false,requeue=false}={}){
- const m=mock(),calls=[];let queued=false,released=false,enabled=false;
+function nativeArmFixture({queuedAt='release',corrupt=()=>{},stuck=false,dequeueError=false,wrongDequeue=false,failAfterRelease=false,noAuto=false,mergeBeforeRelease=false,driftRules=false,requeue=false,unrouted=false}={}){
+  const m=mock({pending:unrouted,unrouted}),calls=[];let queued=false,released=false,enabled=false;
+  if(unrouted)m.f.pr.labels=[{name:'ci:full'}];
  m.f.ruleset.bypass_actors=[];
  m.f.ruleset.id=25870651;m.f.ruleset.updated_at='2026-11-04T17:51:23.025+08:00';
  m.f.ruleset.rules.push({type:'merge_queue',parameters:{merge_method:'SQUASH',grouping_strategy:'ALLGREEN'}});
@@ -476,6 +507,51 @@ test('native queue arm accepts waiting and exact queued readback independently o
   assert.equal(armAutoMerge(repo,510,m.f.review,m.query).state,'auto-merge-requested',queuedAt);
   assert.equal(m.queued(),queuedAt!=='never');
   assert(!m.calls.some(c=>c.includes('state=failure')));
+ }
+});
+test('reviewed explicit Full PR can register native auto-merge while impact is queued',()=>{
+ const m=nativeArmFixture({queuedAt:'never',unrouted:true});
+ const result=armAutoMerge(repo,510,m.f.review,m.query);
+ assert.equal(result.state,'auto-merge-requested');
+ assert.equal(result.proof.pendingRun.awaitingRouting,true);
+ assert.equal(result.proof.fullPreflight,undefined);
+ assert.equal(result.proof.nativeQueue.state,'waiting');
+ assert.deepEqual(verifyAutoMergeArm(result.proof),[]);
+ assert(!m.calls.some(call=>call.includes('context=full-quality')&&call.includes('state=success')));
+});
+test('queued registration still rejects unknown routing, failed jobs, wrong impact identity and Fast expansion',()=>{
+ for(const variant of ['no-full-request','no-native-queue','failed-impact','wrong-job-head','fast-expanded']) {
+  const m=nativeArmFixture({unrouted:true});
+  if(variant==='no-full-request')m.f.pr.labels=[];
+  if(variant==='no-native-queue')m.f.ruleset.rules=m.f.ruleset.rules.filter(rule=>rule.type!=='merge_queue');
+  const query=(...args)=>{
+   const raw=m.query(...args);
+   if(!args.some(arg=>typeof arg==='string'&&arg.includes('/jobs?')))return raw;
+   const pages=JSON.parse(raw),jobs=pages[0].jobs,impact=jobs.find(job=>job.name==='impact');
+   if(variant==='failed-impact'){impact.status='completed';impact.conclusion='failure';}
+   if(variant==='wrong-job-head')impact.head_sha=sha('c');
+   if(variant==='fast-expanded')jobs.push({...impact,id:999,name:'fast (windows-2025)'});
+   return JSON.stringify(pages);
+  };
+  assert.throws(()=>armAutoMerge(repo,510,m.f.review,query),/routing|failed|Full/,variant);
+  assert(!m.calls.some(call=>call.includes('POST')||call.some(arg=>typeof arg==='string'&&arg.includes('enablePullRequestAutoMerge'))),variant);
+ }
+});
+test('queued Full registration revokes authorization if impact fails or turns Fast during the handshake',()=>{
+ for(const failure of ['failed-impact','fast-expansion']) {
+  const m=nativeArmFixture({queuedAt:'never',unrouted:true});let activated=false;
+  const query=(...args)=>{
+   const raw=m.query(...args);
+   if(args.some(arg=>typeof arg==='string'&&arg.includes('enablePullRequestAutoMerge')))activated=true;
+   if(!activated||!args.some(arg=>typeof arg==='string'&&arg.includes('/jobs?')))return raw;
+   const pages=JSON.parse(raw),impact=pages[0].jobs.find(job=>job.name==='impact');
+   if(failure==='failed-impact'){impact.status='completed';impact.conclusion='failure';}
+   else pages[0].jobs.push({...impact,id:999,name:'fast (windows-2025)'});
+   return JSON.stringify(pages);
+  };
+  assert.throws(()=>armAutoMerge(repo,510,m.f.review,query),/failed|routing/);
+  assert(!m.calls.some(call=>call.includes('POST')&&call.includes('state=success')));
+  assert(m.calls.some(call=>call.includes('POST')&&call.includes('state=failure')));
  }
 });
 

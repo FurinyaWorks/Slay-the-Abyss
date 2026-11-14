@@ -1,4 +1,4 @@
-import {sourceSlice,closeoutPriorEpoch} from './helpers/closeout-source-epoch.mjs';
+import {sourceSlice,closeoutPriorEpoch,ciRepairSourceEpoch,stsStyleEpoch,menuRedEpoch} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -142,7 +142,8 @@ test('source and configuration reject unknown targets and malformed live readers
  }
 });
 
-test('current raw production authenticates original68, exact28 and merchant owners without the historical CI source view',()=>{
+test('pre-feedback production retains original68, exact28, merchant and all 104 frozen owner assertions',()=>{
+ const currentEpoch=stsStyleEpoch,diskReadFileSync=path=>stsStyleEpoch.proof.current[path]?.source??null;
  const current=currentEpoch.proof,file='config/architecture.json',source=diskReadFileSync(file,'utf8');
  const actual=Object.fromEntries(current.owners.map(path=>[path,diskReadFileSync(path,'utf8')]));
  assert.equal(componentEpoch.proof.owners.length,68);
@@ -151,8 +152,10 @@ test('current raw production authenticates original68, exact28 and merchant owne
  ].map(name=>'src/lua/abyss_'+name+'.lua').sort());
  assert(componentEpoch.proof.owners.every(path=>current.owners.includes(path)),'retain all original component owners');
  assert.equal(closeoutPriorEpoch.proof.owners.length,96);
- assert.deepEqual(current.owners.filter(path=>!closeoutPriorEpoch.proof.owners.includes(path)),['src/lua/abyss_merchant.lua']);
- assert.equal(current.owners.length,97);let changed,replacement,reads=[];
+ assert.deepEqual(ciRepairSourceEpoch.proof.owners.filter(path=>!closeoutPriorEpoch.proof.owners.includes(path)),['src/lua/abyss_merchant.lua']);
+ assert.equal(ciRepairSourceEpoch.proof.owners.length,97);
+ assert.deepEqual(current.owners.filter(path=>!ciRepairSourceEpoch.proof.owners.includes(path)),['card_art_runtime','controller','game_ui_lifecycle','game_ui_overlays','game_ui_run','node_ui_lifecycle','page_reveal'].map(n=>'src/lua/abyss_'+n+'.lua'));
+ assert.equal(current.owners.length,104);let changed,replacement,reads=[];
  const reader=path=>{reads.push(path);if(path===changed){if(replacement instanceof Error)throw replacement;return replacement;}return actual[path];};
  const project=input=>currentEpoch.preCombinedSource(file,input,{target:'develop',readSource:reader});
  const expected=current.targets.develop.files[file].source;
@@ -163,4 +166,21 @@ test('current raw production authenticates original68, exact28 and merchant owne
   changed=undefined;reads=[];assert.equal(project(source),expected);assert.deepEqual(reads,current.owners);
  }
  for(const foreign of [source+'-- foreign',expected,null,undefined,{},17]){reads=[];assert.equal(project(foreign),foreign);assert.deepEqual(reads,[]);}
+});
+
+test('current raw production retains the exact power-view owner and complete release owner continuation',()=>{
+ const current=currentEpoch.proof,file='config/architecture.json',source=diskReadFileSync(file,'utf8'),owner='src/lua/abyss_monster_power_view.lua';
+ const pad=files=>Object.fromEntries(Object.keys(current.current).map(path=>[path,files[path]??null]));
+ assert.deepEqual(current.targets.stsFeedbackPrior.files,pad(stsStyleEpoch.proof.current));
+ assert.deepEqual(menuRedEpoch.proof.owners,[...stsStyleEpoch.proof.owners,owner].sort());assert.equal(menuRedEpoch.proof.owners.length,105);
+ const additions=['character_select','lowcost_art','merchant_pages','node_ui_reward_detail','node_ui_shop','node_ui_treasure','node_ui_treasure_list','prologue','treasure_ui'].map(name=>'src/lua/abyss_'+name+'.lua');
+ assert.deepEqual(current.owners,[...menuRedEpoch.proof.owners,...additions].sort());assert.equal(current.owners.length,114);
+ const reads=[],raw=path=>{reads.push(path);return diskReadFileSync(path,'utf8');};
+ const expected=current.targets.develop.files[file].source;
+ assert.equal(currentEpoch.preCombinedSource(file,source,{target:'develop',readSource:raw}),expected);assert.deepEqual(reads,current.owners);
+ for(const replacement of [null,diskReadFileSync(owner,'utf8')+'\n',new Error('missing current power view')]){
+  reads.length=0;
+  assert.throws(()=>currentEpoch.preCombinedSource(file,source,{target:'develop',readSource:path=>{if(path===owner){reads.push(path);if(replacement instanceof Error)throw replacement;return replacement;}return raw(path);}}),/combined linked owner/);
+  assert.deepEqual(reads,current.owners.slice(0,current.owners.indexOf(owner)+1));
+ }
 });

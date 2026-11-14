@@ -1,0 +1,14 @@
+{
+  "kind": "local file-transport equivalent depth-two blob-filtered fresh checkout; not hosted or network bytes",
+  "candidate": "78415c6f67e81dde362b0de4e813ec4a3a75979f",
+  "base": "9f2f44e4c79789fbcb64a515938765dbc240f830",
+  "tree": "7a667a177299dd98da76d16de7b299d99f71a73e",
+  "merge": "2da4c35b93f33225518c9a2e4433aa66b83344a8",
+  "comparisonObjects": 9463,
+  "fetchedComparisonObjects": 260,
+  "fetchedComparisonBytes": 3843098,
+  "packBytes": 133077631,
+  "limit": 134217728,
+  "margin": 1140097,
+  "gitVersion": "git version 2.55.0.windows.5"
+}

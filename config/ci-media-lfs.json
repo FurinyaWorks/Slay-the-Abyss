@@ -6647,5 +6647,808 @@
       "category": "native-art-probe"
     }
   ],
-  "sourceLedgerSha256": "aae8bfe5e0d722d0d5eb56c2e8ec5c9e215bdc324ae18013ac05980eb441de37"
+  "sourceLedgerSha256": "aae8bfe5e0d722d0d5eb56c2e8ec5c9e215bdc324ae18013ac05980eb441de37",
+  "evidenceExtension": {
+    "kind": "exact f347 native state evidence bytes; source archives excluded",
+    "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f",
+    "maxPayloadBytes": 37495268,
+    "files": [
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-discard-pile.state.json.gz",
+        "sha256": "29431af80c79584abd24661e1502ae02b8ef01b31f4424be57c64319875c4526",
+        "bytes": 922505,
+        "oldBinaryGitBlobs": [
+          "e79195d6b90e56ca48658d051110abbfcb20d85a"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-draw-pile.state.json.gz",
+        "sha256": "c0a716fa19f7238dc4c2e1b1de7dd7f3d1a6e0d92eccf805ce99a2a7d98949f9",
+        "bytes": 1014542,
+        "oldBinaryGitBlobs": [
+          "dee2c8423cf1ec01e9f1b308571d9288636f078a"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-hud.state.json.gz",
+        "sha256": "1c3f63847e6af5ef072e924d0bd1156a0139c5b0cc82f102fcfe385d1316ca58",
+        "bytes": 862256,
+        "oldBinaryGitBlobs": [
+          "ea5ff40e75b76199d064a3da41cc865e66b39758"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/battle-permanent-deck.state.json.gz",
+        "sha256": "a7a1021d66d57f1f323917e1e98a81f4d45251fbbb103749903d978ad8bf90ff",
+        "bytes": 1044206,
+        "oldBinaryGitBlobs": [
+          "dfbbf565c28cf619e02ccba6cb1a24e693eed69d"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-choice-hud.state.json.gz",
+        "sha256": "51c75106470ea9474baee6b54e753054affb9bfe566dee5fc0fca80c7515d464",
+        "bytes": 852566,
+        "oldBinaryGitBlobs": [
+          "96cec072a51437105ebd402220a91471bbaf25ae"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/blessing-hud.state.json.gz",
+        "sha256": "d7101c6cba7e5a91b6fc1b8345304f5a153a2c335e1e150404ebae8c9a5952c7",
+        "bytes": 852413,
+        "oldBinaryGitBlobs": [
+          "0be768afc1c46de8ae691151fb4700082783b516"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/map-hud.state.json.gz",
+        "sha256": "cf218a36c130ad960c8e82f1847283ad102a34806396eabe1b78ee37e08d10e4",
+        "bytes": 856577,
+        "oldBinaryGitBlobs": [
+          "72f47f97a227a7c60c63f8257911db988ff05193"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.state.json.gz",
+        "sha256": "e5243b496b20c9ff6164d461a9199645a08c3d5102684c8a2629c60aa9583a2b",
+        "bytes": 1023099,
+        "oldBinaryGitBlobs": [
+          "0a87b7e11f7006c045cbe772fe813b53747ee410"
+        ],
+        "category": "shared-run-hud-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/01-shop-bubble.state.json.gz",
+        "sha256": "b3cc8099d07b56c13b8c852a9ce805923d225971b5d6e0877ce93e8fbd8bbb2c",
+        "bytes": 864330,
+        "oldBinaryGitBlobs": [
+          "4d9ebdc8d9b38be67ae951882502cc715b2e897d"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/02-leave-hover.state.json.gz",
+        "sha256": "29e0971acdffd3a0b0cb5816958ad26301d1273213a6e5e16d7ac7e4bb2b74ee",
+        "bytes": 864406,
+        "oldBinaryGitBlobs": [
+          "dbaa75492c66ddc5409bc65a829009d8289e83b4"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/03-leave-pressed.state.json.gz",
+        "sha256": "61d84326086cc8880e5c8c1dd3d0ed47fe129e25006cf6af8017c169081a24cc",
+        "bytes": 864443,
+        "oldBinaryGitBlobs": [
+          "f2cfd7f30c810f103d0ce2c42da4dbd3c17a9c2d"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/04-map-preview.state.json.gz",
+        "sha256": "7994cab442ce62d1bcea2220c9400781a53f9171f7a332149117c2f4dfc16aca",
+        "bytes": 864746,
+        "oldBinaryGitBlobs": [
+          "d273a626d3d78aab8ebae55b285bbb1ebb491629"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/05-shop-map-return.state.json.gz",
+        "sha256": "3163482625e4cef4a8c52b42475edb731caddb02eb0cdff60cb9c101c6ed9bfd",
+        "bytes": 864932,
+        "oldBinaryGitBlobs": [
+          "e7630055f95a6eaecaa16c58730bb1ffce167a65"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/06-deck17-top.state.json.gz",
+        "sha256": "3ffa3fe1643825302571134d55f87ae94d986c21d2f35399c45992b249d3bf05",
+        "bytes": 1031143,
+        "oldBinaryGitBlobs": [
+          "eb3013110c041f4475046bac626193d9d3cc70ef"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/07-deck17-bottom.state.json.gz",
+        "sha256": "73dd33605de598927d8b34998d186e73af3403a36c27203f63948a95e70afc71",
+        "bytes": 1031206,
+        "oldBinaryGitBlobs": [
+          "2098fb43d875fe02430d5cd2da11fd5b9812bc55"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/08-deck-card-detail.state.json.gz",
+        "sha256": "3182d60b4a251a09dcee919c4f032ed6a30b0fda68eb642b2a1fe377c112fb28",
+        "bytes": 1031534,
+        "oldBinaryGitBlobs": [
+          "8044e8e6e8dd0e90105fe78657c044916add743d"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/09-deck-return-list.state.json.gz",
+        "sha256": "2bff1608eacfcb4555c3f0b4ad56dc83adade95197812ffaf2a76f8f33dcaa1b",
+        "bytes": 1031689,
+        "oldBinaryGitBlobs": [
+          "1a7da34447f8b4700037b56ce70fc4859caa7eb3"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/shop-deck-parity-20261112/visual-current/10-shop-deck-return.state.json.gz",
+        "sha256": "28022972e8bee0277f2d84520d6476673e6592240ce712e40d3778f866904837",
+        "bytes": 865596,
+        "oldBinaryGitBlobs": [
+          "aedac60c4353f38a2c5adca1b54b971331ee54df"
+        ],
+        "category": "shop-deck-parity-simulator-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-pending.json.gz",
+        "sha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d",
+        "bytes": 38222,
+        "oldBinaryGitBlobs": [
+          "0722eb73394f88d08ad2bbe0a3ef8b7691d26be2"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-1-ready.json.gz",
+        "sha256": "dc82893792765e28afc76ca78c8854287fd8021b34f3a28035961924dc583633",
+        "bytes": 210073,
+        "oldBinaryGitBlobs": [
+          "f13d252def185cc4a1cb5d55a382f6fe946ba0d8"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-pending.json.gz",
+        "sha256": "8c36d8bb8c51024808454cee8945bfd13b1b00c64024ff978a667f62eb69c131",
+        "bytes": 43601,
+        "oldBinaryGitBlobs": [
+          "05e02094bfa77f20f92673d9b4a90ae448d6a77f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-2-ready.json.gz",
+        "sha256": "b8769eda5ce0691bbddacbe07d8029d393cca8b9cc12278967222095e9c2003a",
+        "bytes": 574885,
+        "oldBinaryGitBlobs": [
+          "ba8f3d4f8b4c5640d9057f8289347b638faa4d99"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-pending.json.gz",
+        "sha256": "8ba9756d4beec19b64e0f058a4afb61481523e27c6ca1a112ae0819f589ed727",
+        "bytes": 63861,
+        "oldBinaryGitBlobs": [
+          "207699ac2b6e1b8ee2f5d7e48ba80337aee079a5"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-3-ready.json.gz",
+        "sha256": "c0820334e93ce93e63059d72dbd05da610f275d11c4b5f71c6ba85d5dcfbf4eb",
+        "bytes": 233720,
+        "oldBinaryGitBlobs": [
+          "0bfb721a9ea363c37fbe368b9c775f52654eafab"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-pending.json.gz",
+        "sha256": "0ab3d69f9fcb758e68f88e1405196e8de4988a23d59427eea0406a72c14b90df",
+        "bytes": 38601,
+        "oldBinaryGitBlobs": [
+          "97c888f82333c53cbc95352143c7777d9c5a1062"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-4-ready.json.gz",
+        "sha256": "6a4a8b405fdf329897d1c2366a8f4ff1c31eb6d701dbb8af36bf182fd1bda100",
+        "bytes": 210374,
+        "oldBinaryGitBlobs": [
+          "a2b35b10f3067af128acf545481aeca8f13e9fe7"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-pending.json.gz",
+        "sha256": "d342d8d06f02c4551708649bce2a3bd68dd8a4bd8f8baba773d4010ad2476747",
+        "bytes": 43832,
+        "oldBinaryGitBlobs": [
+          "9f206f398d19ba28f92f91da81801e9539b98b1f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-5-ready.json.gz",
+        "sha256": "d1cb96c89c2c138de08b1cd91d0d97e70aacc35ed4a8a659f1b50c40b93e5534",
+        "bytes": 216435,
+        "oldBinaryGitBlobs": [
+          "48ec6d3bfec83c9124c5803d1b976c34297221c3"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-pending.json.gz",
+        "sha256": "59c00ba69ad2c288bec80b29a580d87cc951e75d7a5388571cb8a278825c4b11",
+        "bytes": 43379,
+        "oldBinaryGitBlobs": [
+          "3aac9f2eceb2ae6acec6bd04b7493cafd55f53da"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-6-ready.json.gz",
+        "sha256": "35e0e3e7e474593502a4d9988a0c106a799d749a371d05f88eafc986d480ced7",
+        "bytes": 43411,
+        "oldBinaryGitBlobs": [
+          "521fa14ca99dd55682018e36d4a116d1a9f6a62d"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-pending.json.gz",
+        "sha256": "7d9b411c00b76f6783c1183817c44e5abe870177cb16d2f5bc6f26813d0f088a",
+        "bytes": 43517,
+        "oldBinaryGitBlobs": [
+          "589aafaf61764a2e92509d0241d4297b304dfdae"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-7-ready.json.gz",
+        "sha256": "60c5781037d26ada90d4c75bfaab7d6ea7eb14e9e45fe43bbd0aaf214c529c18",
+        "bytes": 43535,
+        "oldBinaryGitBlobs": [
+          "5b9894e6fd8bd39eaa2ccc722a8caa9c823a0718"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-pending.json.gz",
+        "sha256": "fa1a34d5b0fe2353c99d7a988b527c673d1caabd9aa01c72c9143f4ededc2142",
+        "bytes": 38877,
+        "oldBinaryGitBlobs": [
+          "3dbae832347094e5f574d6eb49d96ff5255abc31"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-8-ready.json.gz",
+        "sha256": "5abf825db2e6fa74c2e77bf684966ccd8172630dcc7c980b56a1ea94540f7792",
+        "bytes": 210733,
+        "oldBinaryGitBlobs": [
+          "39072adec775456c6d4e15de782f9f57e1f3c6a1"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-pending.json.gz",
+        "sha256": "d1dcc63a5c1acb2f62501622b057d998028790b69df3f8d34de2cd893a98c815",
+        "bytes": 39309,
+        "oldBinaryGitBlobs": [
+          "1606747cc51aad5e475d461a17853b7d02d3af3f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/inspection-9-ready.json.gz",
+        "sha256": "1dab29d19946a90cec9e0241fc1687b4043a55b07537d735fdd3ea07aa312f54",
+        "bytes": 209636,
+        "oldBinaryGitBlobs": [
+          "6d4b5d7fbe3644e6dc00139340aaab69bf739b10"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-pending.state.json.gz",
+        "sha256": "b8a13e55c8b119edddfecddfc2ac752c6bbc4e1d9accc4b2c62a0e3a5e1c291d",
+        "bytes": 38222,
+        "oldBinaryGitBlobs": [
+          "0722eb73394f88d08ad2bbe0a3ef8b7691d26be2"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-1-bash-ready.state.json.gz",
+        "sha256": "dc82893792765e28afc76ca78c8854287fd8021b34f3a28035961924dc583633",
+        "bytes": 210073,
+        "oldBinaryGitBlobs": [
+          "f13d252def185cc4a1cb5d55a382f6fe946ba0d8"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-pending.state.json.gz",
+        "sha256": "8c36d8bb8c51024808454cee8945bfd13b1b00c64024ff978a667f62eb69c131",
+        "bytes": 43601,
+        "oldBinaryGitBlobs": [
+          "05e02094bfa77f20f92673d9b4a90ae448d6a77f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-2-armaments-ready.state.json.gz",
+        "sha256": "b8769eda5ce0691bbddacbe07d8029d393cca8b9cc12278967222095e9c2003a",
+        "bytes": 574885,
+        "oldBinaryGitBlobs": [
+          "ba8f3d4f8b4c5640d9057f8289347b638faa4d99"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-pending.state.json.gz",
+        "sha256": "8ba9756d4beec19b64e0f058a4afb61481523e27c6ca1a112ae0819f589ed727",
+        "bytes": 63861,
+        "oldBinaryGitBlobs": [
+          "207699ac2b6e1b8ee2f5d7e48ba80337aee079a5"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-3-inflame-ready.state.json.gz",
+        "sha256": "c0820334e93ce93e63059d72dbd05da610f275d11c4b5f71c6ba85d5dcfbf4eb",
+        "bytes": 233720,
+        "oldBinaryGitBlobs": [
+          "0bfb721a9ea363c37fbe368b9c775f52654eafab"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-pending.state.json.gz",
+        "sha256": "0ab3d69f9fcb758e68f88e1405196e8de4988a23d59427eea0406a72c14b90df",
+        "bytes": 38601,
+        "oldBinaryGitBlobs": [
+          "97c888f82333c53cbc95352143c7777d9c5a1062"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-4-bash-ready.state.json.gz",
+        "sha256": "6a4a8b405fdf329897d1c2366a8f4ff1c31eb6d701dbb8af36bf182fd1bda100",
+        "bytes": 210374,
+        "oldBinaryGitBlobs": [
+          "a2b35b10f3067af128acf545481aeca8f13e9fe7"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-pending.state.json.gz",
+        "sha256": "d342d8d06f02c4551708649bce2a3bd68dd8a4bd8f8baba773d4010ad2476747",
+        "bytes": 43832,
+        "oldBinaryGitBlobs": [
+          "9f206f398d19ba28f92f91da81801e9539b98b1f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-5-offering-ready.state.json.gz",
+        "sha256": "d1cb96c89c2c138de08b1cd91d0d97e70aacc35ed4a8a659f1b50c40b93e5534",
+        "bytes": 216435,
+        "oldBinaryGitBlobs": [
+          "48ec6d3bfec83c9124c5803d1b976c34297221c3"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-pending.state.json.gz",
+        "sha256": "59c00ba69ad2c288bec80b29a580d87cc951e75d7a5388571cb8a278825c4b11",
+        "bytes": 43379,
+        "oldBinaryGitBlobs": [
+          "3aac9f2eceb2ae6acec6bd04b7493cafd55f53da"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-6-burn-ready.state.json.gz",
+        "sha256": "35e0e3e7e474593502a4d9988a0c106a799d749a371d05f88eafc986d480ced7",
+        "bytes": 43411,
+        "oldBinaryGitBlobs": [
+          "521fa14ca99dd55682018e36d4a116d1a9f6a62d"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-pending.state.json.gz",
+        "sha256": "7d9b411c00b76f6783c1183817c44e5abe870177cb16d2f5bc6f26813d0f088a",
+        "bytes": 43517,
+        "oldBinaryGitBlobs": [
+          "589aafaf61764a2e92509d0241d4297b304dfdae"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-7-regret-ready.state.json.gz",
+        "sha256": "60c5781037d26ada90d4c75bfaab7d6ea7eb14e9e45fe43bbd0aaf214c529c18",
+        "bytes": 43535,
+        "oldBinaryGitBlobs": [
+          "5b9894e6fd8bd39eaa2ccc722a8caa9c823a0718"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-pending.state.json.gz",
+        "sha256": "fa1a34d5b0fe2353c99d7a988b527c673d1caabd9aa01c72c9143f4ededc2142",
+        "bytes": 38877,
+        "oldBinaryGitBlobs": [
+          "3dbae832347094e5f574d6eb49d96ff5255abc31"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-8-bash-ready.state.json.gz",
+        "sha256": "5abf825db2e6fa74c2e77bf684966ccd8172630dcc7c980b56a1ea94540f7792",
+        "bytes": 210733,
+        "oldBinaryGitBlobs": [
+          "39072adec775456c6d4e15de782f9f57e1f3c6a1"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-pending.state.json.gz",
+        "sha256": "d1dcc63a5c1acb2f62501622b057d998028790b69df3f8d34de2cd893a98c815",
+        "bytes": 39309,
+        "oldBinaryGitBlobs": [
+          "1606747cc51aad5e475d461a17853b7d02d3af3f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/compatibility-r5/phase-9-perfected_strike-ready.state.json.gz",
+        "sha256": "1dab29d19946a90cec9e0241fc1687b4043a55b07537d735fdd3ea07aa312f54",
+        "bytes": 209636,
+        "oldBinaryGitBlobs": [
+          "6d4b5d7fbe3644e6dc00139340aaab69bf739b10"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-1.state.json.gz",
+        "sha256": "9150e20ebd9abe1b78b328e3478ed8f5d08e36f800d16ea661ddedd7f9e46788",
+        "bytes": 17834,
+        "oldBinaryGitBlobs": [
+          "9223c732418fc806383f987c4f396dbc8a6a9511"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-10.state.json.gz",
+        "sha256": "3128447aa39375504d1eb39ce3a11478c401a53d7695030e8ae811ebf0c4e1a3",
+        "bytes": 166267,
+        "oldBinaryGitBlobs": [
+          "a5b080fdf2d9cb9a815fbf05c8aac1561d8f451f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/baseline-5.state.json.gz",
+        "sha256": "f3cf29e039f3b04f5dbabbc28592fb1170e268437f9574d3f01929673dec542f",
+        "bytes": 83575,
+        "oldBinaryGitBlobs": [
+          "a9a129daee049d6f0cdd95aa03409ba0f34f6bf3"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-1.state.json.gz",
+        "sha256": "ed237b71ba0ce4b404e4e5be0b6457c34cb02426cd6e697cc3e4c04cba110f2b",
+        "bytes": 36868,
+        "oldBinaryGitBlobs": [
+          "30cffff0034ac77369c4a7a70463a8c23da22994"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-10.state.json.gz",
+        "sha256": "ea0468ddcce55054dc629aca05a91c4541ea2015e77885c473ca31203a0979a8",
+        "bytes": 355320,
+        "oldBinaryGitBlobs": [
+          "057fc0ebe37e22050267e2a834b4fb525ed9c426"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-card-final-a730-20261113/cost-r6/candidate-5.state.json.gz",
+        "sha256": "190ac1604a5644244a3f3d3c35de888f6e57b911560a600d624f420dd632c564",
+        "bytes": 178150,
+        "oldBinaryGitBlobs": [
+          "a5ed1a4f0e5da25a707e05f1863e5d87b7c77cf8"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-final/character-select.state.json.gz",
+        "sha256": "f6a00272bdf4332a20d4004eb1f255992a56c00058b35b2d61a0a7bf85480011",
+        "bytes": 968074,
+        "oldBinaryGitBlobs": [
+          "1400975a49ca39eb7dd5c7ab6e1a20c28fa62535"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-final/character-selected-idle.state.json.gz",
+        "sha256": "e6d6fcc87ca988bca3484dc635b526f8453801c127dd6cf30399431f4ad28e97",
+        "bytes": 968186,
+        "oldBinaryGitBlobs": [
+          "66c7f3b9aed9a196d511de7a9906a0cdf8755946"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-integrated/character-returned-selection.state.json.gz",
+        "sha256": "85a086dae109f6342ab6c7283fac10d4e0280b0e18298a646593c788878b025d",
+        "bytes": 1192859,
+        "oldBinaryGitBlobs": [
+          "662952f48f1c672e637377142893d98c0791739f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-integrated/character-select.state.json.gz",
+        "sha256": "02a1fc414232e8d600f9bd0454ac77ed6965dbacd51a5e61e170ec9fd3a3357a",
+        "bytes": 1191757,
+        "oldBinaryGitBlobs": [
+          "1b04248076095e82d3ac63a77925683db462100f"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-integrated/character-selected-idle.state.json.gz",
+        "sha256": "eb3ce7966fa71842041c6d6e5f05e167dd8bdb0d602a7c06177c5afb2028ae15",
+        "bytes": 1191847,
+        "oldBinaryGitBlobs": [
+          "215d8e83b53e1fb5b4cb73aa1c695bd66f84beb1"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-browser.state.json.gz",
+        "sha256": "10d0c9bf31ae979986d5e7549f6afa1eb40f54315e87b0582ec1de6652f13983",
+        "bytes": 1366136,
+        "oldBinaryGitBlobs": [
+          "c70545bc3116b466c53444efe0149eec30f6b89a"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-character-reference-20261113/visual-integrated/character-starter-detail.state.json.gz",
+        "sha256": "c121f540b9b33372d421b104973d6cc22d9efaf7fcae3c740cbf3f3f5a98bff7",
+        "bytes": 1366277,
+        "oldBinaryGitBlobs": [
+          "55eee53d8a01f3b6f8bdc697d4500a7e5325327b"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-hover-functional-unverified.state.json.gz",
+        "sha256": "bc3d3b43c370689a232c1a407406c661ceb203469d4130e4b83883177400c404",
+        "bytes": 1110815,
+        "oldBinaryGitBlobs": [
+          "b7aa37e265aa70b0bf35c818a0711c3b43e7aafd"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-intro.state.json.gz",
+        "sha256": "3b67b1d91cf90eecf957430d0f1c581cf5e53f0dbd7a5e01f2f59393e0465a4d",
+        "bytes": 1110364,
+        "oldBinaryGitBlobs": [
+          "83eead198ff2e3e999bd970cfda22ec85b7c98d2"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/four-normal.state.json.gz",
+        "sha256": "60cd993083462d4708b400bee7bb0a3a2b3eeb3d8972379e4bdac727d97b6eb8",
+        "bytes": 1110803,
+        "oldBinaryGitBlobs": [
+          "0e866c50e0e0a41292df8f51d408c829b28214e3"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-hover-functional-unverified.state.json.gz",
+        "sha256": "06ea16f3bd3f6ae39a91724741587e73ea606c5304d85243323e385d4d0d648f",
+        "bytes": 1110639,
+        "oldBinaryGitBlobs": [
+          "c267d625bdec6ef8b5bc9c600f3872928c64cfca"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-intro.state.json.gz",
+        "sha256": "5e7bfa1a710f7981346e85da9df2c93c071da6b47d1977db944117612f1e7c74",
+        "bytes": 1110369,
+        "oldBinaryGitBlobs": [
+          "5ab33ade894456cc0e8a563f3632b245566be83d"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-integrated-final/two-normal.state.json.gz",
+        "sha256": "c17cbb62ab6f44bb36fadfb08a52908daa887e77d7c6fac7884fcd03f8135abc",
+        "bytes": 1110641,
+        "oldBinaryGitBlobs": [
+          "d96baf426a5500cadab9c18d94589663de914bf2"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-hover-functional-unverified.state.json.gz",
+        "sha256": "b3efbab2773269fd858e8d3eba8b7297be060fdf8fc409dfaaab84da5c2ea8b2",
+        "bytes": 886840,
+        "oldBinaryGitBlobs": [
+          "71a1e3d6a92ec815be94cf532aba1133ee733d5e"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-intro.state.json.gz",
+        "sha256": "b141f755ba3eaf034b249dd41feb6ccd628d04085a7062a42aaee3b5a0ec5122",
+        "bytes": 886622,
+        "oldBinaryGitBlobs": [
+          "7bc58cd20dd047296f02424ec7830c7b21020a34"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      },
+      {
+        "path": "docs/evidence/sts-neow-reference-20261113/visual-npc-approved-3/two-normal.state.json.gz",
+        "sha256": "ed214557c1e080b4b24ee2556773344b051634238a351514ace92f4772cc29d5",
+        "bytes": 886835,
+        "oldBinaryGitBlobs": [
+          "0a2f06877689242f28045748c6407aeca9195df2"
+        ],
+        "category": "sts-style-project-sdk-evidence",
+        "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+      }
+    ]
+  },
+  "archiveExtension": {
+    "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830",
+    "maxPayloadBytes": 6584075,
+    "files": [
+      {
+        "path": "docs/evidence/m7-reward-query-cards-graph-20261107.jsonl.gz",
+        "sha256": "6595610e702cf88ab50d3a0e7a4f572dcc563656773f1654f9de694164416b3f",
+        "bytes": 2591379,
+        "oldBinaryGitBlobs": [
+          "bb5b21238b5e8ca485b4ce14289821965554cce4"
+        ],
+        "category": "project-ci-history-evidence",
+        "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+      },
+      {
+        "path": "docs/evidence/m9-ci-20261103/raw-ci.json.gz",
+        "sha256": "9c25cd1c29418d971993515688ba9db1192da795bfc1abb4fbb6604850ab575b",
+        "bytes": 2159210,
+        "oldBinaryGitBlobs": [
+          "3c159eb19cd689473ce0edc3217dd2919ef297c0"
+        ],
+        "category": "project-ci-history-evidence",
+        "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+      },
+      {
+        "path": "docs/evidence/pr621-deck-sort-20261111/validation.tar.gz",
+        "sha256": "1fa2654027631d9f8af33870cdb2d89c72b876fcc0dc25a70697e78e6a59af20",
+        "bytes": 1833486,
+        "oldBinaryGitBlobs": [
+          "48b55845291f6f8a6b0ffd877d553d8a6249bc57"
+        ],
+        "category": "project-ci-history-evidence",
+        "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+      }
+    ]
+  }
 }

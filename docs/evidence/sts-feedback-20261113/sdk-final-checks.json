@@ -1,0 +1,45 @@
+{
+  "sourceCommit": "ab895b0c947bda50dbadbc2b0f481e149eb836fc",
+  "sourceClosureSha256": "a9b9b7cdbedd3bc4ef851440ecf9fc8fd24797a15c50547185332c346bbe05ad",
+  "status": "SDK_NATURAL_AND_CONTROLLED_BROWSER_PASS",
+  "natural": {
+    "reportSha256": "3a5cd974c17e7f6d66a45fa5d69e93c3869df7513df2155124474b92ced76e0a",
+    "shots": 7,
+    "errors": [],
+    "emptyDiscardReady": true,
+    "sharedPermanentAndDrawBrowser": true,
+    "neowPaintFrames": 181,
+    "neowCoverFrames": 0
+  },
+  "controlled17": {
+    "reportSha256": "f6a16b1de75fec4b556e712c3f316e8634f56c40fa8e8dcbf2c16caa7dd6b2e9",
+    "rows": [
+      {
+        "name": "reward-browser-sort-type",
+        "title": "卡组 · 17 张",
+        "stateSha256": "0331532aee06bca62688339f156f69bb59080b8ae01ad36cdce684a42442284a",
+        "gridChildren": 17
+      },
+      {
+        "name": "reward-browser-sort-cost",
+        "title": "卡组 · 17 张",
+        "stateSha256": "5aa57d76aef4082daf076cb74cea603acfa958ef4ed7b414475c40f726ac3c81",
+        "gridChildren": 17
+      }
+    ],
+    "sortPaintFrames": 266,
+    "sortCoverFrames": 0,
+    "scope": "Controlled17-card elite victory startup copy, not natural acquisition or official device evidence"
+  },
+  "images": {
+    "normal": 169,
+    "failures": 0,
+    "reportSha256": "ee56e430e78aa8a46106c9e7bf00c1e441ef33141029cf6f6d2624362065e854",
+    "compatibilityReportSha256": "8fbfb2c0c1f3b782e3a33271226c7630dbe03a4e6543dbc7dc822246af0fbac1"
+  },
+  "limits": [
+    "Actual SDK software renderer only, not official client import/ready/GPU/phone evidence",
+    "Controlled17 setup is separate from natural route and does not alter its archive",
+    "Earlier90c46efc event/rim screenshots remain explicitly scoped to that unchanged event slice"
+  ]
+}
