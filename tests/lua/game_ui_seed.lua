@@ -110,6 +110,13 @@ test("native OnStart rereads wall and CPU time after script and module recreatio
         assert(seen[i]:start())
         assert(seen[i].run==nil, "opening character selection must not allocate a run or seed")
         assert(F.confirmStart(seen[i],"traveler"))
+        for _=1,80 do
+            local host=seen[i]
+            if not host.starting and not(host.prologue and host.prologue:covering())
+                and not(host.pageReveal and host.pageReveal:covered())then break end
+            OnUpdate(0.05)
+        end
+        assert(seen[i].run and not seen[i].starting,'native seed opening did not finish')
     end
     assert(seen[1].run.seed~=seen[2].run.seed,
         "same-second platform reconstruction systematically replayed the fixed seed")
