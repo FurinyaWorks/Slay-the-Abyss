@@ -1,0 +1,168 @@
+{
+  "status": "BASELINE_REVIEW_CHANGES_REQUESTED",
+  "task": "胡桃呈现独立评审",
+  "run_id": "unavailable_from_host",
+  "executed_date": "2026-11-14",
+  "implementation_head_read": "096d0dd300ce3e68caa3ae296d7c3bad2482c77c",
+  "candidate_id": "baseline-pr640-99cc1e0",
+  "source_ref": "99cc1e0537dd611c0167584458a82ba5545694f7",
+  "source_blob": "364e1d3e8c8559e2fcb26276b9ae8a2813f21735",
+  "source_sha256": "d285b858e7261fac659141ec9dee97ef375550f5a7b1e14a30922ee3bdfbf373",
+  "script0_sha256": "dcfa90cd1c07b4b5fcd4f9c6891d7895b53ac14469e92495bb781f340d4f38cd",
+  "environment": {
+    "os": "Debian 13 container",
+    "node": "v22.16.0",
+    "python": "3.13",
+    "browser": "Chromium 144.0.7559.96",
+    "playwright": "Python package",
+    "frontend_loaded_via": "page.set_content(exact HTML); file:// direct navigation blocked by runtime policy",
+    "devices": "headless emulation only"
+  },
+  "read_code": {
+    "cards": 75,
+    "base_plus_upgraded": 150,
+    "starter_copies": 10,
+    "reward_pool_unique": 69,
+    "initial_relic": "引蝶灯 +4 block on first HP pay per battle",
+    "source_categories": {
+      "generic": 3,
+      "skill": 3,
+      "voice": 22,
+      "status": 2,
+      "quote": 3,
+      "constellation": 5,
+      "talent": 2,
+      "original": 35
+    },
+    "script_checks": {
+      "setup": "single isolated HutaoGame(2), hp=72, energy=10, butterfly=2, enemy hp/maxhp=1000, one forced card in hand; 75x2",
+      "canPlay_and_play_success": 150,
+      "failures": [],
+      "naturally_acquired_or_playable_at_3_energy": false
+    }
+  },
+  "browser_smoke": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "opening": {
+        "hand": 5,
+        "hp": 72,
+        "energy": 3,
+        "horizontal_overflow": false,
+        "page_errors": []
+      },
+      "library": 75,
+      "details_variant_panels": 2,
+      "practice_options": 75,
+      "practice_r01_upgrade_added": true,
+      "real_play_hand_energy_after": 2,
+      "turn_after_end": 2,
+      "hp_after_end": 65
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "opening": {
+        "hand": 5,
+        "hp": 72,
+        "energy": 3,
+        "horizontal_overflow": false,
+        "page_errors": []
+      },
+      "library": 75,
+      "details_variant_panels": 2,
+      "practice_options": 75,
+      "practice_r01_upgrade_added": true,
+      "real_play_hand_energy_after": 2,
+      "turn_after_end": 2,
+      "hp_after_end": 65
+    }
+  ],
+  "negative_tests": [
+    {
+      "name": "energy_zero",
+      "method": "set g.energy=0;render(); in isolated headless page",
+      "disabled_hand_cards": 5,
+      "reasons": [
+        "能量不足",
+        "能量不足",
+        "能量不足",
+        "能量不足",
+        "能量不足"
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "name": "pay_hp_denial",
+      "method": "set g.hp=6; g.energy=3;g.hand=[g.newCard('e')];render()",
+      "reason": "生命支付后必须至少剩1点生命",
+      "verdict": "PASS"
+    },
+    {
+      "name": "clipboard_false_return",
+      "method": "navigator.clipboard=undefined;document.execCommand=()=>false;click #reportBtn",
+      "toast": "已使用本地方式复制战报。",
+      "verdict": "DEFECT_REPRODUCED"
+    },
+    {
+      "name": "temporary_prep",
+      "method": "play c14 at full HP with no subsequent attack;endTurn",
+      "prepAttack_after_card": 3,
+      "prepAttack_after_turn": 0,
+      "concise_card_text": "下一张攻击的首次命中额外+3伤害。",
+      "technical_text": "本回合下一张攻击牌首命中+3伤害",
+      "verdict": "DEFECT_REPRODUCED"
+    }
+  ],
+  "forced_phase_smoke": {
+    "source_method": "HutaoGame.testWinBattle() forced 5 times, UI click rewards skipped, rest at floor3, upgrade at floor5",
+    "reached_win": true,
+    "upgrade_choices": 10,
+    "permanent_upgrades": 1,
+    "restart_reached_floor1": true,
+    "is_natural_campaign_evidence": false
+  },
+  "log_truncation": {
+    "engine": "HutaoGame.log() keeps only most recent 100",
+    "UI_label": "复制完整战报",
+    "copyReport": "joins g.logs.slice().reverse()",
+    "verdict": "SOURCE_CONFIRMED_INCOMPLETE_AFTER_100_EVENTS"
+  },
+  "screenshots_local_not_uploaded": [
+    {
+      "file": "desktop-opening.png",
+      "sha256": "53ed0bf64140ad8907dfceb1e23bd7e128ec4391c54570b2765fc9ae4ca369ad"
+    },
+    {
+      "file": "desktop-detail.png",
+      "sha256": "a64ecdd6d459ae9542ff035a7c2c6d7e9cbf96380043d4d1e8a6fc4cd787f215"
+    },
+    {
+      "file": "mobile-opening.png",
+      "sha256": "13cdef4953c252bdc64308717455bdfcabce0395b6dcc3796ebaf446be3ce0a2"
+    },
+    {
+      "file": "mobile-detail.png",
+      "sha256": "8c5ce22a2b9849afd88a285621b1e75f0fb672ad9ccf874a84ed48a8e141f5be"
+    },
+    {
+      "file": "desktop-forced-end.png",
+      "sha256": "63f42021aedd8019b108b0d3a196ccebe00df72f5e54199d141269525bc329a3"
+    }
+  ],
+  "missing": [
+    "natural 5-battle win",
+    "all 150 real gameplay and natural reward visits",
+    "all 75 official-name precise anchors",
+    "explicit rejected-name history",
+    "human aesthetic review",
+    "official platform/device validation",
+    "Backlog claim and full CI"
+  ],
+  "merge_or_release_authorized": false
+}
