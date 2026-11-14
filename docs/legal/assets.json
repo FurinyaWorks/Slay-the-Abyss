@@ -8835,6 +8835,16 @@
       "sha256": "41f163dee54801a1208c3adf3f27b0630c814bfb74e5d12ce9ededb7d7c146bf",
       "category": "reference-ui-user-source-unresolved",
       "lfsBytes": 72130
+    },
+    "docs/evidence/constellation-gold/selection-simulator.png": {
+      "sha256": "7a7f09cc91b0b798505d557cf9b3e048ac2a4c73144132a4c3bde896970d6fd6",
+      "category": "platform-evidence",
+      "lfsBytes": 428573
+    },
+    "docs/evidence/constellation-gold/starter-deck-simulator.png": {
+      "sha256": "b8eda5453309e94d319e69d3e915aa0d1128c53c35f21aca624787e6dba82499",
+      "category": "platform-evidence",
+      "lfsBytes": 206617
     }
   }
 }
