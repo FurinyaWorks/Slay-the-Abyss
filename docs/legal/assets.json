@@ -170,6 +170,10 @@
     "shared-run-hud-simulator-evidence": {
       "status": "Project-authored UI verification screenshots rendered with the existing offline Simulator SDK and official platform picture IDs. Screenshots contain game IP; no IP sublicense or commercial clearance. Not official import, ready, device or performance acceptance.",
       "evidence": "docs/evidence/shared-run-hud-20261113/README.md; visual-final-current/render-receipt.json; visual-final-current/verification.json"
+    },
+    "lowcost-authored-art-evidence": {
+      "status": "Project-authored simplified geometric enemy and relic illustrations drawn as rectangle, disc and triangle recipes. Contact sheets rendered with Pillow and an installed system font; no font binary or official texture redistributed. Game identities remain their owners IP; no IP sublicense or commercial clearance. Existing noncommercial project license and reserved rights unchanged. Offline geometry only, not SDK/device acceptance.",
+      "evidence": "docs/evidence/lowcost-art-20261114/README.md; data/presentation/lowcost-enemy-art.json; data/presentation/lowcost-relic-art.json. Original hand-authored semantic silhouettes, not reused 400-600-shape legacy assets."
     }
   },
   "files": {
@@ -8766,6 +8770,14 @@
     "docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.png": {
       "sha256": "2a6685759c34098a8cc52cc37394d6f6902d30e8a39a82ce44411f585763efc8",
       "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/lowcost-art-20261114/relic-gallery.png": {
+      "sha256": "e91867326e4a6fffcfbcab6278958e91eac9e32d7452cc45878bcffadb9868ee",
+      "category": "lowcost-authored-art-evidence"
+    },
+    "docs/evidence/lowcost-art-20261114/enemy-gallery.png": {
+      "sha256": "a1b9c8f0a1fdcc1bfe331b8338593158d5df4a51effc3c1044c345af8f9ba3dc",
+      "category": "lowcost-authored-art-evidence"
     }
   }
 }

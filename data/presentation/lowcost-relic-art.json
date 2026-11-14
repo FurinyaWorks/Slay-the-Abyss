@@ -1,0 +1,7035 @@
+{
+  "schemaVersion": 1,
+  "canvas": 100,
+  "capacity": 16,
+  "assets": {
+    "blue_candle": {
+      "name": "蓝蜡烛",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -28,
+          "w": 54,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -4,
+          "w": 25,
+          "h": 49,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": 3,
+          "w": 5,
+          "h": 32,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 7,
+          "y": 11,
+          "w": 8,
+          "h": 16,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 23,
+          "w": 3,
+          "h": 11,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 34,
+          "w": 18,
+          "h": 22,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 31,
+          "w": 7,
+          "h": 12,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        }
+      ]
+    },
+    "strike_dummy": {
+      "name": "打击木偶",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -4,
+          "w": 13,
+          "h": 65,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 10,
+          "w": 62,
+          "h": 12,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 30,
+          "w": 24,
+          "h": 25,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -32,
+          "w": 45,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -18,
+          "y": 0,
+          "w": 11,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": 18
+        },
+        {
+          "image": 100001,
+          "x": 18,
+          "y": 0,
+          "w": 11,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": -18
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 5,
+          "w": 23,
+          "h": 29,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -5,
+          "y": 8,
+          "w": 3,
+          "h": 21,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 6,
+          "y": 8,
+          "w": 3,
+          "h": 21,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 26,
+          "h": 4,
+          "colour": "#805F49",
+          "rotation": 0
+        }
+      ]
+    },
+    "singing_bowl": {
+      "name": "颂钵",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -11,
+          "w": 70,
+          "h": 42,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 9,
+          "w": 70,
+          "h": 14,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 9,
+          "w": 68,
+          "h": 17,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 10,
+          "w": 53,
+          "h": 9,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -30,
+          "w": 38,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 27,
+          "y": 24,
+          "w": 8,
+          "h": 38,
+          "colour": "#805F49",
+          "rotation": -32
+        },
+        {
+          "image": 100002,
+          "x": 18,
+          "y": 37,
+          "w": 12,
+          "h": 12,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "matryoshka": {
+      "name": "套娃",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": -10,
+          "y": -10,
+          "w": 47,
+          "h": 58,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -10,
+          "y": 22,
+          "w": 34,
+          "h": 34,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -10,
+          "y": 22,
+          "w": 24,
+          "h": 25,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -10,
+          "y": -9,
+          "w": 26,
+          "h": 34,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -10,
+          "y": -8,
+          "w": 11,
+          "h": 12,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": -20,
+          "w": 30,
+          "h": 40,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": 3,
+          "w": 24,
+          "h": 24,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": 4,
+          "w": 16,
+          "h": 17,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": -19,
+          "w": 16,
+          "h": 22,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -15,
+          "y": 24,
+          "w": 4,
+          "h": 4,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -5,
+          "y": 24,
+          "w": 4,
+          "h": 4,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 16,
+          "y": 5,
+          "w": 3,
+          "h": 3,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 24,
+          "y": 5,
+          "w": 3,
+          "h": 3,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "gremlin_horn": {
+      "name": "地精号角",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": -15.926,
+          "y": -11.944,
+          "w": 46.781,
+          "h": 37.823,
+          "colour": "#DEB66F",
+          "rotation": 40
+        },
+        {
+          "image": 100001,
+          "x": 3.981,
+          "y": 0,
+          "w": 18.912,
+          "h": 42.8,
+          "colour": "#DEB66F",
+          "rotation": -40
+        },
+        {
+          "image": 100002,
+          "x": 19.907,
+          "y": 16.921,
+          "w": 33.842,
+          "h": 38.819,
+          "colour": "#EBC96E",
+          "rotation": -30
+        },
+        {
+          "image": 100002,
+          "x": 21.898,
+          "y": 18.912,
+          "w": 20.902,
+          "h": 27.87,
+          "colour": "#805F49",
+          "rotation": -30
+        },
+        {
+          "image": 100003,
+          "x": -30.856,
+          "y": -24.884,
+          "w": 17.916,
+          "h": 23.888,
+          "colour": "#F3E5BD",
+          "rotation": -30
+        },
+        {
+          "image": 100001,
+          "x": -9.953,
+          "y": -14.93,
+          "w": 6.967,
+          "h": 25.879,
+          "colour": "#DA6556",
+          "rotation": -40
+        }
+      ]
+    },
+    "horn_cleat": {
+      "name": "系缆桩",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -26,
+          "w": 60,
+          "h": 13,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -3,
+          "w": 20,
+          "h": 44,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 12,
+          "w": 72,
+          "h": 14,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -32,
+          "y": 17,
+          "w": 17,
+          "h": 26,
+          "colour": "#B5CAD3",
+          "rotation": -24
+        },
+        {
+          "image": 100003,
+          "x": 32,
+          "y": 17,
+          "w": 17,
+          "h": 26,
+          "colour": "#B5CAD3",
+          "rotation": 24
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 3,
+          "w": 60,
+          "h": 5,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -14,
+          "y": -5,
+          "w": 7,
+          "h": 20,
+          "colour": "#805F49",
+          "rotation": 15
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": -5,
+          "w": 7,
+          "h": 20,
+          "colour": "#805F49",
+          "rotation": -15
+        }
+      ]
+    },
+    "question_card": {
+      "name": "问号卡",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 59,
+          "h": 75,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 51,
+          "h": 67,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 15,
+          "w": 28,
+          "h": 29,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -3,
+          "y": 14,
+          "w": 15,
+          "h": 15,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -13,
+          "y": 12,
+          "w": 11,
+          "h": 23,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 5,
+          "y": -3,
+          "w": 9,
+          "h": 20,
+          "colour": "#66BAD5",
+          "rotation": -15
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -23,
+          "w": 9,
+          "h": 9,
+          "colour": "#66BAD5",
+          "rotation": 0
+        }
+      ]
+    },
+    "mummified_hand": {
+      "name": "干瘪之手",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -22,
+          "w": 24,
+          "h": 30,
+          "colour": "#DEB66F",
+          "rotation": 8
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -1,
+          "w": 36,
+          "h": 39,
+          "colour": "#DEB66F",
+          "rotation": -8
+        },
+        {
+          "image": 100001,
+          "x": -17,
+          "y": 16,
+          "w": 10,
+          "h": 30,
+          "colour": "#DEB66F",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": -5,
+          "y": 23,
+          "w": 9,
+          "h": 34,
+          "colour": "#DEB66F",
+          "rotation": -7
+        },
+        {
+          "image": 100001,
+          "x": 7,
+          "y": 21,
+          "w": 9,
+          "h": 34,
+          "colour": "#DEB66F",
+          "rotation": 5
+        },
+        {
+          "image": 100001,
+          "x": 18,
+          "y": 15,
+          "w": 9,
+          "h": 29,
+          "colour": "#DEB66F",
+          "rotation": 16
+        },
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -5,
+          "w": 11,
+          "h": 28,
+          "colour": "#DEB66F",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -16,
+          "w": 27,
+          "h": 4,
+          "colour": "#F3E5BD",
+          "rotation": 8
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -27,
+          "w": 26,
+          "h": 4,
+          "colour": "#F3E5BD",
+          "rotation": 8
+        },
+        {
+          "image": 100001,
+          "x": -2,
+          "y": 3,
+          "w": 29,
+          "h": 4,
+          "colour": "#F3E5BD",
+          "rotation": -9
+        },
+        {
+          "image": 100001,
+          "x": 4,
+          "y": 14,
+          "w": 24,
+          "h": 4,
+          "colour": "#F3E5BD",
+          "rotation": -9
+        }
+      ]
+    },
+    "self_forming_clay": {
+      "name": "自塑黏土",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": -14,
+          "y": -18,
+          "w": 38,
+          "h": 34,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 14,
+          "y": -18,
+          "w": 41,
+          "h": 37,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 4,
+          "w": 36,
+          "h": 46,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -4,
+          "y": 25,
+          "w": 28,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -16,
+          "y": -2,
+          "w": 17,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": 22
+        },
+        {
+          "image": 100001,
+          "x": 17,
+          "y": -2,
+          "w": 19,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": -22
+        },
+        {
+          "image": 100002,
+          "x": -4,
+          "y": 28,
+          "w": 7,
+          "h": 5,
+          "colour": "#805F49",
+          "rotation": 0
+        }
+      ]
+    },
+    "paper_frog": {
+      "name": "纸蛙",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": -17,
+          "y": -13,
+          "w": 38,
+          "h": 39,
+          "colour": "#7AA56B",
+          "rotation": -40
+        },
+        {
+          "image": 100003,
+          "x": 17,
+          "y": -13,
+          "w": 38,
+          "h": 39,
+          "colour": "#7AA56B",
+          "rotation": 40
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 7,
+          "w": 58,
+          "h": 47,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -17,
+          "y": 21,
+          "w": 27,
+          "h": 24,
+          "colour": "#EBC96E",
+          "rotation": -15
+        },
+        {
+          "image": 100003,
+          "x": 17,
+          "y": 21,
+          "w": 27,
+          "h": 24,
+          "colour": "#EBC96E",
+          "rotation": 15
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 1,
+          "w": 4,
+          "h": 31,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -17,
+          "y": 23,
+          "w": 7,
+          "h": 7,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 17,
+          "y": 23,
+          "w": 7,
+          "h": 7,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "bird_faced_urn": {
+      "name": "鸟面瓮",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -10,
+          "w": 55,
+          "h": 54,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 17,
+          "w": 36,
+          "h": 23,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 29,
+          "w": 43,
+          "h": 14,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -36,
+          "w": 42,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -13,
+          "y": 0,
+          "w": 17,
+          "h": 20,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 13,
+          "y": 0,
+          "w": 17,
+          "h": 20,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -13,
+          "y": 1,
+          "w": 7,
+          "h": 10,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 13,
+          "y": 1,
+          "w": 7,
+          "h": 10,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -12,
+          "w": 19,
+          "h": 24,
+          "colour": "#DA6556",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 19,
+          "w": 33,
+          "h": 5,
+          "colour": "#805F49",
+          "rotation": 0
+        }
+      ]
+    },
+    "unceasing_top": {
+      "name": "不休陀螺",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -14,
+          "w": 63,
+          "h": 49,
+          "colour": "#B08AC9",
+          "rotation": 180
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 12,
+          "w": 69,
+          "h": 20,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 14,
+          "w": 45,
+          "h": 10,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 28,
+          "w": 8,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 39,
+          "w": 14,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -36,
+          "w": 10,
+          "h": 14,
+          "colour": "#B5CAD3",
+          "rotation": 180
+        }
+      ]
+    },
+    "torii": {
+      "name": "鸟居",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -8,
+          "w": 10,
+          "h": 67,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": -8,
+          "w": 10,
+          "h": 67,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 17,
+          "w": 68,
+          "h": 8,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 31,
+          "w": 83,
+          "h": 11,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 37,
+          "w": 87,
+          "h": 6,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -37,
+          "w": 17,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": -37,
+          "w": 17,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "stone_calendar": {
+      "name": "石历",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 76,
+          "h": 76,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 63,
+          "h": 63,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 49,
+          "h": 49,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 34,
+          "h": 34,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 52,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 52,
+          "h": 6,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 43,
+          "colour": "#192B36",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 43,
+          "colour": "#192B36",
+          "rotation": -45
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 17,
+          "h": 17,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "shovel": {
+      "name": "铲子",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -10.929,
+          "y": 22.768,
+          "w": 25.501,
+          "h": 26.411,
+          "colour": "#DEB66F",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": -10.929,
+          "y": 22.768,
+          "w": 14.572,
+          "h": 15.483,
+          "colour": "#192B36",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": 3.643,
+          "y": 1.821,
+          "w": 7.286,
+          "h": 47.358,
+          "colour": "#805F49",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": 18.215,
+          "y": -20.947,
+          "w": 28.233,
+          "h": 28.233,
+          "colour": "#B5CAD3",
+          "rotation": -35
+        },
+        {
+          "image": 100003,
+          "x": 25.501,
+          "y": -30.965,
+          "w": 26.411,
+          "h": 18.215,
+          "colour": "#B5CAD3",
+          "rotation": 145
+        },
+        {
+          "image": 100001,
+          "x": 16.393,
+          "y": -19.126,
+          "w": 2.732,
+          "h": 22.768,
+          "colour": "#F3E5BD",
+          "rotation": -35
+        }
+      ]
+    },
+    "winged_greaves": {
+      "name": "羽翼护胫",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 3,
+          "y": -3,
+          "w": 28,
+          "h": 58,
+          "colour": "#B5CAD3",
+          "rotation": -8
+        },
+        {
+          "image": 100001,
+          "x": 10,
+          "y": -28,
+          "w": 40,
+          "h": 16,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 24,
+          "w": 35,
+          "h": 10,
+          "colour": "#DEB66F",
+          "rotation": -8
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -17,
+          "w": 28,
+          "h": 7,
+          "colour": "#DEB66F",
+          "rotation": -8
+        },
+        {
+          "image": 100003,
+          "x": -24,
+          "y": 14,
+          "w": 39,
+          "h": 18,
+          "colour": "#F3E5BD",
+          "rotation": 52
+        },
+        {
+          "image": 100003,
+          "x": -28,
+          "y": 2,
+          "w": 34,
+          "h": 16,
+          "colour": "#F3E5BD",
+          "rotation": 55
+        },
+        {
+          "image": 100003,
+          "x": -25,
+          "y": -9,
+          "w": 27,
+          "h": 14,
+          "colour": "#F3E5BD",
+          "rotation": 55
+        },
+        {
+          "image": 100001,
+          "x": 1,
+          "y": 0,
+          "w": 6,
+          "h": 34,
+          "colour": "#66BAD5",
+          "rotation": -8
+        }
+      ]
+    },
+    "thread_and_needle": {
+      "name": "针线",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": -14,
+          "y": -16,
+          "w": 38,
+          "h": 37,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -14,
+          "y": -16,
+          "w": 20,
+          "h": 20,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 16,
+          "y": 10,
+          "w": 5,
+          "h": 62,
+          "colour": "#B5CAD3",
+          "rotation": -30
+        },
+        {
+          "image": 100002,
+          "x": 1,
+          "y": 35,
+          "w": 11,
+          "h": 16,
+          "colour": "#B5CAD3",
+          "rotation": -30
+        },
+        {
+          "image": 100002,
+          "x": 1,
+          "y": 35,
+          "w": 4,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": -30
+        },
+        {
+          "image": 100001,
+          "x": -12,
+          "y": 18,
+          "w": 27,
+          "h": 4,
+          "colour": "#DA6556",
+          "rotation": -45
+        },
+        {
+          "image": 100001,
+          "x": -27,
+          "y": 1,
+          "w": 4,
+          "h": 27,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -6,
+          "y": -29,
+          "w": 20,
+          "h": 4,
+          "colour": "#DA6556",
+          "rotation": 30
+        }
+      ]
+    },
+    "calipers": {
+      "name": "卡钳",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -18,
+          "y": 0,
+          "w": 9,
+          "h": 69,
+          "colour": "#B5CAD3",
+          "rotation": 21
+        },
+        {
+          "image": 100001,
+          "x": 18,
+          "y": 0,
+          "w": 9,
+          "h": 69,
+          "colour": "#B5CAD3",
+          "rotation": -21
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 31,
+          "w": 18,
+          "h": 18,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -26,
+          "y": -30,
+          "w": 23,
+          "h": 8,
+          "colour": "#B5CAD3",
+          "rotation": 15
+        },
+        {
+          "image": 100001,
+          "x": 26,
+          "y": -30,
+          "w": 23,
+          "h": 8,
+          "colour": "#B5CAD3",
+          "rotation": -15
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 1,
+          "w": 46,
+          "h": 6,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 7,
+          "w": 5,
+          "h": 16,
+          "colour": "#805F49",
+          "rotation": 0
+        }
+      ]
+    },
+    "prayer_wheel": {
+      "name": "转经轮",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -20,
+          "w": 9,
+          "h": 43,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 8,
+          "w": 51,
+          "h": 53,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 9,
+          "w": 51,
+          "h": 28,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 34,
+          "w": 56,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -16,
+          "w": 56,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -12,
+          "y": 9,
+          "w": 4,
+          "h": 24,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 9,
+          "w": 4,
+          "h": 24,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 12,
+          "y": 9,
+          "w": 4,
+          "h": 24,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 30,
+          "y": -2,
+          "w": 19,
+          "h": 4,
+          "colour": "#DEB66F",
+          "rotation": -15
+        },
+        {
+          "image": 100002,
+          "x": 37,
+          "y": -6,
+          "w": 10,
+          "h": 10,
+          "colour": "#DA6556",
+          "rotation": 0
+        }
+      ]
+    },
+    "girya": {
+      "name": "壶铃",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -11,
+          "w": 64,
+          "h": 59,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -11,
+          "w": 55,
+          "h": 49,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 23,
+          "w": 44,
+          "h": 36,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 24,
+          "w": 26,
+          "h": 20,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -11,
+          "w": 26,
+          "h": 28,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -11,
+          "w": 9,
+          "h": 18,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "dead_branch": {
+      "name": "枯木树枝",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -9,
+          "w": 10,
+          "h": 61,
+          "colour": "#805F49",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": -15,
+          "y": 6,
+          "w": 9,
+          "h": 42,
+          "colour": "#805F49",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 16,
+          "y": 14,
+          "w": 8,
+          "h": 43,
+          "colour": "#805F49",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": -24,
+          "y": 23,
+          "w": 6,
+          "h": 26,
+          "colour": "#805F49",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 24,
+          "y": 30,
+          "w": 6,
+          "h": 24,
+          "colour": "#805F49",
+          "rotation": 5
+        },
+        {
+          "image": 100001,
+          "x": -8,
+          "y": -10,
+          "w": 4,
+          "h": 23,
+          "colour": "#DEB66F",
+          "rotation": -12
+        }
+      ]
+    },
+    "du_vu_doll": {
+      "name": "咒术娃娃",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 21,
+          "w": 31,
+          "h": 32,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -8,
+          "w": 28,
+          "h": 36,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -19,
+          "y": -4,
+          "w": 28,
+          "h": 10,
+          "colour": "#805F49",
+          "rotation": 24
+        },
+        {
+          "image": 100001,
+          "x": 19,
+          "y": -4,
+          "w": 28,
+          "h": 10,
+          "colour": "#805F49",
+          "rotation": -24
+        },
+        {
+          "image": 100001,
+          "x": -10,
+          "y": -29,
+          "w": 10,
+          "h": 27,
+          "colour": "#805F49",
+          "rotation": -10
+        },
+        {
+          "image": 100001,
+          "x": 10,
+          "y": -29,
+          "w": 10,
+          "h": 27,
+          "colour": "#805F49",
+          "rotation": 10
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": 23,
+          "w": 9,
+          "h": 3,
+          "colour": "#F3E5BD",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": 23,
+          "w": 9,
+          "h": 3,
+          "colour": "#F3E5BD",
+          "rotation": -45
+        },
+        {
+          "image": 100001,
+          "x": 7,
+          "y": 23,
+          "w": 9,
+          "h": 3,
+          "colour": "#F3E5BD",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 7,
+          "y": 23,
+          "w": 9,
+          "h": 3,
+          "colour": "#F3E5BD",
+          "rotation": -45
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 9,
+          "w": 26,
+          "h": 3,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 4,
+          "y": -8,
+          "w": 4,
+          "h": 27,
+          "colour": "#B5CAD3",
+          "rotation": -35
+        },
+        {
+          "image": 100002,
+          "x": 13,
+          "y": 6,
+          "w": 8,
+          "h": 8,
+          "colour": "#DA6556",
+          "rotation": 0
+        }
+      ]
+    },
+    "pocketwatch": {
+      "name": "怀表",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -3,
+          "w": 70,
+          "h": 70,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -3,
+          "w": 57,
+          "h": 57,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 36,
+          "w": 18,
+          "h": 13,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 29,
+          "w": 11,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 5,
+          "w": 4,
+          "h": 24,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 11,
+          "y": -9,
+          "w": 27,
+          "h": 4,
+          "colour": "#192B36",
+          "rotation": -30
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -3,
+          "w": 8,
+          "h": 8,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 21,
+          "w": 4,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 24,
+          "y": -3,
+          "w": 8,
+          "h": 4,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -27,
+          "w": 4,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -24,
+          "y": -3,
+          "w": 8,
+          "h": 4,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "incense_burner": {
+      "name": "香炉",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -10.938,
+          "w": 60.655,
+          "h": 41.762,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 4.972,
+          "w": 68.609,
+          "h": 13.921,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -30.825,
+          "w": 35.796,
+          "h": 9.943,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -22.87,
+          "y": -28.836,
+          "w": 6.96,
+          "h": 19.887,
+          "colour": "#DEB66F",
+          "rotation": 15
+        },
+        {
+          "image": 100001,
+          "x": 22.87,
+          "y": -28.836,
+          "w": 6.96,
+          "h": 19.887,
+          "colour": "#DEB66F",
+          "rotation": -15
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 17.898,
+          "w": 57.672,
+          "h": 21.875,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 29.83,
+          "w": 10.938,
+          "h": 10.938,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -9.943,
+          "y": 36.791,
+          "w": 3.977,
+          "h": 15.909,
+          "colour": "#B5CAD3",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": 9.943,
+          "y": 38.779,
+          "w": 3.977,
+          "h": 13.921,
+          "colour": "#B5CAD3",
+          "rotation": 20
+        }
+      ]
+    },
+    "gambling_chip": {
+      "name": "赌博筹码",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 72,
+          "h": 72,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 52,
+          "h": 52,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 42,
+          "h": 42,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 28,
+          "h": 28,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 11,
+          "h": 25,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 31,
+          "w": 9,
+          "h": 9,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -31,
+          "w": 9,
+          "h": 9,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 31,
+          "y": 0,
+          "w": 9,
+          "h": 9,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -31,
+          "y": 0,
+          "w": 9,
+          "h": 9,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 22,
+          "y": 22,
+          "w": 8,
+          "h": 8,
+          "colour": "#F3E5BD",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": -22,
+          "y": -22,
+          "w": 8,
+          "h": 8,
+          "colour": "#F3E5BD",
+          "rotation": 45
+        }
+      ]
+    },
+    "peace_pipe": {
+      "name": "宁静烟斗",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -5,
+          "y": -12,
+          "w": 50,
+          "h": 12,
+          "colour": "#805F49",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": 1,
+          "w": 22,
+          "h": 36,
+          "colour": "#805F49",
+          "rotation": -5
+        },
+        {
+          "image": 100002,
+          "x": 25,
+          "y": 19,
+          "w": 27,
+          "h": 10,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 25,
+          "y": 20,
+          "w": 17,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -30,
+          "y": -6,
+          "w": 13,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 24,
+          "y": 32,
+          "w": 5,
+          "h": 19,
+          "colour": "#B5CAD3",
+          "rotation": -10
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": 39,
+          "w": 15,
+          "h": 4,
+          "colour": "#B5CAD3",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": 3,
+          "y": 36,
+          "w": 4,
+          "h": 11,
+          "colour": "#B5CAD3",
+          "rotation": 20
+        }
+      ]
+    },
+    "captains_wheel": {
+      "name": "船舵",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 72,
+          "h": 72,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 52,
+          "h": 52,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 87,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 87,
+          "colour": "#DEB66F",
+          "rotation": 30
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 87,
+          "colour": "#DEB66F",
+          "rotation": 60
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 87,
+          "colour": "#DEB66F",
+          "rotation": 90
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 87,
+          "colour": "#DEB66F",
+          "rotation": 120
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 87,
+          "colour": "#DEB66F",
+          "rotation": 150
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 16,
+          "h": 16,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "magic_flower": {
+      "name": "魔法花",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -22,
+          "w": 6,
+          "h": 34,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -13,
+          "y": -16,
+          "w": 29,
+          "h": 16,
+          "colour": "#7AA56B",
+          "rotation": -45
+        },
+        {
+          "image": 100003,
+          "x": 13,
+          "y": -23,
+          "w": 26,
+          "h": 15,
+          "colour": "#7AA56B",
+          "rotation": 45
+        },
+        {
+          "image": 100002,
+          "x": -16,
+          "y": 9,
+          "w": 30,
+          "h": 30,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 16,
+          "y": 9,
+          "w": 30,
+          "h": 30,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 26,
+          "w": 30,
+          "h": 30,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -10,
+          "y": -8,
+          "w": 27,
+          "h": 27,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 10,
+          "y": -8,
+          "w": 27,
+          "h": 27,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 8,
+          "w": 23,
+          "h": 23,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 10,
+          "w": 9,
+          "h": 9,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        }
+      ]
+    },
+    "charons_ashes": {
+      "name": "卡戎之灰",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -10,
+          "w": 53,
+          "h": 48,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 20,
+          "w": 33,
+          "h": 21,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 33,
+          "w": 42,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -35,
+          "w": 36,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -5,
+          "w": 28,
+          "h": 7,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 1,
+          "w": 18,
+          "h": 18,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": 25,
+          "w": 4,
+          "h": 11,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 7,
+          "y": 25,
+          "w": 4,
+          "h": 11,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -17,
+          "y": 40,
+          "w": 11,
+          "h": 12,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 13,
+          "y": 40,
+          "w": 9,
+          "h": 12,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        }
+      ]
+    },
+    "champion_belt": {
+      "name": "冠军腰带",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 84,
+          "h": 26,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 52,
+          "h": 42,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 42,
+          "h": 32,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 24,
+          "h": 24,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 4,
+          "w": 19,
+          "h": 19,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -33,
+          "y": 0,
+          "w": 7,
+          "h": 22,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 33,
+          "y": 0,
+          "w": 7,
+          "h": 22,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -34,
+          "y": 0,
+          "w": 2,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 34,
+          "y": 0,
+          "w": 2,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "velvet_choker": {
+      "name": "天鹅绒颈圈",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 79,
+          "h": 57,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 5,
+          "w": 60,
+          "h": 38,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -22,
+          "w": 63,
+          "h": 15,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -22,
+          "w": 20,
+          "h": 20,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -22,
+          "w": 10,
+          "h": 10,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -27,
+          "y": -20,
+          "w": 5,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 27,
+          "y": -20,
+          "w": 5,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "runic_dome": {
+      "name": "符文圆顶",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -2,
+          "w": 75,
+          "h": 66,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -27,
+          "w": 85,
+          "h": 14,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -38,
+          "w": 90,
+          "h": 8,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -21,
+          "y": 3,
+          "w": 6,
+          "h": 36,
+          "colour": "#66BAD5",
+          "rotation": 18
+        },
+        {
+          "image": 100001,
+          "x": 21,
+          "y": 3,
+          "w": 6,
+          "h": 36,
+          "colour": "#66BAD5",
+          "rotation": -18
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 13,
+          "w": 20,
+          "h": 24,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 9,
+          "w": 4,
+          "h": 22,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        }
+      ]
+    },
+    "snecko_eye": {
+      "name": "异蛇之眼",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": -17.165,
+          "y": 0,
+          "w": 40.052,
+          "h": 36.237,
+          "colour": "#F3E5BD",
+          "rotation": 90
+        },
+        {
+          "image": 100003,
+          "x": 17.165,
+          "y": 0,
+          "w": 40.052,
+          "h": 36.237,
+          "colour": "#F3E5BD",
+          "rotation": -90
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 25.748,
+          "h": 28.609,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 7.629,
+          "h": 23.84,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -4.768,
+          "y": 6.675,
+          "w": 4.768,
+          "h": 5.722,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -31.469,
+          "y": 16.211,
+          "w": 21.933,
+          "h": 19.072,
+          "colour": "#7AA56B",
+          "rotation": -40
+        },
+        {
+          "image": 100003,
+          "x": 31.469,
+          "y": 16.211,
+          "w": 21.933,
+          "h": 19.072,
+          "colour": "#7AA56B",
+          "rotation": 40
+        },
+        {
+          "image": 100001,
+          "x": -27.655,
+          "y": -16.211,
+          "w": 16.211,
+          "h": 4.768,
+          "colour": "#DEB66F",
+          "rotation": -25
+        },
+        {
+          "image": 100001,
+          "x": 27.655,
+          "y": -16.211,
+          "w": 16.211,
+          "h": 4.768,
+          "colour": "#DEB66F",
+          "rotation": 25
+        }
+      ]
+    },
+    "pandoras_box": {
+      "name": "潘多拉魔盒",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -8.853,
+          "w": 64.923,
+          "h": 50.168,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 19.674,
+          "w": 73.776,
+          "h": 13.771,
+          "colour": "#DEB66F",
+          "rotation": -5
+        },
+        {
+          "image": 100001,
+          "x": -21.641,
+          "y": -8.853,
+          "w": 5.902,
+          "h": 50.168,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 21.641,
+          "y": -8.853,
+          "w": 5.902,
+          "h": 50.168,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -8.853,
+          "w": 13.771,
+          "h": 24.592,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -6.886,
+          "w": 6.886,
+          "h": 9.837,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -7.869,
+          "y": 36.396,
+          "w": 11.804,
+          "h": 16.723,
+          "colour": "#66BAD5",
+          "rotation": -15
+        },
+        {
+          "image": 100003,
+          "x": 13.771,
+          "y": 37.38,
+          "w": 9.837,
+          "h": 14.755,
+          "colour": "#DA6556",
+          "rotation": 20
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -33.445,
+          "w": 67.874,
+          "h": 5.902,
+          "colour": "#805F49",
+          "rotation": 0
+        }
+      ]
+    },
+    "cursed_key": {
+      "name": "诅咒钥匙",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": -19,
+          "y": 19,
+          "w": 40,
+          "h": 40,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -19,
+          "y": 19,
+          "w": 22,
+          "h": 22,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 6,
+          "y": -6,
+          "w": 10,
+          "h": 61,
+          "colour": "#DEB66F",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 23,
+          "y": -25,
+          "w": 24,
+          "h": 10,
+          "colour": "#DEB66F",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 12,
+          "y": -34,
+          "w": 18,
+          "h": 9,
+          "colour": "#DEB66F",
+          "rotation": 45
+        },
+        {
+          "image": 100002,
+          "x": -20,
+          "y": 20,
+          "w": 7,
+          "h": 7,
+          "colour": "#DA6556",
+          "rotation": 0
+        }
+      ]
+    },
+    "busted_crown": {
+      "name": "破碎王冠",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -21,
+          "w": 69,
+          "h": 18,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -27,
+          "y": 1,
+          "w": 23,
+          "h": 45,
+          "colour": "#EBC96E",
+          "rotation": -15
+        },
+        {
+          "image": 100003,
+          "x": -3,
+          "y": 3,
+          "w": 20,
+          "h": 49,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 26,
+          "y": -3,
+          "w": 24,
+          "h": 34,
+          "colour": "#EBC96E",
+          "rotation": 20
+        },
+        {
+          "image": 100003,
+          "x": 6,
+          "y": 7,
+          "w": 14,
+          "h": 23,
+          "colour": "#192B36",
+          "rotation": 170
+        },
+        {
+          "image": 100001,
+          "x": 10,
+          "y": -4,
+          "w": 7,
+          "h": 16,
+          "colour": "#192B36",
+          "rotation": -25
+        },
+        {
+          "image": 100002,
+          "x": -24,
+          "y": -18,
+          "w": 8,
+          "h": 8,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -18,
+          "w": 10,
+          "h": 10,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 24,
+          "y": -18,
+          "w": 8,
+          "h": 8,
+          "colour": "#DA6556",
+          "rotation": 0
+        }
+      ]
+    },
+    "ectoplasm": {
+      "name": "灵质",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -17,
+          "w": 63,
+          "h": 42,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -12,
+          "y": 2,
+          "w": 38,
+          "h": 47,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 5,
+          "y": 23,
+          "w": 36,
+          "h": 33,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 24,
+          "y": -10,
+          "w": 31,
+          "h": 34,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -17,
+          "y": 4,
+          "w": 8,
+          "h": 10,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -1,
+          "y": 8,
+          "w": 8,
+          "h": 10,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -7,
+          "y": -7,
+          "w": 12,
+          "h": 7,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 9,
+          "y": 30,
+          "w": 10,
+          "h": 10,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        }
+      ]
+    },
+    "tiny_house": {
+      "name": "小屋",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -11,
+          "w": 61,
+          "h": 47,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 20,
+          "w": 85,
+          "h": 43,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -21,
+          "w": 18,
+          "h": 28,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -20,
+          "y": -5,
+          "w": 13,
+          "h": 14,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 20,
+          "y": -5,
+          "w": 13,
+          "h": 14,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 24,
+          "y": 26,
+          "w": 9,
+          "h": 25,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -36,
+          "w": 74,
+          "h": 7,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "philosophers_stone": {
+      "name": "贤者之石",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": -9.458,
+          "y": 11.349,
+          "w": 53.909,
+          "h": 51.072,
+          "colour": "#DA6556",
+          "rotation": -22
+        },
+        {
+          "image": 100003,
+          "x": 11.349,
+          "y": -8.512,
+          "w": 52.963,
+          "h": 53.909,
+          "colour": "#DA6556",
+          "rotation": 158
+        },
+        {
+          "image": 100001,
+          "x": 0.946,
+          "y": 2.837,
+          "w": 34.048,
+          "h": 40.668,
+          "colour": "#B08AC9",
+          "rotation": -25
+        },
+        {
+          "image": 100003,
+          "x": -9.458,
+          "y": 15.132,
+          "w": 22.699,
+          "h": 23.644,
+          "colour": "#EBC96E",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": 12.295,
+          "y": -12.295,
+          "w": 7.566,
+          "h": 28.373,
+          "colour": "#805F49",
+          "rotation": -30
+        }
+      ]
+    },
+    "astrolabe": {
+      "name": "星盘",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 72,
+          "h": 72,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 52,
+          "h": 52,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 43,
+          "h": 43,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 30,
+          "h": 30,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 64,
+          "colour": "#DEB66F",
+          "rotation": 35
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 64,
+          "colour": "#DEB66F",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 64,
+          "colour": "#DEB66F",
+          "rotation": 90
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 11,
+          "h": 11,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 41,
+          "w": 15,
+          "h": 10,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -5,
+          "w": 17,
+          "h": 37,
+          "colour": "#B5CAD3",
+          "rotation": 25
+        }
+      ]
+    },
+    "empty_cage": {
+      "name": "空鸟笼",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 13,
+          "w": 58,
+          "h": 48,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 10,
+          "w": 47,
+          "h": 36,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -7,
+          "w": 58,
+          "h": 40,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -4,
+          "w": 5,
+          "h": 52,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": -4,
+          "w": 5,
+          "h": 52,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -11,
+          "y": 3,
+          "w": 4,
+          "h": 63,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 11,
+          "y": 3,
+          "w": 4,
+          "h": 63,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -31,
+          "w": 66,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 39,
+          "w": 13,
+          "h": 14,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 60,
+          "h": 5,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "runic_pyramid": {
+      "name": "符文金字塔",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 0,
+          "w": 83,
+          "h": 78,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 16,
+          "y": 0,
+          "w": 48,
+          "h": 78,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -8,
+          "y": -17,
+          "w": 23,
+          "h": 5,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -6,
+          "y": -6,
+          "w": 19,
+          "h": 5,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -3,
+          "y": 5,
+          "w": 14,
+          "h": 5,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -36,
+          "w": 85,
+          "h": 7,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "calling_bell": {
+      "name": "召唤铃铛",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 36,
+          "w": 18,
+          "h": 18,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 36,
+          "w": 9,
+          "h": 9,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 9,
+          "w": 49,
+          "h": 50,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -7,
+          "w": 66,
+          "h": 57,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -30,
+          "w": 76,
+          "h": 15,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -27,
+          "w": 57,
+          "h": 8,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -36,
+          "w": 15,
+          "h": 15,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -13,
+          "y": 9,
+          "w": 5,
+          "h": 27,
+          "colour": "#F3E5BD",
+          "rotation": -8
+        }
+      ]
+    },
+    "mark_of_pain": {
+      "name": "痛楚印记",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 79,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 70,
+          "h": 6,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 71,
+          "colour": "#DA6556",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 71,
+          "colour": "#DA6556",
+          "rotation": -45
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 35,
+          "h": 35,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 23,
+          "h": 23,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 0,
+          "w": 15,
+          "h": 21,
+          "colour": "#DA6556",
+          "rotation": 180
+        }
+      ]
+    },
+    "runic_cube": {
+      "name": "符文立方体",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -4,
+          "w": 57,
+          "h": 59,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -16,
+          "y": 1,
+          "w": 29,
+          "h": 59,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 31,
+          "w": 58,
+          "h": 24,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": -3,
+          "w": 6,
+          "h": 31,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": 10,
+          "w": 18,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -15,
+          "y": -5,
+          "w": 14,
+          "h": 5,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -15,
+          "y": 5,
+          "w": 5,
+          "h": 25,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": -17,
+          "w": 18,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "sling": {
+      "name": "投石索",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -19,
+          "y": 10,
+          "w": 6,
+          "h": 61,
+          "colour": "#805F49",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": 19,
+          "y": 10,
+          "w": 6,
+          "h": 61,
+          "colour": "#805F49",
+          "rotation": 20
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -19,
+          "w": 41,
+          "h": 27,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -18,
+          "w": 25,
+          "h": 19,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -28,
+          "y": 37,
+          "w": 8,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": 28,
+          "y": 37,
+          "w": 8,
+          "h": 11,
+          "colour": "#DEB66F",
+          "rotation": 20
+        }
+      ]
+    },
+    "hand_drill": {
+      "name": "手钻",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 2,
+          "y": -19,
+          "w": 8,
+          "h": 42,
+          "colour": "#B5CAD3",
+          "rotation": -20
+        },
+        {
+          "image": 100001,
+          "x": 2,
+          "y": -19,
+          "w": 17,
+          "h": 4,
+          "colour": "#192B36",
+          "rotation": 10
+        },
+        {
+          "image": 100001,
+          "x": 5,
+          "y": -8,
+          "w": 17,
+          "h": 4,
+          "colour": "#192B36",
+          "rotation": 10
+        },
+        {
+          "image": 100001,
+          "x": 8,
+          "y": 2,
+          "w": 17,
+          "h": 4,
+          "colour": "#192B36",
+          "rotation": 10
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 12,
+          "w": 44,
+          "h": 9,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -20,
+          "y": 23,
+          "w": 9,
+          "h": 31,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": 35,
+          "w": 34,
+          "h": 8,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 15,
+          "y": 27,
+          "w": 15,
+          "h": 20,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 5,
+          "y": 9,
+          "w": 8,
+          "h": 19,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        }
+      ]
+    },
+    "toolbox": {
+      "name": "工具箱",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -10,
+          "w": 74,
+          "h": 51,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 19,
+          "w": 39,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 18,
+          "w": 25,
+          "h": 16,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 8,
+          "w": 80,
+          "h": 13,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -1,
+          "w": 16,
+          "h": 22,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -2,
+          "w": 6,
+          "h": 9,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -13,
+          "w": 4,
+          "h": 31,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": -13,
+          "w": 4,
+          "h": 31,
+          "colour": "#805F49",
+          "rotation": 0
+        }
+      ]
+    },
+    "chemical_x": {
+      "name": "化学物质零号",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 23,
+          "w": 17,
+          "h": 23,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -7,
+          "w": 48,
+          "h": 57,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -11,
+          "w": 38,
+          "h": 41,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 36,
+          "w": 24,
+          "h": 10,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -10,
+          "y": 1,
+          "w": 5,
+          "h": 17,
+          "colour": "#F3E5BD",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": -8,
+          "y": -11,
+          "w": 5,
+          "h": 25,
+          "colour": "#F3E5BD",
+          "rotation": 35
+        },
+        {
+          "image": 100001,
+          "x": 8,
+          "y": -11,
+          "w": 5,
+          "h": 25,
+          "colour": "#F3E5BD",
+          "rotation": -35
+        },
+        {
+          "image": 100002,
+          "x": -10,
+          "y": -25,
+          "w": 4,
+          "h": 4,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 10,
+          "y": 2,
+          "w": 5,
+          "h": 5,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "orrery": {
+      "name": "星系仪",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -14,
+          "w": 7,
+          "h": 44,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -35,
+          "w": 53,
+          "h": 9,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 7,
+          "w": 24,
+          "h": 24,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 7,
+          "w": 74,
+          "h": 4,
+          "colour": "#DEB66F",
+          "rotation": -18
+        },
+        {
+          "image": 100001,
+          "x": -21,
+          "y": 25,
+          "w": 43,
+          "h": 4,
+          "colour": "#DEB66F",
+          "rotation": 42
+        },
+        {
+          "image": 100002,
+          "x": -34,
+          "y": -4,
+          "w": 16,
+          "h": 16,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 34,
+          "y": 18,
+          "w": 20,
+          "h": 20,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -30,
+          "y": 34,
+          "w": 13,
+          "h": 13,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": -20,
+          "w": 11,
+          "h": 11,
+          "colour": "#B08AC9",
+          "rotation": 0
+        }
+      ]
+    },
+    "dollys_mirror": {
+      "name": "多利之镜",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 12.934,
+          "w": 59.696,
+          "h": 60.691,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 12.934,
+          "w": 45.767,
+          "h": 47.757,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 12.934,
+          "w": 34.823,
+          "h": 37.807,
+          "colour": "#4D788D",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -27.858,
+          "w": 12.934,
+          "h": 34.823,
+          "colour": "#DEB66F",
+          "rotation": -8
+        },
+        {
+          "image": 100001,
+          "x": -8.954,
+          "y": 18.904,
+          "w": 4.975,
+          "h": 28.853,
+          "colour": "#F3E5BD",
+          "rotation": -25
+        },
+        {
+          "image": 100001,
+          "x": 9.949,
+          "y": 7.959,
+          "w": 3.98,
+          "h": 20.894,
+          "colour": "#F3E5BD",
+          "rotation": -25
+        }
+      ]
+    },
+    "orange_pellets": {
+      "name": "橙色药丸",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -20,
+          "y": 0,
+          "w": 23,
+          "h": 43,
+          "colour": "#DEB66F",
+          "rotation": -38
+        },
+        {
+          "image": 100002,
+          "x": -31,
+          "y": 13,
+          "w": 23,
+          "h": 23,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -9,
+          "y": -13,
+          "w": 23,
+          "h": 23,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 22,
+          "y": 3,
+          "w": 22,
+          "h": 43,
+          "colour": "#DA6556",
+          "rotation": 25
+        },
+        {
+          "image": 100002,
+          "x": 14,
+          "y": 20,
+          "w": 22,
+          "h": 22,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 30,
+          "y": -14,
+          "w": 22,
+          "h": 22,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 22,
+          "y": 3,
+          "w": 21,
+          "h": 3,
+          "colour": "#F3E5BD",
+          "rotation": 25
+        }
+      ]
+    },
+    "prismatic_shard": {
+      "name": "棱镜碎片",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 13,
+          "w": 50,
+          "h": 61,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -15,
+          "y": -8,
+          "w": 39,
+          "h": 50,
+          "colour": "#B08AC9",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 15,
+          "y": -8,
+          "w": 39,
+          "h": 50,
+          "colour": "#7AA56B",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 1,
+          "w": 4,
+          "h": 62,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -7,
+          "y": 14,
+          "w": 17,
+          "h": 30,
+          "colour": "#F3E5BD",
+          "rotation": -15
+        },
+        {
+          "image": 100003,
+          "x": 10,
+          "y": 0,
+          "w": 13,
+          "h": 31,
+          "colour": "#EBC96E",
+          "rotation": 180
+        }
+      ]
+    },
+    "clockwork_souvenir": {
+      "name": "齿轮纪念品",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 72,
+          "h": 72,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 52,
+          "h": 52,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 84,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 84,
+          "colour": "#DEB66F",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 84,
+          "colour": "#DEB66F",
+          "rotation": 90
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 84,
+          "colour": "#DEB66F",
+          "rotation": 135
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 53,
+          "h": 53,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 26,
+          "h": 26,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 12,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "frozen_eye": {
+      "name": "冻结之眼",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": -22,
+          "y": 18,
+          "w": 24,
+          "h": 27,
+          "colour": "#66BAD5",
+          "rotation": -25
+        },
+        {
+          "image": 100003,
+          "x": 22,
+          "y": 20,
+          "w": 24,
+          "h": 27,
+          "colour": "#66BAD5",
+          "rotation": 25
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -24,
+          "w": 29,
+          "h": 25,
+          "colour": "#66BAD5",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": -18,
+          "y": 0,
+          "w": 42,
+          "h": 38,
+          "colour": "#F3E5BD",
+          "rotation": 90
+        },
+        {
+          "image": 100003,
+          "x": 18,
+          "y": 0,
+          "w": 42,
+          "h": 38,
+          "colour": "#F3E5BD",
+          "rotation": -90
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 27,
+          "h": 30,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 25,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -5,
+          "y": 7,
+          "w": 5,
+          "h": 6,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 2,
+          "h": 41,
+          "colour": "#F3E5BD",
+          "rotation": -30
+        }
+      ]
+    },
+    "the_abacus": {
+      "name": "算盘",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 79,
+          "h": 67,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 65,
+          "h": 53,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -20,
+          "y": 0,
+          "w": 4,
+          "h": 57,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 4,
+          "h": 57,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 20,
+          "y": 0,
+          "w": 4,
+          "h": 57,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 12,
+          "w": 65,
+          "h": 4,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -20,
+          "y": 23,
+          "w": 15,
+          "h": 11,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -20,
+          "y": -1,
+          "w": 15,
+          "h": 11,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -20,
+          "y": -17,
+          "w": 15,
+          "h": 11,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 23,
+          "w": 15,
+          "h": 11,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -9,
+          "w": 15,
+          "h": 11,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": 23,
+          "w": 15,
+          "h": 11,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": -1,
+          "w": 15,
+          "h": 11,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 20,
+          "y": -17,
+          "w": 15,
+          "h": 11,
+          "colour": "#7AA56B",
+          "rotation": 0
+        }
+      ]
+    },
+    "medical_kit": {
+      "name": "医药箱",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -8,
+          "w": 75,
+          "h": 52,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 23,
+          "w": 34,
+          "h": 23,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 22,
+          "w": 20,
+          "h": 13,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 6,
+          "w": 79,
+          "h": 9,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -10,
+          "w": 30,
+          "h": 10,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -10,
+          "w": 10,
+          "h": 30,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -26,
+          "y": -9,
+          "w": 4,
+          "h": 46,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 26,
+          "y": -9,
+          "w": 4,
+          "h": 46,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "cauldron": {
+      "name": "大锅",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -5,
+          "w": 66,
+          "h": 59,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -5,
+          "w": 58,
+          "h": 51,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 19,
+          "w": 76,
+          "h": 19,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 21,
+          "w": 61,
+          "h": 10,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -32,
+          "w": 9,
+          "h": 17,
+          "colour": "#192B36",
+          "rotation": -16
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": -32,
+          "w": 9,
+          "h": 17,
+          "colour": "#192B36",
+          "rotation": 16
+        },
+        {
+          "image": 100002,
+          "x": -36,
+          "y": 0,
+          "w": 17,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 36,
+          "y": 0,
+          "w": 17,
+          "h": 26,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -11,
+          "y": 29,
+          "w": 9,
+          "h": 9,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 13,
+          "y": 38,
+          "w": 11,
+          "h": 11,
+          "colour": "#7AA56B",
+          "rotation": 0
+        }
+      ]
+    },
+    "strange_spoon": {
+      "name": "奇怪的勺子",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 18,
+          "y": 21,
+          "w": 29,
+          "h": 40,
+          "colour": "#B5CAD3",
+          "rotation": -26
+        },
+        {
+          "image": 100002,
+          "x": 18,
+          "y": 23,
+          "w": 18,
+          "h": 27,
+          "colour": "#66BAD5",
+          "rotation": -26
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -10,
+          "w": 10,
+          "h": 59,
+          "colour": "#B5CAD3",
+          "rotation": -30
+        },
+        {
+          "image": 100002,
+          "x": -16,
+          "y": -34,
+          "w": 13,
+          "h": 15,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -2,
+          "y": -9,
+          "w": 3,
+          "h": 26,
+          "colour": "#F3E5BD",
+          "rotation": -30
+        }
+      ]
+    },
+    "brimstone": {
+      "name": "硫磺",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 3,
+          "w": 77,
+          "h": 66,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -15,
+          "y": -17,
+          "w": 41,
+          "h": 42,
+          "colour": "#DEB66F",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 17,
+          "y": -16,
+          "w": 40,
+          "h": 40,
+          "colour": "#DEB66F",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 9,
+          "w": 30,
+          "h": 31,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 2,
+          "w": 15,
+          "h": 14,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -8,
+          "y": -20,
+          "w": 6,
+          "h": 17,
+          "colour": "#DA6556",
+          "rotation": -22
+        },
+        {
+          "image": 100001,
+          "x": 10,
+          "y": -20,
+          "w": 6,
+          "h": 17,
+          "colour": "#DA6556",
+          "rotation": 22
+        }
+      ]
+    },
+    "fossilized_helix": {
+      "name": "螺旋化石",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 73,
+          "h": 70,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -2,
+          "y": 2,
+          "w": 59,
+          "h": 57,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -4,
+          "y": 4,
+          "w": 45,
+          "h": 44,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -3,
+          "y": 3,
+          "w": 33,
+          "h": 32,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 21,
+          "h": 22,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 19,
+          "y": -18,
+          "w": 35,
+          "h": 12,
+          "colour": "#F3E5BD",
+          "rotation": 34
+        },
+        {
+          "image": 100003,
+          "x": 32,
+          "y": -31,
+          "w": 22,
+          "h": 23,
+          "colour": "#F3E5BD",
+          "rotation": 180
+        }
+      ]
+    },
+    "pantograph": {
+      "name": "缩放仪",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -17,
+          "y": 10,
+          "w": 8,
+          "h": 62,
+          "colour": "#DEB66F",
+          "rotation": 35
+        },
+        {
+          "image": 100001,
+          "x": 17,
+          "y": 10,
+          "w": 8,
+          "h": 62,
+          "colour": "#DEB66F",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": -17,
+          "y": -16,
+          "w": 8,
+          "h": 44,
+          "colour": "#B5CAD3",
+          "rotation": -35
+        },
+        {
+          "image": 100001,
+          "x": 17,
+          "y": -16,
+          "w": 8,
+          "h": 44,
+          "colour": "#B5CAD3",
+          "rotation": 35
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 30,
+          "w": 65,
+          "h": 6,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -34,
+          "y": 30,
+          "w": 12,
+          "h": 12,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 34,
+          "y": 30,
+          "w": 12,
+          "h": 12,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -31,
+          "w": 12,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -37,
+          "w": 4,
+          "h": 14,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "sacred_bark": {
+      "name": "神圣树皮",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -3,
+          "w": 49,
+          "h": 68,
+          "colour": "#805F49",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": -16,
+          "y": -1,
+          "w": 7,
+          "h": 65,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 15,
+          "y": -4,
+          "w": 7,
+          "h": 62,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 2,
+          "w": 5,
+          "h": 41,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -19,
+          "w": 5,
+          "h": 16,
+          "colour": "#192B36",
+          "rotation": -6
+        },
+        {
+          "image": 100003,
+          "x": 20,
+          "y": 28,
+          "w": 29,
+          "h": 22,
+          "colour": "#7AA56B",
+          "rotation": -35
+        },
+        {
+          "image": 100003,
+          "x": -4,
+          "y": 31,
+          "w": 24,
+          "h": 20,
+          "colour": "#7AA56B",
+          "rotation": 20
+        },
+        {
+          "image": 100001,
+          "x": 4,
+          "y": 18,
+          "w": 4,
+          "h": 16,
+          "colour": "#EBC96E",
+          "rotation": -30
+        }
+      ]
+    },
+    "white_beast_statue": {
+      "name": "白兽雕像",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -29.453,
+          "w": 63.509,
+          "h": 10.125,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -14.727,
+          "y": -14.727,
+          "w": 11.965,
+          "h": 30.374,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 16.567,
+          "y": -14.727,
+          "w": 11.965,
+          "h": 30.374,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 1.841,
+          "w": 48.782,
+          "h": 35.896,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 18.408,
+          "y": 21.17,
+          "w": 28.533,
+          "h": 28.533,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 9.204,
+          "y": 36.817,
+          "w": 14.727,
+          "h": 15.647,
+          "colour": "#F3E5BD",
+          "rotation": -12
+        },
+        {
+          "image": 100003,
+          "x": 28.533,
+          "y": 34.055,
+          "w": 13.806,
+          "h": 15.647,
+          "colour": "#F3E5BD",
+          "rotation": 20
+        },
+        {
+          "image": 100001,
+          "x": -27.612,
+          "y": 14.727,
+          "w": 9.204,
+          "h": 30.374,
+          "colour": "#F3E5BD",
+          "rotation": 35
+        },
+        {
+          "image": 100002,
+          "x": 23.01,
+          "y": 23.01,
+          "w": 4.602,
+          "h": 4.602,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 28.533,
+          "y": 11.965,
+          "w": 14.727,
+          "h": 6.443,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        }
+      ]
+    },
+    "frozen_egg": {
+      "name": "冰冻胎石",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -5,
+          "w": 53,
+          "h": 67,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 17,
+          "w": 43,
+          "h": 41,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -13,
+          "y": 9,
+          "w": 22,
+          "h": 26,
+          "colour": "#B5CAD3",
+          "rotation": -25
+        },
+        {
+          "image": 100001,
+          "x": 8,
+          "y": -10,
+          "w": 4,
+          "h": 44,
+          "colour": "#F3E5BD",
+          "rotation": -25
+        },
+        {
+          "image": 100001,
+          "x": -15,
+          "y": -23,
+          "w": 23,
+          "h": 4,
+          "colour": "#F3E5BD",
+          "rotation": 25
+        }
+      ]
+    },
+    "coffee_dripper": {
+      "name": "咖啡滤杯",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -2,
+          "w": 66,
+          "h": 57,
+          "colour": "#F3E5BD",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -6,
+          "w": 38,
+          "h": 36,
+          "colour": "#805F49",
+          "rotation": 180
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 25,
+          "w": 74,
+          "h": 14,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 26,
+          "w": 57,
+          "h": 8,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -31,
+          "w": 15,
+          "h": 17,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -39,
+          "w": 18,
+          "h": 8,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -13,
+          "y": 6,
+          "w": 4,
+          "h": 24,
+          "colour": "#DEB66F",
+          "rotation": -15
+        },
+        {
+          "image": 100001,
+          "x": 13,
+          "y": 6,
+          "w": 4,
+          "h": 24,
+          "colour": "#DEB66F",
+          "rotation": 15
+        }
+      ]
+    },
+    "fusion_hammer": {
+      "name": "聚变之锤",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -7.216,
+          "y": -13.53,
+          "w": 10.824,
+          "h": 58.628,
+          "colour": "#805F49",
+          "rotation": -28
+        },
+        {
+          "image": 100001,
+          "x": -7.216,
+          "y": -13.53,
+          "w": 4.51,
+          "h": 46,
+          "colour": "#DEB66F",
+          "rotation": -28
+        },
+        {
+          "image": 100001,
+          "x": 7.216,
+          "y": 19.843,
+          "w": 62.236,
+          "h": 26.157,
+          "colour": "#B5CAD3",
+          "rotation": -28
+        },
+        {
+          "image": 100001,
+          "x": -18.941,
+          "y": 33.373,
+          "w": 10.824,
+          "h": 22.549,
+          "colour": "#DEB66F",
+          "rotation": -28
+        },
+        {
+          "image": 100001,
+          "x": 31.569,
+          "y": 7.216,
+          "w": 10.824,
+          "h": 22.549,
+          "colour": "#DEB66F",
+          "rotation": -28
+        },
+        {
+          "image": 100002,
+          "x": 8.118,
+          "y": 19.843,
+          "w": 15.333,
+          "h": 15.333,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 8.118,
+          "y": 19.843,
+          "w": 6.314,
+          "h": 6.314,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "mark_of_bloom": {
+      "name": "绽放印记",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -20.975,
+          "w": 5.72,
+          "h": 29.556,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -17.161,
+          "y": -19.068,
+          "w": 28.602,
+          "h": 14.301,
+          "colour": "#7AA56B",
+          "rotation": -35
+        },
+        {
+          "image": 100003,
+          "x": 17.161,
+          "y": -19.068,
+          "w": 28.602,
+          "h": 14.301,
+          "colour": "#7AA56B",
+          "rotation": 35
+        },
+        {
+          "image": 100003,
+          "x": -18.115,
+          "y": 9.534,
+          "w": 33.369,
+          "h": 49.577,
+          "colour": "#B08AC9",
+          "rotation": -35
+        },
+        {
+          "image": 100003,
+          "x": 18.115,
+          "y": 9.534,
+          "w": 33.369,
+          "h": 49.577,
+          "colour": "#B08AC9",
+          "rotation": 35
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 14.301,
+          "w": 33.369,
+          "h": 58.158,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -0.953,
+          "w": 18.115,
+          "h": 20.975,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 9.534,
+          "w": 3.814,
+          "h": 25.742,
+          "colour": "#EBC96E",
+          "rotation": 0
+        }
+      ]
+    },
+    "black_star": {
+      "name": "黑星",
+      "shapes": [
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 10,
+          "w": 66,
+          "h": 61,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -10,
+          "w": 66,
+          "h": 61,
+          "colour": "#DEB66F",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 10,
+          "w": 49,
+          "h": 45,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -10,
+          "w": 49,
+          "h": 45,
+          "colour": "#192B36",
+          "rotation": 180
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 12,
+          "h": 12,
+          "colour": "#B08AC9",
+          "rotation": 0
+        }
+      ]
+    },
+    "slavers_collar": {
+      "name": "缚岩项圈",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 75.362,
+          "h": 60.681,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 2.936,
+          "w": 55.787,
+          "h": 42.085,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -22.511,
+          "w": 58.723,
+          "h": 15.66,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -23.489,
+          "w": 19.574,
+          "h": 23.489,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -20.553,
+          "w": 6.851,
+          "h": 7.83,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -30.34,
+          "y": 17.617,
+          "w": 16.638,
+          "h": 19.574,
+          "colour": "#B5CAD3",
+          "rotation": -45
+        },
+        {
+          "image": 100003,
+          "x": 30.34,
+          "y": 17.617,
+          "w": 16.638,
+          "h": 19.574,
+          "colour": "#B5CAD3",
+          "rotation": 45
+        },
+        {
+          "image": 100003,
+          "x": -36.213,
+          "y": -8.809,
+          "w": 16.638,
+          "h": 19.574,
+          "colour": "#B5CAD3",
+          "rotation": -90
+        },
+        {
+          "image": 100003,
+          "x": 36.213,
+          "y": -8.809,
+          "w": 16.638,
+          "h": 19.574,
+          "colour": "#B5CAD3",
+          "rotation": 90
+        }
+      ]
+    },
+    "sozu": {
+      "name": "静泉竹筒",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -9,
+          "y": 4,
+          "w": 19,
+          "h": 69,
+          "colour": "#7AA56B",
+          "rotation": -12
+        },
+        {
+          "image": 100002,
+          "x": -9,
+          "y": 39,
+          "w": 20,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": 20,
+          "w": 21,
+          "h": 5,
+          "colour": "#DEB66F",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": -11,
+          "y": -8,
+          "w": 21,
+          "h": 5,
+          "colour": "#DEB66F",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": 9,
+          "y": -21,
+          "w": 60,
+          "h": 8,
+          "colour": "#805F49",
+          "rotation": 20
+        },
+        {
+          "image": 100001,
+          "x": 15,
+          "y": -8,
+          "w": 7,
+          "h": 42,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -32,
+          "w": 68,
+          "h": 7,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 32,
+          "y": -23,
+          "w": 8,
+          "h": 12,
+          "colour": "#66BAD5",
+          "rotation": 0
+        }
+      ]
+    },
+    "warped_tongs": {
+      "name": "扭曲夹钳",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": -15,
+          "y": 3,
+          "w": 9,
+          "h": 61,
+          "colour": "#B5CAD3",
+          "rotation": 23
+        },
+        {
+          "image": 100001,
+          "x": 15,
+          "y": 3,
+          "w": 9,
+          "h": 61,
+          "colour": "#B5CAD3",
+          "rotation": -23
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 27,
+          "w": 18,
+          "h": 18,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -26,
+          "y": -24,
+          "w": 10,
+          "h": 26,
+          "colour": "#B5CAD3",
+          "rotation": -23
+        },
+        {
+          "image": 100001,
+          "x": 26,
+          "y": -24,
+          "w": 10,
+          "h": 26,
+          "colour": "#B5CAD3",
+          "rotation": 23
+        },
+        {
+          "image": 100001,
+          "x": -22,
+          "y": -36,
+          "w": 20,
+          "h": 6,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 22,
+          "y": -36,
+          "w": 20,
+          "h": 6,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 27,
+          "w": 6,
+          "h": 6,
+          "colour": "#192B36",
+          "rotation": 0
+        }
+      ]
+    },
+    "spirit_poop": {
+      "name": "灵体便便",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -24,
+          "w": 72,
+          "h": 27,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -3,
+          "y": -7,
+          "w": 57,
+          "h": 33,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 11,
+          "w": 42,
+          "h": 31,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 6,
+          "y": 29,
+          "w": 24,
+          "h": 29,
+          "colour": "#B08AC9",
+          "rotation": 12
+        },
+        {
+          "image": 100002,
+          "x": -12,
+          "y": -4,
+          "w": 7,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 10,
+          "y": -4,
+          "w": 7,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -17,
+          "w": 14,
+          "h": 4,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -13,
+          "y": 20,
+          "w": 7,
+          "h": 7,
+          "colour": "#66BAD5",
+          "rotation": 0
+        }
+      ]
+    },
+    "circlet": {
+      "name": "头环",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 82,
+          "h": 42,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 5,
+          "w": 65,
+          "h": 26,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -17,
+          "w": 64,
+          "h": 12,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -15,
+          "w": 18,
+          "h": 19,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -15,
+          "w": 8,
+          "h": 9,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -25,
+          "y": -12,
+          "w": 7,
+          "h": 14,
+          "colour": "#EBC96E",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 25,
+          "y": -12,
+          "w": 7,
+          "h": 14,
+          "colour": "#EBC96E",
+          "rotation": -12
+        }
+      ]
+    },
+    "red_mask": {
+      "name": "绯红仪面",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 58,
+          "h": 70,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -27,
+          "w": 42,
+          "h": 28,
+          "colour": "#DA6556",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": -14,
+          "y": 9,
+          "w": 15,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": 9,
+          "w": 15,
+          "h": 8,
+          "colour": "#192B36",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -16,
+          "w": 21,
+          "h": 6,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -24,
+          "y": -4,
+          "w": 6,
+          "h": 33,
+          "colour": "#DEB66F",
+          "rotation": 20
+        },
+        {
+          "image": 100001,
+          "x": 24,
+          "y": -4,
+          "w": 6,
+          "h": 33,
+          "colour": "#DEB66F",
+          "rotation": -20
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 27,
+          "w": 15,
+          "h": 16,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "lizard_tail": {
+      "name": "蜥蜴尾巴",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": -7.763,
+          "y": -11.644,
+          "w": 50.456,
+          "h": 48.516,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -4.852,
+          "y": -6.792,
+          "w": 33.961,
+          "h": 32.991,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -25.228,
+          "y": 11.644,
+          "w": 15.525,
+          "h": 35.902,
+          "colour": "#7AA56B",
+          "rotation": -15
+        },
+        {
+          "image": 100003,
+          "x": -22.317,
+          "y": 32.02,
+          "w": 21.347,
+          "h": 26.198,
+          "colour": "#7AA56B",
+          "rotation": 5
+        },
+        {
+          "image": 100002,
+          "x": 16.495,
+          "y": -16.495,
+          "w": 28.139,
+          "h": 27.169,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 16.495,
+          "y": -12.614,
+          "w": 16.495,
+          "h": 16.495,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -21.347,
+          "y": -20.377,
+          "w": 9.703,
+          "h": 3.881,
+          "colour": "#EBC96E",
+          "rotation": 35
+        },
+        {
+          "image": 100001,
+          "x": -24.258,
+          "y": -8.733,
+          "w": 10.673,
+          "h": 3.881,
+          "colour": "#EBC96E",
+          "rotation": 5
+        },
+        {
+          "image": 100001,
+          "x": -26.198,
+          "y": 4.852,
+          "w": 10.673,
+          "h": 3.881,
+          "colour": "#EBC96E",
+          "rotation": -5
+        }
+      ]
+    },
+    "odd_mushroom": {
+      "name": "奇怪蘑菇",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -14,
+          "w": 18,
+          "h": 44,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -33,
+          "w": 34,
+          "h": 13,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 14,
+          "w": 77,
+          "h": 43,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 4,
+          "w": 78,
+          "h": 10,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -21,
+          "y": 17,
+          "w": 14,
+          "h": 12,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 7,
+          "y": 24,
+          "w": 17,
+          "h": 13,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 24,
+          "y": 10,
+          "w": 11,
+          "h": 10,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -6,
+          "w": 21,
+          "h": 8,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "cultist_mask": {
+      "name": "邪教徒头饰",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 47.423,
+          "h": 57.856,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -26.557,
+          "w": 31.299,
+          "h": 22.763,
+          "colour": "#805F49",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 17.072,
+          "y": 5.691,
+          "w": 44.577,
+          "h": 20.866,
+          "colour": "#DEB66F",
+          "rotation": -80
+        },
+        {
+          "image": 100001,
+          "x": -11.381,
+          "y": 11.381,
+          "w": 12.33,
+          "h": 8.536,
+          "colour": "#192B36",
+          "rotation": -16
+        },
+        {
+          "image": 100001,
+          "x": 7.588,
+          "y": 11.381,
+          "w": 11.381,
+          "h": 7.588,
+          "colour": "#192B36",
+          "rotation": 16
+        },
+        {
+          "image": 100003,
+          "x": -22.763,
+          "y": 23.711,
+          "w": 20.866,
+          "h": 34.144,
+          "colour": "#DA6556",
+          "rotation": -30
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": 33.196,
+          "w": 17.072,
+          "h": 25.608,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 19.918,
+          "y": 26.557,
+          "w": 17.072,
+          "h": 30.351,
+          "colour": "#DA6556",
+          "rotation": 30
+        },
+        {
+          "image": 100001,
+          "x": -7.588,
+          "y": -17.072,
+          "w": 5.691,
+          "h": 18.969,
+          "colour": "#DEB66F",
+          "rotation": -20
+        }
+      ]
+    },
+    "face_of_cleric": {
+      "name": "圣职者之脸",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 57.376,
+          "h": 69.247,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -26.71,
+          "w": 41.548,
+          "h": 27.699,
+          "colour": "#F3E5BD",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": -13.849,
+          "y": 8.903,
+          "w": 14.839,
+          "h": 7.914,
+          "colour": "#66BAD5",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": 13.849,
+          "y": 8.903,
+          "w": 14.839,
+          "h": 7.914,
+          "colour": "#66BAD5",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -15.828,
+          "w": 20.774,
+          "h": 5.935,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 31.656,
+          "w": 50.452,
+          "h": 12.86,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 37.591,
+          "w": 15.828,
+          "h": 14.839,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 37.591,
+          "w": 7.914,
+          "h": 16.817,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -14.839,
+          "w": 11.871,
+          "h": 10.882,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "gremlin_mask": {
+      "name": "地精容貌",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 48.745,
+          "h": 58.83,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -22.692,
+          "w": 35.298,
+          "h": 23.532,
+          "colour": "#7AA56B",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": -11.766,
+          "y": 7.564,
+          "w": 12.607,
+          "h": 6.723,
+          "colour": "#192B36",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": 11.766,
+          "y": 7.564,
+          "w": 12.607,
+          "h": 6.723,
+          "colour": "#192B36",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -13.447,
+          "w": 17.649,
+          "h": 5.043,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -26.894,
+          "y": 10.926,
+          "w": 21.011,
+          "h": 31.937,
+          "colour": "#7AA56B",
+          "rotation": -55
+        },
+        {
+          "image": 100003,
+          "x": 26.894,
+          "y": 10.926,
+          "w": 21.011,
+          "h": 31.937,
+          "colour": "#7AA56B",
+          "rotation": 55
+        },
+        {
+          "image": 100003,
+          "x": -8.404,
+          "y": -10.926,
+          "w": 8.404,
+          "h": 12.607,
+          "colour": "#F3E5BD",
+          "rotation": 180
+        },
+        {
+          "image": 100003,
+          "x": 8.404,
+          "y": -10.926,
+          "w": 8.404,
+          "h": 12.607,
+          "colour": "#F3E5BD",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0.84,
+          "w": 8.404,
+          "h": 10.085,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "nloths_mask": {
+      "name": "恩洛斯的饥饿之脸",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 0,
+          "w": 58,
+          "h": 70,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -27,
+          "w": 42,
+          "h": 28,
+          "colour": "#805F49",
+          "rotation": 180
+        },
+        {
+          "image": 100001,
+          "x": -14,
+          "y": 9,
+          "w": 15,
+          "h": 8,
+          "colour": "#EBC96E",
+          "rotation": -12
+        },
+        {
+          "image": 100001,
+          "x": 14,
+          "y": 9,
+          "w": 15,
+          "h": 8,
+          "colour": "#EBC96E",
+          "rotation": 12
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -16,
+          "w": 21,
+          "h": 6,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -18,
+          "w": 29,
+          "h": 26,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -7,
+          "y": -15,
+          "w": 9,
+          "h": 6,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 7,
+          "y": -15,
+          "w": 9,
+          "h": 6,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": -26,
+          "y": 27,
+          "w": 22,
+          "h": 24,
+          "colour": "#805F49",
+          "rotation": -45
+        },
+        {
+          "image": 100003,
+          "x": 26,
+          "y": 27,
+          "w": 22,
+          "h": 24,
+          "colour": "#805F49",
+          "rotation": 45
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 7,
+          "w": 7,
+          "h": 24,
+          "colour": "#DA6556",
+          "rotation": 0
+        }
+      ]
+    },
+    "ssserpent_head": {
+      "name": "长蛇之首",
+      "shapes": [
+        {
+          "image": 100002,
+          "x": -3.868,
+          "y": 7.737,
+          "w": 52.224,
+          "h": 49.322,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 24.178,
+          "y": 0.967,
+          "w": 37.717,
+          "h": 31.915,
+          "colour": "#7AA56B",
+          "rotation": 90
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -17.408,
+          "w": 25.145,
+          "h": 38.684,
+          "colour": "#7AA56B",
+          "rotation": -10
+        },
+        {
+          "image": 100001,
+          "x": 12.572,
+          "y": -28.046,
+          "w": 43.52,
+          "h": 14.507,
+          "colour": "#7AA56B",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -11.605,
+          "y": 14.507,
+          "w": 8.704,
+          "h": 10.638,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -11.605,
+          "y": 14.507,
+          "w": 2.901,
+          "h": 8.704,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 25.145,
+          "y": -4.836,
+          "w": 23.211,
+          "h": 3.868,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 36.75,
+          "y": -11.605,
+          "w": 18.375,
+          "h": 2.901,
+          "colour": "#DA6556",
+          "rotation": -15
+        },
+        {
+          "image": 100001,
+          "x": -4.836,
+          "y": -17.408,
+          "w": 16.441,
+          "h": 3.868,
+          "colour": "#DEB66F",
+          "rotation": -10
+        }
+      ]
+    },
+    "nloths_gift": {
+      "name": "恩洛斯的礼物",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -10.826,
+          "w": 63.974,
+          "h": 50.195,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 16.732,
+          "w": 72.832,
+          "h": 11.811,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -8.858,
+          "w": 9.842,
+          "h": 56.1,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 15.747,
+          "w": 67.911,
+          "h": 6.889,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -13.779,
+          "y": 31.495,
+          "w": 28.542,
+          "h": 18.7,
+          "colour": "#DA6556",
+          "rotation": 25
+        },
+        {
+          "image": 100002,
+          "x": 13.779,
+          "y": 31.495,
+          "w": 28.542,
+          "h": 18.7,
+          "colour": "#DA6556",
+          "rotation": -25
+        },
+        {
+          "image": 100002,
+          "x": -13.779,
+          "y": 31.495,
+          "w": 14.763,
+          "h": 7.874,
+          "colour": "#192B36",
+          "rotation": 25
+        },
+        {
+          "image": 100002,
+          "x": 13.779,
+          "y": 31.495,
+          "w": 14.763,
+          "h": 7.874,
+          "colour": "#192B36",
+          "rotation": -25
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 23.621,
+          "w": 12.795,
+          "h": 12.795,
+          "colour": "#DEB66F",
+          "rotation": 0
+        }
+      ]
+    },
+    "bloody_idol": {
+      "name": "血色神像",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -33,
+          "w": 64,
+          "h": 11,
+          "colour": "#805F49",
+          "rotation": 0
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -7,
+          "w": 54,
+          "h": 58,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 25,
+          "w": 34,
+          "h": 33,
+          "colour": "#DEB66F",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -23,
+          "y": -2,
+          "w": 11,
+          "h": 38,
+          "colour": "#DEB66F",
+          "rotation": -25
+        },
+        {
+          "image": 100001,
+          "x": 23,
+          "y": -2,
+          "w": 11,
+          "h": 38,
+          "colour": "#DEB66F",
+          "rotation": 25
+        },
+        {
+          "image": 100001,
+          "x": -8,
+          "y": 27,
+          "w": 8,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": -15
+        },
+        {
+          "image": 100001,
+          "x": 8,
+          "y": 27,
+          "w": 8,
+          "h": 5,
+          "colour": "#192B36",
+          "rotation": 15
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 11,
+          "w": 10,
+          "h": 35,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -7,
+          "w": 11,
+          "h": 14,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -22,
+          "w": 9,
+          "h": 9,
+          "colour": "#DA6556",
+          "rotation": 0
+        }
+      ]
+    },
+    "mutagenic_strength": {
+      "name": "突变力量",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 23,
+          "w": 17,
+          "h": 23,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -7,
+          "w": 48,
+          "h": 57,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": -11,
+          "w": 38,
+          "h": 41,
+          "colour": "#B08AC9",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 36,
+          "w": 24,
+          "h": 10,
+          "colour": "#B5CAD3",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -10,
+          "y": 1,
+          "w": 5,
+          "h": 17,
+          "colour": "#F3E5BD",
+          "rotation": -12
+        },
+        {
+          "image": 100003,
+          "x": 0,
+          "y": -9,
+          "w": 18,
+          "h": 29,
+          "colour": "#7AA56B",
+          "rotation": 180
+        },
+        {
+          "image": 100002,
+          "x": -9,
+          "y": -22,
+          "w": 8,
+          "h": 8,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 10,
+          "y": -1,
+          "w": 8,
+          "h": 8,
+          "colour": "#EBC96E",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -9,
+          "w": 5,
+          "h": 23,
+          "colour": "#F3E5BD",
+          "rotation": -25
+        }
+      ]
+    },
+    "necronomicon": {
+      "name": "死灵之书",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 58,
+          "h": 72,
+          "colour": "#805F49",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -1,
+          "w": 45,
+          "h": 59,
+          "colour": "#F3E5BD",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": -24,
+          "y": 1,
+          "w": 9,
+          "h": 72,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 4,
+          "y": -28,
+          "w": 39,
+          "h": 5,
+          "colour": "#805F49",
+          "rotation": -6
+        },
+        {
+          "image": 100002,
+          "x": 0,
+          "y": 4,
+          "w": 27,
+          "h": 29,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -7,
+          "y": 8,
+          "w": 10,
+          "h": 10,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 7,
+          "y": 8,
+          "w": 10,
+          "h": 10,
+          "colour": "#DA6556",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -7,
+          "w": 20,
+          "h": 9,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": -5,
+          "y": -10,
+          "w": 3,
+          "h": 8,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 5,
+          "y": -10,
+          "w": 3,
+          "h": 8,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        }
+      ]
+    },
+    "enchiridion": {
+      "name": "圣书",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 58,
+          "h": 72,
+          "colour": "#66BAD5",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -1,
+          "w": 45,
+          "h": 59,
+          "colour": "#F3E5BD",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": -24,
+          "y": 1,
+          "w": 9,
+          "h": 72,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 4,
+          "y": -28,
+          "w": 39,
+          "h": 5,
+          "colour": "#66BAD5",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 3,
+          "y": 1,
+          "w": 9,
+          "h": 36,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 3,
+          "y": 4,
+          "w": 32,
+          "h": 9,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 1,
+          "y": -24,
+          "w": 22,
+          "h": 4,
+          "colour": "#66BAD5",
+          "rotation": -6
+        },
+        {
+          "image": 100002,
+          "x": 3,
+          "y": 18,
+          "w": 10,
+          "h": 10,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        }
+      ]
+    },
+    "nilrys_codex": {
+      "name": "尼利宝典",
+      "shapes": [
+        {
+          "image": 100001,
+          "x": 0,
+          "y": 0,
+          "w": 58,
+          "h": 72,
+          "colour": "#B08AC9",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 0,
+          "y": -1,
+          "w": 45,
+          "h": 59,
+          "colour": "#F3E5BD",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": -24,
+          "y": 1,
+          "w": 9,
+          "h": 72,
+          "colour": "#DEB66F",
+          "rotation": -6
+        },
+        {
+          "image": 100001,
+          "x": 4,
+          "y": -28,
+          "w": 39,
+          "h": 5,
+          "colour": "#B08AC9",
+          "rotation": -6
+        },
+        {
+          "image": 100003,
+          "x": -7.9,
+          "y": 3,
+          "w": 23.1,
+          "h": 20.9,
+          "colour": "#F3E5BD",
+          "rotation": 90
+        },
+        {
+          "image": 100003,
+          "x": 11.9,
+          "y": 3,
+          "w": 23.1,
+          "h": 20.9,
+          "colour": "#F3E5BD",
+          "rotation": -90
+        },
+        {
+          "image": 100002,
+          "x": 2,
+          "y": 3,
+          "w": 14.85,
+          "h": 16.5,
+          "colour": "#66BAD5",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": 2,
+          "y": 3,
+          "w": 4.4,
+          "h": 13.75,
+          "colour": "#192B36",
+          "rotation": 0
+        },
+        {
+          "image": 100002,
+          "x": -0.75,
+          "y": 6.85,
+          "w": 2.75,
+          "h": 3.3,
+          "colour": "#F3E5BD",
+          "rotation": 0
+        },
+        {
+          "image": 100001,
+          "x": 1,
+          "y": -23,
+          "w": 26,
+          "h": 4,
+          "colour": "#B08AC9",
+          "rotation": -6
+        }
+      ]
+    }
+  }
+}

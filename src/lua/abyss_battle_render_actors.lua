@@ -7,6 +7,7 @@ local DamageView = require('abyss_battle_damage_view')
 local PotionView = require("abyss_battle_potion_view")
 local IntentView = require("abyss_battle_intent_view")
 local RewardOwner = require("abyss_battle_reward_owner")
+local LowCostArt=require('abyss_lowcost_art')
 local M = {}
 local C, L, S = Theme.color, Theme.layout, Theme.space
 local number = require("abyss_numbers").integer
@@ -65,6 +66,13 @@ local function aimsAtAllEnemies(battle,uid)
 end
 local function enemyPortraitIcon(enemy)
     return Theme.icon.enemy[enemy.definitionId] or Theme.icon.node[enemy.tier == 'normal' and 'combat' or enemy.tier]
+end
+local function paintEnemyArt(host,box,enemy,x,y,portrait,tone,dim)
+    local icon=box:GetChild('portrait')
+    if host.monsterArt:write(box,x,y,portrait,tone)then LowCostArt.hide(icon,false);return end
+    LowCostArt.paint(icon,'enemy',enemy.definitionId,portrait,host.platform)
+    LowCostArt.dim(icon,dim and .4 or 1)
+    LowCostArt.refresh(box,{r=tone.r,g=tone.g,b=tone.b,a=255})
 end
 -- Explicit ports preserve the approved implementation without a shared constructor closure.
 function M.install(owner, ownership, host, dependencies)
@@ -214,7 +222,7 @@ function M.install(owner, ownership, host, dependencies)
         local portraitTone = C.text
         local tone={r=portraitTone.r,g=portraitTone.g,b=portraitTone.b,a=dim and 102 or 255}
         dependencies.tint(box:GetChild('portrait'),tone)
-        host.monsterArt:write(box,x,y,portrait,tone)
+        paintEnemyArt(host,box,enemy,x,y,portrait,tone,dim)
         renderDamagePreview(box, enemy, portrait, width, loss)
         renderEnemyIntent(box, enemyIntentFace(frame, enemy, entry.index), portrait,geometry,
             enemyIntentAllowed(enemy,frame.battle),host.monsterIntentParticles:alpha(enemy.id))

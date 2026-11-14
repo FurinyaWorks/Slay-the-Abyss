@@ -5,6 +5,7 @@ import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
 import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mjs';
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
+import {loadLowCostArt,attachLowCostArt} from './lowcost-art.mjs';
 import {battlePileReturn} from './official-battle-pile-chrome.mjs';
 import {preflightOfficialRoots,composeOfficialRun,finishOfficialComposition} from './official-run-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
@@ -26,6 +27,7 @@ export function officialAssetsTheme(source){
   theme.layout.nativeNode.event.neow.bubbleText=[-45,96,270,130];
  if(theme.officialAssets?.profile!=='official-assets-first-v1')throw Error('Missing official asset theme');
  theme.presentationProfile='official-assets-first';
+ theme.lowCostArt=loadLowCostArt();
  theme.cardSkin.text.body=theme.officialAssets.cardInk;
   theme.cardSkin.costText=theme.officialAssets.battleCostInk;
   theme.cardSkin.text.title=theme.officialAssets.battleCardTitleInk;
@@ -264,5 +266,6 @@ export function applyOfficialAssets(trees,theme){
   composeOfficialRun(tree,theme);
  }
  finishOfficialComposition(trees);
+ for(const tree of trees)attachLowCostArt(tree);
  return {cardHosts,removedControls};
 }

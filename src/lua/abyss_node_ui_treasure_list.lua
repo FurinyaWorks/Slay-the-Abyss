@@ -51,6 +51,7 @@ local function renderRow(c,panel,item,index,y,opened,linked,boss,bind,items)
             box:GetChild('name').text=(available and '领取 · ' or '')..label(c,item)
             box:GetChild('description').text=description(c,item,boss,items)
             c.picture(box:GetChild('icon'),item.kind=='gold' and Theme.icon.gold or Theme.icon.relic[item.id] or Theme.icon.node.treasure)
+            if c.relicPicture then c.relicPicture(box:GetChild('icon'),item.kind=='relic' and item.id or nil,48)end
             local handler,observe=binding(c,key,box,item,index,linked,boss,bind)
             c.action(key,opened and available,handler,nil,nil,observe)
             c.details:set(key,label(c,item),description(c,item,boss,items))

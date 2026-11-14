@@ -1,0 +1,511 @@
+{
+  "scope": "read-only-source-audit-not-current-SDK-texture-acceptance",
+  "basis": "origin/develop e805a87d and in-flight PR646/648/650 source profiles",
+  "enemyMappings": 42,
+  "enemyMissingMappings": [],
+  "knownNativeAssets": 18,
+  "knownNativeBindings": 19,
+  "officialProfileMonstersEnabled": false,
+  "candidateAssets": [
+    "acid_slime_m"
+  ],
+  "relicMappings": 153,
+  "baseGeneric102028": 109,
+  "officialRelicOverrides": 54,
+  "remainingGenericRelics": [
+    {
+      "id": "blue_candle",
+      "name": "蓝蜡烛",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "strike_dummy",
+      "name": "打击木偶",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "singing_bowl",
+      "name": "颂钵",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "matryoshka",
+      "name": "套娃",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "gremlin_horn",
+      "name": "地精号角",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "horn_cleat",
+      "name": "系缆桩",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "question_card",
+      "name": "问号卡",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "mummified_hand",
+      "name": "干瘪之手",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "self_forming_clay",
+      "name": "自塑黏土",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "paper_frog",
+      "name": "纸蛙",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bird_faced_urn",
+      "name": "鸟面瓮",
+      "rarity": "rare"
+    },
+    {
+      "id": "unceasing_top",
+      "name": "不休陀螺",
+      "rarity": "rare"
+    },
+    {
+      "id": "torii",
+      "name": "鸟居",
+      "rarity": "rare"
+    },
+    {
+      "id": "stone_calendar",
+      "name": "石历",
+      "rarity": "rare"
+    },
+    {
+      "id": "shovel",
+      "name": "铲子",
+      "rarity": "rare"
+    },
+    {
+      "id": "winged_greaves",
+      "name": "羽翼护胫",
+      "rarity": "rare"
+    },
+    {
+      "id": "thread_and_needle",
+      "name": "针线",
+      "rarity": "rare"
+    },
+    {
+      "id": "calipers",
+      "name": "卡钳",
+      "rarity": "rare"
+    },
+    {
+      "id": "prayer_wheel",
+      "name": "转经轮",
+      "rarity": "rare"
+    },
+    {
+      "id": "girya",
+      "name": "壶铃",
+      "rarity": "rare"
+    },
+    {
+      "id": "dead_branch",
+      "name": "枯木树枝",
+      "rarity": "rare"
+    },
+    {
+      "id": "du_vu_doll",
+      "name": "咒术娃娃",
+      "rarity": "rare"
+    },
+    {
+      "id": "pocketwatch",
+      "name": "怀表",
+      "rarity": "rare"
+    },
+    {
+      "id": "incense_burner",
+      "name": "香炉",
+      "rarity": "rare"
+    },
+    {
+      "id": "gambling_chip",
+      "name": "赌博筹码",
+      "rarity": "rare"
+    },
+    {
+      "id": "peace_pipe",
+      "name": "宁静烟斗",
+      "rarity": "rare"
+    },
+    {
+      "id": "captains_wheel",
+      "name": "船舵",
+      "rarity": "rare"
+    },
+    {
+      "id": "magic_flower",
+      "name": "魔法花",
+      "rarity": "rare"
+    },
+    {
+      "id": "charons_ashes",
+      "name": "卡戎之灰",
+      "rarity": "rare"
+    },
+    {
+      "id": "champion_belt",
+      "name": "冠军腰带",
+      "rarity": "rare"
+    },
+    {
+      "id": "velvet_choker",
+      "name": "天鹅绒颈圈",
+      "rarity": "boss"
+    },
+    {
+      "id": "runic_dome",
+      "name": "符文圆顶",
+      "rarity": "boss"
+    },
+    {
+      "id": "snecko_eye",
+      "name": "异蛇之眼",
+      "rarity": "boss"
+    },
+    {
+      "id": "pandoras_box",
+      "name": "潘多拉魔盒",
+      "rarity": "boss"
+    },
+    {
+      "id": "cursed_key",
+      "name": "诅咒钥匙",
+      "rarity": "boss"
+    },
+    {
+      "id": "busted_crown",
+      "name": "破碎王冠",
+      "rarity": "boss"
+    },
+    {
+      "id": "ectoplasm",
+      "name": "灵质",
+      "rarity": "boss"
+    },
+    {
+      "id": "tiny_house",
+      "name": "小屋",
+      "rarity": "boss"
+    },
+    {
+      "id": "philosophers_stone",
+      "name": "贤者之石",
+      "rarity": "boss"
+    },
+    {
+      "id": "astrolabe",
+      "name": "星盘",
+      "rarity": "boss"
+    },
+    {
+      "id": "empty_cage",
+      "name": "空鸟笼",
+      "rarity": "boss"
+    },
+    {
+      "id": "runic_pyramid",
+      "name": "符文金字塔",
+      "rarity": "boss"
+    },
+    {
+      "id": "calling_bell",
+      "name": "召唤铃铛",
+      "rarity": "boss"
+    },
+    {
+      "id": "mark_of_pain",
+      "name": "痛楚印记",
+      "rarity": "boss"
+    },
+    {
+      "id": "runic_cube",
+      "name": "符文立方体",
+      "rarity": "boss"
+    },
+    {
+      "id": "sling",
+      "name": "投石索",
+      "rarity": "shop"
+    },
+    {
+      "id": "hand_drill",
+      "name": "手钻",
+      "rarity": "shop"
+    },
+    {
+      "id": "toolbox",
+      "name": "工具箱",
+      "rarity": "shop"
+    },
+    {
+      "id": "chemical_x",
+      "name": "化学物质零号",
+      "rarity": "shop"
+    },
+    {
+      "id": "orrery",
+      "name": "星系仪",
+      "rarity": "shop"
+    },
+    {
+      "id": "dollys_mirror",
+      "name": "多利之镜",
+      "rarity": "shop"
+    },
+    {
+      "id": "orange_pellets",
+      "name": "橙色药丸",
+      "rarity": "shop"
+    },
+    {
+      "id": "prismatic_shard",
+      "name": "棱镜碎片",
+      "rarity": "shop"
+    },
+    {
+      "id": "clockwork_souvenir",
+      "name": "齿轮纪念品",
+      "rarity": "shop"
+    },
+    {
+      "id": "frozen_eye",
+      "name": "冻结之眼",
+      "rarity": "shop"
+    },
+    {
+      "id": "the_abacus",
+      "name": "算盘",
+      "rarity": "shop"
+    },
+    {
+      "id": "medical_kit",
+      "name": "医药箱",
+      "rarity": "shop"
+    },
+    {
+      "id": "cauldron",
+      "name": "大锅",
+      "rarity": "shop"
+    },
+    {
+      "id": "strange_spoon",
+      "name": "奇怪的勺子",
+      "rarity": "shop"
+    },
+    {
+      "id": "brimstone",
+      "name": "硫磺",
+      "rarity": "shop"
+    },
+    {
+      "id": "fossilized_helix",
+      "name": "螺旋化石",
+      "rarity": "rare"
+    },
+    {
+      "id": "pantograph",
+      "name": "缩放仪",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "sacred_bark",
+      "name": "神圣树皮",
+      "rarity": "boss"
+    },
+    {
+      "id": "white_beast_statue",
+      "name": "白兽雕像",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "frozen_egg",
+      "name": "冰冻胎石",
+      "rarity": "uncommon"
+    },
+    {
+      "id": "coffee_dripper",
+      "name": "咖啡滤杯",
+      "rarity": "boss"
+    },
+    {
+      "id": "fusion_hammer",
+      "name": "聚变之锤",
+      "rarity": "boss"
+    },
+    {
+      "id": "mark_of_bloom",
+      "name": "绽放印记",
+      "rarity": "special"
+    },
+    {
+      "id": "black_star",
+      "name": "黑星",
+      "rarity": "boss"
+    },
+    {
+      "id": "slavers_collar",
+      "name": "缚岩项圈",
+      "rarity": "boss"
+    },
+    {
+      "id": "sozu",
+      "name": "静泉竹筒",
+      "rarity": "boss"
+    },
+    {
+      "id": "warped_tongs",
+      "name": "扭曲夹钳",
+      "rarity": "special"
+    },
+    {
+      "id": "spirit_poop",
+      "name": "灵体便便",
+      "rarity": "special"
+    },
+    {
+      "id": "circlet",
+      "name": "头环",
+      "rarity": "special"
+    },
+    {
+      "id": "red_mask",
+      "name": "绯红仪面",
+      "rarity": "special"
+    },
+    {
+      "id": "lizard_tail",
+      "name": "蜥蜴尾巴",
+      "rarity": "rare"
+    },
+    {
+      "id": "odd_mushroom",
+      "name": "奇怪蘑菇",
+      "rarity": "special"
+    },
+    {
+      "id": "cultist_mask",
+      "name": "邪教徒头饰",
+      "rarity": "special"
+    },
+    {
+      "id": "face_of_cleric",
+      "name": "圣职者之脸",
+      "rarity": "special"
+    },
+    {
+      "id": "gremlin_mask",
+      "name": "地精容貌",
+      "rarity": "special"
+    },
+    {
+      "id": "nloths_mask",
+      "name": "恩洛斯的饥饿之脸",
+      "rarity": "special"
+    },
+    {
+      "id": "ssserpent_head",
+      "name": "长蛇之首",
+      "rarity": "special"
+    },
+    {
+      "id": "nloths_gift",
+      "name": "恩洛斯的礼物",
+      "rarity": "special"
+    },
+    {
+      "id": "bloody_idol",
+      "name": "血色神像",
+      "rarity": "special"
+    },
+    {
+      "id": "mutagenic_strength",
+      "name": "突变力量",
+      "rarity": "special"
+    },
+    {
+      "id": "necronomicon",
+      "name": "死灵之书",
+      "rarity": "special"
+    },
+    {
+      "id": "enchiridion",
+      "name": "圣书",
+      "rarity": "special"
+    },
+    {
+      "id": "nilrys_codex",
+      "name": "尼利宝典",
+      "rarity": "special"
+    }
+  ],
+  "notes": [
+    "All enemy IDs exist in source mappings; actual blank textures require current SDK capture.",
+    "Native retained monsters have391–600 slots; this new authored catalog is bounded to32.",
+    "Official profile disables native monster assets; merely producing this JSON is not runtime integration."
+  ],
+  "authored": {
+    "count": 42,
+    "totalShapes": 689,
+    "maxShapes": 28,
+    "perEnemy": {
+      "acid_slime_s": 9,
+      "acid_slime_m": 10,
+      "acid_slime_l": 11,
+      "spike_slime_s": 12,
+      "spike_slime_m": 14,
+      "spike_slime_l": 14,
+      "red_louse": 19,
+      "green_louse": 19,
+      "cultist": 20,
+      "looter": 19,
+      "mugger": 20,
+      "blue_slaver": 19,
+      "red_slaver": 20,
+      "taskmaster": 21,
+      "sneaky_gremlin": 19,
+      "shield_gremlin": 22,
+      "wizard_gremlin": 20,
+      "mad_gremlin": 20,
+      "fat_gremlin": 15,
+      "gremlin_nob": 18,
+      "jaw_worm": 12,
+      "fungi_beast": 15,
+      "lagavulin": 12,
+      "sentry": 9,
+      "spheric_guardian": 11,
+      "guardian": 11,
+      "slime_boss": 13,
+      "hexaghost": 19,
+      "centurion": 24,
+      "mystic": 21,
+      "chosen": 21,
+      "book_of_stabbing": 14,
+      "snake_plant": 20,
+      "shelled_parasite": 14,
+      "byrd": 12,
+      "snecko": 11,
+      "torch_head": 10,
+      "collector": 23,
+      "automaton": 14,
+      "bronze_orb": 12,
+      "champ": 28,
+      "gremlin_leader": 22
+    }
+  }
+}
