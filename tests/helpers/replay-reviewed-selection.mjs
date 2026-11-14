@@ -32,8 +32,8 @@ export function replayReviewedSelection(){
   }
   const target=join(directory,script);mkdirSync(dirname(target),{recursive:true});writeFileSync(target,original.source);
   assert.equal(hash(readFileSync(target)),original.sha256,'unaltered complete historical assertions');
-  const result=spawnSync(process.execPath,['--test','--test-reporter=tap',script],{cwd:directory,encoding:'utf8',timeout:remaining(),maxBuffer:4*1024*1024,windowsHide:true,
-   env:{...process.env,NODE_TEST_CONTEXT:''}});
+  const env={...process.env};delete env.NODE_TEST_CONTEXT;
+  const result=spawnSync(process.execPath,['--test','--test-reporter=tap',script],{cwd:directory,encoding:'utf8',timeout:remaining(),maxBuffer:4*1024*1024,windowsHide:true,env});
   assert.ifError(result.error);assert.equal(result.status,0,result.stdout+result.stderr);
   assert.match(result.stdout,/^# tests 5$/m,'all five original selection contracts execute');
   assert.match(result.stdout,/^# pass 5$/m);assert.match(result.stdout,/^# fail 0$/m);assert.match(result.stdout,/^# skipped 0$/m);

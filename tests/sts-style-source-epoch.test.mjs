@@ -29,7 +29,10 @@ test('release additions remain in raw Full and exact historical inventories reje
  assert.deepEqual(rawJs,integratedCiProof.inventory);assert.deepEqual(rawLua,integratedCiProof.luaInventory);
  for(const [kind,current]of [['js',rawJs],['lua',rawLua]])for(const target of Object.keys(integratedCiProof.sources)){
   const prior=integratedCiProof.inventories[target][kind],added=current.filter(path=>!prior.includes(path));
-  assert(added.length>0,'this release adds real '+kind+' work');
+  if(target==='release'&&kind==='js'&&added.length===0){
+   assert.deepEqual(current,prior,'source-only continuation retains the complete identical JS inventory');
+   assert.throws(()=>integratedPriorInventory(current.slice(1),target,kind),/inventory/);
+  }else assert(added.length>0,'this release adds real '+kind+' work');
   assert.deepEqual(integratedPriorInventory(current,target,kind),prior);
   for(const path of added){
    assert.throws(()=>integratedPriorInventory(current.filter(p=>p!==path),target,kind),/inventory/);

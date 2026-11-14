@@ -46,8 +46,15 @@ export function integratedPriorInventory(paths,target,kind='js',read=readFileSyn
  const current=kind==='js'?integratedCiProof.inventory:integratedCiProof.luaInventory;
  const prior=integratedCiProof.inventories[target]?.[kind];
  assert(prior,'known integration inventory');
+ // New standalone reviewed views consume raw discovery. Older chained views
+ // retain their existing idempotent prior-inventory contract.
+ if(target==='selection'||target==='release')assert.deepEqual([...paths].sort(),current,'complete reviewed raw '+kind+' inventory');
  if(JSON.stringify([...paths].sort())===JSON.stringify(prior))return [...paths];
  const added=current.filter(p=>!prior.includes(p));
+ if(added.length===0){
+  assert.deepEqual([...paths].sort(),current,'complete identical integration '+kind+' inventory');
+  return [...prior];
+ }
  if(!added.some(path=>paths.includes(path)))return [...paths];
  assert.deepEqual([...paths].sort(),current,kind==='lua'?'complete integration Lua discovery inventory':'complete integration js inventory');
  for(const path of added){
