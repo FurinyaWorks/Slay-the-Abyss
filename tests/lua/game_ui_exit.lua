@@ -29,8 +29,9 @@ local function tap(root,panel,button)
 end
 local function open(root)
     if not tap(root,"exitEntry","open") then return false end
-    assert(root:GetChild('runMenu').visible,'native menu must open before abandon confirmation')
-    local ok=tap(root,'runMenu','abandon')
+    assert(root:GetChild('runMenu').visible,'native menu must open before exit confirmation')
+    local name=root:GetChild('runMenu'):GetChild('quit').visible and 'quit' or 'abandon'
+    local ok=tap(root,'runMenu',name)
     assert(not root:GetChild('runMenu').visible and root:GetChild('exitPanel').visible)
     return ok
 end
