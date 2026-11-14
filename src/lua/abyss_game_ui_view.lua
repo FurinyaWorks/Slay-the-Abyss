@@ -475,6 +475,19 @@ function M.syncOpening(self,openingCovered)
         end
 end
 
+-- Completed UI preparation stages, not bytes or an unobservable GPU/network percentage.
+function M.openingProgress(self,child,platform)
+    return function()
+        local done=self.openingPrepared or 0
+        if done<6 or self.starting then return done end
+        if not self.run or not self.map then return 6 end
+        if self.mode~='node' and self.mode~='map' then return 6 end
+        local page=child(self.mode=='node' and 'nodePanel' or 'mapPanel')
+        if platform.nativePageLifecycle==true and page.active~=true then return 6 end
+        return 7
+    end
+end
+
 function M.openingForeground(self,child,prologuePanel,runMenu,exitPanel)
     return function(covering)
             if self.prologue and self.prologue:opaque() then

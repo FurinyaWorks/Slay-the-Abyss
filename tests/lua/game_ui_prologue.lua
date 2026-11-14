@@ -9,16 +9,19 @@ local function panel(root)return root:GetChild('prologuePanel')end
 local function selected(ui)
     assert(ui:start() and ui:selectCharacter('traveler') and ui:selectElement('ironclad'))
 end
-local function host()
+local function host(sound)
     local canvas=F.control({children=F.Layout})
     local root=F.Viewport.apply(canvas,1280,720)
     local ui=F.GameUI.new(root,F.Data,F.Presentation,'click',{
         seed=42,prologue=true,campaign=true,campaignProfile='competition-two-act',
-        characterProfile='production',imageSource='static',
+        characterProfile='production',imageSource='static',sound=sound,
         color=function(r,g,b,a)return{r=r,g=g,b=b,a=a}end})
     root.ui=ui;return ui,root
 end
-local function finish(ui)ui:update(P.fadeIn+P.hold+P.reveal+0.01)end
+local function finish(ui)
+    for _=1,80 do if not ui.prologue:covering() then return end;ui:update(0.05) end
+    assert(not ui.prologue:covering(),'opening failed to complete after preparation')
+end
 
 test('shared approved sentence helpers remain intact',function()
     local beats=Prologue.beats(Narrative.flow.intro.full)
@@ -43,11 +46,10 @@ test('fully covered frame commits once and reveals the existing Neow page',funct
     local run=ui.run
     assert(run and run.nodeFlow.event.id=='neow' and ui.prologue:opaque())
     assert(panel(root):GetChild('fade').imageColor.a==255 and not root:GetChild('nodePanel').visible)
-    ui:update(P.hold/2)
+    ui:update(P.markIn+0.01)
     assert(panel(root):GetChild('scene').visible and panel(root):GetChild('fade').imageColor.a==0 and ui.run==run)
-    assert(P.fadeIn+P.hold+P.reveal==8 and P.hold-P.markIn-P.markOut>=6,
-        'reference eight-second timeline must not collapse back into a flash')
-    ui:update(P.hold/2+0.01)
+    ui:update(1)
+    ui:update(P.markOut+0.01)
     assert(ui.prologue:covering() and not ui.prologue:opaque() and root:GetChild('nodePanel').visible)
     assert(ui.nodeUI.visible==false,'revealing page must stay inert')
     finish(ui)
@@ -69,7 +71,7 @@ test('transparent shield and admission reject duplicate confirmation and stale p
     assert(not root:GetChild('exitEntry').visible and not ui:openMenu())
     assert(not ui:confirmCharacter() and not ui.nodeUI:press('eventView/option1'))
     assert(ui.run.nodeFlow.event.stage=='neow_intro')
-    ui:update(P.hold+0.01)
+    ui:update(1);ui:update(P.markOut+0.01)
     local option=root:GetChild('nodePanel'):GetChild('eventView'):GetChild('option1'):GetChild('hit')
     assert(not option.click() and ui.run.nodeFlow.event.stage=='neow_intro')
     finish(ui);assert(ui.run==run and not panel(root).visible)
@@ -88,8 +90,10 @@ test('disable clears the shield and pending commit',function()
     ui.prologue:update(10);assert(not ui.run and not ui.starting)
 end)
 
-test('large frame completes all phases without residual mask or repeated creation',function()
+test('large frames cannot bypass post-commit readiness or repeat creation',function()
     local ui,root=host();selected(ui);assert(ui:confirmCharacter());ui:update(20)
+    assert(ui.run and ui.prologue:covering() and ui.prologue.target==0)
+    ui:update(20);ui:update(20);ui:update(20)
     assert(ui.run and not panel(root).visible and not ui.prologue:covering() and ui.nodeUI.visible)
     local run=ui.run;ui:update(20);assert(ui.run==run)
 end)
@@ -118,11 +122,9 @@ test('rule-only hosts retain immediate start without enabling the old camera',fu
     assert(not panel(root):GetChild('skip') and not panel(root):GetChild('vista'))
 end)
 
-test('reference element and veil boundaries execute at their actual timestamps',function()
+test('completed preparation stages light in order and fast starts do not wait eight seconds',function()
     local ui,root=host();selected(ui);assert(ui:confirmCharacter())
     local scene=panel(root):GetChild('scene')
-    local clock=0
-    local function at(t)ui:update(t-clock);clock=t end
     local function lights(count)
         for i=1,7 do
             local c=scene:GetChild('element'..i).imageColor
@@ -130,15 +132,40 @@ test('reference element and veil boundaries execute at their actual timestamps',
             assert(c.r==expected.r and c.g==expected.g and c.b==expected.b,'wrong reference element '..i)
         end
     end
-    at(P.fadeIn);lights(0)
-    for i,t in ipairs({1,1.5,2,4,4.5,5,5.5})do
-        at(t-0.001);lights(i-1)
-        at(t+0.001);lights(i)
+    ui:update(P.fadeIn);lights(0)
+    assert(ui.openingPrepared==6 and ui.prologue.target==0,'commit must render before the next readiness update')
+    ui:update(0);assert(ui.prologue.target==7);lights(0)
+    for i=1,7 do
+        ui:update(P.elementStep);lights(i)
     end
-    at(7.39);assert(scene.visible and panel(root):GetChild('fade').imageColor.a==0)
-    at(7.55);local alpha=panel(root):GetChild('fade').imageColor.a
+    assert(scene.visible and panel(root):GetChild('fade').imageColor.a==0 and ui.prologue.phase=='close')
+    ui:update(P.markOut/2);local alpha=panel(root):GetChild('fade').imageColor.a
     assert(scene.visible and alpha>0 and alpha<255 and ui.prologue:opaque())
-    at(7.701);assert(not scene.visible and root:GetChild('nodePanel').visible and not ui.nodeUI.visible)
-    at(8.001);assert(not panel(root).visible and ui.nodeUI.visible and root:GetChild('exitEntry').visible)
+    ui:update(P.markOut/2+0.001);assert(not scene.visible and root:GetChild('nodePanel').visible and not ui.nodeUI.visible)
+    ui:update(P.reveal+0.001);assert(not panel(root).visible and ui.nodeUI.visible and root:GetChild('exitEntry').visible)
+    assert(ui.prologue.elapsed<2.1 and ui.prologue.elapsed>1,'short readable animation only; no fixed eight-second hold')
+end)
+
+test('unfinished preparation never advances a light or uncovers the destination',function()
+    local ui,root=host();selected(ui);assert(ui:confirmCharacter());ui:update(P.fadeIn)
+    -- Inject a stalled preparation checkpoint; no game-rule state is changed.
+    ui.openingPrepared=4;ui:update(12)
+    local scene=panel(root):GetChild('scene')
+    assert(ui.prologue:opaque() and ui.prologue.target==4 and ui.prologue.lit==4)
+    assert(scene:GetChild('element5').imageColor.r==P.dim.r and not root:GetChild('nodePanel').visible)
+    ui.openingPrepared=6;finish(ui)
+    assert(ui.nodeUI.visible and not panel(root).visible)
+end)
+
+test('audio fires once on entry and successful completion; cancellation and sound errors are safe',function()
+    local cues={}
+    local ui=host(function(cue)cues[#cues+1]=cue end)
+    selected(ui);assert(ui:confirmCharacter());assert(not ui:confirmCharacter());finish(ui);ui:update(1)
+    assert(#cues==2 and cues[1]=='transition_enter' and cues[2]=='transition_leave')
+    local cancelled=host(function(cue)cues[#cues+1]=cue end)
+    selected(cancelled);assert(cancelled:confirmCharacter());cancelled.prologue:cancel();cancelled:refresh();cancelled:update(10)
+    assert(#cues==3 and cues[3]=='transition_enter','cancelled preparation must not play the completion cue')
+    local silent=host(function()error('unavailable sound device')end)
+    selected(silent);assert(silent:confirmCharacter());finish(silent);assert(silent.nodeUI.visible)
 end)
 print('LUA_GAME_UI_PROLOGUE_PASS '..count)

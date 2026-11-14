@@ -402,6 +402,8 @@
     "enemy_die_large": 20093,
     "victory": 50919,
     "defeat": 50931,
+    "transition_enter": 50944,
+    "transition_leave": 50945,
     "prologue_rumble": 40224,
     "prologue_crack": 50928,
     "prologue_rise": 50926,
@@ -2839,7 +2841,7 @@
       "breathe": 3.6
     },
     "prologue": {
-      "note": "璃月参考适配：保留原徽记、标题说明区与七元素依次点亮；原参考非循环时间轴8秒，淡入淡出占用首尾，不压缩成闪现。",
+      "note": "保留璃月参考构图；七元素跟随真实开局准备阶段做短补间，目标页准备好后自动收尾，不强制8秒，不显示伪造加载百分比。",
       "shade": "#1C1C22",
       "ink": "#EBE5D9",
       "dim": "#303034",
@@ -2874,22 +2876,13 @@
           102003,
           102004,
           102005
-        ],
-        "times": [
-          1,
-          1.5,
-          2,
-          4,
-          4.5,
-          5,
-          5.5
         ]
       },
       "fadeIn": 0.3,
-      "hold": 7.4,
       "reveal": 0.3,
       "markIn": 0.3,
-      "markOut": 0.3
+      "markOut": 0.3,
+      "elementStep": 0.12
     },
     "characterSelect": {
       "panel": [

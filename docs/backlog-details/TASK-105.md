@@ -1,5 +1,33 @@
 # TASK-105 璃月参考转场适配
 
+当前为 **R3：实际准备状态驱动＋原生音效**。用户已认可 R2 构图、原生字体样式和排版；R3 的实际候选界面读回与 R2 完全相同（控件、文本、字体、布局摘要均为 b2315b2e7b09d8730b854ff8a35ac7be2e1a14336e7f2c908165f033ffc7b7db），只调整时序/结束条件与音效。
+
+## R3 就绪驱动与音效
+
+不再强制等待参考演示的 8 秒。参考 [Epic 公开加载屏代码](https://github.com/EpicGames/LoadingScreen/blob/master/Source/LoadingScreen/Private/LoadingScreenModule.cpp) 中加载完成与最短显示时间分离的模式，以及 [Godot 官方后台加载文档](https://docs.godotengine.org/en/stable/tutorials/io/background_loading.html) 的真实状态检查；未引入这些引擎、插件或额外异步框架。
+
+原 beginRun 完成实际工作时登记 UI 准备阶段：1 选角准入、2 Run/数据构建、3 表现与历史准备、4 路线生成、5 开局事件准备、6 当前 Run 发布并渲染目标页面。之后隔一个 Host update，核对当前 Run/map、当前目标页面，以及启用原生页面生命周期时该页面的 active 回读；就绪才记为 7。不读取无关的菜单背景、选角头像或后续战斗肖像状态。
+
+七元素保留原顺序，只对已经完成的准备阶段做每元素 0.12 秒补间；未完成阶段不会提前点亮，不显示伪造百分比。第 7 阶段未就绪时不揭示目标页。准备完成且短补间结束后立即收尾，沿用 0.3 秒淡化。普通 Host 以 0.05 秒步长实跑：ready约 0.35 秒、进入收尾约 1.15 秒、完整结束约 1.75 秒。这是离线控制器时序，不是硬件加载耗时或 GPU/网络就绪认证。现有开局主要同步准备，本次不延迟其工作，也不等待不属于开局的战斗肖像。
+
+音效复用既有 platform.sound → Theme.sound → game.PlayAudio2D：进入为原生目录 50944“切换_轻_展开_01”，成功收尾为 50945“切换_轻_折叠_01”，各触发一次。取消/失败不触发完成音；音效 API 异常不阻塞流程；没有循环声、七连提示或外部音频包。目录没有明确的原神专用转场条目，不声称使用了原版专用音效；真实音量和听感仍待用户实机确认。
+
+验证：13 项真实 Lua Host 转场回归（快速完成、注入阶段4停留12秒、失败/取消/重试、音效次数和设备异常等）通过；目标页面 native active=false→true 专项通过，确认未读非目标资源；定向菜单/选角/开局/计时 11 项及新增专项共12项通过；check:engineering（架构、Luacheck、4项关键变异、6项原生合同）通过。112固定控件、95徽记图元、原字体和版式不变。R3 官方导入/ready/声画/设备仍待验，旧版本记录不能代替。
+
+R3 候选 buildId：b08de2e7-7b32-48a5-8901-32e7e50dfdcf；SHA256：7e92f61aa5f5d3d1cc5ab39c0125208af4dea89bbf7e1ad8ddc6588606d1aa17。静态构建与独立读回通过，361个模块；仍采用已有 official-assets + native-page-lifecycle 转场测试配置，不覆盖远端其他PR页面。
+
+交付路径：`F:\New folder\交付\璃月黑白转场-20261114\R3-按准备状态收尾与音效\Slay-the-Abyss-璃月转场-R3.gil`。导入为新存档，沿“启程→确认岩旅→转场→七天神像”验证，不自动发布或合并。
+
+### R3 实际运行证据
+
+![R3完整短转场](../evidence/liyue-transition/readiness-audio/transition.gif)
+
+[实际候选帧、音效事件与阶段日志](../evidence/liyue-transition/readiness-audio/capture.json)记录进入50944、收尾50945各一次，最后无存活音频。该采集使用模拟器MCP默认静音，证明调用及生命周期，不宣称已听过硬件实际听感。GIF首尾为便于查看延长停留；实际控制器在本次采集中1.75秒结束。
+
+[实际UI读回保持一致](../evidence/liyue-transition/readiness-audio/unchanged-layout.json)；R2/R3所有元素点亮帧像素亦完全相同，保留用户认可的字体样式。[用户新结束R2日志摘要](../evidence/liyue-transition/readiness-audio/r2-official-log-summary.json)单独保留，不替代R3设备验收。
+
+## 历史 R2／R1（保留来源与用户反馈）
+
 当前为 R2。R1 的“单个岩图标＋两条线、0.86 秒”已被用户实机否定，不作为当前视觉方案或 GO 证据。R1 源码已实际导入并由新日志确认 build/ready，361/361 外部 Lua 与冻结候选匹配；182 条打印记录包含一场战斗胜利，未见错误打印。这只能证明来源和这段运行路径，不能推翻用户对闪现节奏及视觉删减的否定。
 
 ## R2 来源与实现

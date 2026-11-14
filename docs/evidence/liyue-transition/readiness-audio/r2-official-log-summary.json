@@ -1,0 +1,56 @@
+{
+  "candidateVersion": "R2 - appearance approved, fixed hold rejected",
+  "candidateBuildId": "01ef8f89-58a2-4bc6-89e1-35f787c10d84",
+  "sourceHash": "009ce42ecbd095f444328bdad7b6d071915a293e603548570ad1e0ecb2930153",
+  "bytes": 2694,
+  "mtime": "2026-11-14T07:59:13.316Z",
+  "prints": 16,
+  "notices": [
+    {
+      "elapsedSeconds": "1",
+      "text": "ABYSS_BUILD 01ef8f89-58a2-4c1b-87fb-1e9c208cb4b5"
+    },
+    {
+      "elapsedSeconds": "1",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false"
+    },
+    {
+      "elapsedSeconds": "1",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil"
+    },
+    {
+      "elapsedSeconds": "1",
+      "text": "ABYSS_UI ready"
+    },
+    {
+      "elapsedSeconds": "7",
+      "text": "ABYSS_RUN seed=21585 source=clock"
+    },
+    {
+      "elapsedSeconds": "7",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false"
+    },
+    {
+      "elapsedSeconds": "126",
+      "text": "ABYSS_UI_PAGES mode=map nodeNativeActive=false choiceNativeActive=false"
+    },
+    {
+      "elapsedSeconds": "127",
+      "text": "ABYSS_PORTRAIT battle phase=building owned=0 reason=nil"
+    },
+    {
+      "elapsedSeconds": "149",
+      "text": "ABYSS_PORTRAIT battle phase=revealing owned=7459 reason=nil"
+    },
+    {
+      "elapsedSeconds": "152",
+      "text": "ABYSS_PORTRAIT battle phase=ready owned=7459 reason=nil"
+    }
+  ],
+  "officialSource": {
+    "ok": true,
+    "modules": 361,
+    "matched": 361
+  },
+  "scope": "R2 log and source only, not R3 acceptance. Later battle portrait preparation is separate from opening readiness."
+}

@@ -88,7 +88,7 @@ test('generated Chinese display and native tree exercise the real game entry and
   const scripts = [
     ['tests/lua/game_ui.lua', /^LUA_GAME_UI_PASS 16$/m],
     ['tests/lua/game_ui_deck.lua', /^LUA_GAME_UI_DECK_PASS 6$/m],
-    ['tests/lua/game_ui_prologue.lua', /^LUA_GAME_UI_PROLOGUE_PASS 11$/m],
+    ['tests/lua/game_ui_prologue.lua', /^LUA_GAME_UI_PROLOGUE_PASS 13$/m],
   ];
   const output = scripts.map(([script, marker]) => {
     const result = runLua(script);
@@ -153,6 +153,13 @@ test('cinematic and merchant controls stay inside the phone safe area and clear 
   assert.deepEqual(opening.children.map(c=>c.name),['scene','fade','blocker']);
   const scene=opening.children[0],seal=scene.children.find(c=>c.name==='seal');
   assert.equal(seal.children.reduce((n,g)=>n+g.children.length,0),95,'retains the actual Liyue emblem geometry');
-  assert.deepEqual(prologue.elements.times,[1,1.5,2,4,4.5,5,5.5]);
+  assert.equal(prologue.hold,undefined,'no fixed loading-screen hold');
+  assert.equal(prologue.elementStep,0.12,'short interpolation of completed stages');
   assert.equal(opening.children.at(-1).focusable,false);
+});
+
+test('opening completion waits for the native destination without reading unrelated resources',()=>{
+  const result=runLua('tests/lua/game_ui_prologue_readiness.lua');
+  assert.equal(result.status,0,result.stdout+result.stderr);
+  assert.match(result.stdout,/LUA_OPENING_NATIVE_READINESS_PASS/);
 });

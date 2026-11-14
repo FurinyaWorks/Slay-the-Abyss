@@ -95,6 +95,7 @@ function M.new(root, data, presentation, clickEvent, platform)
     -- Native entry opts into the short interstitial; rule-only hosts stay immediate.
     if prologuePanel and platform.prologue==true and platform.color then
         self.prologue=require('abyss_prologue').new(prologuePanel,{color=platform.color,clickEvent=clickEvent,
+            progress=View.openingProgress(self,child,platform),sound=platform.sound,
             onPhase=function()self:refresh()end,onCancel=function()self.starting=false end})
     end
     if prologuePanel then prologuePanel:SetVisible(false) end

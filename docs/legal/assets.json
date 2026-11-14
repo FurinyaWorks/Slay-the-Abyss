@@ -177,7 +177,7 @@
     },
     "liyue-transition-evidence": {
       "status": "Project transition test captures from BeyondSimulator 0.5.2 Host software rendering of actual candidate UI/Lua. Contains official game textures/IP; no IP sublicense or commercial clearance. R1 rejected by user for flash timing; simulator captures are not official device acceptance. R2 also includes user-provided Liyue reference-derived geometry; its original author/license were not supplied and no sublicense is asserted.",
-      "evidence": "docs/backlog-details/TASK-105.md; docs/evidence/liyue-transition/capture.json; docs/evidence/liyue-transition/reference-adaptation/capture.json and reference-comparison.json"
+      "evidence": "docs/backlog-details/TASK-105.md; docs/evidence/liyue-transition/capture.json; docs/evidence/liyue-transition/reference-adaptation/capture.json and reference-comparison.json; docs/evidence/liyue-transition/readiness-audio/capture.json"
     },
     "liyue-user-reference": {
       "status": "Liyue native geometric emblem extracted from user-provided 高仿原神转场【存档形式】.gil. Original author and asset license were not supplied; no project-original authorship, redistribution sublicense or commercial clearance is asserted. Original game IP remains with its owner.",
@@ -8941,6 +8941,58 @@
     "docs/evidence/liyue-transition/reference-adaptation/transition.gif": {
       "category": "liyue-transition-evidence",
       "sha256": "6217f53a69c4bd6dc4e3213ecb602d5215b0b89e5c2f0d490092d0312675d850"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/after.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "0a0f271bbf32e3c98ede3922448e4c8c7b8708c38c2e8c804a3096bfbfeb4c61"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/black.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "f4bd1c7e7e3e0479549b67b8522e7a2da16c1e9e3e6d976848a42e80589a006c"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/character.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "b976f40bb99a59ed31d37c31b4b91ec17b821192a8f378d0f2fe9328b18a0e44"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/closing.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "8da6e766528ac1b06d46b1a742d93bc10e35981da9bb3d4dbacb77c39929fca1"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/cover.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "a181cf4a9b88a6e078020305d25768f72ef9de02f7007e3b8ee3f9d6de467659"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/element3.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "73ea1777f3c99a0f6bb58a9329faf6526cc4fbe05ec4506e0fdce34aaaf6df63"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/element4.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "f03c29121011c2540833b01fd83580edb0d64c5e8e85b48b813b3a5c41492a53"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/element5.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "88db399330368583164b152a30491a62fba9ab9b20ec8e6439a54789830fe269"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/element6.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "468ec574db6ec89bc0bc7c3eb450d8d9fe2699b16a78950a5f2534a07e205bae"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/element7.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "ef99242de1cd1a91956f56aeaa73d316b94a8c5c1f5a7f740589f8dbff697669"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/reveal.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "f4bd1c7e7e3e0479549b67b8522e7a2da16c1e9e3e6d976848a42e80589a006c"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/seal.png": {
+      "category": "liyue-transition-evidence",
+      "sha256": "16663845bddc0a6d74ad1bf3ff825522060b936c8dccdf4bc389aa2bae064392"
+    },
+    "docs/evidence/liyue-transition/readiness-audio/transition.gif": {
+      "category": "liyue-transition-evidence",
+      "sha256": "df0b602824161ba5698d39c76a297a9a9e6365a3b803ac94ee23b142b15005a0"
     }
   }
 }
