@@ -14,7 +14,8 @@ test('minimal menu uses the supplied native background, fixed input and two acti
  for(const n of all(scene)){assert(['container','image'].includes(n.kind));assert(children(n).length<=60);assert(!n.focusable&&!n.scripts);if(n.kind==='image'){assert([100001,100002,100003].includes(n.image));assert(!n.fill&&!n.feather,'static background has no per-triangle stencil/soft masks');}}
  assert.equal(children(menu).find(n=>n.name==='title').visible,false);
  const mark=all(menu).find(n=>n.name==='titleMark');
- assert.equal(all(mark).find(n=>n.name==='subtitle').text.content,'Slay the Heavens');
+ assert(all(mark).some(n=>n.name==='letter0'),'title uses static reference lettering');
+ assert(all(mark).length<=500,'title control budget includes transform holders');
  assert.equal(all(menu).filter(n=>n.name==='titleMark').length,1,'static title is not duplicated on refresh');
  assert(!all(mark).some(n=>n.kind==='cursorArea'),'title never intercepts input');
  assert(!all(menu).some(n=>['图鉴','游戏记录'].includes(n.text?.content)));
@@ -23,7 +24,8 @@ test('minimal menu uses the supplied native background, fixed input and two acti
   assert.deepEqual(hit.size,[280,56]);assert.equal(label.text.outline,false);assert.equal(label.text.autoSize,false);
   const face=children(b).find(n=>n.name==='v25MenuFace');
   assert.deepEqual(children(face).map(n=>n.name),['normal','hover','pressed','disabled']);
-  assert.equal(new Set(children(face).map(n=>children(n).find(c=>c.name==='plate').colour)).size,4,'all four button states have distinct plates');
+  assert.equal(children(children(face)[1]).find(n=>n.name==='arrowTop').opacity,1,'hover arrow is immediate');
+  assert.equal(children(children(face)[3]).find(n=>n.name==='arrowTop').opacity,0,'disabled arrow is hidden');
  }
 });
 test('one unmasked native triangle preserves all three vertices under affine placement',()=>{

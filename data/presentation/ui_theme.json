@@ -2,14 +2,14 @@
   "menuPresentation": {
     "minimal": true,
     "fontSize": 28,
-    "labelX": 12,
+    "labelX": 50,
     "hoverSeconds": 0.08,
     "leaveSeconds": 0.06,
     "pressOffset": 1,
-    "lineRestAlpha": 130,
+    "lineRestAlpha": 0,
     "ink": "#F5E7DF",
     "muted": "#B9A7A5",
-    "accent": "#FF7867",
+    "accent": "#FF292E",
     "start": [-450,-170,280,56],
     "quit": [-450,-234,280,56]
   },

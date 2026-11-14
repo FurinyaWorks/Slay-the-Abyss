@@ -1,13 +1,15 @@
-# 主菜单轻量收尾
+# 最新参考主菜单收尾
 
-唯一视觉基底为 `96219b31:docs/evidence/menu-red-quality-20261114/menu.png`。背景、人物与构图均保留；背景源码与1600图元数据没有改动，预览组装也断言背景子树逐字节一致。
+背景仍为96219b31批准的menu.png，背景数据、人物及构图未改。最新附件只指导标题与按钮，原附件保存在本任务.artifacts/menu-finish/latest-reference.png，其SHA256见menu-title-mark.json；原图不进入运行时。
 
-左上补静态中文标题与准确的 **Slay the Heavens**。开始游戏/退出游戏保持位置、原生命中区与业务流程，增加深色底板、边框和四态差异；现有悬停缩短为80ms、离开60ms。新增30个静态控件；无新增运行时Lua、图片资源或动画系统。标题随既有菜单容器隐藏，结果页不显示。
+离线title-mark.py仅描摹限定区域：378个静态三角还原中文标题、红色2和Slay the Heavens。牌形、字形、分组及回退合计416控件，最大50子项；整菜单较批准版新增444控件。按钮共享暗托底、红箭头/下划线四态，沿用固定命中及80ms/60ms悬停，无新增Lua、纹理或循环动画。标题/托底置于两个原按钮之前，结果页沿原机制隐藏。
 
-![本轮实际模拟器截图](menu.png)
+![最终同候选模拟器悬停截图](menu.png)
 
-本图为1280×720实际Simulator运行截图，来源为已批准的原生背景读回预览，加本轮布局生成的标题/按钮；不是官方导入或手机截图。当前build与save摘要见runtime.json，组装与背景摘要见composition.json。初轮文字框高度不足的截图保留在本工作树.artifacts/menu-finish，最终已修正。
+本图为实际Simulator源预览：背景沿用原GIL读回，标题按钮由本轮布局生成，不是新官方导入或手机截图。身份见runtime.json；composition.json断言背景子树逐字节一致，背景仍1732控件。
 
-验证：布局/官方样式输入身份8项通过；menu_hover_continuity及noncombat_v25_menu（41项断言）通过；实际SDK悬停中断/复位/零新增交互控件、20次选角返回背景同对象及自然首战通过。截图会话无页面错误。没有以这些结果代替官方ready、真机或GPU验收。
+布局/输入8项、Lua hover及菜单41断言通过；同候选SDK悬停、20次返回背景同对象及自然首战见hover.json/cache.json。无页面错误。
 
-来源合同由现有generate-integrated-ci-source生成器更新当前登记，保留全部历史来源视图；来源5项回归通过。完整Hosted CI、官方和手机未验。实现基于现有PR643的正确主菜单；该PR落地develop后再提交本次小PR，禁止把上游整合内容冒充本轮范围。
+title-cost.json复用既有测量器，仅构造titleMark；scope的background字符串沿测量器参数，backgroundControls=416实际指标题。创建20.76ms、更新P95约0.0018ms、RSS差3.07MiB。堆差为负属GC噪声，不称内存节省。仅本机SDK样本，不是GPU/官方/手机性能。初轮整游原/新样本SDK创建1361/1456ms、更新P95 5.51/6.91ms存在波动，不宣称零开销或性能达标。
+
+来源登记沿已有生成器保留历史。正确基底由PR661承接（原643以consolidation关闭），未合develop；依赖落地后提小PR。Hosted Full、官方及手机未验，不标Done。

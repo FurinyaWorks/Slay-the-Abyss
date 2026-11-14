@@ -1,7 +1,7 @@
 {
-  "buildId": "1286a59c-334d-4f47-bc08-cafc0530e25d",
+  "buildId": "7839d9ef-6ab4-4a5b-8e44-334d24e8d3e1",
   "input": "../menu-red-background/.artifacts/menu-quality-r1/final-preview/scene.save.json",
   "backgroundSha256": "215bc80e400656558a7cb73fa9c30cbc62358d6ad0da4b58b5ee4248fc5b29cd",
-  "addedControls": 30,
+  "addedControls": 444,
   "scope": "Source preview using approved native background; title/button specs from current layout. Not official import."
 }

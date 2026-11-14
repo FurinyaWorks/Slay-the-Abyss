@@ -1,7 +1,7 @@
 {
-  "buildId": "1286a59c-334d-4f47-bc08-cafc0530e25d",
-  "saveSha256": "fe9045ee920f10c035e01c6631af9d53b4b8b0a76a6b67929a265f12ffe1ed06",
-  "url": "http://127.0.0.1:61581",
+  "buildId": "7839d9ef-6ab4-4a5b-8e44-334d24e8d3e1",
+  "saveSha256": "c71239a42b058153d64c6e94df298a4013a642ca7862a127d010fee661812b34",
+  "url": "http://127.0.0.1:64378",
   "scope": "Single-player local Simulator preview; not official/cold-load acceptance",
   "reconnectReset": true,
   "singlePlayerGuard": true,
