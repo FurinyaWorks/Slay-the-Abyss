@@ -178,6 +178,7 @@ function M.present(ctx)
     if outcome then presentStats(ctx,victory,mode,available)
     else menu:GetChild('tagline').text=Narrative.title;menu:GetChild('summary').text='' end
     V25.present(ctx,outcome)
+    require('abyss_game_ui_navigation_view').title(self,menu,outcome,V25)
     pose(ctx)
 end
 function M.animate(ctx, dt)

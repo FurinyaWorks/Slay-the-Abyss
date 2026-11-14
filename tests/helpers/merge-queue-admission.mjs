@@ -3,14 +3,14 @@ import {join} from 'node:path';
 import {currentFullQualityJobs,qualityWorkflowPath} from '../../scripts/verify-delivery.mjs';
 import {queueRulesFingerprint} from '../../scripts/merge-queue-policy.mjs';
 const sha=c=>c.repeat(40),repo='FurinyaWorks/Slay-the-Abyss';
-export function admissionFixture(){
+export function admissionFixture(repoName=repo){
  const head=sha('a'),base=sha('b'),prHead=sha('c');
- const env={GITHUB_EVENT_NAME:'merge_group',GITHUB_REPOSITORY:repo,
+ const env={GITHUB_EVENT_NAME:'merge_group',GITHUB_REPOSITORY:repoName,
   GITHUB_SHA:head,GITHUB_REF:'refs/heads/gh-readonly-queue/develop/pr-510-a',
   GITHUB_RUN_ID:'7',GITHUB_RUN_ATTEMPT:'1',FULL_MODE:'full'};
- const event={action:'checks_requested',repository:{id:1429751262,full_name:repo},
+ const event={action:'checks_requested',repository:{id:1429751262,full_name:repoName},
   merge_group:{head_sha:head,head_ref:env.GITHUB_REF,base_sha:base,base_ref:'refs/heads/develop'}};
- const run={id:7,run_attempt:1,event:'merge_group',head_sha:head,status:'in_progress',path:qualityWorkflowPath,repository:{full_name:repo}};
+ const run={id:7,run_attempt:1,event:'merge_group',head_sha:head,status:'in_progress',path:qualityWorkflowPath,repository:{full_name:repoName}};
  const needs={impact:{result:'success'},rules:{result:'success'},fast:{result:'skipped'},presentation:{result:'success'},'engineering-posix':{result:'success'}};
  env.FULL_NEEDS=JSON.stringify(needs);
  const jobs=currentFullQualityJobs.map((name,i)=>({name,id:100+i,run_id:7,run_attempt:1,head_sha:head,
@@ -23,13 +23,13 @@ export function admissionFixture(){
    {type:'required_linear_history'}]};
  const artifact={id:42,name:'quality-7-1-check',expired:false,workflow_run:{id:7,head_sha:head}};
  const checkout={schemaVersion:1,event:'merge_group',runId:7,attempt:1,tested:head,head,base,parents:[base]};
- const pr={number:510,node_id:'PR_510',state:'open',merged:false,draft:false,head:{sha:prHead,repo:{id:1429751262,full_name:repo}},
-  base:{sha:base,ref:'develop',repo:{id:1429751262,full_name:repo}},labels:[],body:'Depends-on: none'};
+ const pr={number:510,node_id:'PR_510',state:'open',merged:false,draft:false,head:{sha:prHead,repo:{id:1429751262,full_name:repoName}},
+  base:{sha:base,ref:'develop',repo:{id:1429751262,full_name:repoName}},labels:[],body:'Depends-on: none'};
  const review={id:90,context:'independent-review',state:'success',creator:{id:51,login:'maintainer'},
   description:`Independent review [rules:${queueRulesFingerprint(ruleset)}] [base:${base}]`};
  const entry={id:'ENTRY_510',position:1,state:'AWAITING_CHECKS',enqueuer:{databaseId:51,login:'maintainer'},baseCommit:{oid:base},headCommit:{oid:head},
   pullRequest:{number:510,headRefOid:prHead,baseRefName:'develop',isDraft:false,state:'OPEN',mergeQueueEntry:{id:'ENTRY_510'}}};
- const repository={databaseId:1429751262,nameWithOwner:repo,ref:{target:{oid:base}},
+ const repository={databaseId:1429751262,nameWithOwner:repoName,ref:{target:{oid:base}},
   mergeQueue:{entries:{nodes:[entry],pageInfo:{hasNextPage:false}}}};
  const permission={permission:'admin',user:{id:51,login:'maintainer'}};
  return {env,event,run,needs,jobs,ruleset,artifact,checkout,pr,review,entry,repository,permission};

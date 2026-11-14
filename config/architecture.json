@@ -1,5 +1,7 @@
 {
   "layers": {
+    "abyss_game_ui_navigation": "ui",
+    "abyss_game_ui_navigation_view": "ui",
     "abyss_component_pages": "ui",
     "abyss_v25_texture_runtime": "platform",
     "abyss_v25_turn_notice": "ui",

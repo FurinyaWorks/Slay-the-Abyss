@@ -26,7 +26,7 @@ test('pointer catches preserve modal; outside consumes and returns one layer onl
  assert(ui.run==run and ui.map==map and map.floor==floor and calls==0,'dismissal must not advance or settle the run')
  assert(ui:openMenu() and hit(menu,'abandon').click())
  local why=root:GetChild('exitPanel'):GetChild('whyText')
- assert(why.visible and why.text=='存档功能需作者达到创作者 4 级后开放，喜欢的话欢迎点赞支持。帮助作者提升等级。')
+ assert(why.visible and why.text=='本局仅在当前奇域会话中保留；退出奇域后无法继续。')
  assert(ui:closeExit() and calls==0)
  ui:disable()
 end)

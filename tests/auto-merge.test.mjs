@@ -42,6 +42,15 @@ test('repository transfer resolves the pinned project and rejects namespace reus
   const bad=structuredClone(f);mutate(bad);assert(autoMergeErrors(bad).length,String(mutate));
  }
 });
+test('renamed project keeps its pinned ID, historical witnesses and exact auto-merge authorization',()=>{
+ const canonical='FurinyaWorks/Slay-the-Heavens',resource={id:projectRepositoryId,full_name:canonical};
+ assert.equal(currentProjectRepository(()=>JSON.stringify(resource)).full_name,canonical);
+ assert.throws(()=>currentProjectRepository(()=>JSON.stringify({...resource,id:1})),/identity/);
+ const text=JSON.stringify({repo:'FurinyaWorks/Slay-the-Abyss',head:sha('a')});
+ assert.equal(collectIdentityWitness(text,canonical,()=>JSON.stringify(resource)).canonicalFullName,canonical);
+ const m=mock({repository:canonical,pending:true});
+ assert.equal(armAutoMerge(canonical,510,m.f.review,m.query).state,'auto-merge-requested');
+});
 function mock(opts={}) {
   const repo=opts.repository??'CHNISam/Slay-the-Abyss';
   const f=fixture(repo),calls=[];let pulls=0,armed=false,statusId=10;

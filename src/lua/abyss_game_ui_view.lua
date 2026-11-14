@@ -94,7 +94,7 @@ function M.finishRunFlow(neowHistory,endingHistory,self)
     return function(run)
             if run and (run.phase=='victory' or run.phase=='defeat')then NeowHistory.finish(neowHistory,run,run.phase)end
             if run and EndingHistory.finish(endingHistory,run,self.map)then run.endingHistoryResult=EndingHistory.read(endingHistory)end
-            if not self.exitOpen and not self.settlementRequested and run and run.phase == "map" and run.nodeFlow and not run.nodeFlow.complete then
+            if not self.sessionPaused and not self.exitOpen and not self.settlementRequested and run and run.phase == "map" and run.nodeFlow and not run.nodeFlow.complete then
                 Nodes.completeCombat(run, self.map)
             end
         end
@@ -102,7 +102,8 @@ end
 
 function M.selectMode(self)
     return function(run)
-            if self.battleUI.busy then self.mode = "battle"
+            if self.sessionPaused then self.mode='menu'
+            elseif self.battleUI.busy then self.mode = "battle"
             elseif not run then self.mode = "menu"
             elseif require('abyss_relic_pending').owner(run)then self.mode='node'
             elseif run.phase == "defeat" then self.mode = "defeat"
@@ -131,7 +132,7 @@ end
 function M.syncCardChoice(self)
     return function(run)
             if self.choiceUI then
-                self.choiceUI:refresh(run,not self.battleUI.busy and not self.exitOpen and not self.settlementRequested
+                self.choiceUI:refresh(run,not self.sessionPaused and not self.battleUI.busy and not self.exitOpen and not self.settlementRequested
                     and not self.settlementBusy and not self.deckUI.visible and not self.potionUI.visible)
             end
         end
@@ -146,7 +147,7 @@ end
 
 function M.openCardChoice(self)
     return function(run)
-            if run and run.phase=="combat" and run.combat.pendingChoice and not self.battleUI.busy
+            if not self.sessionPaused and run and run.phase=="combat" and run.combat.pendingChoice and not self.battleUI.busy
                 and not self.deckUI.visible and not self.exitOpen then
                 self.deckUI:open(run,run.combat.pendingChoice,function(token,uid)
                     self.battleUI:chooseCard(token,uid)
@@ -256,8 +257,8 @@ end
 
 function M.suspendBattle(self,openingCovered)
     return function(run,deckOpen,potionOpen)
-            return self.mode=='battle' and run and run.phase=='combat'
-                and (deckOpen or potionOpen or self.exitOpen) and not self.disabled
+            return run~=nil and (self.sessionPaused or self.mode=='battle' and run.phase=='combat'
+                and (deckOpen or potionOpen or self.exitOpen)) and not self.disabled
                 and not self.settlementRequested and not self.settlementBusy and not openingCovered()
         end
 end
@@ -271,6 +272,7 @@ function M.refreshPageVisibility(menu,self,suspendBattle,child,refreshMapResourc
                 suspendBattle(run,deckOpen,potionOpen))
             child("battlePanel"):SetVisible(self.mode == "battle")
             self.mapUI:setVisible(self.mode == "map" and not deckOpen and not potionOpen and not blocked)
+            if self.sessionPaused then self.mapUI:setNavigationEnabled(false) end
             child("mapPanel"):SetVisible(self.mode == "map")
             refreshMapResources(run)
             self.nodeUI:setVisible(self.mode == "node" and not deckOpen and not potionOpen and not blocked)
@@ -339,14 +341,7 @@ function M.refreshExitDialog(exitDialogOwnsForeground,exitPanel,self)
     return function()
             if exitDialogOwnsForeground() then
                 exitPanel:SetAsLastSibling()
-                local message = self.run and "确认退出本局？退出后本局结束，进度无法恢复。\n将进入平台结算，随后可选择离开。"
-                    or "确认结束当前关卡？\n将进入平台结算，随后可选择离开。"
-                if self.mode == "victory" then message = "确认结束本局并结算胜利？\n随后可在平台结算页选择离开。" end
-                exitPanel:GetChild("message").text = message
-                -- Lv.4 局内存档未开放：仅在进行中的一局里，用一行小字说明原因。
-                local why = self.run ~= nil and self.mode ~= "victory"
-                exitPanel:GetChild("whyText"):SetVisible(why)
-                exitPanel:GetChild("whyText").text = why and "存档功能需作者达到创作者 4 级后开放，喜欢的话欢迎点赞支持。帮助作者提升等级。" or ""
+                require('abyss_game_ui_navigation_view').dialog(self,exitPanel)
                 exitPanel:GetChild("status").text = self.settlementRequested and "结算请求已发送，等待平台结算界面。"
                     or self.exitError and "退出请求失败，请重试或继续游戏。" or ""
                 local enabled = not self.settlementRequested and not self.settlementBusy
@@ -420,26 +415,7 @@ function M.refreshForeground(characterPanel,self,platform,exitEntry,exitEntryVis
             exitEntry:SetAsLastSibling()
             exitPanel:SetVisible(exitDialogOwnsForeground())
             runMenu:SetVisible(self.exitOpen == true and self.menuOpen == true and not self.controlsOpen and not self.routeOpen)
-            -- TASK-4.16 AC#2：未启程时地图入口整颗隐藏（不再挂「启程后可用」的灰按钮）。
-            local routeBox=runMenu:GetChild('map')
-            local routeHit=routeBox:GetChild('hit')
-            local routeEnabled=canViewRoute()
-            routeBox:SetVisible(routeEnabled)
-            routeHit.interactable,routeHit.raycastTarget=routeEnabled,routeEnabled
-            -- Pan 2026-10-31：首页（未启程）收起「查看地图」那一格，面板与下方控件上提不留空洞。
-            do
-                local R=Theme.layout.runMenu
-                local gap=routeEnabled and 0 or (R.help[2]-R.map[2])
-                local function at(name,spec,dy)local c=runMenu:GetChild(name);if c then c:SetAnchoredPosition(spec[1],spec[2]+dy)end end
-                at('rule',R.rule,gap);at('abandon',R.abandon,gap);at('dismissHint',R.dismissHint,gap)
-                local h=R.panel[4]-gap
-                for _,name in ipairs({'border','face','catch'})do
-                    local c=runMenu:GetChild(name)
-                    if c then c:SetAnchoredPosition(R.panel[1],R.panel[2]+gap/2)
-                        local inset=name=='face' and Theme.space.border*2 or 0
-                        c:SetSizeDelta(R.panel[3]-inset,h-inset)end
-                end
-            end
+            require('abyss_game_ui_navigation_view').runMenu(self,runMenu,canViewRoute())
             if runMenu.visible then runMenu:SetAsLastSibling() end
             local back = child('mapPanel'):GetChild('previewBack')
             local showBack=self.routeOpen==true

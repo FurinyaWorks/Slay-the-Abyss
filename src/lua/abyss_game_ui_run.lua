@@ -71,6 +71,7 @@ function M.start(self,selectionChanged)
             if startBlocked(self) then return false end
             if self.mode~='menu' and self.mode~='defeat' and self.mode~='victory' then return false end
             if self.characterOpen then return false,'character_choice_open' end
+            if require('abyss_game_ui_navigation').hasRun(self) then return self:requestNavigation('new') end
             self.characterOpen=true;self.characterSelection:clear();self.characterSelection.deckOpen=false
             -- Production keeps the select page, but the only open role is already showing.
             if self.characterSelection.profile~='full-source' then self.characterSelection:select('traveler') end

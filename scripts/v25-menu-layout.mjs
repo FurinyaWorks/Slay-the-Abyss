@@ -34,6 +34,7 @@ export function applyV25MenuLayout(layout,theme){
  }
  if(!get(menu,'menuRuinsScene'))menu.children.splice(1,0,menuRuinsScene());
  style(start,theme);start.position=v25MenuRuntimeLayout.start.slice(0,2);
+ const resume=get(menu,'continueRun');style(resume,theme);resume.position=[-430,-23];
  let chrome=get(menu,'v25MainMenu');
  if(!chrome){
   chrome={name:'v25MainMenu',kind:'container',size:[1280,720],children:['图鉴','游戏记录'].map((text,i)=>({
@@ -50,5 +51,6 @@ export function applyV25MenuLayout(layout,theme){
   {name:'hit',kind:'cursorArea',size:[292,44],focusable:true},
  ]};menu.children.push(quit);}
  style(quit,theme);
+ quit.position=v25MenuRuntimeLayout.quit.slice(0,2);
  return layout;
 }
