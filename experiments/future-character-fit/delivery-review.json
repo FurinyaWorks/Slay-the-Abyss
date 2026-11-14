@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "TASK-106-STAGED-20261114-286d896cc9cd",
+  "independentSession": "ses_e27eec338ffea2O8KDfIqm8ksW",
+  "reviewedHeadSha": "7777fff51983d08eca0bd44a5aee92ec2c8c908c",
+  "reviewedBaseSha": "9f2f44e4c79789fbcb64a515938765dbc240f830",
+  "reviewedTreeSha": "286d896cc9cda435cebf575da8928e3ec64d3b12",
+  "conclusion": "pass",
+  "unresolved": [],
+  "scope": "58-file reserve asset slice, source/geometry/scene identity, hand/bird local visual correction, 24 PNG LFS pointers, provenance inventory, acceptance scope, no production integration",
+  "completedChecks": [
+    "Original and corrected numeric geometry/scene identity and independent vertex reconstruction",
+    "Independent full-image and local-region visual review; exact rasterROI outside changes = 0",
+    "Owner visual acceptance identities",
+    "Full tracked license/source inventory",
+    "Backlog scope/identity/owner check",
+    "Agent guidance check",
+    "Staged whitespace and LFS pointer/hash/byte identity review"
+  ],
+  "fullQuality": "PENDING",
+  "officialImport": "NOT_RUN",
+  "devicePerformance": "UNVERIFIED",
+  "mergeAuthorized": false
+}

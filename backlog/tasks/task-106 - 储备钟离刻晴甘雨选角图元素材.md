@@ -1,11 +1,11 @@
 ---
 id: TASK-106
 title: 储备钟离刻晴甘雨选角图元素材
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-14 02:51'
-updated_date: '2026-11-14 04:48'
+updated_date: '2026-11-14 05:25'
 labels:
   - art
   - future-reserve
@@ -27,7 +27,7 @@ ordinal: 174000
 - [x] #1 保留四份源图身份和来源，三角色各有约1600绘图图元的可编辑候选
 - [x] #2 钟离高低精度同预算对照清楚，关键五官与角色特征经用户查看确认
 - [x] #3 数值几何、预览及可复现参数完成核对与独立复审；不将离线结果当作官方或设备验收
-- [ ] #4 本批仅作未来储备，当前版本构建及角色开放行为不引用新增素材；用户验收后提交推送
+- [x] #4 本批仅作未来储备，当前版本构建及角色开放行为不引用新增素材；用户验收后提交推送
 - [x] #5 用户指出的刻晴手部与钟离肩鸟须提供同位置原图/修改前/修改后及整图：掌指腕连接清楚，鸟的眼喙/翼尾/落脚可辨；每张绘图不超过1600且背景总控件不增，独立复核后由用户查看确认
 <!-- AC:END -->
 
@@ -55,4 +55,12 @@ Owner补充钟离肩鸟也不清楚：优先在同张1600图元硬预算内用�
 手/鸟最终修订见experiments/future-character-fit/corrections与review.html顶部。手1574绘图/1725总控件、钟离简化1572/1732、精细对照1589/1772，均比初稿下降。真实PR650放置/来源/逐顶点校验PASS。独立复核ses_e27eec338ffea2O8KDfIqm8ksW已重新绘图确认声明rasterROI外变化均0，鸟矩形铺底已去掉，背景/衣肩保留；手部与小鸟造型实质改善，但用户审美仍待确认。此前失效的local-*保持本地未选稿，不作最终来源。
 
 2026-11-14 Owner查看手/鸟修订后回复‘呃可以很牛逼 嗯没什么问题的’，本轮三张主候选离线画质通过，身份绑定owner-acceptance.json；精细钟离继续仅作对照。已快进最新origin/develop 9f2f44e4，开始素材来源/LFS/交付检查；AC4的提交推送仍待实际完成。
+
+交付：7777fff51983d08eca0bd44a5aee92ec2c8c908c已与远端分支逐SHA核对，21个LFS对象约14MB上传完成。独立精确HEAD/BASE/tree绑定见experiments/future-character-fit/delivery-review.json。任务Done仅指本轮获准的未来素材储备与提交推送；不代表正式运行启用、合并或设备通过。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Owner已认可手部/肩鸟修订后的三角色离线画质。未来选角储备含四份源图、可编辑几何/原生树、原图与局部前后对照；甘雨1600、刻晴1574、钟离简化1572绘图图元。来源/LFS、许可清单、几何逆投影、局部区域外零变化、Backlog/指引及独立复核通过。源码7777fff5和21个LFS对象已实际推送feat/future-character-fit；当前版本零接入。Full/官方及设备验收分层保留，不宣称通过。
+<!-- SECTION:FINAL_SUMMARY:END -->
