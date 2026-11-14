@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { validDate } from './evidence-files.mjs';
 
 const plainVersion = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
-const sections = { 新增: 'added', 优化: 'improved', 修复: 'fixed' };
+const sections = { 新增: 'added', 变更: 'improved', 优化: 'improved', 修复: 'fixed' };
 const json = file => JSON.parse(readFileSync(file, 'utf8').replace(/^\uFEFF/, ''));
 export const releaseSourceFiles = ['package.json', 'package-lock.json', '.release-please-manifest.json',
   'CHANGELOG.md', 'data/release/publications.json'];
@@ -45,12 +45,20 @@ export function parseChangelog(source) {
   const notes = new Map();
   let current, section, breaking;
   for (const raw of source.replace(/^\uFEFF/, '').split(/\r?\n/)) {
+    // Keep a Changelog link definitions belong outside the player's visible release notes.
+    if (/^\[(?:Unreleased|v?\d+\.\d+\.\d+)\]: https:\/\//.test(raw)) continue;
+    if (raw === '## [Unreleased]') {
+      current = undefined; section = undefined; breaking = false;
+      continue;
+    }
     if (/^##\s/.test(raw)) {
-      const heading = raw.match(/^## (?:\[(v?\d+\.\d+\.\d+)\]\(https:\/\/github\.com\/[^\s)]+\)|v?(\d+\.\d+\.\d+)) \((\d{4}-\d{2}-\d{2})\)$/);
-      if (!heading) throw new Error(`Unsupported or ambiguous version heading: ${raw}`);
-      const id = version(`v${(heading[1] ?? heading[2]).replace(/^v/, '')}`);
+      // Support Keep a Changelog 1.1.0 while accepting immutable legacy history/fixtures.
+      const standard = raw.match(/^## \[v?(\d+\.\d+\.\d+)\] - (\d{4}-\d{2}-\d{2})$/);
+      const legacy = standard ? null : raw.match(/^## (?:\[(v?\d+\.\d+\.\d+)\]\(https:\/\/github\.com\/[^\s)]+\)|v?(\d+\.\d+\.\d+)) \((\d{4}-\d{2}-\d{2})\)$/);
+      if (!standard && !legacy) throw new Error(`Unsupported or ambiguous version heading: ${raw}`);
+      const id = version(`v${(standard?.[1] ?? legacy?.[1] ?? legacy?.[2]).replace(/^v/, '')}`);
       if (notes.has(id)) throw new Error(`Duplicate version heading: ${id}`);
-      current = { version: id, notesDate: date(heading[3]), added: [], improved: [], fixed: [] };
+      current = { version: id, notesDate: date(standard?.[2] ?? legacy[3]), added: [], improved: [], fixed: [] };
       notes.set(id, current); section = undefined; breaking = false;
     } else if (current && raw.trim()) {
       const title = raw.match(/^### (.+)$/);
