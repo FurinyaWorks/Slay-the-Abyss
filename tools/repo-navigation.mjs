@@ -76,7 +76,7 @@ export function auditRepositoryNavigation(root = '.') {
     if (file.endsWith('.test.mjs') && posix.dirname(file) !== 'tests')
       errors.push(`Undiscoverable Node test: ${file}; update npm/CI test discovery before nesting`);
     if (file.startsWith('tests/lua/') && file.endsWith('.lua') &&
-        posix.dirname(file) !== 'tests/lua' && !file.startsWith('tests/lua/helpers/'))
+        posix.dirname(file) !== 'tests/lua' && !['tests/lua/helpers/', 'tests/lua/support/'].some(prefix => file.startsWith(prefix)))
       errors.push(`Undiscoverable Lua test: ${file}; update test-lua runner before nesting`);
   }
   return {errors, counts, routes: manifest.routes};
