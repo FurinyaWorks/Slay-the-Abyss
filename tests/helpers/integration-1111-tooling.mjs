@@ -2,7 +2,7 @@ import {preCloseoutCiSource,closeoutInventory,closeoutRead} from './closeout-ci-
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 const hash=s=>createHash('sha256').update(s).digest('hex');
-const historyBytes=readFileSync(new URL('../fixtures/pr-history-receipt-continuation.json',import.meta.url));
+const historyBytes=readFileSync(new URL('../fixtures/pr-history-receipt-continuation.json',import.meta.url),'utf8').replaceAll('\r\n','\n');
 if(hash(historyBytes)!=='b1285eef27a83f1296f2ed9e7f5a5d3f1a3dd118b14935044532104833a91717')throw Error('Invalid history receipt continuation');
 const historyProof=JSON.parse(historyBytes);
 for(const side of ['before','after'])if(hash(historyProof[side].source)!==historyProof[side].sha256)throw Error('Invalid complete history receipt source');
