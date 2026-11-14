@@ -12,6 +12,7 @@ export function nodeLayout(theme = nativeTheme) {
   const iconId = entry => (typeof entry === 'object' ? entry.id : entry);
   const picture = (name, values, id, colour = color.text) => ({ name, kind: 'image', position: values.slice(0, 2),
     size: values.slice(2), image: iconId(id), colour });
+  const readable = control => ({...control,text:{...control.text,align:'left',valign:'top',autoSize:false}});
   const hidden = control => ({ ...control, visible: false });
   const group = (name, children, visible = false) => ({ name, kind: 'container', size: [...theme.canvas.base], visible, children });
 
@@ -181,20 +182,22 @@ export function nodeLayout(theme = nativeTheme) {
     hidden(reward), hidden(framed('take', chest.take, '拿取并离开', { primary: true, fontSize: font.heading })),
     hidden(arrow('previous', chest.previous, icon.back)), hidden(arrow('next', chest.next, icon.next)),
     hidden(text('page', chest.page, '', font.label, color.goldBright)),
-    hidden(text('bossDescription', chest.bossDescription, '', font.small, color.textDim)),
+    hidden(text('bossDescription', chest.bossDescription, '', font.small, color.text)),
   ];
   const list=layout.rewardList;
   list.rows.forEach((y,i)=>treasureControls.push(hidden(framed(`rewardItem${i+1}`,[list.x,y,...list.size],null,{children:[
     picture('icon',[-list.size[0]/2+40,0,48,48],icon.node.treasure,color.geo),
-    text('name',frame([28,22],[list.size[0]-100,40]),'',font.body,color.goldBright),
-    text('description',frame([28,-22],[list.size[0]-100,40]),'',font.small,color.textDim),
+    readable(text('name',frame([28,30],[list.size[0]-100,40]),'',24,color.goldBright)),
+    readable(text('description',frame([28,-22],[list.size[0]-100,64]),'',20,color.text)),
   ]}))));
   treasureControls.push(hidden({...picture('burst',[...chest.chest.slice(0,2),360,360],image.glow,color.goldBright)}));
   const rd=list.detail;
   treasureControls.push(hidden({name:'details',kind:'container',position:rd.slice(0,2),size:rd.slice(2),children:[
     plate('border',[0,0,...rd.slice(2)],color.gold),plate('panel',[0,0,rd[2]-4,rd[3]-4],color.panelSunken),
-    text('name',[0,110,rd[2]-32,40],'',font.heading,color.goldBright),
-    text('description',[0,-20,rd[2]-32,200],'',font.body,color.text),
+    text('name',[0,rd[3]/2-36,rd[2]-40,44],'',font.heading,color.goldBright),
+    readable(text('description',[0,rd[3]/2-116,rd[2]-40,104],'',22,color.text)),
+    hidden(text('relatedName',[0,-30,rd[2]-40,40],'',font.body,color.goldBright)),
+    hidden(readable(text('relatedDescription',[0,-126,rd[2]-40,144],'',20,color.text))),
   ]}));
 
   controls.push(group('shopView', shopControls), group('campView', campControls), augmentMatchEventPicker(group('pickerView', pickerControls),theme),

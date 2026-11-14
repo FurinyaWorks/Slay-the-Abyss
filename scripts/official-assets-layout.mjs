@@ -2,6 +2,7 @@ import {compactBoundedCardFaces} from './lightweight-card-layout.mjs';
 import {applyV25BattleScene} from './v25-battle-scene.mjs';
 import {applyV25BattleChrome} from './v25-battle-chrome.mjs';
 import {applyV25TurnNoticeLayout} from './v25-turn-notice-layout.mjs';
+import {styleTreasure} from './v25-node-layout.mjs';
 import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mjs';
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
@@ -213,7 +214,7 @@ function pageBackgrounds(node,theme){
   }
  }
   if(node.name==='nodePanel'){
-  const backdrop=child(node,'backdrop');if(backdrop)setImage(backdrop,ids.act1_3,'#FFFFFF');
+  const backdrop=child(node,'backdrop');if(backdrop)setImage(backdrop,theme.image.rect,'#10191C');
   }
   if(node.name==='officialBattleBackdrop'){
    // Runtime scene switches remain valid; the foreground V25 scene now owns
@@ -246,6 +247,8 @@ export function applyOfficialAssets(trees,theme){
     if(node.kind==='image'&&node.name==='icon')node.colour='#FFFFFF';
    });
    const relicHosts=relicSurfaces(stage,theme);
+   const rooms=child(stage,'nodePanel'),treasure=child(rooms,'treasureView');
+   if(treasure)relicHosts.add(required(treasure,'details'));
    if(child(stage,'battlePanel')||child(stage,'endTurn')){
     applyV25BattleLayout(tree,theme);
     applyV25BattleChrome(tree,theme);
@@ -271,6 +274,9 @@ export function applyOfficialAssets(trees,theme){
   if(tools)for(const control of children(tools)){
    const backing=child(control,'officialButtonBacking');if(backing)backing.visible=false;
   }
+  // Apply authored room geometry after generic surface substitution. No atlas
+  // landscape or ornate modal skin may overwrite these read-only details.
+  if(treasure)styleTreasure(treasure,theme,{skinButtons:false});
   composeOfficialRun(tree,theme);
  }
  finishOfficialComposition(trees);

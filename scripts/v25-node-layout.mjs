@@ -207,7 +207,7 @@ export function styleEvent(panel,theme){
   setRect(must(n,'title'),o.title);type(must(n,'title'),18,'#EDEEDF',{align:'left'});setRect(must(n,'description'),o.description);type(must(n,'description'),18,'#EDEEDF',{align:'left'});}
 }
 
-function styleTreasure(panel,theme){
+export function styleTreasure(panel,theme,{skinButtons=true}={}){
  panel.children.unshift(group('v25TreasureField',[rect('dark',0,-22,1280,676,'#070B0B'),
   image('warmth',-350,40,560,460,theme.image.glowWide,'#8D7B45',{opacity:.15}),
   fade('lowerShade',0,-240,1280,240,'#000000',{opacity:.3}),
@@ -227,7 +227,7 @@ function styleTreasure(panel,theme){
    rect('lock',0,12,25,32,'#D2B66C'),image('keyhole',0,12,6,10,100002,'#302B23'),
   ])];
  }
- for(const n of parts(panel))if(parts(n).some(c=>c.name==='normal'))framedSkin(n);
+ if(skinButtons)for(const n of parts(panel))if(parts(n).some(c=>c.name==='normal'))framedSkin(n);
 }
 
 export function styleMerchant(panel,theme){

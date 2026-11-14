@@ -182,6 +182,10 @@
     "sts-style-project-sdk-evidence": {
       "status": "Project-generated offline SDK and headless diagnostic captures of native geometry and existing platform image references. Original Slay the Spire rasters are linked and measured privately, not redistributed in this category. Game and platform IP remains with its owners; no asset sublicense or commercial clearance. Software rendering is not official import, ready, GPU or device acceptance.",
       "evidence": "docs/design/UI_DESIGN.md; docs/evidence/sts-neow-reference-20261113/README.md; docs/evidence/sts-character-reference-20261113/README.md; docs/evidence/sts-card-reference-20261113/README.md"
+    },
+    "treasure-ui-pil-evidence": {
+      "status": "Project-authored UI geometry and production Lua text projected with Pillow and an installed system font. Unknown SDK textures are wireframe labels, not redistributed official images. Game identities remain their owners IP; no font binaries, IP sublicense or commercial clearance. Offline diagnostics only, not official client/device or final artwork acceptance.",
+      "evidence": "docs/evidence/treasure-readable-20261114/README.md; Owner reviewed both projected scenes on 2026-11-14. Runtime source, generated native layout and explicit Boss component fixture; no natural-playthrough claim."
     }
   },
   "files": {
@@ -9649,6 +9653,14 @@
       "lfs": true,
       "storage": "ci-media-lfs-v1",
       "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
+    },
+    "docs/evidence/treasure-readable-20261114/bell-hover.png": {
+      "sha256": "0c7341e0afca6547985d42488b3d6ea4e113a546a1d7cfa6c3fc21f07dd90433",
+      "category": "treasure-ui-pil-evidence"
+    },
+    "docs/evidence/treasure-readable-20261114/snecko-hover.png": {
+      "sha256": "3b1cf59c92bb1af509b6be2cb7b69492db85fe1fadcf3804779ee217157209cf",
+      "category": "treasure-ui-pil-evidence"
     }
   }
 }
