@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - Furinya
 created_date: '2026-11-10 09:38'
-updated_date: '2026-11-10 14:19'
+updated_date: '2026-11-14 03:03'
 labels:
   - art
   - design
@@ -14,7 +14,8 @@ dependencies: []
 references:
   - 'https://wiki.hoyolab.com/pc/genshin/entry/2674?lang=ja-jp'
   - 'https://genshin-impact.fandom.com/wiki/Traveler/Gallery'
-  - 'https://github-wiki-see.page/m/daviscook477/BaseMod/wiki/Custom-Character-Animations'
+  - >-
+    https://github-wiki-see.page/m/daviscook477/BaseMod/wiki/Custom-Character-Animations
   - 'https://store.steampowered.com/news/posts/?appids=646570&enddate=1542327142'
   - experiments/native-2d-vertical-slice/reference-handbook/RECIPES.md
   - docs/art/CARD_ILLUSTRATION_STANDARD.md
@@ -46,7 +47,6 @@ type: task
 - v1：8帧×230ms，最大位移约3.51原图像素，缩到游戏尺寸后基本不动，**FAIL**。
 - v2：16帧×110ms，以分区光学变形增加位移，Owner 指出人物像被割裂、不像一个整体，**FAIL**；不继续按此方法加工，不以其帧数/振幅作为待机规格。
 - **不为补救待机而开发攻击/受击动画。** 保留现有整个人物反馈和游戏规则，不额外制造动画技术债。
-
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
@@ -55,9 +55,19 @@ type: task
 - [ ] #2 只交付一个同构图、整体协调、自然循环的荧战斗 idle；AI 自检和独立复核通过，Owner 在实际展示尺寸能看出动作且认可角色整体观感。
 - [ ] #3 用实际候选核对低资源计数、加载及可见运动；有同一角色图元/控件真实统计而非“57图元”宣称，并能明确说明回退或取舍。
 - [ ] #4 独立的待机原生候选可在可用的真实客户端/模拟器验证：循环、战斗进入/退出、中断与恢复可靠，不影响现有整人攻击/受击位移与特效；官方 PC/手机性能按设备分层，未测不得勾。
+- [ ] #5 按2026-11-14用户给定风格尝试最新原生拟合降本：Clean, cel-shaded low-poly / flat-shaded polygons anime style, with sharp faceted geometric shapes, large flat color blocks, minimal gradients, crisp outlines；与同构图旧候选实际比较，不先保证理论降本
+- [ ] #6 当前没有经上述风格处理的待机参考图；先由执行者做一个可审阅小样，若无法维持原角色整体身份和循环质量，明确展示不足并请用户补处理后的参照图，再继续；不把补图需求变成要求用户绘制或操作编辑器
+- [ ] #7 每轮记录静态图元及所有常驻控件、动画变化调用、载荷、加载/循环/退出成本和真实战斗尺寸对照；达到画质及低成本Go并经用户认可后才采用，未达保留No-Go与原候选
 <!-- AC:END -->
 
 ## Implementation Plan
+
 <!-- SECTION:PLAN:BEGIN -->
 只推进一个真实待机竖切，先复用既有工具和原始视觉参照，做整体动画和小范围次级运动；视觉不合格就回退重新调，不扩成动作系统重构。继续遵守当前 Sprint、Backlog CLI、审查/CI和真实设备验证门禁；本 PR 仅修改任务文档，不声称已实现原生 GIL 或已获得 Owner 动画验收。攻击/受击角色专属动画不进入当前任务，未来另案。
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-11-14 Owner追加：复用最新选角/主菜单的分层轮廓与局部精修路线，试做低多边形/赛璐璐平涂待机降本；未提供已处理动画参考，先尝试，做不好再请Owner补图。当前session仅登记给其他session领取，不执行本任务；原构图/整体骨架、既有攻击受击反馈、人工及设备门禁和历史否决保留。旧计划中的Sprint字样仅作历史，执行按docs/TASK_EXECUTION.md。
+<!-- SECTION:NOTES:END -->
