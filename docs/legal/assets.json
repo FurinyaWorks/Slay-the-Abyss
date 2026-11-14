@@ -198,6 +198,10 @@
     "liyue-user-reference": {
       "status": "Liyue native geometric emblem extracted from user-provided 高仿原神转场【存档形式】.gil. Original author and asset license were not supplied; no project-original authorship, redistribution sublicense or commercial clearance is asserted. Original game IP remains with its owner.",
       "evidence": "docs/backlog-details/TASK-108.md; data/presentation/liyue_transition_reference.json source file SHA256 and template ID"
+    },
+    "project-ci-history-evidence": {
+      "status": "Byte-identical project-generated CI and validation history. Existing repository and third-party rights remain unchanged; storage migration grants no new commercial or asset rights.",
+      "evidence": "Original Git blobs at 9f2f44e4c79789fbcb64a515938765dbc240f830; config/ci-media-lfs.json archiveExtension; docs/evidence/pr-integration-cleanup-20261114.md"
     }
   },
   "files": {
@@ -9825,6 +9829,30 @@
       "sha256": "b8eda5453309e94d319e69d3e915aa0d1128c53c35f21aca624787e6dba82499",
       "category": "platform-evidence",
       "lfsBytes": 206617
+    },
+    "docs/evidence/m7-reward-query-cards-graph-20261107.jsonl.gz": {
+      "sha256": "6595610e702cf88ab50d3a0e7a4f572dcc563656773f1654f9de694164416b3f",
+      "bytes": 2591379,
+      "category": "project-ci-history-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+    },
+    "docs/evidence/m9-ci-20261103/raw-ci.json.gz": {
+      "sha256": "9c25cd1c29418d971993515688ba9db1192da795bfc1abb4fbb6604850ab575b",
+      "bytes": 2159210,
+      "category": "project-ci-history-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+    },
+    "docs/evidence/pr621-deck-sort-20261111/validation.tar.gz": {
+      "sha256": "1fa2654027631d9f8af33870cdb2d89c72b876fcc0dc25a70697e78e6a59af20",
+      "bytes": 1833486,
+      "category": "project-ci-history-evidence",
+      "lfs": true,
+      "storage": "ci-media-lfs-v1",
+      "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
     }
   }
 }

@@ -7414,5 +7414,41 @@
         "sourceCommit": "f34723b6d54b6153de8a333a8abcc77884737f8f"
       }
     ]
+  },
+  "archiveExtension": {
+    "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830",
+    "maxPayloadBytes": 6584075,
+    "files": [
+      {
+        "path": "docs/evidence/m7-reward-query-cards-graph-20261107.jsonl.gz",
+        "sha256": "6595610e702cf88ab50d3a0e7a4f572dcc563656773f1654f9de694164416b3f",
+        "bytes": 2591379,
+        "oldBinaryGitBlobs": [
+          "bb5b21238b5e8ca485b4ce14289821965554cce4"
+        ],
+        "category": "project-ci-history-evidence",
+        "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+      },
+      {
+        "path": "docs/evidence/m9-ci-20261103/raw-ci.json.gz",
+        "sha256": "9c25cd1c29418d971993515688ba9db1192da795bfc1abb4fbb6604850ab575b",
+        "bytes": 2159210,
+        "oldBinaryGitBlobs": [
+          "3c159eb19cd689473ce0edc3217dd2919ef297c0"
+        ],
+        "category": "project-ci-history-evidence",
+        "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+      },
+      {
+        "path": "docs/evidence/pr621-deck-sort-20261111/validation.tar.gz",
+        "sha256": "1fa2654027631d9f8af33870cdb2d89c72b876fcc0dc25a70697e78e6a59af20",
+        "bytes": 1833486,
+        "oldBinaryGitBlobs": [
+          "48b55845291f6f8a6b0ffd877d553d8a6249bc57"
+        ],
+        "category": "project-ci-history-evidence",
+        "sourceCommit": "9f2f44e4c79789fbcb64a515938765dbc240f830"
+      }
+    ]
   }
 }

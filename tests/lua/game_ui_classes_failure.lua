@@ -85,9 +85,19 @@ local function drain(ui)
     for _=1,400 do if not ui.battleUI.busy then return end;OnUpdate(0.05) end
     error("feedback did not finish")
 end
+local function finishOpening(ui)
+    for _=1,80 do
+        local opening=ui.prologue and ui.prologue:covering()
+        local page=ui.pageReveal and ui.pageReveal:covered()
+        if not ui.starting and not opening and not page then assert(ui.run);return end
+        OnUpdate(0.05)
+    end
+    error('native opening did not finish before failure injection')
+end
 local function battle(ui,root,finishFeedback,competition)
     local character,card=competition and 'ironclad' or 'watcher',competition and 'warcry' or 'third_eye'
     assert(ui:start());assert(ui:selectCharacter('traveler'));assert(ui:selectElement(character));assert(ui:confirmCharacter())
+    finishOpening(ui)
     eq(ui.run.campaignProfile,competition and 'competition-two-act' or 'full-source')
     if ui.prologue then ui.prologue:cancel() end
     ui:refresh()
@@ -127,7 +137,7 @@ end
 test("undeclared host flag keeps the unified production selection available",function()
     local ui,root,state,lines,restore=startup(nil,true)
     assert(ui);eq(state(),true);eq(root:GetChild("characterPanel").visible,false);eq(root:GetChild("choicePanel").visible,false)
-    assert(F.start(ui));eq(ui.run.characterProfile,nil);eq(ui.run.maxHp,80);eq(#ui.run.deck,10)
+    assert(F.start(ui));finishOpening(ui);eq(ui.run.characterProfile,nil);eq(ui.run.maxHp,80);eq(#ui.run.deck,10)
     assert(table.concat(lines,"\n"):find("ABYSS_UI ready",1,true));restore()
 end)
 test("missing formal layout produces startup diagnostic and never reports ready",function()
