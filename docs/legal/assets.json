@@ -170,6 +170,10 @@
     "shared-run-hud-simulator-evidence": {
       "status": "Project-authored UI verification screenshots rendered with the existing offline Simulator SDK and official platform picture IDs. Screenshots contain game IP; no IP sublicense or commercial clearance. Not official import, ready, device or performance acceptance.",
       "evidence": "docs/evidence/shared-run-hud-20261113/README.md; visual-final-current/render-receipt.json; visual-final-current/verification.json"
+    },
+    "treasure-ui-pil-evidence": {
+      "status": "Project-authored UI geometry and production Lua text projected with Pillow and an installed system font. Unknown SDK textures are wireframe labels, not redistributed official images. Game identities remain their owners IP; no font binaries, IP sublicense or commercial clearance. Offline diagnostics only, not official client/device or final artwork acceptance.",
+      "evidence": "docs/evidence/treasure-readable-20261114/README.md; Owner reviewed both projected scenes on 2026-11-14. Runtime source, generated native layout and explicit Boss component fixture; no natural-playthrough claim."
     }
   },
   "files": {
@@ -8766,6 +8770,14 @@
     "docs/evidence/shared-run-hud-20261113/visual-final-current/map-permanent-deck.png": {
       "sha256": "2a6685759c34098a8cc52cc37394d6f6902d30e8a39a82ce44411f585763efc8",
       "category": "shared-run-hud-simulator-evidence"
+    },
+    "docs/evidence/treasure-readable-20261114/bell-hover.png": {
+      "sha256": "0c7341e0afca6547985d42488b3d6ea4e113a546a1d7cfa6c3fc21f07dd90433",
+      "category": "treasure-ui-pil-evidence"
+    },
+    "docs/evidence/treasure-readable-20261114/snecko-hover.png": {
+      "sha256": "3b1cf59c92bb1af509b6be2cb7b69492db85fe1fadcf3804779ee217157209cf",
+      "category": "treasure-ui-pil-evidence"
     }
   }
 }
