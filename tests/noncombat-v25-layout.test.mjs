@@ -69,6 +69,10 @@ test('selection uses static exact-alpha geometry and reuses the selected frame w
  assert.deepEqual(symbol.position,[0,0]);assert(symbol.visible);
  assert(all(symbol).filter(n=>n.kind==='image').every(n=>[theme.image.rect,100006].includes(n.image)&&n.colour==='#FFE0A2'));
  assert.equal(all(symbol).filter(n=>n.kind==='image'&&n.image===100006).length,49);
+ for(const arc of all(symbol).filter(n=>n.kind==='image'&&n.image===100006)){
+  assert.equal(arc.fill.shape,'horizontal');assert.equal(arc.fill.from,'right');
+  assert(arc.fill.amount>0&&arc.fill.amount<1);
+ }
  assert.equal(all(symbol).some(n=>['text','presetButton','cursorArea'].includes(n.kind)),false);
  applyOfficialNoncombatLayout(layout,theme);
  assert.equal(parts(selectedSlot(panel)).filter(n=>n.name==='v25Constellation').length,1);

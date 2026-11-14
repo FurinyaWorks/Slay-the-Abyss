@@ -14,8 +14,11 @@ export function constellationGeometry(theme){
   const idealScale=width*k/7,diameter=Math.min(900,2*(radius*k/idealScale+3.5));
   const scale=radius*k/(diameter/2-3.5);
   images.push({name:'arc'+i,kind:'image',image:100006,colour:'#FFE0A2',opacity:geometry.opacity*Math.min(1,idealScale/scale),
-   position:[(cx-256)*k,(256-cy)*k],size:[diameter,diameter],scale:[scale,scale],rotation:-start*180/Math.PI,
-   fill:{shape:'radial360',from:'right',clockwise:sweep>0,amount:Math.abs(sweep)/(Math.PI*2)},focusable:false,raycastTarget:false});
+   position:[(cx-256)*k,(256-cy)*k],size:[diameter,diameter],scale:[scale,scale],rotation:-(start+sweep/2)*180/Math.PI,
+   // A circular stroke cropped by a chord is the same symmetric arc. This
+   // uses the existing horizontal mask supported by both native and Simulator,
+   // without relying on the Simulator's unimplemented radial fill.
+   fill:{shape:'horizontal',from:'right',amount:(diameter/2-(diameter/2-3.5)*Math.cos(Math.abs(sweep)/2))/diameter},focusable:false,raycastTarget:false});
  }
  return {name:'v25Constellation',kind:'container',position:[0,0],size:[118,118],visible:true,
   children:Array.from({length:Math.ceil(images.length/60)},(_,i)=>({name:'part'+i,kind:'container',size:[118,118],children:images.slice(i*60,i*60+60)}))};

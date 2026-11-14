@@ -13,7 +13,7 @@ const sdk=await import(pathToFileURL(path.resolve(sdkFile))),{Gr,vi,dn,wi,pa,Me,
 const {vc}=await import(pathToFileURL(path.resolve(rendererFile)));
 const canvas=createRequire(import.meta.url)(process.env.SELECTION_CANVAS_MODULE??'F:/New folder/.artifacts/art-lab-runtime/node_modules/@napi-rs/canvas');
 const save=JSON.parse(fs.readFileSync(saveFile));
-const report={scope:'Actual GIL readback in Simulator/Fengari; software renderer, not official client or GPU FPS',saveSha256:sha(saveFile),sdkSha256:sha(sdkFile),rendererSha256:sha(rendererFile),status:'running',inputs:[],steps:[],roundtrips:[]};
+const report={scope:'Full-game Simulator/Fengari input; see adapter receipt for GIL identity. Software renderer, not official client or GPU FPS',saveSha256:sha(saveFile),sdkSha256:sha(sdkFile),rendererSha256:sha(rendererFile),status:'running',inputs:[],steps:[],roundtrips:[]};
 const enc=s=>new TextEncoder().encode(s),images=new Map(),imageMetadata=new Map();
 const cache=process.env.SELECTION_IMAGE_CACHE??'F:/New folder/.artifacts/simulator-runtime/state/beyond-simulator/images';
 const quantile=(a,q)=>[...a].sort((x,y)=>x-y)[Math.max(0,Math.ceil(a.length*q)-1)];
@@ -61,6 +61,10 @@ try{
  }
  const symbol=find('stage/characterPanel/v25Roster/selected/v25Constellation'),symbolIds=all(symbol).map(n=>n.Id);
  assert.equal(all(symbol).filter(n=>n.kind==='image').length,93);
+ for(const node of all(symbol).filter(n=>n.kind==='image'&&n.imageId===100006)){
+  assert(node.enableMask&&node.enableFill&&node.fillType==='Horizontal'&&node.fillHorizontalType==='Right'
+   &&node.fillAmount>0&&node.fillAmount<1,'Constellation uses an unsupported or missing arc mask; refuse handoff');
+ }
  assert.equal(state().portraits.selection.owned,0,'Menu must not allocate hidden background');
  await render('menu');
  const openAt=performance.now();tap('stage/menuPanel/start/hit');let frames=0;
@@ -75,7 +79,7 @@ try{
  assert(facets.every(n=>painted.has(n.Id)),'Background was not completely painted');
  assert(all(symbol).filter(n=>n.kind==='image').every(n=>painted.has(n.Id)),'Constellation was occluded/hidden');
  report.primitives={constellation:93,background:1600,backgroundOwned:state().portraits.selection.owned};
- report.visualStatus='UNVERIFIED: software renderer omits radial fill; official game screenshot required';
+ report.visualStatus='Simulator horizontal masks rendered; aesthetic review and official game screenshot remain separate';
  const count=session.runtime.controlsById.size;report.residentControls=count;
  for(let i=0;i<20;i++){
   tap('stage/characterPanel/cancel/hit');assert(!state().open);const t=performance.now();

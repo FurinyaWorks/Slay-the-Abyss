@@ -5,7 +5,7 @@ import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const bytes=readFileSync(new URL('./selection-ci-source.json.gz',import.meta.url));
-assert.equal(hash(bytes),'91228f01533cedc8fe26f4af1fdbae09c57400e353da44673d4b0d93b66b88e1');
+assert.equal(hash(bytes),'32c689842317e5a86841c1bb7fbd53398fc558ab7b6b2c5f9bd46ee225ee7bbe');
 export const selectionCiProof=JSON.parse(gunzipSync(bytes));
 assert.equal(selectionCiProof.schemaVersion,1);assert.equal(selectionCiProof.normalization,'LF');
 assert.equal(selectionCiProof.base,'9f2f44e4c79789fbcb64a515938765dbc240f830');
