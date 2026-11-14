@@ -1,6 +1,6 @@
 import {bridge} from '../art-tech-lab/rpc.mjs';
 import {readFileSync,writeFileSync} from 'node:fs';
-const dir='experiments/card-art-lowcost/', b=bridge();
+const dir=process.env.CARD_ART_DIR??'experiments/card-art-lowcost/round2/', b=bridge();
 const unpack=r=>r.structuredContent??JSON.parse(r.content.find(c=>c.type==='text').text);
 try {
  await b.request('initialize',{protocolVersion:'2024-11-05',capabilities:{},clientInfo:{name:'card-art-research',version:'1'}});

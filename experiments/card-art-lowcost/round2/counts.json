@@ -1,0 +1,29 @@
+[
+  {
+    "id": "cleave-a-corrected",
+    "images": 70,
+    "groups": 1,
+    "masks": 0,
+    "total": 71,
+    "officialVerified": false,
+    "sourcePrimitives": 31
+  },
+  {
+    "id": "cleave-reference-shape",
+    "images": 91,
+    "groups": 1,
+    "masks": 0,
+    "total": 92,
+    "officialVerified": false,
+    "sourcePrimitives": 70
+  },
+  {
+    "id": "cleave-reference-impact",
+    "images": 121,
+    "groups": 1,
+    "masks": 0,
+    "total": 122,
+    "officialVerified": false,
+    "sourcePrimitives": 82
+  }
+]

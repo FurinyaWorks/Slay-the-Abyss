@@ -4,7 +4,7 @@ Not raster tracing, not texture import, not a production asset registry.
 import copy, importlib.util, json, math
 from pathlib import Path
 import numpy as np
-ROOT=Path(__file__).resolve().parents[2]; OUT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parents[2]; OUT=Path(__file__).resolve().parent/'round2';OUT.mkdir(exist_ok=True)
 spec=importlib.util.spec_from_file_location('placement',ROOT/'scripts/art/native-triangle-placement.py'); placement=importlib.util.module_from_spec(spec);spec.loader.exec_module(placement)
 seed=json.loads((ROOT/'experiments/art-tech-lab/seed.save.json').read_text()); prototype=seed['assets']['server']['root']['children'][0]
 samples={n['kind']:n for n in prototype['children']}; seq=0
@@ -22,12 +22,9 @@ class Art:
  def __init__(self,id):self.id=id;self.polygons=[];self.shapes=[]
  def poly(self,pts,c):
   self.polygons.append({'points':pts,'color':c})
-  # KNOWN DEFECT: polygons 4/5/12 are concave; fan triangulation overdraws.
-  # Preserved as a reproducible rejected probe, not a production exporter.
-  for i in range(1,len(pts)-1):
-   u=np.array(pts[i])-pts[0];v=np.array(pts[i+1])-pts[0]
-   if abs(float(u[0]*v[1]-u[1]*v[0]))<1e-9:continue
-   for _,p in placement.place([pts[0],pts[i],pts[i+1]],64,depth=1):
+  from triangulate import triangulate, exact_placements
+  for triangle in triangulate(pts):
+   for _,p in exact_placements(triangle,64,placement):
     n=node('image',f'{self.id}-{len(self.shapes)}',p['cx']-72,p['cy']-32,p['w'],p['h'],c,(p['rx'],p['ry'],p['rz']));n['imageId']=100003;self.shapes.append(n)
  def rect(self,x,y,w,h,c):
   self.polygons.append({'points':[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],'color':c});self.shapes.append(node('image',f'{self.id}-{len(self.shapes)}',x+w/2-72,32-y-h/2,w,h,c))
@@ -35,8 +32,11 @@ class Art:
   dx=b[0]-a[0];dy=b[1]-a[1];d=math.hypot(dx,dy);nx=-dy/d*width/2;ny=dx/d*width/2
   self.polygons.append({'points':[[a[0]+nx,a[1]+ny],[b[0]+nx,b[1]+ny],[b[0]-nx,b[1]-ny],[a[0]-nx,a[1]-ny]],'color':c})
   self.shapes.append(node('image',f'{self.id}-line-{len(self.shapes)}',(a[0]+b[0])/2-72,32-(a[1]+b[1])/2,d,width,c,(0,0,-math.degrees(math.atan2(dy,dx)))))
+ def ellipse(self,x,y,w,h,c,rotation=0):
+  self.polygons.append({'ellipse':[x,y,w,h],'color':c,'rotation':rotation})
+  n=node('image',f'{self.id}-ellipse-{len(self.shapes)}',x+w/2-72,32-y-h/2,w,h,c,(0,0,-rotation));n['imageId']=100002;self.shapes.append(n)
  def svg(self):
-  return '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="64" viewBox="0 0 144 64">'+''.join('<polygon fill="#'+p['color']+'" points="'+' '.join(','.join(str(n) for n in pt) for pt in p['points'])+'"/>' for p in self.polygons)+'</svg>'
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="64" viewBox="0 0 144 64">'+''.join(('<polygon fill="#'+p['color']+'" points="'+' '.join(','.join(str(n) for n in pt) for pt in p['points'])+'"/>') if 'points' in p else '<ellipse fill="#'+p['color']+'" cx="'+str(p['ellipse'][0]+p['ellipse'][2]/2)+'" cy="'+str(p['ellipse'][1]+p['ellipse'][3]/2)+'" rx="'+str(p['ellipse'][2]/2)+'" ry="'+str(p['ellipse'][3]/2)+'" transform="rotate('+str(p['rotation'])+' '+str(p['ellipse'][0]+p['ellipse'][2]/2)+' '+str(p['ellipse'][1]+p['ellipse'][3]/2)+')"/>' for p in self.polygons)+'</svg>'
 
 def cleave(id,variant):
  a=Art(id);a.rect(0,0,144,64,'172c36');a.poly([[0,0],[48,0],[15,41],[0,34]],'233f47');a.poly([[144,0],[110,0],[88,38],[144,28]],'29464b');a.poly([[0,48],[77,36],[144,44],[144,64],[0,64]],'313b3b')
@@ -73,8 +73,9 @@ def armaments(id,variant):
   a.poly([[54,14],[60,10],[68,15],[64,21],[57,22],[52,18]],'e4bc73');a.poly([[57,14],[61,13],[64,16],[62,19],[57,18]],'4c6b80');a.poly([[81,0],[85,0],[75,13],[64,17],[63,14],[73,9]],'c3c4c4');a.poly([[89,2],[93,4],[82,17],[68,20],[66,17],[79,13]],'838896');a.line((66,12),(66,7),1,'ffe5a5')
  return a
 
+from reference_study import reference_study
 arts=[];failures=[]
-for fn,id,var in [(cleave,'cleave-a',0),(cleave,'cleave-b',1),(armaments,'armaments-a',0),(armaments,'armaments-b',1)]:
+for fn,id,var in [(cleave,'cleave-a-corrected',0),(lambda id,v:reference_study(Art,id,v),'cleave-reference-shape',1),(lambda id,v:reference_study(Art,id,v),'cleave-reference-impact',2)]:
  try:arts.append(fn(id,var))
  except placement.PlacementUnavailable as e:failures.append({'id':id,'reason':str(e)});print(id,str(e))
 records=[]
@@ -82,7 +83,7 @@ for a in arts:
  (OUT/f'{a.id}.source.svg').write_text(a.svg());(OUT/f'{a.id}.geometry.json').write_text(json.dumps(a.polygons,separators=(',',':')))
  art=node('container',a.id,0,0,144,64);art['children']=list(reversed(a.shapes))
  (OUT/f'{a.id}.native.json').write_text(json.dumps(art,separators=(',',':')))
- records.append(dict(id=a.id,images=len(a.shapes),groups=1,masks=0,total=len(a.shapes)+1,sourcePolygons=len(a.polygons),officialVerified=False))
+ records.append(dict(id=a.id,images=len(a.shapes),groups=1,masks=0,total=len(a.shapes)+1,sourcePrimitives=len(a.polygons),officialVerified=False))
  # Per-variant sheet: exact1x, 4x and full card using same native art tree, no raster embed.
  save=copy.deepcopy(seed);r=copy.deepcopy(prototype);r.update(name='CardArtResearch',children=[],scriptMappingIds=[])
  for t in r['transformByPlatform'].values():t['scale']={'x':1,'y':1,'z':1}

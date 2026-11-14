@@ -1,5 +1,7 @@
 # TASK-107 / PR #657: reference-led native illustration probe
 
+**Latest: [Round 2 actual-render comparison](round2/README.md).** The historical failure below is retained. Current build now writes to `round2/`, using fixed exact triangulation and three isolated comparisons; see that report for counts and review. To reproduce this original failure exactly, use commit `024ccd6f7b249af77fd3b53f85c9c827617e048d`, not the updated build.
+
 **Research only. Not approved art. No runtime registration, production replacement, official-client or device acceptance.**
 
 ## First result: NO-GO for production
