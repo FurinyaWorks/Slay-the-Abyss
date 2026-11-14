@@ -1,5 +1,9 @@
 import test from'node:test';import assert from'node:assert/strict';import{withNativeXyzRotations}from'../scripts/native-ui-rotations.mjs';
 import{preserveSimulatorRotations}from'../scripts/native-simulator-importer.mjs';
+import {mkdtempSync,mkdirSync,rmSync} from 'node:fs';
+import {join,resolve} from 'node:path';
+import {installNativeToolchainFixture} from './helpers/native-toolchain-fixture.mjs';
+import {loadNativeUiEncoder} from '../scripts/native-ui-encoder.mjs';
 const fixture=`const field=(id,wire,data)=>Buffer.from(JSON.stringify({id,wire,data:Array.from(data)}));
 const f32=v=>{const b=Buffer.alloc(4);b.writeFloatLE(v);return b};
 export function addClientUi(s){return field(508,2,s?.rotation?field(3,5,f32(s.rotation)):Buffer.alloc(0))}
@@ -26,4 +30,18 @@ test('independent simulator import retains X/Y while preserving the original sca
  assert.deepEqual(adapted.read({rotation:{x:20,y:0,z:31}}),{rotation:[20,0,31]});
  assert.throws(()=>adapted.read({rotation:{x:NaN}}),/Invalid/);
  assert.throws(()=>preserveSimulatorRotations(source.replace('if(turn)out.rotation=turn;','')),/schema changed/);
+});
+
+test('synthetic SDK rebuild boundary exercises the same strict XYZ loader adaptation',async t=>{
+ const root=resolve('.artifacts/test-tmp');mkdirSync(root,{recursive:true});
+ const tool=mkdtempSync(join(root,'native-xyz-fixture-'));t.after(()=>rmSync(tool,{recursive:true,force:true}));
+ installNativeToolchainFixture(tool,'export class Client {}');
+ const loaded=await loadNativeUiEncoder(tool);assert.equal(loaded.identity.xyzRotations,true);
+ assert.deepEqual(loaded.native.fixtureRectangleRead({508:{1:20,2:-5,3:31}}),{rotation:[20,-5,31]});
+ assert.deepEqual(loaded.native.fixtureRectangleRead({508:{3:31}}),{rotation:31});
+ const encoded=loaded.native.fixtureRectangleWrite({rotation:[20,-5,31]});
+ const stream=Buffer.from(JSON.parse(encoded).data).toString();
+ const values=[...stream.matchAll(/\{[^}]+\}/g)].map(m=>JSON.parse(m[0])).map(f=>[f.id,Buffer.from(f.data).readFloatLE()]);
+ assert.deepEqual(values,[[1,20],[2,-5],[3,31]]);
+ assert.throws(()=>loaded.native.fixtureRectangleWrite({rotation:[1,NaN,3]}),/finite/);
 });
