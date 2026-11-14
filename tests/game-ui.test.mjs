@@ -46,7 +46,7 @@ test('menu and result follow the approved win.png composition inside the safe ar
   const theme = nativeTheme, layout = theme.layout.nativeMenu;
   const menu = gameLayout().controls.find(control => control.name === 'menuPanel').children;
   const find = (list, name) => list.find(control => control.name === name);
-  assert.equal(find(menu, 'title').text.content, '杀戮原塔2');
+  assert.equal(find(menu, 'title').text.content, 'Slay the Heavens');
   const result = find(menu, 'result');
   assert.equal(result.visible, false, 'result cells must not bleed into the main menu');
   assert.deepEqual(resultStats.map(key => find(result.children, `stat_${key}`).position[0]),
@@ -101,10 +101,13 @@ test('generated Chinese display and native tree exercise the real game entry and
   const { nativeMenu: menu, nativeBattle: battle, prologue } = nativeTheme.layout, { font: size } = nativeTheme;
   // Each line is checked against the control that actually displays it.
   assert.equal(previews.menu, '', 'the start screen has no route or control instructions');
-  // The approved intro is told sentence by sentence on the cinematic's single line.
-  const targets = { intro1: [prologue.line, size.title], intro2: [prologue.line, size.title], intro3: [prologue.line, size.title],
-    victory: [menu.subtitle, size.body], defeat: [menu.subtitle, size.body],
-    settlementError: [menu.status, size.small], boss: [battle.notice, size.body] };
+  // The camera opening is disabled; only its sentence splitter remains tested.
+  // A short official background now reaches players via the existing Neow node.
+  const targets = { intro1: [prologue.line, size.title], victory: [menu.subtitle, size.body],
+    settlementError: [menu.status, size.small] };
+  assert.equal(previews.boss, '', 'boss adds no invented narration');
+  assert.equal(previews.defeat, '', 'defeat adds no invented narration');
+  assert.ok(!Object.hasOwn(previews,'intro2') && !Object.hasOwn(previews,'intro3'));
   for (const [name, [frame, font]] of Object.entries(targets)) {
     assert.ok(previews[name], `missing actual controller output for ${name}`);
     // Conservative local budget: one full font-size per codepoint, no auto-shrink.
@@ -120,7 +123,7 @@ test('the game name appears only on the title screen; other pages name their own
   const named = [];
   const walk = (list, path) => { for (const control of list) {
     const here = path + '/' + control.name;
-    if (control.text?.content?.includes('杀戮原塔')) named.push(here);
+    if (control.text?.content?.includes('Slay the Heavens')) named.push(here);
     walk(control.children ?? [], here);
   } };
   walk(layout.controls, '');

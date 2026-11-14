@@ -287,9 +287,11 @@ function M.renderBattlePage(self,child)
                 for _, enemy in ipairs(run.combat.enemies) do
                     if enemy.definitionId == "guardian" then guardian = true end
                 end
-                child("battlePanel"):GetChild("notice").text = guardian
-                    and Narrative.flow.bossEntrance.full or ""
-                self.bossEntrance=guardian and {battle=run.combat,remaining=6} or nil
+                -- An approved empty caption must not reserve the six-second boss notice.
+                local line=Narrative.flow.bossEntrance.full
+                local visible=guardian and type(line)=='string' and #line>0
+                child("battlePanel"):GetChild("notice").text=visible and line or ""
+                self.bossEntrance=visible and {battle=run.combat,remaining=6} or nil
             end
         end
 end

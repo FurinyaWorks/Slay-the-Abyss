@@ -36,7 +36,7 @@ function M.prepare(_run,event,history)
  if type(history)~='table' or type(history.bossCount)~='number' or history.bossCount<0 or history.bossCount%1~=0 then
   return false,'neow_history_unavailable'
  end
- event.stage,event.body='neow_intro','高塔之下，一位古老的存在向你伸出援手。'
+ event.stage,event.body='neow_intro','「判罚之钉」异动，「圣土化」蔓延。'
  event.neowBossCount=history.bossCount
  return true
 end
@@ -73,7 +73,7 @@ local function description(_run,event,offer)
  return text..'。'
 end
 function M.options(run,event)
- if event.stage=='neow_intro'then return {row('continue','继续','听取可获得的恩赐。')}end
+ if event.stage=='neow_intro'then return {row('continue','继续','查看可选的恩赐。')}end
  if event.stage=='neow_blessing'then
   local rows={};for i,offer in ipairs(event.rewards)do rows[i]=row('reward_'..i,'恩赐'..i,description(run,event,offer))end
   return rows
@@ -99,7 +99,7 @@ function M.options(run,event)
   end
   rows[#rows+1]=row('skip','继续','放弃尚未领取的药水。');return rows
  end
- if event.stage=='neow_result'then return {row('leave','启程','前往高塔。')}end
+ if event.stage=='neow_result'then return {row('leave','启程','继续前行。')}end
  return {}
 end
 local function upgradeable(run,card)
