@@ -36,4 +36,16 @@ rg -n 'targetSymbol|require\(' src/lua scripts tests
 5. **真实迁移步骤**：先补递归发现和模块名映射的反例测试，再迁移一个业务簇；比较完整 CI、快速测试选择器、候选打包收据、原有加载与回滚行为；不得偷改玩法或放宽质量门禁。
 6. **保持索引可用**：修改或删除索引锚点时同步 `config/repo-navigation.json`，运行 `npm run check:guidance` 和定向测试；不自动刷新历史基线。
 
+## 成熟实践与取舍
+
+依据：
+- [OpenAI Harness Engineering（2026）](https://openai.com/index/harness-engineering/)：短指引作为地图、知识渐进披露、依赖不变量用结构测试守护，Agent 不靠一次性提示词记住约束。
+- [Node.js 原生测试运行器](https://nodejs.org/api/test.html)：Node 原生支持测试目录的递归发现，但**当前仓库**明确用 `tests/*.test.mjs`、自有 CI 分片和选集，不可假设默认行为已启用。
+- [Lua 5.3 官方模块规范](https://www.lua.org/manual/5.3/manual.html#6.3)：`require` 的模块名由 `package.path` 搜索规则决定；静态工具发现子目录不等于正式游戏加载或千星打包支持子目录。
+- [GitHub Actions 工作流路径过滤](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)：路径匹配与工作流运行是独立合同；重命名后必须审查匹配范围、文件选择及结果收据。
+
+技术裁决：复用现有 Node 标准库、`node:test`、`rg` 搜索、已有 Lua AST 架构检查与 CI，而不是为了目录拆分再安装 Nx、第三方依赖图服务、另一个测试框架或新 CI 流程。现有质量门禁已约束不少真正的耦合，新增一个大型脚手架的维护成本高于收益。
+
+当前首个试点选择**无需重排生产源码**的领域导航 + 扫描闭合测试；真正目录移动另立独立小批 PR。验收必须证明：搬迁前后源码内容/RNG/回滚语义不变，运行时模块与测试清单不减少，原生候选和质量收据可比较，且不靠跳过历史测试。**禁止因为“文件数量多”本身把 CI 设红灯，也不得静默修改历史来源身份。**
+
 这一机制解决的是**Agent 导航和结构防误改**；缩减数百个扁平文件的物理迁移应独立、可回滚、不影响当前发布。
