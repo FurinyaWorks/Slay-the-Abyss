@@ -1,0 +1,12 @@
+✔ detached shop/deck source slices use fresh local owners and cannot replace missing sources with archived text (10727.153501ms)
+✔ combined epoch authenticates the complete current production tree (14.028353ms)
+✔ combined release660 source epoch preserves all historical targets and exact frozen Git identities (149.037024ms)
+✔ release660 warm projection rejects every changed owner byte and deletion without hiding foreign inputs (59.359887ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35516.53617

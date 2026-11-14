@@ -171,3 +171,49 @@ test('round3 retirement rejects live hardlinks and live source roots',async()=>{
  const root=mkdtempSync(join(sandbox,'retirement-hardlink-')),path='src/lua/abyss_combat_catalog.lua';mkdirSync(dirname(join(root,path)),{recursive:true});
  linkSync(join(sandbox,path),join(root,path));try{assert.throws(()=>prepare(root,{sourceRoot:sandbox}),/single link|inode/);}finally{unlinkSync(join(root,path));}
 });
+
+// PR660/661 continuation keeps the complete release predecessor independent.
+test('combined release660 source epoch preserves all historical targets and exact frozen Git identities',async()=>{
+ const {release660PriorEpoch}=await import('./helpers/closeout-source-epoch.mjs');
+ const prior=release660PriorEpoch.proof;
+ assert.equal(proof.currentCommit,'e6245114f5ca25818551d1cdbade30dd5ed42848');
+ assert.equal(prior.currentCommit,'d4ed094e882f433650dfb4d0cbe2686388e4b684');
+ assert.deepEqual(proof.targets.release660Prior,{commit:prior.currentCommit,files:prior.current});
+ for(const [name,target]of Object.entries(prior.targets))assert.deepEqual(proof.targets[name],target,'immutable historical target '+name);
+ const changed=Object.keys(proof.current).filter(path=>proof.current[path]?.sha256!==prior.current[path]?.sha256);
+ assert.deepEqual(changed.sort(),['abyss_feedback_actor_painter','abyss_game_ui','abyss_game_ui_input','abyss_game_ui_lifecycle','abyss_game_ui_overlays','abyss_game_ui_run','abyss_game_ui_view','abyss_lowcost_art','abyss_prologue','abyss_ui'].map(p=>'src/lua/'+p+'.lua').sort());
+ for(const path of changed){
+  const frozen=execFileSync('git',['show',proof.currentCommit+':'+path],{encoding:'utf8'}).replaceAll('\r\n','\n');
+  assert.equal(proof.current[path].source,frozen,'exact committed complete owner '+path);
+  assert.equal(readFileSync(path,'utf8').replaceAll('\r\n','\n'),frozen,'live frozen owner '+path);
+  assert.equal(sourceEpoch.preCombinedSource(path,frozen,{target:'release660Prior',readSource:raw}),prior.current[path].source);
+ }
+});
+test('release660 warm projection rejects every changed owner byte and deletion without hiding foreign inputs',()=>{
+ const path='src/lua/abyss_game_ui.lua',source=raw(path),target='release660Prior';
+ const expected=proof.targets[target].files[path].source;
+ let bad,mode,reads=[];
+ const reader=p=>{reads.push(p);if(p===bad){if(mode==='delete')throw Error('deleted');if(mode==='null')return null;return raw(p)+'\n';}return raw(p);};
+ const project=()=>sourceEpoch.preCombinedSource(path,source,{target,readSource:reader});
+ for(const owner of proof.owners){
+  bad=undefined;reads=[];assert.equal(project(),expected);assert.deepEqual(reads,proof.owners);
+  for(mode of ['byte','null','delete']){bad=owner;assert.throws(project,/combined linked owner (identity|missing)/);}
+  bad=undefined;assert.equal(project(),expected);
+ }
+ for(const foreign of [source+'\n',source.slice(1),'\ufeff'+source,expected,null]){
+  let calls=0;assert.equal(sourceEpoch.preCombinedSource(path,foreign,{target,readSource:()=>{calls++;throw Error('unexpected read');}}),foreign);assert.equal(calls,0);
+ }
+});
+
+test('release660 CI continuation freshly authenticates all explicit file and helper additions',async()=>{
+ const {assertIntegratedCurrent}=await import('./helpers/integrated-ci-source.mjs');
+ const {release660CiCurrent}=await import('./helpers/release-660-ci-current.mjs');
+ assertIntegratedCurrent();
+ for(const path of new Set([...Object.keys(release660CiCurrent.files),...Object.keys(release660CiCurrent.closure),...Object.keys(release660CiCurrent.added)])){
+  for(const missing of [false,true])assert.throws(()=>assertIntegratedCurrent((p,...args)=>{
+   if(p===path){if(missing)throw Error('missing current CI source');const value=readFileSync(p,...args);return typeof value==='string'?value+'\n':Buffer.concat([value,Buffer.from('bad')]);}
+   return readFileSync(p,...args);
+  }),/fresh|missing current CI source/);
+  assertIntegratedCurrent();
+ }
+});

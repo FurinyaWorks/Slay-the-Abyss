@@ -1,0 +1,12 @@
+✔ integration validates complete raw sources and leaves every foreign byte and production owner visible (701.414926ms)
+✔ integration copy closure requires its complete exact predecessor and current dependency bytes (1.546496ms)
+✔ release660 complete CI inputs preserve old views and freshly reject changed siblings (29.698974ms)
+✔ release660 inventory continuation freshly rejects sibling bytes and deletion after warming (60.78454ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1270.301594

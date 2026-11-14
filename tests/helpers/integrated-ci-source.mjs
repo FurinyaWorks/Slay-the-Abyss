@@ -1,6 +1,7 @@
 // Explicit immutable source views for the reviewed integration inputs.
 // Production projectors never import this CI-only archive.
 import assert from 'node:assert/strict';
+import {release660CiCurrent} from './release-660-ci-current.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
@@ -14,10 +15,16 @@ for(const [path,row]of Object.entries(integratedCiProof.files))for(const binding
  assert.equal(binding.source,norm(binding.source));assert.equal(hash(binding.source),binding.sha256,path+' complete source');
  assert.equal(createHash('sha1').update(`blob ${Buffer.byteLength(binding.source)}\0`).update(binding.source).digest('hex'),binding.gitBlob);
 }
-export function integratedSource(path,source,target){
+export function integratedSource(path,source,target,{read=readFileSync}={}){
  assert(Object.hasOwn(integratedCiProof.sources,target),'known integration input');
  if(path.startsWith('src/')||path==='config/architecture.json')return source;
  const row=Object.hasOwn(integratedCiProof.files,path)?integratedCiProof.files[path]:null;
+ const continuation=release660CiCurrent.files[path];
+ if(row?.views[target]&&continuation&&typeof source==='string'&&!source.includes('\r\r\n')&&hash(norm(source))===continuation.after){
+  assert.equal(continuation.before,row.current.sha256,'exact release660 projection predecessor');
+  assertIntegratedCurrent(read);
+  return row.views[target].sha256===hash(norm(source))?source:row.views[target].source;
+ }
  if(!row?.views[target]||typeof source!=='string'||source.includes('\r\r\n')||hash(norm(source))!==row.current.sha256)return source;
  if(row.views[target].sha256===row.current.sha256)return source;
  return row.views[target].source;
@@ -28,12 +35,23 @@ export function integratedRead(target,{read=readFileSync}={}){return(path,encodi
  if(Buffer.isBuffer(raw)&&binary?.views[target]&&hash(raw)===binary.current){
   const saved=binary.views[target],bytes=read(saved.path);assert.equal(hash(bytes),saved.sha256,'complete immutable integration binary predecessor');return bytes;
  }
- const text=typeof raw==='string'?raw:raw.toString('utf8'),prior=integratedSource(path,text,target);
+ const text=typeof raw==='string'?raw:raw.toString('utf8'),prior=integratedSource(path,text,target,{read});
  return typeof raw==='string'?prior:prior===text?raw:Buffer.from(prior);
 };}
 export function assertIntegratedCurrent(read=readFileSync){
- for(const [path,row]of Object.entries(integratedCiProof.files))assert.equal(hash(norm(read(path,'utf8'))),row.current.sha256,'fresh complete integration source: '+path);
- for(const [path,row]of Object.entries(integratedCiProof.closure))assert.equal(hash(path.endsWith('.gz')?read(path):norm(read(path,'utf8'))),row.after,'fresh integration copy owner: '+path);
+ for(const [path,row]of Object.entries(integratedCiProof.files)){
+  const patch=release660CiCurrent.files[path];
+  if(patch)assert.equal(patch.before,row.current.sha256,'exact release660 CI predecessor: '+path);
+  assert.equal(hash(norm(read(path,'utf8'))),patch?.after??row.current.sha256,'fresh complete integration source: '+path);
+ }
+ for(const [path,row]of Object.entries(release660CiCurrent.files))assert.equal(integratedCiProof.files[path]?.current.sha256??null,row.before,'registered release660 CI predecessor: '+path);
+ for(const [path,sha]of Object.entries(release660CiCurrent.added))assert.equal(hash(path.endsWith('.gz')?read(path):norm(read(path,'utf8'))),sha,'fresh release660 CI added source: '+path);
+ for(const [path,row]of Object.entries(release660CiCurrent.closure))assert.equal(integratedCiProof.closure[path]?.after??null,row.before,'registered release660 copy predecessor: '+path);
+ for(const [path,row]of Object.entries(integratedCiProof.closure)){
+  const patch=release660CiCurrent.closure[path];
+  if(patch)assert.equal(patch.before,row.after,'exact release660 copy predecessor: '+path);
+  assert.equal(hash(path.endsWith('.gz')?read(path):norm(read(path,'utf8'))),patch?.after??row.after,'fresh integration copy owner: '+path);
+ }
 }
 export function extendIntegratedHelperClosure(original){
  const current={...original},patch=integratedCiProof.closure;
@@ -50,9 +68,12 @@ export function integratedPriorInventory(paths,target,kind='js',read=readFileSyn
  const added=current.filter(p=>!prior.includes(p));
  if(!added.some(path=>paths.includes(path)))return [...paths];
  assert.deepEqual([...paths].sort(),current,kind==='lua'?'complete integration Lua discovery inventory':'complete integration js inventory');
+ if(added.some(path=>Object.hasOwn(release660CiCurrent.files,path)))assertIntegratedCurrent(read);
  for(const path of added){
   const row=integratedCiProof.files[path];assert(row,'complete added inventory source: '+path);
-  assert.equal(hash(norm(read(path,'utf8'))),row.current.sha256,'fresh added inventory source: '+path);
+  const continuation=release660CiCurrent.files[path];
+  if(continuation)assert.equal(continuation.before,row.current.sha256,'exact release660 inventory predecessor');
+  assert.equal(hash(norm(read(path,'utf8'))),continuation?.after??row.current.sha256,'fresh added inventory source: '+path);
  }
  return [...prior];
 }

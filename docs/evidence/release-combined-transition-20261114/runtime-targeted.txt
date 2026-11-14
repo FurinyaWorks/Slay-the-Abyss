@@ -1,0 +1,194 @@
+ABYSS_RUN seed=1 source=explicit
+ABYSS_RUN seed=2 source=explicit
+TIMER_VALUE_SAFETY_PASS valid zero/minutes, invalid values, terminal freeze, restart
+ABYSS_UI init Color=table
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=30202 source=clock
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=4
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=5
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=5
+ABYSS_RUN seed=12397 source=clock
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=6
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=6
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=7
+ABYSS_UI settlement_requested victory
+NATIVE_TIMER_FALLBACK_PASS public OnStart/OnUpdate, defeat/victory, restart, background, settlement; device NOT_RUN
+Lua fixture tests/lua/game_ui_timer_safety.lua: 5211 ms
+LORE_PREVIEW    intro1  岩层深处传来了异常的共鸣。
+LORE_PREVIEW    intro2  古老的封印正在崩解……
+LORE_PREVIEW    intro3  旅行者，深入遗迹，阻止深渊的侵蚀。
+ok prologue 1 - shared approved sentence helpers remain intact
+ABYSS_TRANSITION begin
+ok prologue 2 - confirmation fades over the selected character before creating any run
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.61
+ABYSS_TRANSITION complete elapsed=1.61
+ABYSS_TRANSITION end elapsed=2.22
+ok prologue 3 - fully covered frame commits once and reveals the existing Neow page
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=1.3
+ABYSS_TRANSITION complete elapsed=1.3
+ABYSS_TRANSITION end elapsed=1.91
+ok prologue 4 - transparent shield and admission reject duplicate confirmation and stale page commands
+ABYSS_TRANSITION begin
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 5 - cancel before cover discards pending run and reopens selection input
+ABYSS_TRANSITION begin
+ok prologue 6 - disable clears the shield and pending commit
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=40
+ABYSS_TRANSITION complete elapsed=40
+ABYSS_TRANSITION end elapsed=80
+ok prologue 7 - large frames cannot bypass post-commit readiness or repeat creation
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 8 - resize covers wide and tall canvases without enlarging the central mark
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=43 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 9 - a retry from defeat plays again and preserves one-run ownership
+ABYSS_RUN seed=1 source=explicit
+ok prologue 10 - rule-only hosts retain immediate start without enabling the old camera
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.3
+ABYSS_TRANSITION complete elapsed=1.14
+ABYSS_TRANSITION end elapsed=1.742
+ok prologue 11 - completed preparation stages light in order and fast starts do not wait eight seconds
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=12.35
+ABYSS_TRANSITION complete elapsed=12.7
+ABYSS_TRANSITION end elapsed=13.3
+ok prologue 12 - unfinished preparation never advances a light or uncovers the destination
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_TRANSITION begin
+ABYSS_TRANSITION begin
+ABYSS_RUN seed=42 source=explicit
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ok prologue 13 - transition stays silent on entry, completion and cancellation
+LUA_GAME_UI_PROLOGUE_PASS 13
+Lua fixture tests/lua/game_ui_prologue.lua: 14188 ms
+LUA_OPENING_NATIVE_READINESS_PASS
+Lua fixture tests/lua/game_ui_prologue_readiness.lua: 482 ms
+ABYSS_RUN seed=1 source=explicit
+ok game UI 1 - deck overlay reads permanent UID and upgraded text and never changes the run or route
+ABYSS_RUN seed=1 source=explicit
+ok game UI 2 - grid discovers runtime index origin, including deferred callbacks, and reopens with fresh ownership
+ABYSS_RUN seed=1 source=explicit
+ABYSS_FEEDBACK orb_end_turn source=- target=- amount=0
+ABYSS_FEEDBACK enemy_turn source=- target=- amount=0
+ABYSS_FEEDBACK intent source=cultist_1 target=- amount=0
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=3
+ABYSS_FEEDBACK player_turn source=- target=- amount=0
+ok game UI 3 - battle overlay cancels pending drag and blocks cards, potions, turn and reward commands
+ABYSS_RUN seed=1 source=explicit
+ok game UI 4 - node overlay preserves the node presentation while preventing underlying transactions
+ABYSS_RUN seed=1 source=explicit
+ok game UI 5 - deck costs and descriptions use permanent upgraded instances instead of temporary hand growth
+ABYSS_RUN seed=1 source=explicit
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_FEEDBACK block source=player target=player amount=5
+ABYSS_FEEDBACK orb_end_turn source=- target=- amount=0
+ABYSS_FEEDBACK enemy_turn source=- target=- amount=0
+ABYSS_FEEDBACK intent source=cultist_1 target=- amount=0
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=3
+ABYSS_FEEDBACK block_reset source=- target=player amount=0
+ABYSS_FEEDBACK player_turn source=- target=- amount=0
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_FEEDBACK block source=player target=player amount=5
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK orb_end_turn source=- target=- amount=0
+ABYSS_FEEDBACK enemy_turn source=- target=- amount=0
+ABYSS_FEEDBACK intent source=cultist_1 target=- amount=0
+ABYSS_FEEDBACK damage source=cultist_1 target=player amount=1
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=3
+ABYSS_FEEDBACK reshuffle source=- target=- amount=0
+ABYSS_FEEDBACK player_turn source=- target=- amount=0
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=8
+ABYSS_FEEDBACK status source=player target=cultist_1 amount=2
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_FEEDBACK block source=player target=player amount=5
+ABYSS_FEEDBACK orb_end_turn source=- target=- amount=0
+ABYSS_FEEDBACK enemy_turn source=- target=- amount=0
+ABYSS_FEEDBACK intent source=cultist_1 target=- amount=0
+ABYSS_FEEDBACK damage source=cultist_1 target=player amount=4
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=-1
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=3
+ABYSS_FEEDBACK player_turn source=- target=- amount=0
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_FEEDBACK block source=player target=player amount=5
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=9
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_FEEDBACK block source=player target=player amount=5
+ABYSS_FEEDBACK orb_end_turn source=- target=- amount=0
+ABYSS_FEEDBACK enemy_turn source=- target=- amount=0
+ABYSS_FEEDBACK intent source=cultist_1 target=- amount=0
+ABYSS_FEEDBACK damage source=cultist_1 target=player amount=2
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=-1
+ABYSS_FEEDBACK status source=cultist_1 target=cultist_1 amount=3
+ABYSS_FEEDBACK reshuffle source=- target=- amount=0
+ABYSS_FEEDBACK player_turn source=- target=- amount=0
+ABYSS_FEEDBACK play source=- target=- amount=0
+ABYSS_FEEDBACK block source=player target=player amount=5
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=6
+ABYSS_FEEDBACK play source=- target=1 amount=0
+ABYSS_FEEDBACK damage source=player target=cultist_1 amount=4
+ABYSS_FEEDBACK death source=- target=cultist_1 amount=0
+ABYSS_FEEDBACK victory source=- target=- amount=0
+ok game UI 6 - reward view cannot claim or skip beneath the deck overlay and resumes after closing
+LUA_GAME_UI_DECK_PASS 6
+Lua fixture tests/lua/game_ui_deck.lua: 18002 ms
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> slay-the-abyss@1.0.0 verify:backlog
+> node scripts/verify-backlog-roadmap.mjs
+
+任务编号、首发排期、负责人及仅岩系旅行者前两幕规划范围检查通过；当前任务均有优先级、未完成High不超过5项；不认证运行时准入、平台或实机。
