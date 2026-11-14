@@ -1,0 +1,151 @@
+{
+  "base": "e805a87dc4df1a048ba5995931d98a4e4899b5e9",
+  "evidenceType": "source-derived fixed-character boundaries, not rendered screen",
+  "layout": {
+    "compact": {
+      "line": [
+        -158,
+        -120,
+        44,
+        64
+      ],
+      "fontSize": 14
+    },
+    "official": {
+      "line": [
+        -530,
+        34,
+        104,
+        48
+      ],
+      "fontSize": 14
+    }
+  },
+  "samples": [
+    {
+      "mode": "compact",
+      "kind": "encounter",
+      "budget": 9,
+      "copy": "转过一道石廊，荧看到一块旧毯子，上面摆着卷册和古物。毯子后坐着一位老人，像是早就知道会有客人来到这里。",
+      "oldPages": [
+        "转过一道石廊，荧看",
+        "到一块旧毯子，上面",
+        "摆着卷册和古物。毯",
+        "子后坐着一位老人，",
+        "像是早就知道会有客",
+        "人来到这里。"
+      ]
+    },
+    {
+      "mode": "compact",
+      "kind": "greet",
+      "budget": 9,
+      "copy": "「路不好走吧？来，看看有没有用得上的。」",
+      "oldPages": [
+        "「路不好走吧？来，",
+        "看看有没有用得上的",
+        "。」"
+      ]
+    },
+    {
+      "mode": "compact",
+      "kind": "purchaseSuccess",
+      "budget": 9,
+      "copy": "「眼光不错。」",
+      "oldPages": [
+        "「眼光不错。」"
+      ]
+    },
+    {
+      "mode": "compact",
+      "kind": "insufficientGold",
+      "budget": 9,
+      "copy": "「这可不够啊，小姑娘。」",
+      "oldPages": [
+        "「这可不够啊，小姑",
+        "娘。」"
+      ]
+    },
+    {
+      "mode": "compact",
+      "kind": "originHint",
+      "budget": 9,
+      "copy": "「做生意嘛，总得知道哪条路安全。」",
+      "oldPages": [
+        "「做生意嘛，总得知",
+        "道哪条路安全。」"
+      ]
+    },
+    {
+      "mode": "compact",
+      "kind": "leave",
+      "budget": 9,
+      "copy": "「前面可不像这里太平。一路小心。」",
+      "oldPages": [
+        "「前面可不像这里太",
+        "平。一路小心。」"
+      ]
+    },
+    {
+      "mode": "official",
+      "kind": "encounter",
+      "budget": 12,
+      "copy": "转过一道石廊，荧看到一块旧毯子，上面摆着卷册和古物。毯子后坐着一位老人，像是早就知道会有客人来到这里。",
+      "oldPages": [
+        "转过一道石廊，荧看到一块",
+        "旧毯子，上面摆着卷册和古",
+        "物。毯子后坐着一位老人，",
+        "像是早就知道会有客人来到",
+        "这里。"
+      ]
+    },
+    {
+      "mode": "official",
+      "kind": "greet",
+      "budget": 12,
+      "copy": "「路不好走吧？来，看看有没有用得上的。」",
+      "oldPages": [
+        "「路不好走吧？来，看看有",
+        "没有用得上的。」"
+      ]
+    },
+    {
+      "mode": "official",
+      "kind": "purchaseSuccess",
+      "budget": 12,
+      "copy": "「眼光不错。」",
+      "oldPages": [
+        "「眼光不错。」"
+      ]
+    },
+    {
+      "mode": "official",
+      "kind": "insufficientGold",
+      "budget": 12,
+      "copy": "「这可不够啊，小姑娘。」",
+      "oldPages": [
+        "「这可不够啊，小姑娘。」"
+      ]
+    },
+    {
+      "mode": "official",
+      "kind": "originHint",
+      "budget": 12,
+      "copy": "「做生意嘛，总得知道哪条路安全。」",
+      "oldPages": [
+        "「做生意嘛，总得知道哪条",
+        "路安全。」"
+      ]
+    },
+    {
+      "mode": "official",
+      "kind": "leave",
+      "budget": 12,
+      "copy": "「前面可不像这里太平。一路小心。」",
+      "oldPages": [
+        "「前面可不像这里太平。一",
+        "路小心。」"
+      ]
+    }
+  ]
+}
