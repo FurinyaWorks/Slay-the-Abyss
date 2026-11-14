@@ -1,130 +1,110 @@
-# 版本路线图（2026-11-14）
+# 版本路线图：Version → Epic → 任务类型 → 提交与计划
 
-本页只回答三件事：**历史补哪些 Tag、本次上哪些模块、下个小版本留什么**。版本严格使用 [Semantic Versioning](https://semver.org/lang/zh-CN/) 的 `MAJOR.MINOR.PATCH`：重大产品体验换代用 MAJOR；新增独立可玩内容用 MINOR；已承诺功能的缺陷和细节补齐用 PATCH。**不引入 RC 编号、额外版本流水线或与 Backlog 重复的任务系统。**
+> 基准：**2026-11-14 21:45（北京时间）**核对 GitHub `develop@9f2f44e`。这是**版本归属索引**；当前版本上线检查在 [2.0 发布清单](V2-RELEASE-CHECKLIST.md)。玩家能直接阅读的更新公告**只**在 [CHANGELOG.md](../../CHANGELOG.md)，写法见 [CHANGELOG-GUIDE.md](CHANGELOG-GUIDE.md)。
 
-## 一、Tag 补录：两枚历史 Tag + 下一正式版本
+**层级规范**：`Version`（发布批次）→ `Epic`（一个完整的玩家或工程目标）→ `Feature / Bugfix / 技术债`（执行项）→ **PR/Commit、优先级、状态**。Epic 是分组，不是另一套任务。高/中/低指**当前发版视角的处理优先级**，并不覆盖 Backlog 的原始 `priority`；高 = 影响本次发版/必须处理，中 = 已承诺的品质提升或后续必要完善，低 = 非阻断/实验/远期。**已合入**只说明 Git 状态，不等于真机验收通过。
 
-| 顺序 | Tag | 对应源码提交（完整 SHA） | 为什么值得单独标记 | 状态 |
-| --- | --- | --- | --- | --- |
-| 0 | `v1.0.0` | `e970eb2a71e44d352850af148a8f696c5ecaed8e` | 已有正式首发源码版本 | **已存在；不动** |
-| 1 | **`v1.1.0`** | **`a0c35db8d3c7242437f4dff0df373749b0d84985`** | 11/08 `#560`：M7 主要集成、默认 2D 美术表现基线，形成新的可追溯表现路线 | **待补 Tag** |
-| 2 | **`v1.2.0`** | **`903bf2a31e91f10fb24763ab4cea23d586d0bb83`** | 11/12 `#634`：V25 战斗/非战斗、地图与共享 UI 的大规模集中正式整合 | **待补 Tag** |
-| 3 | **`v2.0.0`** | 以 `#661`、`#663` 及正式验收后合入 `master` 的**最终发行提交**为准 | 用户可见的整套视觉、菜单、场景和交互体验换代 | **本次目标；不能提前 Tag** |
+## 版本总览：先看交付边界
 
-### 不补的版本
+| Version | Epic 归属 | 对应源码区间 / 版本提交 | 状态 / 下一动作 |
+| --- | --- | --- | --- |
+| **[v1.0.0](https://github.com/FurinyaWorks/Slay-the-Heavens/tree/v1.0.0)** | 岩系旅行者前两幕正式源码基线 | `e970eb2a71e44d352850af148a8f696c5ecaed8e` | **Tag 已有；不动**；平台回执未入账 |
+| **v1.1.0** | E11 轻量化画面、E12 核心稳定性、E13 交付工程 | [v1.0.0 → a0c35db](https://github.com/FurinyaWorks/Slay-the-Heavens/compare/v1.0.0...a0c35db8d3c7242437f4dff0df373749b0d84985)（`develop` 侧新增 54 提交）；**落点 `a0c35db8d3c7242437f4dff0df373749b0d84985`** | **源码已合 / Tag 待补**；回溯检查点，不冒充平台发版 |
+| **v1.2.0** | E21 游戏界面整合、E22 组合缺陷、E23 工程去债 | [a0c35db → 903bf2a](https://github.com/FurinyaWorks/Slay-the-Heavens/compare/a0c35db8d3c7242437f4dff0df373749b0d84985...903bf2a31e91f10fb24763ab4cea23d586d0bb83)（9 提交）；**落点 `903bf2a31e91f10fb24763ab4cea23d586d0bb83`** | **源码已合 / Tag 待补**；#665 的版本元数据补正尚未合入 |
+| **v2.0.0** | E30 主菜单与选角、E31 正式游玩、E32 美术资源、E33 性能验收、E34 版本交付 | [903bf2a → 当前 develop](https://github.com/FurinyaWorks/Slay-the-Heavens/compare/903bf2a31e91f10fb24763ab4cea23d586d0bb83...develop)（当前已合 2 提交）＋ [#661](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661)、[#663](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/663)、[#665](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/665) 在途；**最终发行提交待定** | **目标正式版本，不能打 Tag / 不能发布** |
+| **v2.0.1** | E41 缺漏音效、E42 小范围体验修复 | **无提交（未来规划）** | 2.0 后的修订版，不给它提前打 Tag |
+| **v2.1.0** | E51 新可玩角色与独立构筑 | **无提交（未来规划）** | 后续 Feature 版，待真正验收 |
+| **v2.2.0** | E61 后续章节 | **无提交（未来规划）** | 远期候选，不绑定日期 |
 
-- **不补 `v1.0.1`**：11/01～11/07 的 M7 架构与 CI 修复已保存在真实提交中，没有独立冻结、值得对外标示的维护发行批次。
-- **不补 `v1.2.1` / `v1.3.0`**：11/13 共享顶栏、卡组、商店修复及 11/14 的 1600 图元实验不需要人为再拆版本；尚在途的 `#661`、`#663` 更不能假称已发布。
-- 所有既有 `v0.x` 的 14 个注释 Tag 和 `v1.0.0` 保持不变；截至 11/14，远端实际只有这 **15 个**，没有 GitHub Releases。
+> `v1.0.0` 在 `master` 的正式合并提交上，后续 `develop` 与它存在一条发行提交的历史分叉。上述比较链接是**完整源码区间**；关键节点在下面按 Epic 分类，不将每一个 CI/测试提交冒充新玩家功能。历史 Tag 的日期不等于千星官方实际更新时间。
 
-**历史分支注意**：`v1.0.0` 位于 `master` 的发行合并提交，后续 `develop` 与该 Tag 存在一条发布提交的祖先分叉；`v1.1.0`、`v1.2.0` 两枚回溯 Tag 均沿 `develop` 的实际历史依次落点，不强行改写为从 `master` Tag 线性派生。比较玩家实际文件内容使用 `git diff v1.0.0 v1.1.0`；不可把三点对比的提交计数当成准确的发行树差异。
+---
 
-**补录性质必须在注释中写清楚**：`v1.1.0` / `v1.2.0` 是按已完成开发阶段**回溯标注的源码检查点**，**不是**官方平台曾单独发布的版本。这两个旧提交的 `package.json` 未逐版更新，存在历史元数据仍为 `1.0.0` 的例外；不得隐瞒、不得修改旧提交或宣称相应包已在平台上线。该做法延续仓库 Alpha 追溯 Tag 的既有记录方式；今后正式发布仍严格同步源码版本字段与产物。
+## v1.1.0｜历史开发版（11/08，源码已合，Tag 待补）
 
-### 补录操作（准确、不可移动）
+**最终源码**：[a0c35db](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/a0c35db8d3c7242437f4dff0df373749b0d84985)；[查看此版本区间全部 54 个提交](https://github.com/FurinyaWorks/Slay-the-Heavens/compare/v1.0.0...a0c35db8d3c7242437f4dff0df373749b0d84985)。
 
-执行前确认这两个 Tag 仍不存在、两个精确 SHA 确实在主线历史、各自提交确实包含上述版本能力；有冲突就停，不用 `-f`、不删除、也不重新指向。这是**补标签**，不是发布或改造游戏：
+### E11 · 轻量化画面基础（Epic）
+- **Feature · 中 · 已合**：建立默认二维表现与合并后的绘制基线。来源 [#560](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/560) / [`a0c35db`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/a0c35db8d3c7242437f4dff0df373749b0d84985)。**仅说明源码基础已具备**，不是所有页面都已做完。
+- **Bugfix · 中 · 已合**：修复地图尺寸更新相互覆盖。来源 [#481](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/481) / [`3d75e04`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/3d75e04eed1a6a7ac63d5b5b8d7e905b28149a70)。
 
-```sh
-set -e
-git fetch origin --tags
-git merge-base --is-ancestor a0c35db8d3c7242437f4dff0df373749b0d84985 origin/develop
-git merge-base --is-ancestor 903bf2a31e91f10fb24763ab4cea23d586d0bb83 origin/develop
-if git show-ref --verify --quiet refs/tags/v1.1.0; then echo "v1.1.0 already exists; stop"; exit 1; fi
-if git show-ref --verify --quiet refs/tags/v1.2.0; then echo "v1.2.0 already exists; stop"; exit 1; fi
-git tag -a v1.1.0 a0c35db8d3c7242437f4dff0df373749b0d84985 -m "v1.1.0: M7 integration and default 2D baseline (retrospective source checkpoint; not published; historical package version 1.0.0)"
-git tag -a v1.2.0 903bf2a31e91f10fb24763ab4cea23d586d0bb83 -m "v1.2.0: V25 integrated UI baseline (retrospective source checkpoint; not published; historical package version 1.0.0)"
-git push origin refs/tags/v1.1.0 refs/tags/v1.2.0
-```
+### E12 · 战斗与资源稳定性（Epic）
+- **Bugfix · 中 · 已合**：处理奖励页面尺寸更新冲突、战斗画面显示顺序。来源 [#484](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/484) / [`aa4d56f`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/aa4d56f57c1560e640663bf53e87072c14b08789)、[#501](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/501) / [`350233a`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/350233a27cd2f3f3561a5af866f72d660d707269)。
+- **技术债 · 中 · 已合**：拆开战斗回合、状态更新、遗物生命周期等高耦合职责。来源 [#511](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/511) / [`b4ac631`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/b4ac63145689b9dd632db100eee49087f6182b39)、[#513](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/513) / [`a308edb`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/a308edbfde7792485cbe79b5650c17e1c7de98cc)、[#521](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/521) / [`c685409`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/c685409d7d34d91cae79e917090fe4299184ca8b)。
 
-上述 `show-ref` / `exit` 写法按独立 shell 操作执行，不把找不到标签的正常退出码当成其他失败；Agent 执行时应先检查再逐条打标签并读回注释对象目标。**此文档 PR 本身未执行 tag push**，可通过 GitHub 远端 `refs/tags` 读回确认实际补录成功。
+### E13 · 多 Agent 集成与测试能力（Epic）
+- **技术债 · 中 · 已合**：接入独立复审后的自动合并与安全快速检查。来源 [#502](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/502) / [`67493f1`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/67493f1a707dd5332788b4081adb3c3ce6e46761)、[#531](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/531) / [`73aabce`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/73aabce8b04c604a06931b1aee3eb84d820c42e7)。
+- **技术债 · 高 · 待办**：将 `v1.1.0` 注释 Tag 补到**精确** `a0c35db8d3c7242437f4dff0df373749b0d84985`；不改旧源码，不补造对应的平台已发布回执。
 
-## 二、一次看清的版本树
+## v1.2.0｜历史开发版（11/12，源码已合，Tag 待补）
 
-```text
-Slay the Heavens｜版本树（Tag ≠ 已在平台发布）
-│
-├─ v1.0.0  [现有 Tag]  初版：岩系旅行者 + 第一、二幕
-│
-├─ v1.1.0  [待补 Tag]  2026-11-08｜画面技术与稳定性升级
-│   ├─ 工程：运行时职责拆分、集成与质量检查
-│   └─ 表现：由原方案进入默认 2D 表现基线
-│
-├─ v1.2.0  [待补 Tag]  2026-11-12｜战斗与冒险界面整合
-│   ├─ 战斗：手牌、能量、敌人信息与操作反馈
-│   ├─ 场景：地图、冒险房间、奖励页面之间的衔接
-│   └─ 共用：角色待机、遗物展示和卡组浏览
-│
-├─ v2.0.0  [本次上线目标]｜大规模视觉 + 交互换代
-│   │
-│   ├─ A. 内容范围［冻结，不扩］
-│   │   ├─ 岩系旅行者唯一正式可选角色
-│   │   ├─ 第一幕 → 第二幕；自然通关/胜负/重开
-│   │   └─ 卡牌、遗物、药水、事件、Boss、跨幕状态
-│   │
-│   ├─ B. UI 页面［本次必验］
-│   │   ├─ 主菜单：正式视觉与入口
-│   │   ├─ 选角色：金色命之座、旅行者背景与身份
-│   │   ├─ 开场：璃月过场、祝福/进入地图的衔接
-│   │   ├─ 地图：路线选择、节点信息与房间返回
-│   │   ├─ 战斗：手牌、敌人意图、能量与状态显示
-│   │   ├─ 战后：奖励、选牌、宝箱、胜负结算
-│   │   ├─ 其他房间：商店、营地、事件
-│   │   └─ 共用组件：顶栏、卡组、遗物、药水/弹窗
-│   │
-│   ├─ C. 美术表现［本次必验］
-│   │   ├─ 原生低图元 / 大色块表现，正式生效与回退
-│   │   ├─ 角色待机、选角背景、命之座
-│   │   └─ 主菜单、房间和转场风格统一
-│   │
-│   ├─ D. 操作与生命周期［本次必验］
-│   │   ├─ 选牌、拖放、索敌、取消、触屏反馈
-│   │   ├─ 返回主菜单 / 继续本局 / 放弃本局 / 退出
-│   │   └─ 快速切场景、重复进入、对象回收与加载
-│   │
-│   └─ E. 上线验收［本次必过］
-│       ├─ #661 + #663 合入且完整 CI / 复审通过
-│       ├─ 最终 GIL 官方导入与 PC / 实体手机试玩
-│       ├─ 同候选官方容量、静态/动态负载与可读性
-│       └─ master 发行提交 → v2.0.0 Tag → 平台更新
-│
-├─ v2.0.1  [下个小版本｜条件性 PATCH]
-│   ├─ 补齐这次新增页面遗漏的按钮、切换、领奖等音效
-│   └─ 修复 2.0 上线后出现的非破坏性操作/视觉问题
-│
-└─ v2.1.0+ [以后｜MINOR]
-    ├─ 经验收的新角色 / 独立玩法机制
-    ├─ 后续第三幕、隐藏第四幕与其他内容扩充
-    └─ 如音频扩展成完整新系统而非缺漏修复，在这里发布
-```
+**最终源码**：[903bf2a](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/903bf2a31e91f10fb24763ab4cea23d586d0bb83)；[查看此版本区间全部 9 个提交](https://github.com/FurinyaWorks/Slay-the-Heavens/compare/a0c35db8d3c7242437f4dff0df373749b0d84985...903bf2a31e91f10fb24763ab4cea23d586d0bb83)。
 
-**音频决定**：2.0 不因为新增页面缺少非关键音效而延期。现有必需的反馈不能被误删/静音；这次新页面的按钮点击、切换、过场、奖励等**补缺音效**集中留到 `v2.0.1`，作为已存在操作体验的补完，不扩展成新音频系统。新音乐系统、新玩法、新角色等才升 MINOR（`v2.1.0`）。
+### E21 · 战斗与冒险页面统一（Epic）
+- **Feature · 高 · 已合**：统一战斗、地图、奖励、商店、卡组等主要页面的版式和信息展示；采用战斗页作为共享样式基准。来源 [#607](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/607) / [`6a614fc`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/6a614fc82697750ddb408750e54f59f801c24f1e)、[#634](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/634) / [`903bf2a`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/903bf2a31e91f10fb24763ab4cea23d586d0bb83)。
+- **Feature · 中 · 已合**：接入旅行者已批准的战斗待机展示及共享缓存。来源 [#634](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/634) / [`903bf2a`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/903bf2a31e91f10fb24763ab4cea23d586d0bb83)。
 
-## 上线更新公告草稿（尚未加入正式 CHANGELOG）
+### E22 · 页面错误修正（Epic）
+- **Bugfix · 高 · 已合**：修复地图入口、顶栏遮挡、奖励内容重叠、牌面布局等组合显示缺陷；在同一集成节点修复相关手机操作提示。来源 [#634](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/634) / [`903bf2a`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/903bf2a31e91f10fb24763ab4cea23d586d0bb83)。
+- **Bugfix · 中 · 已合**：组合整合时的来源身份和页面生命周期问题。来源 [#607](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/607) / [`6a614fc`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/6a614fc82697750ddb408750e54f59f801c24f1e)。
 
-以下文字只提供**给玩家看的写法示例**。其中命之座、过场、返回主菜单等功能仍依赖 #661/#663 最终合入和设备验收；**在验证前不能复制为“已经发布”的官方公告**。核实通过后，才将实际交付项按 [更新日志规范](CHANGELOG-GUIDE.md) 移入 `CHANGELOG.md`。
+### E23 · 维护成本与验证工具（Epic）
+- **技术债 · 中 · 已合**：继续减少运行时职责耦合、修复多分支组合回归。来源 [#576](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/576) / [`1eb2884`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/1eb288472d7b33b7450eec97a624ca2ffa526f39)、[#607](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/607)。
+- **技术债 · 低 · 已合（实验 NO-GO）**：验证原生差分更新与补间方案未获得准入，不作为已交付玩家功能。来源 [#613](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/613) / [`3a061a7`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/3a061a76b5eb917ac0f4213c01a9cbafd28d1824)。
+- **技术债 · 高 · 待办**：将 `v1.2.0` 注释 Tag 补到**精确** `903bf2a31e91f10fb24763ab4cea23d586d0bb83`；当前代码的三份版本元数据由 [#665](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/665) 补正，**它不属于这个历史提交**。
 
-### 新增
+## v2.0.0｜本次正式上线目标（尚未合并完毕）
 
-- 角色选择界面加入金色命之座展示，让旅行者的角色信息更直观。
-- 增加璃月风格的开场过场，让开始冒险时的画面衔接更自然。
-- 在冒险途中可以返回主菜单，并继续尚未结束的本局游戏。
+**提交归属**：目前 `develop` 只有 [#639](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/639) / [`e805a87`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/e805a87dc4df1a048ba5995931d98a4e4899b5e9) 和 [#648](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/648) / [`9f2f44e`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/9f2f44e4c79789fbcb64a515938765dbc240f830) 位于 `v1.2.0` 后。**#661、#663、#665 仍 Open，不能当成已合代码**；最终精确发行提交在真实合并和验收后才能确定。
 
-### 变更
+### E30 · 主菜单、选角与开场（Epic）【高】
+- **Feature · 高 · 在途**：完整主菜单、选角的金色命之座与角色信息、璃月开局过场。**集成入口 [#661](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661)**；来源 [#650](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/650)、[#662](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/662)、[#660](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/660) 已关闭但未单独合并，**只按 #661 最终落地认定**。对应 TASK-103.3 等。
+- **Bugfix · 高 · 在途**：解决页面准备状态导致的永久等待、选角头像阻塞、主菜单相关控件重叠。来源 [#661](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661)；实机验收仍缺。
 
-- 更新主菜单、角色选择、地图、战斗和冒险房间等主要界面的视觉风格。
-- 调整卡牌、遗物和资源信息的展示方式，方便阅读和查找。
+### E31 · 局内交互与完整两幕（Epic）【高】
+- **Feature · 高 · 在途**：从局内返回主菜单、继续本局、明确放弃/退出边界。来源 [#663](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/663)，关联 TASK-4.16。
+- **Bugfix · 高 · 待同版本实测**：卡牌拖放、目标选择与取消、切出返回、地图节点、两幕合法结束和结算。复用 TASK-30、TASK-38、TASK-42、TASK-77、TASK-47。**不是宣称这些代码都还没写，而是最终候选未过设备/整局验收**。
 
-### 修复
+### E32 · 统一视觉与图标资源（Epic）【高/中】
+- **Feature · 中 · 已合源码**：共享顶栏、卡组浏览与商店信息展示。来源 [#639](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/639) / [`e805a87`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/e805a87dc4df1a048ba5995931d98a4e4899b5e9)；最终候选仍待设备回归。
+- **Feature · 中 · 在途**：敌人和遗物的低图元简图。来源 [#654](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/654) 的关闭未合来源，**仅在 #661 最终整合并完成验证后计入**；关联 TASK-25.5。
+- **技术债 · 低 · 已合实验、未正式启用**：1600 图元角色背景与测量工具。来源 [#648](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/648) / [`9f2f44e`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/9f2f44e4c79789fbcb64a515938765dbc240f830)。该实验性能和正式设备仍未验；只有确认正式采用后才按 E33 的性能门槛放行。
 
-- 优化部分页面切换时的加载和显示流程，减少卡住或界面重叠的情况。
+### E33 · 启动、加载、性能与正式平台（Epic）【高】
+- **Bugfix · 高 · 在途/待验**：页面准备时序、反复进出、对象回收、手机触控及加载异常。来源 [#661](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/661)、TASK-100.1、TASK-4.21、TASK-94。
+- **技术债 · 高 · 待发布验证**：正式构建、全量 CI/独立审查、官方导入与 ready、PC 和实体手机、同候选官方关卡 ≤20MB 与服务器 ≤3MB。入口 [发布验收清单](V2-RELEASE-CHECKLIST.md)、[平台门槛](../PLATFORM_LOAD.md)。
 
-非关键新页面音效留给 `2.0.1`；没有完成手机和官方平台验证之前，不承诺加载速度、容量或所有设备的性能表现。
+### E34 · 版本、发布文案与正式上线（Epic）【高】
+- **技术债 · 高 · 在途**：同步当前 `1.2.0` 的 package/lock/manifest、采用 [Keep a Changelog](CHANGELOG-GUIDE.md)、防止内部术语和版本漂移。来源 [#665](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/665)（尚未合入），关联 TASK-20。
+- **Feature · 高 · 待合并后实施**：确定 2.0 实际内容后，同一发行提交升为 `2.0.0` 并写用户能看懂的更新说明；**不用内部代号代替更新内容**。
+- **技术债 · 高 · 待验后实施**：发行 PR → `master` 的**最终提交** → 不可移动 `v2.0.0` Tag → Owner 人工更新作品 → 成功回执。没有设备/容量证据不放行。
 
-## 三、本次冻结规则
+## v2.0.1｜下一修订版（规划，无提交、无 Tag）
 
-- 必须保住 `#661` 和 `#663` 已批准且实际合入的能力，不因上版本号对 UI 重新设计。
-- 本次不绑定雷电将军/其他角色、第三幕、隐藏第四幕、完整新卡牌插画量产、非关键新增音效；研发资产存在 ≠ 玩家正式可用。
-- `v2.0.0` 由当前发布范围已验的最终 `master` 源码确定；版本号在最终发布更改 `package.json`、lockfile、manifest 和游戏显示，官方版本与 Git Tag 分开登记。
-- 必须走 [上线前回归树](V2-RELEASE-CHECKLIST.md) 中 P0；以同一最终候选证据为准。实际平台发布依 [PUBLISHING](../PUBLISHING.md) 由 Owner 操作并留回执。
-- 版本归档只在本目录维护；玩家更新说明在 [CHANGELOG](../../CHANGELOG.md)，技术证据在 [ENGINEERING](ENGINEERING.md)，任务身份/状态仍只使用 Backlog CLI 和 [MILESTONES](../MILESTONES.md)。
+### E41 · 新页面音效补完（Epic）【中】
+- **Bugfix · 中 · 计划**：补主菜单、选角、地图切换、商店、领奖、宝箱等新增页面的**非关键缺漏提示音**，避免音量突变/重复播放；复用现有 TASK-4、TASK-34。仅补已存在交互的反馈时按 PATCH。**影响玩家判断操作是否成功的必要音效属于 2.0 阻断，不能后移。**
+
+### E42 · 上线后体验修正（Epic）【中/低】
+- **Bugfix · 中 · 待反馈**：针对真实设备及玩家提交的非阻断显示、触摸、声音问题修复；有复现/回归后才分配提交。
+- **技术债 · 低 · 候选**：后续加载/图元实验按证据评估，不因研究任务无限延后已达标的发布。
+
+## v2.1.0｜更多可玩角色（规划，无提交、无 Tag）
+
+### E51 · 新角色与独立构筑（Epic）【中，2.0 后启动】
+- **Feature · 中 · 计划**：雷电将军等新角色独立玩法、卡牌构筑、两幕可玩与正式角色入口，复用 TASK-85、TASK-59.3；所有功能必须实机验收才宣布开放。仅实验分支已有卡牌**不等于**正式可用。
+- **技术债 · 低 · 条件性**：只有因新增角色引发新容量/性能约束时再开展对应优化，不提前混进 2.0。
+
+## v2.2.0｜后续章节（远期候选，无提交、无 Tag）
+
+### E61 · 内容规模扩展（Epic）【低】
+- **Feature · 低 · 规划**：第三幕及其连续流程（TASK-62）、隐藏第四幕与钥匙/结局（TASK-64）；待角色和现有两幕质量稳定后再验收。
+- **技术债 · 低 · 待评审**：后续容量和资产扩展必须先有实测预算，不能用历史包体读数证明可发布。
+
+## 维护规则
+
+- **版本归属由 Git 决定**：历史版记录完整 compare 区间和**唯一落点 SHA**；未来版先记录 PR/Backlog，合并后把最终 SHA 回填，状态从“在途/计划”变“已合/待验证”，不靠日期猜测。
+- **Epic 是视图，Backlog 是工作项唯一账本**：本页引用现有 TASK，不再复制具体实现步骤或另起一套任务。新增缺口先在 Backlog 查重；仅经项目规定的 Backlog CLI 建/改任务。
+- **CHANGELOG 只为玩家**：内部提交/技术债和未合功能留在这里；官方更新说明从已验收的玩家变更人工精简。参照 [Keep a Changelog](CHANGELOG-GUIDE.md) 和 SemVer，不要把自动 PR 标题直接发给玩家。
+- **优先级不与 Milestone 混用**：本页“高”意味着当前发布行动紧急，不会偷偷把既有 Backlog 的 `medium` 改成 `high`。新 Feature/章节一律不阻塞本次 2.0。
+- **补历史 Tag**：`v1.1.0`、`v1.2.0` 仅为回溯源码检查点。精确提交与现存 Tag 先核对，创建 annotated Tag 并远端读回。旧 commit 的 package.version 仍为 1.0.0，不重写历史，也不伪称平台已上线。**这两枚 Tag 尚未创建。**
+- **正式 2.0**：在相关代码实际合入后才同步 `2.0.0` 的 package/lock/manifest/菜单显示与 CHANGELOG；源码和产物验收过关以后才在发行提交打 Tag。平台实际发布成功再补 [publications](../../data/release/publications.json)。
