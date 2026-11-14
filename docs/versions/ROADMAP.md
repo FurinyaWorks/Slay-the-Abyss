@@ -26,10 +26,10 @@
 
 ### E11 · 轻量化画面基础（Epic）
 - **Feature · 中 · 已合**：建立默认二维表现与合并后的绘制基线。来源 [#560](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/560) / [`a0c35db`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/a0c35db8d3c7242437f4dff0df373749b0d84985)。**仅说明源码基础已具备**，不是所有页面都已做完。
-- **Bugfix · 中 · 已合**：修复地图尺寸更新相互覆盖。来源 [#481](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/481) / [`3d75e04`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/3d75e04eed1a6a7ac63d5b5b8d7e905b28149a70)。
+- **Bugfix · 中 · 已合**：修复地图尺寸更新相互覆盖。来源 [#481](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/481) / [`3d75e04`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/3d75e04eed1a1a0b87c959dc30333ab571e4a1e6)。
 
 ### E12 · 战斗与资源稳定性（Epic）
-- **Bugfix · 中 · 已合**：处理奖励页面尺寸更新冲突、战斗画面显示顺序。来源 [#484](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/484) / [`aa4d56f`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/aa4d56f57c1560e640663bf53e87072c14b08789)、[#501](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/501) / [`350233a`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/350233a27cd2f3f3561a5af866f72d660d707269)。
+- **Bugfix · 中 · 已合**：处理奖励页面尺寸更新冲突、战斗画面显示顺序。来源 [#484](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/484) / [`aa4d56f`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/aa4d56f57c15727668ef8675e626b44e67a5aaa5)、[#501](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/501) / [`350233a`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/350233a27cd2f3f3561a5af866f72d660d707269)。
 - **技术债 · 中 · 已合**：拆开战斗回合、状态更新、遗物生命周期等高耦合职责。来源 [#511](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/511) / [`b4ac631`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/b4ac63145689b9dd632db100eee49087f6182b39)、[#513](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/513) / [`a308edb`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/a308edbfde7792485cbe79b5650c17e1c7de98cc)、[#521](https://github.com/FurinyaWorks/Slay-the-Heavens/pull/521) / [`c685409`](https://github.com/FurinyaWorks/Slay-the-Heavens/commit/c685409d7d34d91cae79e917090fe4299184ca8b)。
 
 ### E13 · 多 Agent 集成与测试能力（Epic）
