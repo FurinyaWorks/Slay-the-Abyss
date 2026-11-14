@@ -8,6 +8,7 @@ Forced wins test UI wiring only, never natural play or balance.
 """
 import hashlib
 import json
+import shutil
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
@@ -23,7 +24,7 @@ def main():
         raise RuntimeError("SOURCE_MISMATCH: refusing to audit another candidate")
     results = {"source_blob": git_blob, "modes": [], "bugs": {}, "limits": []}
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=True, executable_path=shutil.which('chromium') or shutil.which('google-chrome') or None)
         for mode, width, height in [("desktop", 1440, 900), ("mobile_emulated", 390, 844)]:
             page = browser.new_page(viewport={"width": width, "height": height},
                                     is_mobile=(mode == "mobile_emulated"))
