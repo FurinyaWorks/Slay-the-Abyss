@@ -224,7 +224,7 @@ function OnStart()
             actorDestroy=function(control)return game.DestroyClientUIControl(componentBridge.unwrap(control))end
         end
         view = GameUI.new(stage, Data, Presentation, Enum.CursorEventType.CursorClick,
-            { background = background, portraits = portraits, cardArt = cardArt, music = music, campaign = true, campaignProfile = "competition-two-act",
+            { background = background, portraits = portraits, cardArt = cardArt, music = music, prologue = true, campaign = true, campaignProfile = "competition-two-act",
               nativePageLifecycle = nativePageLifecycle,presentationReady=presentationReady,presentationPage=presentationPage,
               -- Native OnUpdate timing has not been verified across mobile
               -- foreground/background transitions. Do not publish it as accurate

@@ -1,0 +1,25 @@
+LORE_PREVIEW	intro1	岩层深处传来了异常的共鸣。
+LORE_PREVIEW	intro2	古老的封印正在崩解……
+LORE_PREVIEW	intro3	旅行者，深入遗迹，阻止深渊的侵蚀。
+ok prologue 1 - shared approved sentence helpers remain intact
+ok prologue 2 - confirmation fades over the selected character before creating any run
+ABYSS_RUN seed=42 source=explicit
+ok prologue 3 - fully covered frame commits once and reveals the existing Neow page
+ABYSS_RUN seed=42 source=explicit
+ok prologue 4 - transparent shield and admission reject duplicate confirmation and stale page commands
+ABYSS_RUN seed=42 source=explicit
+ok prologue 5 - cancel before cover discards pending run and reopens selection input
+ok prologue 6 - disable clears the shield and pending commit
+ABYSS_RUN seed=42 source=explicit
+ok prologue 7 - large frame completes all phases without residual mask or repeated creation
+ABYSS_RUN seed=42 source=explicit
+ok prologue 8 - resize covers wide and tall canvases without enlarging the central mark
+ABYSS_RUN seed=42 source=explicit
+ABYSS_RUN seed=43 source=explicit
+ok prologue 9 - a retry from defeat plays again and preserves one-run ownership
+ABYSS_RUN seed=1 source=explicit
+ok prologue 10 - rule-only hosts retain immediate start without enabling the old camera
+ABYSS_RUN seed=42 source=explicit
+ok prologue 11 - reference element and veil boundaries execute at their actual timestamps
+LUA_GAME_UI_PROLOGUE_PASS 11
+Lua fixture tests/lua/game_ui_prologue.lua: 10948 ms

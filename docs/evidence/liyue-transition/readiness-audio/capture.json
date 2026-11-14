@@ -1,0 +1,220 @@
+{
+  "candidateSha256": "7e92f61aa5f5d3d1cc5ab39c0125208af4dea89bbf7e1ad8ddc6588606d1aa17",
+  "buildId": "b08de2e7-7b32-48a5-8901-32e7e50dfdcf",
+  "scope": "Actual R3 candidate UI/Lua in BeyondSimulator 0.5.2 software Host. Manual clock; audio events verified under default MCP mute. Not official device/subjective sound acceptance.",
+  "frames": [
+    {
+      "file": "character.png",
+      "sha256": "b976f40bb99a59ed31d37c31b4b91ec17b821192a8f378d0f2fe9328b18a0e44",
+      "time": 0.2,
+      "frame": 1,
+      "assetWarnings": []
+    },
+    {
+      "file": "cover.png",
+      "sha256": "a181cf4a9b88a6e078020305d25768f72ef9de02f7007e3b8ee3f9d6de467659",
+      "time": 0.35,
+      "frame": 2,
+      "assetWarnings": []
+    },
+    {
+      "file": "black.png",
+      "sha256": "f4bd1c7e7e3e0479549b67b8522e7a2da16c1e9e3e6d976848a42e80589a006c",
+      "time": 0.5,
+      "frame": 3,
+      "assetWarnings": []
+    },
+    {
+      "file": "seal.png",
+      "sha256": "16663845bddc0a6d74ad1bf3ff825522060b936c8dccdf4bc389aa2bae064392",
+      "time": 0.8,
+      "frame": 4,
+      "assetWarnings": []
+    },
+    {
+      "file": "element3.png",
+      "sha256": "73ea1777f3c99a0f6bb58a9329faf6526cc4fbe05ec4506e0fdce34aaaf6df63",
+      "time": 0.8600000000000001,
+      "frame": 5,
+      "assetWarnings": []
+    },
+    {
+      "file": "element4.png",
+      "sha256": "f03c29121011c2540833b01fd83580edb0d64c5e8e85b48b813b3a5c41492a53",
+      "time": 0.9800000000000001,
+      "frame": 6,
+      "assetWarnings": []
+    },
+    {
+      "file": "element5.png",
+      "sha256": "88db399330368583164b152a30491a62fba9ab9b20ec8e6439a54789830fe269",
+      "time": 1.1,
+      "frame": 7,
+      "assetWarnings": []
+    },
+    {
+      "file": "element6.png",
+      "sha256": "468ec574db6ec89bc0bc7c3eb450d8d9fe2699b16a78950a5f2534a07e205bae",
+      "time": 1.2200000000000002,
+      "frame": 8,
+      "assetWarnings": []
+    },
+    {
+      "file": "element7.png",
+      "sha256": "ef99242de1cd1a91956f56aeaa73d316b94a8c5c1f5a7f740589f8dbff697669",
+      "time": 1.3400000000000003,
+      "frame": 9,
+      "assetWarnings": []
+    },
+    {
+      "file": "closing.png",
+      "sha256": "8da6e766528ac1b06d46b1a742d93bc10e35981da9bb3d4dbacb77c39929fca1",
+      "time": 1.4900000000000002,
+      "frame": 10,
+      "assetWarnings": []
+    },
+    {
+      "file": "reveal.png",
+      "sha256": "f4bd1c7e7e3e0479549b67b8522e7a2da16c1e9e3e6d976848a42e80589a006c",
+      "time": 1.6400000000000001,
+      "frame": 11,
+      "assetWarnings": []
+    },
+    {
+      "file": "after.png",
+      "sha256": "0a0f271bbf32e3c98ede3922448e4c8c7b8708c38c2e8c804a3096bfbfeb4c61",
+      "time": 1.9500000000000002,
+      "frame": 12,
+      "assetWarnings": []
+    }
+  ],
+  "audioEvents": [
+    {
+      "instanceId": 1,
+      "audioId": 50944,
+      "startedAt": 0.2,
+      "duration": 0.164,
+      "alive": false,
+      "stopped": false
+    },
+    {
+      "instanceId": 2,
+      "audioId": 50945,
+      "startedAt": 1.3400000000000003,
+      "duration": 0.313,
+      "alive": false,
+      "stopped": false
+    }
+  ],
+  "logs": [
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_BUILD b08de2e7-7b32-48a5-8901-32e7e50dfdcf",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_AUDIO transition_enter id=50944 instance=1",
+      "time": 0.2
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_TRANSITION begin",
+      "time": 0.2
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=ready owned=59 reason=nil",
+      "time": 0.5
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_RUN seed=23353 source=clock",
+      "time": 0.5
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=node nodeNativeActive=true choiceNativeActive=false",
+      "time": 0.5
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_TRANSITION ready elapsed=0.6",
+      "time": 0.8
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_AUDIO transition_leave id=50945 instance=2",
+      "time": 1.3400000000000003
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_TRANSITION complete elapsed=1.14",
+      "time": 1.3400000000000003
+    },
+    {
+      "source": "client",
+      "level": "info",
+      "text": "ABYSS_TRANSITION end elapsed=1.75",
+      "time": 1.9500000000000002
+    }
+  ],
+  "mountError": null
+}

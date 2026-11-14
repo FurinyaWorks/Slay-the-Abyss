@@ -97,6 +97,7 @@ end
 
 function M.openExit(self,owner)
     return function(_)
+            if self.prologue and self.prologue:covering() then return false end
             if self.disabled or self.characterOpen or self.exitOpen or self.settlementRequested or self.settlementBusy then return false end
             owner.exitGeneration = owner.exitGeneration + 1
             self.potionUI:close()
@@ -109,6 +110,7 @@ end
 
 function M.openMenu(self,owner)
     return function(_)
+            if self.prologue and self.prologue:covering() then return false end
             if self.disabled or self.easterEggOpen or self.exitOpen or self.settlementRequested or self.settlementBusy then return false end
             owner.exitGeneration = owner.exitGeneration + 1
             self.exitOpen, self.menuOpen, self.exitError = true, true, nil

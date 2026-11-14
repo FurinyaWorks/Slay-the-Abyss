@@ -118,6 +118,7 @@ function M.bindCommand(platform,self,canManagePotions,controller,clickEvent,owne
                 return runMenuAvailable()
             end
             local function available()
+                if self.prologue and self.prologue:covering() then return false end
                 if self.disabled or self.settlementRequested or self.settlementBusy then return false end
                 if routeMode then return battleRouteAvailable(self,enabled,routeMode)end
                 if resourceAction then return not self.potionUI.visible and canManagePotions(self.run) and (not enabled or enabled()) end

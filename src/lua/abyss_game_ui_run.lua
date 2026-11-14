@@ -105,8 +105,9 @@ function M.beginRun(platform,data,self,newSeed,presentation,endingHistory,neowHi
             self.mapUI.map = self.map
             self.nodeUI.run, self.nodeUI.map = self.run, self.map
             self.nodeUI:render()
-            if prologuePanel then prologuePanel:SetVisible(false) end
+            if prologuePanel and not self.prologue then prologuePanel:SetVisible(false) end
             self:refresh()
+            self.openingPrepared=6 -- Run published, destination rendered and native page policy applied.
             return true
     end
     return function(character)
@@ -119,19 +120,24 @@ function M.beginRun(platform,data,self,newSeed,presentation,endingHistory,neowHi
                 selection.campaignProfile=platform.campaignProfile
             end
             if not require('abyss_run_admission').accepts(data,selection)then return false,'competition_character_unavailable'end
+            self.openingPrepared=1 -- Selection admitted.
             local explicitSeed = self.seed ~= nil
             local seed = explicitSeed and self.seed or newSeed()
             local rawSeed=RunSeed.normalize(seed)
             local run = Run.new(data,rawSeed,selection)
+            self.openingPrepared=2 -- Run/data constructed.
             local runPresentation = (selection and selection.character or run.data.colorlessCards) and require("abyss_character_presentation").prepare(presentation,run.data) or presentation
             local ending=EndingHistory.begin(endingHistory,run,{seedSet=explicitSeed,
                 isDailyRun=platform.isDailyRun or false,isTrial=platform.isTrial or false})
             run.endingUnlocked,run.endingHistory=ending.unlocked,ending
+            self.openingPrepared=3 -- Presentation/history prepared.
             local context,contextReason=Run.freezeMapContext(run)
             if not context then return false,contextReason end
             local map = Map.generate(run.data,rawSeed,run.act or 1,context)
+            self.openingPrepared=4 -- Frozen route generated.
             local started,why=beginNeow(run,map,neowHistory)
             if not started then return false,why end
+            self.openingPrepared=5 -- Opening event prepared.
             return publishRun(run,map,rawSeed,runPresentation,explicitSeed,seed)
         end
 end
@@ -139,16 +145,26 @@ end
 function M.confirmCharacter(self,beginRun)
     return function(_)
             if not self.characterOpen or self.starting or self.disabled or self.exitOpen or self.characterSelection.deckOpen
+                or self.prologue and self.prologue:covering()
                 or self.settlementRequested or self.settlementBusy then return false,'character_choice_unavailable' end
             local info=self.characterSelection.info
             if not info then return false,'character_required' end
             if not self.characterSelection:canConfirm()then return false,'competition_character_unavailable'end
             self.starting=true
-            -- Latch before seed generation and Run.new; a native duplicate cannot re-enter.
-            local ok,accepted,reason=pcall(beginRun,info.id)
-            self.starting=false
-            if not ok then error(accepted)end
-            return accepted,reason
+            -- Latch before the fade and seed generation; one confirmation creates one Run.
+            local function commit()
+                local ok,accepted,reason=pcall(beginRun,info.id)
+                self.starting=false
+                if not ok then error(accepted)end
+                return accepted,reason
+            end
+            if self.prologue then
+                self.openingPrepared=0
+                local accepted=self.prologue:play(commit)
+                self:refresh()
+                return accepted
+            end
+            return commit()
         end
 end
 

@@ -533,8 +533,9 @@ test("native lifecycle loads every composed control and registers its listeners 
         "ordinary native entry can confirm the preselected Geo loadout")
     assert(root:GetChild("characterPanel").visible and not root:GetChild("mapPanel").visible)
     click(root, "characterPanel", "confirm")
-    assert(not root:GetChild("characterPanel").visible)
-    for _ = 1, 8 do OnUpdate(0.25) end
+    assert(root:GetChild("characterPanel").visible and root:GetChild("prologuePanel").visible,
+        "selection remains behind the short opening fade until full cover")
+    for _ = 1, 33 do OnUpdate(0.25) end
     assert(not root:GetChild("mapPanel").visible and not root:GetChild("prologuePanel").visible)
     assert(root:GetChild('nodePanel').visible and root:GetChild('nodePanel'):GetChild('eventView').visible)
     for _ = 1, 8 do OnUpdate(0.25) end

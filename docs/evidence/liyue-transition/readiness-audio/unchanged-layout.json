@@ -1,0 +1,6 @@
+{
+  "sameLayout": true,
+  "r2Sha256": "b2315b2e7b09d8730b854ff8a35ac7be2e1a14336e7f2c908165f033ffc7b7db",
+  "r3Sha256": "b2315b2e7b09d8730b854ff8a35ac7be2e1a14336e7f2c908165f033ffc7b7db",
+  "scope": "Actual native candidate interface readbacks; identical control properties and text/font/layout, different Lua/theme sound/timing only."
+}
