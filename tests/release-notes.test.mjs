@@ -212,3 +212,20 @@ test('unpublished competition candidate does not advertise future acts or persis
       `future/persistent feature must remain in engineering history, not candidate player copy: ${line}`);
   }
 });
+
+test('Keep a Changelog headings, Unreleased and comparison links parse without leaking draft notes', () => {
+  const source = [
+    '# 更新日志',
+    '## [Unreleased]', '### 新增', '- 尚未对外发布的功能。',
+    '## [1.2.0] - 2026-11-12',
+    '### 变更', '- 调整了主菜单的页面布局。',
+    '### 修复', '- 修复地图按钮偶尔无法点选的问题。',
+    '[Unreleased]: https://github.com/FurinyaWorks/Slay-the-Heavens/compare/v1.2.0...develop',
+    '[1.2.0]: https://github.com/FurinyaWorks/Slay-the-Heavens/tree/v1.2.0'
+  ].join('\n');
+  const notes = parseChangelog(source);
+  assert.deepEqual([...notes.keys()], ['v1.2.0']);
+  assert.equal(notes.get('v1.2.0').notesDate, '2026-11-12');
+  assert.deepEqual(notes.get('v1.2.0').improved, ['调整了主菜单的页面布局。']);
+  assert.deepEqual(notes.get('v1.2.0').fixed, ['修复地图按钮偶尔无法点选的问题。']);
+});
