@@ -2,11 +2,12 @@ import {parseDependencies} from './arm-auto-merge.mjs';
 import {projectRepositoryId,projectRepositoryMatches} from './repository-identity.mjs';
 import {queueRulesFingerprint} from './merge-queue-policy.mjs';
 
-const repo='FurinyaWorks/Slay-the-Abyss';
 const validSha=value=>typeof value==='string'&&/^[a-f0-9]{40}$/.test(value);
 const positive=value=>Number.isSafeInteger(value)&&value>0;
-const queryText=`query {
- repository(owner:"FurinyaWorks",name:"Slay-the-Abyss") {
+const queryText=repo=>{
+ const [owner,name]=repo.split('/');
+ return `query {
+ repository(owner:${JSON.stringify(owner)},name:${JSON.stringify(name)}) {
   databaseId nameWithOwner ref(qualifiedName:"refs/heads/develop") { target { oid } }
   mergeQueue(branch:"develop") { entries(first:100) {
    pageInfo { hasNextPage }
@@ -16,14 +17,17 @@ const queryText=`query {
   } }
  }
 }`;
+};
 
 // The native queue owns scheduling. This bounded, read-only admission check
 // only releases a group whose live prefix and project-specific authorization
 // can still be proven. Ambiguous/oversized queues require operator attention.
 export function collectQueueAdmission(event,env,query,ruleset){
+ const repo=env.GITHUB_REPOSITORY;
+ if(!projectRepositoryMatches(event?.repository,repo))throw Error('Current queue repository identity is invalid');
  ruleset??=JSON.parse(query('api',`repos/${repo}/rulesets/25870651`));
  const fingerprint=queueRulesFingerprint(ruleset,{allowRedacted:true});
- const response=JSON.parse(query('api','graphql','-f','query='+queryText));
+ const response=JSON.parse(query('api','graphql','-f','query='+queryText(repo)));
  const repository=response?.data?.repository;
  const entries=repository?.mergeQueue?.entries;
  const base=event.merge_group.base_sha;
