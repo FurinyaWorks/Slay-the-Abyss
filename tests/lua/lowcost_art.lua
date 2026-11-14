@@ -5,6 +5,24 @@ local root=F.Viewport.apply(F.control({children=F.Layout}),1280,720)
 local icon=root:GetChild('relicBar'):GetChild('slot1'):GetChild('icon')
 local pool=icon.parent:GetChild('iconArt')
 local platform={imageSource='static',color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end}
+-- Optional artwork must not break legacy/default controls without an Art sibling.
+local lookups=0
+local legacyParent={GetChild=function()lookups=lookups+1;return nil end}
+for _,name in ipairs({false,17,''})do
+ local fallback={parent=legacyParent,name=name}
+ assert(not Art.paint(fallback,'relic','calling_bell',42,platform))
+ Art.hide(fallback);Art.dim(fallback,.4)
+end
+local unnamed={parent=legacyParent}
+assert(not Art.paint(unnamed,'relic','calling_bell',42,platform))
+Art.hide(unnamed);Art.dim(unnamed,.4)
+assert(lookups==0,'invalid names must not reach optional sibling lookup')
+local named={parent=legacyParent,name='icon'}
+assert(not Art.paint(named,'relic','calling_bell',42,platform))
+Art.hide(named);Art.dim(named,.4)
+assert(lookups==3,'valid legacy controls must safely fall back without a pool')
+assert(not Art.paint({name='icon'},'relic','calling_bell',42,platform))
+assert(not Art.paint({name='icon',parent={GetChild=function()error('missing child')end}},'relic','calling_bell',42,platform))
 local writes=0
 for _,shape in pairs(pool.children)do local set=shape.SetImage;shape.SetImage=function(self,...)writes=writes+1;return set(self,...)end end
 local relics=0

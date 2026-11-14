@@ -1,0 +1,40 @@
+✔ authored art covers every placeholder relic and every two-act enemy within small fixed pools (12.197791ms)
+✖ real imported pools switch all illustrations, retain fallback on failure, and do not repaint cached shapes (3398.563688ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3712.898085
+
+✖ failing tests:
+
+test at tests/lowcost-art.test.mjs:27:1
+✖ real imported pools switch all illustrations, retain fallback on failure, and do not repaint cached shapes (3398.563688ms)
+  AssertionError [ERR_ASSERTION]: ...4970a76e0/pr654-shop-guard/src/lua/abyss_lowcost_art.lua:8: attempt to concatenate a boolean value (field 'name')
+  stack traceback:
+    ...4970a76e0/pr654-shop-guard/src/lua/abyss_lowcost_art.lua:8: in upvalue 'poolFor'
+    ...4970a76e0/pr654-shop-guard/src/lua/abyss_lowcost_art.lua:29: in function 'abyss_lowcost_art.paint'
+    tests/lua/lowcost_art.lua:13: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/pr654-shop-guard/tests/lowcost-art.test.mjs:32:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

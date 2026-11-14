@@ -1,0 +1,20 @@
+✔ authored art covers every placeholder relic and every two-act enemy within small fixed pools (7.828689ms)
+✖ real imported pools switch all illustrations, retain fallback on failure, and do not repaint cached shapes (339.233791ms)
+✔ Power ordering cold load is independent of turn and combat execution (169.003003ms)
+✔ power_schedule: independent old/current VMs retain full state, aliases, RNG and error results (9830.550649ms)
+✔ turn_power_plans: independent old/current VMs retain full state, aliases, RNG and error results (24081.639905ms)
+✔ shop_complete_source: independent old/current VMs retain full state, aliases, RNG and error results (15593.989374ms)
+✔ shop_card_identity: independent old/current VMs retain full state, aliases, RNG and error results (60810.637711ms)
+✔ Power ordering cannot reach an executor through immediate or deferred AST dependencies (2776.09743ms)
+✔ the metadata leaf main chunk and nested helpers actually enforce CC15 (1.718448ms)
+✔ the frozen Power Shop epoch keeps complete old Git sources and freshly authenticates its five owners (19.973862ms)
+✖ the current Power Shop facade authenticates every expanded owner and recovers through all original hosts (4.275065ms)
+POWER_SHOP_RESOURCE {"testProcessMaxRSSKiB":2249196}
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130553.3915
