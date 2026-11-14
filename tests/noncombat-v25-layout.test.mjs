@@ -21,6 +21,7 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(child(child(menu,'start'),'hit'),start);
  assert.equal(child(child(panel,'confirm'),'hit'),confirm);
  assert.equal(parts(panel).at(-1),modal);
+ assert.equal(modal.visible,false);assert.deepEqual(modal.children,[],'retire the duplicated selection deck; reuse the shared browser');
  assert.equal(JSON.stringify(child(stage,'battlePanel')),oldBattle);
  assert.equal(child(menu,'vista').visible,false);
  assert.equal(child(menu,'emblem').visible,false);

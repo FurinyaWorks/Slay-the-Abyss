@@ -12,6 +12,7 @@ function surface(name,w,h,colour,theme){
  return {name,kind:'container',size:[w,h],children:[{name:'fill',kind:'image',position:[0,0],size:[w,h],image:theme.image.rect,colour}]};
 }
 export function characterSelectionComposition(panel,theme){
+ const modal=child(panel,'deckView');modal.visible=false;modal.children=[];
  for(const name of ['title','v25HeadingEmblem','v25HeadingDivider','v25HeadingRule'])child(panel,name).visible=false;
  const details=child(panel,'details');
  const specs={name:[[115,216,505,60],48,'#E8C75C'],stats:[[145,280,145,30],18,'#F36C65'],gold:[[328,280,160,30],18,'#DFC552'],
