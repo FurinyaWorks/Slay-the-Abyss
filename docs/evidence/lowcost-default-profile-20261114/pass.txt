@@ -1,0 +1,11 @@
+✔ authored art covers every placeholder relic and every two-act enemy within small fixed pools (6.65406ms)
+✔ real imported pools switch all illustrations, retain fallback on failure, and do not repaint cached shapes (6216.174621ms)
+✔ default Quick Lua entry exercises fallback without installing official pools (1303.273526ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7686.586369

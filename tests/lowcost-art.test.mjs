@@ -8,6 +8,7 @@ import {spawnSync} from 'node:child_process';
 import {loadLowCostArt} from '../scripts/lowcost-art.mjs';
 import {nativeTheme} from '../scripts/native-ui-theme.mjs';
 import {buildUI} from '../scripts/build-ui.mjs';
+import {runLua} from '../scripts/test-lua.mjs';
 const require=createRequire(import.meta.url);
 test('authored art covers every placeholder relic and every two-act enemy within small fixed pools',()=>{
  const art=loadLowCostArt(),id=v=>typeof v==='object'?v.id:v;
@@ -30,4 +31,10 @@ test('real imported pools switch all illustrations, retain fallback on failure, 
  const init=`package.path=${JSON.stringify(out.replaceAll('\\','/')+'/?.lua;'+resolve('build/lua').replaceAll('\\','/')+'/?.lua;'+resolve('src/lua').replaceAll('\\','/')+'/?.lua')};dofile('tests/lua/lowcost_art.lua')`;
  const r=spawnSync(process.execPath,[require.resolve('fengari-node-cli/src/lua-cli.js'),'-e',init],{encoding:'utf8',timeout:60000,maxBuffer:1024*1024,env:{...process.env,LUA_INIT:'',LUA_INIT_5_3:''}});
  assert.equal(r.status,0,r.stdout+r.stderr+String(r.error??''));assert.match(r.stdout,/LOWCOST_ART_PASS 88 42/);
+});
+
+test('default Quick Lua entry exercises fallback without installing official pools',()=>{
+ const r=runLua('tests/lua/lowcost_art.lua');
+ assert.equal(r.status,0,r.stdout+r.stderr);assert.match(r.stdout,/LOWCOST_ART_DEFAULT_FALLBACK_PASS/);
+ assert.doesNotMatch(r.stdout,/LOWCOST_ART_PASS 88 42/);
 });

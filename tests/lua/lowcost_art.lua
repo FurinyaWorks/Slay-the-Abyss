@@ -5,6 +5,38 @@ local root=F.Viewport.apply(F.control({children=F.Layout}),1280,720)
 local icon=root:GetChild('relicBar'):GetChild('slot1'):GetChild('icon')
 local pool=icon.parent:GetChild('iconArt')
 local platform={imageSource='static',color=function(r,g,b,a)return {r=r,g=g,b=b,a=a}end}
+-- Optional artwork must not break legacy/default controls without an Art sibling.
+local lookups=0
+local legacyParent={GetChild=function()lookups=lookups+1;return nil end}
+for _,name in ipairs({false,17,''})do
+ local fallback={parent=legacyParent,name=name}
+ assert(not Art.paint(fallback,'relic','calling_bell',42,platform))
+ Art.hide(fallback);Art.dim(fallback,.4)
+end
+local unnamed={parent=legacyParent}
+assert(not Art.paint(unnamed,'relic','calling_bell',42,platform))
+Art.hide(unnamed);Art.dim(unnamed,.4)
+assert(lookups==0,'invalid names must not reach optional sibling lookup')
+local named={parent=legacyParent,name='icon'}
+assert(not Art.paint(named,'relic','calling_bell',42,platform))
+Art.hide(named);Art.dim(named,.4)
+assert(lookups==3,'valid legacy controls must safely fall back without a pool')
+assert(not Art.paint({name='icon'},'relic','calling_bell',42,platform))
+assert(not Art.paint({name='icon',parent={GetChild=function()error('missing child')end}},'relic','calling_bell',42,platform))
+-- Default/Quick builds intentionally do not install official artwork pools.
+-- Exercise the fallback instead of assuming an official-only generated layout.
+if Theme.lowCostArt==nil then
+ assert(pool==nil,'default profile must not install the official art pool')
+ assert(not Art.paint(icon,'relic','calling_bell',42,platform))
+ local Relics=require('abyss_relic_view_ui')
+ local view=Relics.new(root:GetChild('relicPanel'),root:GetChild('relicBar'),'click',platform,function()return ''end,function()end,function()end,'map')
+ local run={data=F.Data,relics={'calling_bell'},phase='map',relicCounters={}}
+ view:refreshBar(run,true);assert(icon.visible,'default relic remains visible')
+ assert(view:open(run,1));view:close();Art.hide(icon);Art.dim(icon,.4)
+ print('LOWCOST_ART_DEFAULT_FALLBACK_PASS')
+ return
+end
+assert(pool,'official profile must install artwork pools')
 local writes=0
 for _,shape in pairs(pool.children)do local set=shape.SetImage;shape.SetImage=function(self,...)writes=writes+1;return set(self,...)end end
 local relics=0

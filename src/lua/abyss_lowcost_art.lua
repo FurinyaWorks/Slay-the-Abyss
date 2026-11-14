@@ -4,7 +4,7 @@ local M={}
 local painted=setmetatable({},{__mode='k'})
 local function poolFor(icon)
  local parent=icon and icon.parent
- if not parent or parent.alive==false then return nil end
+ if not parent or parent.alive==false or type(icon.name)~='string' or icon.name=='' then return nil end
  local ok,pool=pcall(parent.GetChild,parent,icon.name..'Art')
  return ok and pool or nil
 end

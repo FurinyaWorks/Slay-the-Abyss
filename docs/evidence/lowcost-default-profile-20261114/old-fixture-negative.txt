@@ -1,0 +1,35 @@
+✖ default Quick Lua entry exercises fallback without installing official pools (1691.624786ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1928.010176
+
+✖ failing tests:
+
+test at tests/lowcost-art.test.mjs:36:1
+✖ default Quick Lua entry exercises fallback without installing official pools (1691.624786ms)
+  AssertionError [ERR_ASSERTION]: ...a4970a76e0/pr654-quick-profile/tests/lua/lowcost_art.lua:27: attempt to index a nil value (local 'pool')
+  stack traceback:
+    ...a4970a76e0/pr654-quick-profile/tests/lua/lowcost_art.lua:27: in main chunk
+    [JS]: in function 'dofile'
+    (command line):1: in main chunk
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/c1a4970a76e0/pr654-quick-profile/tests/lowcost-art.test.mjs:38:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

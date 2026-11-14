@@ -1,0 +1,10 @@
+✔ authored art covers every placeholder relic and every two-act enemy within small fixed pools (6.707396ms)
+✔ real imported pools switch all illustrations, retain fallback on failure, and do not repaint cached shapes (6166.543351ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6349.736226
