@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "repositoryId": 1429751262,
+  "canonicalRepository": "FurinyaWorks/Slay-the-Heavens",
+  "previousArchive": "89f91b03004fac43a3fc25c6cf00db4fa3cb4f66",
+  "successorPR": 661,
+  "successorHead": "f58958f84a9f36c12918b8f851176da7648a8b1d",
+  "completeIntegrationHistory": "1ac591ef1147b0b777c182d1db190c411674c97f",
+  "entries": [
+    {
+      "pr": 643,
+      "disposition": "consolidated into PR661",
+      "branch": "chore/m7-product-first-handoff-20261113",
+      "head": "952560137c03b44a855351ec7eaf9639193a27f1"
+    },
+    {
+      "pr": 652,
+      "disposition": "consolidated into PR661",
+      "branch": "feat/treasure-readable",
+      "head": "a98a4d8389f4776753da5fb2f21245c13f12f9b3"
+    },
+    {
+      "pr": 653,
+      "disposition": "consolidated into PR661",
+      "branch": "feat/art-followup-backlog",
+      "head": "43bd197879b8193415b1a1cfdf7aa32da3d350c1"
+    },
+    {
+      "pr": 654,
+      "disposition": "consolidated into PR661",
+      "branch": "feat/lowcost-missing-art",
+      "head": "181e4cde61532e13bac912119aca3dc503a4170b"
+    },
+    {
+      "pr": 655,
+      "disposition": "consolidated into PR661",
+      "branch": "feat/merchant-dialogue-pages",
+      "head": "9e554e68fa6b01c32e968f2975e87a774e0c4dc9"
+    },
+    {
+      "pr": 656,
+      "disposition": "deferred future registration; original candidate task ID106 conflicts with current future-art task and must be reconciled through CLI before later adoption",
+      "branch": "chore/backlog-optional-hallowing-p2-20261114",
+      "head": "ffc4c9c43d9d3fe55b1f8702680435665900ad85"
+    },
+    {
+      "pr": 657,
+      "disposition": "deferred registration; existing isolated-research authorization retained; no production enablement",
+      "branch": "docs/deferred-p2-card-art-optional-20261114",
+      "head": "bbbf8c01066a446697fd0f63ae458d65c21c058a"
+    },
+    {
+      "pr": 658,
+      "disposition": "deferred pending rights verification; current LICENSE unchanged",
+      "branch": "docs/protect-publishing-rights-20261114",
+      "head": "265c482d0d926462361b4e6c5546babbcbd58087"
+    }
+  ],
+  "state": "Recovery archive only. PR661 is authorized, not asserted merged. Deferred sources are not accepted product or license changes. Local dirty worktrees and independent new branches remain untouched."
+}
