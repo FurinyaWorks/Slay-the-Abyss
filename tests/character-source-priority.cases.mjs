@@ -5,6 +5,17 @@ const denied=JSON.parse(readFileSync(new URL('./fixtures/character-name-denials.
 import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateNamingManifest,validateArtifactParity,extractEmbeddedCardNames} from '../scripts/validate-character-source-priority.mjs';
+import {preCloseoutCiSource} from './helpers/closeout-ci-source.mjs';
+
+test('naming command package history requires complete current source and preserves drift',()=>{
+ const binding=JSON.parse(readFileSync(new URL('./helpers/naming-package-source.json',import.meta.url),'utf8'));
+ const source=readFileSync('package.json','utf8').replaceAll('\r\n','\n');
+ for(const input of [source,source.replaceAll('\n','\r\n')])assert.equal(preCloseoutCiSource(binding.path,input,'pr620'),binding.source);
+ for(const input of [source+'\n',source.slice(1),source.slice(0,-1),source.replace('verify:character-naming','verify:foreign-naming'),source.replaceAll('\n','\r\r\n'),null,{},17])
+  assert.equal(preCloseoutCiSource(binding.path,input,'pr620'),input);
+ assert.equal(preCloseoutCiSource(binding.path,source,'qualityRatchetIntegrated'),source);
+ for(const path of ['__proto__','constructor','foreign/package.json'])assert.equal(preCloseoutCiSource(path,source,'pr620'),source);
+});
 
 const make=()=>({
  role:'HT',artifact:'some.html',status:'HOLD',expected_cards:1,
