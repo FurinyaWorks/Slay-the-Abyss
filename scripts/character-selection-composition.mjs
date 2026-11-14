@@ -18,6 +18,18 @@ export function characterSelectionComposition(panel,theme){
   v25Story:[[115,326,475,48],17,'#F3EFDA'],relic:[[162,379,430,30],20,'#E7CA5A'],relicText:[[162,403,440,35],17,'#F3EFDA'],
   deckTitle:[[115,444,425,28],17,'#E7CA5A'],deckSummary:[[115,472,470,50],16,'#F3EFDA']};
  for(const [name,[box,font,colour]]of Object.entries(specs))placeText(child(details,name),box,font,colour);
+ // The integrated shared deck browser keeps its existing input owner. Place
+ // that entry below the summary and beside the selected character card.
+ const deck=child(details,'deckOpen');
+ if(deck){
+  Object.assign(deck,frame(115,532,200,36));
+  const hit=child(deck,'hit');hit.size=[200,36];
+  for(const state of children(hit)){
+   state.size=[200,36];
+   const label=child(state,'label');label.position=[0,0];label.size=[200,36];
+   label.text.fontSize=18;label.text.minFontSize=18;
+  }
+ }
  for(const name of ['relicTag','deckRule','portraitFrame','floorShadow','officialSelectionFigure']){const n=child(details,name);if(n)n.visible=false;}
  Object.assign(child(details,'v25HealthIcon'),frame(115,286,23,21));
  const bag=child(details,'v25GoldIcon');Object.assign(bag,frame(295,284,25,28));

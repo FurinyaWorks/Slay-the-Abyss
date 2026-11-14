@@ -24,7 +24,7 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.equal(JSON.stringify(child(stage,'battlePanel')),oldBattle);
  assert.equal(child(menu,'vista').visible,false);
  assert.equal(child(menu,'emblem').visible,false);
- assert.deepEqual(child(menu,'start').position,[-430,-71]);
+ assert.deepEqual(child(menu,'start').position,[-450,-170]);
  assert.deepEqual(child(child(menu,'start'),'officialResultLabel'),{...resultLabel,name:'officialResultLabel',visible:false});
  for(const key of ['confirm','cancel'])for(const state of parts(child(child(panel,key),'hit'))){
   const flag=child(state,'v25Flag'),cloth=child(flag,'cloth'),rim=child(flag,'rim');
@@ -50,6 +50,19 @@ test('official menu and selection reuse live inputs with bounded native decorati
  assert.deepEqual(child(child(panel,'details'),'officialSelectionFigure').scale,[1,1]);
 });
 function selectedSlot(panel){return child(child(panel,'v25Roster'),'selected');}
+
+test('integrated selection retains the shared deck input below its summary without overlapping the selected card',()=>{
+ const theme=officialAssetsTheme(nativeTheme),layout=withViewport(gameLayout(),theme);
+ const panel=child(child(layout,'stage')??layout,'characterPanel'),details=child(panel,'details');
+ const deck=child(details,'deckOpen'),hit=child(deck,'hit');
+ applyOfficialNoncombatLayout(layout,theme);
+ assert.equal(child(child(details,'deckOpen'),'hit'),hit,'reuse the live shared-browser input');
+ assert.deepEqual(deck.size,[200,36]);assert.deepEqual(hit.size,[200,36]);
+ const overlaps=(a,b)=>Math.abs(a.position[0]-b.position[0])*2<a.size[0]+b.size[0]
+  &&Math.abs(a.position[1]-b.position[1])*2<a.size[1]+b.size[1];
+ for(const other of [child(details,'deckSummary'),selectedSlot(panel),child(panel,'cancel')])
+  assert.equal(overlaps(deck,other),false,'deck entry overlaps '+other.name);
+});
 
 test('production background preserves the exact approved experiment rows, including colour and half masks',()=>{
  const background=lumineSelectionBackground();
