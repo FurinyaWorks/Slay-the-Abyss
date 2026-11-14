@@ -135,7 +135,7 @@ const sourcedP3=(name='舞花枪',method='reference_only')=>{
   rejected_candidates:[{text:'official phrase',source_url:'https://example.org/entry',source_entry:'specific entry',
    rejection_reason:'This official term is a named burst and not a comparable sweeping move'}],
   result:'no_suitable',reason:'No suitable official player-facing expression for this particular weapon move'});
- c.search={P1:search('skill'),P2:search('story')}; 
+ c.search={P1:search('skill'),P2:search('story')};
  return m;
 };
 test('raw cultural technique must not reach player display while pending (舞花枪)',()=>{
