@@ -5,7 +5,7 @@ status: Done
 assignee:
   - Furinya
 created_date: '2026-11-14 07:06'
-updated_date: '2026-11-14 08:39'
+updated_date: '2026-11-14 08:46'
 labels: []
 milestone: m-8
 dependencies: []
@@ -61,6 +61,8 @@ R3按真实开局准备阶段+目标原生page.active收尾，快速Host实跑1.
 R3 最终独立复审通过：reviewId=/root/review_liyue_transition；head=cca6ee150250b48604a8202ef5b7a599441781fc；base=9f2f44e4c79789fbcb64a515938765dbc240f830；conclusion=pass；unresolved=[]。PR #660 已更新 R3 准备状态收尾、原生音效和同候选截图证据；官方 R3 声画/设备仍待验，任务保持 In Progress。
 
 用户本轮明确确认视觉效果通过，要求移除过吵音效并授权挂入自动合并队列，无需等待CI。R4仅删除转场音效调用、注入与专用配置；静音进入/完成/取消回归通过，12项定向Node检查（内含13项Lua转场场景）通过，语法/素材清单/Backlog检查通过，独立R4差异复审无问题。截图沿用视觉时序相同的R3实际模拟器采集并保留证据边界；手机/正式RC仍未验证。
+
+自动合并准入遇到明确CI失败：rules12 hosted checkout包134782769字节超过128MiB。仅归档已否定R1的PNG/GIF到本地并保留cca6ee15历史链接、原收据，保留R2/R3完整衔接和最终视觉证据；不改运行时及门禁。使用已复审的95256013改名兼容协调器，避免将仓库改名工具改动混入本PR。待新HEAD精确复审后重新授权。
 <!-- SECTION:NOTES:END -->
 
 ## Final Summary

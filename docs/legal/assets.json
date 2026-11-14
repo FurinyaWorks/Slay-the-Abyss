@@ -8834,42 +8834,6 @@
       "category": "lumine-native-fit-20261113",
       "lfsBytes": 378523
     },
-    "docs/evidence/liyue-transition/after.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "0a0f271bbf32e3c98ede3922448e4c8c7b8708c38c2e8c804a3096bfbfeb4c61"
-    },
-    "docs/evidence/liyue-transition/black.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "0df6b406fc6b914eb0d6b4774a066c3534c041745fd7cea30b5f852a2c8a341f"
-    },
-    "docs/evidence/liyue-transition/character.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "61fc0e43839bc0efb24d991fc2b47c6a564e89c5405c5cdd3e582cb6959c9d9e"
-    },
-    "docs/evidence/liyue-transition/cover.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "3741d9ffa28c5971000a802c7deba159c92387e60b8051b0e6e7ef6b0b3b6f0f"
-    },
-    "docs/evidence/liyue-transition/hold.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "7f954fd733c1a6306f4ab9a75bc5136d98d47ec6469b19ce0d99163d67b5c0ee"
-    },
-    "docs/evidence/liyue-transition/menu.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "b0a1936b545249471d14508104d2f30c4a3f123b526ad78a5ce7fef15ff4d0a7"
-    },
-    "docs/evidence/liyue-transition/reveal.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "f8a68104ff2afa790149463787b041157cf4eca0a34e873ef341163368f2815c"
-    },
-    "docs/evidence/liyue-transition/seal.png": {
-      "category": "liyue-transition-evidence",
-      "sha256": "c6eb28bf416bd9853429c36953a8f38585c790fd84a65fa54c56ccee5fb0cc2f"
-    },
-    "docs/evidence/liyue-transition/transition.gif": {
-      "category": "liyue-transition-evidence",
-      "sha256": "b85bf8ed5fda089ed8a5ccfe2af1bca4752a72206cf07dd397b77a7e8ce18e24"
-    },
     "data/presentation/liyue_transition_reference.json": {
       "category": "liyue-user-reference",
       "sha256": "a7dda5e20ed091bb29e8a58191b88132630b0617ce5e48edbb1adaae7e853a22"
