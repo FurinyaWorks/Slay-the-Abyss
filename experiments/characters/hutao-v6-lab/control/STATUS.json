@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "phase": "BASELINE_REVIEW_REQUESTED",
+  "updated_date": "2026-11-14",
+  "owner_task": "胡桃独立设计迭代",
+  "implementation_branch": "feat/hutao-v6-design-lab-20261114",
+  "allowed_root": "experiments/characters/hutao-v6-lab/",
+  "production_enabled": false,
+  "merge_authorized": false,
+  "release_authorized": false,
+  "pr_authorized": false,
+  "backlog_claim": "NOT_CREATED_CLI_UNAVAILABLE",
+  "candidate": {
+    "id": "baseline-pr640-99cc1e0",
+    "stage": "OLD_BASELINE_NOT_RETUNED",
+    "source_ref": "99cc1e0537dd611c0167584458a82ba5545694f7",
+    "source_path": "experiments/characters/hutao/full75/胡桃V5_75卡命名修订五战试玩版.html",
+    "lab_path": "experiments/characters/hutao-v6-lab/baseline/pr640.html",
+    "source_blobs": [{"path": "experiments/characters/hutao-v6-lab/baseline/pr640.html", "git_blob_sha": "364e1d3e8c8559e2fcb26276b9ae8a2813f21735"}],
+    "source_difference_to_chat_attachment": "UNRESOLVED_DIFFERENT_BLOB",
+    "independent_reviews": {"decisions": "PENDING", "economy": "PENDING", "presentation": "PENDING"},
+    "human_approval": "PENDING",
+    "ready_for_owner_playtest": false
+  },
+  "scheduled_tasks": [
+    {"name": "胡桃独立设计迭代", "created": true, "interval_hours": 12, "executed_evidence": null},
+    {"name": "胡桃机制独立评审", "created": true, "interval_hours": 12, "new_snapshot_only": true, "executed_evidence": null},
+    {"name": "胡桃平衡独立评审", "created": true, "interval_hours": 12, "new_snapshot_only": true, "executed_evidence": null},
+    {"name": "胡桃呈现独立评审", "created": true, "interval_hours": 12, "new_snapshot_only": true, "executed_evidence": null}
+  ],
+  "next_actions": ["Recover exact full sources and compare chat/PR640 variants", "Run baseline independent reviews", "Preregister A/B test and policies", "Implement isolated small-slice candidate then validate full75/relic", "Obtain same-snapshot independent review receipts before playable handoff"],
+  "not_claimed": ["Subagent launched", "Independent review passed", "Mechanics retuned", "Browser interaction tested", "Complete campaign balance", "Official platform acceptance"]
+}
