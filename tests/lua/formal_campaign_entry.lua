@@ -3,6 +3,14 @@
 -- no keys or historical wins are granted. This is not a natural playthrough.
 local F=dofile('tests/lua/support/game_ui_fixture.lua')
 local Map,Run=require('abyss_map'),require('abyss_run')
+local function finishOpening(host)
+    for _=1,80 do
+        if not host.starting and not(host.prologue and host.prologue:covering())
+            and not(host.pageReveal and host.pageReveal:covered())then assert(host.run and not host.disabled);return end
+        OnUpdate(0.05)
+    end
+    error('native opening did not finish')
+end
 local function fixture(experimental,bgm,characterProfile)
     local canvas=F.control({children=F.Layout})
     local host,signals
@@ -50,9 +58,10 @@ local function fixture(experimental,bgm,characterProfile)
     return host,host.root,signals
 end
 local function opening(host,root,bossCount)
+    finishOpening(host)
     local run=host.run
     assert(run and run.campaignProfile=='competition-two-act' and host.map.floor==0)
-    assert(not host.prologue and host.mode=='node' and not host.mapUI.navigationEnabled)
+    assert(not(host.prologue and host.prologue:covering()) and host.mode=='node' and not host.mapUI.navigationEnabled)
     local event=run.nodeFlow.event
     assert(event.id=='neow' and event.stage=='neow_intro' and event.neowBossCount==bossCount)
     assert(run.neowHistorySource==(bossCount==0 and 'fresh-start' or 'session-completed-run'))
@@ -108,7 +117,8 @@ local function start(host,root,button,element)
     selectedGeo(host,root)
     assert(not host.run,'selection must not create a Run')
     F.click(root,'characterPanel','confirm')
-    assert(not host.prologue and host.mode=='node','first confirmation opens the blessing, not the cancelled cinematic')
+    finishOpening(host)
+    assert(not(host.prologue and host.prologue:covering()) and host.mode=='node','first confirmation completes the opening and opens the blessing')
     local baseMaxHp=opening(host,root,0)
     -- The real entry has no history provider. Never synthesize qualification
     -- or mistake a seeded controlled route for a persisted natural victory.
@@ -209,8 +219,9 @@ local completed=host.run
 F.click(root,'menuPanel','start');selectedGeo(host,root)
 assert(host.run==completed,'selection preview cannot create a new run')
 F.click(root,'characterPanel','confirm')
+finishOpening(host)
 assert(host.run~=completed and host.run.act==1 and host.map.floor==0)
-assert(not host.prologue,'a new run still does not play the cancelled cinematic')
+assert(not(host.prologue and host.prologue:covering()),'new-run opening completed')
 opening(host,root,1)
 assert(host.run.neowStatus=='complete' and not host.run.endingUnlocked)
 assert(host.run.endingHistory.persistence=='disabled' and not host.run.endingHistoryResult and host.historyCalls()==0)
@@ -260,9 +271,9 @@ assert(not ui.exitOpen and ui.run==active,'resume means the same in-memory run, 
 assert(ui:openExit())
 -- Approved current copy preserves the same no-persistence contract.
 local exit=panel:GetChild('exitPanel')
-assert(exit:GetChild('message').text=='确认退出本局？退出后本局结束，进度无法恢复。\n将进入平台结算，随后可选择离开。')
+assert(exit:GetChild('message').text=='确认退出游戏？退出后本局结束，进度无法恢复。\n将进入平台结算，随后可选择离开。')
 local why=exit:GetChild('whyText')
-assert(why.visible and why.text=='存档功能需作者达到创作者 4 级后开放，喜欢的话欢迎点赞支持。帮助作者提升等级。')
+assert(why.visible and why.text=='本局仅在当前奇域会话中保留；退出奇域后无法继续。')
 assert(exit:GetChild('help').visible)
 F.click(panel,'exitPanel','help');assert(ui.controlsOpen and ui.run==active)
 assert(ui:closeExit() and ui.exitOpen and ui.run==active)

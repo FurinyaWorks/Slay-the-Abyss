@@ -27,8 +27,10 @@ test('normal Start accepts explicit platform mini history and generated buttons 
 end)
 test('approved prologue hands off to the full-source Neow only after its fade',function()
  local ui,root=fixture(4,function()return {bossCount=1}end,true)
- assert(testStart(ui));eq(ui.mode,'node');eq(ui.run.phase,'node');eq(ui.run.nodeFlow.event.id,'neow')
- assert(not ui.prologue and not root:GetChild('prologuePanel').visible)
+ assert(testStart(ui))
+ for _=1,80 do if not ui.starting and not ui.prologue:covering()then break end;ui:update(0.05)end
+ eq(ui.mode,'node');eq(ui.run.phase,'node');eq(ui.run.nodeFlow.event.id,'neow')
+ assert(not ui.prologue:covering() and not root:GetChild('prologuePanel').visible)
  eq(ui.mode,'node');assert(root:GetChild('nodePanel').visible);assert(not root:GetChild('mapPanel').visible)
  assert(nodeClick(root,'eventView/option1'));eq(#ui.run.nodeFlow.event.rewards,4)
  assert(nodeClick(root,'eventView/option1'));eq(ui.nodeUI.picker,'neow_card')

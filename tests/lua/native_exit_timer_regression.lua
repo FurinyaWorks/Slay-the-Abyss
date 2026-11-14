@@ -34,6 +34,14 @@ GameUI.new = originalNew
 assert(host and script.updating,'real native entry must start')
 host.seed=42 -- deterministic first-room encounters; native platform remains intact
 local root = canvas:GetChild('stage')
+local function finishOpening()
+    for _=1,80 do
+        if not host.starting and not(host.prologue and host.prologue:covering())
+            and not(host.pageReveal and host.pageReveal:covered())then assert(host.run and not host.disabled);return end
+        OnUpdate(0.05)
+    end
+    error('native opening did not finish')
+end
 local function hit(panel,button)
     local control=root:GetChild(panel)
     for part in button:gmatch('[^/]+') do control=assert(control:GetChild(part)) end
@@ -56,6 +64,7 @@ local function open(id)
     assert(root:GetChild('exitPanel').visible and not root:GetChild('runMenu').visible)
 end
 local function defeat()
+    finishOpening()
     -- Finish the production opening, enter the first legal room, then let real
     -- enemy turns defeat a controlled three-HP player. Never assign a phase.
     assert(F.click(root,'nodePanel','eventView/option1'))
@@ -105,7 +114,9 @@ assert(host.run==oldRun and host.mode=='defeat' and attempts==0)
 assert(F.statValue(root,'time')=='暂不可用')
 assert(not fire(hit('menuPanel','start'),'click',30),'cancel must invalidate old restart gesture')
 assert(tap('menuPanel','start',34) and host.characterOpen and host.run==oldRun)
-assert(F.confirmStart(host) and host.run~=oldRun and host.run.elapsedSeconds==0,
+assert(F.confirmStart(host))
+finishOpening()
+assert(host.run~=oldRun and host.run.elapsedSeconds==0,
     'unavailable timer must permit restart without carrying old duration')
 assert(not fire(hit('menuPanel','start'),'click',34),'restart gesture must be consumed')
 print('NATIVE_EXIT_TIMER_RESTART_PASS actual defeat, unavailable timer, exit cancellation, fresh run')

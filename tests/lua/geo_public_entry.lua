@@ -1,5 +1,13 @@
 local F=dofile('tests/lua/support/game_ui_fixture.lua')
 local GameUI=require('abyss_game_ui')
+local function finishOpening(host)
+ for _=1,80 do
+  if not host.starting and not(host.prologue and host.prologue:covering())
+   and not(host.pageReveal and host.pageReveal:covered())then assert(host.run and not host.disabled);return end
+  OnUpdate(0.05)
+ end
+ error('native opening did not finish')
+end
 local function native(workKey)
  local canvas=F.control({children=F.Layout})
  local host
@@ -39,12 +47,13 @@ local function native(workKey)
  assert(not host:confirmCharacter() and not host.run and host.seed=='2','configuration bypass created a future character')
  assert(host:selectCharacter('traveler'),'restore only the approved preselected identity after the forged-state negative')
  F.click(root,'characterPanel','confirm')
+ finishOpening(host)
  local run=host.run
  assert(run and not run.characterProfile and not run.data.originalV4Role and run.maxHp==80)
  assert(run.campaignProfile=='competition-two-act' and run.act==1)
  host:confirmCharacter() -- stale programmatic confirmation after the panel has closed
  assert(host.run==run,'duplicate confirmation created another run')
- assert(not host.prologue and host.mode=='node' and run.nodeFlow.event.id=='neow')
+ assert(not(host.prologue and host.prologue:covering()) and host.mode=='node' and run.nodeFlow.event.id=='neow')
  F.click(root,'nodePanel','eventView/option1')
  F.click(root,'nodePanel','eventView/option2')
  F.click(root,'nodePanel','eventView/option1')

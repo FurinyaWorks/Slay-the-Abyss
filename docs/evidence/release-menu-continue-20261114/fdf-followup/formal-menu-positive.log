@@ -1,0 +1,150 @@
+ABYSS_UI init Color=table
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_BGM_REQUEST ABYSS_BGM_STOP
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=2 source=explicit
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_BGM_REQUEST ABYSS_BGM_MAP
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=4
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=5
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=6
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=7
+ABYSS_BGM_REQUEST ABYSS_BGM_BATTLE
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=8
+ABYSS_BGM_REQUEST ABYSS_BGM_MAP
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=9
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=10
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=11
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=12
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=13
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=14
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=15
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=16
+ABYSS_BGM_REQUEST ABYSS_BGM_BOSS
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=17
+ABYSS_BGM_REQUEST ABYSS_BGM_MAP
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=18
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=19
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=20
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=21
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=22
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=23
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=24
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=25
+ABYSS_BGM_REQUEST ABYSS_BGM_BATTLE
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=26
+ABYSS_BGM_REQUEST ABYSS_BGM_MAP
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=27
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=28
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=29
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=30
+ABYSS_BGM_REQUEST ABYSS_BGM_BOSS
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=31
+ABYSS_BGM_REQUEST ABYSS_BGM_MAP
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=32
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=33
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=34
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=35
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=36
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=37
+ABYSS_BGM_REQUEST ABYSS_BGM_VICTORY
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=38
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=38
+ABYSS_RUN seed=3 source=explicit
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=39
+ABYSS_BGM_REQUEST ABYSS_BGM_MAP
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=39
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=40
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=41
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=42
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=43
+ABYSS_BGM_REQUEST ABYSS_BGM_BATTLE
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=44
+ABYSS_BGM_REQUEST ABYSS_BGM_DEFEAT
+ABYSS_UI settlement_requested defeat
+ABYSS_BGM_REQUEST ABYSS_BGM_STOP
+PASS formal two-act route, claim endpoint, new run, defeat and settlement
+ABYSS_UI init Color=table
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=2 source=explicit
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=4
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=5
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=6
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=7
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=8
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=9
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=10
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=11
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=12
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=13
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=14
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=15
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=16
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=17
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=18
+ABYSS_PAGE_REVEAL preparing page=battlePanel epoch=19
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=20
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=21
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=22
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=23
+ABYSS_UI settlement_requested victory
+PASS formal skip endpoint and one-shot victory settlement
+ABYSS_UI init Color=table
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=2 source=explicit
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=4
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=5
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=6
+ABYSS_UI settlement_requested defeat
+PASS formal Traveler-only entry and in-memory menu/exit
+ABYSS_UI init Color=table
+ABYSS_UI viewport_ready
+ABYSS_PAGE_REVEAL preparing page=menuPanel epoch=1
+ABYSS_UI ready
+ABYSS_PAGE_REVEAL preparing page=characterPanel epoch=2
+ABYSS_TRANSITION begin
+ABYSS_PAGE_REVEAL visible page=characterPanel epoch=2
+ABYSS_RUN seed=2 source=explicit
+ABYSS_PAGE_REVEAL preparing page=nodePanel epoch=3
+ABYSS_TRANSITION ready elapsed=0.35
+ABYSS_PAGE_REVEAL visible page=nodePanel epoch=3
+ABYSS_TRANSITION complete elapsed=1.15
+ABYSS_TRANSITION end elapsed=1.75
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=4
+ABYSS_PAGE_REVEAL updated page=nodePanel epoch=5
+ABYSS_PAGE_REVEAL preparing page=mapPanel epoch=6
+PASS explicit development experimental character switch
+FORMAL_CAMPAIGN_ENTRY_PASS 4; controlled room completions; native/natural NOT_RUN
+Lua fixture tests/lua/formal_campaign_entry.lua: 14769 ms
