@@ -1,0 +1,14 @@
+[
+  {
+    "id": "cleave-b",
+    "reason": "Triangle cannot be placed using a legal single-axis rotation"
+  },
+  {
+    "id": "armaments-a",
+    "reason": "Triangle cannot be placed using a legal single-axis rotation"
+  },
+  {
+    "id": "armaments-b",
+    "reason": "Triangle cannot be placed using a legal single-axis rotation"
+  }
+]
