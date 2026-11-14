@@ -112,7 +112,7 @@ export function gameLayout(theme = nativeTheme, options = {}) {
         { name: 'taglineRuleL', kind: 'image', position: [-150, layout.tagline[1]], size: [120, 1], image: image.rect, colour: color.goldDim },
         { name: 'taglineRuleR', kind: 'image', position: [150, layout.tagline[1]], size: [120, 1], image: image.rect, colour: color.goldDim },
         emblem,
-        text('title', layout.title, '杀戮原塔2', font.display, color.gold),
+        text('title', layout.title, 'Slay the Heavens', font.display, color.gold),
         text('tagline', layout.tagline, '', font.heading, color.goldBright),
         text('summary', layout.summary, '', font.body, color.textDim),
         { name: 'result', kind: 'container', size: [...theme.canvas.base], visible: false, children: [

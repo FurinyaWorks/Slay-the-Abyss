@@ -91,12 +91,12 @@ local function pose(ctx)
 end
 local function endingTitle(run)
     if run.ending=='two_act_complete' then return '双幕挑战完成' end
-    if run.ending=='true_victory' then return '真结局 · 深渊已被封印' end
-    return '深渊已被封印'
+    if run.ending=='true_victory' then return '最终挑战完成' end
+    return '挑战完成'
 end
 local function resultSubtitle(run,mode,victory)
     if victory and run.ending=='two_act_complete' then return '第一幕与第二幕已完成。本局挑战到此结束。' end
-    if victory and run.ending=='true_victory' then return '腐化之心已击败。真结局已达成。' end
+    if victory and run.ending=='true_victory' then return '最终挑战已完成。' end
     return Narrative.flow[mode].full
 end
 local function finalFloor(ctx,victory)
@@ -137,7 +137,7 @@ local function presentTitle(ctx,victory,defeat)
     vista:GetChild('seal'):GetChild('heart').imageColor=accent
     vista:GetChild('seal'):GetChild('ring').imageColor=colour(ctx,defeat and C.danger or C.gold)
     local title=menu:GetChild('title')
-    title.text=victory and endingTitle(ctx.owner.run) or defeat and '旅途在此中断' or '杀戮原塔2'
+    title.text=victory and endingTitle(ctx.owner.run) or defeat and '旅途在此中断' or 'Slay the Heavens'
     title.fontColor=colour(ctx,victory and C.goldBright or defeat and C.text or C.gold)
 end
 local function presentSettlement(ctx,outcome,available)

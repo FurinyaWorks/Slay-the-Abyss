@@ -1,5 +1,5 @@
 -- Shop merchant figure and head-relative speech bubble. Presentation only: every line is the
--- approved Lore v2 merchant copy, said in reaction to a transaction the node UI has
+-- reviewed narrative merchant copy, said in reaction to a transaction the node UI has
 -- already completed or refused. It never blocks, delays or replaces shop input.
 local Theme = require("abyss_theme")
 local Narrative = require("abyss_narrative")
