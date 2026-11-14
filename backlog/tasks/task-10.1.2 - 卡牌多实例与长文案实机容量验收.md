@@ -1,16 +1,16 @@
 ---
 id: TASK-10.1.2
 title: 验证多张卡牌和长文字是否撑得住
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-22 21:55'
-updated_date: '2026-11-07 03:47'
-due_date: '2026-10-28'
+updated_date: '2026-11-14 06:50'
 labels:
   - art validation
   - queued-after-M3
   - 待验
+  - delivery-verify
 milestone: m-5
 dependencies:
   - TASK-10.1.1
@@ -70,4 +70,8 @@ ordinal: 35000
 2026-10-30基线再次整合：develop ba9b1e60含PR350已批准13,201图元荧背景及生命周期组件，原画和图元保留；其生产注册pending、enabled=false，当前不在默认映射清单。已在平台负载文档明确：分批64/207 tick不等于FPS，同步释放成本待测；接入后需同候选重新计量与手机加载/取消/重入/切战斗/释放峰值，不复用8.96MB或当前静态清单批准接入。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14清理旧窗口日期：原due_date=2026-10-28保留于历史，不再显示为当前截止；实际未完成AC和审批不变。
+
+2026-11-14第二轮状态纠正：已有2/8项AC通过及既有实施证据，剩余未完成要求属于后续验证或接续。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

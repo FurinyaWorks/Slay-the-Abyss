@@ -1,13 +1,14 @@
 ---
 id: TASK-76.1
 title: 复验手机与电脑地图中断后的输入恢复
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-28 14:39'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:51'
 labels:
   - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -64,4 +65,6 @@ c695隔离实现现有◆回当前位置显式恢复：鼠标触屏可见，完�
 2026-11-03 赛后排期：m-5 → M7 产品体验；任务状态与未验 AC 保留。未定新截止日。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14第二轮状态纠正：已有1/3项AC通过及既有实施证据，剩余未完成要求属于后续验证或接续。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

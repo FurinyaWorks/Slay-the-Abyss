@@ -1,15 +1,14 @@
 ---
 id: TASK-60
 title: 修好CI重复拉取，并限制异常下载
-status: In Progress
+status: Done
 assignee:
   - '@Furinya'
-created_date: 2026-10-26 02:09
-updated_date: '2026-11-10T22:30:00Z'
+created_date: '2026-10-26 02:09'
+updated_date: '2026-11-14 06:31'
 due_date: '2026-10-26'
 labels:
   - p0 cost engineering
-  - 待验
 dependencies: []
 references:
   - scripts/ci-checkout-equivalent.mjs
@@ -30,9 +29,9 @@ ordinal: 0
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [x] #1 连续增量拉取不重复传输已有大对象，并保留精确提交和基准检查
-- [ ] #2 CI记录新增Git包大小，异常大包失败；依赖安装优先缓存且重试有界
+- [x] #2 CI记录新增Git包大小，异常大包失败；依赖安装优先缓存且重试有界
 - [x] #3 轻量回归和工程检查能抓住旧拉取方式，不新增常驻服务或全局配置
-- [ ] #4 记录本机止损已生效与仓库接线待共享文件释放的实际边界
+- [x] #4 记录本机止损已生效与仓库接线待共享文件释放的实际边界
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -67,4 +66,12 @@ Linux完整npm test复验1471项全部通过，0失败/0跳过；原缺pwsh失�
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
 
 2026-11-11 已修复 rules 初始 hosted checkout 的pack摘要/32MiB警告/128MiB异常门禁与可达性检查，代码1e88a4c4。5项定向+4份完整CI合同30/30通过，初次29/30失败保留，冻结历史hash未改。全库语法/指引/Backlog通过；独立本地复核通过。当前云环境缺pwsh，原self-hosted完整文件未重跑；实际托管、最终组合Full/队列/合后push未验证，AC2/4保持未勾。仅轻量范围，不改集中历史启动+Curses、成本/库存或用户GUI。
+
+2026-11-14对账：旧共享文件待释放已过期。634已接入空库blob:none检出、完整pack摘要/128MiB拒绝、依赖缓存与有界重试；来源清单与真实冷partial pack105.06MiB保留。PR/queue/push Full成功且本轮原verify:delivery返回merged_passed。本机早期refs止损记录原样保留，不新增常驻流量服务。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+轻量网络保护已进现行托管CI，634原合后验证闭环；旧待接线状态清除，不重复下载控制实现。
+<!-- SECTION:FINAL_SUMMARY:END -->

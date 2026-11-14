@@ -1,11 +1,11 @@
 ---
 id: TASK-104
 title: 建立玩家体验驱动的Agent诊断与产品验收闭环
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-09 11:11'
-updated_date: '2026-11-10 14:29'
+updated_date: '2026-11-14 06:11'
 labels:
   - product-diagnosis
 milestone: m-8
@@ -36,7 +36,7 @@ Owner要求将“为什么一周多架构优化仍未提前定位游戏逐块出
 - [x] #2 复用现有生产 GIL 构建/原生 SDK/BeyondSimulator、Host 测量入口，形成可重放的 UI 加载与交互场景；记录候选身份、启动/页面完整 ready、实例化数量与时机、长阻塞、输入结果及反复切屏资源变化。旧、新对照须控制画质、负载和场景；模拟器时间不冒充 GPU 帧时。
 - [x] #3 在现有受影响测试/Quality 或交付检查中实现至少一个可执行的产品体验回归关口及对应负对照：有问题的候选或伪造/缺失证据应明确失败；正常候选可通过；无数据时显示 UNVERIFIED 而非 PASS。不能仅交文字规范，不为每个普通 PR 增加重型运行。
 - [x] #4 用 TASK-103 / PR #565 做闭环实战：判断原组件移植消除了什么症状、把哪些成本前移、还剩什么阻塞；以冻结批准的 V25 作为视觉与交互验收基准，社区组件仅承担技术复用。实际内容实现由原任务负责；未完成的官方导入、存档容量、PC/手机性能保持未验。
-- [ ] #5 将闭环嵌入现有 Agent/Backlog 任务处理机制：重大体验阻塞先复现后修复，局部指标不能冒充交付；无效实验自动触发复核/转向，避免重复 PR、空转和同文件争用。用至少一个反例验证该机制能拦截错误完成声明；现有 Fast/Full、独立复审、合并队列和授权边界不退化，当前 HEAD 完整门禁后才能收口。
+- [x] #5 将闭环嵌入现有 Agent/Backlog 任务处理机制：重大体验阻塞先复现后修复，局部指标不能冒充交付；无效实验自动触发复核/转向，避免重复 PR、空转和同文件争用。用至少一个反例验证该机制能拦截错误完成声明；现有 Fast/Full、独立复审、合并队列和授权边界不退化，当前 HEAD 完整门禁后才能收口。
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -61,4 +61,12 @@ Owner要求将“为什么一周多架构优化仍未提前定位游戏逐块出
 正式Full42560668427首轮29回归分片成功，POSIX3/14和Windows6在Luacheck下载504前置失败；失败项补跑后POSIX3仍504。已保存四份job原始日志与摘要，未把未执行测试写成通过。最小纠偏为现有curl原生有界重试，版本/SHA/60秒下载与65秒进程上限均不变；真实loopback RED/GREEN及持续失败/404/坏哈希反例20/20通过，原测试库存和预算不变。新增下载源修复将随本PR重新独审及验证，不绕门禁。
 
 Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯一剩余组合入口#607，CI减负入口#606。完整来源、精确SHA和恢复方法见docs/backlog-details/INTEGRATION-CLOSEOUT-20261110.json；10份M7独立切片只是保全待接续，未进入主线，UI组合也未验收。沿集中入口处理，不为同一来源再开平行PR；当前未勾AC和状态保持。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 本轮verify:outcome为DIAGNOSED且productStatus为UNVERIFIED；诊断机制及反例已交付，实际产品/设备缺口仍归103和4.21。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+本轮verify:outcome为DIAGNOSED且productStatus为UNVERIFIED；诊断机制及反例已交付，实际产品/设备缺口仍归103和4.21。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

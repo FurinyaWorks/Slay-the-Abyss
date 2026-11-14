@@ -1,14 +1,15 @@
 ---
 id: TASK-25.2.1
 title: 岩荧战斗待机动画：保留原构图、整体运动与低负载验证
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-10 09:38'
-updated_date: '2026-11-14 03:03'
+updated_date: '2026-11-14 10:13'
 labels:
   - art
   - design
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -55,9 +56,6 @@ type: task
 - [ ] #2 只交付一个同构图、整体协调、自然循环的荧战斗 idle；AI 自检和独立复核通过，Owner 在实际展示尺寸能看出动作且认可角色整体观感。
 - [ ] #3 用实际候选核对低资源计数、加载及可见运动；有同一角色图元/控件真实统计而非“57图元”宣称，并能明确说明回退或取舍。
 - [ ] #4 独立的待机原生候选可在可用的真实客户端/模拟器验证：循环、战斗进入/退出、中断与恢复可靠，不影响现有整人攻击/受击位移与特效；官方 PC/手机性能按设备分层，未测不得勾。
-- [ ] #5 按2026-11-14用户给定风格尝试最新原生拟合降本：Clean, cel-shaded low-poly / flat-shaded polygons anime style, with sharp faceted geometric shapes, large flat color blocks, minimal gradients, crisp outlines；与同构图旧候选实际比较，不先保证理论降本
-- [ ] #6 当前没有经上述风格处理的待机参考图；先由执行者做一个可审阅小样，若无法维持原角色整体身份和循环质量，明确展示不足并请用户补处理后的参照图，再继续；不把补图需求变成要求用户绘制或操作编辑器
-- [ ] #7 每轮记录静态图元及所有常驻控件、动画变化调用、载荷、加载/循环/退出成本和真实战斗尺寸对照；达到画质及低成本Go并经用户认可后才采用，未达保留No-Go与原候选
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -69,5 +67,7 @@ type: task
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
+2026-11-14第二轮状态纠正：634已接入idle-approved-v1、7303图元/18缓存band及现有动作生命周期；整体运动认可与当前低资源/设备验证仍缺，沿653接续而非重做待机。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
+
 2026-11-14 Owner追加：复用最新选角/主菜单的分层轮廓与局部精修路线，试做低多边形/赛璐璐平涂待机降本；未提供已处理动画参考，先尝试，做不好再请Owner补图。当前session仅登记给其他session领取，不执行本任务；原构图/整体骨架、既有攻击受击反馈、人工及设备门禁和历史否决保留。旧计划中的Sprint字样仅作历史，执行按docs/TASK_EXECUTION.md。
 <!-- SECTION:NOTES:END -->

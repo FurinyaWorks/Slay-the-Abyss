@@ -5,13 +5,14 @@ status: To Do
 assignee:
   - '@Furinya'
 created_date: '2026-10-23 12:24'
-updated_date: '2026-10-28 14:46'
+updated_date: '2026-11-14 06:17'
 labels: []
 dependencies: []
 references:
   - TASK-4
   - docs/design/UI_DESIGN.md
   - docs/backlog-details/TASK-40.md
+  - docs/evidence/backlog-reconcile-20261114.md
 priority: low
 type: feature
 ordinal: 41000
@@ -44,4 +45,6 @@ ordinal: 41000
 2026-10-27队列复核：补齐有效负责人Furinya；Low候选仍不占当前冲刺，不因指定负责人自动启动新功能。
 
 工程健康清理保留 fix/pr260-room-fixtures（646d7e13）独立商品手柄Focus只读说明及6组Host回归，尚未吸收；原.worktrees/pr260-room-fixtures与已verify恢复bundle完整保留。该成果为未来手柄候选，先核对当前inspectable/purchasable再择取，不覆盖当前主线。
+
+2026-11-14按用户队列清理授权归档：手柄未来候选及已有离线实现保留；当前没有设备与独立实施计划，不把待设备误当应重做实现。
 <!-- SECTION:NOTES:END -->

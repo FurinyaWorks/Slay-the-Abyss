@@ -2,21 +2,8 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {auditOutcomeTasks} from './product-outcome.mjs';
-
-// Read-only: intentionally restricted to the scalar/list fields written by Backlog CLI.
-// All changes to these files must still go through that CLI.
-export function readTaskHeader(source) {
-  const header = source.replace(/^\uFEFF/, '').split(/^---\s*$/m)[1] ?? '';
-  const scalar = key => header.match(new RegExp(`^${key}:\\s*([^\\r\\n]+)`, 'm'))?.[1].trim().replace(/^['"]|['"]$/g, '') ?? null;
-  const list = key => {
-    const inline = header.match(new RegExp(`^${key}:[ \\t]*\\[([^\\r\\n]*)\\]`, 'm'));
-    if (inline) return inline[1].split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
-    const block = header.match(new RegExp(`^${key}:[ \\t]*\\r?\\n((?:[ \\t]+-[^\\r\\n]*\\r?\\n?)+)`, 'm'));
-    return [...(block?.[1] ?? '').matchAll(/^[ \t]+-[ \t]+(.+)$/gm)].map(m => m[1].trim().replace(/^['"]|['"]$/g, ''));
-  };
-  return { id: scalar('id'), status: scalar('status'), priority: scalar('priority'), milestone: scalar('milestone'),
-    parentTaskId: scalar('parent_task_id'), assignees: list('assignee'), labels: list('labels'), documentation: list('documentation'), dependencies: list('dependencies') };
-}
+import {readTaskHeader} from './backlog-metadata.mjs';
+export {readTaskHeader} from './backlog-metadata.mjs';
 
 // Priority describes the current queue, not whether a launch requirement matters.
 // Historical completed/ records are deliberately not reclassified.
@@ -180,6 +167,13 @@ export function verifyBacklogRoadmap(root = '.') {
     filePath: `${directory}/${name}`, source: readFileSync(join(root, directory, name), 'utf8') }));
   const readTasks = directory => files(directory).map(({ filePath, source }) => ({ ...readTaskHeader(source), filePath }));
   const tasks = readTasks('backlog/tasks'), completed = readTasks('backlog/completed');
+  const stateErrors=[...tasks,...completed].flatMap(task=>[
+    ...task.metadataErrors.map(error=>`${task.id??task.filePath}: ${error}`),
+    ...(!task.id?[`${task.filePath}: 缺少任务ID`]:[]),
+    ...(task.status==='Done'&&task.acCompleted<task.acCount?[`${task.id}: Done仍有未勾AC`]:[]),
+    ...(task.status==='To Do'&&task.labels.some(label=>['待验','delivery-verify'].includes(label))?[`${task.id}: 已开展待验任务不能退回To Do；应保留In Progress，明确阻塞时用Blocked`]:[]),
+    ...(task.status==='In Progress'&&task.acCount>0&&task.acCompleted===task.acCount?[`${task.id}: AC已全勾，须核对交付并同步状态，不得继续重复施工`]:[]),
+  ]);
   const archiveFiles = directory => { try { return files(directory); } catch { return []; } };
   const activeMilestoneFiles = files('backlog/milestones');
   const milestoneRecords=activeMilestoneFiles.map(({source})=>({
@@ -202,8 +196,9 @@ export function verifyBacklogRoadmap(root = '.') {
   const intakeFile=join(root,'config/task-intake.json');
   const intakeM7Errors=existsSync(intakeFile)&&JSON.parse(readFileSync(intakeFile,'utf8')).currentMilestoneIds?.includes('m-7')
     ?['M7: task-intake仍宣称已归档工程里程碑为活动阶段']:[];
-  return [...new Set([...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
-    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditRoleCapacityGate(tasks,completed), ...retiredM7Errors, ...intakeM7Errors, ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks(tasks,root)])];
+  return [...new Set([...stateErrors,...auditRoadmap(tasks, readFileSync(join(root, 'docs/MILESTONES.md'), 'utf8'), milestones, completed),
+    ...auditPriorities(tasks), ...auditQueueOwners(tasks), ...auditRoleCapacityGate(tasks,completed), ...retiredM7Errors, ...intakeM7Errors,
+    ...auditOrderedStageIds(milestoneRecords, requiresCurrent), ...auditOutcomeTasks([...tasks,...completed],root)])];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const errors = [...verifyBacklogRoadmap(), ...verifyMilestoneScope()];

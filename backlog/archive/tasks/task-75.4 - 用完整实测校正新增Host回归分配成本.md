@@ -5,9 +5,11 @@ status: In Progress
 assignee:
   - Furinya
 created_date: '2026-11-05 03:18'
-updated_date: '2026-11-05 03:54'
+updated_date: '2026-11-14 06:17'
 labels: []
 dependencies: []
+references:
+  - docs/evidence/backlog-reconcile-20261114.md
 documentation:
   - docs/backlog-details/M7-HOST-BATCH-20261105.md
 parent_task_id: TASK-75
@@ -43,4 +45,6 @@ task:pick已ALLOW；当前开放PR516为本轮失败修复唯一实现，PR503�
 独审已核16条原始完整success行/wholelog摘要及严格inverse，22专项21过1预算失败。13槽理想下界加60秒为1894.690秒，LPT仅比下界多0.194秒；不降旧权重或改预算。75.5经独立准入承接14槽扩容，本任务AC明确仅负责校准，仍未完成。
 
 16同平台success完整计时及whole-source严格inverse独审通过；75.5扩14后独立100项CI合同全过，原13槽预算失败证据保留。来源/队列/实际push Full与原合后验证待，AC3不勾。
+
+2026-11-14按用户队列清理授权归档：早期16条Host成本校准已被TASK-75.6完整同平台成本合同吸收，现行来源继续保留原记录；不重复维护独立旧校准切片。
 <!-- SECTION:NOTES:END -->

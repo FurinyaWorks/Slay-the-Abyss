@@ -5,16 +5,17 @@ status: To Do
 assignee:
   - '@Furinya'
 created_date: '2026-10-29 07:11'
-updated_date: '2026-10-29 07:11'
+updated_date: '2026-11-14 06:17'
 labels:
   - 千星奇域
   - 运营
   - 流量扶持
   - post-release
 dependencies: []
-parent_task_id: TASK-48
 references:
   - docs/backlog-details/TASK-48.1.md
+  - docs/evidence/backlog-reconcile-20261114.md
+parent_task_id: TASK-48
 priority: low
 type: task
 ordinal: 79010
@@ -35,3 +36,9 @@ ordinal: 79010
 - [ ] #5 将打磨后的关卡提交任务5质量评审，留存提交与审核结果。
 - [ ] #6 如实记录实际获得的创作票券、流量扶持及可观察的试玩和反馈数据；没有奖励也按实际结果记录。
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+2026-11-14按用户队列清理授权归档：训练营推广为发布后可选运营计划，暂无当前活动执行承诺；原五阶段和报名资格记录保留。
+<!-- SECTION:NOTES:END -->

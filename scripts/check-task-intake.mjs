@@ -13,6 +13,8 @@ export function evaluateIntake({id,task,policy}) {
   if(!validPolicy(policy))return {decision:'HOLD',reasons:[...errors,'task intake policy invalid']};
   if(policy.blockedUntilOwnerApproval.includes(id))errors.push('explicit Owner approval required');
   if(task?.status!=='To Do')errors.push('already active, blocked or completed; inspect existing PR instead of duplicating');
+  if(task?.verificationOnly)errors.push('implementation already delivered; resume verification instead of implementing again');
+  if(task?.allCriteriaChecked)errors.push('all AC checked; reconcile delivery and task status before claiming');
   return {decision:errors.length?'HOLD':'ALLOW',reasons:errors};
 }
 export function loadTask(id,root='.') {
@@ -24,6 +26,8 @@ export function loadTask(id,root='.') {
   const end=lines.findIndex((line,index)=>index>0&&/^---[ \t]*$/.test(line));
   if(end<0)return null;
   const header=lines.slice(1,end);
+  const keys=header.filter(line=>/^\w[\w-]*[ \t]*:/.test(line)).map(line=>line.match(/^([\w-]+)[ \t]*:/)[1]);
+  if(new Set(keys).size!==keys.length)return null;
   // Do not silently ignore YAML key forms that this deliberately small native
   // metadata reader cannot interpret (quoted/explicit keys, aliases or merges).
   if(header.some(line=>line.trim()&&!/^[ \t#]/.test(line)&&!/^\w[\w-]*[ \t]*:/.test(line)))return null;
@@ -55,6 +59,10 @@ export function loadTask(id,root='.') {
   // Milestone never gates eligibility, but duplicate/invalid metadata is not
   // an authoritative task record. An absent milestone remains supported.
   if(header.some(line=>/^milestone[ \t]*:/.test(line))&&!task.milestone)return null;
+  const labels=header.join('\n').match(/^labels:[ \t]*(\[[^\n]*\]|\n(?:[ \t]+-[^\n]*\n?)*)/m)?.[1]??'';
+  if(/(?:^|[\s\[,'"])(?:待验|delivery-verify)(?=$|[\s\],'"])/u.test(labels))task.verificationOnly=true;
+  const criteria=[...(s.match(/<!-- AC:BEGIN -->([\s\S]*?)<!-- AC:END -->/)?.[1]??'').matchAll(/^- \[([ xX])\] /gm)];
+  if(criteria.length&&criteria.every(match=>match[1].toLowerCase()==='x'))task.allCriteriaChecked=true;
   return task;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {

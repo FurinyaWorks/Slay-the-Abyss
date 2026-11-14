@@ -1,15 +1,14 @@
 ---
 id: TASK-74.20
-title: 治理阻碍角色扩展的高风险复杂度
+title: 按真实内容阻塞复核剩余高风险复杂度
 status: In Progress
 assignee:
   - Furinya
-created_date: 2026-11-06 01:46
-updated_date: '2026-11-11T10:32:00Z'
 created_date: '2026-11-06 01:46'
-updated_date: '2026-11-11 01:13'
-updated_date: '2026-11-11T01:30:00Z'
-labels: []
+updated_date: '2026-11-14 10:13'
+labels:
+  - 待验
+  - delivery-verify
 milestone: m-9
 dependencies: []
 documentation:
@@ -208,4 +207,8 @@ Owner要求集中减负：2026-11-10旧PR/分支入口已关闭或清理，唯�
 2026-11-11 接续保全Golden Idol f1481459c到当前6a614fc8，原生产和45份证据逐字保留。choose CC31→9、全模块最高9；当前全库345模块5922测量，CC>30 34→33、>15 218→217，SCC68/11/2和最大72保持。行为7/7、来源11/11、原8Lua、formation12/12、room6/6、静态19/19通过；完整CI消费者84/84加独立9/9通过。旧epoch整图克隆OOM以主线既有冻结共享API消除，不增预算；保守来源floor32448ms。独审/最终发布身份继续，未Full/合并/平台验收，状态与AC保持。
 
 本片独审发现的CI unsupported-path提前投影已按原路径闸门修正；修后6文件85/85和独立63项负控通过，最终生产/source/CI代码独审无未解决问题。当前精确发布/正常Full仍待，不把旧84/9当修后验收，不勾AC。
+
+2026-11-14逐项对账：重复元数据经用户批准修复；Joust/GoldenIdol及六核心已由634及历史交付承接，不重复拆分。原全库绝对出口与残余范围未被Owner正式接受，未来按实际内容阻塞接续。
+
+2026-11-14第二轮状态纠正：六核心、Joust、GoldenIdol等已实现并进入历史组合；剩全库出口与残余接受，保持进行中待复核，不重做既有重构。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->

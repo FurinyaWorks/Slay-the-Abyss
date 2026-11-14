@@ -178,6 +178,28 @@ test('the existing command exits nonzero and names both Done files on a duplicat
 test('priority is read from the actual CLI header', () => {
   assert.equal(readTaskHeader('---\nid: TASK-1\npriority: high\n---\n').priority, 'high');
 });
+test('duplicate native metadata cannot silently disappear from the CLI task index',t=>{
+  const root=backlogFixture(t,[['backlog/tasks/task-74.19.md','TASK-74.19','In Progress',
+    'assignee: [Furinya]\nupdated_date: 2026-11-11\nupdated_date: 2026-11-10\n']]);
+  assert.match(verifyBacklogRoadmap(root).join('\n'),/TASK-74\.19.*updated_date/);
+});
+test('checked AC cannot leave a task in progress and unchecked AC cannot claim Done',t=>{
+  for(const [status,checked] of [['In Progress','x'],['Done',' ']]) {
+    const root=backlogFixture(t,[['backlog/tasks/task-9.md','TASK-9',status,'assignee: [Furinya]\n']]);
+    writeFileSync(join(root,'backlog/tasks/task-9.md'),
+      `---\nid: TASK-9\nstatus: ${status}\npriority: medium\nassignee: [Furinya]\n---\n<!-- AC:BEGIN -->\n- [${checked}] #1 observable proof\n<!-- AC:END -->\n`);
+    assert.match(verifyBacklogRoadmap(root).join('\n'),/TASK-9.*AC/);
+  }
+});
+test('a completed diagnostic task cannot evade its evidence contract',t=>{
+  const root=backlogFixture(t,[['backlog/completed/task-104.md','TASK-104','Done','labels: [product-diagnosis]\n']]);
+  assert.match(verifyBacklogRoadmap(root).join('\n'),/产品诊断合同缺失/);
+});
+test('delivery verification must not turn started work back into an unstarted To Do',t=>{
+  const root=backlogFixture(t,[['backlog/tasks/task-81.md','TASK-81','To Do',
+    'assignee: [Furinya]\nlabels: [delivery-verify]\n']]);
+  assert.match(verifyBacklogRoadmap(root).join('\n'),/TASK-81.*To Do/);
+});
 
 test('every current task needs a configured priority, including Done and optional tasks', () => {
   for (const status of ['To Do', 'In Progress', 'Blocked', 'Done']) {

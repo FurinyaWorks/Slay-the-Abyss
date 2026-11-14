@@ -1,15 +1,16 @@
 ---
 id: TASK-89
 title: 修复结束战斗后旅行者立绘高频退化为占位图
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-30 21:58'
-updated_date: '2026-11-07 03:48'
+updated_date: '2026-11-14 06:51'
 labels:
   - playtest-20261030
   - p0
   - gpt
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -45,4 +46,6 @@ Owner实机反馈：点击结束战斗后，原本正常显示的旅行者立绘
 2026-11-03 赛后排期：m-5 → M7 产品体验与核心特色；状态与未验 AC 保留，不设新截止日。
 
 2026-11-07 看板核对（develop 2c85bc61）：未发现实现提交或在途 PR，状态由 In Progress 归 To Do（未开始）；范围与原 AC 不变。
+
+2026-11-14第二轮状态纠正：原notes已有中性色覆盖缺陷的红绿回归、idle/attack/cancel与生命周期检查；用户所报高频资源退化的完整根因及实机复测仍缺。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

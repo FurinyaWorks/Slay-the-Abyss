@@ -1,17 +1,17 @@
 ---
 id: TASK-4.5
 title: 修复格挡数字裁切，并按原版核实伤害预览
-status: To Do
+status: In Progress
 assignee:
   - '@Furinya'
 created_date: '2026-10-24 12:17'
-updated_date: '2026-11-07 03:47'
-due_date: '2026-10-24'
+updated_date: '2026-11-14 06:50'
 labels:
   - awaiting-live
   - release-qa-20261101
   - release-blocker
   - 待验
+  - delivery-verify
 milestone: m-8
 dependencies: []
 references:
@@ -73,4 +73,8 @@ PR #304：手机反馈瞄准易伤目标时伤害未更新；离线拖动对照�
 2026-11-01 Bug3：用户要求直接按固定STS1源码完成选牌／选目标／出牌前数值预览，重点是手机点选与拖动。已复核aeubanks/sts@319009d5：鼠标有携牌后确认及拖放，手柄切换hoveredMonster后renderHand会先计算目标伤害再绘制；源码含触屏分支。当前2d06741卡面currentAim只接moving gesture/carry，手柄目标Focus仅更新owner.target，存在明确非拖动目标接线缺口；不将其冒认为本次手机现场完整根因。源位置与对照见新附件；本镜像renderHand准确行号1730–1766（核心1761–1764），旧排版行号保留历史。原离线AC与尚未完成实机AC保持。
 
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14清理旧窗口日期：原due_date=2026-10-24保留于历史，不再显示为当前截止；实际未完成AC和审批不变。
+
+2026-11-14第二轮状态纠正：已有3/7项AC通过及既有实施证据，剩余未完成要求属于后续验证或接续。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->

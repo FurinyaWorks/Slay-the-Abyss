@@ -6,6 +6,8 @@ import { pathToFileURL } from 'node:url';
 import {qualityShardJobs} from './ci-quality-shape.mjs';
 import {projectRepositoryId,currentProjectRepository,projectRepositoryMatches,collectIdentityWitness,identityWitnessValid} from './repository-identity.mjs';
 import {prFastErrors,collectFastCheckout} from './pr-quality-evidence.mjs';
+import {syncBacklogCloseout} from './backlog-closeout.mjs';
+export {planBacklogCloseout,syncBacklogCloseout} from './backlog-closeout.mjs';
 
 export const requiredJobs=['check','presentation','engineering-posix'];
 export const qualityWorkflowPath='.github/workflows/quality.yml';
@@ -461,6 +463,13 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).hr
       writeFileSync(join(dir,'evidence.json'),JSON.stringify({...evidence,...result},null,2)+'\n');
       console.log(`Delivery state: ${result.state}; actual merged commit ${evidence.pr.merge_commit_sha}; evidence ${dir}`);
       if(result.errors.length)throw new Error(result.errors.join('\n'));
+      const filePages=JSON.parse(gh('api','--paginate','--slurp',`repos/${repo}/pulls/${number}/files?per_page=100`));
+      if(!Array.isArray(filePages)||filePages.some(page=>!Array.isArray(page))||filePages.flat().length!==evidence.pr.changed_files)
+        throw Error('Backlog pending: incomplete PR file list');
+      const target=JSON.parse(gh('api',`repos/${repo}/git/ref/heads/develop`));
+      const backlog=syncBacklogCloseout({pr:evidence.pr,files:filePages.flat(),targetSha:target.object?.sha});
+      writeFileSync(join(dir,'backlog.json'),JSON.stringify(backlog,null,2)+'\n');
+      console.log(`Backlog state: ${backlog.state}; ${backlog.taskIds.join(', ')||'no tasks declared'}`);
       process.exitCode=0;
     } else {
       const {evidence,current}=collectPrDelivery(repo,Number(number),evidenceFile==='--low-risk-docs'?{disposition:'low-risk-docs'}:JSON.parse(readFileSync(evidenceFile,'utf8')),gh,

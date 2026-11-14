@@ -5,7 +5,7 @@ status: Blocked
 assignee:
   - '@Furinya'
 created_date: '2026-10-24 15:48'
-updated_date: '2026-10-31 10:48'
+updated_date: '2026-11-14 06:17'
 labels:
   - post-release
   - platform-capability
@@ -18,6 +18,7 @@ references:
   - src/lua/abyss_game_ui.lua
   - 'https://act.mihoyo.com/ys/ugc/tutorial/detail/mhzcw29qjjma'
   - docs/backlog-details/MOBILE-QA-20261028.md
+  - docs/evidence/backlog-reconcile-20261114.md
 priority: medium
 type: feature
 ordinal: 91000
@@ -52,4 +53,6 @@ PR #304：手机试玩短暂离开后丢进度，是否同实例、重建或断�
 2026-10-29 生命周期证据承接附件§1与§9：区分同实例切后台、短暂断网重连、退关重进、系统回收，记录实际候选、设备、权限、Run身份、牌UID/升级、遗物次数及随机状态；同实例暂停须保留同一Run及本局进度，重建不能用从零开局伪装继续。当前Blocked/Medium是既有PR306提交的导入差量，不是本次新增重分类；持久恢复仍不在比赛关键路径，不升级Lv.4、不新增服务器/外部存储、不承诺退出续玩，不扩为跨局历史系统。
 
 2026-10-31 PR409明确：额外四Boss已有战斗实现；延期项是真实历史provider及正常跨局解锁，非当期M3 Bug。权限具备且另获授权后核验未见/部分已见/全部已见；不硬设全解锁、不引入存储后端。
+
+2026-11-14按用户队列清理授权归档：持久恢复已由SCOPE排除当前范围；同实例中断恢复继续由TASK-76.1与TASK-38承接，不删运行时状态。
 <!-- SECTION:NOTES:END -->

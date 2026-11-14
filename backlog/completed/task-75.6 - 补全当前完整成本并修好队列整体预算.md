@@ -1,11 +1,11 @@
 ---
 id: TASK-75.6
 title: 补全当前完整成本并修好队列整体预算
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-05 07:58'
-updated_date: '2026-11-07 05:42'
+updated_date: '2026-11-14 06:18'
 labels: []
 dependencies: []
 documentation:
@@ -26,7 +26,7 @@ PR516来源Full通过，但同树原生队列Windows1的JS和Lua均成功后，�
 <!-- AC:BEGIN -->
 - [x] #1 当前同源码来源及队列的全部完整成功JS文件按平台唯一核验后ceil/max单向校准，旧值与unknown有效下限不下降；原Lua安全资格、预算、60秒余量与失败传播保持，原始完整数据及截断边界可追溯
 - [x] #2 以完整成本选取可行分片容量并验证当前全部文件唯一完整覆盖；所有规划、来源、队列与交付验证器的精确作业集合一致，旧shape、缺失、重复、伪造来源仍拒绝；历史完整输入精确可逆且旧golden不刷新
-- [ ] #3 独立深审、精确候选来源及原生队列和实际推送Full与原merged验证均通过，报告真实wall排队runner成本及未达稳定目标，未实测设备仍保持未完成
+- [x] #3 独立深审、精确候选来源及原生队列和实际推送Full与原merged验证均通过，报告真实wall排队runner成本及未达稳定目标，未实测设备仍保持未完成
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -63,4 +63,12 @@ PR516来源Full通过，但同树原生队列Windows1的JS和Lua均成功后，�
 集中defaults已合入：普通90、battle/host120、重型180秒，Sapphire90秒，真实早退入口同步。ci-runtime组合首轮8/9，发现此前Power/Shop新增floor遗漏；按固定完整收据单独认证新floor，原8local+1hosted合同保留，针对项1/1通过。Full原有同run/HEAD/BASE failed-only证据链经独审确认可复用，无重试框架或规则变更；#542重复旧Full仅请求取消，实际末尾汇总排队未冒充terminal。最终独审和精确来源/队列/合后Full仍待。
 
 Owner要求本轮尽快收尾结束，停止Act1延伸。最后实修：旧run取消后always汇总排队堵住同PR新run，已用原生force-cancel清除精确过期550f并读回completed/cancelled；两汇总改!cancelled()，普通失败/漏片仍原shell拒绝，取消不再占并发组。仅验证当前6文件，原失败日志保留，业务回归未重跑；最终候选待GitHub正常验证，不提前Done。
+
+2026-11-14：完整成本与现行调度已随后继组合交付，本轮634原交付验证merged_passed，PR/queue/push Full分别success。历史45/30guard决定及失败保留；稳定性能目标仍归75/81未勾，不重做旧调度。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+完整成本与整体预算合同已交付并核对634合后回执；性能目标另由75/81验收。
+<!-- SECTION:FINAL_SUMMARY:END -->

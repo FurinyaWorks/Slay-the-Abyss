@@ -1,11 +1,11 @@
 ---
 id: TASK-88.1
 title: 统一紧急集成develop基线
-status: In Progress
+status: Done
 assignee:
   - Furinya
 created_date: '2026-11-08 01:12'
-updated_date: '2026-11-14 03:47'
+updated_date: '2026-11-14 10:13'
 labels: []
 dependencies: []
 parent_task_id: TASK-88
@@ -38,4 +38,12 @@ Owner追加全量收口：五公开实验222路径已恢复逐blob验证；#554�
 正式#607 Full入口复现原始8份诊断log的141行空白格式错误，属于捕获堆栈/空白行原文。仅8个精确log设置-whitespace，原始字节与正常源码检查均保留；整PR git diff --check已重新通过。首次impact失败日志单独保留，不计为Full成功。
 
 2026-11-14统一收口候选已固定纳入#643 fdb91c7e、#648 97af2fed、#646 afd8834b、#650 ec0d0b99；组合生产提交5c2e8173，348份当前源码逐字一致，素材登记与两组任务证据完整保留。独立组合生产复审PASS；真实OnUpdate deck/Neow3/3及MENU_HOVER_CONTINUITY_PASS。新单层组合CI来源保留四固定输入和全部旧归档，来源23pass/1既有renderer缺失skip；完整校准72/72，869JS/1417Lua完整分片和原预算通过。guidance、Backlog、license检查通过。646/650已按入口暂停，保留来源Full作业收据后取消无新失败的重复运行；648队列继续。组合尚待最终精确SHA独审、新develop基线Full及实际squash/push，不完成官方设备AC。
+
+2026-11-14逐项对账：PR634实际squash为903bf2a3，PR Full43211206190、原生队列43219327412及push43229600772均success；本轮原verify:delivery --merged真实返回merged_passed，证据build/delivery/bbd96f62-7d15-4932-9139-2b37f349166a。当前基线9f2f44e4保留该成果。此为交付记录收口，不新增平台或设备通过。 旧11/8至11/12来源快照已由607/634收拢；sources.json/backups.json保存整合、实验及WIP去向。新PR643继续独立处理后续整合。
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+旧11/8至11/12来源快照已由607/634收拢；sources.json/backups.json保存整合、实验及WIP去向。新PR643继续独立处理后续整合。 本轮已核对真实合后交付证据。
+<!-- SECTION:FINAL_SUMMARY:END -->

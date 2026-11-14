@@ -183,6 +183,8 @@ export function armAutoMerge(repo,number,review,query=gh,{dryRun=false,loadCheck
     for(const job of jobs)if(!effective.has(job.name)||effective.get(job.name).run_attempt<job.run_attempt)effective.set(job.name,job);
     if([...effective.values()].some(j=>['failure','cancelled','timed_out','action_required'].includes(j.conclusion)))
       throw Error('Latest Full job failed before release');
+    if(proof.pendingRun?.awaitingRouting&&!fullRouting([...effective.values()])&&!waitingForExplicitFull([...effective.values()],run))
+      throw Error('Explicit pending Full routing changed before release');
     if(proof.fastPreflight){
       const refreshed=collectPrDelivery(repo,number,review,query,()=>({checkout:preflight.checkout,checkoutArtifact:preflight.checkoutArtifact,plan:preflight.plan}));
       if(verifyDelivery(refreshed.evidence).length||refreshed.evidence.runId!==preflight.runId||
@@ -192,18 +194,23 @@ export function armAutoMerge(repo,number,review,query=gh,{dryRun=false,loadCheck
   };
   const pending=latest();
   if(!pending)throw Error('Current Quality run has not started; do not authorize missing CI');
+  const fullRouting=jobs=>jobs.some(j=>/^rules \(\d+\/\d+\)$/.test(j.name))&&!jobs.some(j=>/^fast \(/.test(j.name));
+  const waitingForExplicitFull=(jobs,run)=>current.queueRequired&&(current.pr.labels??[]).some(label=>(typeof label==='string'?label:label?.name)==='ci:full')&&
+    !jobs.some(j=>/^fast \(/.test(j.name))&&jobs.some(j=>j.name==='impact'&&j.run_id===run.id&&j.head_sha===run.head_sha&&
+      j.run_attempt===run.run_attempt&&['queued','in_progress','waiting'].includes(j.status)&&j.conclusion==null);
   if(pending.status!=='completed'){
     const jobs=json(query,'api','--paginate','--slurp',`repos/${repo}/actions/runs/${pending.id}/jobs?filter=all&per_page=100`).flatMap(p=>p.jobs);
-    if(!jobs.some(j=>/^rules \(\d+\/\d+\)$/.test(j.name))||jobs.some(j=>/^fast \(/.test(j.name)))
-      throw Error('Full CI routing is not ready; add ci:full and wait for impact');
     const effective=new Map();
     for(const job of jobs)if(!effective.has(job.name)||effective.get(job.name).run_attempt<job.run_attempt)effective.set(job.name,job);
     if([...effective.values()].some(j=>['failure','cancelled','timed_out','action_required'].includes(j.conclusion)))
       throw Error('Current Full CI already failed or was cancelled');
+    const awaitingRouting=!fullRouting([...effective.values()]);
+    if(awaitingRouting&&!waitingForExplicitFull([...effective.values()],pending))
+      throw Error('Full CI routing is unknown; explicit ci:full and the exact pending impact job are required');
     const final=collectEligibility(repo,number,review,query),lastRun=latest();
     if(final.errors.length||final.queueRequired!==current.queueRequired||final.rulesFingerprint!==current.rulesFingerprint||!sameAdmission(final.pr,current.pr)||lastRun?.id!==pending.id||lastRun.run_attempt!==pending.run_attempt)
       throw Error('PR admission or Full attempt changed before authorization');
-    proof.pendingRun={id:pending.id,attempt:pending.run_attempt,head:pending.head_sha};
+    proof.pendingRun={id:pending.id,attempt:pending.run_attempt,head:pending.head_sha,...(awaitingRouting?{awaitingRouting:true}:{})};
     return requestNativeMerge(repo,number,current,proof,review,query,{dryRun,persist,verifyWitness});
   }
   // Completed CI still uses the original exact Full proof, including its

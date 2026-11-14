@@ -1,12 +1,14 @@
 ---
 id: TASK-81
-title: 按改动运行快速检查并保留完整回归
+title: 验收Fast与Full真实耗时（选测机制已交付）
 status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-28 15:30'
-updated_date: '2026-11-05 00:48'
-labels: []
+updated_date: '2026-11-14 10:13'
+labels:
+  - 待验
+  - delivery-verify
 dependencies: []
 references:
   - docs/plans/2026-11-03-m9-engineering-foundation.md
@@ -105,4 +107,8 @@ e22本地重放验证：相对basename参考与短模式原生CLI对当前360个
 本轮实际自然Quality Fast样本0/20，advisory与取消占位不混入；P50/P90未知，性能AC3未达。完整原始采集371文件与成本工具见docs/backlog-details/TASK-75-81-M9-CI-20261103.md，第二批纯计算去重不更改选择器或门禁。
 
 2026-11-05已复核PR514最终a245、base a308、实际squash78e4e746及相同tree；PR Full41914042810、merge_group41918738466及push41923895912和对应Licenses成功。本轮独立复审40项/35语义变异及新增scry负例PASS；主控原工程门禁和119项CI合同通过。证据见docs/backlog-details/M7-CLOSEOUT-20261105.md及docs/evidence/m7-closeout-20261105/。本轮新独审不补造合前reviewId或schema5历史收据；M7稳定耗时/Fast样本与设备仍未完成。 最新100次Quality完整采集为0个实际Fast，20样本不足，P50/P90未知；AC3保持未勾与In Progress。
+
+2026-11-14逐项对账：选测与保守Full边界已交付；仅剩自然Fast样本P50/P90和Full30分钟性能验收，不重写选择器。
+
+2026-11-14第二轮状态纠正：选测机制与前两项AC已交付，尚缺自然Fast样本及真实耗时；属于进行中待验，不重新实现选择器。 更正上一轮将待验统一退回To Do的处理；未勾AC及独立审批保持，In Progress表示工作已开展，不表示有人正持续占用执行窗口。
 <!-- SECTION:NOTES:END -->

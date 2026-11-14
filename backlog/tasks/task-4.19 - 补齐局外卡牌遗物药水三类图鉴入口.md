@@ -1,13 +1,14 @@
 ---
 id: TASK-4.19
 title: 补齐局外卡牌遗物药水三类图鉴入口
-status: To Do
+status: In Progress
 assignee:
   - Furinya
 created_date: '2026-10-31 10:47'
-updated_date: '2026-11-07 03:47'
+updated_date: '2026-11-14 06:50'
 labels:
   - 待验
+  - delivery-verify
 milestone: m-5
 dependencies: []
 references:
@@ -42,4 +43,6 @@ PR409确认局内查看已有，缺未开局的卡牌、遗物和药水目录入
 
 <!-- SECTION:NOTES:BEGIN -->
 2026-11-07 看板核对（develop 2c85bc61）：实现类交付已按历史记录保留，剩余 AC 待同候选官方/设备验证；当前无在途 PR，状态由 In Progress 归 To Do（待验）。
+
+2026-11-14第二轮状态纠正：生产abyss_compendium_catalog.lua已有不创建Run/RNG的三类只读provider和基础升级数据；剩正式入口及设备验收，不是未开始。 状态表示整个任务的完成进展，不表示当前有执行者持续占用；保留原未验AC、负责人、依赖及历史证据。更正过去把已开展待验事项退回To Do的处理。
 <!-- SECTION:NOTES:END -->
