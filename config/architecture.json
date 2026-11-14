@@ -1,5 +1,10 @@
 {
   "layers": {
+    "abyss_xiao_next_source": "core",
+    "abyss_xiao_next_reward_catalog": "core",
+    "abyss_xiao_next_reward_run": "core",
+    "abyss_xiao_next_card_rewards": "core",
+
     "abyss_keqing_utility_cards": "core",
     "abyss_keqing_utility_text": "core",
     "abyss_keqing_utility_reward_run": "core",

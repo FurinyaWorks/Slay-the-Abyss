@@ -14,7 +14,7 @@ local function resource(state)
 end
 function M.dispatch(combat,state,effect,queue)
  if effect.op~='xiaoCard'then return false end
- assert(effect.kind=='enemyCountBlock'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='maskBlock'or effect.kind=='breakBlock'or effect.kind=='damage'or effect.kind=='damageAll'or effect.kind=='plunge'or effect.kind=='maskCommit','unsupported Xiao executable kind')
+ assert(effect.kind=='shortenMask'or effect.kind=='lastMaskDamage'or effect.kind=='blockDamage'or effect.kind=='enemyCountBlock'or effect.kind=='spendEnergyBlock'or effect.kind=='spendBlockDraw'or effect.kind=='unmaskedDraw'or effect.kind=='exhaustDamage'or effect.kind=='exhaustBlock'or effect.kind=='maskBlock'or effect.kind=='breakBlock'or effect.kind=='damage'or effect.kind=='damageAll'or effect.kind=='plunge'or effect.kind=='maskCommit','unsupported Xiao executable kind')
  local paid=assert(state.pendingPlay,'no paid card context');local card=assert(state.cardInUse,'no resolving card')
  assert((type(paid.uid)=='string'and paid.uid~='')or(type(paid.uid)=='number'and paid.uid>0 and paid.uid%1==0),'invalid paid UID')
  assert(effect.uid==paid.uid and card.uid==paid.uid,'Xiao paid UID mismatch')
@@ -22,6 +22,16 @@ function M.dispatch(combat,state,effect,queue)
  local r=resource(state);integer(effect.value,effect.kind=='maskCommit'and 3 or 2147483647)
  if r.hp==0 then return true end
  local value=effect.value
+ if effect.kind=='shortenMask'then
+  -- Exit powers remain unavailable in this closed paid domain; do not silently drop future hooks.
+  assert((state.xiao.exitGuard or 0)==0 and(state.xiao.exitDraw or 0)==0,'unsupported Xiao exit passive')
+  local patch=Plan.shortenMask(r.mask,value)
+  if patch.mask==0 then Schedule.remove(state,state.player,'xiao_mask');state.player.statuses.xiao_mask=nil
+  else state.player.statuses.xiao_mask=patch.mask end
+  return true
+ end
+ if effect.kind=='lastMaskDamage'then value=Plan.lastMaskDamage(r.mask,value,effect.bonus)end
+ if effect.kind=='blockDamage'then value=Plan.scaledCount(state.player.block,value,effect.cap)end
  if effect.kind=='enemyCountBlock'then
   local live=0;for _,enemy in ipairs(state.enemies)do if Actors.isActive(enemy)then live=live+1 end end
   queue.pushTop(state,{kind='effect',effect={op='block',value=Plan.enemyCountBlock(live,value,effect.cap)}});return true

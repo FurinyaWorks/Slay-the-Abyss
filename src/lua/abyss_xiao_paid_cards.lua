@@ -11,6 +11,7 @@ end
 for _,d in ipairs(Bridge.additionalDefinitions())do canonical[d.id]=d end
 for _,d in ipairs(Bridge.spendDefinitions())do canonical[d.id]=d end
 for _,d in ipairs(Bridge.mixedDefinitions())do canonical[d.id]=d end
+for _,d in ipairs(Bridge.nextDefinitions())do canonical[d.id]=d end
 local function same(a,b)
  if type(a)~='table'or type(b)~='table'then return a==b end
  if getmetatable(a)or getmetatable(b)then return false end
@@ -20,11 +21,12 @@ local function same(a,b)
 end
 function M.supports(e)
  if type(e)~='table'or getmetatable(e)or e.op~='xiaoCard'
-  or e.kind~='damageHits'and e.kind~='enemyCountBlock'and e.kind~='spendEnergyBlock'and e.kind~='spendBlockDraw'and e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
- for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='hits'and e.kind=='damageHits'and e.hits==2)and not(k=='cap'and(e.kind=='enemyCountBlock'or e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
+  or e.kind~='shortenMask'and e.kind~='lastMaskDamage'and e.kind~='blockDamage'and e.kind~='damageHits'and e.kind~='enemyCountBlock'and e.kind~='spendEnergyBlock'and e.kind~='spendBlockDraw'and e.kind~='unmaskedDraw'and e.kind~='exhaustDamage'and e.kind~='exhaustBlock'and e.kind~='maskBlock'and e.kind~='breakBlock'and e.kind~='damage'and e.kind~='damageAll'and e.kind~='plunge'and e.kind~='maskCommit'then return false end
+ for k in pairs(e)do if k~='op'and k~='kind'and k~='value'and not(k=='bonus'and e.kind=='lastMaskDamage')and not(k=='hits'and e.kind=='damageHits'and e.hits==2)and not(k=='cap'and(e.kind=='blockDamage'or e.kind=='enemyCountBlock'or e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'))and not(k=='requiresAlive'and e.kind=='maskCommit'and e.requiresAlive==true)then return false end end
+ if e.kind=='lastMaskDamage'and(type(e.bonus)~='number'or e.bonus%1~=0 or e.bonus<0 or e.bonus>2147483647)then return false end
  if e.kind=='damageHits'and e.hits~=2 then return false end
  if e.kind=='enemyCountBlock'and e.cap~=3 then return false end
- if e.kind=='enemyCountBlock'or e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
+ if e.kind=='blockDamage'or e.kind=='enemyCountBlock'or e.kind=='spendBlockDraw'or e.kind=='exhaustDamage'or e.kind=='exhaustBlock'then if type(e.cap)~='number'or e.cap%1~=0 or e.cap<0 or e.cap>2147483647 then return false end end
  return type(e.value)=='number'and e.value%1==0 and e.value>=0 and e.value<=2147483647
 end
 function M.canUse(state,instance,card,targetIndex)
@@ -33,8 +35,9 @@ function M.canUse(state,instance,card,targetIndex)
   for _,e in ipairs(card.effects)do if e.op=='xiaoCard'then return false,'unmarked_xiao_card'end end
   return true
  end
+ if instance.cardId=='xiao_candidate_x27'and(type(state.xiao)~='table'or (state.xiao.exitGuard or 0)~=0 or(state.xiao.exitDraw or 0)~=0)then return false,'unsupported_xiao_exit_passive'end
  local c=canonical[instance.cardId]
- if instance.cardId=='xiao_candidate_x30'or instance.cardId=='xiao_candidate_x35'or instance.cardId=='xiao_candidate_x40'or instance.cardId=='xiao_candidate_x23'or instance.cardId=='xiao_candidate_x38'then
+ if instance.cardId=='xiao_candidate_x27'or instance.cardId=='xiao_candidate_x28'or instance.cardId=='xiao_candidate_x37'or instance.cardId=='xiao_candidate_x30'or instance.cardId=='xiao_candidate_x35'or instance.cardId=='xiao_candidate_x40'or instance.cardId=='xiao_candidate_x23'or instance.cardId=='xiao_candidate_x38'then
   if instance.upgraded~=nil and type(instance.upgraded)~='boolean'then return false,'invalid_xiao_upgrade'end
   local source=state.catalog.cards[instance.cardId]
   if type(source)~='table'or getmetatable(source)then return false,'xiao_spend_source'end
@@ -74,7 +77,7 @@ function M.prepare(state,card,effects,target)
    end
   else out[#out+1]=e end
  end
- if instance.cardId=='xiao_candidate_x30'or instance.cardId=='xiao_candidate_x35'or instance.cardId=='xiao_candidate_x40'then context.xiaoPaid.expectedStages=Copy(out)end
+ if instance.cardId=='xiao_candidate_x27'or instance.cardId=='xiao_candidate_x28'or instance.cardId=='xiao_candidate_x37'or instance.cardId=='xiao_candidate_x30'or instance.cardId=='xiao_candidate_x35'or instance.cardId=='xiao_candidate_x40'then context.xiaoPaid.expectedStages=Copy(out)end
  return out
 end
 function M.dispatch(combat,state,e,queue)
@@ -90,7 +93,7 @@ function M.dispatch(combat,state,e,queue)
   and(e.payload.targetId==nil or e.payload.targetId==context.targetId),'wrong Xiao stage payload')
  if paid.expectedStages then assert(same(e,paid.expectedStages[paid.cursor]),'mutated Xiao mixed stage')end
  local skip=false
- if e.payload.kind=='exhaustDamage'or e.payload.kind=='breakBlock'or e.payload.kind=='damage'or e.payload.kind=='plunge'and(state.player.statuses.xiao_mask or 0)==0 then
+ if e.payload.kind=='lastMaskDamage'or e.payload.kind=='blockDamage'or e.payload.kind=='exhaustDamage'or e.payload.kind=='breakBlock'or e.payload.kind=='damage'or e.payload.kind=='plunge'and(state.player.statuses.xiao_mask or 0)==0 then
   local target;for _,enemy in ipairs(state.enemies)do if enemy.id==context.targetId then target=enemy end end
   skip=not Presence.isActive(target)
  end
