@@ -4,13 +4,14 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
 import {createSourceEpochProjector} from './combined-epoch/source-epoch-runtime.mjs';
+const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.values(value).forEach(freeze);Object.freeze(value);}return value;};
 export function extendReleaseSourceEpoch(original){
  const bytes=readFileSync(new URL('./release-source-epoch.json.gz',import.meta.url));
- assert.equal(createHash('sha256').update(bytes).digest('hex'),'7825732447122bb4325db3d27d29896881350c0c1560565b16cdb0ceb5ca7ba9');
+ assert.equal(createHash('sha256').update(bytes).digest('hex'),'365dc664152b6446d67519d42037ef8e717de8fdd5fe512144c0dcd4145f06aa');
  const patch=JSON.parse(gunzipSync(bytes)),prior=original.proof;
  assert.equal(patch.schemaVersion,1);
  assert.equal(patch.baseCommit,'b427ac7ce8c947b06e1f27ae1625a26bc2f80270');
- assert.equal(patch.currentCommit,'0eac1d3c2f69cfcd865dae0d5657b449c2fc2d59');
+ assert.equal(patch.currentCommit,'a3f0295829eda4e7e342e1edab69fa892606d63a');
  assert.deepEqual(patch.inventoryBefore,Object.keys(prior.current).sort());
  assert.deepEqual(Object.keys(patch.before).sort(),Object.keys(patch.current).sort());
  for(const [path,row]of Object.entries(patch.before))assert.deepEqual(row,prior.current[path]??null,'exact release predecessor: '+path);
@@ -20,6 +21,6 @@ export function extendReleaseSourceEpoch(original){
  const targets=Object.fromEntries(Object.entries(prior.targets).map(([name,row])=>[name,{...row,files:pad(row.files)}]));
  assert(!Object.hasOwn(targets,'releasePrior'));targets.releasePrior={commit:patch.baseCommit,files:pad(prior.current)};
  const owners=paths.filter(path=>Object.values(targets).some(row=>row.files[path]?.sha256!==current[path]?.sha256));
- return createSourceEpochProjector({...prior,currentCommit:patch.currentCommit,currentTreeCommitted:false,
-  currentCommitRole:'exact single-protagonist release integration sources',current,targets,owners},{allowConfigLayout:true});
+ return createSourceEpochProjector(freeze({...prior,currentCommit:patch.currentCommit,currentTreeCommitted:false,
+  currentCommitRole:'exact single-protagonist release integration sources',current,targets,owners}),{allowConfigLayout:true,reuseFrozenInput:true});
 }
