@@ -107,6 +107,72 @@ local choice={token='grid-base',cards=F.Combat.copy(run.combat.draw),op='discove
 assert(host:openDeck('draw'));settle();assert(deck.indexBase==0,'browser/pile grids shared an index calibration');assert(host:closeDeck());settle()
 run.combat.draw={};assert(host:openDeck('draw'));settle();assert(#deck.cards==0 and not deck.pendingGrid and not deck.calibrating,'N to EMPTY left preparation pending')
 print('DECK_REUSE_PASS')`);
+
+ // Exercise the actual bootstrap readiness closure, not a replacement predicate.
+ lua(`package.path='src/lua/?.lua;tests/lua/?.lua;'..package.path
+${preloads}
+local F=dofile('tests/lua/support/game_ui_fixture.lua');local G=require('abyss_game_ui');local create=G.new
+local C=F.Combat;local Gate=require('abyss_page_reveal')
+package.loaded.abyss_art_features={schemaVersion=2,flags={cards=false,menuBackground=false,selectionAvatar=false,battlePortrait=false,monsters=false}}
+Color=setmetatable({FromRGBA=function(r,g,b,a)return{r=r,g=g,b=b,a=a}end},{__call=function(_,r,g,b,a)return{r=r,g=g,b=b,a=a}end})
+Enum={ImageSource={StaticReference='static'},ImageType={Basic='basic',Stretch='stretch'},CursorEventType={CursorClick='click'},Device={Controller='controller',MobileController='mobileController',Mobile='mobile'}}
+local function boot(amount,origin)
+ local canvas=F.control({children=F.Layout});local host,p;local actors=F.monsterActors()
+ package.loaded.abyss_monster_actor_binding={enabled=true,templateIndex=actors.templateIndex,containerTemplateIndex=actors.containerTemplateIndex,powerTemplateIndex=actors.powerTemplateIndex}
+ game={GetUICanvasSize=function()return 1280,720 end,IsTestPlay=function()return true end,GetDevice=function()return'desktop'end,GetCursorUIPos=function()return 0,0 end,
+  InstantiateClientUIControl=actors.instantiate,DestroyClientUIControl=actors.destroy}
+ script={object=canvas,GetParam=function()return false end,EnableUpdate=function()end}
+ G.new=function(root,data,presentation,event,platform)p=platform;host=create(root,data,presentation,event,platform);return host end
+ dofile('src/lua/abyss_ui.lua');OnStart();G.new=create;local update=OnUpdate
+ for i=1,5 do update(1/60)end;assert(host and not host.pageReveal:covered());assert(host:start())
+ for i=1,5 do update(1/60)end;assert(F.confirmStart(host));for i=1,5 do update(1/60)end
+ local original=C.copy(host.run.deck);host.run.deck={}
+ for i=1,amount do local card=C.copy(original[(i-1)%#original+1]);card.uid=1000+i;host.run.deck[i]=card end
+ local grid=host.root:GetChild('deckPanel'):GetChild('pileGrid');grid.indexBase=origin;grid.deferRefresh=true
+ assert(host:openDeck());return host,p,grid,update
+end
+local function turns(update)for i=1,3 do update(1/60)end end
+local function fill(grid,first,last)for i=first,last do grid:recycle(i-1,i-1+grid.indexBase)end end
+for _,origin in ipairs({0,1})do
+ local host,p,grid,update=boot(10,origin);local deck=host.deckUI
+ assert(deck.calibrating and grid.itemCount==1,'cold grid must calibrate its own native origin')
+ grid:recycle(0,origin);update(1/60);assert(not deck.calibrating and grid.itemCount==10 and deck.pendingGrid)
+ grid:recycle(0,origin);turns(update)
+ assert(deck.pendingGrid and not p.presentationReady(Gate.intent(host)) and host.pageReveal:covered(),'cold first cell revealed an incomplete native page')
+ fill(grid,1,9);assert(deck.pendingGrid);fill(grid,10,10);turns(update)
+ assert(not deck.pendingGrid and p.presentationReady(Gate.intent(host)) and not host.pageReveal:covered())
+ for i=1,10 do assert(deck.bindings[grid.items[i-1]].uid==1000+i,'cold origin mapped wrong UID')end
+end
+-- A fresh small visible set cannot become the readiness limit of a larger list.
+local host,p,grid,update=boot(3,0);local deck=host.deckUI
+grid:recycle(0,0);update(1/60);fill(grid,1,3);turns(update);assert(not host.pageReveal:covered())
+local definition=C.copy(host.run.deck[1]);local function grow(amount)
+ assert(host:closeDeck());turns(update);host.run.deck={}
+ for i=1,amount do local card=C.copy(definition);card.uid=2000+i;host.run.deck[i]=card end
+ assert(host:openDeck());assert(not deck.calibrating and grid.itemCount==amount,'warm grid recalibrated')
+end
+grow(10);fill(grid,1,3);turns(update)
+assert(deck.pendingGrid and not p.presentationReady(Gate.intent(host)) and host.pageReveal:covered(),'warm three-cell history published ten incomplete cells')
+fill(grid,4,10);turns(update);assert(not host.pageReveal:covered())
+grow(17);for i=1,15 do grid:recycle(0,i-1)end;turns(update)
+assert(deck.pendingGrid and host.pageReveal:covered(),'one recycled control certified several visible indices')
+assert(deck:setSort('original'));fill(grid,1,14);turns(update);assert(deck.pendingGrid and host.pageReveal:covered(),'partly visible third row was omitted')
+local retired=grid.items[0];local retiredHit=retired:GetChild('hit');grid.destroyOnRecycle=true;grid:recycle(0,16);grid.destroyOnRecycle=false
+fill(grid,15,15);turns(update);assert(deck.pendingGrid and not retired.alive and not retiredHit.click(),'destroyed prepared cell certified readiness')
+fill(grid,1,1);turns(update);assert(not deck.pendingGrid and not host.pageReveal:covered(),'cold viewport waited for offscreen cards')
+grow(100);fill(grid,1,14);turns(update);assert(deck.pendingGrid and host.pageReveal:covered())
+fill(grid,15,15);turns(update);assert(not deck.pendingGrid and not host.pageReveal:covered(),'virtualized hundred-card list waited for offscreen entries')
+local callback=grid.refreshCallback;local cell=grid.items[0];grid.scrollProgress=.6
+grid:recycle(0,50);assert(deck.bindings[cell].uid==2051 and not deck.pendingGrid and not host.pageReveal:covered(),'scroll recycling lost the current UID or reopened preparation')
+assert(deck:setSort('cost'));local current=grid.refreshCallback;local uid=deck.bindings[cell].uid;callback(cell,0);assert(grid.refreshCallback==current and deck.bindings[cell].uid==uid,'late callback changed the owned refresh or UID')
+fill(grid,1,15);turns(update);assert(not deck.pendingGrid)
+-- Exact intersection: the next row at the viewport edge is excluded; one
+-- additional viewport pixel makes all five cells of that partial row required.
+local top=grid:GetPadding();grid:SetSizeDelta(918,top+210+27);assert(deck:setSort('cost'))
+fill(grid,1,4);turns(update);assert(deck.pendingGrid);fill(grid,5,5);turns(update);assert(not deck.pendingGrid)
+grid:SetSizeDelta(918,top+210+27+1);assert(deck:setSort('cost'));fill(grid,1,5);turns(update)
+assert(deck.pendingGrid,'one-pixel partial row was omitted');fill(grid,6,10);turns(update);assert(not deck.pendingGrid)
+print('DECK_REUSE_PASS')`);
 });
 
 test('real Neow transactions keep their stable room identity through Host text updates but prepare different rooms and card pickers',t=>{

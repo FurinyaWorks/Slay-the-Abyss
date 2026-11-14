@@ -1,4 +1,4 @@
-import {sourceEpoch as combinedCurrent,sourceSlice} from './helpers/closeout-source-epoch.mjs';
+import {sourceEpoch as combinedCurrent,sourceSlice,ciRepairSourceEpoch} from './helpers/closeout-source-epoch.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync as nativeReadFileSync} from 'node:fs';
@@ -19,8 +19,18 @@ const currentLive=p=>{try{return sourceSlice(p,nativeReadFileSync(p,'utf8'),'pr6
 // Preserve the original joint UI assertions against their explicit predecessor.
 const jointLive=current.combinedReader(currentLive,'joustPrior');
 function retainedPaths(historical){
- const actual=['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)];
- assert.deepEqual(actual.slice().sort(),Object.keys(combinedCurrent.proof.current).sort(),'complete live production inventory');
+ const live=['config/architecture.json',...readdirSync('src/lua').filter(p=>p.endsWith('.lua')).map(p=>'src/lua/'+p)];
+ assert.deepEqual(live.slice().sort(),Object.keys(combinedCurrent.proof.current).sort(),'complete live production inventory');
+ const styleAdded=live.filter(p=>!Object.hasOwn(ciRepairSourceEpoch.proof.current,p));
+ assert.deepEqual(styleAdded,['src/lua/abyss_page_reveal.lua'],'exact registered post-closeout source addition');
+ combinedCurrent.preCombinedSource('config/architecture.json',currentRaw('config/architecture.json'),{target:'stsStylePrior',readSource:currentRaw});
+ for(const p of styleAdded){
+  assert.equal(combinedCurrent.proof.targets.stsStylePrior.files[p],null,'complete original absence must remain explicit');
+  assert.equal(currentRaw(p).replaceAll('\r\n','\n'),combinedCurrent.proof.current[p].source,'new module retains complete current source');
+  assert(combinedCurrent.proof.owners.includes(p),'new module is an authenticated current owner');
+ }
+ const actual=live.filter(p=>!styleAdded.includes(p));
+ assert.deepEqual(actual.slice().sort(),Object.keys(ciRepairSourceEpoch.proof.current).sort(),'complete pre-style production inventory retained');
  const added=actual.filter(p=>!Object.hasOwn(historical.proof.current,p));
  assert.deepEqual(added,['src/lua/abyss_lumine_idle.lua'],'only the explicitly adopted idle may extend this historical corpus');
  for(const p of added){

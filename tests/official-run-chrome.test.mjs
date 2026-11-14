@@ -77,12 +77,21 @@ test('final contracts cover every card host and reject local skin, bar and relic
  assert.throws(()=>assertOfficialRunContracts(trees),/Shared relic surface/);
  relic.children.pop();assert.doesNotThrow(()=>assertOfficialRunContracts(trees));
 });
-test('reward overview reuses the approved dark and paper host while retaining live rows',()=>{
+test('reward overview retains live rows while adopting measured compact rows and the shared flag',()=>{
  const layout=gameLayout(),theme=officialAssetsTheme(nativeTheme),battle=child(layout,'battlePanel');
  const list=child(battle,'rewardList'),live=[list,child(list,'title'),child(list,'subtitle'),...['goldReward','cardReward','claimPotion','continue'].map(name=>child(battle,name))];
  const geometry=new Map(live.map(n=>[n,{position:n.position?.slice(),size:n.size?.slice()}]));
  applyOfficialAssets([layout],theme);
- for(const node of live){assert(all(battle).includes(node));assert.deepEqual(node.position,geometry.get(node).position);assert.deepEqual(node.size,geometry.get(node).size);}
+ const token=theme.officialAssets.rewardRows;
+ for(const node of live){
+  assert(all(battle).includes(node));
+  const before=geometry.get(node),isRow=['goldReward','cardReward','claimPotion'].includes(node.name);
+  const position=node.name==='title'?[before.position[0],token.titleY-list.position[1]]:
+   node.name==='subtitle'?[before.position[0],token.subtitleY-list.position[1]]:before.position;
+  assert.deepEqual(node.position,position,node.name+' measured placement');
+  assert.deepEqual(node.size,isRow?token.rowSize:node.name==='continue'?[180,60]:before.size,node.name+' shared size');
+ }
+ assert.equal(token.rowSize[0],296);assert.equal(token.rowSize[1],56);
  assert.equal(child(list,'title').text.content,'战斗奖励');
  assert.equal(child(list,'plate').opacity,0);assert.equal(child(list,'border').opacity,0);
  const field=child(list,'v25RewardField'),paper=child(list,'v25RewardPaper');
@@ -97,9 +106,12 @@ test('reward overview reuses the approved dark and paper host while retaining li
 test('real reward layout keeps the shared host aligned through expanded and ordinary lists',()=>{
  const f=createRequire(import.meta.url)('fengari'),L=f.lauxlib.luaL_newstate();f.lualib.luaL_openlibs(L);
  const theme=officialAssetsTheme(nativeTheme),source=readFileSync(new URL('../src/lua/abyss_battle_reward_layout.lua',import.meta.url),'utf8');
+ applyOfficialAssets([gameLayout()],theme);
  const script=`
 local theme=${toLua(theme)}
 package.preload.abyss_theme=function()return theme end
+-- Resolve the real RelicView and its complete transitive Lua dependencies.
+package.path='src/lua/?.lua;'..package.path
 local Layout=assert(load(${luaString(source)}))()
 local function node()
  local n={children={}}
@@ -107,6 +119,7 @@ local function node()
  function n:SetAnchoredPosition(x,y)self.x,self.y=x,y end
  function n:SetSizeDelta(w,h)self.w,self.h=w,h end
  function n:SetVisible(v)self.visible=v end
+ function n:SetLocalScale(x,y,z)self.scale={x,y,z}end
  return n
 end
 local root=node();local function child(k)return root:GetChild(k)end
@@ -124,6 +137,9 @@ for _,expanded in ipairs({false,true,true,false})do
  assert(child('goldReward').y==contract.rowOrigin[2])
  assert(child('continue').y==contract.continue[2])
  assert(box.w==contract.stage[3]and box.h==contract.stage[4])
+ local panel=box:GetChild('stsRewardPanel');local token=theme.officialAssets.rewardRows
+ assert(box.x+panel.x==token.panelPosition[1]and box.y+panel.y==token.panelPosition[2])
+ assert(panel.scale[2]==(token.panelSize[2]+contract.stage[4]-theme.layout.battleRewards.stage[4])/token.panelSize[2])
 end
 `;
  try{const code=f.lauxlib.luaL_dostring(L,f.to_luastring(script));assert.equal(code,0,code===0?'':f.to_jsstring(f.lua.lua_tostring(L,-1)));}finally{f.lua.lua_close(L);}

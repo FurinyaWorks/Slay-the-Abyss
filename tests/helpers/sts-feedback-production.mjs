@@ -4,5 +4,5 @@ import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {feedbackHash,freezeFeedbackData} from './sts-feedback-source-runtime.mjs';
 const bytes=readFileSync(new URL('./sts-feedback-production.json.gz',import.meta.url));
-assert.equal(feedbackHash(bytes),'c073c2123818528e6f833cb146c6008e7ef76b2266a8839cd4872bf4ad8b0b6e','complete exact feedback product slice');
+assert.equal(feedbackHash(bytes),'dbf36e246ebaf9db114be52a828b05f8295213392d2e2a3a6693d075c051c83d','complete exact feedback product slice');
 export const feedbackProductionPatch=freezeFeedbackData(JSON.parse(gunzipSync(bytes)));

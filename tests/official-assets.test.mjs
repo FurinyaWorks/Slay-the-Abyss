@@ -17,6 +17,10 @@ import {buildUI,assertNativeUiCapacity} from '../scripts/build-ui.mjs';
 import {buildNativeCandidate} from '../scripts/build-native-candidate.mjs';
 import {merchantControl} from '../scripts/cinematic-ui-layout.mjs';
 import {gameBuildArgs} from '../scripts/build-game.mjs';
+import {styleEvent} from '../scripts/v25-node-layout.mjs';
+import {applyOfficialNeowLayout} from '../scripts/noncombat-neow-layout.mjs';
+import {assertOfficialRunContracts} from '../scripts/official-run-layout.mjs';
+import {buildStsSharedCardChrome,geoCardReferenceTokens} from '../scripts/sts-card-reference-profile.mjs';
 const children=node=>node.controls??node.children??[];
 const all=node=>[node,...children(node).flatMap(all)];
 const paths=(node,prefix='')=>allPaths(node,prefix);
@@ -66,19 +70,37 @@ test('receipts and pinned source audits reconstruct official art and reject mism
 test('approved pages keep live input identities while unrelated pages retain their geometry',()=>{
  const layout=gameLayout(),template=deckCardTemplate(),theme=officialAssetsTheme(nativeTheme);
  const nodes=[...paths(layout),...paths(template)];
+ // Event presentation now explicitly adopts the existing room component and
+ // the approved Neow adapter. Compare every owned field to that shared
+ // projection instead of treating this authorized room as unchanged geometry.
+ const expectedEvent=structuredClone(child(child(layout,'nodePanel'),'eventView'));
+ styleEvent(expectedEvent,theme);
+ applyOfficialNeowLayout({children:[{name:'nodePanel',children:[expectedEvent]}]},theme);
+ const eventProjection=new Map(paths(expectedEvent,'/SlayTheAbyss/nodePanel'));
  const semantic=nodes.filter(([,node])=>['text','cursorArea','presetButton'].includes(node.kind))
   .map(([path,node])=>[path,node,structuredClone(node)]);
  const containers=nodes.filter(([,node])=>node.kind==='container').map(([path,node])=>[path,node,{position:node.position,size:node.size,visible:node.visible,scale:node.scale,rotation:node.rotation}]);
- const cardText=new Map(),cardDecorationPaths=new Set(),cardHosts=new Set();
+ const cardText=new Map(),cardDecorationPaths=new Set(),retiredCardDecorationPaths=new Set(),cardHosts=new Set();
  for(const [path,face]of nodes)if(child(face,'roundFrame')&&child(face,'costDisc')){
   cardHosts.add(face);
   for(const key of ['name','cost','costDirection','type','label','description','stamp','hit'])if(child(face,key))cardText.set(child(face,key),key==='description'?'label':key);
-  for(const [inner,node]of nodes)if(inner.startsWith(path+'/')&&node.kind==='container')cardDecorationPaths.add(inner);
+  for(const [inner,node]of nodes)if(inner.startsWith(path+'/')&&node.kind==='container'){
+   cardDecorationPaths.add(inner);
+   if(['roundShadow','roundFrame','roundBody','skin','roleMark','tagEdge','tagBody','nativeRibbon','nativeCostOrb','v25NodeCardChrome']
+    .some(name=>inner.startsWith(path+'/'+name+'/')))retiredCardDecorationPaths.add(inner);
+  }
  }
  const result=applyOfficialAssets([layout,template],theme);
  const current=new Map([...paths(layout),...paths(template)]);
+ const retiredDeckPrefix='/SlayTheAbyss/characterPanel/deckView/';
+ const retiredDeck=child(child(layout,'characterPanel'),'deckView');
+ assert.equal(retiredDeck.visible,false);assert.deepEqual(retiredDeck.children,[],
+  'selection must use the shared deck browser instead of keeping twelve independent card slots');
  const merchant=new Map(paths(merchantControl(theme),'/SlayTheAbyss/nodePanel'));
   for(const [path,node,before] of semantic){
+   if(path.startsWith(retiredDeckPrefix)){
+    assert.equal(current.has(path),false,path+' duplicate selection browser must be removed');continue;
+   }
    if(path.startsWith('/SlayTheAbyss/deckPanel/pileReturn/')){
     // The approved pile return uses permanent artwork plus one native receiver.
     if(path.endsWith('/hit')){
@@ -88,6 +110,9 @@ test('approved pages keep live input identities while unrelated pages retain the
     continue;
    }
    assert.equal(current.get(path),node,path);
+   if(eventProjection.has(path)){
+    assert.deepEqual(node,eventProjection.get(path),path+' shared event projection');continue;
+   }
    if(merchant.has(path)){
     const expected=structuredClone(merchant.get(path));
     if(expected.text)expected.text.content=before.text.content;
@@ -121,9 +146,18 @@ test('approved pages keep live input identities while unrelated pages retain the
  }
   const canonical=child(child(layout,'battlePanel'),'card1');
   for(const [path,node,before]of containers){
+   if(path.startsWith(retiredDeckPrefix)){
+    assert.equal(current.has(path),false,path+' duplicate selection browser must be removed');continue;
+   }
    if(restoredPagePath(path)||path.startsWith('/SlayTheAbyss/deckPanel/pileReturn'))continue;
+   if(retiredCardDecorationPaths.has(path)){
+    assert.equal(current.has(path),false,path+' retired independent card decoration must be removed');continue;
+   }
    if(cardDecorationPaths.has(path)){assert(current.has(path),path+' shared decoration remains addressable');continue;}
    assert.equal(current.get(path),node,path);
+   if(eventProjection.has(path)){
+    assert.deepEqual(node,eventProjection.get(path),path+' shared event projection');continue;
+   }
    if(merchant.has(path)){
     assert.deepEqual(node,merchant.get(path),path+' shared merchant projection');continue;
    }
@@ -140,8 +174,22 @@ test('approved pages keep live input identities while unrelated pages retain the
    }
   }
  const cards=[...all(layout),...all(template)].filter(node=>child(node,'roundFrame')&&child(node,'costDisc'));
- assert.equal(result.cardHosts,cards.length);assert(cards.length>=40);assert(result.removedControls>500);
- for(const card of cards){assert.equal(child(child(card,'roundBody'),'flat').image,100001);assert.equal(child(child(card,'roundFrame'),'flat').image,100001);assert.equal(child(card,'costCore').image,107203);}
+ const retiredCards=nodes.filter(([path,node])=>path.startsWith(retiredDeckPrefix)&&cardHosts.has(node)).map(([,node])=>node);
+ assert.equal(retiredCards.length,12,'only the duplicated twelve-card selection modal is retired');
+ assert.equal(result.cardHosts,cardHosts.size,'composition authenticates every original host before retiring the duplicate modal');
+ assert.equal(cards.length,cardHosts.size-retiredCards.length);assert(cards.length>=40);assert(result.removedControls>500);
+ for(const face of cardHosts)assert.equal(cards.includes(face),!retiredCards.includes(face),'retain every active original card host');
+ assertOfficialRunContracts([layout,template]);
+ for(const card of cards){
+  for(const role of ['roundBody','roundFrame']){
+   const old=child(card,role);assert.equal(old.visible,false);assert.deepEqual(old.children,[],'retired card material must stay empty');
+  }
+  const skin=child(card,'skin');if(skin){assert.equal(skin.visible,false);assert.deepEqual(skin.children,[]);}
+  assert.equal(child(card,'costCore').image,107203);assert.equal(child(card,'costCore').visible,false);
+  for(const role of ['stsReferenceBack','stsReferenceChrome']){
+   const material=child(card,role);assert(material);assert.deepEqual(material.position,[0,0]);assert.deepEqual(material.size,theme.layout.card.size);
+  }
+ }
   const battle=child(layout,'battlePanel');
   assert.deepEqual(child(battle,'hero').position,[-324,-37]);
   assert.equal(child(child(battle,'hero'),'name').visible,false);
@@ -180,28 +228,22 @@ test('approved pages keep live input identities while unrelated pages retain the
   assert.equal(child(battle,'exhaust').text.fontSize,18);
   assert.ok(child(battle,'exhaust').size[1]>=18*1.45+4,'counter retains one native text row');
   assert(exhaust.position[1]-child(exhaust,'hit').size[1]/2>discard.position[1]+child(discard,'hit').size[1]/2,'exhaust and discard hits overlap');
+  const reference=theme.officialAssets.stsCardReference,material=buildStsSharedCardChrome(theme),tokens=geoCardReferenceTokens(theme);
   for(let i=1;i<=10;i++){
    const card=child(battle,'card'+i);assert(card);
    assert.deepEqual(card.size,[150,210]);
-   assert.deepEqual(child(card,'cost').position,[-66.5078125,95]);
-   assert.deepEqual(child(card,'name').position,[0,79.8046875]);
-   assert.deepEqual(child(card,'label').size,[124,92]);
-   assert.equal(child(card,'cost').text.fontSize,25);
-   assert.equal(child(child(card,'roundBody'),'nativePaperTrim').visible,false,'old square paper must not leak through rounded corners');
+   for(const [name,key]of [['cost','cost'],['name','title'],['label','body']]){
+    const field=child(card,name),geometry=reference.geometry[key];
+    assert.deepEqual(field.position,geometry.position);assert.deepEqual(field.size,geometry.size);
+    assert.equal(field.text.fontSize,Math.max(14,theme.font.minimum,tokens.typography[key]));
+   }
+   assert.deepEqual(child(card,'stsReferenceBack').children,material.children.filter(n=>['body','portraits'].includes(n.name)));
+   assert.deepEqual(child(card,'stsReferenceChrome').children,material.children.filter(n=>!['body','portraits'].includes(n.name)));
+   assert.deepEqual(child(card,'roundBody').children,[],'retired square paper must not leak through reference corners');
    assert.equal(child(card,'nameBand').visible,false);
-   const ribbon=child(card,'nativeRibbon');assert.equal(ribbon.children.length,34);
-   assert(ribbon.children.slice(10,18).every(n=>n.name.startsWith('face')),'all curved faces must cover backing seams before the soft edge lighting');
-   for(const prefix of ['shade','shine'])assert.equal(ribbon.children.filter(n=>n.name.startsWith(prefix)&&n.feather?.pixels).length,8,'soft ribbon edge lighting');
-   assert.deepEqual(child(child(card,'skin'),'skill').size,[126,68],'shared fixed full illustration slot');
-   assert.deepEqual(child(card,'nativeCostOrb').size,[41,41]);
-   const orb=child(card,'nativeCostOrb');
-   assert.equal(orb.children.length,4,'cost uses native gradients rather than hard concentric rings');
-   assert.deepEqual(child(orb,'rim').size,[34,34]);
-   assert.deepEqual(child(orb,'rim').position,[-.4,.3]);
-   assert.equal(child(orb,'rim').image,107270);
-   assert.equal(child(orb,'aura').image,106056);
-   assert.equal(child(orb,'warmLight').image,106056);
-   assert.equal(child(orb,'highlight').image,106057);
+   for(const role of ['nativeRibbon','nativeCostOrb','skin']){
+    const retired=child(card,role);assert.equal(retired.visible,false);assert.deepEqual(retired.children,[],role+' cannot duplicate shared material');
+   }
    const glow=child(card,'nativePlayableRim');
    assert.deepEqual(nativeTheme.officialAssets.battleGlowSource.rgba,[.2,.9,1,.25],'source float color remains explicit despite native 8-bit quantization');
    assert.equal(child(glow,'softEdge').children[0].opacity,.25,'main border retains source alpha');
@@ -232,8 +274,11 @@ test('scene and button substitutions preserve semantic icons and all four native
    assert.equal(child(child(state,'v25Chrome'),'faceLight'),undefined,'no rectangular face highlight patch');
    for(const name of ['border','borderLeft','borderRight','inner','innerLeft','innerRight','plate','plateLeft','plateRight'])assert.equal(child(state,name).visible,false,'legacy '+name+' must not widen the restored turn button');
   }
- for(const [path,node]of paths(layout))if(/\/(portrait|intentIcon|intentBadge|intentExtra|hpIcon|goldIcon|blockedLock|art|art_attack|art_skill|art_power|icon)$/.test(path)&&node.kind==='image')
-  assert.equal(node.image,before.get(path)??(/^\/SlayTheAbyss\/relicBar\/slot(?:1[3-9]|2[0-5])\/icon$/.test(path)?before.get('/SlayTheAbyss/relicBar/slot1/icon'):undefined),path);
+ for(const [path,node]of paths(layout))if(/\/(portrait|intentIcon|intentBadge|intentExtra|hpIcon|goldIcon|blockedLock|art|art_attack|art_skill|art_power|icon)$/.test(path)&&node.kind==='image'){
+  const expected=path==='/SlayTheAbyss/nodePanel/eventView/art'?theme.icon.eventArt.default:
+   before.get(path)??(/^\/SlayTheAbyss\/relicBar\/slot(?:1[3-9]|2[0-5])\/icon$/.test(path)?before.get('/SlayTheAbyss/relicBar/slot1/icon'):undefined);
+  assert.equal(node.image,expected,path);
+ }
  assert.equal(child(child(layout,'menuPanel'),'backdrop').image,nativeTheme.image.officialBackdrops.title);
  const menu=child(layout,'menuPanel'),result=child(menu,'result');
  for(const key of ['floor','victories','time','deck']){

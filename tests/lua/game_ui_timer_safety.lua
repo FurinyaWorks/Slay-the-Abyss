@@ -39,6 +39,10 @@ dofile('src/lua/abyss_ui.lua');OnStart();GameUI.new=originalNew
 assert(host and script.updating,'actual native public entry must start')
 local nativeRoot=canvas:GetChild('stage');nativeRoot.ui=host
 assert(F.start(host))
+-- A native page is published on two scheduler turns. Settle it without adding
+-- elapsed time before testing the unchanged playing-time accumulation.
+for _=1,8 do if not host.pageReveal:covered() then break end;OnUpdate(0) end
+assert(not host.pageReveal:covered() and host.run.elapsedSeconds==0,'native run must be ready before clock measurement')
 -- Actual OnUpdate path remains internally compatible, but has no verified
 -- foreground/background clock guarantee and therefore must not claim accuracy.
 OnUpdate(60.5);OnUpdate(1.75)

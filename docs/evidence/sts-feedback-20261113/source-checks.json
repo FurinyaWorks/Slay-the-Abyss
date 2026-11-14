@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "status": "SOURCE_CHECKS_AND_INDEPENDENT_REVIEW_PASS",
+  "status": "SOURCE_CHECKS_PASS_FINAL_ADMISSION_REVIEW_REQUIRED",
   "baseCommit": "d359015e567aa2d8ee39cce069f2a151206d1f1d",
-  "sourceCommit": "90c46efccff0c7b7f9c7dec0c1e96aac2c350bd0",
+  "sourceCommit": "ab895b0c947bda50dbadbc2b0f481e149eb836fc",
   "normalization": "Source identities use LF-normalized UTF-8 and canonical Git blobs; binary archive bytes remain exact. Raw and LF file hashes are recorded separately in the private checkpoint.",
   "scope": {
     "changedLuaInputs": 14,
@@ -10,9 +10,9 @@
     "runtimeFreshLinkedOwners": 105,
     "oldHistoricalTargets": 53,
     "currentHistoricalTargets": 54,
-    "ciDeltaInputs": 25,
-    "currentCiWitnessInputs": 71,
-    "currentFreshHelperInputs": 16,
+    "ciDeltaInputs": 43,
+    "currentCiWitnessInputs": 85,
+    "currentFreshHelperInputs": 19,
     "previousFullJsFiles": 864,
     "currentActualFullJsFiles": 869,
     "newFullJsFiles": 5,
@@ -20,18 +20,18 @@
   },
   "archives": {
     "tests/helpers/sts-feedback-production.json.gz": {
-      "rawSha256": "c073c2123818528e6f833cb146c6008e7ef76b2266a8839cd4872bf4ad8b0b6e",
+      "rawSha256": "dbf36e246ebaf9db114be52a828b05f8295213392d2e2a3a6693d075c051c83d",
       "lfSha256": null,
-      "bytes": 114436
+      "bytes": 114983
     },
     "tests/helpers/sts-feedback-ci.json.gz": {
-      "rawSha256": "400925b5a24090e098ada9ab9787aac93e85c193918712365e688f3e2df05bd8",
+      "rawSha256": "7f0ed1751513c5019ae5e5efc087395b63d14c11912fc58e66bdd415c68f1729",
       "lfSha256": null,
-      "bytes": 148880
+      "bytes": 279816
     },
     "tests/helpers/sts-feedback-ci-binding.mjs": {
-      "rawSha256": "5d3845b062f128798281f95c48f237889746af6d76b65db27500cfdaea0461e8",
-      "lfSha256": "5d3845b062f128798281f95c48f237889746af6d76b65db27500cfdaea0461e8",
+      "rawSha256": "2d59511b10e1e8141ff5df9cf7abb35d40f95d1c520c1017aa8f7d7b6f178839",
+      "lfSha256": "2d59511b10e1e8141ff5df9cf7abb35d40f95d1c520c1017aa8f7d7b6f178839",
       "bytes": 467
     }
   },
@@ -55,7 +55,7 @@
   },
   "beforeAfter": {
     "production": "14 complete original d359 source texts and 14 complete current committed product source texts are in the new production delta.",
-    "ci": "25 complete original d359 and current execution inputs are in the new CI delta. All 57 original 4dc cb-before records remain unchanged in the composed proof.",
+    "ci": "43 complete original d359 and current execution inputs are in the new CI delta. All 57 original 4dc cb-before records remain unchanged in the composed proof.",
     "helperCopy": "Original 031c map bytes remain unchanged. Four exact current helper dependency changes are carried in the CI delta.",
     "currentRuntime": "Current source and actual Full discovery execute the new version. Historical projection is an explicit named view; no current-runtime ghost inventory."
   },
@@ -65,7 +65,7 @@
     "TMP": "F:/New folder/.artifacts/style-ci-repair-temp-20261113",
     "originalAssertionsAndTimeBudgetsRetained": true,
     "collectorCheck": {
-      "command": "node24 tests/helpers/generate-sts-feedback-source.mjs --check 90c46efccff0c7b7f9c7dec0c1e96aac2c350bd0",
+      "command": "node24 tests/helpers/generate-sts-feedback-source.mjs --check ab895b0c947bda50dbadbc2b0f481e149eb836fc",
       "exitCode": 0,
       "productionAndCiBytesExact": true,
       "fixedLeafFullTemplateExact": true
@@ -79,15 +79,16 @@
         "skipped": 0,
         "cancelled": 0,
         "todo": 0,
-        "durationMs": 3508.5593,
+        "durationMs": 6186.337,
         "processExitCode": 0,
         "log": {
           "path": "docs/evidence/sts-feedback-20261113/source-10.log.gz",
-          "sha256": "49650d7b3cda3629568d68acee991753875a869cbd09f8b6ad2af2e666a7ca28",
-          "bytes": 657,
-          "rawSha256": "8fd0a50cd5faa5f3c8ebd065be50032e553d5cd2ed014d270e7c212a3ed235b6",
-          "rawBytes": 1340
-        }
+          "sha256": "03e9a0eb04d1b19b3605051cba7ec89195f9e5dd3ceefd6a159942071155b25b",
+          "bytes": 652,
+          "rawSha256": "f881ade3ac4f57708863b554bd343c46d6c46fda77fde03e9478dbb86c098aad",
+          "rawBytes": 1343
+        },
+        "sourceCommit": "ab895b0c947bda50dbadbc2b0f481e149eb836fc"
       },
       "isolation": {
         "command": "node24 --test --test-name-pattern '^isolated authenticated helper closure retains the exact Defect final epoch and rejects owner drift$' tests/defect-final-source-epoch.test.mjs",
@@ -105,7 +106,17 @@
           "bytes": 188,
           "rawSha256": "76f48d1a9556044fe62af35ddd393652fe9043ab9a80184dc2c45ab72511f6c6",
           "rawBytes": 240
-        }
+        },
+        "sourceCommit": "90c46efccff0c7b7f9c7dec0c1e96aac2c350bd0",
+        "scope": "Retained earlier event-slice isolation execution; not rerun for J."
+      },
+      "repairBinding": {
+        "sourceCommit": "ab895b0c947bda50dbadbc2b0f481e149eb836fc",
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "processExitCode": 0,
+        "logSha256": "664308b1e5cfd7c63929e467180e9135d43ec08534151898ef2b0665dbc70f52"
       }
     },
     "negativeCoverage": [
@@ -115,7 +126,10 @@
       "The existing Defect isolation test copies the complete current helper closure and retains its exact historical epoch and owner-drift rejection."
     ],
     "executionMode": "Portable Node24 via require_escalated with the original assertions and time budgets.",
-    "completeFullSuiteNotRepeated": true
+    "completeFullSuiteNotRepeated": true,
+    "discardedSelection": {
+      "scope": "final-J-defect-isolation.log selected no named subtest; file-level pass is not used as isolation evidence"
+    }
   },
   "independentReview": {
     "reviewer": "deck_reuse_audit",
@@ -123,7 +137,8 @@
     "sourceCommit": "90c46efccff0c7b7f9c7dec0c1e96aac2c350bd0",
     "report": ".artifacts/sts-feedback-source-20261113/independent-review.json",
     "reportSha256": "64996b017ec5777163979f758334378d6b18278348381c18d00430c46f9be526",
-    "method": "Independent committed Git/source/archives/checkpoint inspection and readback of the two current author logs; no suite repeated."
+    "method": "Independent committed Git/source/archives/checkpoint inspection and readback of the two current author logs; no suite repeated.",
+    "scope": "Retained prior slice review; exact final admission uses a separate reviewedHeadSha/reviewedBaseSha record."
   },
   "privateTraceability": {
     "checkpoint": ".artifacts/sts-feedback-source-20261113/source-checkpoint.json",

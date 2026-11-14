@@ -21,7 +21,8 @@ function runOfficial(t,body,marker){
  const stage=layout.controls.find(c=>c.name==='stage');
  const battle=stage.children.find(c=>c.name==='battlePanel');
  const face=battle.children.find(c=>c.name==='card1');
- assert.equal(face.children.find(c=>c.name==='roundBody').children.find(c=>c.name==='flat').image,theme.image.rect);
+ assert.equal(face.children.find(c=>c.name==='stsReferenceBack').children.find(c=>c.name==='body').children.find(c=>c.name==='paperWell').image,theme.image.rect,
+  'the generated production shared face retains its rectangular paper well');
  const script=`
 local generated=${luaString(directory.replaceAll('\\','/'))}
 package.path=generated..'/?.lua;src/lua/?.lua'
@@ -148,12 +149,19 @@ test('official flow: independently routed event uses its actual leave option and
 local h,root=room('event');local run=h.run
 assert(run.nodeFlow.event and root:GetChild('nodePanel').active)
 print('OFFICIAL_EVENT '..run.nodeFlow.event.id)
-local leave
+local leave,leaveCount=nil,0
 for i=1,6 do
  local option=root:GetChild('nodePanel'):GetChild('eventView'):GetChild('option'..i)
- if option and option.visible and option:GetChild('title').text=='［离开］' then leave=i;break end
+ if option and option.visible then
+  local label=option:GetChild('title').text
+  if label:match('^%[离开%]') then
+   assert(label=='[离开] 什么也不会发生。','leave action must retain its complete original description')
+   leave,leaveCount=i,leaveCount+1
+  end
+ end
 end
 assert(leave,'seed event must expose an actual leave choice')
+assert(leaveCount==1,'only one visible leave action may own the transaction')
 local hp,gold,deck=run.hp,run.gold,#run.deck
 F.click(root,'nodePanel','eventView/option'..leave)
 assert(run.phase=='map' and h.mode=='node' and run.nodeFlow.complete)

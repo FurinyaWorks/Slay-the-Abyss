@@ -16,14 +16,27 @@ export const feedbackHelperPaths=Object.freeze([
  'tests/helpers/sts-style-ci-source.mjs','tests/helpers/sts-feedback-source-runtime.mjs',
  'tests/helpers/sts-feedback-production.mjs','tests/helpers/sts-feedback-ci.mjs',
  'tests/helpers/generate-sts-feedback-source.mjs',
+ 'tests/helpers/game-ui-host-equivalence.mjs','tests/helpers/game-ui-host-historical-runtime.mjs',
+ 'tests/helpers/game-ui-host-live-contract.mjs',
 ]);
 export const feedbackProductCiPaths=Object.freeze(['data/presentation/ui_theme.json','scripts/official-assets-layout.mjs',
  'scripts/official-run-layout.mjs','scripts/v25-node-layout.mjs','scripts/sts-card-reference-profile.mjs','scripts/sts-reward-row-layout.mjs']);
+// Complete original/current texts for the contracts exposed by the first Full
+// run. These are executable continuations, not replacements for prior archives.
+const feedbackCiRepairPaths=[
+ 'tests/art-feature-flags-runtime.test.mjs','tests/defect-final-source-epoch.test.mjs',
+ 'tests/encounter-formation-source-epoch.test.mjs','tests/game-ui.test.mjs',
+ 'tests/lua/game_ui_classes_failure.lua','tests/lua/game_ui_timer_safety.lua',
+ 'tests/lua/support/art_feature_flags_entry.lua','tests/noncombat-neow-layout.test.mjs',
+ 'tests/official-assets-flow.test.mjs','tests/official-assets-runtime.test.mjs',
+ 'tests/official-assets.test.mjs','tests/official-run-chrome.test.mjs',
+ 'tests/room-ui-source-epoch.test.mjs','tests/v25-portrait-profile.test.mjs','tests/watcher-actor-boundary.test.mjs',
+];
 export const feedbackCiPaths=Object.freeze([
  ...feedbackHelperPaths,...feedbackProductCiPaths,
  'tests/sts-card-reference.test.mjs','tests/sts-card-reference-runtime.test.mjs',
  'tests/sts-style-source-epoch.test.mjs','tests/v25-map-theme.test.mjs','tests/sts-neow-runtime.test.mjs',
- 'tests/v25-event-readability.test.mjs','tests/v25-node-layout.test.mjs',...feedbackAddedTests,
+ 'tests/v25-event-readability.test.mjs','tests/v25-node-layout.test.mjs',...feedbackAddedTests,...feedbackCiRepairPaths,
 ].sort());
 export const feedbackClosurePaths=Object.freeze([
  'tests/helpers/closeout-source-epoch.mjs','tests/helpers/sts-feedback-source-runtime.mjs',
