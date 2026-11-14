@@ -7,6 +7,7 @@ import {v25Theme,applyV25BattleLayout,rebuildV25CardFaces} from './v25-layout.mj
 import {officialBattleHud,officialBattleUtilityFaces} from './official-battle-hud.mjs';
 import {officialBattleCardChrome} from './official-battle-card-chrome.mjs';
 import {installStsReferenceCardChrome,stsReferenceRuntimeGeometry,geoCardReferenceTokens} from './sts-card-reference-profile.mjs';
+import {loadLowCostArt,attachLowCostArt} from './lowcost-art.mjs';
 import {battlePileReturn} from './official-battle-pile-chrome.mjs';
 import {preflightOfficialRoots,composeOfficialRun,finishOfficialComposition} from './official-run-layout.mjs';
 const children=node=>node?.controls??node?.children??[];
@@ -36,6 +37,7 @@ export function officialAssetsTheme(source){
    disabled:theme.officialAssets.neowChoice.disabled,ink:theme.officialAssets.buttonInk});
  theme.officialAssets.stsCardReference={...geoCardReferenceTokens(theme),geometry:structuredClone(stsReferenceRuntimeGeometry)};
  theme.presentationProfile='official-assets-first';
+ theme.lowCostArt=loadLowCostArt();
  theme.cardSkin.text.body=theme.officialAssets.cardInk;
   theme.cardSkin.costText=theme.officialAssets.battleCostInk;
   theme.cardSkin.text.title=theme.officialAssets.battleCardTitleInk;
@@ -280,5 +282,6 @@ export function applyOfficialAssets(trees,theme){
   composeOfficialRun(tree,theme);
  }
  finishOfficialComposition(trees);
+ for(const tree of trees)attachLowCostArt(tree);
  return {cardHosts,removedControls};
 }

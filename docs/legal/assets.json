@@ -186,6 +186,10 @@
     "treasure-ui-pil-evidence": {
       "status": "Project-authored UI geometry and production Lua text projected with Pillow and an installed system font. Unknown SDK textures are wireframe labels, not redistributed official images. Game identities remain their owners IP; no font binaries, IP sublicense or commercial clearance. Offline diagnostics only, not official client/device or final artwork acceptance.",
       "evidence": "docs/evidence/treasure-readable-20261114/README.md; Owner reviewed both projected scenes on 2026-11-14. Runtime source, generated native layout and explicit Boss component fixture; no natural-playthrough claim."
+    },
+    "lowcost-authored-art-evidence": {
+      "status": "Project-authored simplified geometric enemy and relic illustrations drawn as rectangle, disc and triangle recipes. Contact sheets rendered with Pillow and an installed system font; no font binary or official texture redistributed. Game identities remain their owners IP; no IP sublicense or commercial clearance. Existing noncommercial project license and reserved rights unchanged. Offline geometry only, not SDK/device acceptance.",
+      "evidence": "docs/evidence/lowcost-art-20261114/README.md; data/presentation/lowcost-enemy-art.json; data/presentation/lowcost-relic-art.json. Original hand-authored semantic silhouettes, not reused 400-600-shape legacy assets."
     }
   },
   "files": {
@@ -9661,6 +9665,14 @@
     "docs/evidence/treasure-readable-20261114/snecko-hover.png": {
       "sha256": "3b1cf59c92bb1af509b6be2cb7b69492db85fe1fadcf3804779ee217157209cf",
       "category": "treasure-ui-pil-evidence"
+    },
+    "docs/evidence/lowcost-art-20261114/relic-gallery.png": {
+      "sha256": "e91867326e4a6fffcfbcab6278958e91eac9e32d7452cc45878bcffadb9868ee",
+      "category": "lowcost-authored-art-evidence"
+    },
+    "docs/evidence/lowcost-art-20261114/enemy-gallery.png": {
+      "sha256": "a1b9c8f0a1fdcc1bfe331b8338593158d5df4a51effc3c1044c345af8f9ba3dc",
+      "category": "lowcost-authored-art-evidence"
     }
   }
 }

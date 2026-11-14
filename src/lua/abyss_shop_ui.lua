@@ -180,6 +180,7 @@ function M.new(controller, ui)
     local function writeRelic(tile, offer, availability)
         state(tile, availability.enabled or selection:inspectable('relics',offer))
         picture(tile:GetChild("icon"), Theme.icon.relic[offer.id])
+        if ui.relicPicture then ui.relicPicture(tile:GetChild('icon'),offer.id,Theme.layout.nativeNode.shop.relics.disc)end
         tile:GetChild("name").text = relicTitle(offer)
         tile:GetChild("description").text = offer.unavailable and '此稀有度暂无可售内容' or relicText(offer.id)
         ink(tile:GetChild("name"), (offer.sold or availability.poor) and C.textMuted or C.text)

@@ -14,7 +14,7 @@ function M.install(ctx)
     ctx.shopSelection = ShopSelection.new(ctx.self, ctx.child('shopView'), ctx.options)
     ctx.renderShop = ShopUI.new(ctx.self, {
         selection = ctx.shopSelection,
-        child = ctx.child, show = ctx.show, state = ctx.state, ink = ctx.ink, picture = ctx.picture,
+        child = ctx.child, show = ctx.show, state = ctx.state, ink = ctx.ink, picture = ctx.picture,relicPicture=ctx.relicPicture,
         fillCard = ctx.fillCard, cardName = ctx.cardName, relicName = ctx.relicName, relicText = ctx.relicText,
         action = ctx.action, pageArrows = ctx.pageArrows,
         commit = function(...) return ctx.commit(...) end,

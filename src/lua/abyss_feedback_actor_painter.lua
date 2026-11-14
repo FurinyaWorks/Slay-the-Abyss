@@ -306,5 +306,6 @@ function M.paint(ctx,id, dt, shakes)
     local tone=portraitTone(ctx,id,base,ink,flash)
     tint(ctx,portrait,tone,alpha)
     MonsterArt.pose(box,x,y,sx,sy,tone,alpha)
+    require('abyss_lowcost_art').pose(box,x,y,sx,sy,tone,alpha,ctx.platform)
 end
 return M
