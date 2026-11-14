@@ -9,6 +9,30 @@ local Controller = require('abyss_controller')
 local typeNames = { attack = "攻击", skill = "技能", power = "能力", status = "状态", curse = "诅咒" }
 local pileNames = {draw="抽牌堆",discard="弃牌堆",exhaust="消耗堆"}
 local rarityOrder = {basic=1,special=2,common=3,uncommon=4,rare=5,curse=6}
+-- ClientUIGridScrollerControl: current item size/spacing, top/bottom padding,
+-- fixed columns and viewport determine visible rows, including clipped edges.
+-- Only those logical indices must be painted; virtual offscreen items may not exist.
+local function visibleCardWindow(grid,amount,columns)
+    if amount==0 then return 1,0 end
+    local _,height=grid:GetItemSize()
+    local _,gap=grid:GetItemSpacing()
+    local top,bottom=grid:GetPadding()
+    local viewport=grid.sizeDeltaY
+    columns=grid.layoutConstraintFixedCount or columns
+    assert(height>0 and gap>=0 and viewport>0 and columns>0,'invalid deck grid geometry')
+    local rows=math.ceil(amount/columns)
+    local length=top+bottom+rows*height+(rows-1)*gap
+    local offset=math.max(0,length-viewport)*math.max(0,math.min(1,grid.scrollProgress or 0))
+    local first=math.max(0,math.floor((offset-top-height)/(height+gap))+1)
+    local last=math.min(rows-1,math.ceil((offset+viewport-top)/(height+gap))-1)
+    return first*columns+1,math.min(amount,(last+1)*columns)
+end
+local function visibleCardsReady(cells,first,last)
+    for index=first,last do
+        if not cells[index] or cells[index].alive==false then return false end
+    end
+    return true
+end
 -- Read-only browser input, not a Run/combat state. UIDs stay local to the
 -- preview and never consume the Run allocator or an RNG stream.
 function M.previewContext(info)
@@ -82,7 +106,6 @@ function M.new(root, presentation, clickEvent, platform, onClose)
     local pileGrid = root:GetChild('pileGrid')
     local grid = browserGrid
     local indexBases=setmetatable({},{__mode='k'})
-    local visibleCounts=setmetatable({},{__mode='k'})
     local function gridColumns() return self.browserShell and 5 or Theme.layout.deckView.columns end
     local function browserHeading(kind)
         if self.previewInfo then return '初始牌组' end
@@ -532,17 +555,26 @@ function M.new(root, presentation, clickEvent, platform, onClose)
         return self:open(run,nil,nil,kind)
     end
     local function paintGrid(cards,catalog,base,generation)
-        local expected=math.min(#cards,visibleCounts[grid] or 1)
-        local seen,count={},0
-        self.pendingGrid=#cards>0
+        local first,last=visibleCardWindow(grid,#cards,gridColumns())
+        local cells,indices={},{}
+        local complete=first>last
+        self.pendingGrid=not complete
+        local function prepared(index,control)
+            if complete then return end
+            local previous=indices[control]
+            if previous and cells[previous]==control then cells[previous]=nil end
+            indices[control]=nil
+            if index>=first and index<=last then cells[index],indices[control]=control,index end
+            complete=visibleCardsReady(cells,first,last)
+            self.pendingGrid=not complete
+        end
         grid:RefreshItems(#cards,function(control,index)
             if not self.visible or self.generation~=generation then return end
-            local instance=cards[index-base+1]
-            if not instance then CardDisplay.clearNativeArt(control:GetChild('face'));control:SetVisible(false);return end
+            local key=index-base+1
+            local instance=cards[key]
+            if not instance then CardDisplay.clearNativeArt(control:GetChild('face'));control:SetVisible(false);prepared(0,control);return end
             fill(control,instance,catalog)
-            if not seen[control]then seen[control]=true;count=count+1 end
-            visibleCounts[grid]=math.max(visibleCounts[grid] or 0,count)
-            if count>=expected then self.pendingGrid=false end
+            prepared(key,control)
         end)
     end
     local function controllerModeChanged()
