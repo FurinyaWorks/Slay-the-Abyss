@@ -302,14 +302,21 @@ test('cold partial checkout checks all text and exact media pointers without dow
  assert.equal(originalEvidence.length,evidenceFiles.length);
  for(const [i,row]of evidenceFiles.entries())assert.deepEqual(row.oldBinaryGitBlobs,[originalEvidence[i]]);
  run(source,['update-index','--index-info'],evidenceFiles.map((row,i)=>'100644 '+originalEvidence[i]+'\t'+row.path).join('\n')+'\n');
+ const originalArchives=run(source,['hash-object','-w','--no-filters','--stdin-paths'],archiveFiles.map(row=>JSON.stringify(resolve(root,row.path))).join('\n')+'\n').split('\n');
+ for(const [i,row]of archiveFiles.entries())assert.deepEqual(row.oldBinaryGitBlobs,[originalArchives[i]]);
+ run(source,['update-index','--index-info'],archiveFiles.map((row,i)=>'100644 '+originalArchives[i]+'\t'+row.path).join('\n')+'\n');
+ const attributes=readFileSync('.gitattributes','utf8');
+ writeFileSync(join(source,'.gitattributes'),attributes.split('\n').map(line=>archiveFiles.some(row=>line.startsWith(row.path+' '))?line.split(' ')[0]+' -text ci-immutable-media':line).join('\n'));
+ run(source,['add','.gitattributes']);
  run(source,['commit','-m','binary baseline']);const base=run(source,['rev-parse','HEAD']);
+ writeFileSync(join(source,'.gitattributes'),attributes);
  writeFileSync(join(source,'source.txt'),'after\n');run(source,['add','.']);run(source,['commit','-m','pointer candidate']);const head=run(source,['rev-parse','HEAD']);
  run(directory,['clone','--no-checkout','--filter=blob:none','--depth=2',pathToFileURL(source).href,clone]);run(clone,['config','core.longpaths','true']);
  // Match the real pre-guard checkout: materialize HEAD first. Every subsequent
  // operation inherits the explicit no-lazy-fetch setting, including local runs.
  run(clone,['checkout','--detach','HEAD'],undefined,{GIT_NO_LAZY_FETCH:'0'});run(clone,['config','user.name','Media CI fixture']);run(clone,['config','user.email','media@example.invalid']);
  const prepared=prepareComparisonBlobs({root:clone,env:{...env,CI_COMPARISON_TOKEN:'local-fixture'}});assert.equal(prepared.parents[0],base);assert(prepared.fetched>0&&prepared.bytes<8*1024*1024);
- const oldObjects=[...new Set([old,...originalEvidence])];
+ const oldObjects=[...new Set([old,...originalEvidence,...originalArchives])];
  const absent=()=>run(clone,['cat-file','--batch-check'],oldObjects.join('\n')+'\n',{GIT_NO_LAZY_FETCH:'1'});
  const assertAbsent=()=>{const rows=absent().split('\n');assert.equal(rows.length,oldObjects.length);for(const row of rows)assert.match(row,/ missing$/);};assertAbsent();
  const measured=()=>checkHostedCheckout({cwd:clone,sha:head,summary:join(directory,'summary'),log(){}});
