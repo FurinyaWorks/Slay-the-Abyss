@@ -1,0 +1,83 @@
+{
+  "candidateSha256": "be81ce01136d9405d973f6f9d0c9d1334c7a686ce0822872e55e72bd4860f541",
+  "checks": [
+    {
+      "name": "native GIL static check / 367 exact embedded module readbacks / inverse projection",
+      "status": "pass"
+    },
+    {
+      "name": "actual native template and runtime mask validation",
+      "status": "pass"
+    },
+    {
+      "name": "actual Lua lifecycle / injected creation and destroy failures",
+      "status": "pass",
+      "contracts": 7,
+      "remainingControls": 0
+    },
+    {
+      "name": "same GIL fresh VM cold / cached reentry",
+      "status": "pass",
+      "coldSamples": 25,
+      "warmSamples": 50,
+      "productLatencyTargets": "not_met"
+    },
+    {
+      "name": "actual Chromium GPU queries, disjoint=false, budgets 0/800/1600/3200",
+      "status": "pass"
+    },
+    {
+      "name": "independent triangle reconstruction and error propagation",
+      "status": "pass",
+      "tests": 2
+    },
+    {
+      "name": "V25 scene regression and preview mask unit",
+      "status": "pass",
+      "tests": 9,
+      "skipped": 1,
+      "skip": "Historical optional pinned renderer not present; explicitly testing current bundle against old pin fails as recorded, current renderer exercised separately by browser probe."
+    },
+    {
+      "name": "experiment JavaScript syntax",
+      "status": "pass"
+    },
+    {
+      "name": "guidance and backlog",
+      "status": "pass"
+    },
+    {
+      "name": "production daily platform load",
+      "status": "pass-with-existing-growth-warnings",
+      "scope": "production defaults, not experimental official capacity"
+    },
+    {
+      "name": "repository full check / required CI",
+      "status": "pending",
+      "scope": "No merge requested; do not claim Full passed"
+    },
+    {
+      "name": "official import / ready / PC and phone / official capacity / multi-character switch",
+      "status": "UNVERIFIED"
+    },
+    {
+      "name": "tracked asset provenance/dependency license inventory",
+      "status": "pass",
+      "boundary": "No commercial/game-IP clearance implied"
+    },
+    {
+      "name": "staged whitespace / source-byte checkout attributes",
+      "status": "pass"
+    }
+  ],
+  "failuresRetained": [
+    "v2 binding key type",
+    "v3 blank paint-vs-scene screenshots (invalid timings)",
+    "v6-v9 missing serialized fill flag (not valid quality/speed acceptance)",
+    "Edge90 Object.hasOwn failure",
+    "optional historical renderer hash mismatch",
+    "v10 Node child spawn EPERM",
+    "v11 first measurement probe compared EnumItem object with string; corrected .Name, same GIL full matrix rerun",
+    "syntax command wrapper initially accessed void.errors; checker itself passed; corrected command passed"
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "scope": "Actual GIL Lua, Simulator API. Test-local view/platform arguments and injected destroy rejection; no official/device acceptance.",
+  "saveSha256": "daa2b3b521c2367652b05ac3f59fdd97c1df42618f10fb9d2bc120c1624646dd",
+  "checks": [
+    "menu-no-preload",
+    "selection-role-boundaries",
+    "invalid-budget-retains-state",
+    "switch-releases-bounded-cache",
+    "locked-role-does-not-unlock",
+    "partial-create-and-cleanup-rejection-falls-back",
+    "destroy-rejection-preserves-normal-cleanup"
+  ],
+  "status": "pass",
+  "logs": [
+    {
+      "level": "info",
+      "text": "ABYSS_BUILD 5da3a2d7-fbb5-460d-b4b1-fb17c0fc7dab",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI init Color=table",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI viewport_ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI_PAGES mode=menu nodeNativeActive=false choiceNativeActive=false",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT battle phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT result phase=idle owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_UI ready",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "LUMINE_FIT ready budget=3200 images=3200 readMs=235.1673 createMs=867.4872 revealMs=4.0586999999996",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "LUMINE_FIT ready budget=800 images=798 readMs=59.469500000001 createMs=280.8475 revealMs=1.2175000000007",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT selection phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "ABYSS_PORTRAIT avatar phase=building owned=0 reason=nil",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "LUMINE_FIT failed abyss_lumine_fit:58: fit page unavailable",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "LUMINE_FIT ready budget=3200 images=3200 readMs=0.083300000000236 createMs=703.8394 revealMs=3.1954999999998",
+      "time": 0
+    },
+    {
+      "level": "info",
+      "text": "LUMINE_FIT cleanup_failed abyss_lumine_fit:24: fit destroy rejected",
+      "time": 0
+    }
+  ],
+  "remainingControls": 0
+}

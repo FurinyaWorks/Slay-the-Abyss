@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "acceptedAt": "2026-11-14",
+  "acceptedBudget": 1600,
+  "candidateSha256": "be81ce01136d9405d973f6f9d0c9d1334c7a686ce0822872e55e72bd4860f541",
+  "saveSha256": "daa2b3b521c2367652b05ac3f59fdd97c1df42618f10fb9d2bc120c1624646dd",
+  "fitSha256": "f2f3aaaef5b172bab01ecc433b1f760677e65f4512272abf39854ce7a036e16d",
+  "nativeScreenshotSha256": "2f2d50a99657807c41930f7a6611478fcfe3602c244ef9bd420b289e4b92f782",
+  "browserScreenshotSha256": "53928890614bb4848da24227762b021b3c3afc23d847bcb18a5bfebc939aa088",
+  "ownerQuote": "就你那个1600图元那个我感觉都已经可以了三千二那个已经奢侈了",
+  "scope": "Owner accepts the current 1600-primitive visual appearance. Does not approve loading/switching performance, official rendering, device memory/capacity, import, merge, release or desktop input.",
+  "direction": "Freeze 1600 as main candidate. Keep 3200 only as comparison; no further art fitting or forced primitive reduction."
+}

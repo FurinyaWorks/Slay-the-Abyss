@@ -1,6 +1,7 @@
 // Exact outer continuation into the immutable 903bf closeout CI corpus.
 // New files remain unmeasured raw Full work; no historical archive is rewritten.
 import assert from 'node:assert/strict';
+import {preNativePreviewCiSource} from './native-preview-ci-source.mjs';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
@@ -25,6 +26,7 @@ const freeze=value=>{if(value&&typeof value==='object'&&!Object.isFrozen(value))
 freeze(runHudCiProof);
 freeze(runHudBeforeCiRepairProof);
 export function preRunHudCiSource(path,source){
+ source=preNativePreviewCiSource(path,source);
  const row=Object.hasOwn(runHudCiProof.files,path)?runHudCiProof.files[path]:null;
  if(!row||!row.before||typeof source!=='string'||hash(normalize(source))!==row.after.sha256)return source;
  return row.before.source;
